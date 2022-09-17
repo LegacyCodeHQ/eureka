@@ -7,5 +7,5 @@ dependencies {
 }
 
 application {
-  mainClass.set("MainKt")
+  mainClass.set("io.redgreen.lt.cli.MainKt")
 }

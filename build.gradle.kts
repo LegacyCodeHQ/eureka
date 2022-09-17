@@ -13,7 +13,12 @@ repositories {
 }
 
 dependencies {
-  testImplementation(kotlin("test"))
+  // JUnit 5
+  testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
+  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
+
+  // Truth
+  testImplementation("com.google.truth:truth:1.1.3")
 }
 
 tasks.test {

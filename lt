@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -e
+
+./gradlew :cli:installDist -q
+./cli/build/install/lt/bin/lt $*

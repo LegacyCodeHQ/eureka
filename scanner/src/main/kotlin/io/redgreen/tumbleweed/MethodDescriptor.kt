@@ -6,8 +6,7 @@ import java.util.regex.Pattern
 value class MethodDescriptor(private val value: String) {
   val returnType: String
     get() {
-      val zeroParameters = value.contains("()")
-      val typeDescriptor = if (zeroParameters) {
+      val typeDescriptor = if (hasNoParameters) {
         value.replace("()", "")
       } else {
         value.substring(value.indexOf(")") + 1)
@@ -18,7 +17,7 @@ value class MethodDescriptor(private val value: String) {
 
   val parameters: List<String>
     get() {
-      if (value.contains("()")) {
+      if (hasNoParameters) {
         return emptyList()
       }
 
@@ -36,4 +35,7 @@ value class MethodDescriptor(private val value: String) {
         emptyList()
       }
     }
+
+  private val hasNoParameters: Boolean
+    get() = value.contains("()")
 }

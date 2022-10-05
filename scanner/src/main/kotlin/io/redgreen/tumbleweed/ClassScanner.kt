@@ -42,31 +42,4 @@ object ClassScanner {
 
     return ClassStructure(packageName!!, className!!, fields.toList())
   }
-
-  class FieldScanner : FieldVisitor(ASM7) {
-    companion object {
-      fun scan(
-        name: String?,
-        descriptor: String?,
-        outFields: MutableList<Field>,
-      ): FieldVisitor {
-        outFields.add(Field(name!!, Type(descriptor!!)))
-        return object : FieldVisitor(ASM7) { /* no-op */ }
-      }
-    }
-  }
-}
-
-data class Field(
-  val name: String,
-  val type: Type,
-)
-
-@JvmInline
-value class Type(private val descriptor: String) {
-  val name: String
-    get() = descriptor
-      .removePrefix("L")
-      .removeSuffix(";")
-      .replace("/", ".")
 }

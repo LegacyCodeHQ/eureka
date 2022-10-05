@@ -1,6 +1,7 @@
 package io.redgreen.tumbleweed
 
 import io.redgreen.tumbleweed.samples.ClassWithFields
+import io.redgreen.tumbleweed.samples.ClassWithMethods
 import io.redgreen.tumbleweed.samples.EmptyClass
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
@@ -34,6 +35,20 @@ class ClassScannerTest {
 
     // when
     val classStructure = ClassScanner.scan(classWithFields)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
+
+  @Test
+  fun `it can scan a class with methods`() {
+    // given
+    val classWithMethods = defaultClassLocation.copy(
+      fqClassName = ClassWithMethods::class.java.name,
+    )
+
+    // when
+    val classStructure = ClassScanner.scan(classWithMethods)
 
     // then
     Approvals.verify(classStructure.printable)

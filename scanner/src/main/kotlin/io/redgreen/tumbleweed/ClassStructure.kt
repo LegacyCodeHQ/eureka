@@ -4,4 +4,5 @@ data class ClassStructure(
   val `package`: String,
   val className: String,
   val fields: List<Field>,
+  val methods: List<Method>,
 )

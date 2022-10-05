@@ -1,4 +1,5 @@
 Package: io.redgreen.tumbleweed.samples
-Class: EmptyClass
+Class: ClassWithMethods
 Methods:
   - <init>()
+  - methodWithNoArguments()

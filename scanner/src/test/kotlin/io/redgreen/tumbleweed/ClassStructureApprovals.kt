@@ -16,6 +16,13 @@ val ClassStructure.printable: Any
         }
       }
 
+      if (methods.isNotEmpty()) {
+        classStructurePrintableBuilder.appendLine("Methods:")
+        methods.forEach { method ->
+          classStructurePrintableBuilder.appendLine("  - ${method.signature}")
+        }
+      }
+
       return classStructurePrintableBuilder.toString()
     }
   }

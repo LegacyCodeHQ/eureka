@@ -3,3 +3,7 @@ Class: ClassWithFields
 Fields:
   - field1: java.lang.String
   - field2: java.lang.String
+Methods:
+  - <init>()
+  - getField1()
+  - getField2()

@@ -32,7 +32,7 @@ subprojects {
 
     testImplementation("com.google.truth:truth:1.1.3")
 
-    testImplementation("com.approvaltests:approvaltests:15.5.0")
+    testImplementation("com.approvaltests:approvaltests:18.2.2")
   }
 
   tasks.withType<KotlinCompile> {

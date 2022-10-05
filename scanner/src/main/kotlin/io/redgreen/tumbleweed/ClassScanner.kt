@@ -23,9 +23,9 @@ object ClassScanner {
         superName: String?,
         interfaces: Array<out String>?,
       ) {
-        name.split("/").let { fqcnParts ->
-          packageName = fqcnParts.dropLast(1).joinToString(".")
-          className = fqcnParts.last()
+        name.split("/").let { fqClassNameParts ->
+          packageName = fqClassNameParts.dropLast(1).joinToString(".")
+          className = fqClassNameParts.last()
         }
       }
 

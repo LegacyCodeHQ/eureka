@@ -1,7 +1,5 @@
 package io.redgreen.tumbleweed
 
-import java.util.regex.Pattern
-
 @JvmInline
 value class MethodDescriptor(private val descriptor: String) {
   val returnType: String
@@ -21,19 +19,11 @@ value class MethodDescriptor(private val descriptor: String) {
         return emptyList()
       }
 
-      val pattern = Pattern.compile("\\(.+\\)")
-      val matcher = pattern.matcher(descriptor)
-      return if (matcher.find()) {
-        matcher.group(0)
-          .replace("(", "")
-          .replace(")", "")
-          .split(";")
-          .map { it.removePrefix("L") }
-          .filter { it.isNotBlank() }
-          .map { it.replace("/", ".") }
-      } else {
-        emptyList()
-      }
+      return descriptor
+        .substring(descriptor.indexOf("(") + 1, descriptor.indexOf(")"))
+        .split(";")
+        .filter { it.isNotBlank() }
+        .map { TypeToken(it).type }
     }
 
   private val hasNoParameters: Boolean

@@ -13,9 +13,16 @@ value class TypeToken(private val value: String) {
       "J" -> "long"
       "F" -> "float"
       "D" -> "double"
-      else -> value
-        .removePrefix("L")
-        .removeSuffix(";")
-        .replace("/", ".")
+      else -> {
+        val sanitizedType = value
+          .removeSuffix(";")
+          .replace("/", ".")
+
+        if (sanitizedType.startsWith("[")) {
+          "[]${sanitizedType.drop(2)}"
+        } else {
+          sanitizedType.removePrefix("L")
+        }
+      }
     }
 }

@@ -19,7 +19,7 @@ val ClassStructure.printable: Any
       if (methods.isNotEmpty()) {
         classStructurePrintableBuilder.appendLine("Methods:")
         methods.forEach { method ->
-          classStructurePrintableBuilder.appendLine("  - ${method.returnType} ${method.name}(${method.parameters.joinToString(", ")})")
+          classStructurePrintableBuilder.appendLine("  - ${method.descriptor.returnType} ${method.name}(${method.descriptor.parameters.joinToString(", ")})")
         }
       }
 

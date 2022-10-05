@@ -12,14 +12,14 @@ val ClassStructure.printable: Any
       if (fields.isNotEmpty()) {
         classStructurePrintableBuilder.appendLine("Fields:")
         fields.forEach { field ->
-          classStructurePrintableBuilder.appendLine("  - ${field.name}: ${field.type.name}")
+          classStructurePrintableBuilder.appendLine("  - ${field.name}: ${field.type}")
         }
       }
 
       if (methods.isNotEmpty()) {
         classStructurePrintableBuilder.appendLine("Methods:")
         methods.forEach { method ->
-          classStructurePrintableBuilder.appendLine("  - ${method.signature}")
+          classStructurePrintableBuilder.appendLine("  - ${method.returnType} ${method.name}(${method.parameters.joinToString(", ")})")
         }
       }
 

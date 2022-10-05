@@ -10,7 +10,7 @@ class FieldScanner : FieldVisitor(Opcodes.ASM7) {
       descriptor: String?,
       outFields: MutableList<Field>,
     ): FieldVisitor {
-      outFields.add(Field(name!!, Type(descriptor!!)))
+      outFields.add(Field(name!!, Descriptor(descriptor!!)))
       return object : FieldVisitor(Opcodes.ASM7) { /* no-op */ }
     }
   }

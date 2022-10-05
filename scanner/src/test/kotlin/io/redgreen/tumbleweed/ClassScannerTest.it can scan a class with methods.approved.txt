@@ -4,3 +4,4 @@ Methods:
   - void <init>()
   - void methodWithNoArgumentsNoReturnType()
   - int methodWithNoArgumentsWithReturnType()
+  - java.lang.String methodWithArgumentsWithReturnType(java.lang.String, java.time.format.DateTimeFormatter)

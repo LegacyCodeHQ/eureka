@@ -1,4 +1,4 @@
-package io.redgreen.lt.cli.commands
+package io.redgreen.tumbleweed.cli.commands
 
 import picocli.CommandLine.Command
 

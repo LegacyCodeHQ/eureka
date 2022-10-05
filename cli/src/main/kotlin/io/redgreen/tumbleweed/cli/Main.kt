@@ -1,9 +1,9 @@
-package io.redgreen.lt.cli
+package io.redgreen.tumbleweed.cli
 
 import kotlin.system.exitProcess
 import picocli.CommandLine
 
 fun main(args: Array<String>) {
-  exitProcess(CommandLine(LtCommand())
+  exitProcess(CommandLine(TumbleweedCommand())
     .execute(*args))
 }

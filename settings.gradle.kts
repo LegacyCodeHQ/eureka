@@ -1,5 +1,5 @@
-rootProject.name = "lt"
+rootProject.name = "tumbleweed"
 include(
   ":cli",
-  ":metrics",
+  ":scanner",
 )

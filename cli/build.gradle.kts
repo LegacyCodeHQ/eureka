@@ -6,21 +6,21 @@ plugins {
 }
 
 application {
-  applicationName = "lt"
-  mainClassName = "io.redgreen.lt.cli.MainKt"
+  applicationName = "tumbleweed"
+  mainClassName = "io.redgreen.tumbleweed.cli.MainKt"
 }
 
 tasks.withType<Jar> {
   manifest {
     attributes(
-      "Main-Class" to "io.redgreen.lt.cli.MainKt",
+      "Main-Class" to "io.redgreen.tumbleweed.cli.MainKt",
     )
   }
 }
 
 tasks {
   named<ShadowJar>("shadowJar") {
-    archiveBaseName.set("lt")
+    archiveBaseName.set("tumbleweed")
     mergeServiceFiles()
   }
 }

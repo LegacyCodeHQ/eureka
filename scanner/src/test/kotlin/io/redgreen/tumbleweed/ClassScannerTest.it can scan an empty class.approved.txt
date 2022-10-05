@@ -1,0 +1,2 @@
+Package: io.redgreen.tumbleweed.samples
+Class: EmptyClass

@@ -11,7 +11,7 @@ class MethodScanner {
       signature: String?,
       outMethods: MutableList<Method>,
     ): MethodVisitor {
-      outMethods.add(Method(name!!, Descriptor(descriptor!!)))
+      outMethods.add(Method(name!!, MethodDescriptor(descriptor!!)))
       return object : MethodVisitor(Opcodes.ASM7) { /* no-op */ }
     }
   }

@@ -4,7 +4,7 @@ import java.util.regex.Pattern
 
 data class Method(
   val name: String,
-  val descriptor: Descriptor,
+  val descriptor: MethodDescriptor,
 ) {
   val returnType: String
     get() {

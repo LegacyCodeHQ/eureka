@@ -1,5 +1,6 @@
 Package: io.redgreen.tumbleweed.samples
 Class: ClassWithMethods
 Methods:
-  - <init>()
-  - methodWithNoArguments()
+  - void <init>()
+  - void methodWithNoArgumentsNoReturnType()
+  - int methodWithNoArgumentsWithReturnType()

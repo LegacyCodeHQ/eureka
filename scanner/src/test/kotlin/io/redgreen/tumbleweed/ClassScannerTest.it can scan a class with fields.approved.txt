@@ -4,6 +4,6 @@ Fields:
   - field1: java.lang.String
   - field2: java.lang.String
 Methods:
-  - <init>()
-  - getField1()
-  - getField2()
+  - void <init>()
+  - java.lang.String getField1()
+  - java.lang.String getField2()

@@ -3,5 +3,6 @@
 package io.redgreen.tumbleweed.samples
 
 class ClassWithMethods {
-  fun methodWithNoArguments() { /* empty-body */ }
+  fun methodWithNoArgumentsNoReturnType() { /* empty-body */ }
+  fun methodWithNoArgumentsWithReturnType(): Int = 42
 }

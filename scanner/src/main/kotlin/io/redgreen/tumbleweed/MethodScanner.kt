@@ -12,7 +12,7 @@ class MethodScanner {
       outMethods: MutableList<Method>,
     ): MethodVisitor {
       println("Method: $name, $descriptor, $signature")
-      outMethods.add(Method(name!!))
+      outMethods.add(Method(name!!, Type(descriptor!!)))
       return object : MethodVisitor(Opcodes.ASM7) { /* no-op */ }
     }
   }

@@ -2,7 +2,8 @@ package io.redgreen.tumbleweed
 
 data class Method(
   val name: String,
+  val descriptor: Type,
 ) {
   val signature: String
-    get() = "$name()"
+    get() = "${descriptor.name} $name()"
 }

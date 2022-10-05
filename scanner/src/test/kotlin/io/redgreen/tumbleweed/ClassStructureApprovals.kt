@@ -12,7 +12,7 @@ val ClassStructure.printable: Any
       if (fields.isNotEmpty()) {
         classStructurePrintableBuilder.appendLine("Fields:")
         fields.forEach { field ->
-          classStructurePrintableBuilder.appendLine("  - ${field.name}: ${field.type}")
+          classStructurePrintableBuilder.appendLine("  - ${field.name}: ${field.descriptor.type}")
         }
       }
 

@@ -8,7 +8,6 @@ class MethodScanner {
     fun scan(
       name: String?,
       descriptor: String?,
-      signature: String?,
       outMethods: MutableList<Method>,
     ): MethodVisitor {
       outMethods.add(Method(name!!, MethodDescriptor(descriptor!!)))

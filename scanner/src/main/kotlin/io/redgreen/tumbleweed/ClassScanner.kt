@@ -46,7 +46,7 @@ object ClassScanner {
         signature: String?,
         exceptions: Array<out String>?
       ): MethodVisitor {
-        return MethodScanner.scan(name, descriptor, signature, outMethods)
+        return MethodScanner.scan(name, descriptor, outMethods)
       }
     }
 

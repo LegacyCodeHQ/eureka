@@ -6,27 +6,14 @@ import java.util.regex.Pattern
 value class MethodDescriptor(private val value: String) {
   val returnType: String
     get() {
-      val typeDescriptor = if (value.contains("()")) {
+      val zeroParameters = value.contains("()")
+      val typeDescriptor = if (zeroParameters) {
         value.replace("()", "")
       } else {
         value.substring(value.indexOf(")") + 1)
       }
 
-      return when (typeDescriptor) {
-        "V" -> "void"
-        "Z" -> "boolean"
-        "B" -> "byte"
-        "S" -> "short"
-        "C" -> "char"
-        "I" -> "int"
-        "J" -> "long"
-        "F" -> "float"
-        "D" -> "double"
-        else -> typeDescriptor
-          .removePrefix("L")
-          .removeSuffix(";")
-          .replace("/", ".")
-      }
+      return TypeToken(typeDescriptor).type
     }
 
   val parameters: List<String>

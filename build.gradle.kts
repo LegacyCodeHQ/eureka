@@ -20,7 +20,6 @@ subprojects {
   apply(plugin = "jacoco")
 
   dependencies {
-    val implementation by configurations
     val testImplementation by configurations
     val testRuntimeOnly by configurations
 

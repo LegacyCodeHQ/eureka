@@ -7,3 +7,4 @@ Methods:
   - java.lang.String methodWithArgumentsWithReturnType(java.lang.String, java.time.format.DateTimeFormatter)
   - int methodWithPrimitiveArgs(int, boolean, double, long)
   - void methodWithArgumentNoReturnType(java.util.Currency)
+  - java.util.List methodWithGenericReturnType(java.util.Set)

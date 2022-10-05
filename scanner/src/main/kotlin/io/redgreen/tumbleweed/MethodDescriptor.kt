@@ -3,13 +3,13 @@ package io.redgreen.tumbleweed
 import java.util.regex.Pattern
 
 @JvmInline
-value class MethodDescriptor(private val value: String) {
+value class MethodDescriptor(private val descriptor: String) {
   val returnType: String
     get() {
       val typeDescriptor = if (hasNoParameters) {
-        value.replace("()", "")
+        descriptor.replace("()", "")
       } else {
-        value.substring(value.indexOf(")") + 1)
+        descriptor.substring(descriptor.indexOf(")") + 1)
       }
 
       return TypeToken(typeDescriptor).type
@@ -22,7 +22,7 @@ value class MethodDescriptor(private val value: String) {
       }
 
       val pattern = Pattern.compile("\\(.+\\)")
-      val matcher = pattern.matcher(value)
+      val matcher = pattern.matcher(descriptor)
       return if (matcher.find()) {
         matcher.group(0)
           .replace("(", "")
@@ -37,5 +37,5 @@ value class MethodDescriptor(private val value: String) {
     }
 
   private val hasNoParameters: Boolean
-    get() = value.contains("()")
+    get() = descriptor.contains("()")
 }

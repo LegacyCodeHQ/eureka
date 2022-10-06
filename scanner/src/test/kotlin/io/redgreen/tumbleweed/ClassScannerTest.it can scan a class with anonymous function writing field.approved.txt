@@ -1,0 +1,18 @@
+Package: io.redgreen.tumbleweed.samples
+Class: ClassWithAnonymousFunctionWritingField
+Fields:
+  - int counter
+Methods:
+  - void <init>()
+  - int getCounter()
+  - void setCounter(int)
+  - void incrementCounter()
+  - int incrementCounter$lambda-0(io.redgreen.tumbleweed.samples.ClassWithAnonymousFunctionWritingField)
+Reads:
+  - int getCounter() -> int counter
+  - int incrementCounter$lambda-0(io.redgreen.tumbleweed.samples.ClassWithAnonymousFunctionWritingField) -> int counter
+Writes:
+  - void setCounter(int) -> int counter
+  - int incrementCounter$lambda-0(io.redgreen.tumbleweed.samples.ClassWithAnonymousFunctionWritingField) -> int counter
+Calls:
+  - void incrementCounter() -> int incrementCounter$lambda-0(io.redgreen.tumbleweed.samples.ClassWithAnonymousFunctionWritingField)

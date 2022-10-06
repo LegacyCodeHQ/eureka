@@ -1,5 +1,6 @@
 package io.redgreen.tumbleweed
 
+import io.redgreen.tumbleweed.samples.ClassWithAnonymousFunctionWritingField
 import io.redgreen.tumbleweed.samples.ClassWithFields
 import io.redgreen.tumbleweed.samples.ClassWithMethodReadingField
 import io.redgreen.tumbleweed.samples.ClassWithMethodWritingField
@@ -114,6 +115,20 @@ class ClassScannerTest {
 
     // when
     val classStructure = ClassScanner.scan(classWithRecursiveFunction)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
+
+  @Test
+  fun `it can scan a class with anonymous function writing field`() {
+    // given
+    val classWithAnonymousFunctionWritingField = defaultKotlinClassLocation.copy(
+      fqClassName = ClassWithAnonymousFunctionWritingField::class.java.name,
+    )
+
+    // when
+    val classStructure = ClassScanner.scan(classWithAnonymousFunctionWritingField)
 
     // then
     Approvals.verify(classStructure.printable)

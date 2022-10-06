@@ -2,6 +2,7 @@ package io.redgreen.tumbleweed
 
 import io.redgreen.tumbleweed.samples.ClassWithFields
 import io.redgreen.tumbleweed.samples.ClassWithMethodReadingField
+import io.redgreen.tumbleweed.samples.ClassWithMethodWritingField
 import io.redgreen.tumbleweed.samples.ClassWithMethods
 import io.redgreen.tumbleweed.samples.EmptyClass
 import org.approvaltests.Approvals
@@ -69,6 +70,20 @@ class ClassScannerTest {
 
     // when
     val classStructure = ClassScanner.scan(methodReadingFieldClass)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
+
+  @Test
+  fun `it can scan a class with methods writing a field`() {
+    // given
+    val methodWritingFieldClass = defaultJavaClassLocation.copy(
+      fqClassName = ClassWithMethodWritingField::class.java.name,
+    )
+
+    // when
+    val classStructure = ClassScanner.scan(methodWritingFieldClass)
 
     // then
     Approvals.verify(classStructure.printable)

@@ -10,3 +10,6 @@ Methods:
 Reads:
   - java.lang.String getField1() -> java.lang.String field1
   - java.lang.String getField2() -> java.lang.String field2
+Writes:
+  - void <init>() -> java.lang.String field1
+  - void <init>() -> java.lang.String field2

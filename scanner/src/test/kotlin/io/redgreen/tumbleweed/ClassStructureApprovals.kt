@@ -25,9 +25,19 @@ val ClassStructure.printable: Any
         }
       }
 
-      if (relationships.isNotEmpty()) {
+      val readsRelationships = relationships.filter { it.type == Relationship.Type.Reads }
+      if (readsRelationships.isNotEmpty()) {
         classStructurePrintableBuilder.appendLine("Reads:")
-        relationships.forEach { relationship ->
+        readsRelationships.forEach { relationship ->
+          classStructurePrintableBuilder
+            .appendLine("  - ${relationship.method.signature} -> ${relationship.field.signature}")
+        }
+      }
+
+      val writesRelationships = relationships.filter { it.type == Relationship.Type.Writes }
+      if (writesRelationships.isNotEmpty()) {
+        classStructurePrintableBuilder.appendLine("Writes:")
+        writesRelationships.forEach { relationship ->
           classStructurePrintableBuilder
             .appendLine("  - ${relationship.method.signature} -> ${relationship.field.signature}")
         }

@@ -1,0 +1,10 @@
+Package: io.redgreen.tumbleweed.samples
+Class: ClassWithMethodWritingField
+Fields:
+  - java.lang.String name
+Methods:
+  - void <init>()
+  - void setName(java.lang.String)
+Writes:
+  - void <init>() -> java.lang.String name
+  - void setName(java.lang.String) -> java.lang.String name

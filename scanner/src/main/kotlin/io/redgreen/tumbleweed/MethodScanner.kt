@@ -18,6 +18,9 @@ class MethodScanner {
           if (opcode == Opcodes.GETFIELD) {
             val relationship = Relationship.reads(method, Field(fieldName!!, FieldDescriptor.from(fieldDescriptor!!)))
             outRelationships.add(relationship)
+          } else if (opcode == Opcodes.PUTFIELD) {
+            val relationship = Relationship.writes(method, Field(fieldName!!, FieldDescriptor.from(fieldDescriptor!!)))
+            outRelationships.add(relationship)
           }
           super.visitFieldInsn(opcode, owner, fieldName, fieldDescriptor)
         }

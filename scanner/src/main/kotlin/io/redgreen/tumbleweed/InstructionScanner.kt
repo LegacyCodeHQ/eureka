@@ -17,16 +17,9 @@ class InstructionScanner {
           fieldName: String?,
           fieldDescriptor: String?,
         ) {
-          val type = when (opcode) {
-            Opcodes.GETFIELD -> Relationship.Type.Reads
-            Opcodes.PUTFIELD -> Relationship.Type.Writes
-            else -> null
-          }
-          type?.let {
-            val field = Field(fieldName!!, FieldDescriptor.from(fieldDescriptor!!))
-            val relationship = Relationship(caller, field, it)
-            outRelationships.add(relationship)
-          }
+          val field = Field(fieldName!!, FieldDescriptor.from(fieldDescriptor!!))
+          val relationship = Relationship(caller, field, Relationship.Type.from(opcode))
+          outRelationships.add(relationship)
           super.visitFieldInsn(opcode, owner, fieldName, fieldDescriptor)
         }
 
@@ -39,7 +32,7 @@ class InstructionScanner {
         ) {
           if (topLevelType == owner) {
             val callee = Method(methodName!!, MethodDescriptor(methodDescriptor!!))
-            val relationship = Relationship(caller, callee, Relationship.Type.Calls)
+            val relationship = Relationship(caller, callee, Relationship.Type.from(opcode))
             outRelationships.add(relationship)
           }
           super.visitMethodInsn(opcode, owner, methodName, methodDescriptor, isInterface)

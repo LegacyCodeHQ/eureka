@@ -13,6 +13,7 @@ object ClassScanner {
     var packageName: String? = null
     val outFields = mutableListOf<Field>()
     val outMethods = mutableListOf<Method>()
+    val outRelationships = mutableListOf<Relationship>()
 
     val classVisitor = object : ClassVisitor(ASM7) {
       override fun visit(
@@ -46,12 +47,18 @@ object ClassScanner {
         signature: String?,
         exceptions: Array<out String>?
       ): MethodVisitor {
-        return MethodScanner.scan(name, descriptor, outMethods)
+        return MethodScanner.scan(name, descriptor, outMethods, outRelationships)
       }
     }
 
     ClassReader(BufferedInputStream(location.file.inputStream())).accept(classVisitor, 0)
 
-    return ClassStructure(packageName!!, className!!, outFields.toList(), outMethods.toList())
+    return ClassStructure(
+      packageName!!,
+      className!!,
+      outFields.toList(),
+      outMethods.toList(),
+      outRelationships.toList(),
+    )
   }
 }

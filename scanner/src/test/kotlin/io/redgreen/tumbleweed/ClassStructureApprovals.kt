@@ -12,14 +12,24 @@ val ClassStructure.printable: Any
       if (fields.isNotEmpty()) {
         classStructurePrintableBuilder.appendLine("Fields:")
         fields.forEach { field ->
-          classStructurePrintableBuilder.appendLine("  - ${field.name}: ${field.descriptor.type}")
+          classStructurePrintableBuilder
+            .appendLine("  - ${field.signature}")
         }
       }
 
       if (methods.isNotEmpty()) {
         classStructurePrintableBuilder.appendLine("Methods:")
         methods.forEach { method ->
-          classStructurePrintableBuilder.appendLine("  - ${method.descriptor.returnType} ${method.name}(${method.descriptor.parameters.joinToString(", ")})")
+          classStructurePrintableBuilder
+            .appendLine("  - ${method.signature}")
+        }
+      }
+
+      if (relationships.isNotEmpty()) {
+        classStructurePrintableBuilder.appendLine("Reads:")
+        relationships.forEach { relationship ->
+          classStructurePrintableBuilder
+            .appendLine("  - ${relationship.method.signature} -> ${relationship.field.signature}")
         }
       }
 

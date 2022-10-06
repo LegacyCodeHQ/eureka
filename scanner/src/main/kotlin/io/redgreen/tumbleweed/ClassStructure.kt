@@ -5,4 +5,5 @@ data class ClassStructure(
   val className: String,
   val fields: List<Field>,
   val methods: List<Method>,
+  val relationships: List<Relationship>,
 )

@@ -1,9 +1,12 @@
 Package: io.redgreen.tumbleweed.samples
 Class: ClassWithFields
 Fields:
-  - field1: java.lang.String
-  - field2: java.lang.String
+  - java.lang.String field1
+  - java.lang.String field2
 Methods:
   - void <init>()
   - java.lang.String getField1()
   - java.lang.String getField2()
+Reads:
+  - java.lang.String getField1() -> java.lang.String field1
+  - java.lang.String getField2() -> java.lang.String field2

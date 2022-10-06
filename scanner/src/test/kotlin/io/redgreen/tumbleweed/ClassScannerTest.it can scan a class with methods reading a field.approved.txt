@@ -1,0 +1,9 @@
+Package: io.redgreen.tumbleweed.samples
+Class: ClassWithMethodReadingField
+Fields:
+  - java.lang.String name
+Methods:
+  - void <init>()
+  - java.lang.String getName()
+Reads:
+  - java.lang.String getName() -> java.lang.String name

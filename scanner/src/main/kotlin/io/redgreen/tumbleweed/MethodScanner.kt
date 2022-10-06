@@ -5,6 +5,7 @@ import net.bytebuddy.jar.asm.MethodVisitor
 class MethodScanner {
   companion object {
     fun scan(
+      topLevelType: String,
       methodName: String?,
       methodDescriptor: String?,
       outMethods: MutableList<Method>,
@@ -12,7 +13,7 @@ class MethodScanner {
     ): MethodVisitor {
       val method = Method(methodName!!, MethodDescriptor(methodDescriptor!!))
       outMethods.add(method)
-      return InstructionScanner.scan(method, outRelationships)
+      return InstructionScanner.scan(topLevelType, method, outRelationships)
     }
   }
 }

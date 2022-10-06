@@ -1,0 +1,12 @@
+Package: io.redgreen.tumbleweed.samples
+Class: ClassWithMethodsCallingMethods
+Methods:
+  - void <init>()
+  - void a()
+  - void b()
+  - void c()
+  - void d()
+Calls:
+  - void a() -> void b()
+  - void b() -> void c()
+  - void c() -> void d()

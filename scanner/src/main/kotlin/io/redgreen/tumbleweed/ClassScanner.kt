@@ -14,6 +14,7 @@ object ClassScanner {
     val outFields = mutableListOf<Field>()
     val outMethods = mutableListOf<Method>()
     val outRelationships = mutableListOf<Relationship>()
+    var topLevelType: String? = null
 
     val classVisitor = object : ClassVisitor(ASM7) {
       override fun visit(
@@ -24,6 +25,7 @@ object ClassScanner {
         superName: String?,
         interfaces: Array<out String>?,
       ) {
+        topLevelType = name
         name.split("/").let { fqClassNameParts ->
           packageName = fqClassNameParts.dropLast(1).joinToString(".")
           className = fqClassNameParts.last()
@@ -47,7 +49,7 @@ object ClassScanner {
         signature: String?,
         exceptions: Array<out String>?
       ): MethodVisitor {
-        return MethodScanner.scan(name, descriptor, outMethods, outRelationships)
+        return MethodScanner.scan(topLevelType!!, name, descriptor, outMethods, outRelationships)
       }
     }
 

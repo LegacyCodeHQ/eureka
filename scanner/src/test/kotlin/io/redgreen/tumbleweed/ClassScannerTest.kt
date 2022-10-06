@@ -4,6 +4,7 @@ import io.redgreen.tumbleweed.samples.ClassWithFields
 import io.redgreen.tumbleweed.samples.ClassWithMethodReadingField
 import io.redgreen.tumbleweed.samples.ClassWithMethodWritingField
 import io.redgreen.tumbleweed.samples.ClassWithMethods
+import io.redgreen.tumbleweed.samples.ClassWithMethodsCallingMethods
 import io.redgreen.tumbleweed.samples.EmptyClass
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
@@ -84,6 +85,20 @@ class ClassScannerTest {
 
     // when
     val classStructure = ClassScanner.scan(methodWritingFieldClass)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
+
+  @Test
+  fun `it can scan a class with methods calling methods`() {
+    // given
+    val classWithMethodsCallingMethods = defaultKotlinClassLocation.copy(
+      fqClassName = ClassWithMethodsCallingMethods::class.java.name,
+    )
+
+    // when
+    val classStructure = ClassScanner.scan(classWithMethodsCallingMethods)
 
     // then
     Approvals.verify(classStructure.printable)

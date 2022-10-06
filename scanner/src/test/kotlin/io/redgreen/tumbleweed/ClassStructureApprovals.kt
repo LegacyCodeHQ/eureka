@@ -30,7 +30,7 @@ val ClassStructure.printable: Any
         classStructurePrintableBuilder.appendLine("Reads:")
         readsRelationships.forEach { relationship ->
           classStructurePrintableBuilder
-            .appendLine("  - ${relationship.method.signature} -> ${relationship.field.signature}")
+            .appendLine("  - ${relationship.source.signature} -> ${relationship.target.signature}")
         }
       }
 
@@ -39,7 +39,16 @@ val ClassStructure.printable: Any
         classStructurePrintableBuilder.appendLine("Writes:")
         writesRelationships.forEach { relationship ->
           classStructurePrintableBuilder
-            .appendLine("  - ${relationship.method.signature} -> ${relationship.field.signature}")
+            .appendLine("  - ${relationship.source.signature} -> ${relationship.target.signature}")
+        }
+      }
+
+      val callsRelationships = relationships.filter { it.type == Relationship.Type.Calls }
+      if (callsRelationships.isNotEmpty()) {
+        classStructurePrintableBuilder.appendLine("Calls:")
+        callsRelationships.forEach { relationship ->
+          classStructurePrintableBuilder
+            .appendLine("  - ${relationship.source.signature} -> ${relationship.target.signature}")
         }
       }
 

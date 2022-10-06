@@ -63,12 +63,12 @@ class ClassScannerTest {
   @Test
   fun `it can scan a class with methods reading a field`() {
     // given
-    val classWithMethods = defaultJavaClassLocation.copy(
+    val methodReadingFieldClass = defaultJavaClassLocation.copy(
       fqClassName = ClassWithMethodReadingField::class.java.name,
     )
 
     // when
-    val classStructure = ClassScanner.scan(classWithMethods)
+    val classStructure = ClassScanner.scan(methodReadingFieldClass)
 
     // then
     Approvals.verify(classStructure.printable)

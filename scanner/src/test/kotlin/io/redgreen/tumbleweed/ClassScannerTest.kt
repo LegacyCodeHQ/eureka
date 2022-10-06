@@ -5,6 +5,7 @@ import io.redgreen.tumbleweed.samples.ClassWithMethodReadingField
 import io.redgreen.tumbleweed.samples.ClassWithMethodWritingField
 import io.redgreen.tumbleweed.samples.ClassWithMethods
 import io.redgreen.tumbleweed.samples.ClassWithMethodsCallingMethods
+import io.redgreen.tumbleweed.samples.ClassWithRecursiveFunction
 import io.redgreen.tumbleweed.samples.EmptyClass
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
@@ -99,6 +100,20 @@ class ClassScannerTest {
 
     // when
     val classStructure = ClassScanner.scan(classWithMethodsCallingMethods)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
+
+  @Test
+  fun `it can scan a class with recursive function`() {
+    // given
+    val classWithRecursiveFunction = defaultKotlinClassLocation.copy(
+      fqClassName = ClassWithRecursiveFunction::class.java.name,
+    )
+
+    // when
+    val classStructure = ClassScanner.scan(classWithRecursiveFunction)
 
     // then
     Approvals.verify(classStructure.printable)

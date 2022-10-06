@@ -1,5 +1,6 @@
 package io.redgreen.tumbleweed
 
+import io.redgreen.tumbleweed.Relationship.Type
 import net.bytebuddy.jar.asm.MethodVisitor
 import net.bytebuddy.jar.asm.Opcodes
 
@@ -15,11 +16,14 @@ class MethodScanner {
       outMethods.add(method)
       return object : MethodVisitor(Opcodes.ASM7) {
         override fun visitFieldInsn(opcode: Int, owner: String?, fieldName: String?, fieldDescriptor: String?) {
-          if (opcode == Opcodes.GETFIELD) {
-            val relationship = Relationship.reads(method, Field(fieldName!!, FieldDescriptor.from(fieldDescriptor!!)))
-            outRelationships.add(relationship)
-          } else if (opcode == Opcodes.PUTFIELD) {
-            val relationship = Relationship.writes(method, Field(fieldName!!, FieldDescriptor.from(fieldDescriptor!!)))
+          val type = when (opcode) {
+            Opcodes.GETFIELD -> Type.Reads
+            Opcodes.PUTFIELD -> Type.Writes
+            else -> null
+          }
+          type?.let {
+            val field = Field(fieldName!!, FieldDescriptor.from(fieldDescriptor!!))
+            val relationship = Relationship(method, field, it)
             outRelationships.add(relationship)
           }
           super.visitFieldInsn(opcode, owner, fieldName, fieldDescriptor)

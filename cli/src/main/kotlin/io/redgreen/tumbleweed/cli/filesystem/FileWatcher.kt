@@ -8,8 +8,10 @@ import java.nio.file.StandardWatchEventKinds.ENTRY_CREATE
 import java.nio.file.StandardWatchEventKinds.ENTRY_DELETE
 import java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY
 import java.nio.file.WatchService
+import org.slf4j.LoggerFactory
 
 class FileWatcher {
+  private val logger = LoggerFactory.getLogger(FileWatcher::class.java)
   private val watchService: WatchService = FileSystems.getDefault().newWatchService()
 
   fun startWatching(file: Path, onFileChanged: () -> Unit) {
@@ -18,21 +20,21 @@ class FileWatcher {
       arrayOf(ENTRY_CREATE, ENTRY_MODIFY, ENTRY_DELETE),
       SensitivityWatchEventModifier.HIGH
     )
-    println("Watching for changes in ${file.parent}")
+    logger.info("Watching for file changes in {}", file.parent)
 
     Thread {
       while (true) {
         val pollEvents = watchKey.pollEvents()
         for (pollEvent in pollEvents) {
           val fileWithEvent = pollEvent.context() as Path
-          println("Event: ${pollEvent.kind()} on $fileWithEvent")
+          logger.debug("WatchEvent: {} on {}", pollEvent.kind(), fileWithEvent)
           onFileChanged()
         }
         watchKey.reset()
         try {
           watchKey = watchService.take()
         } catch (e: ClosedWatchServiceException) {
-          println("Watch service closed.")
+          logger.info("Stopped watching files")
           break
         }
       }

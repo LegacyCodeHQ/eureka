@@ -18,13 +18,12 @@ import io.ktor.server.websocket.timeout
 import io.ktor.server.websocket.webSocket
 import io.ktor.util.pipeline.PipelineContext
 import io.ktor.websocket.Frame
+import io.redgreen.tumbleweed.ClassFileLocation
+import io.redgreen.tumbleweed.ClassScanner
 import io.redgreen.tumbleweed.filesystem.FileWatcher
-import java.io.File
-import java.nio.file.Path
 import java.time.Duration
 import java.util.concurrent.BlockingQueue
 import java.util.concurrent.LinkedBlockingQueue
-import kotlin.io.path.absolutePathString
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.slf4j.LoggerFactory
@@ -46,10 +45,12 @@ class TumbleweedServer {
   private val classFileChangesWatcher = FileWatcher()
 
   fun start(port: Int) {
-    val classFilePath = File(
-      "./bytecode-samples/build/classes/kotlin/main/io/redgreen/tumbleweed/samples/ClassWithMethodsCallingMethods.class",
-    ).toPath()
-    startWatchingClassFileForChanges(classFilePath)
+    val classFileLocation = ClassFileLocation(
+      "./bytecode-samples/build/classes/kotlin/main",
+      "io.redgreen.tumbleweed.samples.ClassWithMethodsCallingMethods"
+    )
+    val classFilePath = classFileLocation.file.toPath()
+    startWatchingClassFileForChanges(classFileLocation)
 
     logger.info("Starting web server @ http://localhost:{}", port)
     webServer = embeddedServer(Netty, port = port) {
@@ -95,11 +96,12 @@ class TumbleweedServer {
     }
   }
 
-  private fun startWatchingClassFileForChanges(path: Path) {
-    logger.info("Watching class file for changes: {}", path.absolutePathString())
+  private fun startWatchingClassFileForChanges(classFileLocation: ClassFileLocation) {
+    logger.info("Watching class file for changes: {}", classFileLocation.file)
 
-    classFileChangesWatcher.startWatching(path) {
-      structureUpdatesQueue.add("${path.toFile().length()} bytes")
+    classFileChangesWatcher.startWatching(classFileLocation.file.toPath()) {
+      val classStructure = ClassScanner.scan(classFileLocation)
+      structureUpdatesQueue.add(classStructure.toString())
     }
   }
 }

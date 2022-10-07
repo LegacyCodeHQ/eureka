@@ -102,7 +102,7 @@
     }
   }
 
-  const drawEdgeBundingGraph = (graph) => {
+  const drawEdgeBundlingGraph = (graph) => {
     const root = tree(bilink(d3.hierarchy(toChartData(graph))
       .sort((a, b) => d3.ascending(a.height, b.height) || d3.ascending(a.data.id, b.data.id))));
 
@@ -166,6 +166,6 @@
     return svg.node();
   }
 
-  drawEdgeBundingGraph(graph);
+  drawEdgeBundlingGraph(graph);
 </script>
 </html>

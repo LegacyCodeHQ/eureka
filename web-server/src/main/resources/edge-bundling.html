@@ -67,7 +67,7 @@
     }]
   };
 
-  const data = () => {
+  const toChartData = (graph) => {
     const {nodes, links} = graph;
     const groupById = new Map;
     const nodeById = new Map(nodes.map(node => [node.id, node]));
@@ -86,14 +86,14 @@
     return {children: [...groupById.values()]};
   };
 
-  const chart = () => {
-    const root = tree(bilink(d3.hierarchy(data())
+  const drawEdgeBundingGraph = (graph) => {
+    const root = tree(bilink(d3.hierarchy(toChartData(graph))
       .sort((a, b) => d3.ascending(a.height, b.height) || d3.ascending(a.data.id, b.data.id))));
 
     const svg = d3.select("#svg")
       .attr("viewBox", [-width / 2, -width / 2, width, width]);
 
-    const node = svg.append("g")
+    svg.append("g")
       .attr("font-family", "sans-serif")
       .attr("font-size", 10)
       .selectAll("g")
@@ -150,6 +150,6 @@
     return svg.node();
   }
 
-  chart();
+  drawEdgeBundingGraph(graph);
 </script>
 </html>

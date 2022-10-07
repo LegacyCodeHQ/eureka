@@ -106,13 +106,13 @@ class TumbleweedServer {
   private fun startWatchingClassFileForChanges(classFileLocation: ClassFileLocation) {
     val watchedClassFile = classFileLocation.file
     logger.info("Watching class file for changes: {}", watchedClassFile)
-    if (!watchedClassFile.exists()) {
-      logger.error("Class file does not exist: {}", watchedClassFile)
-      return
-    }
 
     classFileChangesWatcher.startWatching(watchedClassFile.toPath()) {
-      structureUpdatesQueue.add(ClassScanner.scan(classFileLocation).json)
+      if (!watchedClassFile.exists()) {
+        logger.error("Class file does not exist: {}", watchedClassFile)
+      } else {
+        structureUpdatesQueue.add(ClassScanner.scan(classFileLocation).json)
+      }
     }
   }
 }

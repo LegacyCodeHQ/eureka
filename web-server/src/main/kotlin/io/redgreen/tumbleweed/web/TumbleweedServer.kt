@@ -18,9 +18,13 @@ import io.ktor.server.websocket.timeout
 import io.ktor.server.websocket.webSocket
 import io.ktor.util.pipeline.PipelineContext
 import io.ktor.websocket.Frame
+import io.redgreen.tumbleweed.filesystem.FileWatcher
+import java.io.File
+import java.nio.file.Path
 import java.time.Duration
 import java.util.concurrent.BlockingQueue
 import java.util.concurrent.LinkedBlockingQueue
+import kotlin.io.path.absolutePathString
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.slf4j.LoggerFactory
@@ -39,8 +43,13 @@ class TumbleweedServer {
 
   private val structureUpdatesQueue = LinkedBlockingQueue<String>()
 
+  private val classFileChangesWatcher = FileWatcher()
+
   fun start(port: Int) {
-    sendSampleUpdateMessages()
+    val classFilePath = File(
+      "./bytecode-samples/build/classes/kotlin/main/io/redgreen/tumbleweed/samples/ClassWithMethodsCallingMethods.class",
+    ).toPath()
+    startWatchingClassFileForChanges(classFilePath)
 
     logger.info("Starting web server @ http://localhost:{}", port)
     webServer = embeddedServer(Netty, port = port) {
@@ -86,12 +95,11 @@ class TumbleweedServer {
     }
   }
 
-  private fun sendSampleUpdateMessages() {
-    Thread {
-      for (i in 1..10) {
-        structureUpdatesQueue.put("Hello $i")
-        Thread.sleep(1000)
-      }
-    }.start()
+  private fun startWatchingClassFileForChanges(path: Path) {
+    logger.info("Watching class file for changes: {}", path.absolutePathString())
+
+    classFileChangesWatcher.startWatching(path) {
+      structureUpdatesQueue.add("${path.toFile().length()} bytes")
+    }
   }
 }

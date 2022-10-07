@@ -37,8 +37,12 @@ class TumbleweedServer {
       routing {
         get("/") { call.respondText(indexHtml, ContentType.parse("text/html")) }
 
-        webSocket("/ping") {
-          send(Frame.Text("Ping received!"))
+        webSocket("/updates") {
+          send(Frame.Text("Connection established, ready to send updates"))
+          while (true) {
+            val frame = incoming.receive()
+            logger.info("Received frame: {}", frame)
+          }
         }
       }
     }.start(wait = true)

@@ -15,12 +15,15 @@
 </div>
 </body>
 <script>
-  const ws = new WebSocket('ws://localhost:7070/ping');
+  const ws = new WebSocket('ws://localhost:7070/updates');
   ws.onopen = () => {
     document.getElementById('web-socket-check').innerHTML = '✅ WebSocket connection successful';
   };
   ws.onerror = () => {
-    document.getElementById('web-socket-check').innerHTML = '❌ WebSocket connection failed';
+    document.getElementById('web-socket-check').innerHTML = '❌ WebSocket connection error';
+  };
+  ws.onmessage = (event) => {
+    console.log(event.data);
   };
   ws.onclose = () => {
     document.getElementById('server-status').append('😔 WebSocket connection closed');

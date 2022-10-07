@@ -1,0 +1,23 @@
+{
+  "nodes": [
+    {
+      "id": "java.lang.String name",
+      "group": 1
+    },
+    {
+      "id": "void \u003cinit\u003e()",
+      "group": 2
+    },
+    {
+      "id": "java.lang.String getName()",
+      "group": 2
+    }
+  ],
+  "links": [
+    {
+      "source": "java.lang.String getName()",
+      "target": "java.lang.String name",
+      "value": 1
+    }
+  ]
+}

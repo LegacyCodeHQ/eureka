@@ -1,5 +1,5 @@
 package io.redgreen.tumbleweed
 
-interface Member {
+sealed interface Member {
   val signature: String
 }

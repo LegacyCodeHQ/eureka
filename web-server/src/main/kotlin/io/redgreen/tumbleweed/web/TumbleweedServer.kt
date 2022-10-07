@@ -56,7 +56,7 @@ class TumbleweedServer {
     logger.info("Starting web server @ http://localhost:{}", port)
     webServer = embeddedServer(Netty, port = port) {
       installWebSockets()
-      setupRoutes()
+      setupRoutes(classFileLocation)
     }.start(wait = true)
   }
 
@@ -74,10 +74,12 @@ class TumbleweedServer {
     }
   }
 
-  private fun Application.setupRoutes() {
+  private fun Application.setupRoutes(classFileLocation: ClassFileLocation) {
     routing {
       get("/") { serveIndexPage() }
-      webSocket("/structure-updates") { openWsConnectionForStructureUpdates(structureUpdatesQueue) }
+      webSocket("/structure-updates") {
+        openWsConnectionForStructureUpdates(classFileLocation, structureUpdatesQueue)
+      }
     }
   }
 
@@ -86,13 +88,17 @@ class TumbleweedServer {
   }
 
   private suspend fun DefaultWebSocketServerSession.openWsConnectionForStructureUpdates(
+    classFileLocation: ClassFileLocation,
     messageQueue: BlockingQueue<String>,
   ) {
     logger.info("Web socket connection opened. Ready to send updates.")
+    send(Frame.Text(ClassScanner.scan(classFileLocation).json))
+
     while (true) {
       val message = withContext(Dispatchers.IO) {
         messageQueue.take()
       }
+      logger.info("Sending updated structure to client")
       send(Frame.Text(message))
     }
   }

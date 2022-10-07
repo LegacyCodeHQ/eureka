@@ -1,4 +1,4 @@
-package io.redgreen.tumbleweed.cli.filesystem
+package io.redgreen.tumbleweed.filesystem
 
 import com.sun.nio.file.SensitivityWatchEventModifier
 import java.nio.file.ClosedWatchServiceException

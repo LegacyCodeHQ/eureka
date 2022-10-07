@@ -4,4 +4,5 @@ include(
   ":bytecode-scanner",
   ":bytecode-samples",
   ":web-server",
+  ":filesystem",
 )

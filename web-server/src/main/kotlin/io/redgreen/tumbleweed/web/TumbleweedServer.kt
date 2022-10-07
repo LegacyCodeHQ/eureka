@@ -21,6 +21,7 @@ import io.ktor.websocket.Frame
 import io.redgreen.tumbleweed.ClassFileLocation
 import io.redgreen.tumbleweed.ClassScanner
 import io.redgreen.tumbleweed.filesystem.FileWatcher
+import io.redgreen.tumbleweed.web.observablehq.json
 import java.time.Duration
 import java.util.concurrent.BlockingQueue
 import java.util.concurrent.LinkedBlockingQueue
@@ -101,7 +102,7 @@ class TumbleweedServer {
 
     classFileChangesWatcher.startWatching(classFileLocation.file.toPath()) {
       val classStructure = ClassScanner.scan(classFileLocation)
-      structureUpdatesQueue.add(classStructure.toString())
+      structureUpdatesQueue.add(classStructure.json)
     }
   }
 }

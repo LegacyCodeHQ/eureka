@@ -1,7 +1,7 @@
 rootProject.name = "tumbleweed"
 include(
   ":cli",
-  ":scanner",
+  ":bytecode-scanner",
   ":bytecode-samples",
   ":web-server",
 )

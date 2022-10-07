@@ -19,12 +19,17 @@ import io.ktor.server.websocket.webSocket
 import io.ktor.util.pipeline.PipelineContext
 import io.ktor.websocket.Frame
 import java.time.Duration
+import java.util.concurrent.BlockingQueue
+import java.util.concurrent.LinkedBlockingQueue
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.slf4j.LoggerFactory
 
 class TumbleweedServer {
   private val logger = LoggerFactory.getLogger(TumbleweedServer::class.java)
 
   private lateinit var webServer: ApplicationEngine
+
   private val indexHtml: String
     get() {
       return TumbleweedServer::class.java.classLoader.getResourceAsStream("index.html")!!
@@ -32,7 +37,11 @@ class TumbleweedServer {
         .use { it.readText() }
     }
 
+  private val structureUpdatesQueue = LinkedBlockingQueue<String>()
+
   fun start() {
+    sendSampleUpdateMessages()
+
     val port = 7070
     logger.info("Starting web server @ http://localhost:{}", port)
     webServer = embeddedServer(Netty, port = port) {
@@ -55,22 +64,35 @@ class TumbleweedServer {
     }
   }
 
+  private fun Application.setupRoutes() {
+    routing {
+      get("/") { serveIndexPage() }
+      webSocket("/structure-updates") { openWsConnectionForStructureUpdates(structureUpdatesQueue) }
+    }
+  }
+
   private suspend fun PipelineContext<Unit, ApplicationCall>.serveIndexPage() {
     call.respondText(indexHtml, ContentType.parse("text/html"))
   }
 
-  private fun Application.setupRoutes() {
-    routing {
-      get("/") { serveIndexPage() }
-      webSocket("/structure-updates") { openWsConnection() }
+  private suspend fun DefaultWebSocketServerSession.openWsConnectionForStructureUpdates(
+    messageQueue: BlockingQueue<String>,
+  ) {
+    send(Frame.Text("Connection established, ready to send updates"))
+    while (true) {
+      val message = withContext(Dispatchers.IO) {
+        messageQueue.take()
+      }
+      send(Frame.Text(message))
     }
   }
 
-  private suspend fun DefaultWebSocketServerSession.openWsConnection() {
-    send(Frame.Text("Connection established, ready to send updates"))
-    while (true) {
-      val frame = incoming.receive()
-      logger.info("Received frame: {}", frame)
-    }
+  private fun sendSampleUpdateMessages() {
+    Thread {
+      for (i in 1..10) {
+        structureUpdatesQueue.put("Hello $i")
+        Thread.sleep(1000)
+      }
+    }.start()
   }
 }

@@ -1,45 +1,150 @@
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Tumbleweed</title>
-  <style>
-    .code {
-      margin: 8px;
-      padding: 8px;
-      font-family: monospace;
-      font-size: 1.2em;
-      background-color: lightgray;
-    }
-  </style>
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tumbleweed—Edge Bundling</title>
 </head>
 <body>
-<h1>Tumbleweed</h1>
-<div id="server-status">
-  <p>
-    ✅ Server is running
-  </p>
-  <p id="web-socket-check">
-    🟠 Checking WebSocket connection…
-  </p>
-</div>
-<div class="code">
-  <pre id="class-structure"></pre>
+<div>
+  <svg id="svg" xmlns="http://www.w3.org/2000/svg"></svg>
 </div>
 </body>
+<script src="https://d3js.org/d3.v7.min.js"></script>
 <script>
-  const ws = new WebSocket('ws://localhost:7070/structure-updates');
-  ws.onopen = () => {
-    document.getElementById('web-socket-check').innerHTML = '✅ WebSocket connection successful';
+  const colorin = "#00f";
+  const colorout = "#f00";
+  const colornone = "#ccc";
+
+  function bilink(root) {
+    const map = new Map(root.leaves().map(d => [d.data.id, d]));
+    for (const d of root.leaves()) d.dependents = [], d.dependencies = d.data.targets.map(i => [d, map.get(i)]);
+    for (const d of root.leaves()) for (const o of d.dependencies) o[1].dependents.push(o);
+    return root;
+  }
+
+  const width = 954;
+
+  const radius = width / 2;
+
+  const tree = d3.cluster()
+    .size([2 * Math.PI, radius - 100]);
+
+  const line = d3.lineRadial()
+    .curve(d3.curveBundle.beta(0.85))
+    .radius(d => d.y)
+    .angle(d => d.x);
+
+  const toChartData = (graph) => {
+    const {nodes, links} = graph;
+    const groupById = new Map;
+    const nodeById = new Map(nodes.map(node => [node.id, node]));
+
+    for (const node of nodes) {
+      let group = groupById.get(node.group);
+      if (!group) groupById.set(node.group, group = {id: node.group, children: []});
+      group.children.push(node);
+      node.targets = [];
+    }
+
+    for (const {source: sourceId, target: targetId} of links) {
+      nodeById.get(sourceId).targets.push(targetId);
+    }
+
+    return {children: [...groupById.values()]};
   };
-  ws.onerror = () => {
-    document.getElementById('web-socket-check').innerHTML = '❌ WebSocket connection error';
-  };
+
+  function countableTextDependencies(count) {
+    if (count === 1) {
+      return "1 dependency";
+    } else {
+      return count + " dependencies";
+    }
+  }
+
+  function countableTextDependents(count) {
+    if (count === 1) {
+      return "1 dependent";
+    } else {
+      return count + " dependents";
+    }
+  }
+
+  const drawEdgeBundlingGraph = (graph) => {
+    function clearEdgeBundlingGraph() {
+      const svg = d3.select("svg");
+      svg.selectAll("*").remove();
+    }
+
+    clearEdgeBundlingGraph()
+
+    const root = tree(bilink(d3.hierarchy(toChartData(graph))
+      .sort((a, b) => d3.ascending(a.height, b.height) || d3.ascending(a.data.id, b.data.id))));
+
+    const svg = d3.select("#svg")
+      .attr("viewBox", [-width / 2, -width / 2, width, width]);
+
+    svg.append("g")
+      .attr("font-family", "sans-serif")
+      .attr("font-size", 10)
+      .selectAll("g")
+      .data(root.leaves())
+      .join("g")
+      .attr("transform", d => `rotate(${d.x * 180 / Math.PI - 90}) translate(${d.y},0)`)
+      .append("text")
+      .attr("dy", "0.31em")
+      .attr("x", d => d.x < Math.PI ? 6 : -6)
+      .attr("text-anchor", d => d.x < Math.PI ? "start" : "end")
+      .attr("transform", d => d.x >= Math.PI ? "rotate(180)" : null)
+      .text(d => d.data.id)
+      .each(function (d) {
+        d.text = this;
+      })
+      .on("mouseover", overed)
+      .on("mouseout", outed)
+      .call(text => text.append("title").text(d =>
+        `${d.data.id}
+        ${countableTextDependencies(d.dependencies.length)}
+        ${countableTextDependents(d.dependents.length)}`
+      ));
+
+    const link = svg.append("g")
+      .attr("stroke", colornone)
+      .attr("fill", "none")
+      .selectAll("path")
+      .data(root.leaves().flatMap(leaf => leaf.dependencies))
+      .join("path")
+      .style("mix-blend-mode", "multiply")
+      .attr("d", ([i, o]) => line(i.path(o)))
+      .each(function (d) {
+        d.path = this;
+      });
+
+    function overed(event, d) {
+      link.style("mix-blend-mode", null);
+      d3.select(this).attr("font-weight", "bold");
+      d3.selectAll(d.dependents.map(d => d.path)).attr("stroke", colorin).raise();
+      d3.selectAll(d.dependents.map(([d]) => d.text)).attr("fill", colorin).attr("font-weight", "bold");
+      d3.selectAll(d.dependencies.map(d => d.path)).attr("stroke", colorout).raise();
+      d3.selectAll(d.dependencies.map(([, d]) => d.text)).attr("fill", colorout).attr("font-weight", "bold");
+    }
+
+    function outed(event, d) {
+      link.style("mix-blend-mode", "multiply");
+      d3.select(this).attr("font-weight", null);
+      d3.selectAll(d.dependents.map(d => d.path)).attr("stroke", null);
+      d3.selectAll(d.dependents.map(([d]) => d.text)).attr("fill", null).attr("font-weight", null);
+      d3.selectAll(d.dependencies.map(d => d.path)).attr("stroke", null);
+      d3.selectAll(d.dependencies.map(([, d]) => d.text)).attr("fill", null).attr("font-weight", null);
+    }
+
+    return svg.node();
+  }
+
+  const ws = new WebSocket("ws://localhost:7070/structure-updates");
+
   ws.onmessage = (event) => {
-    document.getElementById('class-structure').textContent = event.data
-  };
-  ws.onclose = () => {
-    document.getElementById('server-status').append('😔 WebSocket connection closed');
-    document.getElementById('class-structure').textContent = ""
+    drawEdgeBundlingGraph(JSON.parse(event.data));
   };
 </script>
 </html>

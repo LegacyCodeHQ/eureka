@@ -86,6 +86,22 @@
     return {children: [...groupById.values()]};
   };
 
+  function countableTextDependencies(count) {
+    if (count === 1) {
+      return "1 dependency";
+    } else {
+      return count + " dependencies";
+    }
+  }
+
+  function countableTextDependents(count) {
+    if (count === 1) {
+      return "1 dependent";
+    } else {
+      return count + " dependents";
+    }
+  }
+
   const drawEdgeBundingGraph = (graph) => {
     const root = tree(bilink(d3.hierarchy(toChartData(graph))
       .sort((a, b) => d3.ascending(a.height, b.height) || d3.ascending(a.data.id, b.data.id))));
@@ -113,8 +129,8 @@
       .on("mouseout", outed)
       .call(text => text.append("title").text(d =>
         `${d.data.id}
-        ${d.dependencies.length} dependencies
-        ${d.dependents.length} dependents`
+        ${countableTextDependencies(d.dependencies.length)}
+        ${countableTextDependents(d.dependents.length)}`
       ));
 
     const link = svg.append("g")

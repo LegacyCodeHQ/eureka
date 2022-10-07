@@ -15,7 +15,7 @@
 </div>
 </body>
 <script>
-  const ws = new WebSocket('ws://localhost:7070/updates');
+  const ws = new WebSocket('ws://localhost:7070/structure-updates');
   ws.onopen = () => {
     document.getElementById('web-socket-check').innerHTML = '✅ WebSocket connection successful';
   };

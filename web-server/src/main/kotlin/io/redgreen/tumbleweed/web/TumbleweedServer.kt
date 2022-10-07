@@ -2,6 +2,7 @@ package io.redgreen.tumbleweed.web
 
 import io.ktor.http.ContentType
 import io.ktor.server.application.Application
+import io.ktor.server.application.ApplicationCall
 import io.ktor.server.application.call
 import io.ktor.server.application.install
 import io.ktor.server.engine.ApplicationEngine
@@ -10,10 +11,12 @@ import io.ktor.server.netty.Netty
 import io.ktor.server.response.respondText
 import io.ktor.server.routing.get
 import io.ktor.server.routing.routing
+import io.ktor.server.websocket.DefaultWebSocketServerSession
 import io.ktor.server.websocket.WebSockets
 import io.ktor.server.websocket.pingPeriod
 import io.ktor.server.websocket.timeout
 import io.ktor.server.websocket.webSocket
+import io.ktor.util.pipeline.PipelineContext
 import io.ktor.websocket.Frame
 import java.time.Duration
 import org.slf4j.LoggerFactory
@@ -34,17 +37,7 @@ class TumbleweedServer {
     logger.info("Starting web server @ http://localhost:{}", port)
     webServer = embeddedServer(Netty, port = port) {
       installWebSockets()
-      routing {
-        get("/") { call.respondText(indexHtml, ContentType.parse("text/html")) }
-
-        webSocket("/updates") {
-          send(Frame.Text("Connection established, ready to send updates"))
-          while (true) {
-            val frame = incoming.receive()
-            logger.info("Received frame: {}", frame)
-          }
-        }
-      }
+      setupRoutes()
     }.start(wait = true)
   }
 
@@ -59,6 +52,25 @@ class TumbleweedServer {
       timeout = Duration.ofSeconds(15)
       maxFrameSize = Long.MAX_VALUE
       masking = false
+    }
+  }
+
+  private suspend fun PipelineContext<Unit, ApplicationCall>.serveIndexPage() {
+    call.respondText(indexHtml, ContentType.parse("text/html"))
+  }
+
+  private fun Application.setupRoutes() {
+    routing {
+      get("/") { serveIndexPage() }
+      webSocket("/structure-updates") { openWsConnection() }
+    }
+  }
+
+  private suspend fun DefaultWebSocketServerSession.openWsConnection() {
+    send(Frame.Text("Connection established, ready to send updates"))
+    while (true) {
+      val frame = incoming.receive()
+      logger.info("Received frame: {}", frame)
     }
   }
 }

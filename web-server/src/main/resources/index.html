@@ -2,6 +2,14 @@
 <head>
   <meta charset="UTF-8">
   <title>Tumbleweed</title>
+  <style>
+    .code {
+      margin: 8px;
+      padding: 8px;
+      font-size: 1.2em;
+      background-color: lightgray;
+    }
+  </style>
 </head>
 <body>
 <h1>Tumbleweed</h1>
@@ -13,6 +21,9 @@
     🟠 Checking WebSocket connection…
   </p>
 </div>
+<div class="code">
+  <code id="class-structure"></code>
+</div>
 </body>
 <script>
   const ws = new WebSocket('ws://localhost:7070/structure-updates');
@@ -23,10 +34,11 @@
     document.getElementById('web-socket-check').innerHTML = '❌ WebSocket connection error';
   };
   ws.onmessage = (event) => {
-    console.log(event.data);
+    document.getElementById('class-structure').textContent = event.data
   };
   ws.onclose = () => {
     document.getElementById('server-status').append('😔 WebSocket connection closed');
+    document.getElementById('class-structure').textContent = ""
   };
 </script>
 </html>

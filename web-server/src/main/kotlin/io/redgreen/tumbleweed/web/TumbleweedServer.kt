@@ -87,7 +87,7 @@ class TumbleweedServer {
   private suspend fun DefaultWebSocketServerSession.openWsConnectionForStructureUpdates(
     messageQueue: BlockingQueue<String>,
   ) {
-    send(Frame.Text("Connection established, ready to send updates"))
+    logger.info("Web socket connection opened. Ready to send updates.")
     while (true) {
       val message = withContext(Dispatchers.IO) {
         messageQueue.take()

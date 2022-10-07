@@ -5,6 +5,25 @@
 </head>
 <body>
 <h1>Tumbleweed</h1>
-<p>&#9989; Server is running</p>
+<div id="server-status">
+  <p>
+    ✅ Server is running
+  </p>
+  <p id="web-socket-check">
+    🟠 Checking WebSocket connection…
+  </p>
+</div>
 </body>
+<script>
+  const ws = new WebSocket('ws://localhost:7070/ping');
+  ws.onopen = () => {
+    document.getElementById('web-socket-check').innerHTML = '✅ WebSocket connection successful';
+  };
+  ws.onerror = () => {
+    document.getElementById('web-socket-check').innerHTML = '❌ WebSocket connection failed';
+  };
+  ws.onclose = () => {
+    document.getElementById('server-status').append('😔 WebSocket connection closed');
+  };
+</script>
 </html>

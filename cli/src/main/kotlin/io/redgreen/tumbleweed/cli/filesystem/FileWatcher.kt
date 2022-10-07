@@ -1,6 +1,7 @@
 package io.redgreen.tumbleweed.cli.filesystem
 
 import com.sun.nio.file.SensitivityWatchEventModifier
+import java.nio.file.ClosedWatchServiceException
 import java.nio.file.FileSystems
 import java.nio.file.Path
 import java.nio.file.StandardWatchEventKinds.ENTRY_CREATE
@@ -28,8 +29,17 @@ class FileWatcher {
           onFileChanged()
         }
         watchKey.reset()
-        watchKey = watchService.take()
+        try {
+          watchKey = watchService.take()
+        } catch (e: ClosedWatchServiceException) {
+          println("Watch service closed.")
+          break
+        }
       }
     }.start()
+  }
+
+  fun stopWatching() {
+    watchService.close()
   }
 }

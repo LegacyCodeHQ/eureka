@@ -25,4 +25,24 @@ class FileWatcherTest {
     assertThat(fileChanged)
       .isTrue()
   }
+
+  @Test
+  fun `it should not receive notifications after stop watching for changes`(@TempDir directory: Path) {
+    // given
+    val filename = "file.txt"
+    val fileToWatch = directory.resolve(filename).also { it.toFile().writeText("Hello, world!") }
+    var fileChanged = false
+
+    val fileWatcher = FileWatcher()
+    fileWatcher.startWatching(fileToWatch) { fileChanged = true }
+
+    // when
+    fileWatcher.stopWatching()
+    fileToWatch.writeText("Hello, world! How are you?")
+    Thread.sleep(3000)
+
+    // then
+    assertThat(fileChanged)
+      .isFalse()
+  }
 }

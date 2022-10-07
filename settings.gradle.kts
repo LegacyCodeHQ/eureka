@@ -3,4 +3,5 @@ include(
   ":cli",
   ":scanner",
   ":bytecode-samples",
+  ":web-server",
 )

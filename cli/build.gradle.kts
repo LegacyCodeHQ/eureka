@@ -32,5 +32,7 @@ tasks {
 }
 
 dependencies {
+  implementation(project(":web-server"))
+
   implementation("info.picocli:picocli:4.6.3")
 }

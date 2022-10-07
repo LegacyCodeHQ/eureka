@@ -5,7 +5,7 @@ import kotlin.system.exitProcess
 import picocli.CommandLine
 
 fun main(args: Array<String>) {
-  TumbleweedServer().start()
+  TumbleweedServer().start(7070)
 
   return
   exitProcess(CommandLine(TumbleweedCommand())

@@ -39,10 +39,9 @@ class TumbleweedServer {
 
   private val structureUpdatesQueue = LinkedBlockingQueue<String>()
 
-  fun start() {
+  fun start(port: Int) {
     sendSampleUpdateMessages()
 
-    val port = 7070
     logger.info("Starting web server @ http://localhost:{}", port)
     webServer = embeddedServer(Netty, port = port) {
       installWebSockets()

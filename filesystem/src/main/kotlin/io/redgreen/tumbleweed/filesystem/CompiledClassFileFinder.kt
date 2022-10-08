@@ -8,7 +8,7 @@ class CompiledClassFileFinder {
     fun find(
       className: String,
       searchDirectory: String,
-    ): Path {
+    ): Path? {
       val classFilePath = FileSystems.getDefault()
         .getPath(searchDirectory)
         .toFile()
@@ -19,7 +19,7 @@ class CompiledClassFileFinder {
           it.isFile && it.absolutePath.endsWith("$partialClassNamePath.class")
         }
 
-      return classFilePath!!.toPath()
+      return classFilePath?.toPath()
     }
   }
 }

@@ -15,7 +15,7 @@ class CompiledClassFileFinderTest {
     )
 
     // then
-    assertThat(path.exists()).isTrue()
+    assertThat(path!!.exists()).isTrue()
     assertThat(path.isRegularFile()).isTrue()
   }
 
@@ -28,7 +28,7 @@ class CompiledClassFileFinderTest {
     )
 
     // then
-    assertThat(path.exists()).isTrue()
+    assertThat(path!!.exists()).isTrue()
     assertThat(path.isRegularFile()).isTrue()
   }
 
@@ -41,7 +41,19 @@ class CompiledClassFileFinderTest {
     )
 
     // then
-    assertThat(path.exists()).isTrue()
+    assertThat(path!!.exists()).isTrue()
     assertThat(path.isRegularFile()).isTrue()
+  }
+
+  @Test
+  fun `it returns null if the class is not found`() {
+    // given & when
+    val path = CompiledClassFileFinder.find(
+      className = "io.redgreen.tumbleweed.samples.MissingClass",
+      searchDirectory = "src/test/resources",
+    )
+
+    // then
+    assertThat(path).isNull()
   }
 }

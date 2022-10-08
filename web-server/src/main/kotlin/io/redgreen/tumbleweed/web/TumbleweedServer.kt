@@ -45,10 +45,7 @@ class TumbleweedServer {
 
   private val classFileChangesWatcher = FileWatcher()
 
-  fun start(port: Int) {
-    val classFileLocation = "./bytecode-samples/build/classes/kotlin/main/" +
-      "io.redgreen.tumbleweed.samples.ClassWithMethodsCallingMethods".replace(".", "/")
-    val classFile = File("$classFileLocation.class")
+  fun start(port: Int, classFile: File) {
     startWatchingClassFileForChanges(classFile)
 
     logger.info("Starting web server @ http://localhost:{}", port)

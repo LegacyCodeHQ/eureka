@@ -24,7 +24,9 @@ $ twd watch io.redgreen.ExampleClass
 
 The command will start a web server on port 7070. Go to `localhost:7070` in your browser to see the diagram.
 
-For more options, run `twd --help`.
+The diagram will be updated in real-time as you make changes to the source code and compile the project.
+
+For more options, run `twd watch --help`.
 
 ## Known issues
 

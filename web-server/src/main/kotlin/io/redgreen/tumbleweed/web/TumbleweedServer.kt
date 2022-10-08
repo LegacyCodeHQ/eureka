@@ -18,10 +18,10 @@ import io.ktor.server.websocket.timeout
 import io.ktor.server.websocket.webSocket
 import io.ktor.util.pipeline.PipelineContext
 import io.ktor.websocket.Frame
-import io.redgreen.tumbleweed.ClassFileLocation
 import io.redgreen.tumbleweed.ClassScanner
 import io.redgreen.tumbleweed.filesystem.FileWatcher
 import io.redgreen.tumbleweed.web.observablehq.json
+import java.io.File
 import java.time.Duration
 import java.util.concurrent.BlockingQueue
 import java.util.concurrent.LinkedBlockingQueue
@@ -46,17 +46,15 @@ class TumbleweedServer {
   private val classFileChangesWatcher = FileWatcher()
 
   fun start(port: Int) {
-    val classFileLocation = ClassFileLocation(
-      "./bytecode-samples/build/classes/kotlin/main",
-      "io.redgreen.tumbleweed.samples.ClassWithMethodsCallingMethods"
-    )
-    val classFilePath = classFileLocation.file.toPath()
-    startWatchingClassFileForChanges(classFileLocation)
+    val classFileLocation = "./bytecode-samples/build/classes/kotlin/main/" +
+      "io.redgreen.tumbleweed.samples.ClassWithMethodsCallingMethods".replace(".", "/")
+    val classFile = File("$classFileLocation.class")
+    startWatchingClassFileForChanges(classFile)
 
     logger.info("Starting web server @ http://localhost:{}", port)
     webServer = embeddedServer(Netty, port = port) {
       installWebSockets()
-      setupRoutes(classFileLocation)
+      setupRoutes(classFile)
     }.start(wait = true)
   }
 
@@ -74,11 +72,11 @@ class TumbleweedServer {
     }
   }
 
-  private fun Application.setupRoutes(classFileLocation: ClassFileLocation) {
+  private fun Application.setupRoutes(classFile: File) {
     routing {
       get("/") { serveIndexPage() }
       webSocket("/structure-updates") {
-        openWsConnectionForStructureUpdates(classFileLocation, structureUpdatesQueue)
+        openWsConnectionForStructureUpdates(structureUpdatesQueue, classFile)
       }
     }
   }
@@ -88,11 +86,11 @@ class TumbleweedServer {
   }
 
   private suspend fun DefaultWebSocketServerSession.openWsConnectionForStructureUpdates(
-    classFileLocation: ClassFileLocation,
     messageQueue: BlockingQueue<String>,
+    classFile: File,
   ) {
     logger.info("Web socket connection opened. Ready to send updates.")
-    send(Frame.Text(ClassScanner.scan(classFileLocation.file).json))
+    send(Frame.Text(ClassScanner.scan(classFile).json))
 
     while (true) {
       val message = withContext(Dispatchers.IO) {
@@ -103,15 +101,14 @@ class TumbleweedServer {
     }
   }
 
-  private fun startWatchingClassFileForChanges(classFileLocation: ClassFileLocation) {
-    val watchedClassFile = classFileLocation.file
+  private fun startWatchingClassFileForChanges(watchedClassFile: File) {
     logger.info("Watching class file for changes: {}", watchedClassFile)
 
     classFileChangesWatcher.startWatching(watchedClassFile.toPath()) {
       if (!watchedClassFile.exists()) {
         logger.error("Class file does not exist: {}", watchedClassFile)
       } else {
-        structureUpdatesQueue.add(ClassScanner.scan(classFileLocation.file).json)
+        structureUpdatesQueue.add(ClassScanner.scan(watchedClassFile).json)
       }
     }
   }

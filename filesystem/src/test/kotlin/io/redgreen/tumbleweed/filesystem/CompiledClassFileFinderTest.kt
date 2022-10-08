@@ -9,7 +9,10 @@ class CompiledClassFileFinderTest {
   @Test
   fun `it should find the path of the class given the fully qualified name`() {
     // given & when
-    val path = CompiledClassFileFinder.find("io.redgreen.tumbleweed.samples.FindMeJavaClass")
+    val path = CompiledClassFileFinder.find(
+      className = "io.redgreen.tumbleweed.samples.FindMeJavaClass",
+      searchDirectory = "../",
+    )
 
     // then
     assertThat(path.exists()).isTrue()
@@ -19,7 +22,10 @@ class CompiledClassFileFinderTest {
   @Test
   fun `it should find the path of the class given the simple name`() {
     // given & when
-    val path = CompiledClassFileFinder.find("FindMeJavaClass")
+    val path = CompiledClassFileFinder.find(
+      className = "FindMeJavaClass",
+      searchDirectory = "../",
+    )
 
     // then
     assertThat(path.exists()).isTrue()
@@ -29,7 +35,10 @@ class CompiledClassFileFinderTest {
   @Test
   fun `it should find the path of the class given the simple name with package`() {
     // given & when
-    val path = CompiledClassFileFinder.find("samples.FindMeKotlinClass")
+    val path = CompiledClassFileFinder.find(
+      className = "samples.FindMeKotlinClass",
+      searchDirectory = "../bytecode-samples/build/classes/kotlin/main",
+    )
 
     // then
     assertThat(path.exists()).isTrue()

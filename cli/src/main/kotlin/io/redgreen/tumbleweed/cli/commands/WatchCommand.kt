@@ -8,10 +8,10 @@ import picocli.CommandLine.Option
 import picocli.CommandLine.Parameters
 
 @Command(
-  name = "view",
-  description = ["see a real-time structure of a JVM class"],
+  name = "watch",
+  description = ["see the real-time structure of a JVM class in your browser"],
 )
-class ViewCommand : Runnable {
+class WatchCommand : Runnable {
   @Parameters(
     index = "0",
     description = ["uniquely identifiable (partially or fully) qualified name of the class"],

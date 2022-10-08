@@ -24,7 +24,7 @@ For more options, run `twd --help`.
   on actively to fix. This has to do with the special characters in the class names and
   the [edge bundling graph](https://observablehq.com/@d3/bilevel-edge-bundling) source code that I am using.
 
-- Kotlin classes have synthetic methods that are not visible in the source code. These methods are not shown in the
+- Kotlin classes have synthetic methods that are not visible in the source code. These methods are shown in the
   diagram. This is yet another limitation of the tool at the moment.
 
 ## Licenses

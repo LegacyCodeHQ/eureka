@@ -4,7 +4,7 @@ import io.redgreen.tumbleweed.cli.commands.ViewCommand
 import picocli.CommandLine.Command
 
 @Command(
-  name = "tumbleweed",
+  name = "twd",
   subcommands = [
     ViewCommand::class,
   ],

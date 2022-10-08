@@ -11,12 +11,12 @@ Understand and break down large classes without breaking a sweat 😓
 Build the project first and then run the command line tool.
 
 ```bash
-$ tumbleweed view io.redgreen.ExampleClass
+$ twd view io.redgreen.ExampleClass
 ```
 
 The command will start a web server on port 7070. Go to `localhost:7070` in your browser to see the diagram.
 
-For more options, run `tumbleweed --help`.
+For more options, run `twd --help`.
 
 ## Known issues
 

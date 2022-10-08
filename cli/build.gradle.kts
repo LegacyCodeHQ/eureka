@@ -6,7 +6,7 @@ plugins {
 }
 
 application {
-  applicationName = "tumbleweed"
+  applicationName = "twd"
   mainClassName = "io.redgreen.tumbleweed.cli.MainKt"
 }
 
@@ -20,7 +20,7 @@ tasks.withType<Jar> {
 
 tasks {
   named<ShadowJar>("shadowJar") {
-    archiveBaseName.set("tumbleweed")
+    archiveBaseName.set("twd")
     mergeServiceFiles()
   }
 }

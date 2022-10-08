@@ -14,7 +14,7 @@ internal class ClassStructureJsonKtTest {
       compiledClassesDirectory = "../bytecode-samples/build/classes/java/main",
       fqClassName = ClassWithMethodReadingField::class.java.name,
     )
-    val classStructure = ClassScanner.scan(methodReadingFieldClass)
+    val classStructure = ClassScanner.scan(methodReadingFieldClass.file)
 
     // when & then
     JsonApprovals.verifyJson(classStructure.json)

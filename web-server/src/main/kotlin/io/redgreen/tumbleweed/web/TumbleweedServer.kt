@@ -92,7 +92,7 @@ class TumbleweedServer {
     messageQueue: BlockingQueue<String>,
   ) {
     logger.info("Web socket connection opened. Ready to send updates.")
-    send(Frame.Text(ClassScanner.scan(classFileLocation).json))
+    send(Frame.Text(ClassScanner.scan(classFileLocation.file).json))
 
     while (true) {
       val message = withContext(Dispatchers.IO) {
@@ -111,7 +111,7 @@ class TumbleweedServer {
       if (!watchedClassFile.exists()) {
         logger.error("Class file does not exist: {}", watchedClassFile)
       } else {
-        structureUpdatesQueue.add(ClassScanner.scan(classFileLocation).json)
+        structureUpdatesQueue.add(ClassScanner.scan(classFileLocation.file).json)
       }
     }
   }

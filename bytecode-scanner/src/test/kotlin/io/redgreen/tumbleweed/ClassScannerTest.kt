@@ -30,7 +30,7 @@ class ClassScannerTest {
     )
 
     // when
-    val classStructure = ClassScanner.scan(emptyClass)
+    val classStructure = ClassScanner.scan(emptyClass.file)
 
     // then
     Approvals.verify(classStructure.printable)
@@ -44,7 +44,7 @@ class ClassScannerTest {
     )
 
     // when
-    val classStructure = ClassScanner.scan(classWithFields)
+    val classStructure = ClassScanner.scan(classWithFields.file)
 
     // then
     Approvals.verify(classStructure.printable)
@@ -58,7 +58,7 @@ class ClassScannerTest {
     )
 
     // when
-    val classStructure = ClassScanner.scan(classWithMethods)
+    val classStructure = ClassScanner.scan(classWithMethods.file)
 
     // then
     Approvals.verify(classStructure.printable)
@@ -72,7 +72,7 @@ class ClassScannerTest {
     )
 
     // when
-    val classStructure = ClassScanner.scan(methodReadingFieldClass)
+    val classStructure = ClassScanner.scan(methodReadingFieldClass.file)
 
     // then
     Approvals.verify(classStructure.printable)
@@ -86,7 +86,7 @@ class ClassScannerTest {
     )
 
     // when
-    val classStructure = ClassScanner.scan(methodWritingFieldClass)
+    val classStructure = ClassScanner.scan(methodWritingFieldClass.file)
 
     // then
     Approvals.verify(classStructure.printable)
@@ -100,7 +100,7 @@ class ClassScannerTest {
     )
 
     // when
-    val classStructure = ClassScanner.scan(classWithMethodsCallingMethods)
+    val classStructure = ClassScanner.scan(classWithMethodsCallingMethods.file)
 
     // then
     Approvals.verify(classStructure.printable)
@@ -114,7 +114,7 @@ class ClassScannerTest {
     )
 
     // when
-    val classStructure = ClassScanner.scan(classWithRecursiveFunction)
+    val classStructure = ClassScanner.scan(classWithRecursiveFunction.file)
 
     // then
     Approvals.verify(classStructure.printable)
@@ -128,7 +128,7 @@ class ClassScannerTest {
     )
 
     // when
-    val classStructure = ClassScanner.scan(classWithAnonymousFunctionWritingField)
+    val classStructure = ClassScanner.scan(classWithAnonymousFunctionWritingField.file)
 
     // then
     Approvals.verify(classStructure.printable)

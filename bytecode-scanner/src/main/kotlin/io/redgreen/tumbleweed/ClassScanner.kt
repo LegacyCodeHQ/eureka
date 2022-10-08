@@ -1,6 +1,7 @@
 package io.redgreen.tumbleweed
 
 import java.io.BufferedInputStream
+import java.io.File
 import net.bytebuddy.jar.asm.ClassReader
 import net.bytebuddy.jar.asm.ClassVisitor
 import net.bytebuddy.jar.asm.FieldVisitor
@@ -8,7 +9,7 @@ import net.bytebuddy.jar.asm.MethodVisitor
 import net.bytebuddy.jar.asm.Opcodes.ASM7
 
 object ClassScanner {
-  fun scan(location: ClassFileLocation): ClassStructure {
+  fun scan(classFile: File): ClassStructure {
     var className: String? = null
     var packageName: String? = null
     val outFields = mutableListOf<Field>()
@@ -53,7 +54,7 @@ object ClassScanner {
       }
     }
 
-    ClassReader(BufferedInputStream(location.file.inputStream())).accept(classVisitor, 0)
+    ClassReader(BufferedInputStream(classFile.inputStream())).accept(classVisitor, 0)
 
     return ClassStructure(
       packageName!!,

@@ -15,4 +15,14 @@ class CompiledClassFileFinderTest {
     assertThat(path.exists()).isTrue()
     assertThat(path.isRegularFile()).isTrue()
   }
+
+  @Test
+  fun `it should find the path of the class given the simple name`() {
+    // given & when
+    val path = CompiledClassFileFinder.find("FindMeJavaClass")
+
+    // then
+    assertThat(path.exists()).isTrue()
+    assertThat(path.isRegularFile()).isTrue()
+  }
 }

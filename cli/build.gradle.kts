@@ -1,8 +1,13 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import org.jreleaser.model.Active
+
+@Suppress("PropertyName")
+val CLI_VERSION = "0.1.0"
 
 plugins {
   application
   id("com.github.johnrengelman.shadow") version "6.0.0"
+  id("org.jreleaser") version "1.2.0"
 }
 
 application {
@@ -36,4 +41,57 @@ dependencies {
   implementation(project(":filesystem"))
 
   implementation("info.picocli:picocli:4.6.3")
+}
+
+/* Ported from https://github.com/mobile-dev-inc/maestro/blob/main/maestro-cli/build.gradle */
+jreleaser {
+  version = CLI_VERSION
+  gitRootSearch.set(true)
+
+  project {
+    name.set("Tumbleweed")
+    description.set("Understand and break down large classes without breaking a sweat.")
+    website.set("https://github.com/redgreenio/tumbleweed")
+    license.set("Apache-2.0")
+    copyright.set("2022-Present Ragunath Jawahar")
+  }
+
+  release {
+    github {
+      repoOwner.set("redgreenio")
+      name.set("tumbleweed")
+      branch.set("main")
+      repoUrl.set("git@github.com:redgreenio/tumbleweed.git")
+
+      tagName.set("twd-$CLI_VERSION")
+      releaseName.set("TWD $CLI_VERSION")
+      overwrite.set(true)
+
+      token.set(System.getenv("GITHUB_TOKEN"))
+    }
+  }
+
+  distributions {
+    create("twd") {
+      artifact {
+        path.set(File("build/distributions/twd-$CLI_VERSION.zip"))
+      }
+
+      brew {
+        active.set(Active.RELEASE)
+        formulaName.set("twd")
+
+        repoTap {
+          repoOwner.set("redgreenio")
+          name.set("homebrew-tap")
+        }
+
+        dependencies {
+          dependency("openjdk@11")
+        }
+
+        extraProperties.put("skipJava", true)
+      }
+    }
+  }
 }

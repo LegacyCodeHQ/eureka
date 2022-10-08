@@ -25,4 +25,14 @@ class CompiledClassFileFinderTest {
     assertThat(path.exists()).isTrue()
     assertThat(path.isRegularFile()).isTrue()
   }
+
+  @Test
+  fun `it should find the path of the class given the simple name with package`() {
+    // given & when
+    val path = CompiledClassFileFinder.find("samples.FindMeKotlinClass")
+
+    // then
+    assertThat(path.exists()).isTrue()
+    assertThat(path.isRegularFile()).isTrue()
+  }
 }

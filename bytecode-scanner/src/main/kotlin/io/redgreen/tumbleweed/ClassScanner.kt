@@ -62,6 +62,6 @@ object ClassScanner {
       outFields.toList(),
       outMethods.toList(),
       outRelationships.toList(),
-    )
+    ).concise()
   }
 }

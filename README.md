@@ -6,6 +6,14 @@ Understand and break down large classes without breaking a sweat 😓
 
 ![Screenshot](docs/screenshot.png)
 
+## Installation
+
+```bash
+$ brew tap redgreenio/tap
+
+$ brew install twd
+```
+
 ## Quick start
 
 Build the project first and then run the command line tool.

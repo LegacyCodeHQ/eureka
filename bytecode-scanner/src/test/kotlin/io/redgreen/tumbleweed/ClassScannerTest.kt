@@ -150,4 +150,18 @@ class ClassScannerTest {
     // then
     Approvals.verify(classStructure.printable)
   }
+
+  @Test
+  fun `it can scan a class with external class static field access and ignore them`() {
+    // given
+    val staticFieldAccess = defaultKotlinClassLocation.copy(
+      fqClassName = io.redgreen.tumbleweed.samples.StaticFieldAccess::class.java.name,
+    )
+
+    // when
+    val classStructure = ClassScanner.scan(staticFieldAccess.file)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
 }

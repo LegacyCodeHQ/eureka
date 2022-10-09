@@ -1,0 +1,6 @@
+Package: io.redgreen.tumbleweed.samples
+Class: StaticFieldAccess
+Methods:
+  - void <init>()
+  - void turnDebugOn()
+  - void turnDebugOff()

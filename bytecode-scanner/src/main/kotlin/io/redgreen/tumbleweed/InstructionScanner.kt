@@ -19,7 +19,9 @@ class InstructionScanner {
         ) {
           val field = Field(fieldName!!, FieldDescriptor.from(fieldDescriptor!!))
           val relationship = Relationship(caller, field, Relationship.Type.from(opcode))
-          outRelationships.add(relationship)
+          if (owner == topLevelType) {
+            outRelationships.add(relationship)
+          }
           super.visitFieldInsn(opcode, owner, fieldName, fieldDescriptor)
         }
 

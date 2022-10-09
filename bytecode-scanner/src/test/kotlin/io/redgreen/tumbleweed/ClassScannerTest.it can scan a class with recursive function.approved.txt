@@ -6,8 +6,9 @@ Methods:
   - void <init>()
   - int fibonacci(int)
   - void <clinit>()
+Writes:
+  - void <clinit>() -> io.redgreen.tumbleweed.samples.RecursiveFunction INSTANCE
 Calls:
   - int fibonacci(int) -> int fibonacci(int)
   - int fibonacci(int) -> int fibonacci(int)
   - void <clinit>() -> void <init>()
-  - void <clinit>() -> io.redgreen.tumbleweed.samples.RecursiveFunction INSTANCE

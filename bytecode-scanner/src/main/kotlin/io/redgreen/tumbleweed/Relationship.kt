@@ -1,6 +1,9 @@
 package io.redgreen.tumbleweed
 
-import net.bytebuddy.jar.asm.Opcodes
+import net.bytebuddy.jar.asm.Opcodes.GETFIELD
+import net.bytebuddy.jar.asm.Opcodes.GETSTATIC
+import net.bytebuddy.jar.asm.Opcodes.PUTFIELD
+import net.bytebuddy.jar.asm.Opcodes.PUTSTATIC
 
 data class Relationship(
   val source: Member,
@@ -13,8 +16,8 @@ data class Relationship(
     companion object {
       fun from(opcode: Int): Type {
         return when (opcode) {
-          Opcodes.GETFIELD -> Reads
-          Opcodes.PUTFIELD -> Writes
+          GETFIELD, GETSTATIC -> Reads
+          PUTFIELD, PUTSTATIC -> Writes
           else -> Calls
         }
       }

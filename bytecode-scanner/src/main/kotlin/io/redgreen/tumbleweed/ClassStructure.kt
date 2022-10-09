@@ -14,7 +14,7 @@ data class ClassStructure(
       .associate { it.target to it.source }
 
     val lambdaFunctions = relationships
-      .filter { it.type == Relationship.Type.Calls && it.target is Method }
+      .filter { it.type == Relationship.Type.Calls }
       .map { it.target as Method }
       .filter { it.name.contains("\$lambda-") }
       .toSet()

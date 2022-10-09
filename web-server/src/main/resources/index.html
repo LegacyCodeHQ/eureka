@@ -24,7 +24,9 @@
 <script>
   const colorin = "#00f";
   const colorout = "#f00";
-  const colornone = "#ccc";
+  const colornone = "#ddd";
+  const colorselected = "#000";
+  const colorunselected = "#999";
 
   function bilink(root) {
     const map = new Map(root.leaves().map(d => [d.data.id, d]));
@@ -102,6 +104,7 @@
       .join("g")
       .attr("transform", d => `rotate(${d.x * 180 / Math.PI - 90}) translate(${d.y},0)`)
       .append("text")
+      .attr("fill", colorunselected)
       .attr("dy", "0.31em")
       .attr("x", d => d.x < Math.PI ? 6 : -6)
       .attr("text-anchor", d => d.x < Math.PI ? "start" : "end")
@@ -132,20 +135,20 @@
 
     function overed(event, d) {
       link.style("mix-blend-mode", null);
-      d3.select(this).attr("font-weight", "bold");
+      d3.select(this).attr("fill", colorselected);
       d3.selectAll(d.dependents.map(d => d.path)).attr("stroke", colorin).raise();
-      d3.selectAll(d.dependents.map(([d]) => d.text)).attr("fill", colorin).attr("font-weight", "bold");
+      d3.selectAll(d.dependents.map(([d]) => d.text)).attr("fill", colorin);
       d3.selectAll(d.dependencies.map(d => d.path)).attr("stroke", colorout).raise();
-      d3.selectAll(d.dependencies.map(([, d]) => d.text)).attr("fill", colorout).attr("font-weight", "bold");
+      d3.selectAll(d.dependencies.map(([, d]) => d.text)).attr("fill", colorout);
     }
 
     function outed(event, d) {
       link.style("mix-blend-mode", "multiply");
-      d3.select(this).attr("font-weight", null);
+      d3.select(this).attr("fill", colorunselected);
       d3.selectAll(d.dependents.map(d => d.path)).attr("stroke", null);
-      d3.selectAll(d.dependents.map(([d]) => d.text)).attr("fill", null).attr("font-weight", null);
+      d3.selectAll(d.dependents.map(([d]) => d.text)).attr("fill", colorunselected).attr("font-weight", null);
       d3.selectAll(d.dependencies.map(d => d.path)).attr("stroke", null);
-      d3.selectAll(d.dependencies.map(([, d]) => d.text)).attr("fill", null).attr("font-weight", null);
+      d3.selectAll(d.dependencies.map(([, d]) => d.text)).attr("fill", colorunselected).attr("font-weight", null);
     }
 
     return svg.node();

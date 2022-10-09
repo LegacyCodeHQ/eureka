@@ -21,19 +21,19 @@ data class ClassStructure(
   }
 
   fun simplify(): ClassStructure {
-    val lambdaFunctions = relationships
+    val lambdas = relationships
       .filter { it.type == Relationship.Type.Calls }
       .map { it.target as Method }
       .filter { it.isLambda }
       .toSet()
 
     return this.copy(
-      methods = methods - lambdaFunctions,
-      relationships = extracted(),
+      methods = methods - lambdas,
+      relationships = skipLambdasInCallChain(),
     )
   }
 
-  private fun extracted(): List<Relationship> {
+  private fun skipLambdasInCallChain(): List<Relationship> {
     val graph = relationships.asGraph()
     val startingPointMethods = graph.keys.filter { !(it as Method).isLambda }.map { it as Method }
     val paths = mutableListOf<List<Node>>()
@@ -46,8 +46,8 @@ data class ClassStructure(
         val destinations = graph[currentPath.last().member]
         if (destinations != null) {
           for (destination in destinations) {
-            val newDestination = currentPath + destination
-            queue.add(newDestination)
+            val newPath = currentPath + destination
+            queue.add(newPath)
           }
         } else {
           paths.add(currentPath)
@@ -56,7 +56,7 @@ data class ClassStructure(
     }
 
     return paths
-      .map(this::removeLambdasFromChain)
+      .map(::removeLambdasFromChain)
       .map { path -> path.toRelationships() }
       .flatten()
       .distinct()

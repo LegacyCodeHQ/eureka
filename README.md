@@ -14,6 +14,12 @@ $ brew tap redgreenio/tap
 $ brew install twd
 ```
 
+## Updates
+
+```bash
+$ brew upgrade twd
+```
+
 ## Quick start
 
 Build the project first and then run the command line tool.
@@ -30,12 +36,9 @@ For more options, run `twd watch --help`.
 
 ## Known issues
 
-- The tool does not work well with classes with lambda expressions and anonymous classes. This is something I am working
-  on actively to fix. This has to do with the special characters in the class names and
-  the [edge bundling graph](https://observablehq.com/@d3/bilevel-edge-bundling) source code that I am using.
+- Support to visualise recursive methods is not yet available.
 
-- Kotlin classes have synthetic methods that are not visible in the source code. These methods are shown in the
-  diagram. This is yet another limitation of the tool at the moment.
+- Kotlin synthetic functions are also visible in the diagram.
 
 ## Licenses
 

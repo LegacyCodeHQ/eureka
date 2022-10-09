@@ -16,7 +16,7 @@ import picocli.CommandLine.Parameters
 class JsonCommand : Runnable {
   @Parameters(
     index = "0",
-    description = ["uniquely identifiable (partially or fully) qualified name of the class"],
+    description = ["uniquely identifiable (partially or fully) qualified class name"],
     arity = "1",
   )
   lateinit var className: String

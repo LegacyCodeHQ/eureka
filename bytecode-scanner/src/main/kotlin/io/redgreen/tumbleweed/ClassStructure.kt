@@ -1,5 +1,7 @@
 package io.redgreen.tumbleweed
 
+typealias Signature = String
+
 data class ClassStructure(
   val `package`: String,
   val className: String,
@@ -7,33 +9,82 @@ data class ClassStructure(
   val methods: List<Method>,
   val relationships: List<Relationship>,
 ) {
-  fun concise(): ClassStructure {
-    val lambdaToDeclaringFunctionMap = relationships
-      .filter { it.source is Method && it.target is Method }
-      .filter { (it.target as Method).name.contains("\$lambda-") }
-      .associate { it.target to it.source }
+  data class Node(
+    val type: Relationship.Type? = null,
+    val member: Member,
+  ) {
+    companion object {
+      fun root(member: Member): Node {
+        return Node(null, member)
+      }
+    }
+  }
 
+  fun simplify(): ClassStructure {
     val lambdaFunctions = relationships
       .filter { it.type == Relationship.Type.Calls }
       .map { it.target as Method }
-      .filter { it.name.contains("\$lambda-") }
+      .filter { it.isLambda }
       .toSet()
-
-    val relationshipsWithoutLambdas = relationships
-      .map { relationship ->
-        if (relationship.source in lambdaToDeclaringFunctionMap.keys) {
-          relationship.copy(source = lambdaToDeclaringFunctionMap[relationship.source]!!)
-        } else {
-          relationship
-        }
-      }
-      .filter {
-        !(it.target is Method && it.target.name.contains("\$lambda-"))
-      }
 
     return this.copy(
       methods = methods - lambdaFunctions,
-      relationships = relationshipsWithoutLambdas,
+      relationships = extracted(),
     )
+  }
+
+  private fun extracted(): List<Relationship> {
+    val graph = relationships.asGraph()
+    val startingPointMethods = graph.keys.filter { !(it as Method).isLambda }.map { it as Method }
+    val paths = mutableListOf<List<Node>>()
+
+    val queue = ArrayDeque<List<Node>>()
+    for (startMethod in startingPointMethods) {
+      queue.add(listOf(Node.root(startMethod)))
+      while (queue.isNotEmpty()) {
+        val currentPath = queue.removeFirst()
+        val destinations = graph[currentPath.last().member]
+        if (destinations != null) {
+          for (destination in destinations) {
+            val newDestination = currentPath + destination
+            queue.add(newDestination)
+          }
+        } else {
+          paths.add(currentPath)
+        }
+      }
+    }
+
+    return paths
+      .map(this::removeLambdasFromChain)
+      .map { path -> path.toRelationships() }
+      .flatten()
+      .distinct()
+  }
+
+  private fun removeLambdasFromChain(destinations: List<Node>): List<Node> {
+    return destinations.filter { if (it.member is Method) !it.member.isLambda else true }
+  }
+
+  private fun List<Node>.toRelationships(): List<Relationship> {
+    return this
+      .zipWithNext()
+      .map { (source, target) ->
+        Relationship(source.member, target.member, target.type!!)
+      }
+  }
+
+  private fun List<Relationship>.asGraph(): MutableMap<Member, List<Node>> {
+    val graph = mutableMapOf<Member, List<Node>>()
+    for (relationship in this) {
+      val source = relationship.source
+      val target = relationship.target
+      val type = relationship.type
+
+      val destinations = graph[source] ?: emptyList()
+      val newDestinations = destinations + Node(type, target)
+      graph[source] = newDestinations
+    }
+    return graph
   }
 }

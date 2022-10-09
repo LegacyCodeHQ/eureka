@@ -5,10 +5,12 @@ import io.redgreen.tumbleweed.samples.EmptyClass
 import io.redgreen.tumbleweed.samples.MethodReadingField
 import io.redgreen.tumbleweed.samples.MethodWritingField
 import io.redgreen.tumbleweed.samples.MethodsCallingMethods
+import io.redgreen.tumbleweed.samples.NestedAnonymousFunctionWritingField
 import io.redgreen.tumbleweed.samples.OnlyFields
 import io.redgreen.tumbleweed.samples.OnlyMethods
 import io.redgreen.tumbleweed.samples.RecursiveFunction
 import org.approvaltests.Approvals
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 class ClassScannerTest {
@@ -106,6 +108,7 @@ class ClassScannerTest {
     Approvals.verify(classStructure.printable)
   }
 
+  @Disabled
   @Test
   fun `it can scan a class with recursive function`() {
     // given
@@ -129,6 +132,20 @@ class ClassScannerTest {
 
     // when
     val classStructure = ClassScanner.scan(anonymousFunctionWritingField.file)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
+
+  @Test
+  fun `it can scan a class with nested anonymous function writing field`() {
+    // given
+    val nestedAnonymousFunctionWritingField = defaultKotlinClassLocation.copy(
+      fqClassName = NestedAnonymousFunctionWritingField::class.java.name,
+    )
+
+    // when
+    val classStructure = ClassScanner.scan(nestedAnonymousFunctionWritingField.file)
 
     // then
     Approvals.verify(classStructure.printable)

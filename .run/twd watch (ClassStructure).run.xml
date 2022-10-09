@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="twd watch (ClassStructure)" type="JetRunConfigurationType">
+    <option name="MAIN_CLASS_NAME" value="io.redgreen.tumbleweed.cli.MainKt" />
+    <module name="tumbleweed.cli.main" />
+    <option name="PROGRAM_PARAMETERS" value="watch ClassStructure" />
+    <shortenClasspath name="NONE" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

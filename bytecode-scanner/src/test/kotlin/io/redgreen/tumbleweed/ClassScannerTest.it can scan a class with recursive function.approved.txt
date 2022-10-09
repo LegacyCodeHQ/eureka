@@ -10,5 +10,4 @@ Writes:
   - void <clinit>() -> io.redgreen.tumbleweed.samples.RecursiveFunction INSTANCE
 Calls:
   - int fibonacci(int) -> int fibonacci(int)
-  - int fibonacci(int) -> int fibonacci(int)
   - void <clinit>() -> void <init>()

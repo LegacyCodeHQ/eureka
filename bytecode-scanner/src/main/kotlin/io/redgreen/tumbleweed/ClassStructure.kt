@@ -44,9 +44,13 @@ data class ClassStructure(
       while (queue.isNotEmpty()) {
         val currentPath = queue.removeFirst()
         val destinations = graph[currentPath.last().member]
-        if (destinations != null) {
-          for (destination in destinations) {
+        val pathNotFound = destinations != null && !isRecursiveCall(currentPath, destinations.last(), 2)
+        if (pathNotFound) {
+          for (destination in destinations!!) {
             val newPath = currentPath + destination
+            if (isRecursiveCall(newPath, destination, 3)) {
+              break
+            }
             queue.add(newPath)
           }
         } else {
@@ -60,6 +64,17 @@ data class ClassStructure(
       .map { path -> path.toRelationships() }
       .flatten()
       .distinct()
+  }
+
+  private fun isRecursiveCall(
+    path: List<Node>,
+    destination: Node,
+    nodesToCheck: Int = 3,
+  ): Boolean {
+    return path
+      .takeLast(nodesToCheck)
+      .map { it.member.signature }
+      .all { it == destination.member.signature } && path.takeLast(nodesToCheck).size == nodesToCheck
   }
 
   private fun removeLambdasFromChain(destinations: List<Node>): List<Node> {

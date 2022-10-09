@@ -9,8 +9,8 @@ import io.redgreen.tumbleweed.samples.NestedAnonymousFunctionWritingField
 import io.redgreen.tumbleweed.samples.OnlyFields
 import io.redgreen.tumbleweed.samples.OnlyMethods
 import io.redgreen.tumbleweed.samples.RecursiveFunction
+import io.redgreen.tumbleweed.samples.StaticFieldAccess
 import org.approvaltests.Approvals
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 class ClassScannerTest {
@@ -108,7 +108,6 @@ class ClassScannerTest {
     Approvals.verify(classStructure.printable)
   }
 
-  @Disabled
   @Test
   fun `it can scan a class with recursive function`() {
     // given
@@ -155,7 +154,7 @@ class ClassScannerTest {
   fun `it can scan a class with external class static field access and ignore them`() {
     // given
     val staticFieldAccess = defaultKotlinClassLocation.copy(
-      fqClassName = io.redgreen.tumbleweed.samples.StaticFieldAccess::class.java.name,
+      fqClassName = StaticFieldAccess::class.java.name,
     )
 
     // when

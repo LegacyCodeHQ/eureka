@@ -36,8 +36,6 @@ For more options, run `twd watch --help`.
 
 ## Known issues
 
-- Support to visualise recursive methods is not yet available.
-
 - Kotlin synthetic functions are also visible in the diagram.
 
 ## Licenses

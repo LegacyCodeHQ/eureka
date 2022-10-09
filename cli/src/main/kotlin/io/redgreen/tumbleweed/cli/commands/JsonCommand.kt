@@ -32,7 +32,7 @@ class JsonCommand : Runnable {
 
   @Option(
     names = ["-c", "--check"],
-    description = ["verify the generated JSON for inconsistencies"],
+    description = ["check the generated JSON for inconsistencies"],
     required = false,
   )
   var check: Boolean = false

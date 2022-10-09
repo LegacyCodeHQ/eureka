@@ -29,11 +29,11 @@ data class ClassStructure(
 
     return this.copy(
       methods = methods - lambdas,
-      relationships = skipLambdasInCallChain(),
+      relationships = skipLambdasInCallChain(relationships),
     )
   }
 
-  private fun skipLambdasInCallChain(): List<Relationship> {
+  private fun skipLambdasInCallChain(relationships: List<Relationship>): List<Relationship> {
     val graph = relationships.asGraph()
     val startingPointMethods = graph.keys.filter { !(it as Method).isLambda }.map { it as Method }
     val paths = mutableListOf<List<Node>>()

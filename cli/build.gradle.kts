@@ -39,6 +39,7 @@ tasks {
 dependencies {
   implementation(project(":web-server"))
   implementation(project(":filesystem"))
+  implementation(project(":bytecode-scanner")) /* only for the `json` debug command */
 
   implementation("info.picocli:picocli:4.6.3")
 }

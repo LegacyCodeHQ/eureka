@@ -1,5 +1,5 @@
 Package: io.redgreen.tumbleweed.samples
-Class: ClassWithMethodWritingField
+Class: MethodWritingField
 Fields:
   - java.lang.String name
 Methods:

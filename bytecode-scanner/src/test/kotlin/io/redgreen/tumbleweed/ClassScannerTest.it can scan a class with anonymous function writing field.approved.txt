@@ -1,5 +1,5 @@
 Package: io.redgreen.tumbleweed.samples
-Class: ClassWithAnonymousFunctionWritingField
+Class: AnonymousFunctionWritingField
 Fields:
   - int counter
 Methods:

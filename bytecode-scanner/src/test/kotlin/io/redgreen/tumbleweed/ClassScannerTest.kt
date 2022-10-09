@@ -1,13 +1,13 @@
 package io.redgreen.tumbleweed
 
-import io.redgreen.tumbleweed.samples.ClassWithAnonymousFunctionWritingField
-import io.redgreen.tumbleweed.samples.ClassWithFields
-import io.redgreen.tumbleweed.samples.ClassWithMethodReadingField
-import io.redgreen.tumbleweed.samples.ClassWithMethodWritingField
-import io.redgreen.tumbleweed.samples.ClassWithMethods
-import io.redgreen.tumbleweed.samples.ClassWithMethodsCallingMethods
-import io.redgreen.tumbleweed.samples.ClassWithRecursiveFunction
+import io.redgreen.tumbleweed.samples.AnonymousFunctionWritingField
 import io.redgreen.tumbleweed.samples.EmptyClass
+import io.redgreen.tumbleweed.samples.MethodReadingField
+import io.redgreen.tumbleweed.samples.MethodWritingField
+import io.redgreen.tumbleweed.samples.MethodsCallingMethods
+import io.redgreen.tumbleweed.samples.OnlyFields
+import io.redgreen.tumbleweed.samples.OnlyMethods
+import io.redgreen.tumbleweed.samples.RecursiveFunction
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
 
@@ -39,12 +39,12 @@ class ClassScannerTest {
   @Test
   fun `it can scan a class with fields`() {
     // given
-    val classWithFields = defaultKotlinClassLocation.copy(
-      fqClassName = ClassWithFields::class.java.name,
+    val onlyFields = defaultKotlinClassLocation.copy(
+      fqClassName = OnlyFields::class.java.name,
     )
 
     // when
-    val classStructure = ClassScanner.scan(classWithFields.file)
+    val classStructure = ClassScanner.scan(onlyFields.file)
 
     // then
     Approvals.verify(classStructure.printable)
@@ -53,12 +53,12 @@ class ClassScannerTest {
   @Test
   fun `it can scan a class with methods`() {
     // given
-    val classWithMethods = defaultKotlinClassLocation.copy(
-      fqClassName = ClassWithMethods::class.java.name,
+    val onlyMethods = defaultKotlinClassLocation.copy(
+      fqClassName = OnlyMethods::class.java.name,
     )
 
     // when
-    val classStructure = ClassScanner.scan(classWithMethods.file)
+    val classStructure = ClassScanner.scan(onlyMethods.file)
 
     // then
     Approvals.verify(classStructure.printable)
@@ -67,12 +67,12 @@ class ClassScannerTest {
   @Test
   fun `it can scan a class with methods reading a field`() {
     // given
-    val methodReadingFieldClass = defaultJavaClassLocation.copy(
-      fqClassName = ClassWithMethodReadingField::class.java.name,
+    val methodReadingField = defaultJavaClassLocation.copy(
+      fqClassName = MethodReadingField::class.java.name,
     )
 
     // when
-    val classStructure = ClassScanner.scan(methodReadingFieldClass.file)
+    val classStructure = ClassScanner.scan(methodReadingField.file)
 
     // then
     Approvals.verify(classStructure.printable)
@@ -81,12 +81,12 @@ class ClassScannerTest {
   @Test
   fun `it can scan a class with methods writing a field`() {
     // given
-    val methodWritingFieldClass = defaultJavaClassLocation.copy(
-      fqClassName = ClassWithMethodWritingField::class.java.name,
+    val methodWritingField = defaultJavaClassLocation.copy(
+      fqClassName = MethodWritingField::class.java.name,
     )
 
     // when
-    val classStructure = ClassScanner.scan(methodWritingFieldClass.file)
+    val classStructure = ClassScanner.scan(methodWritingField.file)
 
     // then
     Approvals.verify(classStructure.printable)
@@ -95,12 +95,12 @@ class ClassScannerTest {
   @Test
   fun `it can scan a class with methods calling methods`() {
     // given
-    val classWithMethodsCallingMethods = defaultKotlinClassLocation.copy(
-      fqClassName = ClassWithMethodsCallingMethods::class.java.name,
+    val methodsCallingMethods = defaultKotlinClassLocation.copy(
+      fqClassName = MethodsCallingMethods::class.java.name,
     )
 
     // when
-    val classStructure = ClassScanner.scan(classWithMethodsCallingMethods.file)
+    val classStructure = ClassScanner.scan(methodsCallingMethods.file)
 
     // then
     Approvals.verify(classStructure.printable)
@@ -109,12 +109,12 @@ class ClassScannerTest {
   @Test
   fun `it can scan a class with recursive function`() {
     // given
-    val classWithRecursiveFunction = defaultKotlinClassLocation.copy(
-      fqClassName = ClassWithRecursiveFunction::class.java.name,
+    val recursiveFunction = defaultKotlinClassLocation.copy(
+      fqClassName = RecursiveFunction::class.java.name,
     )
 
     // when
-    val classStructure = ClassScanner.scan(classWithRecursiveFunction.file)
+    val classStructure = ClassScanner.scan(recursiveFunction.file)
 
     // then
     Approvals.verify(classStructure.printable)
@@ -123,12 +123,12 @@ class ClassScannerTest {
   @Test
   fun `it can scan a class with anonymous function writing field`() {
     // given
-    val classWithAnonymousFunctionWritingField = defaultKotlinClassLocation.copy(
-      fqClassName = ClassWithAnonymousFunctionWritingField::class.java.name,
+    val anonymousFunctionWritingField = defaultKotlinClassLocation.copy(
+      fqClassName = AnonymousFunctionWritingField::class.java.name,
     )
 
     // when
-    val classStructure = ClassScanner.scan(classWithAnonymousFunctionWritingField.file)
+    val classStructure = ClassScanner.scan(anonymousFunctionWritingField.file)
 
     // then
     Approvals.verify(classStructure.printable)

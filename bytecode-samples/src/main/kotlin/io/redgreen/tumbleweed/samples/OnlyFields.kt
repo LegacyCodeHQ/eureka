@@ -2,7 +2,7 @@
 
 package io.redgreen.tumbleweed.samples
 
-class ClassWithFields {
+class OnlyFields {
   val field1 = "field1"
   val field2 = "field2"
 }

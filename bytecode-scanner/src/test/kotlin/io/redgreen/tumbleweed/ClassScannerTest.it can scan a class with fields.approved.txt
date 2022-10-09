@@ -1,5 +1,5 @@
 Package: io.redgreen.tumbleweed.samples
-Class: ClassWithFields
+Class: OnlyFields
 Fields:
   - java.lang.String field1
   - java.lang.String field2

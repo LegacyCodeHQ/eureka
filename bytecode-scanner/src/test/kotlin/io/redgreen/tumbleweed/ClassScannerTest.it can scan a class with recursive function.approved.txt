@@ -1,7 +1,7 @@
 Package: io.redgreen.tumbleweed.samples
-Class: ClassWithRecursiveFunction
+Class: RecursiveFunction
 Fields:
-  - io.redgreen.tumbleweed.samples.ClassWithRecursiveFunction INSTANCE
+  - io.redgreen.tumbleweed.samples.RecursiveFunction INSTANCE
 Methods:
   - void <init>()
   - int fibonacci(int)
@@ -10,4 +10,4 @@ Calls:
   - int fibonacci(int) -> int fibonacci(int)
   - int fibonacci(int) -> int fibonacci(int)
   - void <clinit>() -> void <init>()
-  - void <clinit>() -> io.redgreen.tumbleweed.samples.ClassWithRecursiveFunction INSTANCE
+  - void <clinit>() -> io.redgreen.tumbleweed.samples.RecursiveFunction INSTANCE

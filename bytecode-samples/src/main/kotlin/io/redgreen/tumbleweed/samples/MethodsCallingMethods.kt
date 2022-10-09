@@ -2,7 +2,7 @@
 
 package io.redgreen.tumbleweed.samples
 
-class ClassWithMethodsCallingMethods {
+class MethodsCallingMethods {
   fun a() {
     b()
   }

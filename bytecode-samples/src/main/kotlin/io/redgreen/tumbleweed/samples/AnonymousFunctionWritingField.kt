@@ -2,7 +2,7 @@
 
 package io.redgreen.tumbleweed.samples
 
-class ClassWithAnonymousFunctionWritingField {
+class AnonymousFunctionWritingField {
   var counter: Int = 0
 
   fun incrementCounter() {

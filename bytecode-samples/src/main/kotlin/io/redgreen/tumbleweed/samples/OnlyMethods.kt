@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter
 import java.util.Currency
 import java.util.Date
 
-class ClassWithMethods {
+class OnlyMethods {
   fun methodWithNoArgumentsNoReturnType() { /* empty-body */ }
   fun methodWithNoArgumentsWithReturnType(): Int = 42
   fun methodWithArgumentsWithReturnType(a: String, b: DateTimeFormatter) = "Hello, $a and $b!"

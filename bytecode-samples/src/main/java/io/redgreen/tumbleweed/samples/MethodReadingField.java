@@ -1,7 +1,7 @@
 package io.redgreen.tumbleweed.samples;
 
 @SuppressWarnings("unused")
-public class ClassWithMethodReadingField {
+public class MethodReadingField {
     private String name;
 
     public String getName() {

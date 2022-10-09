@@ -1,7 +1,7 @@
 package io.redgreen.tumbleweed.web.observablehq
 
 import io.redgreen.tumbleweed.ClassScanner
-import io.redgreen.tumbleweed.samples.ClassWithMethodReadingField
+import io.redgreen.tumbleweed.samples.MethodReadingField
 import java.io.File
 import org.approvaltests.JsonApprovals
 import org.junit.jupiter.api.Test
@@ -12,7 +12,7 @@ internal class ClassStructureJsonKtTest {
     // given
     val classFile = File(
       "../bytecode-samples/build/classes/java/main/" +
-        ClassWithMethodReadingField::class.java.name.replace(".", "/") + ".class"
+        MethodReadingField::class.java.name.replace(".", "/") + ".class"
     )
     val classStructure = ClassScanner.scan(classFile)
 

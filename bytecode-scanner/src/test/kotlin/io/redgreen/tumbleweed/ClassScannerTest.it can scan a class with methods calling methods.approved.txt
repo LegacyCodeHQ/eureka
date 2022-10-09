@@ -1,5 +1,5 @@
 Package: io.redgreen.tumbleweed.samples
-Class: ClassWithMethodsCallingMethods
+Class: MethodsCallingMethods
 Methods:
   - void <init>()
   - void a()

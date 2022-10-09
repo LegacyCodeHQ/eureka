@@ -2,7 +2,7 @@
 
 package io.redgreen.tumbleweed.samples
 
-object ClassWithRecursiveFunction {
+object RecursiveFunction {
   fun fibonacci(n: Int): Int {
     if (n <= 1) {
       return n

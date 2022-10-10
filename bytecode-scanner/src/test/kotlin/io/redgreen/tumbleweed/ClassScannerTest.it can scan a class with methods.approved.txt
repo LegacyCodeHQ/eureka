@@ -10,3 +10,4 @@ Methods:
   - java.util.List methodWithGenericReturnType(java.util.Set)
   - void methodWithPrimitiveArrayArgumentNoReturnType([]java.lang.Integer)
   - []java.util.Date methodWithNoArgumentsObjectArrayReturnType()
+  - []int methodWithNoArgumentsPrimitiveArrayReturnType()

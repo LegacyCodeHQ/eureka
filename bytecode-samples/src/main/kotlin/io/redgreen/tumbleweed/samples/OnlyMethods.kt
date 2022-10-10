@@ -20,4 +20,7 @@ class OnlyMethods {
   fun methodWithNoArgumentsObjectArrayReturnType(): Array<Date> {
     return emptyArray()
   }
+  fun methodWithNoArgumentsPrimitiveArrayReturnType(): IntArray {
+    return intArrayOf(1, 2, 3)
+  }
 }

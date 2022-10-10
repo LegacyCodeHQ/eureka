@@ -1,9 +1,16 @@
 package io.redgreen.tumbleweed
 
 @JvmInline
-value class TypeToken(private val value: String) {
+value class TypeToken(private val descriptor: String) {
   val type: String
-    get() = when (value) {
+    get() = if (descriptor.length == 1) {
+      primitiveType(descriptor)
+    } else {
+      arrayOrObjectType(descriptor)
+    }
+
+  private fun primitiveType(descriptor: String): String {
+    return when (descriptor) {
       "V" -> "void"
       "Z" -> "boolean"
       "B" -> "byte"
@@ -14,15 +21,22 @@ value class TypeToken(private val value: String) {
       "F" -> "float"
       "D" -> "double"
       else -> {
-        val sanitizedType = value
-          .removeSuffix(";")
-          .replace("/", ".")
-
-        if (sanitizedType.startsWith("[")) {
-          "[]${sanitizedType.drop(2)}"
-        } else {
-          sanitizedType.removePrefix("L")
-        }
+        throw IllegalArgumentException("Unknown type: $descriptor")
       }
     }
+  }
+
+  private fun arrayOrObjectType(descriptor: String): String {
+    val sanitizedType = descriptor
+      .removeSuffix(";")
+      .replace("/", ".")
+
+    return if (sanitizedType.startsWith("[L")) {
+      "[]${sanitizedType.drop(2)}"
+    } else if (sanitizedType.startsWith("[")) {
+      "[]${primitiveType(sanitizedType.drop(1))}"
+    } else {
+      sanitizedType.removePrefix("L")
+    }
+  }
 }

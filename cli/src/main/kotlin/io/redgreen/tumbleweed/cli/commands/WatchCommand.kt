@@ -1,6 +1,7 @@
 package io.redgreen.tumbleweed.cli.commands
 
 import io.redgreen.tumbleweed.filesystem.CompiledClassFileFinder
+import io.redgreen.tumbleweed.web.CompiledClassFile
 import io.redgreen.tumbleweed.web.TumbleweedServer
 import java.io.File
 import picocli.CommandLine.Command
@@ -38,6 +39,6 @@ class WatchCommand : Runnable {
       .find(className, (buildDir ?: File("")).absolutePath)
       ?: throw IllegalArgumentException("Class file not found for $className")
 
-    TumbleweedServer().start(port, classFilePath.toFile())
+    TumbleweedServer().start(port, CompiledClassFile(classFilePath.toFile()))
   }
 }

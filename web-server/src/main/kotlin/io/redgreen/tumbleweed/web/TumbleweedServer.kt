@@ -45,13 +45,13 @@ class TumbleweedServer {
 
   private val classFileChangesWatcher = FileWatcher()
 
-  fun start(port: Int, classFile: File) {
-    startWatchingClassFileForChanges(classFile)
+  fun start(port: Int, source: Source) {
+    startWatchingFileForChanges(source)
 
     logger.info("Starting web server @ http://localhost:{}", port)
     webServer = embeddedServer(Netty, port = port) {
       installWebSockets()
-      setupRoutes(classFile)
+      setupRoutes(source)
     }.start(wait = true)
   }
 
@@ -69,11 +69,11 @@ class TumbleweedServer {
     }
   }
 
-  private fun Application.setupRoutes(classFile: File) {
+  private fun Application.setupRoutes(source: Source) {
     routing {
       get("/") { serveIndexPage() }
       webSocket("/structure-updates") {
-        openWsConnectionForStructureUpdates(structureUpdatesQueue, classFile)
+        openWsConnectionForStructureUpdates(structureUpdatesQueue, source)
       }
     }
   }
@@ -84,10 +84,10 @@ class TumbleweedServer {
 
   private suspend fun DefaultWebSocketServerSession.openWsConnectionForStructureUpdates(
     messageQueue: BlockingQueue<String>,
-    classFile: File,
+    source: Source,
   ) {
     logger.info("Web socket connection opened. Ready to send updates.")
-    send(Frame.Text(ClassScanner.scan(classFile).json))
+    send(Frame.Text(source.json))
 
     while (true) {
       val message = withContext(Dispatchers.IO) {
@@ -98,14 +98,16 @@ class TumbleweedServer {
     }
   }
 
-  private fun startWatchingClassFileForChanges(watchedClassFile: File) {
-    logger.info("Watching class file for changes: {}", watchedClassFile)
+  private fun startWatchingFileForChanges(source: Source) {
+    val location = source.location
 
-    classFileChangesWatcher.startWatching(watchedClassFile.toPath()) {
-      if (!watchedClassFile.exists()) {
-        logger.error("Class file does not exist: {}", watchedClassFile)
+    logger.info("Watching for changes: {}", location)
+
+    classFileChangesWatcher.startWatching(location.toPath()) {
+      if (!location.exists()) {
+        logger.error("Source file does not exist: {}", location)
       } else {
-        structureUpdatesQueue.add(ClassScanner.scan(watchedClassFile).json)
+        structureUpdatesQueue.add(ClassScanner.scan(location).json)
       }
     }
   }

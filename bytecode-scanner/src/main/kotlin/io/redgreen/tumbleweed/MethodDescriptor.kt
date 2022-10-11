@@ -48,10 +48,11 @@ value class MethodDescriptor(private val descriptor: String) {
     }
 
   private fun nonPrimitiveTypeTokenRanges(parametersDescriptor: String): List<ClassTokenRange> {
-    val startIndicesOfNonPrimitiveTypeTokens = parametersDescriptor.foldIndexed(mutableListOf<Index>()) { index, acc, char ->
-      if (char == 'L' || char == '[') acc.add(index)
-      acc
-    }
+    val startIndicesOfNonPrimitiveTypeTokens =
+      parametersDescriptor.foldIndexed(mutableListOf<Index>()) { index, acc, char ->
+        if (char == 'L' || char == '[') acc.add(index)
+        acc
+      }
 
     val endIndicesOfTokens = parametersDescriptor.foldIndexed(mutableListOf<Index>()) { index, acc, char ->
       if (char == ';') acc.add(index)

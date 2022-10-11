@@ -6,7 +6,7 @@ import io.redgreen.tumbleweed.Member
 fun ClassStructure.check() {
   val membersInClassStructure = (fields + methods).toSet()
   val membersInRelationship = relationships.flatMap { listOf(it.source, it.target) }.toSet()
-  val fqClassName = "$`package`.$className"
+  val fqClassName = "$packageName.$className"
 
   if (membersInClassStructure != membersInRelationship) {
     val missingMembers = membersInRelationship - membersInClassStructure

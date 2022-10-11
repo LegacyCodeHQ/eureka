@@ -3,7 +3,7 @@ package io.redgreen.tumbleweed
 typealias Signature = String
 
 data class ClassStructure(
-  val `package`: String,
+  val packageName: String,
   val className: String,
   val fields: List<Field>,
   val methods: List<Method>,

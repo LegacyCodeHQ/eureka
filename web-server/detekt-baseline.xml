@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>MagicNumber:TumbleweedServer.kt$TumbleweedServer$15</ID>
+  </CurrentIssues>
+</SmellBaseline>

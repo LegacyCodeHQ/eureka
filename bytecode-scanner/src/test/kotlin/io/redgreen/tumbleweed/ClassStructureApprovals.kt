@@ -6,7 +6,7 @@ val ClassStructure.printable: Any
       val classStructurePrintableBuilder = StringBuilder()
 
       classStructurePrintableBuilder
-        .appendLine("Package: $`package`")
+        .appendLine("Package: $packageName")
         .appendLine("Class: $className")
 
       if (fields.isNotEmpty()) {

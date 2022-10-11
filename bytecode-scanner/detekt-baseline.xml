@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>MagicNumber:ClassStructure.kt$ClassStructure$3</ID>
+    <ID>NestedBlockDepth:ClassStructure.kt$ClassStructure$private fun skipLambdasInCallChain(relationships: List&lt;Relationship&gt;): List&lt;Relationship&gt;</ID>
+  </CurrentIssues>
+</SmellBaseline>

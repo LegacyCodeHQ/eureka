@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
   kotlin("jvm") version "1.7.10" apply false
   id("com.github.ben-manes.versions") version "0.42.0" apply false
+  id("io.gitlab.arturbosch.detekt") version("1.21.0") apply false
 }
 
 allprojects {
@@ -18,6 +19,10 @@ subprojects {
   apply(plugin = "org.jetbrains.kotlin.jvm")
   apply(plugin = "com.github.ben-manes.versions")
   apply(plugin = "jacoco")
+
+  if (this.name != "bytecode-samples") {
+    apply(plugin = "io.gitlab.arturbosch.detekt")
+  }
 
   dependencies {
     val implementation by configurations

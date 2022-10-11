@@ -1,4 +1,4 @@
-package io.redgreen.tumbleweed.cli.commands
+package io.redgreen.tumbleweed.cli.dev
 
 import io.redgreen.tumbleweed.ClassScanner
 import io.redgreen.tumbleweed.ClassStructure
@@ -32,7 +32,7 @@ class JsonCommand : Runnable {
 
   @Option(
     names = ["-c", "--check"],
-    description = ["check the generated JSON for inconsistencies"],
+    description = ["check the generated JSON for anomalies"],
     required = false,
   )
   var check: Boolean = false

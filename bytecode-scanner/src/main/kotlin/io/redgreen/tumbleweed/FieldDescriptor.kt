@@ -4,7 +4,7 @@ package io.redgreen.tumbleweed
 value class FieldDescriptor(private val typeToken: TypeToken) {
   companion object {
     fun from(descriptor: String): FieldDescriptor =
-        FieldDescriptor(TypeToken(descriptor))
+      FieldDescriptor(TypeToken(descriptor))
   }
 
   val type: String

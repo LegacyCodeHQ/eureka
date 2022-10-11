@@ -1,5 +1,5 @@
 package io.redgreen.tumbleweed.samples;
 
 public class DeclareMutableStaticFields {
-    public static boolean DEBUG = false;
+  public static boolean DEBUG = false;
 }

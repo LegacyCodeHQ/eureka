@@ -21,7 +21,6 @@ import io.ktor.websocket.Frame
 import io.redgreen.tumbleweed.ClassScanner
 import io.redgreen.tumbleweed.filesystem.FileWatcher
 import io.redgreen.tumbleweed.web.observablehq.json
-import java.io.File
 import java.time.Duration
 import java.util.concurrent.BlockingQueue
 import java.util.concurrent.LinkedBlockingQueue

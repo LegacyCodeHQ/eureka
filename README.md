@@ -1,4 +1,4 @@
-# Tumbleweed
+# Tumbleweed (early preview)
 
 Understand and break down large classes without breaking a sweat 😓
 
@@ -33,6 +33,31 @@ The command will start a web server on port 7070. Go to `localhost:7070` in your
 The diagram will be updated in real-time as you make changes to the source code and compile the project.
 
 For more options, run `twd watch --help`.
+
+## Dev commands
+
+Tumbleweed is under development. The current reference for production use is making the tool as accurate
+as [jQAssistant](https://jqassistant.org/). Sometimes, we have to process quite a bit of data points to understand the
+gap between these two different tools. The following commands are useful for that.
+
+### json
+
+```bash
+$ twd json ExampleClass
+```
+
+This command will print the JSON representation of the class to the console. This is the data that is used to render the
+[bilevel edge bundling](https://observablehq.com/@d3/bilevel-edge-bundling) graph
+on [ObservableHQ](https://observablehq.com).
+
+### view
+
+```bash
+$ twd view my-class.json
+```
+
+This command will start a web server and visualize the specified JSON file in the browser. It is best used when
+comparing a class visualization using Tumbleweed and a JSON file derived for the same class using jQAssistant.
 
 ## Known issues
 

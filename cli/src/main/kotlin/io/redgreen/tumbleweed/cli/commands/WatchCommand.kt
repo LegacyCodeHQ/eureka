@@ -1,5 +1,6 @@
 package io.redgreen.tumbleweed.cli.commands
 
+import io.redgreen.tumbleweed.cli.DEFAULT_PORT
 import io.redgreen.tumbleweed.filesystem.CompiledClassFileFinder
 import io.redgreen.tumbleweed.web.CompiledClassFile
 import io.redgreen.tumbleweed.web.TumbleweedServer
@@ -30,9 +31,10 @@ class WatchCommand : Runnable {
   @Option(
     names = ["-p", "--port"],
     description = ["port number to run the server on"],
+    defaultValue = "$DEFAULT_PORT",
     required = false,
   )
-  var port: Int = 7070
+  var port: Int = DEFAULT_PORT
 
   override fun run() {
     val classFilePath = CompiledClassFileFinder

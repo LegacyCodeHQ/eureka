@@ -10,7 +10,7 @@ import picocli.CommandLine.Parameters
 
 @Command(
   name = "json",
-  description = ["generates ObservableHQ JSON for the class (for debugging)"],
+  description = ["(dev) generates ObservableHQ JSON for the class (for debugging)"],
   hidden = true,
 )
 class JsonCommand : Runnable {

@@ -4,7 +4,6 @@
   <CurrentIssues>
     <ID>ExplicitItLambdaParameter:ClassStructure.kt${ idx, it -&gt; println(" ${idx + 1}. $it") }</ID>
     <ID>ExplicitItLambdaParameter:ClassStructure.kt${ idx, it -&gt; println(" ${idx + 1}. ${it.signature}") }</ID>
-    <ID>MagicNumber:WatchCommand.kt$WatchCommand$7070</ID>
     <ID>SpreadOperator:Main.kt$(*args)</ID>
   </CurrentIssues>
 </SmellBaseline>

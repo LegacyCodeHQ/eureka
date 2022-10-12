@@ -13,3 +13,8 @@ class CompiledClassFile(override val location: File) : Source {
   override val json: String
     get() = ClassScanner.scan(location).json
 }
+
+class JsonFile(override val location: File) : Source {
+  override val json: String
+    get() = location.readText()
+}

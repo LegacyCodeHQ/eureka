@@ -1,19 +1,18 @@
-package io.redgreen.tumbleweed.cli.commands
+package io.redgreen.tumbleweed.cli.commands.dev.json
 
-import io.redgreen.tumbleweed.cli.DEFAULT_PORT
+import io.redgreen.tumbleweed.ClassScanner
 import io.redgreen.tumbleweed.filesystem.CompiledClassFileFinder
-import io.redgreen.tumbleweed.web.CompiledClassFile
-import io.redgreen.tumbleweed.web.TumbleweedServer
+import io.redgreen.tumbleweed.web.observablehq.json
 import java.io.File
 import picocli.CommandLine.Command
 import picocli.CommandLine.Option
 import picocli.CommandLine.Parameters
 
 @Command(
-  name = "watch",
-  description = ["see the real-time structure of a JVM class in your browser"],
+  name = "json",
+  description = ["(dev) generates ObservableHQ JSON for the class"],
 )
-class WatchCommand : Runnable {
+class JsonCommand : Runnable {
   @Parameters(
     index = "0",
     description = ["uniquely identifiable (partially or fully) qualified class name"],
@@ -29,18 +28,22 @@ class WatchCommand : Runnable {
   var buildDir: File? = null
 
   @Option(
-    names = ["-p", "--port"],
-    description = ["port number to run the server on"],
-    defaultValue = "$DEFAULT_PORT",
+    names = ["-c", "--check"],
+    description = ["check the generated JSON for anomalies"],
     required = false,
   )
-  var port: Int = DEFAULT_PORT
+  var check: Boolean = false
 
   override fun run() {
     val classFilePath = CompiledClassFileFinder
       .find(className, (buildDir ?: File("")).absolutePath)
       ?: throw IllegalArgumentException("Class file not found for $className")
 
-    TumbleweedServer().start(port, CompiledClassFile(classFilePath.toFile()))
+    val classStructure = ClassScanner.scan(classFilePath.toFile())
+    if (check) {
+      classStructure.check()
+    } else {
+      println(classStructure.json)
+    }
   }
 }

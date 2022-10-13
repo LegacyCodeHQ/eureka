@@ -21,5 +21,13 @@ data class Missing(
 
 val Diff.printable: String
   get() {
-    return "✅ All good, no differences found."
+    val missingNodes = missing.nodes
+    return if (missingNodes.isEmpty()) {
+      "✅ All good, no differences found."
+    } else {
+      """
+          |❌ Differences found:
+          |${missingNodes.joinToString(separator = System.lineSeparator()) { "  - (${it.group}) ${it.id}" }}
+          |""".trimMargin()
+    }
   }

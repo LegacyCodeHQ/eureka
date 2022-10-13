@@ -2,10 +2,8 @@
 
 package io.redgreen.tumbleweed.cli.dev.diff
 
-import com.google.common.truth.Truth.assertThat
 import io.redgreen.tumbleweed.cli.dev.diff.EdgeBundlingGraphExtension.*
 import io.redgreen.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
-import io.redgreen.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph.Node
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -33,12 +31,6 @@ class DiffTest {
     val diff = Diff.of(baseline, implementation)
 
     // then
-    assertThat(diff.missing.nodes).isEqualTo(
-      listOf(
-        Node("String name", 1),
-        Node("void getName()", 2),
-        Node("void setName(String)", 2),
-      )
-    )
+    Approvals.verify(diff.printable)
   }
 }

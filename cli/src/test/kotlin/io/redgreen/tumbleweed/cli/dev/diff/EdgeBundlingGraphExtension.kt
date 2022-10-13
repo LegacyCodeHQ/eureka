@@ -7,6 +7,7 @@ import org.junit.jupiter.api.extension.ParameterContext
 import org.junit.jupiter.api.extension.ParameterResolver
 
 class EdgeBundlingGraphExtension : ParameterResolver {
+
   @Target(AnnotationTarget.VALUE_PARAMETER)
   @Retention(AnnotationRetention.RUNTIME)
   annotation class Graph(val csvFilename: String)
@@ -22,7 +23,7 @@ class EdgeBundlingGraphExtension : ParameterResolver {
   override fun resolveParameter(
     parameterContext: ParameterContext,
     extensionContext: ExtensionContext,
-  ): Any {
+  ): BilevelEdgeBundlingGraph {
     val filename = parameterContext.parameter.annotations
       .find { it is Graph }!!
       .let { it as Graph }.csvFilename

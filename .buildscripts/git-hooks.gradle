@@ -1,0 +1,29 @@
+def hooksDirectoryPath = rootProject.rootDir.absolutePath +
+  "${File.separatorChar}.buildscripts" +
+  "${File.separatorChar}git-hooks"
+
+tasks.create(name: 'installGitHooks') {
+  doLast {
+    def runningOnWindows = System.getProperty("os.name").toLowerCase().contains("windows")
+    if (!runningOnWindows) {
+      Runtime.getRuntime().exec("chmod -R +x .git/hooks/");
+    }
+  }
+}
+
+task uninstallPreCommitHook(type: Delete) {
+  delete files("${rootProject.rootDir}/.git/hooks/pre-commit")
+}
+
+task copyPreCommitHook(type: Copy) {
+  from new File(hooksDirectoryPath, 'pre-commit')
+  into { new File(rootProject.rootDir, '.git/hooks') }
+}
+
+task copyPrePushHook(type: Copy) {
+  from new File(hooksDirectoryPath, 'pre-push')
+  into { new File(rootProject.rootDir, '.git/hooks') }
+}
+
+installGitHooks.dependsOn copyPreCommitHook
+installGitHooks.dependsOn copyPrePushHook

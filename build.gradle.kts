@@ -1,5 +1,9 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+buildscript {
+  apply(from = ".buildscripts/git-hooks.gradle")
+}
+
 plugins {
   kotlin("jvm") version "1.7.10" apply false
   id("com.github.ben-manes.versions") version "0.42.0" apply false

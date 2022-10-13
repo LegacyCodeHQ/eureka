@@ -1,6 +1,6 @@
 # Tumbleweed (early preview)
 
-Understand and break down large classes without breaking a sweat 😓
+Effortlessly understand large (and small) Kotlin/Java classes 😎
 
 ## Screenshot
 

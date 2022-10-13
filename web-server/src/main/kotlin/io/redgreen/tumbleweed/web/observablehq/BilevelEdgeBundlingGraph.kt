@@ -6,6 +6,8 @@ data class BilevelEdgeBundlingGraph(
   val nodes: List<Node>,
   val links: List<Link>,
 ) {
+  companion object
+
   val json: String
     get() {
       return jacksonObjectMapper()
@@ -16,11 +18,15 @@ data class BilevelEdgeBundlingGraph(
   data class Node(
     val id: String,
     val group: Int,
-  )
+  ) {
+    companion object
+  }
 
   data class Link(
     val source: String,
     val target: String,
     val value: Int = 1,
-  )
+  ) {
+    companion object
+  }
 }

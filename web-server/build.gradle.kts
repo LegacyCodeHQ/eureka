@@ -8,5 +8,4 @@ dependencies {
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.4")
 
   testImplementation(project(":bytecode-samples"))
-  testImplementation("com.google.code.gson:gson:2.9.0") /* Used by Approvals for pretty-printing JSON */
 }

@@ -1,0 +1,28 @@
+{
+  "nodes": [
+    {
+      "id": "void getName()",
+      "group": 2
+    },
+    {
+      "id": "String name",
+      "group": 1
+    },
+    {
+      "id": "void setName(String)",
+      "group": 2
+    }
+  ],
+  "links": [
+    {
+      "source": "void getName()",
+      "target": "String name",
+      "value": 1
+    },
+    {
+      "source": "void setName(String)",
+      "target": "String name",
+      "value": 1
+    }
+  ]
+}

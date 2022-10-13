@@ -45,6 +45,7 @@ subprojects {
     testImplementation("com.google.truth:truth:1.1.3")
 
     testImplementation("com.approvaltests:approvaltests:18.2.2")
+    testImplementation("com.google.code.gson:gson:2.9.0") /* Used by Approvals for pretty-printing JSON */
   }
 
   tasks.withType<KotlinCompile> {

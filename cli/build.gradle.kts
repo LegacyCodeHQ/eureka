@@ -41,6 +41,8 @@ dependencies {
   implementation(project(":filesystem"))
   implementation(project(":bytecode-scanner")) /* only for the `json` debug command */
 
+  implementation("org.apache.commons:commons-csv:1.9.0")
+
   implementation("info.picocli:picocli:4.6.3")
 }
 

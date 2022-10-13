@@ -13,12 +13,13 @@ data class Diff(val missing: Missing) {
       return Diff(Missing(missingNodes))
     }
   }
-
-  fun isEmpty(): Boolean {
-    return true
-  }
 }
 
 data class Missing(
   val nodes: List<Node>,
 )
+
+val Diff.printable: String
+  get() {
+    return "✅ All good, no differences found."
+  }

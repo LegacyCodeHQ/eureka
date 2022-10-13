@@ -6,6 +6,7 @@ import com.google.common.truth.Truth.assertThat
 import io.redgreen.tumbleweed.cli.dev.diff.EdgeBundlingGraphExtension.*
 import io.redgreen.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
 import io.redgreen.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph.Node
+import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 
@@ -20,7 +21,7 @@ class DiffTest {
     val diff = Diff.of(baseline, implementation)
 
     // then
-    assertThat(diff.isEmpty()).isTrue()
+    Approvals.verify(diff.printable)
   }
 
   @Test

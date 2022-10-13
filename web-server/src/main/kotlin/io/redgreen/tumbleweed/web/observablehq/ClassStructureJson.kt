@@ -1,22 +1,16 @@
 package io.redgreen.tumbleweed.web.observablehq
 
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import io.redgreen.tumbleweed.ClassStructure
 import io.redgreen.tumbleweed.Field
 import io.redgreen.tumbleweed.Member
 import io.redgreen.tumbleweed.Method
 import io.redgreen.tumbleweed.Relationship
 
-val ClassStructure.json: String
+val ClassStructure.graph: BilevelEdgeBundlingGraph
   get() {
-    val nodes = (this.fields + this.methods).map(Member::toNode)
+    val nodes = (fields + methods).map(Member::toNode)
     val links = relationships.map(Relationship::toLink)
-
-    val bilevelEdgeBundlingGraph = BilevelEdgeBundlingGraph(nodes, links)
-
-    return jacksonObjectMapper()
-      .writerWithDefaultPrettyPrinter()
-      .writeValueAsString(bilevelEdgeBundlingGraph)
+    return BilevelEdgeBundlingGraph(nodes, links)
   }
 
 private fun Member.toNode(): BilevelEdgeBundlingGraph.Node {

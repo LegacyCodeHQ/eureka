@@ -59,6 +59,14 @@ $ twd view my-class.json
 This command will start a web server and visualize the specified JSON file in the browser. It is best used when
 comparing a class visualization using Tumbleweed and a JSON file derived for the same class using jQAssistant.
 
+### convert
+
+```bash
+$ twd convert jqassistant-query-result.csv
+```
+
+Converts class member relationships query result from jQAssistant to JSON format that can be visualized by Tumbleweed.
+
 ## Known issues
 
 - Kotlin synthetic functions are also visible in the diagram.

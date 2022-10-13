@@ -1,4 +1,4 @@
-package io.redgreen.tumbleweed.cli.commands.watch
+package io.redgreen.tumbleweed.cli.watch
 
 import io.redgreen.tumbleweed.cli.DEFAULT_PORT
 import io.redgreen.tumbleweed.filesystem.CompiledClassFileFinder

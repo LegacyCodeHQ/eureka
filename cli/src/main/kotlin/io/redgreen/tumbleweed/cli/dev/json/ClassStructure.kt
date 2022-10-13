@@ -1,4 +1,4 @@
-package io.redgreen.tumbleweed.cli.commands.dev.json
+package io.redgreen.tumbleweed.cli.dev.json
 
 import io.redgreen.tumbleweed.ClassStructure
 import io.redgreen.tumbleweed.Member

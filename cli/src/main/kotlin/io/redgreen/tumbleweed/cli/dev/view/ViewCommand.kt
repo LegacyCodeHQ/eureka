@@ -1,4 +1,4 @@
-package io.redgreen.tumbleweed.cli.commands.dev.view
+package io.redgreen.tumbleweed.cli.dev.view
 
 import io.redgreen.tumbleweed.cli.DEFAULT_PORT
 import io.redgreen.tumbleweed.web.JsonFile

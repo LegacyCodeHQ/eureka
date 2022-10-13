@@ -1,4 +1,4 @@
-❌ Differences found:
-  - (1) String name
-  - (2) void getName()
-  - (2) void setName(String)
+❌ Missing nodes (3):
+  - (group: 1) String name
+  - (group: 2) void getName()
+  - (group: 2) void setName(String)

@@ -1,2 +1,2 @@
-❌ Differences found:
-  - (2) void getName()
+❌ Missing nodes (1):
+  - (group: 2) void getName()

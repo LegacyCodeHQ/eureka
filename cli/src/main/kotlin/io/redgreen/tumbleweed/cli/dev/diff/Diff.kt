@@ -26,8 +26,8 @@ val Diff.printable: String
       "✅ All good, no differences found."
     } else {
       """
-          |❌ Differences found:
-          |${missingNodes.joinToString(separator = System.lineSeparator()) { "  - (${it.group}) ${it.id}" }}
+          |❌ Missing nodes (${missingNodes.count()}):
+          |${missingNodes.joinToString(separator = System.lineSeparator()) { "  - (group: ${it.group}) ${it.id}" }}
           |""".trimMargin()
     }
   }

@@ -1,0 +1,3 @@
+m.signature,f.signature
+void getName(),String name
+void setName(String),String name

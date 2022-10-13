@@ -1,8 +1,9 @@
 package io.redgreen.tumbleweed
 
+import io.redgreen.tumbleweed.samples.AccessSuperClassMembers
 import io.redgreen.tumbleweed.samples.AnonymousFunctionWritingField
-import io.redgreen.tumbleweed.samples.InterfaceImplementation
 import io.redgreen.tumbleweed.samples.EmptyClass
+import io.redgreen.tumbleweed.samples.InterfaceImplementation
 import io.redgreen.tumbleweed.samples.LateinitVar
 import io.redgreen.tumbleweed.samples.LazyProperty
 import io.redgreen.tumbleweed.samples.MethodsCallingMethods
@@ -169,6 +170,20 @@ class ClassScannerKotlinTest {
 
     // when
     val classStructure = ClassScanner.scan(interfaceImplementation.file)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
+
+  @Test
+  fun `it can scan a class that calls functions declared in the super class`() {
+    // given
+    val accessSuperClassMembers = defaultKotlinClassLocation.copy(
+      fqClassName = AccessSuperClassMembers::class.java.name,
+    )
+
+    // when
+    val classStructure = ClassScanner.scan(accessSuperClassMembers.file)
 
     // then
     Approvals.verify(classStructure.printable)

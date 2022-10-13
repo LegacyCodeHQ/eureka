@@ -1,0 +1,11 @@
+Package: io.redgreen.tumbleweed.samples
+Class: AccessSuperClassMembers
+Methods:
+  - void <init>()
+  - void bar()
+  - void baz()
+  - void foo()
+  - java.lang.String getBaz()
+Calls:
+  - void bar() -> void foo()
+  - void baz() -> java.lang.String getBaz()

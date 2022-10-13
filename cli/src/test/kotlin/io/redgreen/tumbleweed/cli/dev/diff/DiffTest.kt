@@ -11,7 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 @ExtendWith(EdgeBundlingGraphExtension::class)
 class DiffTest {
   @Test
-  fun `it returns an empty list when the baseline and implementation are same`(
+  fun `01 - it returns an empty list when the baseline and implementation are same`(
     @Graph("01-baseline.csv") baseline: BilevelEdgeBundlingGraph,
     @Graph("01-implementation.csv") implementation: BilevelEdgeBundlingGraph,
   ) {
@@ -23,7 +23,7 @@ class DiffTest {
   }
 
   @Test
-  fun `it returns a list of missing nodes when the implementation is empty`(
+  fun `02 - it returns a list of missing nodes when the implementation is empty`(
     @Graph("02-baseline.csv") baseline: BilevelEdgeBundlingGraph,
     @Graph("02-implementation.csv") implementation: BilevelEdgeBundlingGraph,
   ) {
@@ -35,7 +35,7 @@ class DiffTest {
   }
 
   @Test
-  fun `it returns a list of missing nodes when the implementation is missing some nodes`(
+  fun `03 - it returns a list of missing nodes when the implementation is missing some nodes`(
     @Graph("03-baseline.csv") baseline: BilevelEdgeBundlingGraph,
     @Graph("03-implementation.csv") implementation: BilevelEdgeBundlingGraph,
   ) {

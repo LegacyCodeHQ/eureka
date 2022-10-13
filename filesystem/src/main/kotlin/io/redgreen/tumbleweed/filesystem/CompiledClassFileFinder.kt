@@ -16,7 +16,8 @@ class CompiledClassFileFinder {
         .filter { file -> file.extension == "class" }
         .find {
           val partialClassNamePath = className.replace(".", "/")
-          it.isFile && it.absolutePath.endsWith("$partialClassNamePath.class")
+          it.isFile && !it.absolutePath.contains("incrementalData") &&
+            it.absolutePath.endsWith("$partialClassNamePath.class")
         }
 
       return classFilePath?.toPath()

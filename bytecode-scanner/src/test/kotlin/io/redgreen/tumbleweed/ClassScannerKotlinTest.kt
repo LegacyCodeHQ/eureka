@@ -13,7 +13,7 @@ import io.redgreen.tumbleweed.samples.StaticFieldAccess
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
 
-class ClassScannerTest {
+class ClassScannerKotlinTest {
   private val defaultKotlinClassLocation = ClassFileLocation(
     compiledClassesDirectory = "../bytecode-samples/build/classes/kotlin/main",
     fqClassName = "replace-kotlin-class-?"

@@ -3,6 +3,7 @@ package io.redgreen.tumbleweed
 import io.redgreen.tumbleweed.samples.AnonymousFunctionWritingField
 import io.redgreen.tumbleweed.samples.EmptyClass
 import io.redgreen.tumbleweed.samples.LateinitVar
+import io.redgreen.tumbleweed.samples.LazyProperty
 import io.redgreen.tumbleweed.samples.MethodsCallingMethods
 import io.redgreen.tumbleweed.samples.NestedAnonymousFunctionWritingField
 import io.redgreen.tumbleweed.samples.OnlyFields
@@ -135,6 +136,20 @@ class ClassScannerKotlinTest {
     // given
     val staticMethodAccess = defaultKotlinClassLocation.copy(
       fqClassName = LateinitVar::class.java.name,
+    )
+
+    // when
+    val classStructure = ClassScanner.scan(staticMethodAccess.file)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
+
+  @Test
+  fun `it can scan a class with a lazy field`() {
+    // given
+    val staticMethodAccess = defaultKotlinClassLocation.copy(
+      fqClassName = LazyProperty::class.java.name,
     )
 
     // when

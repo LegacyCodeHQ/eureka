@@ -5,7 +5,8 @@ data class Method(
   val descriptor: MethodDescriptor,
 ) : Member {
   val isLambda: Boolean
-    get() = name.contains("\$lambda-")
+    get() = name.contains("\$lambda-") || /* Kotlin 1.7.10 */
+      name.contains("\$lambda\$") /* Kotlin 1.7.20 */
 
   override val signature: String
     get() = "${descriptor.returnType} ${name}(${descriptor.parameters.joinToString(", ")})"

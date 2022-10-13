@@ -6,9 +6,14 @@ data class BilevelEdgeBundlingGraph(
   val nodes: List<Node>,
   val links: List<Link>,
 ) {
-  companion object
+  companion object {
+    fun fromJson(json: String): BilevelEdgeBundlingGraph {
+      return jacksonObjectMapper()
+        .readValue(json, BilevelEdgeBundlingGraph::class.java)
+    }
+  }
 
-  fun asJson(): String {
+  fun toJson(): String {
     return jacksonObjectMapper()
       .writerWithDefaultPrettyPrinter()
       .writeValueAsString(this)

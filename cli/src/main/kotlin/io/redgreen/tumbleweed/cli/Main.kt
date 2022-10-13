@@ -1,6 +1,7 @@
 package io.redgreen.tumbleweed.cli
 
 import io.redgreen.tumbleweed.cli.dev.convert.ConvertCommand
+import io.redgreen.tumbleweed.cli.dev.diff.DiffCommand
 import io.redgreen.tumbleweed.cli.dev.json.JsonCommand
 import io.redgreen.tumbleweed.cli.dev.view.ViewCommand
 import io.redgreen.tumbleweed.cli.watch.WatchCommand
@@ -17,6 +18,7 @@ const val DEFAULT_PORT = 7070
     JsonCommand::class,
     ViewCommand::class,
     ConvertCommand::class,
+    DiffCommand::class,
   ],
 )
 class TumbleweedCommand

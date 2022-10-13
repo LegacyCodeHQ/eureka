@@ -19,6 +19,6 @@ class ConvertCommand : Runnable {
 
   override fun run() {
     val graph = BilevelEdgeBundlingGraph.from(csvFile.readText())
-    println(graph.asJson())
+    println(graph.toJson())
   }
 }

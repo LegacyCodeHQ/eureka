@@ -84,7 +84,7 @@ class TumbleweedServer {
     source: Source,
   ) {
     logger.info("Web socket connection opened. Ready to send updates.")
-    send(Frame.Text(source.graph.asJson()))
+    send(Frame.Text(source.graph.toJson()))
 
     while (true) {
       val message = withContext(Dispatchers.IO) {
@@ -104,7 +104,7 @@ class TumbleweedServer {
       if (!location.exists()) {
         logger.error("Source file does not exist: {}", location)
       } else {
-        structureUpdatesQueue.add(source.graph.asJson())
+        structureUpdatesQueue.add(source.graph.toJson())
       }
     }
   }

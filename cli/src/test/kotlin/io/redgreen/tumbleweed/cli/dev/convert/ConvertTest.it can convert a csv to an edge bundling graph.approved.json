@@ -1,12 +1,12 @@
 {
   "nodes": [
     {
-      "id": "void getName()",
-      "group": 2
-    },
-    {
       "id": "String name",
       "group": 1
+    },
+    {
+      "id": "void getName()",
+      "group": 2
     },
     {
       "id": "void setName(String)",

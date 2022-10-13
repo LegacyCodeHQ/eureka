@@ -13,8 +13,8 @@ fun BilevelEdgeBundlingGraph.Companion.from(
   csv: String,
 ): BilevelEdgeBundlingGraph {
   val csvRecords = CSVParser.parse(csv, CSVFormat.DEFAULT).records.drop(CSV_HEADER)
-  val links = csvRecords.map(Link::from)
-  val nodes = links.flatMap(Node::from).distinct()
+  val links = csvRecords.map(Link::from).sortedBy { it.source }
+  val nodes = links.flatMap(Node::from).distinct().sortedWith(compareBy(Node::group, Node::id))
   return BilevelEdgeBundlingGraph(nodes, links)
 }
 

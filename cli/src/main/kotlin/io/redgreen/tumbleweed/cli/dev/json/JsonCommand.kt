@@ -43,7 +43,7 @@ class JsonCommand : Runnable {
     if (check) {
       classStructure.check()
     } else {
-      println(classStructure.graph.json)
+      println(classStructure.graph.asJson())
     }
   }
 }

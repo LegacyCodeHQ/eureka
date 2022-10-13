@@ -8,12 +8,11 @@ data class BilevelEdgeBundlingGraph(
 ) {
   companion object
 
-  val json: String
-    get() {
-      return jacksonObjectMapper()
-        .writerWithDefaultPrettyPrinter()
-        .writeValueAsString(this)
-    }
+  fun asJson(): String {
+    return jacksonObjectMapper()
+      .writerWithDefaultPrettyPrinter()
+      .writeValueAsString(this)
+  }
 
   data class Node(
     val id: String,

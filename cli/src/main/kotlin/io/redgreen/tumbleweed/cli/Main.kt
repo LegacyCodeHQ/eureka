@@ -1,5 +1,6 @@
 package io.redgreen.tumbleweed.cli
 
+import io.redgreen.tumbleweed.cli.dev.convert.ConvertCommand
 import io.redgreen.tumbleweed.cli.dev.json.JsonCommand
 import io.redgreen.tumbleweed.cli.dev.view.ViewCommand
 import io.redgreen.tumbleweed.cli.watch.WatchCommand
@@ -15,11 +16,13 @@ const val DEFAULT_PORT = 7070
     WatchCommand::class,
     JsonCommand::class,
     ViewCommand::class,
+    ConvertCommand::class,
   ],
 )
 class TumbleweedCommand
 
 fun main(args: Array<String>) {
-  exitProcess(CommandLine(TumbleweedCommand())
-    .execute(*args))
+  val status = CommandLine(TumbleweedCommand())
+    .execute(*args)
+  exitProcess(status)
 }

@@ -14,11 +14,6 @@ data class BilevelEdgeBundlingGraph(
       .writeValueAsString(this)
   }
 
-  operator fun minus(other: BilevelEdgeBundlingGraph): Diff {
-    val missingNodes = nodes - other.nodes.toSet()
-    return Diff.from(missingNodes)
-  }
-
   data class Node(
     val id: String,
     val group: Int,

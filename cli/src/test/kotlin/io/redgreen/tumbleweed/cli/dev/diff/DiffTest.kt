@@ -33,4 +33,16 @@ class DiffTest {
     // then
     Approvals.verify(diff.printable)
   }
+
+  @Test
+  fun `it returns a list of missing nodes when the implementation is missing some nodes`(
+    @Graph("03-baseline.csv") baseline: BilevelEdgeBundlingGraph,
+    @Graph("03-implementation.csv") implementation: BilevelEdgeBundlingGraph,
+  ) {
+    // when
+    val diff = Diff.of(baseline, implementation)
+
+    // then
+    Approvals.verify(diff.printable)
+  }
 }

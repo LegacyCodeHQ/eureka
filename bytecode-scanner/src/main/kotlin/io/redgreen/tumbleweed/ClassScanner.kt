@@ -40,7 +40,8 @@ object ClassScanner {
         signature: String?,
         value: Any?,
       ): FieldVisitor {
-        return FieldScanner.scan(name, descriptor, outFields)
+        outFields.add(Field(name!!, FieldDescriptor.from(descriptor!!)))
+        return object : FieldVisitor(ASM7) { /* no-op */ }
       }
 
       override fun visitMethod(
@@ -50,7 +51,9 @@ object ClassScanner {
         signature: String?,
         exceptions: Array<out String>?,
       ): MethodVisitor {
-        return MethodScanner.scan(topLevelType!!, name, descriptor, outMethods, outRelationships)
+        val method = Method(name!!, MethodDescriptor(descriptor!!))
+        outMethods.add(method)
+        return InstructionScanner.scan(topLevelType!!, method, outRelationships)
       }
     }
 

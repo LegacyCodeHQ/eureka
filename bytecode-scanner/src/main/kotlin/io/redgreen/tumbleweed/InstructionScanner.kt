@@ -1,7 +1,7 @@
 package io.redgreen.tumbleweed
 
 import net.bytebuddy.jar.asm.MethodVisitor
-import net.bytebuddy.jar.asm.Opcodes
+import net.bytebuddy.jar.asm.Opcodes.ASM7
 
 object InstructionScanner {
   fun scan(
@@ -9,7 +9,7 @@ object InstructionScanner {
     caller: Method,
     outRelationships: MutableList<Relationship>,
   ): MethodVisitor {
-    return object : MethodVisitor(Opcodes.ASM7) {
+    return object : MethodVisitor(ASM7) {
       override fun visitFieldInsn(
         opcode: Int,
         owner: String?,
@@ -21,7 +21,6 @@ object InstructionScanner {
         if (owner == topLevelType) {
           outRelationships.add(relationship)
         }
-        super.visitFieldInsn(opcode, owner, fieldName, fieldDescriptor)
       }
 
       override fun visitMethodInsn(
@@ -36,7 +35,6 @@ object InstructionScanner {
           val relationship = Relationship(caller, callee, Relationship.Type.from(opcode))
           outRelationships.add(relationship)
         }
-        super.visitMethodInsn(opcode, owner, methodName, methodDescriptor, isInterface)
       }
     }
   }

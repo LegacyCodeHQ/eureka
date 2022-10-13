@@ -2,3 +2,6 @@
   - (group: 1) String name
   - (group: 2) void getName()
   - (group: 2) void setName(String)
+❌ Missing links (2):
+  - void getName() -> String name
+  - void setName(String) -> String name

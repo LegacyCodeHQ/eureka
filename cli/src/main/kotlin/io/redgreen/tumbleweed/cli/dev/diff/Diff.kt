@@ -1,6 +1,7 @@
 package io.redgreen.tumbleweed.cli.dev.diff
 
 import io.redgreen.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
+import io.redgreen.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph.Link
 import io.redgreen.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph.Node
 
 data class Diff(val missing: Missing) {
@@ -10,24 +11,30 @@ data class Diff(val missing: Missing) {
       implementation: BilevelEdgeBundlingGraph,
     ): Diff {
       val missingNodes = baseline.nodes - implementation.nodes.toSet()
-      return Diff(Missing(missingNodes))
+      val missingLinks = baseline.links - implementation.links.toSet()
+      return Diff(Missing(missingNodes, missingLinks))
     }
   }
 }
 
 data class Missing(
   val nodes: List<Node>,
+  val links: List<Link>,
 )
 
 val Diff.report: String
   get() {
-    val missingNodes = missing.nodes
-    return if (missingNodes.isEmpty()) {
+    val (nodes, links) = missing
+    return if (nodes.isEmpty()) {
       "✅ All good, no differences found."
     } else {
       """
-          |❌ Missing nodes (${missingNodes.count()}):
-          |${missingNodes.joinToString(separator = System.lineSeparator()) { "  - (group: ${it.group}) ${it.id}" }}
-          |""".trimMargin()
+        |❌ Missing nodes (${nodes.count()}):
+        |${nodes.joinToString(separator = System.lineSeparator()) { "  - (group: ${it.group}) ${it.id}" }}
+        |""".trimMargin() +
+      """
+        |❌ Missing links (${links.count()}):
+        |${links.joinToString(separator = System.lineSeparator()) { "  - ${it.source} -> ${it.target}" }}
+        |""".trimMargin()
     }
   }

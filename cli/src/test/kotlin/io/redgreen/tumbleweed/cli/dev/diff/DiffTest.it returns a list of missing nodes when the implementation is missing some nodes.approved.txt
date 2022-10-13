@@ -1,2 +1,4 @@
 ❌ Missing nodes (1):
   - (group: 2) void getName()
+❌ Missing links (1):
+  - void getName() -> String name

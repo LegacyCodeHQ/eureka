@@ -1,6 +1,7 @@
 package io.redgreen.tumbleweed
 
 import io.redgreen.tumbleweed.samples.AnonymousFunctionWritingField
+import io.redgreen.tumbleweed.samples.InterfaceImplementation
 import io.redgreen.tumbleweed.samples.EmptyClass
 import io.redgreen.tumbleweed.samples.LateinitVar
 import io.redgreen.tumbleweed.samples.LazyProperty
@@ -154,6 +155,20 @@ class ClassScannerKotlinTest {
 
     // when
     val classStructure = ClassScanner.scan(staticMethodAccess.file)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
+
+  @Test
+  fun `it can scan a class that implements an interface`() {
+    // given
+    val interfaceImplementation = defaultKotlinClassLocation.copy(
+      fqClassName = InterfaceImplementation::class.java.name,
+    )
+
+    // when
+    val classStructure = ClassScanner.scan(interfaceImplementation.file)
 
     // then
     Approvals.verify(classStructure.printable)

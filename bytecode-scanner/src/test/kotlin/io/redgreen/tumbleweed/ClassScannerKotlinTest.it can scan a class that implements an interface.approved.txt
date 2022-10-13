@@ -1,0 +1,18 @@
+Package: io.redgreen.tumbleweed.samples
+Class: InterfaceImplementation
+Fields:
+  - int count
+Methods:
+  - void <init>()
+  - int getCount()
+  - void setCount(int)
+  - void increment()
+  - void decrement()
+Reads:
+  - int getCount() -> int count
+  - void increment() -> int count
+  - void decrement() -> int count
+Writes:
+  - void setCount(int) -> int count
+  - void increment() -> int count
+  - void decrement() -> int count

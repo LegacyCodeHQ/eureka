@@ -19,7 +19,7 @@ data class Missing(
   val nodes: List<Node>,
 )
 
-val Diff.printable: String
+val Diff.report: String
   get() {
     val missingNodes = missing.nodes
     return if (missingNodes.isEmpty()) {

@@ -19,7 +19,7 @@ class DiffTest {
     val diff = Diff.of(baseline, implementation)
 
     // then
-    Approvals.verify(diff.printable)
+    Approvals.verify(diff.report)
   }
 
   @Test
@@ -31,7 +31,7 @@ class DiffTest {
     val diff = Diff.of(baseline, implementation)
 
     // then
-    Approvals.verify(diff.printable)
+    Approvals.verify(diff.report)
   }
 
   @Test
@@ -43,6 +43,6 @@ class DiffTest {
     val diff = Diff.of(baseline, implementation)
 
     // then
-    Approvals.verify(diff.printable)
+    Approvals.verify(diff.report)
   }
 }

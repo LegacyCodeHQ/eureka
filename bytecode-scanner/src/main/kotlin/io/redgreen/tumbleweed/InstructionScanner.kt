@@ -1,7 +1,7 @@
 package io.redgreen.tumbleweed
 
+import io.redgreen.tumbleweed.ClassScanner.ASM_API_VERSION
 import net.bytebuddy.jar.asm.MethodVisitor
-import net.bytebuddy.jar.asm.Opcodes.ASM7
 
 object InstructionScanner {
   fun scan(
@@ -9,7 +9,7 @@ object InstructionScanner {
     caller: Method,
     outRelationships: MutableList<Relationship>,
   ): MethodVisitor {
-    return object : MethodVisitor(ASM7) {
+    return object : MethodVisitor(ASM_API_VERSION) {
       override fun visitFieldInsn(
         opcode: Int,
         owner: String?,

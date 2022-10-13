@@ -6,9 +6,11 @@ import net.bytebuddy.jar.asm.ClassReader
 import net.bytebuddy.jar.asm.ClassVisitor
 import net.bytebuddy.jar.asm.FieldVisitor
 import net.bytebuddy.jar.asm.MethodVisitor
-import net.bytebuddy.jar.asm.Opcodes.ASM7
+import net.bytebuddy.jar.asm.Opcodes.ASM9
 
 object ClassScanner {
+  const val ASM_API_VERSION = ASM9
+
   fun scan(classFile: File): ClassStructure {
     var className: String? = null
     var packageName: String? = null
@@ -17,7 +19,7 @@ object ClassScanner {
     val outRelationships = mutableListOf<Relationship>()
     var topLevelType: String? = null
 
-    val classVisitor = object : ClassVisitor(ASM7) {
+    val classVisitor = object : ClassVisitor(ASM_API_VERSION) {
       override fun visit(
         version: Int,
         access: Int,
@@ -41,7 +43,7 @@ object ClassScanner {
         value: Any?,
       ): FieldVisitor {
         outFields.add(Field(name!!, FieldDescriptor.from(descriptor!!)))
-        return object : FieldVisitor(ASM7) { /* no-op */ }
+        return object : FieldVisitor(ASM_API_VERSION) { /* no-op */ }
       }
 
       override fun visitMethod(

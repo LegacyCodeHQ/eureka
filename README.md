@@ -10,6 +10,8 @@ class.
 
 ## Screenshot
 
+Visualizing [ConversationParentFragment.java](https://github.com/signalapp/Signal-Android/blob/ff8f9ca81ae6a25e1e946612c817206b9410d9a1/app/src/main/java/org/thoughtcrime/securesms/conversation/ConversationParentFragment.java), a **3510 LOC** class from Signal Android App.
+
 ![Screenshot](docs/screenshot.png)
 
 ## Installation

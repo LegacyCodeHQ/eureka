@@ -7,11 +7,16 @@ import net.bytebuddy.jar.asm.ClassVisitor
 import net.bytebuddy.jar.asm.FieldVisitor
 import net.bytebuddy.jar.asm.MethodVisitor
 import net.bytebuddy.jar.asm.Opcodes.ASM9
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 object ClassScanner {
   const val ASM_API_VERSION = ASM9
 
+  private val logger: Logger = LoggerFactory.getLogger(ClassScanner::class.java)
+
   fun scan(classFile: File): ClassStructure {
+    logger.debug("Scanning class file: {}", classFile.absolutePath)
     var className: String? = null
     var packageName: String? = null
     val outFields = mutableListOf<Field>()
@@ -28,6 +33,8 @@ object ClassScanner {
         superName: String?,
         interfaces: Array<out String>?,
       ) {
+        logger.debug("Visiting class: {}", name)
+
         topLevelType = name
         name.split("/").let { fqClassNameParts ->
           packageName = fqClassNameParts.dropLast(1).joinToString(".")
@@ -42,6 +49,8 @@ object ClassScanner {
         signature: String?,
         value: Any?,
       ): FieldVisitor {
+        logger.debug("Visiting field: {}", name)
+
         outFields.add(Field(name!!, FieldDescriptor.from(descriptor!!)))
         return object : FieldVisitor(ASM_API_VERSION) { /* no-op */ }
       }
@@ -53,6 +62,8 @@ object ClassScanner {
         signature: String?,
         exceptions: Array<out String>?,
       ): MethodVisitor {
+        logger.debug("Visiting method: {}", name)
+
         val method = Method(name!!, MethodDescriptor(descriptor!!))
         outMethods.add(method)
         return InstructionScanner.scan(topLevelType!!, method, outRelationships)

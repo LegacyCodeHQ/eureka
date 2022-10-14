@@ -32,15 +32,34 @@ value class MethodDescriptor(private val descriptor: String) {
       val possiblyPrimitiveTokens = parametersDescriptor.split("").filter { it.isNotBlank() }
 
       var index = 0
+      var isArray = false
       while (index < possiblyPrimitiveTokens.size) {
-        if (!nonPrimitiveTypeTokenRanges.any { it.inRange(index) }) {
-          typeTokens.add(TypeToken(possiblyPrimitiveTokens[index]))
+        val tokenChar = possiblyPrimitiveTokens[index]
+
+        if (TypeToken.isPrimitive(tokenChar)) {
+          if (isArray) {
+            typeTokens.add(TypeToken("[$tokenChar"))
+            isArray = false
+          } else {
+            typeTokens.add(TypeToken(tokenChar))
+          }
+          index++
+        } else if (TypeToken.isObject(tokenChar)) {
+          val range = nonPrimitiveTypeTokenRanges.first { it.inRange(index) }
+          val typeToken = TypeToken(parametersDescriptor.substring(range.start, range.end + 1))
+          if (isArray) {
+            typeTokens.add(typeToken)
+            isArray = false
+          } else {
+            typeTokens.add(typeToken)
+          }
+
+          index = range.end + 1
+        } else if (TypeToken.isArray(tokenChar)) {
+          isArray = true
           index++
         } else {
-          val objectTypeTokenRange = nonPrimitiveTypeTokenRanges.first { it.inRange(index) }
-          val objectTypeToken = parametersDescriptor.substring(objectTypeTokenRange.start, objectTypeTokenRange.end + 1)
-          typeTokens.add(TypeToken(objectTypeToken))
-          index = objectTypeTokenRange.end + 1
+          throw IllegalArgumentException("Unknown type: $tokenChar")
         }
       }
 

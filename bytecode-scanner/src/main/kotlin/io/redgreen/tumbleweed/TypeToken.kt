@@ -2,6 +2,17 @@ package io.redgreen.tumbleweed
 
 @JvmInline
 value class TypeToken(private val descriptor: String) {
+  companion object {
+    fun isPrimitive(char: String): Boolean =
+      char in listOf("B", "C", "D", "F", "I", "J", "S", "Z", "V")
+
+    fun isObject(char: String): Boolean =
+      char == "L"
+
+    fun isArray(char: String): Boolean =
+      char == "["
+  }
+
   val type: String
     get() = if (descriptor.length == 1) {
       primitiveType(descriptor)

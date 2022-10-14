@@ -2,6 +2,12 @@
 
 Effortlessly understand large (and small) Kotlin/Java classes 😎
 
+## Live demo
+
+You can try this [sample interactive graph](https://redgreenio.github.io/) for Signal Android
+App's [StoryViewerPageFragment](https://github.com/signalapp/Signal-Android/blob/ff8f9ca81ae6a25e1e946612c817206b9410d9a1/app/src/main/java/org/thoughtcrime/securesms/stories/viewer/page/StoryViewerPageFragment.kt)
+class.
+
 ## Screenshot
 
 ![Screenshot](docs/screenshot.png)

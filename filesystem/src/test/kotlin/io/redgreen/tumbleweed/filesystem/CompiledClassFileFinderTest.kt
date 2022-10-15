@@ -46,6 +46,21 @@ class CompiledClassFileFinderTest {
   }
 
   @Test
+  fun `it should find the path of the exact class given multiple classes end with simple name`() {
+    // given & when
+    val classToSearch = "FindMeJavaClass"
+    val path = CompiledClassFileFinder.find(
+      className = classToSearch,
+      searchDirectory = "../",
+    )
+
+    // then
+    assertThat(path!!.exists()).isTrue()
+    assertThat("$classToSearch.class" == path.fileName.toString()).isTrue()
+    assertThat(path.isRegularFile()).isTrue()
+  }
+
+  @Test
   fun `it returns null if the class is not found`() {
     // given & when
     val path = CompiledClassFileFinder.find(

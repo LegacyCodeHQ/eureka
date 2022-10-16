@@ -25,10 +25,21 @@ data class MethodSignature(
 
 val String.simpleName: String
   get() {
+    val isArray = this.startsWith("[]")
     val lastDotIndex = lastIndexOf(".")
-    return if (lastDotIndex == -1) {
+    val isPrimitive = lastDotIndex == -1
+
+    val simpleName = if (isPrimitive) {
       this
     } else {
       substring(lastDotIndex + 1)
+    }
+
+    return if (isPrimitive && isArray) {
+      simpleName
+    } else if (isArray) {
+      "[]$simpleName"
+    } else {
+      simpleName
     }
   }

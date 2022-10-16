@@ -36,4 +36,10 @@ class FullTypeNameTest {
     assertThat("[]int".simpleName)
       .isEqualTo("[]int")
   }
+
+  @Test
+  fun `return simple names for non-primitive arrays`() {
+    assertThat("[]java.lang.String".simpleName)
+      .isEqualTo("[]String")
+  }
 }

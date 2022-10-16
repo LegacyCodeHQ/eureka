@@ -1,5 +1,6 @@
 package io.redgreen.tumbleweed
 
+import io.redgreen.tumbleweed.samples.LambdaAccessingField
 import io.redgreen.tumbleweed.samples.MethodReadingField
 import io.redgreen.tumbleweed.samples.MethodWritingField
 import org.approvaltests.Approvals
@@ -34,6 +35,20 @@ class ClassScannerJavaTest {
 
     // when
     val classStructure = ClassScanner.scan(methodWritingField.file)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
+
+  @Test
+  fun `it can scan a class with a lambda function accessing a field`() {
+    // given
+    val methodReadingAndWritingField = defaultJavaClassLocation.copy(
+      fqClassName = LambdaAccessingField::class.java.name,
+    )
+
+    // when
+    val classStructure = ClassScanner.scan(methodReadingAndWritingField.file)
 
     // then
     Approvals.verify(classStructure.printable)

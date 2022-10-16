@@ -5,7 +5,8 @@ data class Method(
   val descriptor: MethodDescriptor,
 ) : Member {
   val isLambda: Boolean
-    get() = name.contains("\$lambda-") || /* Kotlin 1.7.10 */
+    get() = name.startsWith("lambda\$") || /* Java */
+      name.contains("\$lambda-") || /* Kotlin 1.7.10 */
       name.contains("\$lambda\$") /* Kotlin 1.7.20 */
 
   override val signature: Signature

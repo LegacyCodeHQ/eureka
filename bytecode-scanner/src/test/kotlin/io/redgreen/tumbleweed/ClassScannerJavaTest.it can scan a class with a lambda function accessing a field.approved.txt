@@ -1,0 +1,12 @@
+Package: io.redgreen.tumbleweed.samples
+Class: LambdaAccessingField
+Fields:
+  - int count
+Methods:
+  - void <init>()
+  - void increment()
+Reads:
+  - void increment() -> int count
+Writes:
+  - void <init>() -> int count
+  - void increment() -> int count

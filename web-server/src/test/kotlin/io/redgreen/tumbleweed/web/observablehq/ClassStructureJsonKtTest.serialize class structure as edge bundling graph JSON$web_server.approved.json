@@ -1,7 +1,7 @@
 {
   "nodes": [
     {
-      "id": "java.lang.String name",
+      "id": "String name",
       "group": 1
     },
     {
@@ -9,14 +9,14 @@
       "group": 2
     },
     {
-      "id": "java.lang.String getName()",
+      "id": "String getName()",
       "group": 2
     }
   ],
   "links": [
     {
-      "source": "java.lang.String getName()",
-      "target": "java.lang.String name",
+      "source": "String getName()",
+      "target": "String name",
       "value": 1
     }
   ]

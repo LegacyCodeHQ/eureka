@@ -4,6 +4,7 @@ typealias FullTypeName = String
 
 sealed interface Signature {
   val verbose: String
+  val concise: String
 }
 
 data class FieldSignature(
@@ -12,6 +13,9 @@ data class FieldSignature(
 ) : Signature {
   override val verbose: String
     get() = "$type $name"
+
+  override val concise: String
+    get() = "${type.simpleName} $name"
 }
 
 data class MethodSignature(
@@ -21,6 +25,9 @@ data class MethodSignature(
 ) : Signature {
   override val verbose: String
     get() = "$returnType ${name}(${parameters.joinToString(", ")})"
+
+  override val concise: String
+    get() = "${returnType.simpleName} ${name}(${parameters.joinToString(", ") { it.simpleName }})"
 }
 
 val String.simpleName: String

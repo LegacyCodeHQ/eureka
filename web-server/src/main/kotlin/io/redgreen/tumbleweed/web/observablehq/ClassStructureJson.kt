@@ -20,14 +20,14 @@ private fun Member.toNode(): BilevelEdgeBundlingGraph.Node {
   }
 
   return BilevelEdgeBundlingGraph.Node(
-    id = signature.verbose,
+    id = signature.concise,
     group = group
   )
 }
 
 private fun Relationship.toLink(): BilevelEdgeBundlingGraph.Link {
   return BilevelEdgeBundlingGraph.Link(
-    source = source.signature.verbose,
-    target = target.signature.verbose
+    source = source.signature.concise,
+    target = target.signature.concise
   )
 }

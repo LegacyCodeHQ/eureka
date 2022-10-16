@@ -1,7 +1,5 @@
 package io.redgreen.tumbleweed
 
-typealias Signature = String
-
 data class ClassStructure(
   val packageName: String,
   val className: String,

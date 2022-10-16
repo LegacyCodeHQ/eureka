@@ -13,7 +13,7 @@ val ClassStructure.printable: Any
         classStructurePrintableBuilder.appendLine("Fields:")
         fields.forEach { field ->
           classStructurePrintableBuilder
-            .appendLine("  - ${field.signature}")
+            .appendLine("  - ${field.signature.verbose}")
         }
       }
 
@@ -21,7 +21,7 @@ val ClassStructure.printable: Any
         classStructurePrintableBuilder.appendLine("Methods:")
         methods.forEach { method ->
           classStructurePrintableBuilder
-            .appendLine("  - ${method.signature}")
+            .appendLine("  - ${method.signature.verbose}")
         }
       }
 
@@ -30,7 +30,7 @@ val ClassStructure.printable: Any
         classStructurePrintableBuilder.appendLine("Reads:")
         readsRelationships.forEach { relationship ->
           classStructurePrintableBuilder
-            .appendLine("  - ${relationship.source.signature} -> ${relationship.target.signature}")
+            .appendLine("  - ${relationship.source.signature.verbose} -> ${relationship.target.signature.verbose}")
         }
       }
 
@@ -39,7 +39,7 @@ val ClassStructure.printable: Any
         classStructurePrintableBuilder.appendLine("Writes:")
         writesRelationships.forEach { relationship ->
           classStructurePrintableBuilder
-            .appendLine("  - ${relationship.source.signature} -> ${relationship.target.signature}")
+            .appendLine("  - ${relationship.source.signature.verbose} -> ${relationship.target.signature.verbose}")
         }
       }
 
@@ -48,7 +48,7 @@ val ClassStructure.printable: Any
         classStructurePrintableBuilder.appendLine("Calls:")
         callsRelationships.forEach { relationship ->
           classStructurePrintableBuilder
-            .appendLine("  - ${relationship.source.signature} -> ${relationship.target.signature}")
+            .appendLine("  - ${relationship.source.signature.verbose} -> ${relationship.target.signature.verbose}")
         }
       }
 

@@ -8,6 +8,10 @@ data class Method(
     get() = name.contains("\$lambda-") || /* Kotlin 1.7.10 */
       name.contains("\$lambda\$") /* Kotlin 1.7.20 */
 
-  override val signature: String
-    get() = "${descriptor.returnType} ${name}(${descriptor.parameters.joinToString(", ")})"
+  override val signature: Signature
+    get() = MethodSignature(
+      name,
+      descriptor.parameters,
+      descriptor.returnType,
+    )
 }

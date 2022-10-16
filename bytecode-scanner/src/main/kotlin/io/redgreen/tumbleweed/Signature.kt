@@ -22,3 +22,8 @@ data class MethodSignature(
   override val verbose: String
     get() = "$returnType ${name}(${parameters.joinToString(", ")})"
 }
+
+val String.simpleName: String
+  get() {
+    return this
+  }

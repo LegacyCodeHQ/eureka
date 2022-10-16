@@ -1,6 +1,6 @@
 package io.redgreen.tumbleweed
 
-typealias FullTypeName = String
+typealias QualifiedTypeName = String
 
 sealed interface Signature {
   val verbose: String
@@ -9,7 +9,7 @@ sealed interface Signature {
 
 data class FieldSignature(
   val name: String,
-  val type: FullTypeName,
+  val type: QualifiedTypeName,
 ) : Signature {
   override val verbose: String
     get() = "$type $name"
@@ -20,14 +20,14 @@ data class FieldSignature(
 
 data class MethodSignature(
   val name: String,
-  val parameters: List<FullTypeName>,
-  val returnType: FullTypeName,
+  val parameterTypes: List<QualifiedTypeName>,
+  val returnType: QualifiedTypeName,
 ) : Signature {
   override val verbose: String
-    get() = "$returnType ${name}(${parameters.joinToString(", ")})"
+    get() = "$returnType ${name}(${parameterTypes.joinToString(", ")})"
 
   override val concise: String
-    get() = "${returnType.simpleName} ${name}(${parameters.joinToString(", ") { it.simpleName }})"
+    get() = "${returnType.simpleName} ${name}(${parameterTypes.joinToString(", ") { it.simpleName }})"
 }
 
 val String.simpleName: String

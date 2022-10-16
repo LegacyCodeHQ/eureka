@@ -25,5 +25,10 @@ data class MethodSignature(
 
 val String.simpleName: String
   get() {
-    return this
+    val lastDotIndex = lastIndexOf(".")
+    return if (lastDotIndex == -1) {
+      this
+    } else {
+      substring(lastDotIndex + 1)
+    }
   }

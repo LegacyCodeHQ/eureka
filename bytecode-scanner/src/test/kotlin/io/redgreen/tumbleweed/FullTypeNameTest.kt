@@ -9,6 +9,14 @@ class FullTypeNameTest {
   @ValueSource(
     strings = [
       "int",
+      "long",
+      "short",
+      "byte",
+      "boolean",
+      "char",
+      "float",
+      "double",
+      "void",
     ],
   )
   fun `return the same type for primitive types`(type: String) {

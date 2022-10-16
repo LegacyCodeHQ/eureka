@@ -38,7 +38,7 @@ val String.simpleName: String
     return if (isPrimitive && isArray) {
       simpleName
     } else if (isArray) {
-      "[]$simpleName"
+      this.substring(0, this.lastIndexOf("]") + 1) + simpleName
     } else {
       simpleName
     }

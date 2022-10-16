@@ -48,4 +48,10 @@ class FullTypeNameTest {
     assertThat("[][]double".simpleName)
       .isEqualTo("[][]double")
   }
+
+  @Test
+  fun `simple names for multi-dimensional non-primitive arrays`() {
+    assertThat("[][]java.lang.String".simpleName)
+      .isEqualTo("[][]String")
+  }
 }

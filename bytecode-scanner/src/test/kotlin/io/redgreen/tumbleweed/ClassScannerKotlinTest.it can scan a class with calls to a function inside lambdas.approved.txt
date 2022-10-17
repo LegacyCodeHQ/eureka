@@ -1,0 +1,8 @@
+Package: io.redgreen.tumbleweed.samples
+Class: FunctionCallsInsideLambdas
+Methods:
+  - void <init>()
+  - void foo()
+  - void bar()
+Calls:
+  - void foo() -> void bar()

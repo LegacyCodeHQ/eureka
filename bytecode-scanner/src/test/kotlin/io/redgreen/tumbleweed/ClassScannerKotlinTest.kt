@@ -4,6 +4,7 @@ import io.redgreen.tumbleweed.samples.AccessSuperClassMembers
 import io.redgreen.tumbleweed.samples.AnonymousFunctionWritingField
 import io.redgreen.tumbleweed.samples.EmptyClass
 import io.redgreen.tumbleweed.samples.ExtensionFunctionsWithReceivers
+import io.redgreen.tumbleweed.samples.FunctionCallsInsideLambdas
 import io.redgreen.tumbleweed.samples.InterfaceImplementation
 import io.redgreen.tumbleweed.samples.LateinitVar
 import io.redgreen.tumbleweed.samples.LazyProperty
@@ -214,6 +215,21 @@ class ClassScannerKotlinTest {
 
     // when
     val classStructure = ClassScanner.scan(extensionFunctionsWithReceivers.file)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
+
+
+  @Test
+  fun `it can scan a class with calls to a function inside lambdas`() {
+    // given
+    val functionCallsInsideLambdas = defaultKotlinClassLocation.copy(
+      fqClassName = FunctionCallsInsideLambdas::class.java.name,
+    )
+
+    // when
+    val classStructure = ClassScanner.scan(functionCallsInsideLambdas.file)
 
     // then
     Approvals.verify(classStructure.printable)

@@ -88,7 +88,7 @@ Compares and prints the differences between a jQAssistant and a Tumbleweed graph
 
 ## Known issues
 
-- Kotlin synthetic functions are also visible in the diagram.
+- Kotlin companion objects are not yet supported.
 
 ## Licenses
 

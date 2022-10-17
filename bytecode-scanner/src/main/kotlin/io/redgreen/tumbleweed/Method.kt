@@ -9,6 +9,9 @@ data class Method(
       name.contains("\$lambda-") || /* Kotlin 1.7.10 */
       name.contains("\$lambda\$") /* Kotlin 1.7.20 */
 
+  val isBridge: Boolean
+    get() = name.startsWith("access\$") /* Kotlin */
+
   override val signature: Signature
     get() = MethodSignature(
       name,

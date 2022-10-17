@@ -65,7 +65,9 @@ object ClassScanner {
         logger.debug("Visiting method: {}", name)
 
         val method = Method(name!!, MethodDescriptor(descriptor!!))
-        outMethods.add(method)
+        if (!method.isBridge) {
+          outMethods.add(method)
+        }
         return InstructionScanner.scan(topLevelType!!, method, outRelationships)
       }
     }

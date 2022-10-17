@@ -12,6 +12,7 @@ import io.redgreen.tumbleweed.samples.OnlyFields
 import io.redgreen.tumbleweed.samples.OnlyMethods
 import io.redgreen.tumbleweed.samples.RecursiveFunction
 import io.redgreen.tumbleweed.samples.StaticFieldAccess
+import io.redgreen.tumbleweed.samples.SyntheticBridges
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
 
@@ -184,6 +185,20 @@ class ClassScannerKotlinTest {
 
     // when
     val classStructure = ClassScanner.scan(accessSuperClassMembers.file)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
+
+  @Test
+  fun `it can scan a class with synthetic access functions`() {
+    // given
+    val syntheticBridges = defaultKotlinClassLocation.copy(
+      fqClassName = SyntheticBridges::class.java.name,
+    )
+
+    // when
+    val classStructure = ClassScanner.scan(syntheticBridges.file)
 
     // then
     Approvals.verify(classStructure.printable)

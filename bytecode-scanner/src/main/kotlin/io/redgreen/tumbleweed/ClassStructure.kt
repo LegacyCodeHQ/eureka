@@ -25,9 +25,18 @@ data class ClassStructure(
       .filter { it.isLambda }
       .toSet()
 
+    val bridges = relationships
+      .flatMap { listOf(it.source, it.target) }
+      .filterIsInstance<Method>()
+      .filter(Method::isBridge)
+      .toSet()
+
+    val nonSyntheticRelationships = skipLambdasInCallChain(relationships)
+      .filter { it.source !in bridges }
+
     return this.copy(
-      methods = methods - lambdas,
-      relationships = skipLambdasInCallChain(relationships),
+      methods = methods - lambdas - bridges,
+      relationships = nonSyntheticRelationships,
     )
   }
 

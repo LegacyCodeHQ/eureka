@@ -1,0 +1,8 @@
+Package: io.redgreen.tumbleweed.samples
+Class: SyntheticBridges
+Fields:
+  - java.lang.String field
+Methods:
+  - void <init>()
+Writes:
+  - void <init>() -> java.lang.String field

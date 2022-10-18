@@ -10,38 +10,20 @@ import net.bytebuddy.jar.asm.Opcodes.ASM9
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-object ClassScanner {
-  const val ASM_API_VERSION = ASM9
+const val ASM_API_VERSION = ASM9
 
+object ClassScanner {
   private val logger: Logger = LoggerFactory.getLogger(ClassScanner::class.java)
 
   fun scan(classFile: File): ClassStructure {
     logger.debug("Scanning class file: {}", classFile.absolutePath)
-    var className: String? = null
-    var packageName: String? = null
     val outFields = mutableListOf<Field>()
     val outMethods = mutableListOf<Method>()
     val outRelationships = mutableListOf<Relationship>()
-    var topLevelType: String? = null
+
+    val (packageName, className, topLevelType) = ClassInfo.from(classFile)
 
     val classVisitor = object : ClassVisitor(ASM_API_VERSION) {
-      override fun visit(
-        version: Int,
-        access: Int,
-        name: String,
-        signature: String?,
-        superName: String?,
-        interfaces: Array<out String>?,
-      ) {
-        logger.debug("Visiting class: {}", name)
-
-        topLevelType = name
-        name.split("/").let { fqClassNameParts ->
-          packageName = fqClassNameParts.dropLast(1).joinToString(".")
-          className = fqClassNameParts.last()
-        }
-      }
-
       override fun visitField(
         access: Int,
         name: String?,
@@ -68,7 +50,7 @@ object ClassScanner {
         if (!method.isBridge) {
           outMethods.add(method)
         }
-        return InstructionScanner.scan(topLevelType!!, method, outRelationships)
+        return InstructionScanner.scan(topLevelType, method, outRelationships)
       }
     }
 
@@ -82,8 +64,8 @@ object ClassScanner {
     val missingMethods = methodsFromRelationships - outMethods.toSet()
 
     return ClassStructure(
-      packageName!!,
-      className!!,
+      packageName,
+      className,
       outFields + missingFields,
       outMethods + missingMethods,
       outRelationships.toList(),

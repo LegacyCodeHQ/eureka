@@ -1,6 +1,5 @@
 package io.redgreen.tumbleweed
 
-import io.redgreen.tumbleweed.ClassScanner.ASM_API_VERSION
 import net.bytebuddy.jar.asm.Handle
 import net.bytebuddy.jar.asm.MethodVisitor
 import org.slf4j.Logger

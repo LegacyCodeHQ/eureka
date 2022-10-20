@@ -155,7 +155,7 @@
     return svg.node();
   }
 
-  const ws = new WebSocket("ws://localhost:7070/structure-updates");
+  const ws = new WebSocket("ws://localhost:{port}/structure-updates");
 
   ws.onmessage = (event) => {
     drawEdgeBundlingGraph(JSON.parse(event.data));

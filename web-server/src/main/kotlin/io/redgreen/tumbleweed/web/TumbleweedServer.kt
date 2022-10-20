@@ -31,13 +31,6 @@ class TumbleweedServer {
 
   private lateinit var webServer: ApplicationEngine
 
-  private val indexHtml: String
-    get() {
-      return TumbleweedServer::class.java.classLoader.getResourceAsStream("index.html")!!
-        .bufferedReader()
-        .use { it.readText() }
-    }
-
   private val structureUpdatesQueue = LinkedBlockingQueue<String>()
 
   private val classFileChangesWatcher = FileWatcher()
@@ -48,7 +41,7 @@ class TumbleweedServer {
     logger.info("Starting web server @ http://localhost:{}", port)
     webServer = embeddedServer(Netty, port = port) {
       installWebSockets()
-      setupRoutes(source)
+      setupRoutes(source, port)
     }.start(wait = true)
   }
 
@@ -66,17 +59,17 @@ class TumbleweedServer {
     }
   }
 
-  private fun Application.setupRoutes(source: Source) {
+  private fun Application.setupRoutes(source: Source, port: Int) {
     routing {
-      get("/") { serveIndexPage() }
+      get("/") { serveIndexPage(port) }
       webSocket("/structure-updates") {
         openWsConnectionForStructureUpdates(structureUpdatesQueue, source)
       }
     }
   }
 
-  private suspend fun PipelineContext<Unit, ApplicationCall>.serveIndexPage() {
-    call.respondText(indexHtml, ContentType.parse("text/html"))
+  private suspend fun PipelineContext<Unit, ApplicationCall>.serveIndexPage(port: Int) {
+    call.respondText(getIndexHtml(port), ContentType.parse("text/html"))
   }
 
   private suspend fun DefaultWebSocketServerSession.openWsConnectionForStructureUpdates(
@@ -107,5 +100,11 @@ class TumbleweedServer {
         structureUpdatesQueue.add(source.graph.toJson())
       }
     }
+  }
+
+  private fun getIndexHtml(port: Int): String {
+    return TumbleweedServer::class.java.classLoader.getResourceAsStream("index.html")!!
+      .bufferedReader()
+      .use { it.readText().replace("{port}", "$port") }
   }
 }

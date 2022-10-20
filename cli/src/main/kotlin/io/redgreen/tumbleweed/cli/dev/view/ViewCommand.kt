@@ -3,6 +3,7 @@ package io.redgreen.tumbleweed.cli.dev.view
 import io.redgreen.tumbleweed.cli.DEFAULT_PORT
 import io.redgreen.tumbleweed.web.JsonFile
 import io.redgreen.tumbleweed.web.TumbleweedServer
+import io.redgreen.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
 import java.io.File
 import picocli.CommandLine.Command
 import picocli.CommandLine.Option
@@ -29,6 +30,12 @@ class ViewCommand : Runnable {
   var port: Int = DEFAULT_PORT
 
   override fun run() {
-    TumbleweedServer().start(port, JsonFile(jsonFile))
+    if (!jsonFile.exists() && !jsonFile.isFile) {
+      println("❌ JSON file not found at given path: $jsonFile, please provide a valid file path")
+    } else if (BilevelEdgeBundlingGraph.isValidJson(jsonFile.readText())) {
+      println("❌ Provided JSON file is not valid. Please provide a valid JSON file")
+    } else {
+      TumbleweedServer().start(port, JsonFile(jsonFile))
+    }
   }
 }

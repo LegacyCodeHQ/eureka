@@ -62,9 +62,13 @@ object InstructionScanner {
       ) {
         logger.debug("Visiting invoke dynamic instruction: {}, {}", name, bootstrapMethodArguments.contentToString())
 
-        val methodHandle = bootstrapMethodArguments[1] as Handle
-        val callee = Method(methodHandle.name, MethodDescriptor(methodHandle.desc))
-        outRelationships.add(Relationship(caller, callee, Relationship.Type.Calls))
+        if (bootstrapMethodArguments.size > 1) {
+          val methodHandle = bootstrapMethodArguments[1] as Handle
+          val callee = Method(methodHandle.name, MethodDescriptor(methodHandle.desc))
+          outRelationships.add(Relationship(caller, callee, Relationship.Type.Calls))
+        } else {
+          logger.debug("Ignoring dynamic instruction: {}{}", name, descriptor)
+        }
         super.visitInvokeDynamicInsn(name, descriptor, bootstrapMethodHandle, *bootstrapMethodArguments)
       }
     }

@@ -1,0 +1,8 @@
+Package: io.redgreen.tumbleweed.samples
+Class: StringConcatenation
+Methods:
+  - void <init>()
+  - void printHappyNewYear()
+  - java.lang.String salutation(java.lang.String)
+Calls:
+  - void printHappyNewYear() -> java.lang.String salutation(java.lang.String)

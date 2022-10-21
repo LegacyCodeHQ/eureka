@@ -86,6 +86,23 @@ $ twd diff -b jqassistant-graph.json -i tumbleweed-graph.json
 
 Compares and prints the differences between a jQAssistant and a Tumbleweed graph.
 
+## IntelliJ Custom Data Views for Development
+
+### Field
+```kotlin
+"${signature.concise} ${if (owner.contains("$")) "[${owner.substring(owner.indexOf('$'))}]" else ""}"
+```
+
+### Method
+```kotlin
+"${signature.concise} ${if (owner.contains("$")) "[${owner.substring(owner.indexOf('$'))}]" else ""}"
+```
+
+### Relationship
+```kotlin
+"${source.signature.concise} ${if (source.owner.contains("$")) "[${source.owner.substring(source.owner.indexOf('$'))}]" else ""} -${type.name.first()}-> ${target.signature.concise} ${if (target.owner.contains("$")) "[${target.owner.substring(target.owner.indexOf('$'))}]" else ""}" 
+```
+
 ## Known issues
 
 - Kotlin companion objects are not yet supported.

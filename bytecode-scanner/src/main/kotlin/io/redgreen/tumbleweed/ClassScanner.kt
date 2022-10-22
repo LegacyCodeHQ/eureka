@@ -26,7 +26,7 @@ object ClassScanner {
         visitedClassFiles.add(classFileToScan)
 
         logger.debug("Scanning class file: {}", classFileToScan.absolutePath)
-        val classStructure = classStructure(classFileToScan, outClassFilesQueue)
+        val classStructure = classStructure(classFileToScan, outClassFilesQueue, visitedClassFiles)
         classStructures.add(classStructure)
       }
     }
@@ -38,6 +38,7 @@ object ClassScanner {
   private fun classStructure(
     classFile: File,
     outClassFilesQueue: ArrayDeque<File>,
+    visitedClassFiles: Set<File>,
   ): ClassStructure {
     val outFields = mutableListOf<Field>()
     val outMethods = mutableListOf<Method>()
@@ -78,7 +79,7 @@ object ClassScanner {
         logger.debug("Visiting inner class: {}", name)
 
         val innerClassFile = classFile.parentFile.resolve("${name.substring(name.lastIndexOf('/') + 1)}.class")
-        if (innerClassFile.exists()) {
+        if (innerClassFile.exists() && innerClassFile !in visitedClassFiles) {
           logger.debug("Adding new file to scan: ${innerClassFile.canonicalPath}")
           outClassFilesQueue.addLast(innerClassFile)
         }

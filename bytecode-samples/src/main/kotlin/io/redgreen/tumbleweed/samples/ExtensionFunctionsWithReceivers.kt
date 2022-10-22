@@ -3,14 +3,16 @@
 package io.redgreen.tumbleweed.samples
 
 class ExtensionFunctionsWithReceivers {
+  private val defaultPort = 7070
+
   fun start(port: Int) {
     embeddedServer {
-      installWebSockets()
+      installWebSockets(defaultPort)
     }
   }
 
-  private fun Application.installWebSockets() {
-    println(this)
+  private fun Application.installWebSockets(defaultPort: Int) {
+    println("Starting $this in port $defaultPort")
   }
 }
 

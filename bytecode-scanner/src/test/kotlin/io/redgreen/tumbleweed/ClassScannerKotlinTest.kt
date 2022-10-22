@@ -220,7 +220,6 @@ class ClassScannerKotlinTest {
     Approvals.verify(classStructure.printable)
   }
 
-
   @Test
   fun `it can scan a class with calls to a function inside lambdas`() {
     // given

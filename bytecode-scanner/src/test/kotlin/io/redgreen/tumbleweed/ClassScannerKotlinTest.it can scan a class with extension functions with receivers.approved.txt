@@ -1,8 +1,14 @@
 Package: io.redgreen.tumbleweed.samples
 Class: ExtensionFunctionsWithReceivers
+Fields:
+  - int defaultPort
 Methods:
   - void <init>()
   - void start(int)
-  - void installWebSockets(io.redgreen.tumbleweed.samples.Application)
+  - void installWebSockets(io.redgreen.tumbleweed.samples.Application, int)
+Reads:
+  - void start(int) -> int defaultPort
+Writes:
+  - void <init>() -> int defaultPort
 Calls:
-  - void start(int) -> void installWebSockets(io.redgreen.tumbleweed.samples.Application)
+  - void start(int) -> void installWebSockets(io.redgreen.tumbleweed.samples.Application, int)

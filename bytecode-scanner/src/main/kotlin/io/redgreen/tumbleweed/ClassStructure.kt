@@ -34,15 +34,18 @@ data class ClassStructure(
     val nonSyntheticRelationships = skipLambdasInCallChain(relationships)
       .filter { it.source !in bridges }
 
+    val relationshipsInCurrentClass = nonSyntheticRelationships
+      .filter { it.target.owner.endsWith(className) }
+
     return this.copy(
       methods = methods - lambdas - bridges,
-      relationships = nonSyntheticRelationships,
+      relationships = relationshipsInCurrentClass,
     )
   }
 
   private fun skipLambdasInCallChain(relationships: List<Relationship>): List<Relationship> {
     val graph = relationships.asGraph()
-    val startingPointMethods = graph.keys.filter { !(it as Method).isLambda }.map { it as Method }
+    val startingPointMethods = graph.keys.filter { !(it as Method).isSynthetic }.map { it as Method }
     val paths = mutableListOf<List<Node>>()
 
     val queue = ArrayDeque<List<Node>>()
@@ -67,7 +70,7 @@ data class ClassStructure(
     }
 
     return paths
-      .map(::removeLambdasFromChain)
+      .map(::removeSyntheticsFromChain)
       .map { path -> path.toRelationships() }
       .flatten()
       .distinct()
@@ -84,15 +87,15 @@ data class ClassStructure(
       .all { it == destination.member.signature } && path.takeLast(nodesToCheck).size == nodesToCheck
   }
 
-  private fun removeLambdasFromChain(destinations: List<Node>): List<Node> {
-    return destinations.filter { if (it.member is Method) !it.member.isLambda else true }
+  private fun removeSyntheticsFromChain(destinations: List<Node>): List<Node> {
+    return destinations.filter { if (it.member is Method) !it.member.isSynthetic else true }
   }
 
   private fun List<Node>.toRelationships(): List<Relationship> {
     return this
       .zipWithNext()
       .map { (source, target) ->
-        Relationship(source.member, target.member, target.type!!)
+        Relationship(source.member, target.member, target.type!!) /* FIXME Support 'References' relationship */
       }
   }
 

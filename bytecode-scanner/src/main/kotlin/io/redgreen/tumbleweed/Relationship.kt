@@ -11,7 +11,7 @@ data class Relationship(
   val type: Type,
 ) {
   enum class Type {
-    Reads, Writes, Calls;
+    Reads, Writes, Calls, References;
 
     companion object {
       fun from(opcode: Int): Type {

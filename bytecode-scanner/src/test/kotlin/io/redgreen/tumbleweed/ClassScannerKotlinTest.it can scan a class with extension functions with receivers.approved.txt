@@ -1,0 +1,8 @@
+Package: io.redgreen.tumbleweed.samples
+Class: ExtensionFunctionsWithReceivers
+Methods:
+  - void <init>()
+  - void start(int)
+  - void installWebSockets(io.redgreen.tumbleweed.samples.Application)
+Calls:
+  - void start(int) -> void installWebSockets(io.redgreen.tumbleweed.samples.Application)

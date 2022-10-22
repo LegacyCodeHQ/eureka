@@ -1,8 +1,9 @@
 package io.redgreen.tumbleweed
 
 data class Method(
-  val name: String,
+  override val name: String,
   val descriptor: MethodDescriptor,
+  override val owner: String,
 ) : Member {
   val isLambda: Boolean
     get() = name.startsWith("lambda\$") || /* Java */
@@ -11,6 +12,9 @@ data class Method(
 
   val isBridge: Boolean
     get() = name.startsWith("access\$") /* Kotlin */
+
+  val isSynthetic: Boolean
+    get() = isLambda || isBridge
 
   override val signature: Signature
     get() = MethodSignature(

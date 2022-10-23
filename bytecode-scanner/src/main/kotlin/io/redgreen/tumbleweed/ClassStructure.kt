@@ -1,5 +1,7 @@
 package io.redgreen.tumbleweed
 
+import org.slf4j.LoggerFactory
+
 data class ClassStructure(
   val packageName: String,
   val className: String,
@@ -7,6 +9,10 @@ data class ClassStructure(
   val methods: List<Method>,
   val relationships: List<Relationship>,
 ) {
+  companion object {
+    private val logger = LoggerFactory.getLogger(ClassStructure::class.java)
+  }
+
   data class Node(
     val type: Relationship.Type? = null,
     val member: Member,
@@ -65,6 +71,7 @@ data class ClassStructure(
           }
         } else {
           paths.add(currentPath)
+          logger.debug("Found path: {}", currentPath.joinToString(" -> ") { it.member.signature.concise })
         }
       }
     }
@@ -83,8 +90,18 @@ data class ClassStructure(
   ): Boolean {
     return path
       .takeLast(nodesToCheck)
-      .map { it.member.signature }
-      .all { it == destination.member.signature } && path.takeLast(nodesToCheck).size == nodesToCheck
+      .map { node -> node.member.signature }
+      .all { signature -> isCyclicCall(signature, destination) } && path.takeLast(nodesToCheck).size == nodesToCheck
+  }
+
+  private fun isCyclicCall(
+    signature: Signature,
+    destination: Node,
+  ): Boolean {
+    val isRecursiveCall = signature == destination.member.signature
+    val isBridgeCall = destination.member.name.startsWith("access\$") &&
+      destination.member.name.substring("access\$".length) == signature.name
+    return isRecursiveCall || isBridgeCall
   }
 
   private fun removeSyntheticsFromChain(destinations: List<Node>): List<Node> {

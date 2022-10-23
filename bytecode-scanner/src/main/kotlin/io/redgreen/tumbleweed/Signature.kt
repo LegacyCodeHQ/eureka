@@ -3,12 +3,13 @@ package io.redgreen.tumbleweed
 typealias QualifiedTypeName = String
 
 sealed interface Signature {
+  val name: String
   val verbose: String
   val concise: String
 }
 
 data class FieldSignature(
-  val name: String,
+  override val name: String,
   val type: QualifiedTypeName,
 ) : Signature {
   override val verbose: String
@@ -19,7 +20,7 @@ data class FieldSignature(
 }
 
 data class MethodSignature(
-  val name: String,
+  override val name: String,
   val parameterTypes: List<QualifiedTypeName>,
   val returnType: QualifiedTypeName,
 ) : Signature {

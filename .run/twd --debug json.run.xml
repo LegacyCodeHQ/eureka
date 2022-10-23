@@ -1,8 +1,8 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="twd json --check" type="JetRunConfigurationType">
+  <configuration default="false" name="twd --debug json" type="JetRunConfigurationType">
     <option name="MAIN_CLASS_NAME" value="io.redgreen.tumbleweed.cli.MainKt" />
     <module name="tumbleweed.cli.main" />
-    <option name="PROGRAM_PARAMETERS" value="json WatchCommand --check" />
+    <option name="PROGRAM_PARAMETERS" value="--debug json TumbleweedServer" />
     <shortenClasspath name="NONE" />
     <method v="2">
       <option name="Make" enabled="true" />

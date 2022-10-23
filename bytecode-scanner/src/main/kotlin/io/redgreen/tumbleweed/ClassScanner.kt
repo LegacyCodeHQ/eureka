@@ -31,8 +31,11 @@ object ClassScanner {
       }
     }
 
-    val simplify = classStructures.combine().first().simplify()
-    return simplify
+    logger.debug("Condensing class structures.")
+    val classStructure = classStructures.combine().first()
+
+    logger.debug("Simplifying class structure.")
+    return classStructure.simplify()
   }
 
   private fun classStructure(

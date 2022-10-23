@@ -32,10 +32,10 @@ object ClassScanner {
     }
 
     logger.debug("Condensing class structures.")
-    val classStructure = classStructures.combine().first()
+    val classStructure = classStructures.combine()
 
     logger.debug("Simplifying class structure.")
-    return classStructure.simplify()
+    return classStructure.normalize()
   }
 
   private fun classStructure(
@@ -110,34 +110,61 @@ object ClassScanner {
     )
   }
 
-  private fun List<ClassStructure>.combine(): List<ClassStructure> {
-    val combinedClassStructures = mutableListOf<ClassStructure>()
+  private fun List<ClassStructure>.combine(): ClassStructure {
+    var classStructure = this.first()
+    val topLevelClassName = classStructure.className
+    val visitedClassStructures = mutableSetOf<ClassStructure>()
 
-    for (classStructure in this) {
-      val syntheticInnerClassRelationships = classStructure.relationships
-        .filter { it.type == Relationship.Type.Calls }
-        .filter { (it.target as Method).name == "<init>" }
-        .filter { it.target.owner != classStructure.className }
+    val innerClassConstructorInvocations = classStructure.innerClassConstructorInvocations()
+    for (syntheticInnerClassConstructorInvocation in innerClassConstructorInvocations) {
+      val constructorQueue = ArrayDeque(listOf(syntheticInnerClassConstructorInvocation.target))
+      val bridgeCallReferencesResult = mutableListOf<Relationship>()
 
-      val referencesRelationships = mutableListOf<Relationship>()
-      for (relationship in syntheticInnerClassRelationships) {
-        val innerClassConstructor = relationship.target as Method
-        val innerClass = this.find { innerClassConstructor.owner.endsWith(it.className) }!!
-
-        val outerClassAccessorsRelationships = innerClass.relationships
-          .filter { it.target.owner.endsWith(classStructure.className) }
-
-        for (accessorRelationship in outerClassAccessorsRelationships) {
-          referencesRelationships.add(
-            Relationship(relationship.source, accessorRelationship.target, Relationship.Type.References)
-          )
+      while (constructorQueue.isNotEmpty()) {
+        val constructor = constructorQueue.removeFirst()
+        val innerClassStructure = this.findClassStructureOf(constructor)
+        if (innerClassStructure in visitedClassStructures) {
+          continue
         }
+        visitedClassStructures.add(innerClassStructure)
+
+        val constructorInvocations = innerClassStructure.innerClassConstructorInvocations()
+        constructorQueue.addAll(constructorInvocations.map(Relationship::target))
+
+        val bridgeCallReferences = innerClassStructure.bridgeCallReferences(topLevelClassName)
+        bridgeCallReferencesResult.addAll(bridgeCallReferences)
       }
-      val updatedClassStructure = classStructure
-        .copy(relationships = classStructure.relationships + referencesRelationships)
-      combinedClassStructures.add(updatedClassStructure)
+
+      val innerClassInvocationReplacements = bridgeCallReferencesResult.map { relationship ->
+        Relationship(
+          syntheticInnerClassConstructorInvocation.source,
+          relationship.target,
+          Relationship.Type.References,
+        )
+      }
+
+      val expandedRelationships = classStructure.relationships -
+        syntheticInnerClassConstructorInvocation + innerClassInvocationReplacements
+      classStructure = classStructure.copy(
+        relationships = expandedRelationships
+      )
     }
 
-    return combinedClassStructures.toList()
+    return classStructure
+  }
+
+  private fun ClassStructure.innerClassConstructorInvocations(): List<Relationship> {
+    return relationships
+      .filter { it.type == Relationship.Type.Calls }
+      .filter { (it.target as Method).name == "<init>" }
+      .filter { it.target.owner != className }
+  }
+
+  private fun List<ClassStructure>.findClassStructureOf(constructor: Member): ClassStructure {
+    return this.find { it.className == constructor.owner.substringAfterLast('/') }!!
+  }
+
+  private fun ClassStructure.bridgeCallReferences(topLevelClassName: String): List<Relationship> {
+    return this.relationships.filter { it.target.owner.endsWith(topLevelClassName) }
   }
 }

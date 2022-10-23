@@ -20,6 +20,7 @@ Reads:
   - void startWatchingFileForChanges(io.redgreen.tumbleweed.web.Source) -> org.slf4j.Logger logger
   - void startWatchingFileForChanges(io.redgreen.tumbleweed.web.Source) -> io.redgreen.tumbleweed.filesystem.FileWatcher classFileChangesWatcher
   - void startWatchingFileForChanges(io.redgreen.tumbleweed.web.Source) -> java.util.concurrent.LinkedBlockingQueue structureUpdatesQueue
+  - void setupRoutes(io.ktor.server.application.Application, io.redgreen.tumbleweed.web.Source, int) -> java.util.concurrent.LinkedBlockingQueue structureUpdatesQueue
   - void stop() -> org.slf4j.Logger logger
   - void stop() -> io.ktor.server.engine.ApplicationEngine webServer
   - java.lang.Object openWsConnectionForStructureUpdates(io.ktor.server.websocket.DefaultWebSocketServerSession, java.util.concurrent.BlockingQueue, io.redgreen.tumbleweed.web.Source, kotlin.coroutines.Continuation) -> org.slf4j.Logger logger
@@ -32,5 +33,7 @@ Calls:
   - void start(int, io.redgreen.tumbleweed.web.Source) -> void startWatchingFileForChanges(io.redgreen.tumbleweed.web.Source)
   - void start(int, io.redgreen.tumbleweed.web.Source) -> void installWebSockets(io.ktor.server.application.Application)
   - void start(int, io.redgreen.tumbleweed.web.Source) -> void setupRoutes(io.ktor.server.application.Application, io.redgreen.tumbleweed.web.Source, int)
+  - void setupRoutes(io.ktor.server.application.Application, io.redgreen.tumbleweed.web.Source, int) -> java.lang.Object openWsConnectionForStructureUpdates(io.ktor.server.websocket.DefaultWebSocketServerSession, java.util.concurrent.BlockingQueue, io.redgreen.tumbleweed.web.Source, kotlin.coroutines.Continuation)
+  - void setupRoutes(io.ktor.server.application.Application, io.redgreen.tumbleweed.web.Source, int) -> java.lang.Object serveIndexPage(io.ktor.util.pipeline.PipelineContext, int, kotlin.coroutines.Continuation)
   - java.lang.Object serveIndexPage(io.ktor.util.pipeline.PipelineContext, int, kotlin.coroutines.Continuation) -> java.lang.String getIndexHtml(int)
   - java.lang.Object openWsConnectionForStructureUpdates(io.ktor.server.websocket.DefaultWebSocketServerSession, java.util.concurrent.BlockingQueue, io.redgreen.tumbleweed.web.Source, kotlin.coroutines.Continuation) -> java.lang.Object openWsConnectionForStructureUpdates(io.ktor.server.websocket.DefaultWebSocketServerSession, java.util.concurrent.BlockingQueue, io.redgreen.tumbleweed.web.Source, kotlin.coroutines.Continuation)

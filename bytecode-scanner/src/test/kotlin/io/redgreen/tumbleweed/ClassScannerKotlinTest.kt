@@ -2,6 +2,7 @@ package io.redgreen.tumbleweed
 
 import io.redgreen.tumbleweed.samples.AccessSuperClassMembers
 import io.redgreen.tumbleweed.samples.AnonymousFunctionWritingField
+import io.redgreen.tumbleweed.samples.DeeplyNestedLambdaFunctions
 import io.redgreen.tumbleweed.samples.EmptyClass
 import io.redgreen.tumbleweed.samples.ExtensionFunctionsWithReceivers
 import io.redgreen.tumbleweed.samples.FunctionCallsInsideLambdas
@@ -229,6 +230,20 @@ class ClassScannerKotlinTest {
 
     // when
     val classStructure = ClassScanner.scan(functionCallsInsideLambdas.file)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
+
+  @Test
+  fun `it can scan a class with deeply nested lambda calls`() {
+    // given
+    val deeplyNestedLambdaFunctions = defaultKotlinClassLocation.copy(
+      fqClassName = DeeplyNestedLambdaFunctions::class.java.name,
+    )
+
+    // when
+    val classStructure = ClassScanner.scan(deeplyNestedLambdaFunctions.file)
 
     // then
     Approvals.verify(classStructure.printable)

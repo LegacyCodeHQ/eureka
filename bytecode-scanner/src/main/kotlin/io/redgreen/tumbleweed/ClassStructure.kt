@@ -24,7 +24,7 @@ data class ClassStructure(
     }
   }
 
-  fun simplify(): ClassStructure {
+  fun normalize(): ClassStructure {
     val lambdas = relationships
       .filter { it.type == Relationship.Type.Calls }
       .map { it.target as Method }

@@ -9,7 +9,7 @@ class ClassScannerKotlinCycleTest {
   fun `it can detect cycles caused by bridge functions`() {
     // given
     val tumbleweedServerClassFile = File(
-      "../bytecode-samples/src/main/resources/kotlin/bridge-cycles/TumbleweedServer.class"
+      "../bytecode-samples/src/main/resources/precompiled/kotlin/bridge-cycles/TumbleweedServer.class"
     )
 
     // when

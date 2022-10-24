@@ -1,0 +1,11 @@
+Package: io.redgreen.tumbleweed.samples
+Class: InlineFunction
+Fields:
+  - java.lang.StringBuilder logger
+Methods:
+  - void <init>()
+  - void sum()
+Reads:
+  - void sum() -> java.lang.StringBuilder logger
+Writes:
+  - void <init>() -> java.lang.StringBuilder logger

@@ -6,6 +6,7 @@ import io.redgreen.tumbleweed.samples.DeeplyNestedLambdaFunctions
 import io.redgreen.tumbleweed.samples.EmptyClass
 import io.redgreen.tumbleweed.samples.ExtensionFunctionsWithReceivers
 import io.redgreen.tumbleweed.samples.FunctionCallsInsideLambdas
+import io.redgreen.tumbleweed.samples.InlineFunction
 import io.redgreen.tumbleweed.samples.InterfaceImplementation
 import io.redgreen.tumbleweed.samples.LateinitVar
 import io.redgreen.tumbleweed.samples.LazyProperty
@@ -244,6 +245,20 @@ class ClassScannerKotlinTest {
 
     // when
     val classStructure = ClassScanner.scan(deeplyNestedLambdaFunctions.file)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
+
+  @Test
+  fun `it can scan a class with an inline function`() {
+    // given
+    val inlineFunction = defaultKotlinClassLocation.copy(
+      fqClassName = InlineFunction::class.java.name,
+    )
+
+    // when
+    val classStructure = ClassScanner.scan(inlineFunction.file)
 
     // then
     Approvals.verify(classStructure.printable)

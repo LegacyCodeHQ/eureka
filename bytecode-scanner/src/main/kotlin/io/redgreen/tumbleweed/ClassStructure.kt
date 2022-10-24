@@ -1,5 +1,6 @@
 package io.redgreen.tumbleweed
 
+import io.redgreen.tumbleweed.ClassStructure.Companion.logger
 import org.slf4j.LoggerFactory
 
 data class ClassStructure(
@@ -10,7 +11,7 @@ data class ClassStructure(
   val relationships: List<Relationship>,
 ) {
   companion object {
-    private val logger = LoggerFactory.getLogger(ClassStructure::class.java)
+    val logger = LoggerFactory.getLogger(ClassStructure::class.java)
   }
 
   data class Node(
@@ -129,4 +130,67 @@ data class ClassStructure(
     }
     return graph
   }
+
+  internal fun bridgeCallReferences(topLevelClassName: String): List<Relationship> {
+    return this.relationships.filter { it.target.owner.endsWith(topLevelClassName) }
+  }
+
+  internal fun innerClassConstructorInvocations(): List<Relationship> {
+    return relationships
+      .filter { it.type == Relationship.Type.Calls }
+      .filter { (it.target as Method).name == "<init>" }
+      .filter { it.target.owner != className }
+  }
+}
+
+internal fun List<ClassStructure>.findClassStructureOf(constructor: Member): ClassStructure? {
+  logger.debug("Finding class structure of: {}", constructor.owner)
+  val classStructure = this.find { it.className == constructor.owner.substringAfterLast('/') }
+  if (classStructure == null) {
+    logger.warn("Could not find class structure of: {}", constructor.owner)
+  }
+  return classStructure
+}
+
+internal fun List<ClassStructure>.combine(): ClassStructure {
+  var classStructure = this.first()
+  val topLevelClassName = classStructure.className
+  val visitedClassStructures = mutableSetOf<ClassStructure>()
+
+  val innerClassConstructorInvocations = classStructure.innerClassConstructorInvocations()
+  for (syntheticInnerClassConstructorInvocation in innerClassConstructorInvocations) {
+    val constructorQueue = ArrayDeque(listOf(syntheticInnerClassConstructorInvocation.target))
+    val bridgeCallReferencesResult = mutableListOf<Relationship>()
+
+    while (constructorQueue.isNotEmpty()) {
+      val constructor = constructorQueue.removeFirst()
+      val innerClassStructure = this.findClassStructureOf(constructor)
+      if (innerClassStructure == null || innerClassStructure in visitedClassStructures) {
+        continue
+      }
+      visitedClassStructures.add(innerClassStructure)
+
+      val constructorInvocations = innerClassStructure.innerClassConstructorInvocations()
+      constructorQueue.addAll(constructorInvocations.map(Relationship::target))
+
+      val bridgeCallReferences = innerClassStructure.bridgeCallReferences(topLevelClassName)
+      bridgeCallReferencesResult.addAll(bridgeCallReferences)
+    }
+
+    val innerClassInvocationReplacements = bridgeCallReferencesResult.map { relationship ->
+      Relationship(
+        syntheticInnerClassConstructorInvocation.source,
+        relationship.target,
+        Relationship.Type.References,
+      )
+    }
+
+    val expandedRelationships = classStructure.relationships -
+      syntheticInnerClassConstructorInvocation + innerClassInvocationReplacements
+    classStructure = classStructure.copy(
+      relationships = expandedRelationships
+    )
+  }
+
+  return classStructure
 }

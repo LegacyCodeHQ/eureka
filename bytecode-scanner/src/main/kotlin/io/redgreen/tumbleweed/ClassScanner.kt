@@ -123,7 +123,7 @@ object ClassScanner {
       while (constructorQueue.isNotEmpty()) {
         val constructor = constructorQueue.removeFirst()
         val innerClassStructure = this.findClassStructureOf(constructor)
-        if (innerClassStructure in visitedClassStructures) {
+        if (innerClassStructure == null || innerClassStructure in visitedClassStructures) {
           continue
         }
         visitedClassStructures.add(innerClassStructure)
@@ -160,8 +160,13 @@ object ClassScanner {
       .filter { it.target.owner != className }
   }
 
-  private fun List<ClassStructure>.findClassStructureOf(constructor: Member): ClassStructure {
-    return this.find { it.className == constructor.owner.substringAfterLast('/') }!!
+  private fun List<ClassStructure>.findClassStructureOf(constructor: Member): ClassStructure? {
+    logger.debug("Finding class structure of: {}", constructor.owner)
+    val classStructure = this.find { it.className == constructor.owner.substringAfterLast('/') }
+    if (classStructure == null) {
+      logger.warn("Could not find class structure of: {}", constructor.owner)
+    }
+    return classStructure
   }
 
   private fun ClassStructure.bridgeCallReferences(topLevelClassName: String): List<Relationship> {

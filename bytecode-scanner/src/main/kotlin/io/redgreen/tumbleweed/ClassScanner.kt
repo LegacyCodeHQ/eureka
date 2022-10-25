@@ -91,21 +91,11 @@ object ClassScanner {
 
     ClassReader(BufferedInputStream(classFile.inputStream())).accept(classVisitor, 0)
 
-    val allMembersInRelationships = outRelationships.flatMap { listOf(it.source, it.target) }
-    val methodsFromRelationships = allMembersInRelationships
-      .filterIsInstance<Method>()
-      .filter { it.owner == topLevelType }
-      .distinct()
-    val fieldsFromRelationships = allMembersInRelationships.filterIsInstance<Field>().distinct()
-
-    val missingFields = fieldsFromRelationships - outFields.toSet()
-    val missingMethods = methodsFromRelationships - outMethods.toSet()
-
     return ClassStructure(
       classInfo.packageName,
       classInfo.className,
-      outFields + missingFields,
-      outMethods + missingMethods,
+      outFields,
+      outMethods,
       outRelationships.toList(),
     )
   }

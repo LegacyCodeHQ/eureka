@@ -11,16 +11,16 @@ fun ClassStructure.check() {
   if (membersInClassStructure != membersInRelationship) {
     val missingMembers = membersInRelationship - membersInClassStructure
     val membersWithoutRelationships = membersInClassStructure - membersInRelationship
-    printReport(missingMembers, membersWithoutRelationships, fqClassName)
+    printReport(fqClassName, missingMembers, membersWithoutRelationships)
   } else {
     println("No inconsistencies found in '$fqClassName'")
   }
 }
 
 private fun printReport(
+  fqClassName: String,
   missingMembers: Set<Member>,
   membersWithoutRelationships: Set<Member>,
-  fqClassName: String,
 ) {
   println("Inconsistencies found in '$fqClassName'")
 

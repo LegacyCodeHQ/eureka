@@ -27,34 +27,58 @@ data class ClassStructure(
   }
 
   fun normalize(): ClassStructure {
-    val lambdas = relationships
+    val nonSyntheticRelationships = nonSyntheticRelationships(getBridges(relationships))
+    val relationshipsInCurrentClass = nonSyntheticRelationships
+      .filter { it.target.owner.endsWith(className) }
+
+    val allMembersInRelationships = relationshipsInCurrentClass.flatMap { listOf(it.source, it.target) }
+
+    val fieldsFromRelationships = allMembersInRelationships.filterIsInstance<Field>().distinct()
+    val methodsFromRelationships = allMembersInRelationships
+      .filterIsInstance<Method>()
+      .filter { it.owner.endsWith(this.className) }
+      .distinct()
+
+    val missingFields = fieldsFromRelationships - fields.toSet()
+    val missingMethods = methodsFromRelationships - methods.toSet()
+
+    val lambdas = getLambdas(relationships)
+    val copyConstructors = getCopyConstructors(relationships)
+
+    return this.copy(
+      fields = fields + missingFields,
+      methods = methods - lambdas - getBridges(relationships) - copyConstructors + missingMethods,
+      relationships = relationshipsInCurrentClass,
+    )
+  }
+
+  private fun getLambdas(relationships: List<Relationship>): Set<Method> {
+    return relationships
       .filter { it.type == Relationship.Type.Calls }
       .map { it.target as Method }
-      .filter { it.isLambda }
+      .filter(Method::isLambda)
       .toSet()
+  }
 
-    val bridges = relationships
+  private fun getBridges(relationships: List<Relationship>): Set<Method> {
+    return relationships
       .flatMap { listOf(it.source, it.target) }
       .filterIsInstance<Method>()
       .filter(Method::isBridge)
       .toSet()
+  }
 
-    val copyConstructors = relationships
+  private fun getCopyConstructors(relationships: List<Relationship>): Set<Method> {
+    return relationships
       .flatMap { listOf(it.source, it.target) }
       .filterIsInstance<Method>()
       .filter(Method::isCopyConstructor)
       .toSet()
+  }
 
-    val nonSyntheticRelationships = skipLambdasInCallChain(relationships)
+  private fun nonSyntheticRelationships(bridges: Set<Method>): List<Relationship> {
+    return skipLambdasInCallChain(relationships)
       .filter { it.source !in bridges }
-
-    val relationshipsInCurrentClass = nonSyntheticRelationships
-      .filter { it.target.owner.endsWith(className) }
-
-    return this.copy(
-      methods = methods - lambdas - bridges - copyConstructors,
-      relationships = relationshipsInCurrentClass,
-    )
   }
 
   private fun skipLambdasInCallChain(relationships: List<Relationship>): List<Relationship> {

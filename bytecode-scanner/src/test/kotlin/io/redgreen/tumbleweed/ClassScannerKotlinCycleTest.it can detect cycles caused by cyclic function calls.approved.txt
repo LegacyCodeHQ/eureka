@@ -1,0 +1,105 @@
+Package: io.redgreen.tumbleweed
+Class: ClassStructure
+Fields:
+  - io.redgreen.tumbleweed.ClassStructure$Companion Companion
+  - java.lang.String packageName
+  - java.lang.String className
+  - java.util.List fields
+  - java.util.List methods
+  - java.util.List relationships
+  - org.slf4j.Logger logger
+Methods:
+  - void <init>(java.lang.String, java.lang.String, java.util.List, ist;Ljava.util.List, java.util.List;Ljava.util.List)
+  - java.lang.String getPackageName()
+  - java.lang.String getClassName()
+  - java.util.List getFields()
+  - java.util.List getMethods()
+  - java.util.List getRelationships()
+  - io.redgreen.tumbleweed.ClassStructure normalize()
+  - java.util.Set getLambdas(java.util.List)
+  - java.util.Set getBridges(java.util.List)
+  - java.util.Set getCopyConstructors(java.util.List)
+  - java.util.List nonSyntheticRelationships(java.util.Set)
+  - java.util.List skipLambdasInCallChain(java.util.List)
+  - boolean isRecursiveCall(java.util.List, ist;Lio.redgreen.tumbleweed.ClassStructure$Node, int)
+  - boolean isRecursiveCall$default(io.redgreen.tumbleweed.ClassStructure, java.util.List, ist;Lio.redgreen.tumbleweed.ClassStructure$Node, int, int, io.redgreen.tumbleweed.ClassStructure$Node;IILjava.lang.Object)
+  - boolean isCyclicCall(io.redgreen.tumbleweed.Signature, io.redgreen.tumbleweed.ClassStructure$Node)
+  - java.util.List removeSyntheticsFromChain(java.util.List)
+  - java.util.List toRelationships(java.util.List)
+  - java.util.Map asGraph(java.util.List)
+  - java.util.List bridgeCallReferences$bytecode_scanner(java.lang.String)
+  - java.util.List innerClassConstructorInvocations$bytecode_scanner()
+  - java.lang.String component1()
+  - java.lang.String component2()
+  - java.util.List component3()
+  - java.util.List component4()
+  - java.util.List component5()
+  - io.redgreen.tumbleweed.ClassStructure copy(java.lang.String, java.lang.String, java.util.List, ist;Ljava.util.List, java.util.List;Ljava.util.List)
+  - java.lang.String toString()
+  - int hashCode()
+  - boolean equals(java.lang.Object)
+  - void <clinit>()
+Reads:
+  - java.lang.String getPackageName() -> java.lang.String packageName
+  - java.lang.String getClassName() -> java.lang.String className
+  - java.util.List getFields() -> java.util.List fields
+  - java.util.List getMethods() -> java.util.List methods
+  - java.util.List getRelationships() -> java.util.List relationships
+  - io.redgreen.tumbleweed.ClassStructure normalize() -> java.util.List relationships
+  - io.redgreen.tumbleweed.ClassStructure normalize() -> java.lang.String className
+  - io.redgreen.tumbleweed.ClassStructure normalize() -> java.util.List fields
+  - io.redgreen.tumbleweed.ClassStructure normalize() -> java.util.List methods
+  - java.util.List nonSyntheticRelationships(java.util.Set) -> java.util.List relationships
+  - io.redgreen.tumbleweed.ClassStructure normalize() -> java.lang.String packageName
+  - java.util.List skipLambdasInCallChain(java.util.List) -> org.slf4j.Logger logger
+  - io.redgreen.tumbleweed.ClassStructure copy(java.lang.String, java.lang.String, java.util.List, ist;Ljava.util.List, java.util.List;Ljava.util.List) -> org.slf4j.Logger logger
+  - java.util.List bridgeCallReferences$bytecode_scanner(java.lang.String) -> java.util.List relationships
+  - java.util.List innerClassConstructorInvocations$bytecode_scanner() -> java.util.List relationships
+  - java.util.List innerClassConstructorInvocations$bytecode_scanner() -> java.lang.String className
+  - java.lang.String component1() -> java.lang.String packageName
+  - java.lang.String component2() -> java.lang.String className
+  - java.util.List component3() -> java.util.List fields
+  - java.util.List component4() -> java.util.List methods
+  - java.util.List component5() -> java.util.List relationships
+  - java.lang.String toString() -> java.lang.String packageName
+  - java.lang.String toString() -> java.lang.String className
+  - java.lang.String toString() -> java.util.List fields
+  - java.lang.String toString() -> java.util.List methods
+  - java.lang.String toString() -> java.util.List relationships
+  - int hashCode() -> java.lang.String packageName
+  - int hashCode() -> java.lang.String className
+  - int hashCode() -> java.util.List fields
+  - int hashCode() -> java.util.List methods
+  - int hashCode() -> java.util.List relationships
+  - boolean equals(java.lang.Object) -> java.lang.String packageName
+  - boolean equals(java.lang.Object) -> java.lang.String className
+  - boolean equals(java.lang.Object) -> java.util.List fields
+  - boolean equals(java.lang.Object) -> java.util.List methods
+  - boolean equals(java.lang.Object) -> java.util.List relationships
+  - io.redgreen.tumbleweed.ClassStructure copy(java.lang.String, java.lang.String, java.util.List, ist;Ljava.util.List, java.util.List;Ljava.util.List) -> java.lang.String packageName
+  - io.redgreen.tumbleweed.ClassStructure copy(java.lang.String, java.lang.String, java.util.List, ist;Ljava.util.List, java.util.List;Ljava.util.List) -> java.lang.String className
+  - io.redgreen.tumbleweed.ClassStructure copy(java.lang.String, java.lang.String, java.util.List, ist;Ljava.util.List, java.util.List;Ljava.util.List) -> java.util.List fields
+  - io.redgreen.tumbleweed.ClassStructure copy(java.lang.String, java.lang.String, java.util.List, ist;Ljava.util.List, java.util.List;Ljava.util.List) -> java.util.List methods
+  - io.redgreen.tumbleweed.ClassStructure copy(java.lang.String, java.lang.String, java.util.List, ist;Ljava.util.List, java.util.List;Ljava.util.List) -> java.util.List relationships
+Writes:
+  - void <init>(java.lang.String, java.lang.String, java.util.List, ist;Ljava.util.List, java.util.List;Ljava.util.List) -> java.lang.String packageName
+  - void <init>(java.lang.String, java.lang.String, java.util.List, ist;Ljava.util.List, java.util.List;Ljava.util.List) -> java.lang.String className
+  - void <init>(java.lang.String, java.lang.String, java.util.List, ist;Ljava.util.List, java.util.List;Ljava.util.List) -> java.util.List fields
+  - void <init>(java.lang.String, java.lang.String, java.util.List, ist;Ljava.util.List, java.util.List;Ljava.util.List) -> java.util.List methods
+  - void <init>(java.lang.String, java.lang.String, java.util.List, ist;Ljava.util.List, java.util.List;Ljava.util.List) -> java.util.List relationships
+  - void <clinit>() -> io.redgreen.tumbleweed.ClassStructure$Companion Companion
+  - void <clinit>() -> org.slf4j.Logger logger
+Calls:
+  - io.redgreen.tumbleweed.ClassStructure normalize() -> java.util.Set getBridges(java.util.List)
+  - io.redgreen.tumbleweed.ClassStructure normalize() -> java.util.Set getLambdas(java.util.List)
+  - io.redgreen.tumbleweed.ClassStructure normalize() -> java.util.Set getCopyConstructors(java.util.List)
+  - io.redgreen.tumbleweed.ClassStructure normalize() -> java.util.List nonSyntheticRelationships(java.util.Set)
+  - java.util.List nonSyntheticRelationships(java.util.Set) -> java.util.List skipLambdasInCallChain(java.util.List)
+  - java.util.List skipLambdasInCallChain(java.util.List) -> java.util.Map asGraph(java.util.List)
+  - io.redgreen.tumbleweed.ClassStructure normalize() -> io.redgreen.tumbleweed.ClassStructure copy(java.lang.String, java.lang.String, java.util.List, ist;Ljava.util.List, java.util.List;Ljava.util.List)
+  - java.util.List skipLambdasInCallChain(java.util.List) -> boolean isRecursiveCall(java.util.List, ist;Lio.redgreen.tumbleweed.ClassStructure$Node, int)
+  - java.util.List skipLambdasInCallChain(java.util.List) -> java.util.List removeSyntheticsFromChain(java.util.List)
+  - java.util.List skipLambdasInCallChain(java.util.List) -> java.util.List toRelationships(java.util.List)
+  - boolean isRecursiveCall(java.util.List, ist;Lio.redgreen.tumbleweed.ClassStructure$Node, int) -> boolean isCyclicCall(io.redgreen.tumbleweed.Signature, io.redgreen.tumbleweed.ClassStructure$Node)
+  - boolean isRecursiveCall$default(io.redgreen.tumbleweed.ClassStructure, java.util.List, ist;Lio.redgreen.tumbleweed.ClassStructure$Node, int, int, io.redgreen.tumbleweed.ClassStructure$Node;IILjava.lang.Object) -> boolean isRecursiveCall(java.util.List, ist;Lio.redgreen.tumbleweed.ClassStructure$Node, int)
+  - io.redgreen.tumbleweed.ClassStructure copy(java.lang.String, java.lang.String, java.util.List, ist;Ljava.util.List, java.util.List;Ljava.util.List) -> io.redgreen.tumbleweed.ClassStructure copy(java.lang.String, java.lang.String, java.util.List, ist;Ljava.util.List, java.util.List;Ljava.util.List)

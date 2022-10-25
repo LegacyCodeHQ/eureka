@@ -18,4 +18,18 @@ class ClassScannerKotlinCycleTest {
     // then
     Approvals.verify(classStructure.printable)
   }
+
+  @Test
+  fun `it can detect cycles caused by cyclic function calls`() {
+    // given
+    val classStructureClass = File(
+      "../bytecode-samples/src/main/resources/precompiled/kotlin/cyclic-function-calls/ClassStructure.class"
+    )
+
+    // when
+    val classStructure = ClassScanner.scan(classStructureClass)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
 }

@@ -92,11 +92,11 @@ data class ClassStructure(
       while (queue.isNotEmpty()) {
         val currentPath = queue.removeFirst()
         val destinations = graph[currentPath.last().member]
-        val pathNotFound = destinations != null && !isRecursiveCall(currentPath, destinations.last(), 2)
+        val pathNotFound = destinations != null && !isCyclicCall(currentPath, destinations.last(), 2)
         if (pathNotFound) {
           for (destination in destinations!!) {
             val newPath = currentPath + destination
-            if (isRecursiveCall(newPath, destination, 3)) {
+            if (isCyclicCall(newPath, destination, 3)) {
               break
             }
             queue.add(newPath)
@@ -115,18 +115,21 @@ data class ClassStructure(
       .distinct()
   }
 
-  private fun isRecursiveCall(
+  private fun isCyclicCall(
     path: List<Node>,
     destination: Node,
     nodesToCheck: Int = 3,
   ): Boolean {
-    return path
+    val isRecursiveOrBridgeCall = path
       .takeLast(nodesToCheck)
       .map { node -> node.member.signature }
-      .all { signature -> isCyclicCall(signature, destination) } && path.takeLast(nodesToCheck).size == nodesToCheck
+      .all { signature -> isRecursiveOrBridgeCall(signature, destination)
+      } && path.takeLast(nodesToCheck).size == nodesToCheck
+
+    return isRecursiveOrBridgeCall || destination in path.take(path.size - 1)
   }
 
-  private fun isCyclicCall(
+  private fun isRecursiveOrBridgeCall(
     signature: Signature,
     destination: Node,
   ): Boolean {

@@ -1,0 +1,26 @@
+Package: io.redgreen.tumbleweed.samples
+Class: Counter
+Fields:
+  - int count
+Methods:
+  - void <init>(int)
+  - void <init>(int, int, kotlin.jvm.internal.DefaultConstructorMarker)
+  - int getCount()
+  - io.redgreen.tumbleweed.samples.Counter increment()
+  - int component1()
+  - io.redgreen.tumbleweed.samples.Counter copy(int)
+  - java.lang.String toString()
+  - int hashCode()
+  - boolean equals(java.lang.Object)
+  - void <init>()
+Reads:
+  - int getCount() -> int count
+  - io.redgreen.tumbleweed.samples.Counter increment() -> int count
+  - int component1() -> int count
+  - java.lang.String toString() -> int count
+  - int hashCode() -> int count
+  - boolean equals(java.lang.Object) -> int count
+Writes:
+  - void <init>(int) -> int count
+Calls:
+  - io.redgreen.tumbleweed.samples.Counter increment() -> io.redgreen.tumbleweed.samples.Counter copy(int)

@@ -1,6 +1,7 @@
 package io.redgreen.tumbleweed
 
 import io.redgreen.tumbleweed.ClassStructure.Companion.logger
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 data class ClassStructure(
@@ -11,7 +12,7 @@ data class ClassStructure(
   val relationships: List<Relationship>,
 ) {
   companion object {
-    val logger = LoggerFactory.getLogger(ClassStructure::class.java)
+    val logger: Logger = LoggerFactory.getLogger(ClassStructure::class.java)
   }
 
   data class Node(
@@ -38,6 +39,12 @@ data class ClassStructure(
       .filter(Method::isBridge)
       .toSet()
 
+    val copyConstructors = relationships
+      .flatMap { listOf(it.source, it.target) }
+      .filterIsInstance<Method>()
+      .filter(Method::isCopyConstructor)
+      .toSet()
+
     val nonSyntheticRelationships = skipLambdasInCallChain(relationships)
       .filter { it.source !in bridges }
 
@@ -45,7 +52,7 @@ data class ClassStructure(
       .filter { it.target.owner.endsWith(className) }
 
     return this.copy(
-      methods = methods - lambdas - bridges,
+      methods = methods - lambdas - bridges - copyConstructors,
       relationships = relationshipsInCurrentClass,
     )
   }

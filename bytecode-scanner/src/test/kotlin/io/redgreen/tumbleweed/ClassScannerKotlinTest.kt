@@ -2,6 +2,7 @@ package io.redgreen.tumbleweed
 
 import io.redgreen.tumbleweed.samples.AccessSuperClassMembers
 import io.redgreen.tumbleweed.samples.AnonymousFunctionWritingField
+import io.redgreen.tumbleweed.samples.Counter
 import io.redgreen.tumbleweed.samples.DeeplyNestedLambdaFunctions
 import io.redgreen.tumbleweed.samples.EmptyClass
 import io.redgreen.tumbleweed.samples.ExtensionFunctionsWithReceivers
@@ -259,6 +260,20 @@ class ClassScannerKotlinTest {
 
     // when
     val classStructure = ClassScanner.scan(inlineFunction.file)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
+
+  @Test
+  fun `it can scan a class with a copy constructor`() {
+    // given
+    val copyConstructor = defaultKotlinClassLocation.copy(
+      fqClassName = Counter::class.java.name,
+    )
+
+    // when
+    val classStructure = ClassScanner.scan(copyConstructor.file)
 
     // then
     Approvals.verify(classStructure.printable)

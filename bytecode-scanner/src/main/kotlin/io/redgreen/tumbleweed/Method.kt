@@ -13,8 +13,11 @@ data class Method(
   val isBridge: Boolean
     get() = name.startsWith("access\$") /* Kotlin */
 
+  val isCopyConstructor: Boolean
+    get() = name.startsWith("copy\$default") /* Kotlin */
+
   val isSynthetic: Boolean
-    get() = isLambda || isBridge
+    get() = isLambda || isBridge || isCopyConstructor
 
   override val signature: Signature
     get() = MethodSignature(

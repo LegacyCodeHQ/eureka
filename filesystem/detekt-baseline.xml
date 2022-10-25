@@ -2,7 +2,6 @@
 <SmellBaseline>
   <ManuallySuppressedIssues></ManuallySuppressedIssues>
   <CurrentIssues>
-    <ID>SwallowedException:FileWatcher.kt$FileWatcher$e: ClosedWatchServiceException</ID>
     <ID>UtilityClassWithPublicConstructor:CompiledClassFileFinder.kt$CompiledClassFileFinder</ID>
   </CurrentIssues>
 </SmellBaseline>

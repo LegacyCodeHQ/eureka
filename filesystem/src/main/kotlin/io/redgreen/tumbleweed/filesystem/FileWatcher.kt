@@ -34,7 +34,7 @@ class FileWatcher {
         try {
           watchKey = watchService.take()
         } catch (e: ClosedWatchServiceException) {
-          logger.info("Stopped watching files")
+          logger.info("Stopped watching files", e)
           break
         }
       }

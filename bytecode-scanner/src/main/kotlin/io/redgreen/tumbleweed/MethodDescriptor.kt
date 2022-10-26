@@ -46,12 +46,12 @@ value class MethodDescriptor(private val descriptor: String) {
           index++
         } else if (TypeToken.isObject(tokenChar)) {
           val range = nonPrimitiveTypeTokenRanges.first { it.inRange(index) }
-          val typeToken = TypeToken(parametersDescriptor.substring(range.start, range.end + 1))
+          val descriptor = parametersDescriptor.substring(range.start, range.end + 1)
           if (isArray) {
-            typeTokens.add(typeToken)
+            typeTokens.add(TypeToken("[$descriptor"))
             isArray = false
           } else {
-            typeTokens.add(typeToken)
+            typeTokens.add(TypeToken(descriptor))
           }
 
           index = range.end + 1
@@ -69,7 +69,7 @@ value class MethodDescriptor(private val descriptor: String) {
   private fun nonPrimitiveTypeTokenRanges(parametersDescriptor: String): List<ClassTokenRange> {
     val startIndicesOfNonPrimitiveTypeTokens =
       parametersDescriptor.foldIndexed(mutableListOf<Index>()) { index, acc, char ->
-        if (char == 'L' || char == '[') acc.add(index)
+        if (char == 'L') acc.add(index)
         acc
       }
 

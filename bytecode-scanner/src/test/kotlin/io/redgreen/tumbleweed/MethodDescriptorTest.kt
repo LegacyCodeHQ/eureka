@@ -21,4 +21,22 @@ internal class MethodDescriptorTest {
       .containsExactly("int", "[]java.lang.String", "[]int")
       .inOrder()
   }
+
+  @Test
+  fun `it can parse method descriptor with reference types and primitive array`() {
+    // given
+    val descriptor = MethodDescriptor("=(Lmessages/SignalServiceContent;[BLrecipients/Recipient;)V")
+
+    // when
+    val returnType = descriptor.returnType
+    val parameters = descriptor.parameters
+
+    // then
+    assertThat(returnType)
+      .isEqualTo("void")
+
+    assertThat(parameters)
+      .containsExactly("messages.SignalServiceContent", "[]byte", "recipients.Recipient")
+      .inOrder()
+  }
 }

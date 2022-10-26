@@ -2,7 +2,7 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jreleaser.model.Active
 
 @Suppress("PropertyName")
-val CLI_VERSION = "0.18.0-SNAPSHOT"
+val CLI_VERSION = "0.18.0"
 
 plugins {
   application

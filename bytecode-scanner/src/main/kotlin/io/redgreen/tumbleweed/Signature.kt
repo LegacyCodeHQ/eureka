@@ -31,7 +31,7 @@ data class MethodSignature(
     get() = "${returnType.simpleName} ${name}(${parameterTypes.joinToString(", ") { it.simpleName }})"
 }
 
-val String.simpleName: String
+val QualifiedTypeName.simpleName: String
   get() {
     val isArray = this.startsWith("[]")
     val lastDotIndex = lastIndexOf(".")
@@ -40,7 +40,9 @@ val String.simpleName: String
     val simpleName = if (isPrimitive) {
       this
     } else {
-      substring(lastDotIndex + 1)
+      val possiblySimpleName = substring(lastDotIndex + 1)
+      val lastDollarIndex = possiblySimpleName.lastIndexOf('$')
+      if (lastDollarIndex == -1) possiblySimpleName else possiblySimpleName.substring(lastDollarIndex + 1)
     }
 
     return if (isPrimitive && isArray) {

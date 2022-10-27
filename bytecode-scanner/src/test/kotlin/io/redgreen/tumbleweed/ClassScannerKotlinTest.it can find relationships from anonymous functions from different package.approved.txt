@@ -1,0 +1,8 @@
+Package: io.redgreen.tumbleweed.samples
+Class: AnonymousFunctionDifferentPackage
+Methods:
+  - void <init>()
+  - void main()
+  - void celebrate()
+Calls:
+  - void main() -> void celebrate()

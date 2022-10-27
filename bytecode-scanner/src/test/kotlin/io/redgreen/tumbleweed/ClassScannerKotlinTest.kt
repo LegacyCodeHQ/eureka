@@ -9,6 +9,7 @@ import io.redgreen.tumbleweed.samples.ExtensionFunctionsWithReceivers
 import io.redgreen.tumbleweed.samples.FunctionCallsInsideLambdas
 import io.redgreen.tumbleweed.samples.InlineFunction
 import io.redgreen.tumbleweed.samples.InterfaceImplementation
+import io.redgreen.tumbleweed.samples.AnonymousFunctionDifferentPackage
 import io.redgreen.tumbleweed.samples.LateinitVar
 import io.redgreen.tumbleweed.samples.LazyProperty
 import io.redgreen.tumbleweed.samples.MethodsCallingMethods
@@ -274,6 +275,20 @@ class ClassScannerKotlinTest {
 
     // when
     val classStructure = ClassScanner.scan(copyConstructor.file)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
+
+  @Test
+  fun `it can find relationships from anonymous functions from different package`() {
+    // given
+    val anonymousFunctionDifferentPackage = defaultKotlinClassLocation.copy(
+      fqClassName = AnonymousFunctionDifferentPackage::class.java.name,
+    )
+
+    // when
+    val classStructure = ClassScanner.scan(anonymousFunctionDifferentPackage.file)
 
     // then
     Approvals.verify(classStructure.printable)

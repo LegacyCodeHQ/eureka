@@ -1,0 +1,8 @@
+Package: io.redgreen.tumbleweed.samples
+Class: ExtensionInlineFunctions
+Methods:
+  - void <init>()
+  - void main()
+  - void bax()
+Calls:
+  - void main() -> void bax()

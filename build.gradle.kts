@@ -20,8 +20,12 @@ allprojects {
 }
 
 subprojects {
-  apply(plugin = "org.jetbrains.kotlin.jvm")
   apply(plugin = "com.github.ben-manes.versions")
+  if (this.name == "web-client") {
+    return@subprojects
+  }
+
+  apply(plugin = "org.jetbrains.kotlin.jvm")
   apply(plugin = "jacoco")
 
   if (this.name != "bytecode-samples") {

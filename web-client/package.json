@@ -1,0 +1,22 @@
+{
+  "name": "web-client",
+  "version": "0.1.0",
+  "description": "TWD web client",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "eslintCheck": "eslint src test",
+    "eslintFix": "eslint src test --fix"
+  },
+  "license": "Apache 2.0",
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "eslint": "^8.26.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.23.3",
+    "mocha": "^10.1.0",
+    "approvals": "^4.1.1",
+    "marked": ">=0.3.18",
+    "ws": ">=7.4.6"
+  }
+}

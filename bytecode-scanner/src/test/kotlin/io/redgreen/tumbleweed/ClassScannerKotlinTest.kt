@@ -10,6 +10,7 @@ import io.redgreen.tumbleweed.samples.FunctionCallsInsideLambdas
 import io.redgreen.tumbleweed.samples.InlineFunction
 import io.redgreen.tumbleweed.samples.InterfaceImplementation
 import io.redgreen.tumbleweed.samples.AnonymousFunctionDifferentPackage
+import io.redgreen.tumbleweed.samples.ExtendsRelationship
 import io.redgreen.tumbleweed.samples.ExtensionInlineFunctions
 import io.redgreen.tumbleweed.samples.LateinitVar
 import io.redgreen.tumbleweed.samples.LazyProperty
@@ -304,6 +305,20 @@ class ClassScannerKotlinTest {
 
     // when
     val classStructure = ClassScanner.scan(extensionInlineFunctions.file)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
+
+  @Test
+  fun `it can find the super class`() {
+    // given
+    val extendsRelationship = defaultKotlinClassLocation.copy(
+      fqClassName = ExtendsRelationship::class.java.name,
+    )
+
+    // when
+    val classStructure = ClassScanner.scan(extendsRelationship.file)
 
     // then
     Approvals.verify(classStructure.printable)

@@ -10,6 +10,7 @@ data class ClassStructure(
   val fields: List<Field>,
   val methods: List<Method>,
   val relationships: List<Relationship>,
+  val superClassName: String? = null,
 ) {
   companion object {
     val logger: Logger = LoggerFactory.getLogger(ClassStructure::class.java)

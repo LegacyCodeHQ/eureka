@@ -43,6 +43,7 @@ object ClassScanner {
     outClassFilesQueue: ArrayDeque<File>,
     visitedClassFiles: Set<File>,
   ): ClassStructure {
+    var superClassName: String? = null
     val outFields = mutableListOf<Field>()
     val outMethods = mutableListOf<Method>()
     val outRelationships = mutableListOf<Relationship>()
@@ -51,6 +52,20 @@ object ClassScanner {
     val topLevelType = classInfo.topLevelType
 
     val classVisitor = object : ClassVisitor(ASM_API_VERSION) {
+      override fun visit(
+        version: Int,
+        access: Int,
+        name: String?,
+        signature: String?,
+        superName: String,
+        interfaces: Array<out String>?,
+      ) {
+        super.visit(version, access, name, signature, superName, interfaces)
+        if (superName != "java/lang/Object") {
+          superClassName = superName.replace('/', '.')
+        }
+      }
+
       override fun visitField(
         access: Int,
         name: String?,
@@ -97,6 +112,7 @@ object ClassScanner {
       outFields,
       outMethods,
       outRelationships.toList(),
+      superClassName,
     )
   }
 }

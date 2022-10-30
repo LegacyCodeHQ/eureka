@@ -11,6 +11,7 @@ data class ClassStructure(
   val fields: List<Field>,
   val methods: List<Method>,
   val relationships: List<Relationship>,
+  val type: QualifiedType,
 ) {
   companion object {
     val logger: Logger = LoggerFactory.getLogger(ClassStructure::class.java)
@@ -30,14 +31,14 @@ data class ClassStructure(
   fun normalize(): ClassStructure {
     val nonSyntheticRelationships = nonSyntheticRelationships(getBridges(relationships))
     val relationshipsInCurrentClass = nonSyntheticRelationships
-      .filter { it.target.owner.endsWith(className) }
+      .filter { it.target.owner.name.endsWith(className) }
 
     val allMembersInRelationships = relationshipsInCurrentClass.flatMap { listOf(it.source, it.target) }
 
     val fieldsFromRelationships = allMembersInRelationships.filterIsInstance<Field>().distinct()
     val methodsFromRelationships = allMembersInRelationships
       .filterIsInstance<Method>()
-      .filter { it.owner.endsWith(this.className) }
+      .filter { it.owner.name.endsWith(this.className) }
       .distinct()
 
     val missingFields = fieldsFromRelationships - fields.toSet()
@@ -167,20 +168,20 @@ data class ClassStructure(
   }
 
   internal fun bridgeCallReferences(topLevelClassName: String): List<Relationship> {
-    return this.relationships.filter { it.target.owner.endsWith(topLevelClassName) }
+    return this.relationships.filter { it.target.owner.name.endsWith(topLevelClassName) }
   }
 
   internal fun innerClassConstructorInvocations(): List<Relationship> {
     return relationships
       .filter { it.type == Relationship.Type.Calls }
       .filter { (it.target as Method).name == "<init>" }
-      .filter { it.target.owner != className }
+      .filter { it.target.owner.name != className }
   }
 }
 
 internal fun List<ClassStructure>.findClassStructureOf(constructor: Member): ClassStructure? {
   logger.debug("Finding class structure of: {}", constructor.owner)
-  val classStructure = this.find { it.className == constructor.owner.substringAfterLast('/') }
+  val classStructure = this.find { it.className == constructor.owner.name.substringAfterLast('/') }
   if (classStructure == null) {
     logger.warn("Could not find class structure of: {}", constructor.owner)
   }

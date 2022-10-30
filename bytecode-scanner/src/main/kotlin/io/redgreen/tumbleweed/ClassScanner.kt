@@ -49,7 +49,7 @@ object ClassScanner {
     val outRelationships = mutableListOf<Relationship>()
 
     val classInfo = ClassInfo.from(classFile)
-    val topLevelType = classInfo.topLevelType
+    val topLevelType = classInfo.type
 
     val classVisitor = object : ClassVisitor(ASM_API_VERSION) {
       override fun visit(
@@ -111,6 +111,7 @@ object ClassScanner {
       outFields,
       outMethods,
       outRelationships.toList(),
+      topLevelType,
     )
   }
 }

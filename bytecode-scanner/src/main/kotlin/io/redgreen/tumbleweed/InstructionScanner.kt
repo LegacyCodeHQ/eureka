@@ -11,7 +11,7 @@ object InstructionScanner {
   private val logger: Logger = LoggerFactory.getLogger(InstructionScanner::class.java)
 
   fun scan(
-    topLevelType: String,
+    topLevelType: QualifiedType,
     caller: Method,
     outRelationships: MutableList<Relationship>,
   ): MethodVisitor {
@@ -24,9 +24,9 @@ object InstructionScanner {
       ) {
         logger.debug("Visiting field instruction ({}): {}/{}", opcode.instruction, owner, fieldName)
 
-        val field = Field(fieldName, FieldDescriptor.from(fieldDescriptor), owner)
+        val field = Field(fieldName, FieldDescriptor.from(fieldDescriptor), QualifiedType(owner))
         val relationship = Relationship(caller, field, Relationship.Type.from(opcode))
-        if (owner == topLevelType) {
+        if (owner == topLevelType.name) {
           logger.debug("Adding relationship: {}", relationship)
           outRelationships.add(relationship)
         } else {
@@ -43,8 +43,8 @@ object InstructionScanner {
       ) {
         logger.debug("Visiting method instruction ({}): {}/{}", opcode.instruction, owner, methodName)
 
-        if (topLevelType.startsWith(owner) || owner.startsWith("$topLevelType\$")) {
-          val callee = Method(methodName, MethodDescriptor(methodDescriptor), owner)
+        if (topLevelType.name.startsWith(owner) || owner.startsWith("${topLevelType.name}\$")) {
+          val callee = Method(methodName, MethodDescriptor(methodDescriptor), QualifiedType(owner))
           val relationship = Relationship(caller, callee, Relationship.Type.from(opcode))
 
           logger.debug("Adding relationship: {}", relationship)

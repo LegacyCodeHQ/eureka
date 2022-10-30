@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory
 data class ClassInfo(
   val packageName: String,
   val className: String,
-  val topLevelType: String,
+  val type: QualifiedType,
 ) {
   companion object {
     private val logger: Logger = LoggerFactory.getLogger(ClassInfo::class.java)
@@ -18,7 +18,7 @@ data class ClassInfo(
     fun from(classFile: File): ClassInfo {
       var className: String? = null
       var packageName: String? = null
-      var topLevelType: String? = null
+      var topLevelType: QualifiedType? = null
 
       val classVisitor = object : ClassVisitor(ASM_API_VERSION) {
         override fun visit(
@@ -31,7 +31,7 @@ data class ClassInfo(
         ) {
           logger.debug("Visiting class: {}", name)
 
-          topLevelType = name
+          topLevelType = QualifiedType(name)
           name.split("/").let { fqClassNameParts ->
             packageName = fqClassNameParts.dropLast(1).joinToString(".")
             className = fqClassNameParts.last()

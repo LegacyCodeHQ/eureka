@@ -3,7 +3,7 @@ package io.redgreen.tumbleweed
 data class Method(
   override val name: String,
   val descriptor: MethodDescriptor,
-  override val owner: String,
+  override val owner: QualifiedType,
 ) : Member {
   val isLambda: Boolean
     get() = name.startsWith("lambda\$") || /* Java */

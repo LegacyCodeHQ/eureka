@@ -48,7 +48,7 @@ subprojects {
 
     testImplementation("com.google.truth:truth:1.1.3")
 
-    testImplementation("com.approvaltests:approvaltests:18.4.0")
+    testImplementation("com.approvaltests:approvaltests:18.5.0")
     testImplementation("com.google.code.gson:gson:2.10") /* Used by Approvals for pretty-printing JSON */
   }
 

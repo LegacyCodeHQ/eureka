@@ -240,7 +240,7 @@
     if (classInfo.implements != null) {
       const interfaces = classInfo.implements.join("\n").trim();
 
-      document.getElementById('class-info').innerHTML += '<td class="property">Implements</td>' + '<td style="white-space:pre-wrap; word-wrap:break-word">' + interfaces + '</td>';
+      document.getElementById('class-info').innerHTML += '<td class="property">Implements (' + classInfo.implements.length + ')</td>' + '<td style="white-space:pre-wrap; word-wrap:break-word">' + interfaces + '</td>';
     }
   }
 

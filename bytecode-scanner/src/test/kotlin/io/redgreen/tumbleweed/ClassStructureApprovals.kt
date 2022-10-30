@@ -9,10 +9,8 @@ val ClassStructure.printable: Any
         .appendLine("Package: $packageName")
         .appendLine("Class: $className")
 
-      if (superClassName != null) {
-        classStructurePrintableBuilder
-          .appendLine("Extends: $superClassName")
-      }
+      classStructurePrintableBuilder
+        .appendLine("Extends: ${superClass.name}")
 
       if (fields.isNotEmpty()) {
         classStructurePrintableBuilder.appendLine("Fields:")

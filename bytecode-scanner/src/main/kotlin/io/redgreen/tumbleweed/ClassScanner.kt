@@ -107,7 +107,7 @@ object ClassScanner {
     return ClassStructure(
       classInfo.packageName,
       classInfo.className,
-      superClassName,
+      QualifiedType(superClassName),
       outFields,
       outMethods,
       outRelationships.toList(),

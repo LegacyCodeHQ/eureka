@@ -6,5 +6,5 @@ data class Field constructor(
   override val owner: String,
 ) : Member {
   override val signature: Signature
-    get() = FieldSignature(name, descriptor.type)
+    get() = FieldSignature(name, QualifiedType(descriptor.type))
 }

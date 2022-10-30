@@ -20,7 +20,7 @@ data class Method(
     get() = isLambda || isBridge || isCopyConstructor
 
   override val signature: Signature
-    get() = MethodSignature(
+    get() = MethodSignature.from(
       name,
       descriptor.parameters,
       descriptor.returnType,

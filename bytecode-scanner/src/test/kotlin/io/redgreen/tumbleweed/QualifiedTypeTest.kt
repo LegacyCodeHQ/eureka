@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
-class QualifiedTypeNameTest {
+class QualifiedTypeTest {
   @ParameterizedTest
   @ValueSource(
     strings = [
@@ -21,37 +21,37 @@ class QualifiedTypeNameTest {
     ],
   )
   fun `return the same type for primitive types`(type: String) {
-    assertThat(type.simpleName)
+    assertThat(QualifiedType(type).simpleName)
       .isEqualTo(type)
   }
 
   @Test
   fun `return simple names for non-primitive types`() {
-    assertThat("java.lang.String".simpleName)
+    assertThat(QualifiedType("java.lang.String").simpleName)
       .isEqualTo("String")
   }
 
   @Test
   fun `return simple names for primitive arrays`() {
-    assertThat("[]int".simpleName)
+    assertThat(QualifiedType("[]int").simpleName)
       .isEqualTo("[]int")
   }
 
   @Test
   fun `return simple names for non-primitive arrays`() {
-    assertThat("[]java.lang.String".simpleName)
+    assertThat(QualifiedType("[]java.lang.String").simpleName)
       .isEqualTo("[]String")
   }
 
   @Test
   fun `simple names for multi-dimensional primitive arrays`() {
-    assertThat("[][]double".simpleName)
+    assertThat(QualifiedType("[][]double").simpleName)
       .isEqualTo("[][]double")
   }
 
   @Test
   fun `simple names for multi-dimensional non-primitive arrays`() {
-    assertThat("[][]java.lang.String".simpleName)
+    assertThat(QualifiedType("[][]java.lang.String").simpleName)
       .isEqualTo("[][]String")
   }
 }

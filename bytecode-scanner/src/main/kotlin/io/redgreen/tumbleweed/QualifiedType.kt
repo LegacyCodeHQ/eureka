@@ -1,5 +1,9 @@
 package io.redgreen.tumbleweed
 
+/*
+ * FIXME: This class represents both external and internal qualified name
+ * FIXME: types without a distinction. (e.g. java.lang.Object and java/lang/Object)
+ */
 @JvmInline
 value class QualifiedType(val name: String) {
   val simpleName: String

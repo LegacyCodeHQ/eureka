@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory
 data class BilevelEdgeBundlingGraph(
   val nodes: List<Node>,
   val links: List<Link>,
+  val meta: Map<String, Any> = emptyMap(),
 ) {
   companion object {
     fun fromJson(json: String): BilevelEdgeBundlingGraph {

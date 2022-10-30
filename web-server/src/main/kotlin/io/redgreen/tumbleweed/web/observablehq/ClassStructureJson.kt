@@ -10,8 +10,19 @@ val ClassStructure.graph: BilevelEdgeBundlingGraph
   get() {
     val nodes = (fields + methods).map(Member::toNode)
     val links = relationships.map(Relationship::toLink)
-    return BilevelEdgeBundlingGraph(nodes, links)
+    return BilevelEdgeBundlingGraph(nodes, links, classInfoMap())
   }
+
+private fun ClassStructure.classInfoMap(): Map<String, Map<String, String>> {
+  val classInfo = mutableMapOf(
+    "name" to type.simpleName.replace("/", "."),
+  ).apply {
+    if (superType.name != "java.lang.Object") {
+      put("extends", superType.simpleName.replace("/", "."))
+    }
+  }
+  return mapOf("classInfo" to classInfo.toMap())
+}
 
 private fun Member.toNode(): BilevelEdgeBundlingGraph.Node {
   val group = when (this) {

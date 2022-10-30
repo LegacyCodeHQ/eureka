@@ -12,7 +12,7 @@ import {
   SkipToContent,
 } from '@carbon/react';
 
-import { Notification, Switcher } from '@carbon/react/icons';
+import { LogoGithub, Switcher } from '@carbon/react/icons';
 import { Link } from 'react-router-dom';
 
 const WorkbenchHeader = () => (
@@ -24,7 +24,6 @@ const WorkbenchHeader = () => (
       <Header aria-label="Tumbleweed">
         <SkipToContent/>
         <HeaderMenuButton
-          aria-label="Open menu"
           onClick={onClickSideNavExpand}
           isActive={isSideNavExpanded}
         />
@@ -35,8 +34,10 @@ const WorkbenchHeader = () => (
           <HeaderMenuItem element={Link} to="/about">About</HeaderMenuItem>
         </HeaderNavigation>
         <HeaderGlobalBar>
-          <HeaderGlobalAction aria-label="Notifications" tooltipAlignment="center">
-            <Notification size={20}/>
+          <HeaderGlobalAction aria-label="GitHub" tooltipAlignment="center">
+            <LogoGithub size={20} onClick={() => {
+              window.open('https://github.com/redgreenio/tumbleweed', '_blank');
+            }}/>
           </HeaderGlobalAction>
           <HeaderGlobalAction aria-label="App Switcher" tooltipAlignment="end">
             <Switcher size={20}/>

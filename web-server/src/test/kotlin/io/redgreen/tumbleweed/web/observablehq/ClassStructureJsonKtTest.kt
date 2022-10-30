@@ -2,6 +2,7 @@ package io.redgreen.tumbleweed.web.observablehq
 
 import io.redgreen.tumbleweed.ClassScanner
 import io.redgreen.tumbleweed.samples.AccessSuperClassMembers
+import io.redgreen.tumbleweed.samples.InterfaceImplementation
 import io.redgreen.tumbleweed.samples.OnlyMethods
 import java.io.File
 import org.approvaltests.JsonApprovals
@@ -27,6 +28,19 @@ internal class ClassStructureJsonKtTest {
     val classFile = File(
       "../bytecode-samples/build/classes/kotlin/main/" +
         OnlyMethods::class.java.name.replace(".", "/") + ".class"
+    )
+    val classStructure = ClassScanner.scan(classFile)
+
+    // when & then
+    JsonApprovals.verifyAsJson(classStructure.graph)
+  }
+
+  @Test
+  internal fun `serialize class structure that implements an interface`() {
+    // given
+    val classFile = File(
+      "../bytecode-samples/build/classes/kotlin/main/" +
+        InterfaceImplementation::class.java.name.replace(".", "/") + ".class"
     )
     val classStructure = ClassScanner.scan(classFile)
 

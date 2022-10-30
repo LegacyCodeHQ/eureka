@@ -42,4 +42,4 @@ bin/
 Thumbs.db
 
 ### Approval Tests ###
-*.received.txt
+*.received.*

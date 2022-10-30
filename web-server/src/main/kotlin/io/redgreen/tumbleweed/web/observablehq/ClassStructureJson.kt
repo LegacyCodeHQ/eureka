@@ -13,12 +13,15 @@ val ClassStructure.graph: BilevelEdgeBundlingGraph
     return BilevelEdgeBundlingGraph(nodes, links, classInfoMap())
   }
 
-private fun ClassStructure.classInfoMap(): Map<String, Map<String, String>> {
-  val classInfo = mutableMapOf(
+private fun ClassStructure.classInfoMap(): Map<String, Map<String, Any>> {
+  val classInfo = mutableMapOf<String, Any>(
     "name" to type.name.replace("/", "."),
   ).apply {
     if (superType.name != "java.lang.Object") {
       put("extends", superType.name.replace("/", "."))
+    }
+    if (interfaces.isNotEmpty()) {
+      put("implements", interfaces.map { it.name.replace("/", ".") })
     }
   }
   return mapOf("classInfo" to classInfo.toMap())

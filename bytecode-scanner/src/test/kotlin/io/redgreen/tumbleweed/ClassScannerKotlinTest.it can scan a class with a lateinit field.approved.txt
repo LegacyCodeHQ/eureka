@@ -1,5 +1,6 @@
 Package: io.redgreen.tumbleweed.samples
 Class: LateinitVar
+Extends: java.lang.Object
 Fields:
   - java.lang.String bingo
 Methods:

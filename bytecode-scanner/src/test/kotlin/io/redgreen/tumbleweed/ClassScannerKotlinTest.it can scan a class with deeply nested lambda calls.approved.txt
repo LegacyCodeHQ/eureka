@@ -1,5 +1,6 @@
 Package: io.redgreen.tumbleweed.samples
 Class: DeeplyNestedLambdaFunctions
+Extends: java.lang.Object
 Fields:
   - java.util.Queue structureUpdatesQueue
 Methods:

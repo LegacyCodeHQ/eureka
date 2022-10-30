@@ -7,10 +7,10 @@ import org.slf4j.LoggerFactory
 data class ClassStructure(
   val packageName: String,
   val className: String,
+  val superClassName: String,
   val fields: List<Field>,
   val methods: List<Method>,
   val relationships: List<Relationship>,
-  val superClassName: String? = null,
 ) {
   companion object {
     val logger: Logger = LoggerFactory.getLogger(ClassStructure::class.java)

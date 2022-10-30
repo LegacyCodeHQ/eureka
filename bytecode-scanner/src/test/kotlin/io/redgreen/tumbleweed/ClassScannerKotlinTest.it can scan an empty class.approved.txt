@@ -1,4 +1,5 @@
 Package: io.redgreen.tumbleweed.samples
 Class: EmptyClass
+Extends: java.lang.Object
 Methods:
   - void <init>()

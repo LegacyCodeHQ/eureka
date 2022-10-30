@@ -1,5 +1,6 @@
 Package: io.redgreen.tumbleweed.samples
 Class: ExtensionFunctionsWithReceivers
+Extends: java.lang.Object
 Fields:
   - int defaultPort
 Methods:

@@ -1,5 +1,6 @@
 Package: io.redgreen.tumbleweed
 Class: ClassStructure
+Extends: java.lang.Object
 Fields:
   - io.redgreen.tumbleweed.ClassStructure$Companion Companion
   - java.lang.String packageName

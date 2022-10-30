@@ -1,5 +1,6 @@
 Package: io.redgreen.tumbleweed.samples
 Class: LazyProperty
+Extends: java.lang.Object
 Fields:
   - kotlin.Lazy sloth$delegate
 Methods:

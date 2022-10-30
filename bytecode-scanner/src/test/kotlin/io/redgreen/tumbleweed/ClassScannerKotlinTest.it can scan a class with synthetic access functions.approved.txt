@@ -1,5 +1,6 @@
 Package: io.redgreen.tumbleweed.samples
 Class: SyntheticBridges
+Extends: java.lang.Object
 Fields:
   - java.lang.String field
 Methods:

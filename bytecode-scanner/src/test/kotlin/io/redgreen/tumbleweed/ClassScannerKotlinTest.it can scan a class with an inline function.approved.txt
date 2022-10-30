@@ -1,5 +1,6 @@
 Package: io.redgreen.tumbleweed.samples
 Class: InlineFunction
+Extends: java.lang.Object
 Fields:
   - java.lang.StringBuilder logger
 Methods:

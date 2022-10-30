@@ -1,5 +1,6 @@
 Package: io.redgreen.tumbleweed.samples
 Class: MethodReadingField
+Extends: java.lang.Object
 Fields:
   - java.lang.String name
 Methods:

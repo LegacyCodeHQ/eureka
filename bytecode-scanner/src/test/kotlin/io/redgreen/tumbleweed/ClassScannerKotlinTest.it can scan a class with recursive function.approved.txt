@@ -1,5 +1,6 @@
 Package: io.redgreen.tumbleweed.samples
 Class: RecursiveFunction
+Extends: java.lang.Object
 Fields:
   - io.redgreen.tumbleweed.samples.RecursiveFunction INSTANCE
 Methods:

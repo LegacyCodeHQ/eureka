@@ -1,5 +1,6 @@
 Package: io.redgreen.tumbleweed.samples
 Class: StringConcatenation
+Extends: java.lang.Object
 Methods:
   - void <init>()
   - void printHappyNewYear()

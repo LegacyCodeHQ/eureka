@@ -1,5 +1,6 @@
 Package: io.redgreen.tumbleweed.samples
 Class: StaticFieldAccess
+Extends: java.lang.Object
 Methods:
   - void <init>()
   - void turnDebugOn()

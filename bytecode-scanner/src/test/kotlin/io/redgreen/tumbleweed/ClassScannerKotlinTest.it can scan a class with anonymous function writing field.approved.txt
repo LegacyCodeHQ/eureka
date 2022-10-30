@@ -1,5 +1,6 @@
 Package: io.redgreen.tumbleweed.samples
 Class: AnonymousFunctionWritingField
+Extends: java.lang.Object
 Fields:
   - int counter
 Methods:

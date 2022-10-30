@@ -1,5 +1,6 @@
 Package: io.redgreen.tumbleweed.samples
 Class: LambdaAccessingField
+Extends: java.lang.Object
 Fields:
   - int count
 Methods:

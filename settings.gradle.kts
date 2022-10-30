@@ -5,5 +5,4 @@ include(
   ":bytecode-samples",
   ":web-server",
   ":filesystem",
-  ":web-client",
 )

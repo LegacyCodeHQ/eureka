@@ -15,10 +15,10 @@ val ClassStructure.graph: BilevelEdgeBundlingGraph
 
 private fun ClassStructure.classInfoMap(): Map<String, Map<String, String>> {
   val classInfo = mutableMapOf(
-    "name" to type.simpleName.replace("/", "."),
+    "name" to type.name.replace("/", "."),
   ).apply {
     if (superType.name != "java.lang.Object") {
-      put("extends", superType.simpleName.replace("/", "."))
+      put("extends", superType.name.replace("/", "."))
     }
   }
   return mapOf("classInfo" to classInfo.toMap())

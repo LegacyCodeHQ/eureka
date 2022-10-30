@@ -6,11 +6,7 @@ import {
   HeaderGlobalAction,
   HeaderGlobalBar,
   HeaderMenuButton,
-  HeaderMenuItem,
   HeaderName,
-  HeaderSideNavItems,
-  SideNav,
-  SideNavItems,
   SkipToContent,
 } from '@carbon/react';
 
@@ -32,17 +28,6 @@ const WorkbenchHeader = () => (
         <HeaderName prefix="TWD">
           Tumbleweed
         </HeaderName>
-        <SideNav
-          aria-label="Side navigation"
-          expanded={isSideNavExpanded}
-          isPersistent={false}
-        >
-          <SideNavItems>
-            <HeaderSideNavItems>
-              <HeaderMenuItem href="/repos">Repositories</HeaderMenuItem>
-            </HeaderSideNavItems>
-          </SideNavItems>
-        </SideNav>
         <HeaderGlobalBar>
           <HeaderGlobalAction aria-label="Notifications" tooltipAlignment="center">
             <Notification size={20}/>

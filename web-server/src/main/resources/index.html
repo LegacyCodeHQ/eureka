@@ -23,25 +23,28 @@
       background-color: black;
     }
 
-    #stats {
+    #panels {
       position: absolute;
       top: 0;
       left: 0;
       margin: 0.8em;
-      z-index: -1;
     }
 
-    #stats-title {
+    .panel-title {
       text-align: start;
       color: whitesmoke;
     }
 
-    .stat {
+    .property {
       padding-right: 0.8em;
     }
 
-    .stat-value {
+    .value {
       text-align: end;
+    }
+
+    #class-info {
+      margin-top: 0.8em;
     }
   </style>
 </head>
@@ -50,24 +53,37 @@
   <svg id="svg" xmlns="http://www.w3.org/2000/svg"></svg>
 </div>
 
-<div>
-  <table id="stats">
-    <tr>
-      <th id="stats-title" colspan="2">Stats</th>
-    </tr>
-    <tr>
-      <td class="stat">Fields</td>
-      <td id="fields-stat" class="stat-value">0</td>
-    </tr>
-    <tr>
-      <td class="stat">Methods</td>
-      <td id="methods-stat" class="stat-value">0</td>
-    </tr>
-    <tr>
-      <td class="stat">Relationships</td>
-      <td id="relationships-stat" class="stat-value">0</td>
-    </tr>
-  </table>
+<div id="panels">
+  <div>
+    <table id="stats">
+      <tr>
+        <th class="panel-title" colspan="2">Stats</th>
+      </tr>
+      <tr>
+        <td class="property">Fields</td>
+        <td id="fields-stat" class="value">0</td>
+      </tr>
+      <tr>
+        <td class="property">Methods</td>
+        <td id="methods-stat" class="value">0</td>
+      </tr>
+      <tr>
+        <td class="property">Relationships</td>
+        <td id="relationships-stat" class="value">0</td>
+      </tr>
+    </table>
+  </div>
+  <div>
+    <table id="class-info">
+      <tr>
+        <th class="panel-title" colspan="2">Class</th>
+      </tr>
+      <tr>
+        <td class="property">Name</td>
+        <td id="class-name" class="value"></td>
+      </tr>
+    </table>
+  </div>
 </div>
 </body>
 <script src="https://d3js.org/d3.v7.min.js"></script>
@@ -214,11 +230,20 @@
     document.getElementById('relationships-stat').textContent = relationships;
   }
 
+  function setClassInfo(classInfo) {
+    document.getElementById('class-name').textContent = classInfo.name;
+
+    if (classInfo.extends != null) {
+      document.getElementById('class-info').innerHTML += '<td class="property">Extends</td>' + '<td class="value">' + classInfo.extends + '</td>';
+    }
+  }
+
   const ws = new WebSocket("ws://localhost:{port}/structure-updates");
   ws.onmessage = (event) => {
     let graph = JSON.parse(event.data);
     drawEdgeBundlingGraph(graph);
     updateStats(graph);
+    setClassInfo(graph.meta.classInfo);
   };
 </script>
 </html>

@@ -10,7 +10,7 @@ val ClassStructure.printable: Any
         .appendLine("Class: $className")
 
       classStructurePrintableBuilder
-        .appendLine("Extends: ${superClass.name}")
+        .appendLine("Extends: ${superType.name}")
 
       if (fields.isNotEmpty()) {
         classStructurePrintableBuilder.appendLine("Fields:")

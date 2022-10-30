@@ -12,6 +12,11 @@ val ClassStructure.printable: Any
       classStructurePrintableBuilder
         .appendLine("Extends: ${superType.name}")
 
+      if (interfaces.isNotEmpty()) {
+        classStructurePrintableBuilder
+          .appendLine("Implements: ${interfaces.joinToString(", ") { it.name }}")
+      }
+
       if (fields.isNotEmpty()) {
         classStructurePrintableBuilder.appendLine("Fields:")
         fields.forEach { field ->

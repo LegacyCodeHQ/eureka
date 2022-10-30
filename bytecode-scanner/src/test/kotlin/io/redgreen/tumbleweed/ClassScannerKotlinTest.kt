@@ -323,4 +323,18 @@ class ClassScannerKotlinTest {
     // then
     Approvals.verify(classStructure.printable)
   }
+
+  @Test
+  fun `it can find the interfaces implemented by a class`() {
+    // given
+    val implementsInterface = defaultKotlinClassLocation.copy(
+      fqClassName = InterfaceImplementation::class.java.name,
+    )
+
+    // when
+    val classStructure = ClassScanner.scan(implementsInterface.file)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
 }

@@ -44,6 +44,7 @@ object ClassScanner {
     visitedClassFiles: Set<File>,
   ): ClassStructure {
     lateinit var superClassName: String
+    val outInterfaces = mutableListOf<QualifiedType>()
     val outFields = mutableListOf<Field>()
     val outMethods = mutableListOf<Method>()
     val outRelationships = mutableListOf<Relationship>()
@@ -62,6 +63,9 @@ object ClassScanner {
       ) {
         super.visit(version, access, name, signature, superName, interfaces)
         superClassName = superName.replace('/', '.')
+        interfaces?.forEach { interfaceName ->
+          outInterfaces.add(QualifiedType(interfaceName.replace('/', '.')))
+        }
       }
 
       override fun visitField(
@@ -108,6 +112,7 @@ object ClassScanner {
       classInfo.packageName,
       classInfo.className,
       QualifiedType(superClassName),
+      outInterfaces.toList(),
       outFields,
       outMethods,
       outRelationships.toList(),

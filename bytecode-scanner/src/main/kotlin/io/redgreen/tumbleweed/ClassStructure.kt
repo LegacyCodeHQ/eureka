@@ -8,6 +8,7 @@ data class ClassStructure(
   val packageName: String,
   val className: String,
   val superType: QualifiedType,
+  val interfaces: List<QualifiedType>,
   val fields: List<Field>,
   val methods: List<Method>,
   val relationships: List<Relationship>,

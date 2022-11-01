@@ -60,11 +60,14 @@
       color: darkgray;
     }
 
-    .box {
+    .circle {
       height: 1em;
       width: 1em;
       clear: both;
       margin-right: 0.5em;
+      border-radius:50%;
+      -moz-border-radius:50%;
+      -webkit-border-radius:50%;
     }
 
     .red {
@@ -88,11 +91,11 @@
         <th class="panel-title" colspan="2">Legend</th>
       </tr>
       <tr>
-        <td><div class='box red'></div></td>
+        <td><div class='circle red'></div></td>
         <td>Dependencies</td>
       </tr>
       <tr>
-        <td><div class='box blue'></div></td>
+        <td><div class='circle blue'></div></td>
         <td>Dependenents</td>
       </tr>
     </table>

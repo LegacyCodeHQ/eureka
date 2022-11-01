@@ -44,12 +44,31 @@
       text-align: end;
     }
 
+    #stats {
+      margin-top: 0.8em;
+    }
+
     #class-info {
       margin-top: 0.8em;
     }
 
     .package-name {
       color: darkgray;
+    }
+
+    .box {
+      height: 1em;
+      width: 1em;
+      clear: both;
+      margin-right: 0.5em;
+    }
+
+    .red {
+      background-color: red;
+    }
+
+    .blue {
+      background-color: blue;
     }
   </style>
 </head>
@@ -60,6 +79,19 @@
 
 <div id="panels">
   <div>
+    <table id="legend">
+      <tr>
+        <th class="panel-title" colspan="2">Legend</th>
+      </tr>
+      <tr>
+        <td><div class='box red'></div></td>
+        <td>Dependencies</td>
+      </tr>
+      <tr>
+        <td><div class='box blue'></div></td>
+        <td>Dependenents</td>
+      </tr>
+    </table>
     <table id="stats">
       <tr>
         <th class="panel-title" colspan="2">Stats</th>

@@ -20,3 +20,11 @@ export function compressType(qualifiedTypeName) {
 export function sortTypes(qualifiedTypeNames) {
   return qualifiedTypeNames.sort();
 }
+
+export function getPackageName(qualifiedType) {
+  const dotBeforeTypeName = qualifiedType.lastIndexOf('.');
+  if (dotBeforeTypeName !== -1) {
+    return qualifiedType.slice(0, dotBeforeTypeName);
+  }
+  return null;
+}

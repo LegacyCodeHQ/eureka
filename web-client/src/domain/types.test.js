@@ -1,7 +1,7 @@
 require('chai')
   .should();
 
-const { compressType, sortTypes } = require('./types.js');
+const { compressType, sortTypes, getPackageName } = require('./types.js');
 
 describe('a qualified type name', () => {
   it('should return the same name if it is in the default package', function () {
@@ -62,11 +62,3 @@ describe('a package name', () => {
     actual.should.equal('com.example');
   });
 });
-
-function getPackageName(qualifiedType) {
-  const dotBeforeTypeName = qualifiedType.lastIndexOf('.');
-  if (dotBeforeTypeName !== -1) {
-    return qualifiedType.slice(0, dotBeforeTypeName);
-  }
-  return null;
-}

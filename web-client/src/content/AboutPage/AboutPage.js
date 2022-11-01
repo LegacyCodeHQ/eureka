@@ -11,6 +11,8 @@ import {
   Grid,
   Column,
 } from '@carbon/react';
+import { InfoSection, InfoCard } from '../../components/Info';
+import { Globe, Application, PersonFavorite } from '@carbon/react/icons';
 
 const AboutPage = () => {
   return (
@@ -72,20 +74,23 @@ const AboutPage = () => {
         </Tabs>
       </Column>
       <Column lg={16} md={8} sm={4} className="about-page__r3">
-        <Grid>
-          <Column md={4} lg={4} sm={4}>
-            <h3 className="about-page__label">The Principles</h3>
-          </Column>
-          <Column md={4} lg={4} sm={4}>
-            Carbon is Open
-          </Column>
-          <Column md={4} lg={4} sm={4}>
-            Carbon is Modular
-          </Column>
-          <Column md={4} lg={4} sm={4}>
-            Carbon is Consistent
-          </Column>
-        </Grid>
+        <InfoSection heading="The Principles" className="about-page__r3">
+          <InfoCard
+            heading="Carbon is Open"
+            body="It's a distributed effort, guided by the principles of the open-source movement. Carbon's users are also it's makers, and everyone is encouraged to contribute."
+            icon={() => <PersonFavorite size={32} />}
+          />
+          <InfoCard
+            heading="Carbon is Modular"
+            body="Carbon's modularity ensures maximum flexibility in execution. It's components are designed to work seamlessly with each other, in whichever combination suits the needs of the user."
+            icon={() => <Application size={32} />}
+          />
+          <InfoCard
+            heading="Carbon is Consistent"
+            body="Based on the comprehensive IBM Design Language, every element and component of Carbon was designed from the ground up to work elegantly together to ensure consistent, cohesive user experiences."
+            icon={() => <Globe size={32} />}
+          />
+        </InfoSection>
       </Column>
     </Grid>
   );

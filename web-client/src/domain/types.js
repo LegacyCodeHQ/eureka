@@ -1,4 +1,4 @@
-export function shorten(className) {
+export function shortenType(className) {
   const threshold = 32;
   const parts = className.split('.');
   const isLongClassName = className.length > threshold;

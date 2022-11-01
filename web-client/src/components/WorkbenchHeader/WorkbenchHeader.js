@@ -5,7 +5,6 @@ import {
   HeaderContainer,
   HeaderGlobalAction,
   HeaderGlobalBar,
-  HeaderMenuButton,
   HeaderMenuItem,
   HeaderName,
   HeaderNavigation,
@@ -17,16 +16,9 @@ import { Link } from 'react-router-dom';
 
 const WorkbenchHeader = () => (
   <HeaderContainer
-    render={({
-      isSideNavExpanded,
-      onClickSideNavExpand
-    }) => (
+    render={() => (
       <Header aria-label="Tumbleweed">
         <SkipToContent/>
-        <HeaderMenuButton
-          onClick={onClickSideNavExpand}
-          isActive={isSideNavExpanded}
-        />
         <HeaderName element={Link} to="/" prefix="TWD">
           Tumbleweed
         </HeaderName>

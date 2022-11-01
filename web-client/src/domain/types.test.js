@@ -62,3 +62,15 @@ describe('a package name', () => {
     actual.should.equal('com.example');
   });
 });
+
+describe('a type name', () => {
+  it('should return the simple name for types from the default package', function () {
+    const className = 'ClassName';
+    const actual = getClassName(className);
+    actual.should.equal('ClassName');
+  });
+});
+
+function getClassName(qualifiedType) {
+  return qualifiedType;
+}

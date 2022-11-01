@@ -47,6 +47,10 @@
     #class-info {
       margin-top: 0.8em;
     }
+
+    .package-name {
+      color: darkgray;
+    }
   </style>
 </head>
 <body>
@@ -182,10 +186,9 @@
       })
       .on("mouseover", overed)
       .on("mouseout", outed)
-      .call(text => text.append("title").text(d =>
-        `${d.data.id}
-        ${countableTextDependencies(d.dependencies.length)}
-        ${countableTextDependents(d.dependents.length)}`
+      .call(text => text.append("title").text(d => `${d.data.id}
+${countableTextDependencies(d.dependencies.length)}
+${countableTextDependents(d.dependents.length)}`
       ));
 
     const link = svg.append("g")
@@ -221,6 +224,29 @@
     return svg.node();
   }
 
+  function sortTypes(types) {
+    return types.sort();
+  }
+
+  function shortenType(className) {
+    const threshold = 32;
+    const parts = className.split('.');
+    const isLongClassName = className.length > threshold;
+    const isInDefaultPackage = parts.length === 1;
+
+    if (isLongClassName && !isInDefaultPackage) {
+      let shortenedPackageName = parts.slice(0, parts.length - 1)
+        .map(part => part[0])
+        .join('.');
+      let simpleClassName = parts.slice(parts.length - 1);
+      return shortenedPackageName + '.' + simpleClassName;
+    } else if (isLongClassName && isInDefaultPackage) {
+      let charsToKeep = threshold / 2;
+      return className.slice(0, charsToKeep) + '...' + className.slice(className.length - charsToKeep);
+    }
+    return className;
+  }
+
   function updateStats(graph) {
     const fields = graph.nodes.filter(node => node.group === 1).length;
     const methods = graph.nodes.filter(node => node.group === 2).length;
@@ -231,16 +257,76 @@
     document.getElementById('relationships-stat').textContent = relationships;
   }
 
-  function setClassInfo(classInfo) {
-    document.getElementById('class-name').textContent = classInfo.name;
-
-    if (classInfo.extends != null) {
-      document.getElementById('class-info').innerHTML += '<td class="property">Extends</td>' + '<td>' + classInfo.extends + '</td>';
+  function getPackageName(qualifiedType) {
+    const dotBeforeTypeName = qualifiedType.lastIndexOf('.');
+    if (dotBeforeTypeName !== -1) {
+      return qualifiedType.slice(0, dotBeforeTypeName);
     }
-    if (classInfo.implements != null) {
-      const interfaces = classInfo.implements.join("\n").trim();
+    return null;
+  }
 
-      document.getElementById('class-info').innerHTML += '<td class="property">Implements (' + classInfo.implements.length + ')</td>' + '<td style="white-space:pre-wrap; word-wrap:break-word">' + interfaces + '</td>';
+  function getClassName(qualifiedType) {
+    const dotBeforeTypeName = qualifiedType.lastIndexOf('.');
+    if (dotBeforeTypeName !== -1) {
+      return qualifiedType.slice(dotBeforeTypeName + 1);
+    }
+    return qualifiedType;
+  }
+
+  function typeNameHtml(qualifiedType) {
+    const shortenedType = shortenType(qualifiedType);
+    const packageName = getPackageName(shortenedType);
+    const className = getClassName(qualifiedType);
+
+    if (packageName != null) {
+      return '<td><div title=' + qualifiedType + '><span class="package-name">' + packageName + '.</span><span>' + className + '</span></div></td>'
+    } else {
+      return '<td><div title=' + qualifiedType + '><span>' + className + '</span></div></td>'
+    }
+  }
+
+  function setClassInfo(classInfo) {
+    // clear the table
+    const classInfoTable = document.getElementById('class-info');
+    let child = classInfoTable.lastChild;
+    while (child) {
+      classInfoTable.removeChild(child);
+      child = classInfoTable.lastElementChild;
+    }
+
+    // add table header 'Class'
+    let tableRow = document.createElement('tr');
+    tableRow.innerHTML = '<th class="panel-title">Class</th>';
+    classInfoTable.appendChild(tableRow);
+
+    tableRow = document.createElement('tr');
+    tableRow.innerHTML = typeNameHtml(classInfo.name);
+    classInfoTable.appendChild(tableRow);
+
+    // add 'Extends' element
+    if (classInfo.extends != null) {
+      tableRow = document.createElement('tr')
+      tableRow.innerHTML = '<th class="panel-title">Extends</th>';
+      classInfoTable.appendChild(tableRow);
+    }
+
+    tableRow = document.createElement('tr');
+    tableRow.innerHTML = typeNameHtml(classInfo.extends);
+    classInfoTable.appendChild(tableRow);
+
+    // add 'Implements' element
+    if (classInfo.implements != null) {
+      const interfaces = sortTypes(classInfo.implements);
+
+      tableRow = document.createElement('tr')
+      tableRow.innerHTML = '<th class="panel-title">Implements (' + interfaces.length + ')</th>';
+      classInfoTable.appendChild(tableRow);
+
+      for (let i = 0; i < interfaces.length; i++) {
+        tableRow = document.createElement('tr');
+        tableRow.innerHTML = typeNameHtml(interfaces[i]);
+        classInfoTable.appendChild(tableRow);
+      }
     }
   }
 

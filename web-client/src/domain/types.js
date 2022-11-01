@@ -1,7 +1,7 @@
-export function compressType(qualifiedTypeName) {
+export function compressType(qualifiedType) {
   const threshold = 32;
-  const parts = qualifiedTypeName.split('.');
-  const isLongTypeName = qualifiedTypeName.length > threshold;
+  const parts = qualifiedType.split('.');
+  const isLongTypeName = qualifiedType.length > threshold;
   const isInDefaultPackage = parts.length === 1;
 
   if (isLongTypeName && !isInDefaultPackage) {
@@ -12,13 +12,13 @@ export function compressType(qualifiedTypeName) {
     return shortenedPackageName + '.' + simpleTypeName;
   } else if (isLongTypeName && isInDefaultPackage) {
     let charsToKeep = threshold / 2;
-    return qualifiedTypeName.slice(0, charsToKeep) + '...' + qualifiedTypeName.slice(qualifiedTypeName.length - charsToKeep);
+    return qualifiedType.slice(0, charsToKeep) + '...' + qualifiedType.slice(qualifiedType.length - charsToKeep);
   }
-  return qualifiedTypeName;
+  return qualifiedType;
 }
 
-export function sortTypes(qualifiedTypeNames) {
-  return qualifiedTypeNames.sort();
+export function sortTypes(qualifiedTypes) {
+  return qualifiedTypes.sort();
 }
 
 export function getPackageName(qualifiedType) {

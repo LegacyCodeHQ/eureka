@@ -48,3 +48,15 @@ describe('a set of types', () => {
     ]);
   });
 });
+
+describe('a package name', () => {
+  it('should return null for types from the default package', function () {
+    const className = 'ClassName';
+    const actual = getPackageName(className);
+    (actual == null).should.be.true;
+  });
+});
+
+function getPackageName(qualifiedType) {
+  return null;
+}

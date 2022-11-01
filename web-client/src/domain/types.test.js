@@ -1,7 +1,11 @@
 require('chai')
   .should();
 
-const { compressType, sortTypes, getPackageName } = require('./types.js');
+const {
+  compressType,
+  sortTypes,
+  getPackageName
+} = require('./types.js');
 
 describe('a qualified type name', () => {
   it('should return the same name if it is in the default package', function () {
@@ -69,8 +73,18 @@ describe('a type name', () => {
     const actual = getClassName(className);
     actual.should.equal('ClassName');
   });
+
+  it('should return simple name for types from non-default packages', function () {
+    const className = 'com.example.ClassName';
+    const actual = getClassName(className);
+    actual.should.equal('ClassName');
+  });
 });
 
 function getClassName(qualifiedType) {
+  const dotBeforeTypeName = qualifiedType.lastIndexOf('.');
+  if (dotBeforeTypeName !== -1) {
+    return qualifiedType.slice(dotBeforeTypeName + 1);
+  }
   return qualifiedType;
 }

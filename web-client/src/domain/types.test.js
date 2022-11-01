@@ -10,4 +10,10 @@ describe('a class name', () => {
     const actual = shorten(className)
     actual.should.equal(className)
   });
+
+  it('should return the same name if it is within the character limit', function () {
+    const className = 'com.example.ClassName'
+    const actual = shorten(className)
+    actual.should.equal(className)
+  });
 });

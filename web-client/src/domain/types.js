@@ -16,3 +16,7 @@ export function shortenType(className) {
   }
   return className;
 }
+
+export function sortTypes(types) {
+  return types.sort();
+}

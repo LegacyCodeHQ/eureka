@@ -1,7 +1,7 @@
 require('chai')
   .should();
 
-const { shortenType } = require('./types.js');
+const { shortenType, sortTypes } = require('./types.js');
 
 describe('a qualified type name', () => {
   it('should return the same name if it is in the default package', function () {
@@ -48,7 +48,3 @@ describe('a set of types', () => {
     ]);
   });
 });
-
-function sortTypes(types) {
-  return types.sort();
-}

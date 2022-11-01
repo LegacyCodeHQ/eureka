@@ -4,7 +4,8 @@ require('chai')
 const {
   compressType,
   sortTypes,
-  getPackageName
+  getPackageName,
+  getClassName,
 } = require('./types.js');
 
 describe('a qualified type name', () => {
@@ -80,11 +81,3 @@ describe('a type name', () => {
     actual.should.equal('ClassName');
   });
 });
-
-function getClassName(qualifiedType) {
-  const dotBeforeTypeName = qualifiedType.lastIndexOf('.');
-  if (dotBeforeTypeName !== -1) {
-    return qualifiedType.slice(dotBeforeTypeName + 1);
-  }
-  return qualifiedType;
-}

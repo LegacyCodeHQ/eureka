@@ -28,3 +28,11 @@ export function getPackageName(qualifiedType) {
   }
   return null;
 }
+
+export function getClassName(qualifiedType) {
+  const dotBeforeTypeName = qualifiedType.lastIndexOf('.');
+  if (dotBeforeTypeName !== -1) {
+    return qualifiedType.slice(dotBeforeTypeName + 1);
+  }
+  return qualifiedType;
+}

@@ -55,8 +55,18 @@ describe('a package name', () => {
     const actual = getPackageName(className);
     (actual == null).should.be.true;
   });
+
+  it('should return the package name for types from a non-default package', function () {
+    const className = 'com.example.ClassName';
+    const actual = getPackageName(className);
+    actual.should.equal('com.example');
+  });
 });
 
 function getPackageName(qualifiedType) {
+  const dotBeforeTypeName = qualifiedType.lastIndexOf('.');
+  if (dotBeforeTypeName !== -1) {
+    return qualifiedType.slice(0, dotBeforeTypeName);
+  }
   return null;
 }

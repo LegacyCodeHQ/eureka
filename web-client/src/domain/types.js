@@ -17,10 +17,6 @@ export function compressType(qualifiedType) {
   return qualifiedType;
 }
 
-export function sortTypes(qualifiedTypes) {
-  return qualifiedTypes.sort();
-}
-
 export function getPackageName(qualifiedType) {
   const dotBeforeTypeName = qualifiedType.lastIndexOf('.');
   if (dotBeforeTypeName !== -1) {

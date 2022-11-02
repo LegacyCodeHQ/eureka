@@ -3,7 +3,6 @@ require('chai')
 
 const {
   compressType,
-  sortTypes,
   getPackageName,
   getClassName,
 } = require('./types.js');

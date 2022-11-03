@@ -19,4 +19,11 @@ describe('instability (I)', () => {
     let i = instability(dependencies, dependents);
     i.should.equal(1.0);
   });
+
+  it('should calculate metrics for a member with equal dependencies and dependents', function () {
+    let dependencies = 5;
+    let dependents = 5;
+    let i = instability(dependencies, dependents);
+    i.should.equal(0.5);
+  });
 });

@@ -176,6 +176,10 @@
     return {children: [...groupById.values()]};
   };
 
+  function effort(dependencies, dependents) {
+    return dependencies + (dependents / 2);
+  }
+
   function countableTextDependencies(count) {
     if (count === 1) {
       return "1 dependency";
@@ -227,7 +231,8 @@
       .on("mouseout", outed)
       .call(text => text.append("title").text(d => `${d.data.id}
 ${countableTextDependencies(d.dependencies.length)}
-${countableTextDependents(d.dependents.length)}`
+${countableTextDependents(d.dependents.length)}
+Effort* (${effort(d.dependencies.length, d.dependents.length)})`
       ));
 
     const link = svg.append("g")

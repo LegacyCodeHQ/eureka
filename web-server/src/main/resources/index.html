@@ -180,6 +180,11 @@
     return dependencies + (dependents / 2);
   }
 
+  function instability(dependencies, dependents) {
+    let i = dependencies / (dependencies + dependents);
+    return Math.round((i + Number.EPSILON) * 100) / 100;
+  }
+
   function countableTextDependencies(count) {
     if (count === 1) {
       return "1 dependency";
@@ -232,7 +237,7 @@
       .call(text => text.append("title").text(d => `${d.data.id}
 ${countableTextDependencies(d.dependencies.length)}
 ${countableTextDependents(d.dependents.length)}
-Effort* (${effort(d.dependencies.length, d.dependents.length)})`
+Effort* = ${effort(d.dependencies.length, d.dependents.length)}, I = ${isNaN(instability(d.dependencies.length, d.dependents.length)) ? 'N/A' : instability(d.dependencies.length, d.dependents.length)}`
       ));
 
     const link = svg.append("g")

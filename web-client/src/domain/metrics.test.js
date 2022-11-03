@@ -2,7 +2,8 @@ require('chai')
   .should();
 
 function instability(dependencies, dependents) {
-  return dependencies / (dependencies + dependents);
+  let i = dependencies / (dependencies + dependents);
+  return Math.round((i + Number.EPSILON) * 100) / 100;
 }
 
 describe('instability (I)', () => {
@@ -25,5 +26,12 @@ describe('instability (I)', () => {
     let dependents = 5;
     let i = instability(dependencies, dependents);
     i.should.equal(0.5);
+  });
+
+  it('should calculate metrics for a member with more dependencies than dependents', function () {
+    let dependencies = 10;
+    let dependents = 5;
+    let i = instability(dependencies, dependents);
+    i.should.equal(0.67);
   });
 });

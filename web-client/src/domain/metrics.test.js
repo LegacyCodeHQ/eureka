@@ -1,10 +1,9 @@
 require('chai')
   .should();
 
-function instability(dependencies, dependents) {
-  let i = dependencies / (dependencies + dependents);
-  return Math.round((i + Number.EPSILON) * 100) / 100;
-}
+const {
+  instability,
+} = require('./metrics.js');
 
 describe('instability (I)', () => {
   it('should calculate metrics for a maximally stable member', function () {

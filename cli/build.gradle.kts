@@ -8,7 +8,7 @@ val CLI_VERSION = "0.25.0-SNAPSHOT"
 plugins {
   application
   id("com.github.johnrengelman.shadow") version "7.1.2"
-  id("org.jreleaser") version "1.2.0"
+  id("org.jreleaser") version "1.3.0"
 }
 
 application {

@@ -63,4 +63,12 @@ describe('method tokenization', () => {
       words: ['add'],
     });
   });
+
+  it('should tokenize a method with parameters', () => {
+    const tokens = tokenize('Event pop(Queue)');
+    tokens.should.deep.equal({
+      types: ['Event', 'Queue'],
+      words: ['pop'],
+    });
+  });
 });

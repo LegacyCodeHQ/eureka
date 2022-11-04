@@ -14,13 +14,18 @@ export function tokenize(signature) {
     let returnType = parts[0];
     let identifier = parts[1];
 
+    let parameterList = methodSignature
+      .substring(methodSignature.indexOf('(') + 1, methodSignature.indexOf(')'));
+    let parameterTypes = parameterList.split(',').filter(parameter => parameter.length > 0);
+
     return {
-      types: [returnType],
+      types: [returnType].concat(parameterTypes),
       words: splitIdentifier(identifier),
     };
   }
 
-  if (signature.indexOf('(') !== -1 && signature.indexOf(')') !== -1) {
+  let isMethod = signature.indexOf('(') !== -1 && signature.indexOf(')') !== -1;
+  if (isMethod) {
     return tokenizeMethod(signature);
   } else {
     return tokenizeField(signature);

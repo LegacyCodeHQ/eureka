@@ -65,3 +65,22 @@ export function vocabulary(graph) {
       };
     });
 }
+
+export function vocabularyStats(vocabulary) {
+  let typeStats = {};
+  let wordStats = {};
+
+  vocabulary.types.forEach(type => {
+    typeStats.hasOwnProperty(type) ? typeStats[type]++ : typeStats[type] = 1;
+  });
+
+  vocabulary.words.forEach(word => {
+    let lowerCaseWord = word.toLowerCase();
+    wordStats.hasOwnProperty(lowerCaseWord) ? wordStats[lowerCaseWord]++ : wordStats[lowerCaseWord] = 1;
+  });
+
+  return {
+    types: typeStats,
+    words: wordStats,
+  };
+}

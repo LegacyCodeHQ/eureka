@@ -4,6 +4,7 @@ require('chai')
 const {
   tokenize,
   vocabulary,
+  vocabularyStats,
 } = require('./vocabulary');
 
 describe('field tokenization', () => {
@@ -165,6 +166,12 @@ describe('class vocabulary', () => {
 
   it('should build a member vocabulary from a given graph', () => {
     let actual = vocabulary(graph);
+    expect(actual)
+      .toMatchSnapshot();
+  });
+
+  it('should build vocabulary stats from the vocabulary object', () => {
+    let actual = vocabularyStats(vocabulary(graph));
     expect(actual)
       .toMatchSnapshot();
   });

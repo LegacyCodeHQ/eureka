@@ -9,16 +9,38 @@ export function tokenize(signature) {
     };
   }
 
-  function tokenizeMethod(methodSignature) {
-    let parts = methodSignature.substring(0, methodSignature.indexOf('(')).split(' ');
-    let returnType = parts[0];
-    let identifier = parts[1];
-
+  function getParameterTypes(methodSignature) {
     let parameterList = methodSignature
       .substring(methodSignature.indexOf('(') + 1, methodSignature.indexOf(')'));
-    let parameterTypes = parameterList.split(',')
+    return parameterList.split(',')
       .filter(parameter => parameter.length > 0)
       .map(parameter => parameter.trim());
+  }
+
+  function returnTypeAndIdentifier(methodSignature) {
+    let parts = methodSignature.substring(0, methodSignature.indexOf('('))
+      .split(' ');
+    let returnType = parts[0];
+    let identifier = parts[1];
+    return {
+      returnType,
+      identifier
+    };
+  }
+
+  function splitIdentifier(identifier) {
+    if (identifier.indexOf('_') !== -1) {
+      return identifier.split('_');
+    }
+    return identifier.split(/(?=[A-Z])/);
+  }
+
+  function tokenizeMethod(methodSignature) {
+    let {
+      returnType,
+      identifier
+    } = returnTypeAndIdentifier(methodSignature);
+    let parameterTypes = getParameterTypes(methodSignature);
 
     return {
       types: [returnType].concat(parameterTypes),
@@ -32,11 +54,4 @@ export function tokenize(signature) {
   } else {
     return tokenizeField(signature);
   }
-}
-
-function splitIdentifier(identifier) {
-  if (identifier.indexOf('_') !== -1) {
-    return identifier.split('_');
-  }
-  return identifier.split(/(?=[A-Z])/);
 }

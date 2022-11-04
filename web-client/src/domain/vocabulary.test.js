@@ -18,7 +18,7 @@ function splitIdentifier(identifier) {
   return identifier.split(/(?=[A-Z])/);
 }
 
-describe('tokenization', () => {
+describe('field tokenization', () => {
   it('should tokenize a simple field', () => {
     const tokens = tokenize('int x');
     tokens.should.deep.equal({

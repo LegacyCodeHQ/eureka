@@ -66,6 +66,20 @@ export function vocabulary(graph) {
     });
 }
 
+function sortObject(stats) {
+  let sortableArray = [];
+  for (let stat in stats) {
+    sortableArray.push([stat, stats[stat]]);
+  }
+  sortableArray.sort((a, b) => b[1] - a[1]);
+
+  let sortedObject = {};
+  sortableArray.forEach((stat) => {
+    sortedObject[stat[0]] = stat[1];
+  });
+  return sortedObject;
+}
+
 export function vocabularyStats(vocabulary) {
   let typeStats = {};
   let wordStats = {};
@@ -80,7 +94,7 @@ export function vocabularyStats(vocabulary) {
   });
 
   return {
-    types: typeStats,
-    words: wordStats,
+    types: sortObject(typeStats),
+    words: sortObject(wordStats),
   };
 }

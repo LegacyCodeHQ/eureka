@@ -71,4 +71,12 @@ describe('method tokenization', () => {
       words: ['pop'],
     });
   });
+
+  it('should tokenize a method with multiple parameters', () => {
+    let tokens = tokenize('Event pop(Queue, Stack)');
+    tokens.should.deep.equal({
+      types: ['Event', 'Queue', 'Stack'],
+      words: ['pop'],
+    });
+  });
 });

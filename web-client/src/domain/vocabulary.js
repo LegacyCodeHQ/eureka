@@ -16,7 +16,9 @@ export function tokenize(signature) {
 
     let parameterList = methodSignature
       .substring(methodSignature.indexOf('(') + 1, methodSignature.indexOf(')'));
-    let parameterTypes = parameterList.split(',').filter(parameter => parameter.length > 0);
+    let parameterTypes = parameterList.split(',')
+      .filter(parameter => parameter.length > 0)
+      .map(parameter => parameter.trim());
 
     return {
       types: [returnType].concat(parameterTypes),

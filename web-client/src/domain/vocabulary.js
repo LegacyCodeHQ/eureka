@@ -4,7 +4,7 @@ export function tokenize(signature) {
     let type = parts[0];
     let identifier = parts[1];
     return {
-      type: type,
+      types: [type],
       words: splitIdentifier(identifier),
     };
   }
@@ -15,7 +15,7 @@ export function tokenize(signature) {
     let identifier = parts[1];
 
     return {
-      type: returnType,
+      types: [returnType],
       words: splitIdentifier(identifier),
     };
   }

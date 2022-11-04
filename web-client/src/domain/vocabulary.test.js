@@ -9,7 +9,7 @@ describe('field tokenization', () => {
   it('should tokenize a simple field', () => {
     const tokens = tokenize('int x');
     tokens.should.deep.equal({
-      type: 'int',
+      types: ['int'],
       words: ['x'],
     });
   });
@@ -17,7 +17,7 @@ describe('field tokenization', () => {
   it('should tokenize a field in camel case', function () {
     const actual = tokenize('int xCamelCase');
     actual.should.deep.equal({
-      type: 'int',
+      types: ['int'],
       words: ['x', 'Camel', 'Case'],
     });
   });
@@ -25,7 +25,7 @@ describe('field tokenization', () => {
   it('should tokenize a field in snake case', function () {
     const actual = tokenize('int x_snake_case');
     actual.should.deep.equal({
-      type: 'int',
+      types: ['int'],
       words: ['x', 'snake', 'case']
     });
   });
@@ -33,7 +33,7 @@ describe('field tokenization', () => {
   it('should tokenize constants', function () {
     const actual = tokenize('int X_CONSTANT');
     actual.should.deep.equal({
-      type: 'int',
+      types: ['int'],
       words: ['X', 'CONSTANT']
     });
   });
@@ -41,7 +41,7 @@ describe('field tokenization', () => {
   it('should not split types into individual words', function () {
     const actual = tokenize('StoryBook storyBook');
     actual.should.deep.equal({
-      type: 'StoryBook',
+      types: ['StoryBook'],
       words: ['story', 'Book'],
     });
   });
@@ -49,7 +49,7 @@ describe('field tokenization', () => {
   it('should split identifiers that start with a capital letter into individual words', function () {
     let actual = tokenize('String QuestionTitle');
     actual.should.deep.equal({
-      type: 'String',
+      types: ['String'],
       words: ['Question', 'Title'],
     });
   });
@@ -59,7 +59,7 @@ describe('method tokenization', () => {
   it('should tokenize a method without parameters', () => {
     const tokens = tokenize('int add()');
     tokens.should.deep.equal({
-      type: 'int',
+      types: ['int'],
       words: ['add'],
     });
   });

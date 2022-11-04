@@ -55,3 +55,13 @@ export function tokenize(signature) {
     return tokenizeField(signature);
   }
 }
+
+export function vocabulary(graph) {
+  return graph.nodes.map(node => tokenize(node.id))
+    .reduceRight((acc, tokens) => {
+      return {
+        types: acc.types.concat(tokens.types),
+        words: acc.words.concat(tokens.words),
+      };
+    });
+}

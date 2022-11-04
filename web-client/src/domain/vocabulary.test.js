@@ -3,6 +3,7 @@ require('chai')
 
 const {
   tokenize,
+  vocabulary,
 } = require('./vocabulary');
 
 describe('field tokenization', () => {
@@ -86,5 +87,85 @@ describe('method tokenization', () => {
       types: ['Book', 'Author'],
       words: ['first', 'Book', 'By', 'Author'],
     });
+  });
+});
+
+describe('class vocabulary', () => {
+  const graph = {
+    'nodes': [{
+      'id': 'String name',
+      'group': 1
+    }, {
+      'id': 'String version',
+      'group': 1
+    }, {
+      'id': 'int versionCode',
+      'group': 1
+    }, {
+      'id': 'void <init>()',
+      'group': 2
+    }, {
+      'id': 'String getName()',
+      'group': 2
+    }, {
+      'id': 'void sayHello()',
+      'group': 2
+    }, {
+      'id': 'void sayGoodbye()',
+      'group': 2
+    }, {
+      'id': 'String whatVersion()',
+      'group': 2
+    }, {
+      'id': 'int random()',
+      'group': 2
+    }, {
+      'id': 'String incrementVersion()',
+      'group': 2
+    }],
+    'links': [{
+      'source': 'void <init>()',
+      'target': 'String name',
+      'value': 1
+    }, {
+      'source': 'void <init>()',
+      'target': 'String version',
+      'value': 1
+    }, {
+      'source': 'void <init>()',
+      'target': 'int versionCode',
+      'value': 1
+    }, {
+      'source': 'String getName()',
+      'target': 'String name',
+      'value': 1
+    }, {
+      'source': 'void sayHello()',
+      'target': 'String name',
+      'value': 1
+    }, {
+      'source': 'void sayGoodbye()',
+      'target': 'String name',
+      'value': 1
+    }, {
+      'source': 'String whatVersion()',
+      'target': 'String version',
+      'value': 1
+    }, {
+      'source': 'String incrementVersion()',
+      'target': 'String version',
+      'value': 1
+    }],
+    'meta': {
+      'classInfo': {
+        'name': 'io.redgreen.tumbleweed.samples.PropertiesAndFunctions'
+      }
+    }
+  };
+
+  it('should build a member vocabulary from a given graph', () => {
+    let actual = vocabulary(graph);
+    expect(actual)
+      .toMatchSnapshot();
   });
 });

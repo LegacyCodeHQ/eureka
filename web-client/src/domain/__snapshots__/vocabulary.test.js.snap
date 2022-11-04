@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`class vocabulary should build a member vocabulary from a given graph 1`] = `
+Object {
+  "types": Array [
+    "String",
+    "int",
+    "String",
+    "void",
+    "void",
+    "String",
+    "void",
+    "int",
+    "String",
+    "String",
+  ],
+  "words": Array [
+    "increment",
+    "Version",
+    "random",
+    "what",
+    "Version",
+    "say",
+    "Goodbye",
+    "say",
+    "Hello",
+    "get",
+    "Name",
+    "<init>",
+    "version",
+    "Code",
+    "version",
+    "name",
+  ],
+}
+`;

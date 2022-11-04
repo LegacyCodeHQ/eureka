@@ -7,6 +7,7 @@ import io.redgreen.tumbleweed.cli.dev.diff.DiffCommand
 import io.redgreen.tumbleweed.cli.dev.json.JsonCommand
 import io.redgreen.tumbleweed.cli.dev.view.ViewCommand
 import io.redgreen.tumbleweed.cli.watch.WatchCommand
+import java.util.Properties
 import kotlin.system.exitProcess
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -27,6 +28,12 @@ const val DEFAULT_PORT = 7070
   ],
 )
 class TumbleweedCommand {
+  @Option(
+    names = ["--version", "-v"],
+    versionHelp = true,
+  )
+  var version: Boolean = false
+
   @Suppress("unused") // Used by picocli.
   @Option(
     names = ["--debug", "-d"],
@@ -42,7 +49,19 @@ class TumbleweedCommand {
 }
 
 fun main(args: Array<String>) {
-  val status = CommandLine(TumbleweedCommand())
-    .execute(*args)
-  exitProcess(status)
+  val commandLine = CommandLine(TumbleweedCommand())
+  val exitCode = commandLine.execute(*args)
+
+  if (commandLine.isVersionHelpRequested) {
+    printVersion()
+    exitProcess(0)
+  }
+
+  exitProcess(exitCode)
+}
+
+private fun printVersion() {
+  val properties = TumbleweedCommand::class.java.classLoader
+    .getResourceAsStream("version.properties").use { Properties().apply { load(it) } }
+  println(properties["version"])
 }

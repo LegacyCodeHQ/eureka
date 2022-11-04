@@ -1,6 +1,19 @@
 # Tumbleweed (early preview)
 
-Effortlessly understand large (and small) Kotlin/Java classes 😎
+Effortlessly understand and analyze Kotlin/Java classes in your codebase 😎
+
+## Is this for me?
+
+- You constantly feel that there's something off with the design but can't articulate it well to your team members.
+- You have joined a new team or an organization and want to understand the codebase.
+- You have this one class that you can't understand because it's way too large, and the previous maintainers have
+  left the team or organization.
+- You want to contribute to an open-source project to build your portfolio.
+- You are curious about how well your codebase is designed and want to know how you could improve it.
+- You are refactoring a class and want to identify clusters so that you can extract them into smaller classes.
+- You want to analyze the codebase to identify code smells and refactor them.
+
+If you have any of these requirements, then this tool is for you 😉
 
 ## Live demo
 
@@ -10,7 +23,7 @@ class.
 
 ## Screenshot
 
-Visualizing [ConversationParentFragment.java](https://github.com/signalapp/Signal-Android/blob/ff8f9ca81ae6a25e1e946612c817206b9410d9a1/app/src/main/java/org/thoughtcrime/securesms/conversation/ConversationParentFragment.java), a **3,510 LOC** class from Signal Android App.
+Visualizing [ConversationParentFragment.java](https://github.com/signalapp/Signal-Android/blob/ff8f9ca81ae6a25e1e946612c817206b9410d9a1/app/src/main/java/org/thoughtcrime/securesms/conversation/ConversationParentFragment.java)—a **3,510 LOC** class from the Signal Android App.
 
 ![Screenshot](docs/screenshot.png)
 
@@ -89,16 +102,19 @@ Compares and prints the differences between a jQAssistant and a Tumbleweed graph
 ## IntelliJ Custom Data Views for Development
 
 ### Field
+
 ```kotlin
 "${signature.concise} ${if (owner.contains("$")) "[${owner.substring(owner.indexOf('$'))}]" else ""}"
 ```
 
 ### Method
+
 ```kotlin
 "${signature.concise} ${if (owner.contains("$")) "[${owner.substring(owner.indexOf('$'))}]" else ""}"
 ```
 
 ### Relationship
+
 ```kotlin
 "${source.signature.concise} ${if (source.owner.contains("$")) "[${source.owner.substring(source.owner.indexOf('$'))}]" else ""} -${type.name.first()}-> ${target.signature.concise} ${if (target.owner.contains("$")) "[${target.owner.substring(target.owner.indexOf('$'))}]" else ""}" 
 ```

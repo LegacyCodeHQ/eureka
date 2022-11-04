@@ -79,4 +79,12 @@ describe('method tokenization', () => {
       words: ['pop'],
     });
   });
+
+  it('should tokenize a method with a camel case identifier', () => {
+    let tokens = tokenize('Book firstBookByAuthor(Author)');
+    tokens.should.deep.equal({
+      types: ['Book', 'Author'],
+      words: ['first', 'Book', 'By', 'Author'],
+    });
+  });
 });

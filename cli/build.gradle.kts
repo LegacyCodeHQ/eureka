@@ -1,5 +1,6 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jreleaser.model.Active
+import java.util.Properties
 
 @Suppress("PropertyName")
 val CLI_VERSION = "0.24.0-SNAPSHOT"
@@ -28,11 +29,26 @@ tasks {
     archiveBaseName.set("twd")
     mergeServiceFiles()
   }
+
+  build {
+    dependsOn(shadowJar)
+  }
 }
 
 tasks {
-  build {
-    dependsOn(shadowJar)
+  named("classes") {
+    dependsOn("createVersionFile")
+  }
+
+  create("createVersionFile") {
+    dependsOn(processResources)
+    doLast {
+      File("$buildDir/resources/main/version.properties").bufferedWriter().use { writer ->
+        val properties = Properties()
+        properties["version"] = CLI_VERSION
+        properties.store(writer, null)
+      }
+    }
   }
 }
 

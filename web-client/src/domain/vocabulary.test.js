@@ -1,14 +1,34 @@
 require('chai')
   .should();
 
-function tokenize(field) {
-  let parts = field.split(' ');
-  let type = parts[0];
-  let identifier = parts[1];
-  return {
-    type: type,
-    words: splitIdentifier(identifier),
-  };
+function tokenize(signature) {
+  function tokenizeField(fieldSignature) {
+    let parts = fieldSignature.split(' ');
+    let type = parts[0];
+    let identifier = parts[1];
+    return {
+      type: type,
+      words: splitIdentifier(identifier),
+    };
+  }
+
+  function tokenizeMethod(methodSignature) {
+    let parts = methodSignature.substring(0, methodSignature.indexOf('(')).split(' ');
+    let returnType = parts[0];
+    let identifier = parts[1];
+
+    return {
+      type: returnType,
+      words: splitIdentifier(identifier),
+    };
+  }
+
+  // isMethod
+  if (signature.indexOf('(') !== -1 && signature.indexOf(')') !== -1) {
+    return tokenizeMethod(signature);
+  } else {
+    return tokenizeField(signature);
+  }
 }
 
 function splitIdentifier(identifier) {
@@ -64,6 +84,16 @@ describe('field tokenization', () => {
     actual.should.deep.equal({
       type: 'String',
       words: ['Question', 'Title'],
+    });
+  });
+});
+
+describe('method tokenization', () => {
+  it('should tokenize a method without parameters', () => {
+    const tokens = tokenize('int add()');
+    tokens.should.deep.equal({
+      type: 'int',
+      words: ['add'],
     });
   });
 });

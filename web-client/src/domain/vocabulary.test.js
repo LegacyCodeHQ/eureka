@@ -55,4 +55,12 @@ describe('tokenization', () => {
       ]
     });
   });
+
+  it('should not split types into individual words', function () {
+    const actual = tokenize('StoryBook storyBook');
+    actual.should.deep.equal({
+      type: 'StoryBook',
+      words: ['story', 'Book'],
+    });
+  });
 });

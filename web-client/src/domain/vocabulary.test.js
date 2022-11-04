@@ -39,10 +39,7 @@ describe('tokenization', () => {
     const actual = tokenize('int x_snake_case');
     actual.should.deep.equal({
       type: 'int',
-      words: ['x',
-        'snake',
-        'case'
-      ]
+      words: ['x', 'snake', 'case']
     });
   });
 
@@ -50,9 +47,7 @@ describe('tokenization', () => {
     const actual = tokenize('int X_CONSTANT');
     actual.should.deep.equal({
       type: 'int',
-      words: ['X',
-        'CONSTANT'
-      ]
+      words: ['X', 'CONSTANT']
     });
   });
 
@@ -61,6 +56,14 @@ describe('tokenization', () => {
     actual.should.deep.equal({
       type: 'StoryBook',
       words: ['story', 'Book'],
+    });
+  });
+
+  it('should split identifiers that start with a capital letter into individual words', function () {
+    let actual = tokenize('String QuestionTitle');
+    actual.should.deep.equal({
+      type: 'String',
+      words: ['Question', 'Title'],
     });
   });
 });

@@ -122,10 +122,6 @@
       <tr>
         <th class="panel-title" colspan="2">Class</th>
       </tr>
-      <tr>
-        <td class="property">Name</td>
-        <td id="class-name"></td>
-      </tr>
     </table>
   </div>
 </div>
@@ -357,11 +353,11 @@ Effort* = ${effort(d.dependencies.length, d.dependents.length)}, I = ${isNaN(ins
       tableRow = document.createElement('tr')
       tableRow.innerHTML = '<th class="panel-title separator">Extends</th>';
       classInfoTable.appendChild(tableRow);
-    }
 
-    tableRow = document.createElement('tr');
-    tableRow.innerHTML = typeNameHtml(classInfo.extends);
-    classInfoTable.appendChild(tableRow);
+      tableRow = document.createElement('tr');
+      tableRow.innerHTML = typeNameHtml(classInfo.extends);
+      classInfoTable.appendChild(tableRow);
+    }
 
     // add 'Implements' element
     if (classInfo.implements != null) {

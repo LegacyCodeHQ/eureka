@@ -44,12 +44,12 @@
       text-align: end;
     }
 
-    #stats {
+    .panel {
       margin-top: 0.8em;
     }
 
-    #class-info {
-      margin-top: 0.8em;
+    .last-panel {
+      margin-bottom: 0.8em;
     }
 
     .separator {
@@ -99,7 +99,7 @@
         <td>Dependenents</td>
       </tr>
     </table>
-    <table id="stats">
+    <table id="stats" class="panel">
       <tr>
         <th class="panel-title" colspan="2">Stats</th>
       </tr>
@@ -118,11 +118,13 @@
     </table>
   </div>
   <div>
-    <table id="class-info">
+    <table id="class-info" class="panel">
       <tr>
         <th class="panel-title" colspan="2">Class</th>
       </tr>
     </table>
+    <table id="types" class="panel"></table>
+    <table id="words" class="panel last-panel"></table>
   </div>
 </div>
 </body>
@@ -195,6 +197,107 @@
     } else {
       return count + " dependents";
     }
+  }
+
+  function tokenize(signature) {
+    function tokenizeField(fieldSignature) {
+      let parts = fieldSignature.split(' ');
+      let type = parts[0];
+      let identifier = parts[1];
+      return {
+        types: [type],
+        words: splitIdentifier(identifier),
+      };
+    }
+
+    function getParameterTypes(methodSignature) {
+      let parameterList = methodSignature
+        .substring(methodSignature.indexOf('(') + 1, methodSignature.indexOf(')'));
+      return parameterList.split(',')
+        .filter(parameter => parameter.length > 0)
+        .map(parameter => parameter.trim());
+    }
+
+    function returnTypeAndIdentifier(methodSignature) {
+      let parts = methodSignature.substring(0, methodSignature.indexOf('('))
+        .split(' ');
+      let returnType = parts[0];
+      let identifier = parts[1];
+      return {
+        returnType,
+        identifier
+      };
+    }
+
+    function splitIdentifier(identifier) {
+      if (identifier.indexOf('_') !== -1) {
+        return identifier.split('_');
+      }
+      return identifier.split(/(?=[A-Z])/);
+    }
+
+    function tokenizeMethod(methodSignature) {
+      let {
+        returnType,
+        identifier
+      } = returnTypeAndIdentifier(methodSignature);
+      let parameterTypes = getParameterTypes(methodSignature);
+
+      return {
+        types: [returnType].concat(parameterTypes),
+        words: splitIdentifier(identifier),
+      };
+    }
+
+    let isMethod = signature.indexOf('(') !== -1 && signature.indexOf(')') !== -1;
+    if (isMethod) {
+      return tokenizeMethod(signature);
+    } else {
+      return tokenizeField(signature);
+    }
+  }
+
+  function vocabulary(graph) {
+    return graph.nodes.map(node => tokenize(node.id))
+      .reduceRight((acc, tokens) => {
+        return {
+          types: acc.types.concat(tokens.types),
+          words: acc.words.concat(tokens.words).filter(word => word !== '<init>' && word !== '<clinit>'),
+        };
+      });
+  }
+
+  function sortObject(stats) {
+    let sortableArray = [];
+    for (let stat in stats) {
+      sortableArray.push([stat, stats[stat]]);
+    }
+    sortableArray.sort((a, b) => b[1] - a[1]);
+
+    let sortedObject = {};
+    sortableArray.forEach((stat) => {
+      sortedObject[stat[0]] = stat[1];
+    });
+    return sortedObject;
+  }
+
+  function vocabularyStats(vocabulary) {
+    let typeStats = {};
+    let wordStats = {};
+
+    vocabulary.types.forEach(type => {
+      typeStats.hasOwnProperty(type) ? typeStats[type]++ : typeStats[type] = 1;
+    });
+
+    vocabulary.words.forEach(word => {
+      let lowerCaseWord = word.toLowerCase();
+      wordStats.hasOwnProperty(lowerCaseWord) ? wordStats[lowerCaseWord]++ : wordStats[lowerCaseWord] = 1;
+    });
+
+    return {
+      types: sortObject(typeStats),
+      words: sortObject(wordStats),
+    };
   }
 
   const drawEdgeBundlingGraph = (graph) => {
@@ -330,7 +433,7 @@ Effort* = ${effort(d.dependencies.length, d.dependents.length)}, I = ${isNaN(ins
     }
   }
 
-  function setClassInfo(classInfo) {
+  function buildClassInfoPanel(classInfo) {
     // clear the table
     const classInfoTable = document.getElementById('class-info');
     let child = classInfoTable.lastChild;
@@ -375,12 +478,57 @@ Effort* = ${effort(d.dependencies.length, d.dependents.length)}, I = ${isNaN(ins
     }
   }
 
+  function buildVocabularyPanels(graph) {
+    const { types, words } = vocabularyStats(vocabulary(graph));
+
+    // clear the 'Types' table
+    const typesTable = document.getElementById('types');
+    let child = typesTable.lastChild;
+    while (child) {
+      typesTable.removeChild(child);
+      child = typesTable.lastElementChild;
+    }
+
+    // add table header 'Types'
+    let tableRow = document.createElement('tr')
+    tableRow.innerHTML = '<th class="panel-title" colspan="2">Types</th>';
+    typesTable.appendChild(tableRow);
+
+    // populate types
+    for (type in types) {
+      tableRow = document.createElement('tr');
+      tableRow.innerHTML = `<td class="property">${type}</td><td class="value-number">${types[type]}</td>`;
+      typesTable.appendChild(tableRow);
+    }
+
+    // clear the 'Words' table
+    const wordsTable = document.getElementById('words');
+    child = wordsTable.lastChild;
+    while (child) {
+      wordsTable.removeChild(child);
+      child = wordsTable.lastElementChild;
+    }
+
+    // add table header 'Words'
+    tableRow = document.createElement('tr')
+    tableRow.innerHTML = '<th class="panel-title" colspan="2">Words</th>';
+    wordsTable.appendChild(tableRow);
+
+    // populate words
+    for (word in words) {
+      tableRow = document.createElement('tr');
+      tableRow.innerHTML = `<td class="property">${word}</td><td class="value-number">${words[word]}</td>`;
+      wordsTable.appendChild(tableRow);
+    }
+  }
+
   const ws = new WebSocket("ws://localhost:{port}/structure-updates");
   ws.onmessage = (event) => {
     let graph = JSON.parse(event.data);
     drawEdgeBundlingGraph(graph);
     updateStats(graph);
-    setClassInfo(graph.meta.classInfo);
+    buildClassInfoPanel(graph.meta.classInfo);
+    buildVocabularyPanels(graph);
   };
 </script>
 </html>

@@ -61,7 +61,7 @@ export function vocabulary(graph) {
     .reduceRight((acc, tokens) => {
       return {
         types: acc.types.concat(tokens.types),
-        words: acc.words.concat(tokens.words),
+        words: acc.words.concat(tokens.words).filter(word => word !== '<init>' && word !== '<clinit>'),
       };
     });
 }

@@ -133,7 +133,7 @@ describe('class vocabulary', () => {
       'target': 'String version',
       'value': 1
     }, {
-      'source': 'void <init>()',
+      'source': 'void <clinit>()',
       'target': 'int versionCode',
       'value': 1
     }, {

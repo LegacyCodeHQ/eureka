@@ -26,7 +26,6 @@ Object {
     "Hello",
     "get",
     "Name",
-    "<init>",
     "version",
     "Code",
     "version",
@@ -43,7 +42,6 @@ Object {
     "void": 3,
   },
   "words": Object {
-    "<init>": 1,
     "code": 1,
     "get": 1,
     "goodbye": 1,

@@ -18,6 +18,8 @@ class CompiledClassFileFinder {
         .filter { file ->
           val partialClassNamePath = className.replace(".", "/")
           file.isFile && !file.absolutePath.contains("incrementalData") &&
+            !file.absolutePath.contains("asm_instrumented_project_classes") &&
+            !file.absolutePath.contains("jacoco_instrumented_classes") &&
             file.absolutePath.endsWith("$partialClassNamePath.class")
         }
         .toList()

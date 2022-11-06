@@ -190,4 +190,10 @@ describe('class vocabulary', () => {
     expect(actual)
       .toMatchSnapshot();
   });
+
+  it('should build vocabulary for behavior', () => {
+    let actual = vocabularyStats(vocabulary(graph, selectors.behavior));
+    expect(actual)
+      .toMatchSnapshot();
+  });
 });

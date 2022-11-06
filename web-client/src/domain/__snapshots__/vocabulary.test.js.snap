@@ -34,6 +34,28 @@ Object {
 }
 `;
 
+exports[`class vocabulary should build vocabulary for state 1`] = `
+Object {
+  "types": Object {
+    "String": 5,
+    "int": 2,
+    "void": 3,
+  },
+  "words": Object {
+    "code": 1,
+    "get": 1,
+    "goodbye": 1,
+    "hello": 1,
+    "increment": 1,
+    "name": 2,
+    "random": 1,
+    "say": 2,
+    "version": 4,
+    "what": 1,
+  },
+}
+`;
+
 exports[`class vocabulary should build vocabulary stats from the vocabulary object 1`] = `
 Object {
   "types": Object {

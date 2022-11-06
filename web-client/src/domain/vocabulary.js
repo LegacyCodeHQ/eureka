@@ -57,7 +57,11 @@ export function tokenize(signature) {
 }
 
 export function vocabulary(graph) {
-  return graph.nodes.map(node => tokenize(node.id))
+  return vocabularyWithFilter(graph, (_) => true);
+}
+
+function vocabularyWithFilter(graph, selector) {
+  return graph.nodes.filter(selector).map(node => tokenize(node.id))
     .reduceRight((acc, tokens) => {
       return {
         types: acc.types.concat(tokens.types),

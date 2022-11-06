@@ -183,4 +183,10 @@ describe('class vocabulary', () => {
     expect(actual)
       .toMatchSnapshot();
   });
+
+  it('should build vocabulary for state', () => {
+    let actual = vocabularyStats(vocabulary(graph), (node) => node.group === 1);
+    expect(actual)
+      .toMatchSnapshot();
+  });
 });

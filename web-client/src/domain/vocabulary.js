@@ -30,7 +30,7 @@ export function tokenize(signature) {
 
   function splitIdentifier(identifier) {
     if (identifier.indexOf('_') !== -1) {
-      return identifier.split('_');
+      return identifier.split('_').filter(word => word.length > 0);
     }
     return identifier.split(/(?=[A-Z])/);
   }

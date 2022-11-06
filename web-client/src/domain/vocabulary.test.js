@@ -55,6 +55,14 @@ describe('field tokenization', () => {
       words: ['Question', 'Title'],
     });
   });
+
+  it('should not contain blanks after tokenization', function () {
+    let actual = tokenize('String __name');
+    actual.should.deep.equal({
+      types: ['String'],
+      words: ['name'],
+    });
+  });
 });
 
 describe('method tokenization', () => {

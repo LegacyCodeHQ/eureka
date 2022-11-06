@@ -1,5 +1,6 @@
 package io.redgreen.tumbleweed.filesystem
 
+import java.io.File
 import java.nio.file.FileSystems
 import java.nio.file.Path
 
@@ -15,13 +16,7 @@ class CompiledClassFileFinder {
         .toFile()
         .walkTopDown()
         .filter { file -> file.extension == "class" }
-        .filter { file ->
-          val partialClassNamePath = className.replace(".", "/")
-          file.isFile && !file.absolutePath.contains("incrementalData") &&
-            !file.absolutePath.contains("asm_instrumented_project_classes") &&
-            !file.absolutePath.contains("jacoco_instrumented_classes") &&
-            file.absolutePath.endsWith("$partialClassNamePath.class")
-        }
+        .filter { file -> isPotentialClassFilePath(className, file) }
         .toList()
 
       return if (potentialClassFilePaths.size == 1) {
@@ -36,7 +31,14 @@ class CompiledClassFileFinder {
       } else {
         null
       }
+    }
 
+    private fun isPotentialClassFilePath(className: String, file: File): Boolean {
+      val partialClassNamePath = className.replace(".", "/")
+      return file.isFile && !file.absolutePath.contains("incrementalData") &&
+        !file.absolutePath.contains("asm_instrumented_project_classes") &&
+        !file.absolutePath.contains("jacoco_instrumented_classes") &&
+        file.absolutePath.endsWith("$partialClassNamePath.class")
     }
   }
 }

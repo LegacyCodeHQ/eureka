@@ -30,7 +30,8 @@ export function tokenize(signature) {
 
   function splitIdentifier(identifier) {
     if (identifier.indexOf('_') !== -1) {
-      return identifier.split('_').filter(word => word.length > 0);
+      return identifier.split('_')
+        .filter(word => word.length > 0);
     }
     return identifier.split(/(?=[A-Z])/);
   }
@@ -56,16 +57,19 @@ export function tokenize(signature) {
   }
 }
 
-export function vocabulary(graph) {
-  return vocabularyWithFilter(graph, (_) => true);
-}
+export const selectors = {
+  all: node => true,
+  state: node => node.group === 1,
+};
 
-function vocabularyWithFilter(graph, selector) {
-  return graph.nodes.filter(selector).map(node => tokenize(node.id))
+export function vocabulary(graph, selector = selectors.all) {
+  return graph.nodes.filter(selector)
+    .map(node => tokenize(node.id))
     .reduceRight((acc, tokens) => {
       return {
         types: acc.types.concat(tokens.types),
-        words: acc.words.concat(tokens.words).filter(word => word !== '<init>' && word !== '<clinit>'),
+        words: acc.words.concat(tokens.words)
+          .filter(word => word !== '<init>' && word !== '<clinit>'),
       };
     });
 }

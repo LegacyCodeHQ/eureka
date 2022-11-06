@@ -5,6 +5,7 @@ const {
   tokenize,
   vocabulary,
   vocabularyStats,
+  selectors,
 } = require('./vocabulary');
 
 describe('field tokenization', () => {
@@ -185,7 +186,7 @@ describe('class vocabulary', () => {
   });
 
   it('should build vocabulary for state', () => {
-    let actual = vocabularyStats(vocabulary(graph), (node) => node.group === 1);
+    let actual = vocabularyStats(vocabulary(graph, selectors.state));
     expect(actual)
       .toMatchSnapshot();
   });

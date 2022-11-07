@@ -73,7 +73,7 @@ class TumbleweedServer {
       }
       static("/static") {
         staticBasePackage = "files"
-        resource("hello.txt")
+        resources("")
       }
     }
   }

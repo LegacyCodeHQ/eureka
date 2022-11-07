@@ -7,6 +7,12 @@ import io.ktor.server.application.call
 import io.ktor.server.application.install
 import io.ktor.server.engine.ApplicationEngine
 import io.ktor.server.engine.embeddedServer
+import io.ktor.server.http.content.default
+import io.ktor.server.http.content.file
+import io.ktor.server.http.content.resource
+import io.ktor.server.http.content.resources
+import io.ktor.server.http.content.static
+import io.ktor.server.http.content.staticBasePackage
 import io.ktor.server.netty.Netty
 import io.ktor.server.response.respondText
 import io.ktor.server.routing.get
@@ -64,6 +70,10 @@ class TumbleweedServer {
       get("/") { serveIndexPage(port) }
       webSocket("/structure-updates") {
         openWsConnectionForStructureUpdates(structureUpdatesQueue, source)
+      }
+      static("/static") {
+        staticBasePackage = "files"
+        resource("hello.txt")
       }
     }
   }

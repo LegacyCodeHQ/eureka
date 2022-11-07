@@ -58,7 +58,7 @@ export function tokenize(signature) {
 }
 
 export const selectors = {
-  all: node => true,
+  all: _ => true,
   state: node => node.group === 1,
   behavior: node => node.group === 2,
 };

@@ -64,6 +64,14 @@ describe('field tokenization', () => {
       words: ['name'],
     });
   });
+
+  it('should tokenize acronyms in identifiers', function () {
+    let actual = tokenize('String HTMLDocument');
+    actual.should.deep.equal({
+      types: ['String'],
+      words: ['HTML', 'Document'],
+    });
+  });
 });
 
 describe('method tokenization', () => {

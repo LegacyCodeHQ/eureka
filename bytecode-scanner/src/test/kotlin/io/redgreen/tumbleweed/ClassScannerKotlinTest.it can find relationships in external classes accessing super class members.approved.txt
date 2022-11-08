@@ -1,0 +1,11 @@
+Package: io.redgreen.tumbleweed.samples
+Class: ExternalClassAccessingSuperClassMembers
+Extends: io.redgreen.tumbleweed.samples.InternalSuperClass
+Methods:
+  - void <init>()
+  - void foo()
+  - int getSeverity()
+  - java.lang.String whoIs(java.lang.String)
+Calls:
+  - void foo() -> int getSeverity()
+  - void foo() -> java.lang.String whoIs(java.lang.String)

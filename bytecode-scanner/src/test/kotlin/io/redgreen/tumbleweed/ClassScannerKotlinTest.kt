@@ -10,6 +10,7 @@ import io.redgreen.tumbleweed.samples.ExtendsRelationship
 import io.redgreen.tumbleweed.samples.ExtensionFunctionsWithReceivers
 import io.redgreen.tumbleweed.samples.ExtensionInlineFunctions
 import io.redgreen.tumbleweed.samples.ExternalClassAccessingClassMembers
+import io.redgreen.tumbleweed.samples.ExternalClassAccessingSuperClassMembers
 import io.redgreen.tumbleweed.samples.FunctionCallsInsideLambdas
 import io.redgreen.tumbleweed.samples.InlineFunction
 import io.redgreen.tumbleweed.samples.InterfaceImplementation
@@ -348,6 +349,20 @@ class ClassScannerKotlinTest {
 
     // when
     val classStructure = ClassScanner.scan(externalClassesAccessingClassMembers.file)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
+
+  @Test
+  fun `it can find relationships in external classes accessing super class members`() {
+    // given
+    val externalClassesAccessingSuperClassMembers = defaultKotlinClassLocation.copy(
+      fqClassName = ExternalClassAccessingSuperClassMembers::class.java.name,
+    )
+
+    // when
+    val classStructure = ClassScanner.scan(externalClassesAccessingSuperClassMembers.file)
 
     // then
     Approvals.verify(classStructure.printable)

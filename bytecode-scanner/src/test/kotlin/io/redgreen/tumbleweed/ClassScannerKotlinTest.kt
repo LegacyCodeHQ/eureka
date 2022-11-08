@@ -1,17 +1,18 @@
 package io.redgreen.tumbleweed
 
 import io.redgreen.tumbleweed.samples.AccessSuperClassMembers
+import io.redgreen.tumbleweed.samples.AnonymousFunctionDifferentPackage
 import io.redgreen.tumbleweed.samples.AnonymousFunctionWritingField
 import io.redgreen.tumbleweed.samples.Counter
 import io.redgreen.tumbleweed.samples.DeeplyNestedLambdaFunctions
 import io.redgreen.tumbleweed.samples.EmptyClass
+import io.redgreen.tumbleweed.samples.ExtendsRelationship
 import io.redgreen.tumbleweed.samples.ExtensionFunctionsWithReceivers
+import io.redgreen.tumbleweed.samples.ExtensionInlineFunctions
+import io.redgreen.tumbleweed.samples.ExternalClassAccessingClassMembers
 import io.redgreen.tumbleweed.samples.FunctionCallsInsideLambdas
 import io.redgreen.tumbleweed.samples.InlineFunction
 import io.redgreen.tumbleweed.samples.InterfaceImplementation
-import io.redgreen.tumbleweed.samples.AnonymousFunctionDifferentPackage
-import io.redgreen.tumbleweed.samples.ExtendsRelationship
-import io.redgreen.tumbleweed.samples.ExtensionInlineFunctions
 import io.redgreen.tumbleweed.samples.LateinitVar
 import io.redgreen.tumbleweed.samples.LazyProperty
 import io.redgreen.tumbleweed.samples.MethodsCallingMethods
@@ -333,6 +334,20 @@ class ClassScannerKotlinTest {
 
     // when
     val classStructure = ClassScanner.scan(implementsInterface.file)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
+
+  @Test
+  fun `it can find relationships in external classes accessing class members`() {
+    // given
+    val externalClassesAccessingClassMembers = defaultKotlinClassLocation.copy(
+      fqClassName = ExternalClassAccessingClassMembers::class.java.name,
+    )
+
+    // when
+    val classStructure = ClassScanner.scan(externalClassesAccessingClassMembers.file)
 
     // then
     Approvals.verify(classStructure.printable)

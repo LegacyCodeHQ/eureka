@@ -2,11 +2,11 @@
 
 const e = React.createElement;
 
-function VocabularyRow(props) {
+function VocabularyRow(props, rowCount) {
   const token = Object.keys(props)[0];
   return (
     <tr key={token}>
-      <td className='property'>{token}</td>
+      <td className='property'>{rowCount}. {token}</td>
       <td className='value-number'>{props[token]}</td>
     </tr>
   );
@@ -26,7 +26,7 @@ function VocabularyPanel(props) {
           <tr><th className='panel-title' colSpan='2'>{title + ' (' + Object.keys(items).length + ')'}</th></tr>
         </thead>
         <tbody>
-          {rows.map((row) => VocabularyRow(row))}
+          {rows.map((row, index) => VocabularyRow(row, index + 1))}
         </tbody>
       </table>
     </div>

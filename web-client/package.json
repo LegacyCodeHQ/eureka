@@ -17,8 +17,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "chai": "^4.3.6",
-    "mocha": "^10.1.0"
+    "chai": "^4.3.6"
   },
   "scripts": {
     "start": "react-scripts start",

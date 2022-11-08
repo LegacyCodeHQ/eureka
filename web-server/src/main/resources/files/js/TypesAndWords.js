@@ -23,7 +23,7 @@ function VocabularyPanel(props) {
     <div>
       <table className='panel'>
         <thead>
-          <tr><th className='panel-title' colSpan='2'>{title}</th></tr>
+          <tr><th className='panel-title' colSpan='2'>{title + ' (' + Object.keys(items).length + ')'}</th></tr>
         </thead>
         <tbody>
           {rows.map((row) => VocabularyRow(row))}

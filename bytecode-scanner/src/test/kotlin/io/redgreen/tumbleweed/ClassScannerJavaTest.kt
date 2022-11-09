@@ -14,7 +14,7 @@ class ClassScannerJavaTest {
   )
 
   @Test
-  fun `it can scan a class with methods reading a field`() {
+  fun `01 - it can scan a class with methods reading a field`() {
     // given
     val methodReadingField = defaultJavaClassLocation.copy(
       fqClassName = MethodReadingField::class.java.name,
@@ -28,7 +28,7 @@ class ClassScannerJavaTest {
   }
 
   @Test
-  fun `it can scan a class with methods writing a field`() {
+  fun `02 - it can scan a class with methods writing a field`() {
     // given
     val methodWritingField = defaultJavaClassLocation.copy(
       fqClassName = MethodWritingField::class.java.name,
@@ -42,7 +42,7 @@ class ClassScannerJavaTest {
   }
 
   @Test
-  fun `it can scan a class with a lambda function accessing a field`() {
+  fun `03 - it can scan a class with a lambda function accessing a field`() {
     // given
     val methodReadingAndWritingField = defaultJavaClassLocation.copy(
       fqClassName = LambdaAccessingField::class.java.name,
@@ -56,7 +56,7 @@ class ClassScannerJavaTest {
   }
 
   @Test
-  fun `it can scan a class with string concatenation`() {
+  fun `04 - it can scan a class with string concatenation`() {
     // given
     val stringConcatenation = defaultJavaClassLocation.copy(
       fqClassName = StringConcatenation::class.java.name,

@@ -33,7 +33,7 @@ class ClassScannerKotlinTest {
   )
 
   @Test
-  fun `it can scan an empty class`() {
+  fun `01 - it can scan an empty class`() {
     // given
     val emptyClass = defaultKotlinClassLocation.copy(
       fqClassName = EmptyClass::class.java.name,
@@ -47,7 +47,7 @@ class ClassScannerKotlinTest {
   }
 
   @Test
-  fun `it can scan a class with fields`() {
+  fun `02 - it can scan a class with fields`() {
     // given
     val onlyFields = defaultKotlinClassLocation.copy(
       fqClassName = OnlyFields::class.java.name,
@@ -61,7 +61,7 @@ class ClassScannerKotlinTest {
   }
 
   @Test
-  fun `it can scan a class with methods`() {
+  fun `03 - it can scan a class with methods`() {
     // given
     val onlyMethods = defaultKotlinClassLocation.copy(
       fqClassName = OnlyMethods::class.java.name,
@@ -75,7 +75,7 @@ class ClassScannerKotlinTest {
   }
 
   @Test
-  fun `it can scan a class with methods calling methods`() {
+  fun `04 - it can scan a class with methods calling methods`() {
     // given
     val methodsCallingMethods = defaultKotlinClassLocation.copy(
       fqClassName = MethodsCallingMethods::class.java.name,
@@ -89,7 +89,7 @@ class ClassScannerKotlinTest {
   }
 
   @Test
-  fun `it can scan a class with recursive function`() {
+  fun `05 - it can scan a class with recursive function`() {
     // given
     val recursiveFunction = defaultKotlinClassLocation.copy(
       fqClassName = RecursiveFunction::class.java.name,
@@ -103,7 +103,7 @@ class ClassScannerKotlinTest {
   }
 
   @Test
-  fun `it can scan a class with anonymous function writing field`() {
+  fun `06 - it can scan a class with anonymous function writing field`() {
     // given
     val anonymousFunctionWritingField = defaultKotlinClassLocation.copy(
       fqClassName = AnonymousFunctionWritingField::class.java.name,
@@ -117,7 +117,7 @@ class ClassScannerKotlinTest {
   }
 
   @Test
-  fun `it can scan a class with nested anonymous function writing field`() {
+  fun `07 - it can scan a class with nested anonymous function writing field`() {
     // given
     val nestedAnonymousFunctionWritingField = defaultKotlinClassLocation.copy(
       fqClassName = NestedAnonymousFunctionWritingField::class.java.name,
@@ -131,7 +131,7 @@ class ClassScannerKotlinTest {
   }
 
   @Test
-  fun `it can scan a class with external class static field access and ignore them`() {
+  fun `08 - it can scan a class with external class static field access and ignore them`() {
     // given
     val staticFieldAccess = defaultKotlinClassLocation.copy(
       fqClassName = StaticFieldAccess::class.java.name,
@@ -145,7 +145,7 @@ class ClassScannerKotlinTest {
   }
 
   @Test
-  fun `it can scan a class with a lateinit field`() {
+  fun `09 - it can scan a class with a lateinit field`() {
     // given
     val staticMethodAccess = defaultKotlinClassLocation.copy(
       fqClassName = LateinitVar::class.java.name,
@@ -159,7 +159,7 @@ class ClassScannerKotlinTest {
   }
 
   @Test
-  fun `it can scan a class with a lazy field`() {
+  fun `10 - it can scan a class with a lazy field`() {
     // given
     val staticMethodAccess = defaultKotlinClassLocation.copy(
       fqClassName = LazyProperty::class.java.name,
@@ -173,7 +173,7 @@ class ClassScannerKotlinTest {
   }
 
   @Test
-  fun `it can scan a class that implements an interface`() {
+  fun `11 - it can scan a class that implements an interface`() {
     // given
     val interfaceImplementation = defaultKotlinClassLocation.copy(
       fqClassName = InterfaceImplementation::class.java.name,
@@ -187,7 +187,7 @@ class ClassScannerKotlinTest {
   }
 
   @Test
-  fun `it can scan a class that calls functions declared in the super class`() {
+  fun `12 - it can scan a class that calls functions declared in the super class`() {
     // given
     val accessSuperClassMembers = defaultKotlinClassLocation.copy(
       fqClassName = AccessSuperClassMembers::class.java.name,
@@ -201,7 +201,7 @@ class ClassScannerKotlinTest {
   }
 
   @Test
-  fun `it can scan a class with synthetic access functions`() {
+  fun `13 - it can scan a class with synthetic access functions`() {
     // given
     val syntheticBridges = defaultKotlinClassLocation.copy(
       fqClassName = SyntheticBridges::class.java.name,
@@ -215,7 +215,7 @@ class ClassScannerKotlinTest {
   }
 
   @Test
-  fun `it can scan a class with extension functions with receivers`() {
+  fun `14 - it can scan a class with extension functions with receivers`() {
     // given
     val extensionFunctionsWithReceivers = defaultKotlinClassLocation.copy(
       fqClassName = ExtensionFunctionsWithReceivers::class.java.name,
@@ -229,7 +229,7 @@ class ClassScannerKotlinTest {
   }
 
   @Test
-  fun `it can scan a class with calls to a function inside lambdas`() {
+  fun `15 - it can scan a class with calls to a function inside lambdas`() {
     // given
     val functionCallsInsideLambdas = defaultKotlinClassLocation.copy(
       fqClassName = FunctionCallsInsideLambdas::class.java.name,
@@ -243,7 +243,7 @@ class ClassScannerKotlinTest {
   }
 
   @Test
-  fun `it can scan a class with deeply nested lambda calls`() {
+  fun `16 - it can scan a class with deeply nested lambda calls`() {
     // given
     val deeplyNestedLambdaFunctions = defaultKotlinClassLocation.copy(
       fqClassName = DeeplyNestedLambdaFunctions::class.java.name,
@@ -257,7 +257,7 @@ class ClassScannerKotlinTest {
   }
 
   @Test
-  fun `it can scan a class with an inline function`() {
+  fun `17 - it can scan a class with an inline function`() {
     // given
     val inlineFunction = defaultKotlinClassLocation.copy(
       fqClassName = InlineFunction::class.java.name,
@@ -271,7 +271,7 @@ class ClassScannerKotlinTest {
   }
 
   @Test
-  fun `it can scan a class with a copy constructor`() {
+  fun `18 - it can scan a class with a copy constructor`() {
     // given
     val copyConstructor = defaultKotlinClassLocation.copy(
       fqClassName = Counter::class.java.name,
@@ -285,7 +285,7 @@ class ClassScannerKotlinTest {
   }
 
   @Test
-  fun `it can find relationships from anonymous functions from different package`() {
+  fun `19 - it can find relationships from anonymous functions from different package`() {
     // given
     val anonymousFunctionDifferentPackage = defaultKotlinClassLocation.copy(
       fqClassName = AnonymousFunctionDifferentPackage::class.java.name,
@@ -299,7 +299,7 @@ class ClassScannerKotlinTest {
   }
 
   @Test
-  fun `it can find relationships referenced from inline extension functions`() {
+  fun `20 - it can find relationships referenced from inline extension functions`() {
     // given
     val extensionInlineFunctions = defaultKotlinClassLocation.copy(
       fqClassName = ExtensionInlineFunctions::class.java.name,
@@ -313,7 +313,7 @@ class ClassScannerKotlinTest {
   }
 
   @Test
-  fun `it can find the super class`() {
+  fun `21 - it can find the super class`() {
     // given
     val extendsRelationship = defaultKotlinClassLocation.copy(
       fqClassName = ExtendsRelationship::class.java.name,
@@ -327,7 +327,7 @@ class ClassScannerKotlinTest {
   }
 
   @Test
-  fun `it can find the interfaces implemented by a class`() {
+  fun `22 - it can find the interfaces implemented by a class`() {
     // given
     val implementsInterface = defaultKotlinClassLocation.copy(
       fqClassName = InterfaceImplementation::class.java.name,
@@ -341,7 +341,7 @@ class ClassScannerKotlinTest {
   }
 
   @Test
-  fun `it can find relationships in external classes accessing class members`() {
+  fun `23 - it can find relationships in external classes accessing class members`() {
     // given
     val externalClassesAccessingClassMembers = defaultKotlinClassLocation.copy(
       fqClassName = ExternalClassAccessingClassMembers::class.java.name,
@@ -355,7 +355,7 @@ class ClassScannerKotlinTest {
   }
 
   @Test
-  fun `it can find relationships in external classes accessing super class members`() {
+  fun `24 - it can find relationships in external classes accessing super class members`() {
     // given
     val externalClassesAccessingSuperClassMembers = defaultKotlinClassLocation.copy(
       fqClassName = ExternalClassAccessingSuperClassMembers::class.java.name,

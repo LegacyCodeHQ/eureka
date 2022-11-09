@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 
 class ClassScannerKotlinCycleTest {
   @Test
-  fun `it can detect cycles caused by bridge functions`() {
+  fun `01 - it can detect cycles caused by bridge functions`() {
     // given
     val tumbleweedServerClassFile = File(
       "../bytecode-samples/src/main/resources/precompiled/kotlin/bridge-cycles/TumbleweedServer.class"
@@ -20,7 +20,7 @@ class ClassScannerKotlinCycleTest {
   }
 
   @Test
-  fun `it can detect cycles caused by cyclic function calls`() {
+  fun `02 - it can detect cycles caused by cyclic function calls`() {
     // given
     val classStructureClass = File(
       "../bytecode-samples/src/main/resources/precompiled/kotlin/cyclic-function-calls/ClassStructure.class"

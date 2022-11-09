@@ -6,11 +6,16 @@ import net.bytebuddy.jar.asm.ClassReader
 import net.bytebuddy.jar.asm.ClassVisitor
 import net.bytebuddy.jar.asm.FieldVisitor
 import net.bytebuddy.jar.asm.MethodVisitor
+import net.bytebuddy.jar.asm.Opcodes.ACC_STATIC
 import net.bytebuddy.jar.asm.Opcodes.ASM9
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 const val ASM_API_VERSION = ASM9
+
+typealias Value = String
+typealias ConstantPool = MutableMap<Value, Field>
+fun constantPool(): ConstantPool = mutableMapOf()
 
 object ClassScanner {
   private val logger: Logger = LoggerFactory.getLogger(ClassScanner::class.java)
@@ -52,6 +57,8 @@ object ClassScanner {
     val classInfo = ClassInfo.from(classFile)
     val topLevelType = classInfo.type
 
+    val constantPool = constantPool()
+
     val classVisitor = object : ClassVisitor(ASM_API_VERSION) {
       override fun visit(
         version: Int,
@@ -77,7 +84,13 @@ object ClassScanner {
       ): FieldVisitor {
         logger.debug("Visiting field: {}", name)
 
-        outFields.add(Field(name!!, FieldDescriptor.from(descriptor!!), topLevelType))
+        val field = Field(name!!, FieldDescriptor.from(descriptor!!), topLevelType)
+        if (access and ACC_STATIC != 0) {
+          constantPool[value.toString()] = field
+          logger.debug("Adding to constant pool: {} = {}", name, value)
+        }
+
+        outFields.add(field)
         return object : FieldVisitor(ASM_API_VERSION) { /* no-op */ }
       }
 
@@ -92,7 +105,7 @@ object ClassScanner {
 
         val method = Method(name!!, MethodDescriptor(descriptor!!), topLevelType)
         outMethods.add(method)
-        return InstructionScanner.scan(topLevelType, method, outRelationships)
+        return InstructionScanner.scan(topLevelType, method, constantPool, outRelationships)
       }
 
       override fun visitInnerClass(name: String, outerName: String?, innerName: String?, access: Int) {

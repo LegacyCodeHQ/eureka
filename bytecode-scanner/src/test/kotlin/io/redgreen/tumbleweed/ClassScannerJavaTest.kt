@@ -3,6 +3,7 @@ package io.redgreen.tumbleweed
 import io.redgreen.tumbleweed.samples.LambdaAccessingField
 import io.redgreen.tumbleweed.samples.MethodReadingField
 import io.redgreen.tumbleweed.samples.MethodWritingField
+import io.redgreen.tumbleweed.samples.StaticFieldJava
 import io.redgreen.tumbleweed.samples.StringConcatenation
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
@@ -64,6 +65,20 @@ class ClassScannerJavaTest {
 
     // when
     val classStructure = ClassScanner.scan(stringConcatenation.file)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
+
+  @Test
+  fun `04 - it can scan a class with static field`() {
+    // given
+    val staticFieldJava = defaultJavaClassLocation.copy(
+      fqClassName = StaticFieldJava::class.java.name,
+    )
+
+    // when
+    val classStructure = ClassScanner.scan(staticFieldJava.file)
 
     // then
     Approvals.verify(classStructure.printable)

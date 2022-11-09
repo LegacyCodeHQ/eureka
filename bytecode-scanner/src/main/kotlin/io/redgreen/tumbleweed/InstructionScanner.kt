@@ -13,9 +13,12 @@ object InstructionScanner {
   fun scan(
     topLevelType: QualifiedType,
     caller: Method,
+    constantPool: ConstantPool,
     outRelationships: MutableList<Relationship>,
   ): MethodVisitor {
     return object : MethodVisitor(ASM_API_VERSION) {
+      private var loadedConstant: Any? = null
+
       override fun visitFieldInsn(
         opcode: Opcode,
         owner: String,
@@ -52,6 +55,16 @@ object InstructionScanner {
         } else {
           logger.debug("Skipping method instruction ({}): {}/{}", opcode.instruction, owner, methodName)
         }
+
+        if (loadedConstant != null) {
+          val field = constantPool[loadedConstant]
+          if (field != null) {
+            val relationship = Relationship(caller, field, Relationship.Type.Reads)
+
+            logger.debug("Adding relationship: {}", relationship)
+            outRelationships.add(relationship)
+          }
+        }
       }
 
       override fun visitInvokeDynamicInsn(
@@ -70,6 +83,13 @@ object InstructionScanner {
           logger.debug("Ignoring dynamic instruction: {}{}", name, descriptor)
         }
         super.visitInvokeDynamicInsn(name, descriptor, bootstrapMethodHandle, *bootstrapMethodArguments)
+      }
+
+      override fun visitLdcInsn(value: Any?) {
+        logger.debug("Visiting ldc instruction: {}", value)
+
+        loadedConstant = value
+        super.visitLdcInsn(value)
       }
     }
   }

@@ -9,6 +9,7 @@ Fields:
   - float FLOAT
   - int CHAR
   - short SHORT
+  - byte BYTE
 Methods:
   - void <init>()
   - void main([]java.lang.String)
@@ -20,3 +21,4 @@ Reads:
   - void main([]java.lang.String) -> float FLOAT
   - void main([]java.lang.String) -> int CHAR
   - void main([]java.lang.String) -> short SHORT
+  - void main([]java.lang.String) -> byte BYTE

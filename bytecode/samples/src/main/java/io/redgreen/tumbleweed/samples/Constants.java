@@ -8,6 +8,7 @@ public class Constants {
   private static final float FLOAT = 4.2F;
   private static final int CHAR = 'A';
   private static final short SHORT = 8;
+  private static final byte BYTE = 0x1;
 
   public static void main(String[] args) {
     System.out.println(STRING);
@@ -17,5 +18,6 @@ public class Constants {
     System.out.println(FLOAT);
     System.out.println(CHAR);
     System.out.println(SHORT);
+    System.out.println(BYTE);
   }
 }

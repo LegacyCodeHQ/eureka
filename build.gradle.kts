@@ -5,7 +5,7 @@ buildscript {
 }
 
 plugins {
-  kotlin("jvm") version "1.7.20" apply false
+  kotlin("jvm") version "1.7.21" apply false
   id("com.github.ben-manes.versions") version "0.42.0" apply false
   id("io.gitlab.arturbosch.detekt") version("1.21.0") apply false
 }

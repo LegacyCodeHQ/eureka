@@ -1,5 +1,6 @@
 package io.redgreen.tumbleweed
 
+import io.redgreen.tumbleweed.samples.ConstantReferencedInConditional
 import io.redgreen.tumbleweed.samples.Constants
 import io.redgreen.tumbleweed.samples.IntegerConstants
 import io.redgreen.tumbleweed.samples.LambdaAccessingField
@@ -94,6 +95,20 @@ class ClassScannerJavaTest {
 
     // when
     val classStructure = ClassScanner.scan(integerConstants.file)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
+
+  @Test
+  fun `07 - it can scan a class with a constant referenced in a conditional`() {
+    // given
+    val constantReferencedInConditional = defaultJavaClassLocation.copy(
+      fqClassName = ConstantReferencedInConditional::class.java.name,
+    )
+
+    // when
+    val classStructure = ClassScanner.scan(constantReferencedInConditional.file)
 
     // then
     Approvals.verify(classStructure.printable)

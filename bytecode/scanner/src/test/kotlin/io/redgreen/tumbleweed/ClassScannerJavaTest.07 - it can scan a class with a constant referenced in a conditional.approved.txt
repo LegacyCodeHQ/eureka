@@ -1,0 +1,10 @@
+Package: io.redgreen.tumbleweed.samples
+Class: ConstantReferencedInConditional
+Extends: io.redgreen.tumbleweed.samples.Activity
+Fields:
+  - int TAKE_PHOTO
+Methods:
+  - void <init>()
+  - void onActivityResult(int, int)
+Reads:
+  - void onActivityResult(int, int) -> int TAKE_PHOTO

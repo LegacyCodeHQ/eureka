@@ -8,6 +8,7 @@ import io.redgreen.tumbleweed.Opcodes.iconst_4
 import io.redgreen.tumbleweed.Opcodes.iconst_5
 import io.redgreen.tumbleweed.Opcodes.iconst_m1
 import net.bytebuddy.jar.asm.Handle
+import net.bytebuddy.jar.asm.Label
 import net.bytebuddy.jar.asm.MethodVisitor
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -114,6 +115,19 @@ object InstructionScanner {
         }
         super.visitInsn(opcode)
       }
+
+      override fun visitJumpInsn(opcode: Int, label: Label?) {
+        logger.debug("Visiting jump instruction: {}", opcode.instruction)
+
+        if (maybeConstantFieldReferencedByInsn != null) {
+          val relationship = Relationship(caller, maybeConstantFieldReferencedByInsn!!, Relationship.Type.Reads)
+
+          logger.debug("Adding relationship: {}", relationship)
+          outRelationships.add(relationship)
+          maybeConstantFieldReferencedByInsn = null
+        }
+        super.visitJumpInsn(opcode, label)
+      }
     }
   }
 
@@ -138,6 +152,7 @@ object InstructionScanner {
         iconst_3 -> "iconst_3"
         iconst_4 -> "iconst_4"
         iconst_5 -> "iconst_5"
+        0xa0 -> "if_icmpne"
         else -> "unmapped (${"0x%02x".format(this)})})"
       }
     }

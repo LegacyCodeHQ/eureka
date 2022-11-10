@@ -9,6 +9,7 @@ public class Constants {
   private static final int CHAR = 'A';
   private static final short SHORT = 8;
   private static final byte BYTE = 0x1;
+  private static final boolean BOOLEAN = true;
 
   public static void main(String[] args) {
     System.out.println(STRING);
@@ -19,5 +20,6 @@ public class Constants {
     System.out.println(CHAR);
     System.out.println(SHORT);
     System.out.println(BYTE);
+    System.out.println(BOOLEAN);
   }
 }

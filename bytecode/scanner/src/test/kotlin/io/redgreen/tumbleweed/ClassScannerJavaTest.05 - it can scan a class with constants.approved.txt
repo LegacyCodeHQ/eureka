@@ -10,6 +10,7 @@ Fields:
   - int CHAR
   - short SHORT
   - byte BYTE
+  - boolean BOOLEAN
 Methods:
   - void <init>()
   - void main([]java.lang.String)
@@ -21,4 +22,4 @@ Reads:
   - void main([]java.lang.String) -> float FLOAT
   - void main([]java.lang.String) -> int CHAR
   - void main([]java.lang.String) -> short SHORT
-  - void main([]java.lang.String) -> byte BYTE
+  - void main([]java.lang.String) -> boolean BOOLEAN

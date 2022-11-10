@@ -5,6 +5,7 @@ Fields:
   - java.lang.String CONSTANT
   - int NUMBER
   - long LONG_NUMBER
+  - double DOUBLE
 Methods:
   - void <init>()
   - void main([]java.lang.String)
@@ -12,3 +13,4 @@ Reads:
   - void main([]java.lang.String) -> java.lang.String CONSTANT
   - void main([]java.lang.String) -> int NUMBER
   - void main([]java.lang.String) -> long LONG_NUMBER
+  - void main([]java.lang.String) -> double DOUBLE

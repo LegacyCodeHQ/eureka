@@ -8,6 +8,7 @@ Fields:
   - double DOUBLE
   - double FLOAT
   - int CHAR
+  - int SHORT
 Methods:
   - void <init>()
   - void main([]java.lang.String)
@@ -18,3 +19,4 @@ Reads:
   - void main([]java.lang.String) -> double DOUBLE
   - void main([]java.lang.String) -> double FLOAT
   - void main([]java.lang.String) -> int CHAR
+  - void main([]java.lang.String) -> int SHORT

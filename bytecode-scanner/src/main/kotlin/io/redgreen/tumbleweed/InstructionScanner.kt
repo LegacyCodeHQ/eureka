@@ -1,5 +1,9 @@
 package io.redgreen.tumbleweed
 
+import io.redgreen.tumbleweed.Opcodes.iconst_0
+import io.redgreen.tumbleweed.Opcodes.iconst_1
+import io.redgreen.tumbleweed.Opcodes.iconst_2
+import io.redgreen.tumbleweed.Opcodes.iconst_m1
 import net.bytebuddy.jar.asm.Handle
 import net.bytebuddy.jar.asm.MethodVisitor
 import org.slf4j.Logger
@@ -57,10 +61,10 @@ object InstructionScanner {
         }
 
         if (maybeConstantFieldReferencedByInsn != null) {
-            val relationship = Relationship(caller, maybeConstantFieldReferencedByInsn!!, Relationship.Type.Reads)
+          val relationship = Relationship(caller, maybeConstantFieldReferencedByInsn!!, Relationship.Type.Reads)
 
-            logger.debug("Adding relationship: {}", relationship)
-            outRelationships.add(relationship)
+          logger.debug("Adding relationship: {}", relationship)
+          outRelationships.add(relationship)
           maybeConstantFieldReferencedByInsn = null
         }
       }
@@ -91,10 +95,25 @@ object InstructionScanner {
       }
 
       override fun visitIntInsn(opcode: Int, operand: Int) {
-        logger.debug("Visiting instruction: {}", opcode.instruction)
+        logger.debug("Visiting int instruction: {}", opcode.instruction)
 
         maybeConstantFieldReferencedByInsn = constantPool[operand]
         super.visitIntInsn(opcode, operand)
+      }
+
+      override fun visitInsn(opcode: Int) {
+        logger.debug("Visiting instruction: {}", opcode.instruction)
+
+        if (opcode == iconst_m1) {
+          maybeConstantFieldReferencedByInsn = constantPool[-1]
+        } else if (opcode == iconst_0) {
+          maybeConstantFieldReferencedByInsn = constantPool[0]
+        } else if (opcode == iconst_1) {
+          maybeConstantFieldReferencedByInsn = constantPool[1]
+        } else if (opcode == iconst_2) {
+          maybeConstantFieldReferencedByInsn = constantPool[2]
+        }
+        super.visitInsn(opcode)
       }
     }
   }
@@ -103,6 +122,7 @@ object InstructionScanner {
   private val Opcode.instruction: String
     get() {
       return when (this) {
+        0xb1 -> "return"
         0xb2 -> "getstatic"
         0xb3 -> "putstatic"
         0xb5 -> "putfield"
@@ -112,7 +132,18 @@ object InstructionScanner {
         0xb8 -> "invokestatic"
         0xb9 -> "invokeinterface"
         0x10 -> "bipush"
-        else -> "unmapped ($this)"
+        iconst_m1 -> "iconst_m1"
+        iconst_0 -> "iconst_0"
+        iconst_1 -> "iconst_1"
+        iconst_2 -> "iconst_2"
+        else -> "unmapped (${"0x%02x".format(this)})})"
       }
     }
+}
+
+private object Opcodes {
+  const val iconst_m1 = 0x02
+  const val iconst_0 = 0x03
+  const val iconst_1 = 0x04
+  const val iconst_2 = 0x05
 }

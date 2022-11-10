@@ -1,6 +1,7 @@
 package io.redgreen.tumbleweed
 
 import io.redgreen.tumbleweed.samples.Constants
+import io.redgreen.tumbleweed.samples.IntegerConstants
 import io.redgreen.tumbleweed.samples.LambdaAccessingField
 import io.redgreen.tumbleweed.samples.MethodReadingField
 import io.redgreen.tumbleweed.samples.MethodWritingField
@@ -79,6 +80,20 @@ class ClassScannerJavaTest {
 
     // when
     val classStructure = ClassScanner.scan(constants.file)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
+
+  @Test
+  fun `06 - it can scan a class with integer constants`() {
+    // given
+    val integerConstants = defaultJavaClassLocation.copy(
+      fqClassName = IntegerConstants::class.java.name,
+    )
+
+    // when
+    val classStructure = ClassScanner.scan(integerConstants.file)
 
     // then
     Approvals.verify(classStructure.printable)

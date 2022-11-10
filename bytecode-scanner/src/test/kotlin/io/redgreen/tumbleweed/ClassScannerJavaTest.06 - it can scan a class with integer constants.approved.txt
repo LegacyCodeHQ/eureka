@@ -1,0 +1,16 @@
+Package: io.redgreen.tumbleweed.samples
+Class: IntegerConstants
+Extends: java.lang.Object
+Fields:
+  - int MINUS_ONE
+  - int ZERO
+  - int ONE
+  - int TWO
+Methods:
+  - void <init>()
+  - void main([]java.lang.String)
+Reads:
+  - void main([]java.lang.String) -> int MINUS_ONE
+  - void main([]java.lang.String) -> int ZERO
+  - void main([]java.lang.String) -> int ONE
+  - void main([]java.lang.String) -> int TWO

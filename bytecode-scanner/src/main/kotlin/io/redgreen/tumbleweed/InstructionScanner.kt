@@ -17,7 +17,7 @@ object InstructionScanner {
     outRelationships: MutableList<Relationship>,
   ): MethodVisitor {
     return object : MethodVisitor(ASM_API_VERSION) {
-      private var loadedConstant: Any? = null
+      private var maybeConstantFieldReferencedByInsn: Field? = null
 
       override fun visitFieldInsn(
         opcode: Opcode,
@@ -56,14 +56,12 @@ object InstructionScanner {
           logger.debug("Skipping method instruction ({}): {}/{}", opcode.instruction, owner, methodName)
         }
 
-        if (loadedConstant != null) {
-          val field = constantPool[loadedConstant]
-          if (field != null) {
-            val relationship = Relationship(caller, field, Relationship.Type.Reads)
+        if (maybeConstantFieldReferencedByInsn != null) {
+            val relationship = Relationship(caller, maybeConstantFieldReferencedByInsn!!, Relationship.Type.Reads)
 
             logger.debug("Adding relationship: {}", relationship)
             outRelationships.add(relationship)
-          }
+          maybeConstantFieldReferencedByInsn = null
         }
       }
 
@@ -88,8 +86,15 @@ object InstructionScanner {
       override fun visitLdcInsn(value: Any?) {
         logger.debug("Visiting ldc instruction: {}", value)
 
-        loadedConstant = value
+        maybeConstantFieldReferencedByInsn = constantPool[value]
         super.visitLdcInsn(value)
+      }
+
+      override fun visitIntInsn(opcode: Int, operand: Int) {
+        logger.debug("Visiting instruction: {}", opcode.instruction)
+
+        maybeConstantFieldReferencedByInsn = constantPool[operand]
+        super.visitIntInsn(opcode, operand)
       }
     }
   }
@@ -106,6 +111,7 @@ object InstructionScanner {
         0xb6 -> "invokevirtual"
         0xb8 -> "invokestatic"
         0xb9 -> "invokeinterface"
+        0x10 -> "bipush"
         else -> "unmapped ($this)"
       }
     }

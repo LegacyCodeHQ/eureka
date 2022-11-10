@@ -13,8 +13,7 @@ import org.slf4j.LoggerFactory
 
 const val ASM_API_VERSION = ASM9
 
-typealias Value = String
-typealias ConstantPool = MutableMap<Value, Field>
+typealias ConstantPool = MutableMap<Any?, Field>
 fun constantPool(): ConstantPool = mutableMapOf()
 
 object ClassScanner {
@@ -86,7 +85,7 @@ object ClassScanner {
 
         val field = Field(name!!, FieldDescriptor.from(descriptor!!), topLevelType)
         if (access and ACC_STATIC != 0) {
-          constantPool[value.toString()] = field
+          constantPool[value] = field
           logger.debug("Adding to constant pool: {} = {}", name, value)
         }
 

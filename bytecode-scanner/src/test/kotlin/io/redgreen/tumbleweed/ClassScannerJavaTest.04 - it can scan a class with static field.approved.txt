@@ -3,8 +3,10 @@ Class: StaticFieldJava
 Extends: java.lang.Object
 Fields:
   - java.lang.String CONSTANT
+  - int NUMBER
 Methods:
   - void <init>()
   - void main([]java.lang.String)
 Reads:
   - void main([]java.lang.String) -> java.lang.String CONSTANT
+  - void main([]java.lang.String) -> int NUMBER

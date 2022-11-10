@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test
 
 class ClassScannerJavaTest {
   private val defaultJavaClassLocation = ClassFileLocation(
-    compiledClassesDirectory = "../bytecode-samples/build/classes/java/main",
+    compiledClassesDirectory = "../bytecode/samples/build/classes/java/main",
     fqClassName = "replace-java-class-?"
   )
 

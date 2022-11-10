@@ -7,5 +7,5 @@ dependencies {
 
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.4")
 
-  testImplementation(project(":bytecode-samples"))
+  testImplementation(project(":bytecode:samples"))
 }

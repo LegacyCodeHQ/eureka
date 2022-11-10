@@ -37,7 +37,7 @@ class CompiledClassFileFinderTest {
     // given & when
     val path = CompiledClassFileFinder.find(
       className = "samples.FindMeKotlinClass",
-      searchDirectory = "../bytecode-samples/build/classes/kotlin/main",
+      searchDirectory = "../bytecode/samples/build/classes/kotlin/main",
     )
 
     // then

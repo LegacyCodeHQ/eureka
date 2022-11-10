@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>ArrayPrimitive:OnlyMethods.kt$OnlyMethods$Array&lt;Int&gt;</ID>
+    <ID>FunctionOnlyReturningConstant:OnlyMethods.kt$OnlyMethods$fun methodWithNoArgumentsWithReturnType(): Int</ID>
+    <ID>FunctionOnlyReturningConstant:OnlyMethods.kt$OnlyMethods$fun methodWithPrimitiveArgs(a: Int, b: Boolean, c: Double, d: Long)</ID>
+    <ID>MagicNumber:DeeplyNestedLambdaFunctions.kt$DeeplyNestedLambdaFunctions$10</ID>
+    <ID>MagicNumber:ExtensionFunctionsWithReceivers.kt$ExtensionFunctionsWithReceivers$7070</ID>
+    <ID>MagicNumber:ExternalClassAccessingClassMembers.kt$ExternalClassAccessingClassMembers$5</ID>
+    <ID>MagicNumber:ExternalClassAccessingSuperClassMembers.kt$InternalSuperClass$5</ID>
+    <ID>MagicNumber:FunctionCallsInsideLambdas.kt$FunctionCallsInsideLambdas$3</ID>
+    <ID>MagicNumber:OnlyMethods.kt$OnlyMethods$3</ID>
+    <ID>UnnecessaryAbstractClass:AccessSuperClassMembers.kt$SuperClass$SuperClass</ID>
+    <ID>UnnecessaryAbstractClass:ExternalClassAccessingSuperClassMembers.kt$InternalSuperClass$InternalSuperClass</ID>
+  </CurrentIssues>
+</SmellBaseline>

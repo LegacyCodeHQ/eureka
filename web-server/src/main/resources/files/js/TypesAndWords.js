@@ -2,17 +2,17 @@
 
 const e = React.createElement;
 
-function VocabularyRow(props, rowCount) {
+function VocabularyRow(props, rowCount, onTokenHover) {
   const token = Object.keys(props)[0];
   return (
-    <tr key={token}>
+    <tr key={token} onMouseOver={() => onTokenHover(token)} onMouseOut={() => onTokenHover(null)}>
       <td className='property'>{rowCount}. {token}</td>
       <td className='value-number'>{props[token]}</td>
     </tr>
   );
 }
 
-function VocabularyPanel(props) {
+function VocabularyPanel(props, onTokenHover) {
   const { title, items } = props;
   const rows = [];
   for (const key in items) {
@@ -26,7 +26,7 @@ function VocabularyPanel(props) {
           <tr><th className='panel-title' colSpan='2'>{title + ' (' + Object.keys(items).length + ')'}</th></tr>
         </thead>
         <tbody>
-          {rows.map((row, index) => VocabularyRow(row, index + 1))}
+          {rows.map((row, index) => VocabularyRow(row, index + 1, onTokenHover))}
         </tbody>
       </table>
     </div>
@@ -87,15 +87,15 @@ class TypesAndWords extends React.Component {
       selected: this.state.selected,
     };
 
-    const { types, words } = vocabularyStats(vocabulary(this.props, this.state.selected.selector));
+    const { types, words } = vocabularyStats(vocabulary(this.props.graph, this.state.selected.selector));
     const typesProps = { title: 'Types', items: types };
     const wordsProps = { title: 'Words', items: words };
 
     return (
       <div className='scroll'>
         {Selectors(selectorsProps, (option) => this.setState({ selected: option }))}
-        {VocabularyPanel(typesProps)}
-        {VocabularyPanel(wordsProps)}
+        {VocabularyPanel(typesProps, this.props.onTokenHover)}
+        {VocabularyPanel(wordsProps, this.props.onTokenHover)}
       </div>
     );
   }

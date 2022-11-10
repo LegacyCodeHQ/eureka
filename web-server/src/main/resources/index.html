@@ -222,7 +222,7 @@
     }
   }
 
-  const drawEdgeBundlingGraph = (graph) => {
+  const drawEdgeBundlingGraph = (graph, token) => {
     function clearEdgeBundlingGraph() {
       const svg = d3.select("svg");
       svg.selectAll("*").remove();
@@ -289,6 +289,11 @@ Effort* = ${effort(d.dependencies.length, d.dependents.length)}, I = ${isNaN(ins
       d3.selectAll(d.dependents.map(([d]) => d.text)).attr("fill", colorunselected).attr("font-weight", null);
       d3.selectAll(d.dependencies.map(d => d.path)).attr("stroke", null);
       d3.selectAll(d.dependencies.map(([, d]) => d.text)).attr("fill", colorunselected).attr("font-weight", null);
+    }
+
+    if (token != null) {
+      const leaves = root.leaves().filter(d => d.data.id.toLowerCase().indexOf(token.toLowerCase()) !== -1);
+      d3.selectAll(leaves.map(n => n.text)).attr("fill", colorselected).attr("font-weight", "bold");
     }
 
     return svg.node();
@@ -450,7 +455,10 @@ Effort* = ${effort(d.dependencies.length, d.dependents.length)}, I = ${isNaN(ins
     drawEdgeBundlingGraph(graph);
     updateStats(graph);
     buildClassInfoPanel(graph.meta.classInfo);
-    setTimeout(function () { updateVocabularyPanels(graph); }, 1000);
+    setTimeout(function () {
+      const props = { graph: graph, onTokenHover: (token) => drawEdgeBundlingGraph(graph, token) }
+      updateVocabularyPanels(props);
+    }, 1000);
   };
 </script>
 </html>

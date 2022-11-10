@@ -30,6 +30,7 @@ const val DEFAULT_PORT = 7070
 class TumbleweedCommand {
   @Option(
     names = ["--version", "-v"],
+    description = ["prints twd (Tumbleweed) version"],
     versionHelp = true,
   )
   var version: Boolean = false

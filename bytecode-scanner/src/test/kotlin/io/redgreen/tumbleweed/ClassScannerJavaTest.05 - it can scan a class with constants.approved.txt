@@ -1,5 +1,5 @@
 Package: io.redgreen.tumbleweed.samples
-Class: StaticFieldJava
+Class: Constants
 Extends: java.lang.Object
 Fields:
   - java.lang.String CONSTANT

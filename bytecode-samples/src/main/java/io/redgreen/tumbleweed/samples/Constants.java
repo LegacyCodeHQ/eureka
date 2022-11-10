@@ -1,6 +1,6 @@
 package io.redgreen.tumbleweed.samples;
 
-public class StaticFieldJava {
+public class Constants {
   private static final String CONSTANT = "Hello, World!";
   private static final int NUMBER = 42;
 

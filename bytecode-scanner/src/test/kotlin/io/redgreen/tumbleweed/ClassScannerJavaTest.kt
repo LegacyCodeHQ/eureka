@@ -1,9 +1,9 @@
 package io.redgreen.tumbleweed
 
+import io.redgreen.tumbleweed.samples.Constants
 import io.redgreen.tumbleweed.samples.LambdaAccessingField
 import io.redgreen.tumbleweed.samples.MethodReadingField
 import io.redgreen.tumbleweed.samples.MethodWritingField
-import io.redgreen.tumbleweed.samples.StaticFieldJava
 import io.redgreen.tumbleweed.samples.StringConcatenation
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
@@ -71,14 +71,14 @@ class ClassScannerJavaTest {
   }
 
   @Test
-  fun `04 - it can scan a class with static field`() {
+  fun `05 - it can scan a class with constants`() {
     // given
-    val staticFieldJava = defaultJavaClassLocation.copy(
-      fqClassName = StaticFieldJava::class.java.name,
+    val constants = defaultJavaClassLocation.copy(
+      fqClassName = Constants::class.java.name,
     )
 
     // when
-    val classStructure = ClassScanner.scan(staticFieldJava.file)
+    val classStructure = ClassScanner.scan(constants.file)
 
     // then
     Approvals.verify(classStructure.printable)

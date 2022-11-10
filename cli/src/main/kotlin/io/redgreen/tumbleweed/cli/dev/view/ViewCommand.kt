@@ -12,6 +12,7 @@ import picocli.CommandLine.Parameters
 @Command(
   name = "view",
   description = ["(dev) visualize a ObservableHQ JSON file in your browser"],
+  hidden = true,
 )
 class ViewCommand : Runnable {
   @Parameters(

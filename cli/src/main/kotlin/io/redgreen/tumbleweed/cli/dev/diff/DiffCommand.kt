@@ -8,6 +8,7 @@ import picocli.CommandLine.Option
 @Command(
   name = "diff",
   description = ["(dev) compare two ObservableHQ JSON files"],
+  hidden = true,
 )
 class DiffCommand : Runnable {
   @Option(

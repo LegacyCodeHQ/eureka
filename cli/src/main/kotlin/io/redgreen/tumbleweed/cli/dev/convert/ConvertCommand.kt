@@ -8,6 +8,7 @@ import picocli.CommandLine.Parameters
 @Command(
   name = "convert",
   description = ["(dev) converts a CSV file to an ObservableHQ JSON file"],
+  hidden = true,
 )
 class ConvertCommand : Runnable {
   @Parameters(

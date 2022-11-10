@@ -2,15 +2,25 @@ Package: io.redgreen.tumbleweed.samples
 Class: IntegerConstants
 Extends: java.lang.Object
 Fields:
+  - int MINUS_4096
   - int MINUS_ONE
   - int ZERO
   - int ONE
   - int TWO
+  - int THREE
+  - int FOUR
+  - int FIVE
+  - int SIX
 Methods:
   - void <init>()
   - void main([]java.lang.String)
 Reads:
+  - void main([]java.lang.String) -> int MINUS_4096
   - void main([]java.lang.String) -> int MINUS_ONE
   - void main([]java.lang.String) -> int ZERO
   - void main([]java.lang.String) -> int ONE
   - void main([]java.lang.String) -> int TWO
+  - void main([]java.lang.String) -> int THREE
+  - void main([]java.lang.String) -> int FOUR
+  - void main([]java.lang.String) -> int FIVE
+  - void main([]java.lang.String) -> int SIX

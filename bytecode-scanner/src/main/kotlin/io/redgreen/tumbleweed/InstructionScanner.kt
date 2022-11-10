@@ -3,6 +3,9 @@ package io.redgreen.tumbleweed
 import io.redgreen.tumbleweed.Opcodes.iconst_0
 import io.redgreen.tumbleweed.Opcodes.iconst_1
 import io.redgreen.tumbleweed.Opcodes.iconst_2
+import io.redgreen.tumbleweed.Opcodes.iconst_3
+import io.redgreen.tumbleweed.Opcodes.iconst_4
+import io.redgreen.tumbleweed.Opcodes.iconst_5
 import io.redgreen.tumbleweed.Opcodes.iconst_m1
 import net.bytebuddy.jar.asm.Handle
 import net.bytebuddy.jar.asm.MethodVisitor
@@ -106,12 +109,8 @@ object InstructionScanner {
 
         if (opcode == iconst_m1) {
           maybeConstantFieldReferencedByInsn = constantPool[-1]
-        } else if (opcode == iconst_0) {
-          maybeConstantFieldReferencedByInsn = constantPool[0]
-        } else if (opcode == iconst_1) {
-          maybeConstantFieldReferencedByInsn = constantPool[1]
-        } else if (opcode == iconst_2) {
-          maybeConstantFieldReferencedByInsn = constantPool[2]
+        } else if (Opcodes.isIntInsn(opcode)) {
+          maybeConstantFieldReferencedByInsn = constantPool[opcode - iconst_0]
         }
         super.visitInsn(opcode)
       }
@@ -136,14 +135,10 @@ object InstructionScanner {
         iconst_0 -> "iconst_0"
         iconst_1 -> "iconst_1"
         iconst_2 -> "iconst_2"
+        iconst_3 -> "iconst_3"
+        iconst_4 -> "iconst_4"
+        iconst_5 -> "iconst_5"
         else -> "unmapped (${"0x%02x".format(this)})})"
       }
     }
-}
-
-private object Opcodes {
-  const val iconst_m1 = 0x02
-  const val iconst_0 = 0x03
-  const val iconst_1 = 0x04
-  const val iconst_2 = 0x05
 }

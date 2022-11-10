@@ -55,7 +55,7 @@ tasks {
 dependencies {
   implementation(project(":web-server"))
   implementation(project(":filesystem"))
-  implementation(project(":bytecode-scanner")) /* only for the `json` debug command */
+  implementation(project(":bytecode:scanner")) /* only for the `json` debug command */
 
   implementation("org.apache.commons:commons-csv:1.9.0")
 

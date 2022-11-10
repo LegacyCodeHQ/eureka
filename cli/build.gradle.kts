@@ -3,7 +3,7 @@ import org.jreleaser.model.Active
 import java.util.Properties
 
 @Suppress("PropertyName")
-val CLI_VERSION = "0.31.0"
+val CLI_VERSION = "0.32.0-SNAPSHOT"
 
 plugins {
   application

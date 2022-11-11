@@ -1,5 +1,6 @@
 package io.redgreen.tumbleweed
 
+import io.redgreen.tumbleweed.samples.ConstantReferencedInReturnStatement
 import io.redgreen.tumbleweed.samples.ConstantReferencedInConditional
 import io.redgreen.tumbleweed.samples.Constants
 import io.redgreen.tumbleweed.samples.IntegerConstants
@@ -109,6 +110,20 @@ class ClassScannerJavaTest {
 
     // when
     val classStructure = ClassScanner.scan(constantReferencedInConditional.file)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
+
+  @Test
+  fun `08 - it can scan a class with a constant referenced in return statements`() {
+    // given
+    val constantReferencedInReturnStatement = defaultJavaClassLocation.copy(
+      fqClassName = ConstantReferencedInReturnStatement::class.java.name,
+    )
+
+    // when
+    val classStructure = ClassScanner.scan(constantReferencedInReturnStatement.file)
 
     // then
     Approvals.verify(classStructure.printable)

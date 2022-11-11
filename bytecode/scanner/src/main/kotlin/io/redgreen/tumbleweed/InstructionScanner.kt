@@ -1,5 +1,6 @@
 package io.redgreen.tumbleweed
 
+import io.redgreen.tumbleweed.Opcodes.areturn
 import io.redgreen.tumbleweed.Opcodes.iconst_0
 import io.redgreen.tumbleweed.Opcodes.iconst_1
 import io.redgreen.tumbleweed.Opcodes.iconst_2
@@ -98,14 +99,14 @@ object InstructionScanner {
         super.visitLdcInsn(value)
       }
 
-      override fun visitIntInsn(opcode: Int, operand: Int) {
+      override fun visitIntInsn(opcode: Opcode, operand: Int) {
         logger.debug("Visiting int instruction: {}", opcode.instruction)
 
         maybeConstantFieldReferencedByInsn = constantPool[operand]
         super.visitIntInsn(opcode, operand)
       }
 
-      override fun visitInsn(opcode: Int) {
+      override fun visitInsn(opcode: Opcode) {
         logger.debug("Visiting instruction: {}", opcode.instruction)
 
         if (opcode == iconst_m1) {
@@ -113,10 +114,17 @@ object InstructionScanner {
         } else if (Opcodes.isIntInsn(opcode)) {
           maybeConstantFieldReferencedByInsn = constantPool[opcode - iconst_0]
         }
+
+        if (opcode == areturn && maybeConstantFieldReferencedByInsn != null) {
+          val relationship = Relationship(caller, maybeConstantFieldReferencedByInsn!!, Relationship.Type.Reads)
+          logger.debug("Adding relationship: {}", relationship)
+          outRelationships.add(relationship)
+          maybeConstantFieldReferencedByInsn = null
+        }
         super.visitInsn(opcode)
       }
 
-      override fun visitJumpInsn(opcode: Int, label: Label?) {
+      override fun visitJumpInsn(opcode: Opcode, label: Label?) {
         logger.debug("Visiting jump instruction: {}", opcode.instruction)
 
         if (maybeConstantFieldReferencedByInsn != null) {
@@ -153,6 +161,7 @@ object InstructionScanner {
         iconst_4 -> "iconst_4"
         iconst_5 -> "iconst_5"
         0xa0 -> "if_icmpne"
+        0xb0 -> "areturn"
         else -> "unmapped (${"0x%02x".format(this)})})"
       }
     }

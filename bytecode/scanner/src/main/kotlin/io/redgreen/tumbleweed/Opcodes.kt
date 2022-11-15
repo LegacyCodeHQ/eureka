@@ -10,6 +10,8 @@ object Opcodes {
   const val iconst_5 = 0x08
   const val areturn = 0xb0
 
+  const val invokespecial = 0xb7
+
   fun isIntInsn(opcode: Int): Boolean {
     return opcode == iconst_m1 ||
       opcode == iconst_0 ||

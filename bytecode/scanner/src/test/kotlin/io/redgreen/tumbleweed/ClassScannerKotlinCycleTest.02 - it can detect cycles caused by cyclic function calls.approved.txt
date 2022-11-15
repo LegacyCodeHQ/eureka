@@ -53,7 +53,6 @@ Reads:
   - java.util.List nonSyntheticRelationships(java.util.Set) -> java.util.List relationships
   - io.redgreen.tumbleweed.ClassStructure normalize() -> java.lang.String packageName
   - java.util.List skipLambdasInCallChain(java.util.List) -> org.slf4j.Logger logger
-  - io.redgreen.tumbleweed.ClassStructure copy(java.lang.String, java.lang.String, java.util.List, ist;Ljava.util.List, java.util.List;Ljava.util.List) -> org.slf4j.Logger logger
   - java.util.List bridgeCallReferences$bytecode_scanner(java.lang.String) -> java.util.List relationships
   - java.util.List innerClassConstructorInvocations$bytecode_scanner() -> java.util.List relationships
   - java.util.List innerClassConstructorInvocations$bytecode_scanner() -> java.lang.String className

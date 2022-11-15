@@ -8,6 +8,7 @@ import io.redgreen.tumbleweed.Opcodes.iconst_3
 import io.redgreen.tumbleweed.Opcodes.iconst_4
 import io.redgreen.tumbleweed.Opcodes.iconst_5
 import io.redgreen.tumbleweed.Opcodes.iconst_m1
+import io.redgreen.tumbleweed.Opcodes.invokespecial
 import net.bytebuddy.jar.asm.Handle
 import net.bytebuddy.jar.asm.Label
 import net.bytebuddy.jar.asm.MethodVisitor
@@ -59,8 +60,12 @@ object InstructionScanner {
           val callee = Method(methodName, MethodDescriptor(methodDescriptor), QualifiedType(owner))
           val relationship = Relationship(caller, callee, Relationship.Type.from(opcode))
 
-          logger.debug("Adding relationship: {}", relationship)
-          outRelationships.add(relationship)
+          if (caller.name == "<clinit>" && opcode == invokespecial) {
+            logger.debug("Skipping synthetic bridge call from static block: {}", relationship)
+          } else {
+            logger.debug("Adding relationship: {}", relationship)
+            outRelationships.add(relationship)
+          }
         } else {
           logger.debug("Skipping method instruction ({}): {}/{}", opcode.instruction, owner, methodName)
         }
@@ -148,7 +153,7 @@ object InstructionScanner {
         0xb3 -> "putstatic"
         0xb5 -> "putfield"
         0xb4 -> "getfield"
-        0xb7 -> "invokespecial"
+        invokespecial -> "invokespecial"
         0xb6 -> "invokevirtual"
         0xb8 -> "invokestatic"
         0xb9 -> "invokeinterface"

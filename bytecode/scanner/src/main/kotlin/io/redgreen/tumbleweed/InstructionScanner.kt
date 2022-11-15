@@ -140,7 +140,7 @@ object InstructionScanner {
   }
 
   @Suppress("MagicNumber")
-  private val Opcode.instruction: String
+  internal val Opcode.instruction: String
     get() {
       return when (this) {
         0xb1 -> "return"

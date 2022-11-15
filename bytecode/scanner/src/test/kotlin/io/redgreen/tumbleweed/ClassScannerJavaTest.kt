@@ -7,6 +7,7 @@ import io.redgreen.tumbleweed.samples.IntegerConstants
 import io.redgreen.tumbleweed.samples.LambdaAccessingField
 import io.redgreen.tumbleweed.samples.MethodReadingField
 import io.redgreen.tumbleweed.samples.MethodWritingField
+import io.redgreen.tumbleweed.samples.StaticBlock
 import io.redgreen.tumbleweed.samples.StringConcatenation
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
@@ -124,6 +125,20 @@ class ClassScannerJavaTest {
 
     // when
     val classStructure = ClassScanner.scan(constantReferencedInReturnStatement.file)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
+
+  @Test
+  fun `09 - it can scan a class with a static block containing a function call`() {
+    // given
+    val staticBlock = defaultJavaClassLocation.copy(
+      fqClassName = StaticBlock::class.java.name,
+    )
+
+    // when
+    val classStructure = ClassScanner.scan(staticBlock.file)
 
     // then
     Approvals.verify(classStructure.printable)

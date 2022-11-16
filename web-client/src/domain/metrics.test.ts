@@ -4,7 +4,7 @@ require('chai')
 const {
   instability,
   effort,
-} = require('./metrics.js');
+} = require('./metrics');
 
 describe('instability (I)', () => {
   it('should calculate metrics for a maximally stable member', function () {

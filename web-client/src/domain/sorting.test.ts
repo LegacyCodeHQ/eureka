@@ -3,7 +3,7 @@ require('chai')
 
 const {
   sortTypes,
-} = require('./sorting.js');
+} = require('./sorting');
 
 describe('a set of types', () => {
   it('should be sorted in alphabetical order', function () {

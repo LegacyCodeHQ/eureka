@@ -5,7 +5,7 @@ const {
   compressType,
   getPackageName,
   getClassName,
-} = require('./types.js');
+} = require('./types');
 
 describe('a qualified type name', () => {
   it('should return the same name if it is in the default package', function () {

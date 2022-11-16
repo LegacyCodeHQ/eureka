@@ -208,33 +208,34 @@ describe('class vocabulary', () => {
 
 describe('type term match', () => {
   it('should match a field type', () => {
-    let actual = termMatches(tokenize('int versionCode'), 'int');
+    let actual = termMatches('int versionCode', 'int');
     actual.should.equal(true);
   });
 
   it('should match a function return type', () => {
-    let actual = termMatches(tokenize('int count(List)'), 'int');
+    let actual = termMatches('int count(List)', 'int');
     actual.should.equal(true);
   });
 
   it('should match a function parameter type', () => {
-    let actual = termMatches(tokenize('boolean isGt(int, int)'), 'int');
+    let actual = termMatches('boolean isGt(int, int)', 'int');
     actual.should.equal(true);
   });
 });
 
 describe('word term match', () => {
   it('should match a field identifier', () => {
-    let actual = termMatches(tokenize('int versionCode'), 'version');
+    let actual = termMatches('int versionCode', 'version');
     actual.should.equal(true);
   });
 
   it('should match a method identifier', () => {
-    let actual = termMatches(tokenize('int getVersionCode()'), 'version');
+    let actual = termMatches('int getVersionCode()', 'version');
     actual.should.equal(true);
   });
 });
 
-function termMatches(tokens, term) {
+function termMatches(signature, term) {
+  let tokens = tokenize(signature);
   return tokens.types.includes(term) || tokens.words.map(w => w.toLowerCase()).includes(term);
 }

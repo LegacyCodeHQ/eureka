@@ -205,3 +205,24 @@ describe('class vocabulary', () => {
       .toMatchSnapshot();
   });
 });
+
+describe('type term match', () => {
+  it('should match a field type', () => {
+    let actual = termMatches(tokenize('int versionCode'), 'int');
+    actual.should.equal(true);
+  });
+
+  it('should match a function return type', () => {
+    let actual = termMatches(tokenize('int count(List)'), 'int');
+    actual.should.equal(true);
+  });
+
+  it('should match a function parameter type', () => {
+    let actual = termMatches(tokenize('boolean isGt(int, int)'), 'int');
+    actual.should.equal(true);
+  });
+});
+
+function termMatches(tokens, term) {
+  return tokens.types.includes(term);
+}

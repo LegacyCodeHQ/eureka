@@ -223,6 +223,18 @@ describe('type term match', () => {
   });
 });
 
+describe('word term match', () => {
+  it('should match a field identifier', () => {
+    let actual = termMatches(tokenize('int versionCode'), 'version');
+    actual.should.equal(true);
+  });
+
+  it('should match a method identifier', () => {
+    let actual = termMatches(tokenize('int getVersionCode()'), 'version');
+    actual.should.equal(true);
+  });
+});
+
 function termMatches(tokens, term) {
-  return tokens.types.includes(term);
+  return tokens.types.includes(term) || tokens.words.map(w => w.toLowerCase()).includes(term);
 }

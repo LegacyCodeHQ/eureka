@@ -125,7 +125,7 @@ export function vocabularyStats(vocabulary) {
   };
 }
 
-export function termMatches(signature, term) {
+export function tokenMatches(signature, token) {
   let tokens = tokenize(signature);
-  return tokens.types.includes(term) || tokens.words.map(w => w.toLowerCase()).includes(term);
+  return tokens.types.includes(token) || tokens.words.map(w => w.toLowerCase()).includes(token);
 }

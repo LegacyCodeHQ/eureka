@@ -6,7 +6,7 @@ const {
   vocabulary,
   vocabularyStats,
   selectors,
-  termMatches,
+  tokenMatches,
 } = require('./vocabulary');
 
 describe('field tokenization', () => {
@@ -207,31 +207,31 @@ describe('class vocabulary', () => {
   });
 });
 
-describe('type term match', () => {
+describe('type token match', () => {
   it('should match a field type', () => {
-    let actual = termMatches('int versionCode', 'int');
+    let actual = tokenMatches('int versionCode', 'int');
     actual.should.equal(true);
   });
 
   it('should match a function return type', () => {
-    let actual = termMatches('int count(List)', 'int');
+    let actual = tokenMatches('int count(List)', 'int');
     actual.should.equal(true);
   });
 
   it('should match a function parameter type', () => {
-    let actual = termMatches('boolean isGt(int, int)', 'int');
+    let actual = tokenMatches('boolean isGt(int, int)', 'int');
     actual.should.equal(true);
   });
 });
 
-describe('word term match', () => {
+describe('word token match', () => {
   it('should match a field identifier', () => {
-    let actual = termMatches('int versionCode', 'version');
+    let actual = tokenMatches('int versionCode', 'version');
     actual.should.equal(true);
   });
 
   it('should match a method identifier', () => {
-    let actual = termMatches('int getVersionCode()', 'version');
+    let actual = tokenMatches('int getVersionCode()', 'version');
     actual.should.equal(true);
   });
 });

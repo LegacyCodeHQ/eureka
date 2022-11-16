@@ -124,3 +124,8 @@ export function vocabularyStats(vocabulary) {
     words: sortObject(wordStats),
   };
 }
+
+export function termMatches(signature, term) {
+  let tokens = tokenize(signature);
+  return tokens.types.includes(term) || tokens.words.map(w => w.toLowerCase()).includes(term);
+}

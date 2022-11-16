@@ -222,6 +222,11 @@
     }
   }
 
+  function tokenMatches(signature, token) {
+    let tokens = tokenize(signature);
+    return tokens.types.includes(token) || tokens.words.map(w => w.toLowerCase()).includes(token);
+  }
+
   const drawEdgeBundlingGraph = (graph, token) => {
     function clearEdgeBundlingGraph() {
       const svg = d3.select("svg");
@@ -292,7 +297,7 @@ Effort* = ${effort(d.dependencies.length, d.dependents.length)}, I = ${isNaN(ins
     }
 
     if (token != null) {
-      const leaves = root.leaves().filter(d => d.data.id.toLowerCase().indexOf(token.toLowerCase()) !== -1);
+      const leaves = root.leaves().filter(d => tokenMatches(d.data.id, token));
       d3.selectAll(leaves.map(n => n.text)).attr("fill", colorselected).attr("font-weight", "bold");
     }
 

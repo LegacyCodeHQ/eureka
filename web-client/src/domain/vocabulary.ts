@@ -43,8 +43,11 @@ export function tokenize(signature) {
       } else {
         if (currentWord.length > 0) {
           words.push(currentWord);
+          currentWord = '';
         }
-        currentWord = word;
+        if (word.length > 0) {
+          words.push(word);
+        }
       }
     });
     if (currentWord.length > 0) {

@@ -73,6 +73,14 @@ describe('field tokenization', () => {
       words: ['HTML', 'Document'],
     });
   });
+
+  it('should tokenize an identifier ending with an acronym', function () {
+    let actual = tokenize('ViewModel someVM');
+    actual.should.deep.equal({
+      types: ['ViewModel'],
+      words: ['some', 'VM'],
+    });
+  });
 });
 
 describe('method tokenization', () => {

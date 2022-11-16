@@ -136,7 +136,28 @@ function tokenize(signature) {
       return identifier.split('_')
         .filter(word => word.length > 0);
     }
-    return identifier.split(/(?=[A-Z])/);
+
+    let words = [];
+    let currentWord = '';
+    let splitByCaps = identifier.split(/(?=[A-Z])/);
+    splitByCaps.forEach((word) => {
+      if (word.length === 1) {
+        currentWord += word;
+      } else {
+        if (currentWord.length > 0) {
+          words.push(currentWord);
+          currentWord = '';
+        }
+        if (word.length > 0) {
+          words.push(word);
+        }
+
+      }
+    });
+    if (currentWord.length > 0) {
+      words.push(currentWord);
+    }
+    return words;
   }
 
   function tokenizeMethod(methodSignature) {

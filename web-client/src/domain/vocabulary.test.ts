@@ -81,6 +81,14 @@ describe('field tokenization', () => {
       words: ['some', 'VM'],
     });
   });
+
+  it('should tokenize a single word in uppercase', function () {
+    let actual = tokenize('String TAG');
+    actual.should.deep.equal({
+      types: ['String'],
+      words: ['TAG'],
+    });
+  });
 });
 
 describe('method tokenization', () => {

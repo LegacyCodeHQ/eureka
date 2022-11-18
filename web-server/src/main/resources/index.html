@@ -96,6 +96,19 @@
       overflow-y: scroll;
       height: 100vh;
     }
+
+    .vocabulary-normal {
+      font-style: normal;
+    }
+
+    .vocabulary-hover {
+      font-weight: bold;
+    }
+
+    .vocabulary-selected {
+      font-weight: bold;
+      font-style: italic;
+    }
   </style>
 </head>
 <body>
@@ -454,6 +467,14 @@ Effort* = ${effort(d.dependencies.length, d.dependents.length)}, I = ${isNaN(ins
     }
   }
 
+  function updateGraph(graph, tokens) {
+    let tokenToHighlight = tokens.selected;
+    if (tokens.hovered !== null) {
+      tokenToHighlight = tokens.hovered;
+    }
+    drawEdgeBundlingGraph(graph, tokenToHighlight);
+  }
+
   const ws = new WebSocket("ws://localhost:{port}/structure-updates");
   ws.onmessage = (event) => {
     let graph = JSON.parse(event.data);
@@ -461,7 +482,7 @@ Effort* = ${effort(d.dependencies.length, d.dependents.length)}, I = ${isNaN(ins
     updateStats(graph);
     buildClassInfoPanel(graph.meta.classInfo);
     setTimeout(function () {
-      const props = { graph: graph, onTokenHover: (token) => drawEdgeBundlingGraph(graph, token) }
+      const props = { graph: graph, onTokensChanged: (tokens) => updateGraph(graph, tokens) }
       updateVocabularyPanels(props);
     }, 1000);
   };

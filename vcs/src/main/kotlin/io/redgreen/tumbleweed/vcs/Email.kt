@@ -1,4 +1,4 @@
 package io.redgreen.tumbleweed.vcs
 
 @JvmInline
-value class Email(val value: String)
+value class Email(val address: String)

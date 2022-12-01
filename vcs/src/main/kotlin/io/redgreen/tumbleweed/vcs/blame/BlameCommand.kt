@@ -8,7 +8,7 @@ import io.redgreen.tumbleweed.vcs.RepoFile
 
 class BlameCommand(
   repo: Repo,
-  repoFile: RepoFile,
+  private val repoFile: RepoFile,
 ) {
   private val command = GitCommand(
     "blame",
@@ -19,7 +19,7 @@ class BlameCommand(
   fun execute(): Either<Nothing, BlameResult> {
     return command.execute()
       .map(::blameLines)
-      .map(::BlameResult)
+      .map { blameLines -> BlameResult(repoFile, blameLines) }
   }
 
   private fun blameLines(commandResult: CommandResult): List<BlameLine> =

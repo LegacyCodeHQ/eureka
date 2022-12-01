@@ -2,6 +2,8 @@
 <SmellBaseline>
   <ManuallySuppressedIssues></ManuallySuppressedIssues>
   <CurrentIssues>
+    <ID>ImplicitDefaultLocale:OwnershipTreemap.kt$OwnershipTreemap.Companion$String.format("%.2f", percentage)</ID>
+    <ID>MagicNumber:OwnershipTreemap.kt$OwnershipTreemap.Companion$100</ID>
     <ID>MaxLineLength:BlameLineTest.kt$BlameLineTest$"42e7f2b2e8 (&lt;vinay@obvious.in&gt; 2020-05-28 09:57:16 +0530 3) import android.annotation.SuppressLint"</ID>
     <ID>SpreadOperator:GitCommand.kt$GitCommand$("git", *args)</ID>
   </CurrentIssues>

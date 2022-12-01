@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>SpreadOperator:GitCommand.kt$GitCommand$("git", command, *options)</ID>
+  </CurrentIssues>
+</SmellBaseline>

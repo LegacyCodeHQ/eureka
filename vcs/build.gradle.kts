@@ -3,7 +3,7 @@ dependencies {
   implementation("io.arrow-kt:arrow-core:1.1.2")
 }
 
-task("cloneTestRepo") {
+task<Exec>("cloneTestRepo") {
   fun cloneGitRepo(repoDestination: File, repoUrl: String) {
     val process = Runtime.getRuntime().exec(
       arrayOf(

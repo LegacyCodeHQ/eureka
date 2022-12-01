@@ -2,6 +2,6 @@
 <SmellBaseline>
   <ManuallySuppressedIssues></ManuallySuppressedIssues>
   <CurrentIssues>
-    <ID>SpreadOperator:GitCommand.kt$GitCommand$("git", command, *options)</ID>
+    <ID>SpreadOperator:GitCommand.kt$GitCommand$("git", *args)</ID>
   </CurrentIssues>
 </SmellBaseline>

@@ -7,13 +7,13 @@ class GitCommandTest {
   @Test
   fun `it should get the HEAD commit hash`() {
     // given
-    val command = GitCommand("rev-parse", arrayOf("--short", "HEAD"))
+    val command = GitCommand("rev-parse", arrayOf("--short", "HEAD"), TestRepo("simple-android").path)
 
     // when
     val result = command.execute()
 
     // then
     assertThat(result.orNull())
-      .isEqualTo(CommandResult(0, "a6e9723"))
+      .isEqualTo(CommandResult(0, "5eb413173"))
   }
 }

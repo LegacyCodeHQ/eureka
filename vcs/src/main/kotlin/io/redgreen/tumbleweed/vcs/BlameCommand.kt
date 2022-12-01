@@ -12,7 +12,12 @@ class BlameCommand(
     repo.path,
   )
 
-  fun execute(): Either<Nothing, CommandResult> {
+  fun execute(): Either<Nothing, BlameResult> {
     return command.execute()
+      .map(::blameLines)
+      .map(::BlameResult)
   }
+
+  private fun blameLines(commandResult: CommandResult): List<BlameLine> =
+    commandResult.output.lines().map { rawBlameLine -> BlameLine.from(rawBlameLine) }
 }

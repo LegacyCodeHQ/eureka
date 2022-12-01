@@ -36,6 +36,13 @@ class GitCommandTest {
     val result = blameCommand.execute()
 
     // then
-    Approvals.verify(result.orNull()?.output)
+    Approvals.verify(result.orNull()!!.printable)
   }
+
+  private val BlameResult.printable: String
+    get() {
+      return lines.joinToString(System.lineSeparator()) { line ->
+        "${line.commitHash.value} ${line.email.value} ${line.timestamp} ${line.number}) ${line.content}"
+      }
+    }
 }

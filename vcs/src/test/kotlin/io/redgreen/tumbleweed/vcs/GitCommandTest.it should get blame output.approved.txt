@@ -1,182 +1,182 @@
-a3be84d588 (<vinay@obvious.in>                                2020-05-22 11:53:45 +0530   1) package org.simple.clinic.home.patients
-a3be84d588 (<vinay@obvious.in>                                2020-05-22 11:53:45 +0530   2) 
-42e7f2b2e8 (<vinay@obvious.in>                                2020-05-28 09:57:16 +0530   3) import android.annotation.SuppressLint
-f03dd3ee83 (<vinay@obvious.in>                                2020-05-26 13:47:18 +0530   4) import com.f2prateek.rx.preferences2.Preference
-123093e11c (<sasikanth@obvious.in>                            2021-08-23 13:34:09 +0530   5) import com.spotify.mobius.functions.Consumer
-a3be84d588 (<vinay@obvious.in>                                2020-05-22 11:53:45 +0530   6) import com.spotify.mobius.rx2.RxMobius
-137476e52e (<sasikanth@obvious.in>                            2021-01-21 15:09:16 +0530   7) import dagger.assisted.Assisted
-137476e52e (<sasikanth@obvious.in>                            2021-01-21 15:09:16 +0530   8) import dagger.assisted.AssistedFactory
-137476e52e (<sasikanth@obvious.in>                            2021-01-21 15:09:16 +0530   9) import dagger.assisted.AssistedInject
-42e7f2b2e8 (<vinay@obvious.in>                                2020-05-28 09:57:16 +0530  10) import io.reactivex.Completable
-f3ba8e1078 (<vinay@obvious.in>                                2020-05-26 12:19:22 +0530  11) import io.reactivex.Observable
-a3be84d588 (<vinay@obvious.in>                                2020-05-22 11:53:45 +0530  12) import io.reactivex.ObservableTransformer
-2a40c07b20 (<58420800+janhavisinghh@users.noreply.github.com> 2022-03-30 08:48:53 +0530  13) import org.simple.clinic.appupdate.AppUpdateNotificationScheduler
-b54e6db864 (<vinay@obvious.in>                                2020-05-27 14:28:13 +0530  14) import org.simple.clinic.appupdate.AppUpdateState
-b54e6db864 (<vinay@obvious.in>                                2020-05-27 14:28:13 +0530  15) import org.simple.clinic.appupdate.CheckAppUpdateAvailability
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  16) import org.simple.clinic.drugstockreminders.DrugStockReminder
-289e4da2a4 (<sasikanth@obvious.in>                            2022-10-14 13:51:12 +0530  17) import org.simple.clinic.facility.Facility
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  18) import org.simple.clinic.main.TypedPreference
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  19) import org.simple.clinic.main.TypedPreference.Type.DrugStockReportLastCheckedAt
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  20) import org.simple.clinic.main.TypedPreference.Type.IsDrugStockReportFilled
-f3ba8e1078 (<vinay@obvious.in>                                2020-05-26 12:19:22 +0530  21) import org.simple.clinic.user.UserSession
-f3ba8e1078 (<vinay@obvious.in>                                2020-05-26 12:19:22 +0530  22) import org.simple.clinic.user.refreshuser.RefreshCurrentUser
-b54e6db864 (<vinay@obvious.in>                                2020-05-27 14:28:13 +0530  23) import org.simple.clinic.util.UserClock
-f03dd3ee83 (<vinay@obvious.in>                                2020-05-26 13:47:18 +0530  24) import org.simple.clinic.util.UtcClock
-c2d2205b84 (<vinay@obvious.in>                                2020-05-26 13:43:00 +0530  25) import org.simple.clinic.util.filterAndUnwrapJust
-1fca202cca (<vinay@obvious.in>                                2020-05-26 11:48:00 +0530  26) import org.simple.clinic.util.scheduler.SchedulersProvider
-b54e6db864 (<vinay@obvious.in>                                2020-05-27 14:28:13 +0530  27) import org.simple.clinic.util.toLocalDateAtZone
-45d4b34019 (<vinay@obvious.in>                                2020-07-10 11:52:32 +0530  28) import java.time.Instant
-45d4b34019 (<vinay@obvious.in>                                2020-07-10 11:52:32 +0530  29) import java.time.LocalDate
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  30) import java.util.Optional
-f03dd3ee83 (<vinay@obvious.in>                                2020-05-26 13:47:18 +0530  31) import javax.inject.Named
-a3be84d588 (<vinay@obvious.in>                                2020-05-22 11:53:45 +0530  32) 
-1fca202cca (<vinay@obvious.in>                                2020-05-26 11:48:00 +0530  33) class PatientsEffectHandler @AssistedInject constructor(
-1fca202cca (<vinay@obvious.in>                                2020-05-26 11:48:00 +0530  34)     private val schedulers: SchedulersProvider,
-f3ba8e1078 (<vinay@obvious.in>                                2020-05-26 12:19:22 +0530  35)     private val refreshCurrentUser: RefreshCurrentUser,
-f3ba8e1078 (<vinay@obvious.in>                                2020-05-26 12:19:22 +0530  36)     private val userSession: UserSession,
-f03dd3ee83 (<vinay@obvious.in>                                2020-05-26 13:47:18 +0530  37)     private val utcClock: UtcClock,
-b54e6db864 (<vinay@obvious.in>                                2020-05-27 14:28:13 +0530  38)     private val userClock: UserClock,
-b54e6db864 (<vinay@obvious.in>                                2020-05-27 14:28:13 +0530  39)     private val checkAppUpdate: CheckAppUpdateAvailability,
-2a40c07b20 (<58420800+janhavisinghh@users.noreply.github.com> 2022-03-30 08:48:53 +0530  40)     private val appUpdateNotificationScheduler: AppUpdateNotificationScheduler,
-ceb1e96b93 (<vinay@obvious.in>                                2020-05-26 14:08:13 +0530  41)     @Named("approved_status_dismissed") private val hasUserDismissedApprovedStatusPref: Preference<Boolean>,
-b54e6db864 (<vinay@obvious.in>                                2020-05-27 14:28:13 +0530  42)     @Named("app_update_last_shown_at") private val appUpdateDialogShownAtPref: Preference<Instant>,
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  43)     @Named("approval_status_changed_at") private val approvalStatusUpdatedAtPref: Preference<Instant>,
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  44)     private val drugStockReminder: DrugStockReminder,
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  45)     @TypedPreference(DrugStockReportLastCheckedAt) private val drugStockReportLastCheckedAt: Preference<Instant>,
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  46)     @TypedPreference(IsDrugStockReportFilled) private val isDrugStockReportFilled: Preference<Optional<Boolean>>,
-289e4da2a4 (<sasikanth@obvious.in>                            2022-10-14 13:51:12 +0530  47)     private val currentFacility: Observable<Facility>,
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  48)     @Assisted private val viewEffectsConsumer: Consumer<PatientsTabViewEffect>
-1fca202cca (<vinay@obvious.in>                                2020-05-26 11:48:00 +0530  49) ) {
-1fca202cca (<vinay@obvious.in>                                2020-05-26 11:48:00 +0530  50) 
-137476e52e (<sasikanth@obvious.in>                            2021-01-21 15:09:16 +0530  51)   @AssistedFactory
-1fca202cca (<vinay@obvious.in>                                2020-05-26 11:48:00 +0530  52)   interface Factory {
-123093e11c (<sasikanth@obvious.in>                            2021-08-23 13:34:09 +0530  53)     fun create(
-123093e11c (<sasikanth@obvious.in>                            2021-08-23 13:34:09 +0530  54)         viewEffectsConsumer: Consumer<PatientsTabViewEffect>
-123093e11c (<sasikanth@obvious.in>                            2021-08-23 13:34:09 +0530  55)     ): PatientsEffectHandler
-1fca202cca (<vinay@obvious.in>                                2020-05-26 11:48:00 +0530  56)   }
-a3be84d588 (<vinay@obvious.in>                                2020-05-22 11:53:45 +0530  57) 
-549c27d9c5 (<vinay@obvious.in>                                2020-05-28 16:01:34 +0530  58)   fun build(): ObservableTransformer<PatientsTabEffect, PatientsTabEvent> {
-a3be84d588 (<vinay@obvious.in>                                2020-05-22 11:53:45 +0530  59)     return RxMobius
-549c27d9c5 (<vinay@obvious.in>                                2020-05-28 16:01:34 +0530  60)         .subtypeEffectHandler<PatientsTabEffect, PatientsTabEvent>()
-f3ba8e1078 (<vinay@obvious.in>                                2020-05-26 12:19:22 +0530  61)         .addTransformer(RefreshUserDetails::class.java, refreshCurrentUser())
-c2d2205b84 (<vinay@obvious.in>                                2020-05-26 13:43:00 +0530  62)         .addTransformer(LoadUser::class.java, loadUser())
-89de41a338 (<vinay@obvious.in>                                2020-05-28 09:46:16 +0530  63)         .addTransformer(LoadInfoForShowingApprovalStatus::class.java, loadRequiredInfoForShowingApprovalStatus())
-fc3627b467 (<vinay@obvious.in>                                2020-05-28 09:38:47 +0530  64)         .addConsumer(SetDismissedApprovalStatus::class.java, { hasUserDismissedApprovedStatusPref.set(it.dismissedStatus) }, schedulers.io())
-b54e6db864 (<vinay@obvious.in>                                2020-05-27 14:28:13 +0530  65)         .addTransformer(LoadInfoForShowingAppUpdateMessage::class.java, loadInfoForShowingAppUpdate())
-66053f1c73 (<vinay@obvious.in>                                2020-05-27 14:37:37 +0530  66)         .addConsumer(TouchAppUpdateShownAtTime::class.java, { appUpdateDialogShownAtPref.set(Instant.now(utcClock)) }, schedulers.io())
-2a40c07b20 (<58420800+janhavisinghh@users.noreply.github.com> 2022-03-30 08:48:53 +0530  67)         .addConsumer(ScheduleAppUpdateNotification::class.java, { appUpdateNotificationScheduler.schedule() }, schedulers.io())
-123093e11c (<sasikanth@obvious.in>                            2021-08-23 13:34:09 +0530  68)         .addConsumer(PatientsTabViewEffect::class.java, viewEffectsConsumer::accept, schedulers.ui())
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  69)         .addTransformer(LoadDrugStockReportStatus::class.java, loadDrugStockReportStatus())
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  70)         .addTransformer(LoadInfoForShowingDrugStockReminder::class.java, loadInfoForShowingDrugStockReminder())
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  71)         .addConsumer(TouchDrugStockReportLastCheckedAt::class.java, { drugStockReportLastCheckedAt.set(Instant.now(utcClock)) }, schedulers.io())
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  72)         .addConsumer(TouchIsDrugStockReportFilled::class.java, {
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  73)           isDrugStockReportFilled.set(Optional.of(it.isDrugStockReportFilled))
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  74)         }, schedulers.io())
-289e4da2a4 (<sasikanth@obvious.in>                            2022-10-14 13:51:12 +0530  75)         .addTransformer(LoadCurrentFacility::class.java, loadCurrentFacility())
-a3be84d588 (<vinay@obvious.in>                                2020-05-22 11:53:45 +0530  76)         .build()
-a3be84d588 (<vinay@obvious.in>                                2020-05-22 11:53:45 +0530  77)   }
-f3ba8e1078 (<vinay@obvious.in>                                2020-05-26 12:19:22 +0530  78) 
-289e4da2a4 (<sasikanth@obvious.in>                            2022-10-14 13:51:12 +0530  79)   private fun loadCurrentFacility(): ObservableTransformer<LoadCurrentFacility, PatientsTabEvent> {
-289e4da2a4 (<sasikanth@obvious.in>                            2022-10-14 13:51:12 +0530  80)     return ObservableTransformer { effects ->
-289e4da2a4 (<sasikanth@obvious.in>                            2022-10-14 13:51:12 +0530  81)       effects
-289e4da2a4 (<sasikanth@obvious.in>                            2022-10-14 13:51:12 +0530  82)           .observeOn(schedulers.io())
-289e4da2a4 (<sasikanth@obvious.in>                            2022-10-14 13:51:12 +0530  83)           .switchMap { currentFacility }
-289e4da2a4 (<sasikanth@obvious.in>                            2022-10-14 13:51:12 +0530  84)           .map(::CurrentFacilityLoaded)
-289e4da2a4 (<sasikanth@obvious.in>                            2022-10-14 13:51:12 +0530  85)     }
-289e4da2a4 (<sasikanth@obvious.in>                            2022-10-14 13:51:12 +0530  86)   }
-289e4da2a4 (<sasikanth@obvious.in>                            2022-10-14 13:51:12 +0530  87) 
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  88)   private fun loadInfoForShowingDrugStockReminder(): ObservableTransformer<LoadInfoForShowingDrugStockReminder, PatientsTabEvent> {
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  89)     return ObservableTransformer { effects ->
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  90)       effects
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  91)           .observeOn(schedulers.io())
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  92)           .map {
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  93)             val drugStockReportLastCheckedAt = drugStockReportLastCheckedAt.get().toLocalDateAtZone(userClock.zone)
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  94)             val isDrugStockReportFilled = isDrugStockReportFilled.get()
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  95) 
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  96)             RequiredInfoForShowingDrugStockReminderLoaded(
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  97)                 currentDate = LocalDate.now(userClock),
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  98)                 drugStockReportLastCheckedAt = drugStockReportLastCheckedAt,
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530  99)                 isDrugStockReportFilled = isDrugStockReportFilled
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530 100)             )
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530 101)           }
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530 102)     }
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530 103)   }
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530 104) 
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530 105)   private fun loadDrugStockReportStatus(): ObservableTransformer<LoadDrugStockReportStatus, PatientsTabEvent> {
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530 106)     return ObservableTransformer { effects ->
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530 107)       effects
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530 108)           .observeOn(schedulers.io())
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530 109)           .map { drugStockReminder.reminderForDrugStock(it.date) }
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530 110)           .map(::DrugStockReportLoaded)
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530 111)     }
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530 112)   }
-dc8ad471ac (<sasikanth@obvious.in>                            2022-04-21 14:22:16 +0530 113) 
-549c27d9c5 (<vinay@obvious.in>                                2020-05-28 16:01:34 +0530 114)   private fun refreshCurrentUser(): ObservableTransformer<RefreshUserDetails, PatientsTabEvent> {
-f3ba8e1078 (<vinay@obvious.in>                                2020-05-26 12:19:22 +0530 115)     return ObservableTransformer { effects ->
-f3ba8e1078 (<vinay@obvious.in>                                2020-05-26 12:19:22 +0530 116)       effects
-42e7f2b2e8 (<vinay@obvious.in>                                2020-05-28 09:57:16 +0530 117)           .map { createRefreshUserCompletable() }
-42e7f2b2e8 (<vinay@obvious.in>                                2020-05-28 09:57:16 +0530 118)           .doOnNext(::runRefreshUserTask)
-549c27d9c5 (<vinay@obvious.in>                                2020-05-28 16:01:34 +0530 119)           .flatMap { Observable.empty<PatientsTabEvent>() }
-c2d2205b84 (<vinay@obvious.in>                                2020-05-26 13:43:00 +0530 120)     }
-c2d2205b84 (<vinay@obvious.in>                                2020-05-26 13:43:00 +0530 121)   }
-c2d2205b84 (<vinay@obvious.in>                                2020-05-26 13:43:00 +0530 122) 
-42e7f2b2e8 (<vinay@obvious.in>                                2020-05-28 09:57:16 +0530 123)   private fun createRefreshUserCompletable(): Completable {
-42e7f2b2e8 (<vinay@obvious.in>                                2020-05-28 09:57:16 +0530 124)     return refreshCurrentUser
-42e7f2b2e8 (<vinay@obvious.in>                                2020-05-28 09:57:16 +0530 125)         .refresh()
-42e7f2b2e8 (<vinay@obvious.in>                                2020-05-28 09:57:16 +0530 126)         .onErrorComplete()
-42e7f2b2e8 (<vinay@obvious.in>                                2020-05-28 09:57:16 +0530 127)   }
-42e7f2b2e8 (<vinay@obvious.in>                                2020-05-28 09:57:16 +0530 128) 
-42e7f2b2e8 (<vinay@obvious.in>                                2020-05-28 09:57:16 +0530 129)   @SuppressLint("CheckResult")
-42e7f2b2e8 (<vinay@obvious.in>                                2020-05-28 09:57:16 +0530 130)   private fun runRefreshUserTask(refreshUser: Completable) {
-42e7f2b2e8 (<vinay@obvious.in>                                2020-05-28 09:57:16 +0530 131)     // The refresh call should not get canceled when the screen is closed
-42e7f2b2e8 (<vinay@obvious.in>                                2020-05-28 09:57:16 +0530 132)     // (i.e., this chain gets disposed). So it's not a part of this Rx chain.
-42e7f2b2e8 (<vinay@obvious.in>                                2020-05-28 09:57:16 +0530 133)     refreshUser
-42e7f2b2e8 (<vinay@obvious.in>                                2020-05-28 09:57:16 +0530 134)         .subscribeOn(schedulers.io())
-42e7f2b2e8 (<vinay@obvious.in>                                2020-05-28 09:57:16 +0530 135)         .subscribe {
-42e7f2b2e8 (<vinay@obvious.in>                                2020-05-28 09:57:16 +0530 136)           // TODO (vs) 26/05/20: Move triggering this to the `Update` class later
-42e7f2b2e8 (<vinay@obvious.in>                                2020-05-28 09:57:16 +0530 137)           approvalStatusUpdatedAtPref.set(Instant.now(utcClock))
-42e7f2b2e8 (<vinay@obvious.in>                                2020-05-28 09:57:16 +0530 138)         }
-42e7f2b2e8 (<vinay@obvious.in>                                2020-05-28 09:57:16 +0530 139)   }
-42e7f2b2e8 (<vinay@obvious.in>                                2020-05-28 09:57:16 +0530 140) 
-549c27d9c5 (<vinay@obvious.in>                                2020-05-28 16:01:34 +0530 141)   private fun loadUser(): ObservableTransformer<LoadUser, PatientsTabEvent> {
-c2d2205b84 (<vinay@obvious.in>                                2020-05-26 13:43:00 +0530 142)     return ObservableTransformer { effects ->
-c2d2205b84 (<vinay@obvious.in>                                2020-05-26 13:43:00 +0530 143)       effects
-c2d2205b84 (<vinay@obvious.in>                                2020-05-26 13:43:00 +0530 144)           .switchMap { userSession.loggedInUser() }
-c2d2205b84 (<vinay@obvious.in>                                2020-05-26 13:43:00 +0530 145)           .filterAndUnwrapJust()
-c2d2205b84 (<vinay@obvious.in>                                2020-05-26 13:43:00 +0530 146)           .map(::UserDetailsLoaded)
-f3ba8e1078 (<vinay@obvious.in>                                2020-05-26 12:19:22 +0530 147)     }
-f3ba8e1078 (<vinay@obvious.in>                                2020-05-26 12:19:22 +0530 148)   }
-ceb1e96b93 (<vinay@obvious.in>                                2020-05-26 14:08:13 +0530 149) 
-549c27d9c5 (<vinay@obvious.in>                                2020-05-28 16:01:34 +0530 150)   private fun loadRequiredInfoForShowingApprovalStatus(): ObservableTransformer<LoadInfoForShowingApprovalStatus, PatientsTabEvent> {
-ceb1e96b93 (<vinay@obvious.in>                                2020-05-26 14:08:13 +0530 151)     return ObservableTransformer { effects ->
-ceb1e96b93 (<vinay@obvious.in>                                2020-05-26 14:08:13 +0530 152)       effects
-ceb1e96b93 (<vinay@obvious.in>                                2020-05-26 14:08:13 +0530 153)           .observeOn(schedulers.io())
-89de41a338 (<vinay@obvious.in>                                2020-05-28 09:46:16 +0530 154)           .map {
-89de41a338 (<vinay@obvious.in>                                2020-05-28 09:46:16 +0530 155)             DataForShowingApprovedStatusLoaded(
-89de41a338 (<vinay@obvious.in>                                2020-05-28 09:46:16 +0530 156)                 currentTime = Instant.now(utcClock),
-89de41a338 (<vinay@obvious.in>                                2020-05-28 09:46:16 +0530 157)                 approvalStatusUpdatedAt = approvalStatusUpdatedAtPref.get(),
-89de41a338 (<vinay@obvious.in>                                2020-05-28 09:46:16 +0530 158)                 hasBeenDismissed = hasUserDismissedApprovedStatusPref.get()
-89de41a338 (<vinay@obvious.in>                                2020-05-28 09:46:16 +0530 159)             )
-89de41a338 (<vinay@obvious.in>                                2020-05-28 09:46:16 +0530 160)           }
-ceb1e96b93 (<vinay@obvious.in>                                2020-05-26 14:08:13 +0530 161)     }
-ceb1e96b93 (<vinay@obvious.in>                                2020-05-26 14:08:13 +0530 162)   }
-d1dbb1d3b8 (<vinay@obvious.in>                                2020-05-27 12:01:46 +0530 163) 
-549c27d9c5 (<vinay@obvious.in>                                2020-05-28 16:01:34 +0530 164)   private fun loadInfoForShowingAppUpdate(): ObservableTransformer<LoadInfoForShowingAppUpdateMessage, PatientsTabEvent> {
-b54e6db864 (<vinay@obvious.in>                                2020-05-27 14:28:13 +0530 165)     return ObservableTransformer { effects ->
-b54e6db864 (<vinay@obvious.in>                                2020-05-27 14:28:13 +0530 166)       effects
-b54e6db864 (<vinay@obvious.in>                                2020-05-27 14:28:13 +0530 167)           .switchMap { checkAppUpdate.listen() }
-b54e6db864 (<vinay@obvious.in>                                2020-05-27 14:28:13 +0530 168)           .map {
-b54e6db864 (<vinay@obvious.in>                                2020-05-27 14:28:13 +0530 169)             val today = LocalDate.now(userClock)
-b54e6db864 (<vinay@obvious.in>                                2020-05-27 14:28:13 +0530 170)             val updateLastShownOn = appUpdateDialogShownAtPref.get().toLocalDateAtZone(userClock.zone)
-b54e6db864 (<vinay@obvious.in>                                2020-05-27 14:28:13 +0530 171) 
-b54e6db864 (<vinay@obvious.in>                                2020-05-27 14:28:13 +0530 172)             RequiredInfoForShowingAppUpdateLoaded(
-b54e6db864 (<vinay@obvious.in>                                2020-05-27 14:28:13 +0530 173)                 isAppUpdateAvailable = it is AppUpdateState.ShowAppUpdate,
-b54e6db864 (<vinay@obvious.in>                                2020-05-27 14:28:13 +0530 174)                 appUpdateLastShownOn = updateLastShownOn,
-2a40c07b20 (<58420800+janhavisinghh@users.noreply.github.com> 2022-03-30 08:48:53 +0530 175)                 currentDate = today,
-d871093eb1 (<58420800+janhavisinghh@users.noreply.github.com> 2022-05-03 14:20:39 +0530 176)                 appUpdateNudgePriority = (it as? AppUpdateState.ShowAppUpdate)?.appUpdateNudgePriority,
-d871093eb1 (<58420800+janhavisinghh@users.noreply.github.com> 2022-05-03 14:20:39 +0530 177)                 appStaleness = (it as? AppUpdateState.ShowAppUpdate)?.appStaleness
-b54e6db864 (<vinay@obvious.in>                                2020-05-27 14:28:13 +0530 178)             )
-b54e6db864 (<vinay@obvious.in>                                2020-05-27 14:28:13 +0530 179)           }
-b54e6db864 (<vinay@obvious.in>                                2020-05-27 14:28:13 +0530 180)     }
-b54e6db864 (<vinay@obvious.in>                                2020-05-27 14:28:13 +0530 181)   }
-a3be84d588 (<vinay@obvious.in>                                2020-05-22 11:53:45 +0530 182) }
+a3be84d588 vinay@obvious.in 2020-05-22T11:53:45+05:30 1) package org.simple.clinic.home.patients
+a3be84d588 vinay@obvious.in 2020-05-22T11:53:45+05:30 2) 
+42e7f2b2e8 vinay@obvious.in 2020-05-28T09:57:16+05:30 3) import android.annotation.SuppressLint
+f03dd3ee83 vinay@obvious.in 2020-05-26T13:47:18+05:30 4) import com.f2prateek.rx.preferences2.Preference
+123093e11c sasikanth@obvious.in 2021-08-23T13:34:09+05:30 5) import com.spotify.mobius.functions.Consumer
+a3be84d588 vinay@obvious.in 2020-05-22T11:53:45+05:30 6) import com.spotify.mobius.rx2.RxMobius
+137476e52e sasikanth@obvious.in 2021-01-21T15:09:16+05:30 7) import dagger.assisted.Assisted
+137476e52e sasikanth@obvious.in 2021-01-21T15:09:16+05:30 8) import dagger.assisted.AssistedFactory
+137476e52e sasikanth@obvious.in 2021-01-21T15:09:16+05:30 9) import dagger.assisted.AssistedInject
+42e7f2b2e8 vinay@obvious.in 2020-05-28T09:57:16+05:30 10) import io.reactivex.Completable
+f3ba8e1078 vinay@obvious.in 2020-05-26T12:19:22+05:30 11) import io.reactivex.Observable
+a3be84d588 vinay@obvious.in 2020-05-22T11:53:45+05:30 12) import io.reactivex.ObservableTransformer
+2a40c07b20 58420800+janhavisinghh@users.noreply.github.com 2022-03-30T08:48:53+05:30 13) import org.simple.clinic.appupdate.AppUpdateNotificationScheduler
+b54e6db864 vinay@obvious.in 2020-05-27T14:28:13+05:30 14) import org.simple.clinic.appupdate.AppUpdateState
+b54e6db864 vinay@obvious.in 2020-05-27T14:28:13+05:30 15) import org.simple.clinic.appupdate.CheckAppUpdateAvailability
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 16) import org.simple.clinic.drugstockreminders.DrugStockReminder
+289e4da2a4 sasikanth@obvious.in 2022-10-14T13:51:12+05:30 17) import org.simple.clinic.facility.Facility
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 18) import org.simple.clinic.main.TypedPreference
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 19) import org.simple.clinic.main.TypedPreference.Type.DrugStockReportLastCheckedAt
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 20) import org.simple.clinic.main.TypedPreference.Type.IsDrugStockReportFilled
+f3ba8e1078 vinay@obvious.in 2020-05-26T12:19:22+05:30 21) import org.simple.clinic.user.UserSession
+f3ba8e1078 vinay@obvious.in 2020-05-26T12:19:22+05:30 22) import org.simple.clinic.user.refreshuser.RefreshCurrentUser
+b54e6db864 vinay@obvious.in 2020-05-27T14:28:13+05:30 23) import org.simple.clinic.util.UserClock
+f03dd3ee83 vinay@obvious.in 2020-05-26T13:47:18+05:30 24) import org.simple.clinic.util.UtcClock
+c2d2205b84 vinay@obvious.in 2020-05-26T13:43+05:30 25) import org.simple.clinic.util.filterAndUnwrapJust
+1fca202cca vinay@obvious.in 2020-05-26T11:48+05:30 26) import org.simple.clinic.util.scheduler.SchedulersProvider
+b54e6db864 vinay@obvious.in 2020-05-27T14:28:13+05:30 27) import org.simple.clinic.util.toLocalDateAtZone
+45d4b34019 vinay@obvious.in 2020-07-10T11:52:32+05:30 28) import java.time.Instant
+45d4b34019 vinay@obvious.in 2020-07-10T11:52:32+05:30 29) import java.time.LocalDate
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 30) import java.util.Optional
+f03dd3ee83 vinay@obvious.in 2020-05-26T13:47:18+05:30 31) import javax.inject.Named
+a3be84d588 vinay@obvious.in 2020-05-22T11:53:45+05:30 32) 
+1fca202cca vinay@obvious.in 2020-05-26T11:48+05:30 33) class PatientsEffectHandler @AssistedInject constructor(
+1fca202cca vinay@obvious.in 2020-05-26T11:48+05:30 34)     private val schedulers: SchedulersProvider,
+f3ba8e1078 vinay@obvious.in 2020-05-26T12:19:22+05:30 35)     private val refreshCurrentUser: RefreshCurrentUser,
+f3ba8e1078 vinay@obvious.in 2020-05-26T12:19:22+05:30 36)     private val userSession: UserSession,
+f03dd3ee83 vinay@obvious.in 2020-05-26T13:47:18+05:30 37)     private val utcClock: UtcClock,
+b54e6db864 vinay@obvious.in 2020-05-27T14:28:13+05:30 38)     private val userClock: UserClock,
+b54e6db864 vinay@obvious.in 2020-05-27T14:28:13+05:30 39)     private val checkAppUpdate: CheckAppUpdateAvailability,
+2a40c07b20 58420800+janhavisinghh@users.noreply.github.com 2022-03-30T08:48:53+05:30 40)     private val appUpdateNotificationScheduler: AppUpdateNotificationScheduler,
+ceb1e96b93 vinay@obvious.in 2020-05-26T14:08:13+05:30 41)     @Named("approved_status_dismissed") private val hasUserDismissedApprovedStatusPref: Preference<Boolean>,
+b54e6db864 vinay@obvious.in 2020-05-27T14:28:13+05:30 42)     @Named("app_update_last_shown_at") private val appUpdateDialogShownAtPref: Preference<Instant>,
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 43)     @Named("approval_status_changed_at") private val approvalStatusUpdatedAtPref: Preference<Instant>,
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 44)     private val drugStockReminder: DrugStockReminder,
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 45)     @TypedPreference(DrugStockReportLastCheckedAt) private val drugStockReportLastCheckedAt: Preference<Instant>,
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 46)     @TypedPreference(IsDrugStockReportFilled) private val isDrugStockReportFilled: Preference<Optional<Boolean>>,
+289e4da2a4 sasikanth@obvious.in 2022-10-14T13:51:12+05:30 47)     private val currentFacility: Observable<Facility>,
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 48)     @Assisted private val viewEffectsConsumer: Consumer<PatientsTabViewEffect>
+1fca202cca vinay@obvious.in 2020-05-26T11:48+05:30 49) ) {
+1fca202cca vinay@obvious.in 2020-05-26T11:48+05:30 50) 
+137476e52e sasikanth@obvious.in 2021-01-21T15:09:16+05:30 51)   @AssistedFactory
+1fca202cca vinay@obvious.in 2020-05-26T11:48+05:30 52)   interface Factory {
+123093e11c sasikanth@obvious.in 2021-08-23T13:34:09+05:30 53)     fun create(
+123093e11c sasikanth@obvious.in 2021-08-23T13:34:09+05:30 54)         viewEffectsConsumer: Consumer<PatientsTabViewEffect>
+123093e11c sasikanth@obvious.in 2021-08-23T13:34:09+05:30 55)     ): PatientsEffectHandler
+1fca202cca vinay@obvious.in 2020-05-26T11:48+05:30 56)   }
+a3be84d588 vinay@obvious.in 2020-05-22T11:53:45+05:30 57) 
+549c27d9c5 vinay@obvious.in 2020-05-28T16:01:34+05:30 58)   fun build(): ObservableTransformer<PatientsTabEffect, PatientsTabEvent> {
+a3be84d588 vinay@obvious.in 2020-05-22T11:53:45+05:30 59)     return RxMobius
+549c27d9c5 vinay@obvious.in 2020-05-28T16:01:34+05:30 60)         .subtypeEffectHandler<PatientsTabEffect, PatientsTabEvent>()
+f3ba8e1078 vinay@obvious.in 2020-05-26T12:19:22+05:30 61)         .addTransformer(RefreshUserDetails::class.java, refreshCurrentUser())
+c2d2205b84 vinay@obvious.in 2020-05-26T13:43+05:30 62)         .addTransformer(LoadUser::class.java, loadUser())
+89de41a338 vinay@obvious.in 2020-05-28T09:46:16+05:30 63)         .addTransformer(LoadInfoForShowingApprovalStatus::class.java, loadRequiredInfoForShowingApprovalStatus())
+fc3627b467 vinay@obvious.in 2020-05-28T09:38:47+05:30 64)         .addConsumer(SetDismissedApprovalStatus::class.java, { hasUserDismissedApprovedStatusPref.set(it.dismissedStatus) }, schedulers.io())
+b54e6db864 vinay@obvious.in 2020-05-27T14:28:13+05:30 65)         .addTransformer(LoadInfoForShowingAppUpdateMessage::class.java, loadInfoForShowingAppUpdate())
+66053f1c73 vinay@obvious.in 2020-05-27T14:37:37+05:30 66)         .addConsumer(TouchAppUpdateShownAtTime::class.java, { appUpdateDialogShownAtPref.set(Instant.now(utcClock)) }, schedulers.io())
+2a40c07b20 58420800+janhavisinghh@users.noreply.github.com 2022-03-30T08:48:53+05:30 67)         .addConsumer(ScheduleAppUpdateNotification::class.java, { appUpdateNotificationScheduler.schedule() }, schedulers.io())
+123093e11c sasikanth@obvious.in 2021-08-23T13:34:09+05:30 68)         .addConsumer(PatientsTabViewEffect::class.java, viewEffectsConsumer::accept, schedulers.ui())
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 69)         .addTransformer(LoadDrugStockReportStatus::class.java, loadDrugStockReportStatus())
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 70)         .addTransformer(LoadInfoForShowingDrugStockReminder::class.java, loadInfoForShowingDrugStockReminder())
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 71)         .addConsumer(TouchDrugStockReportLastCheckedAt::class.java, { drugStockReportLastCheckedAt.set(Instant.now(utcClock)) }, schedulers.io())
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 72)         .addConsumer(TouchIsDrugStockReportFilled::class.java, {
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 73)           isDrugStockReportFilled.set(Optional.of(it.isDrugStockReportFilled))
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 74)         }, schedulers.io())
+289e4da2a4 sasikanth@obvious.in 2022-10-14T13:51:12+05:30 75)         .addTransformer(LoadCurrentFacility::class.java, loadCurrentFacility())
+a3be84d588 vinay@obvious.in 2020-05-22T11:53:45+05:30 76)         .build()
+a3be84d588 vinay@obvious.in 2020-05-22T11:53:45+05:30 77)   }
+f3ba8e1078 vinay@obvious.in 2020-05-26T12:19:22+05:30 78) 
+289e4da2a4 sasikanth@obvious.in 2022-10-14T13:51:12+05:30 79)   private fun loadCurrentFacility(): ObservableTransformer<LoadCurrentFacility, PatientsTabEvent> {
+289e4da2a4 sasikanth@obvious.in 2022-10-14T13:51:12+05:30 80)     return ObservableTransformer { effects ->
+289e4da2a4 sasikanth@obvious.in 2022-10-14T13:51:12+05:30 81)       effects
+289e4da2a4 sasikanth@obvious.in 2022-10-14T13:51:12+05:30 82)           .observeOn(schedulers.io())
+289e4da2a4 sasikanth@obvious.in 2022-10-14T13:51:12+05:30 83)           .switchMap { currentFacility }
+289e4da2a4 sasikanth@obvious.in 2022-10-14T13:51:12+05:30 84)           .map(::CurrentFacilityLoaded)
+289e4da2a4 sasikanth@obvious.in 2022-10-14T13:51:12+05:30 85)     }
+289e4da2a4 sasikanth@obvious.in 2022-10-14T13:51:12+05:30 86)   }
+289e4da2a4 sasikanth@obvious.in 2022-10-14T13:51:12+05:30 87) 
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 88)   private fun loadInfoForShowingDrugStockReminder(): ObservableTransformer<LoadInfoForShowingDrugStockReminder, PatientsTabEvent> {
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 89)     return ObservableTransformer { effects ->
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 90)       effects
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 91)           .observeOn(schedulers.io())
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 92)           .map {
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 93)             val drugStockReportLastCheckedAt = drugStockReportLastCheckedAt.get().toLocalDateAtZone(userClock.zone)
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 94)             val isDrugStockReportFilled = isDrugStockReportFilled.get()
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 95) 
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 96)             RequiredInfoForShowingDrugStockReminderLoaded(
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 97)                 currentDate = LocalDate.now(userClock),
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 98)                 drugStockReportLastCheckedAt = drugStockReportLastCheckedAt,
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 99)                 isDrugStockReportFilled = isDrugStockReportFilled
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 100)             )
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 101)           }
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 102)     }
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 103)   }
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 104) 
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 105)   private fun loadDrugStockReportStatus(): ObservableTransformer<LoadDrugStockReportStatus, PatientsTabEvent> {
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 106)     return ObservableTransformer { effects ->
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 107)       effects
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 108)           .observeOn(schedulers.io())
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 109)           .map { drugStockReminder.reminderForDrugStock(it.date) }
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 110)           .map(::DrugStockReportLoaded)
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 111)     }
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 112)   }
+dc8ad471ac sasikanth@obvious.in 2022-04-21T14:22:16+05:30 113) 
+549c27d9c5 vinay@obvious.in 2020-05-28T16:01:34+05:30 114)   private fun refreshCurrentUser(): ObservableTransformer<RefreshUserDetails, PatientsTabEvent> {
+f3ba8e1078 vinay@obvious.in 2020-05-26T12:19:22+05:30 115)     return ObservableTransformer { effects ->
+f3ba8e1078 vinay@obvious.in 2020-05-26T12:19:22+05:30 116)       effects
+42e7f2b2e8 vinay@obvious.in 2020-05-28T09:57:16+05:30 117)           .map { createRefreshUserCompletable() }
+42e7f2b2e8 vinay@obvious.in 2020-05-28T09:57:16+05:30 118)           .doOnNext(::runRefreshUserTask)
+549c27d9c5 vinay@obvious.in 2020-05-28T16:01:34+05:30 119)           .flatMap { Observable.empty<PatientsTabEvent>() }
+c2d2205b84 vinay@obvious.in 2020-05-26T13:43+05:30 120)     }
+c2d2205b84 vinay@obvious.in 2020-05-26T13:43+05:30 121)   }
+c2d2205b84 vinay@obvious.in 2020-05-26T13:43+05:30 122) 
+42e7f2b2e8 vinay@obvious.in 2020-05-28T09:57:16+05:30 123)   private fun createRefreshUserCompletable(): Completable {
+42e7f2b2e8 vinay@obvious.in 2020-05-28T09:57:16+05:30 124)     return refreshCurrentUser
+42e7f2b2e8 vinay@obvious.in 2020-05-28T09:57:16+05:30 125)         .refresh()
+42e7f2b2e8 vinay@obvious.in 2020-05-28T09:57:16+05:30 126)         .onErrorComplete()
+42e7f2b2e8 vinay@obvious.in 2020-05-28T09:57:16+05:30 127)   }
+42e7f2b2e8 vinay@obvious.in 2020-05-28T09:57:16+05:30 128) 
+42e7f2b2e8 vinay@obvious.in 2020-05-28T09:57:16+05:30 129)   @SuppressLint("CheckResult")
+42e7f2b2e8 vinay@obvious.in 2020-05-28T09:57:16+05:30 130)   private fun runRefreshUserTask(refreshUser: Completable) {
+42e7f2b2e8 vinay@obvious.in 2020-05-28T09:57:16+05:30 131)     // The refresh call should not get canceled when the screen is closed
+42e7f2b2e8 vinay@obvious.in 2020-05-28T09:57:16+05:30 132)     // (i.e., this chain gets disposed). So it's not a part of this Rx chain.
+42e7f2b2e8 vinay@obvious.in 2020-05-28T09:57:16+05:30 133)     refreshUser
+42e7f2b2e8 vinay@obvious.in 2020-05-28T09:57:16+05:30 134)         .subscribeOn(schedulers.io())
+42e7f2b2e8 vinay@obvious.in 2020-05-28T09:57:16+05:30 135)         .subscribe {
+42e7f2b2e8 vinay@obvious.in 2020-05-28T09:57:16+05:30 136)           // TODO (vs) 26/05/20: Move triggering this to the `Update` class later
+42e7f2b2e8 vinay@obvious.in 2020-05-28T09:57:16+05:30 137)           approvalStatusUpdatedAtPref.set(Instant.now(utcClock))
+42e7f2b2e8 vinay@obvious.in 2020-05-28T09:57:16+05:30 138)         }
+42e7f2b2e8 vinay@obvious.in 2020-05-28T09:57:16+05:30 139)   }
+42e7f2b2e8 vinay@obvious.in 2020-05-28T09:57:16+05:30 140) 
+549c27d9c5 vinay@obvious.in 2020-05-28T16:01:34+05:30 141)   private fun loadUser(): ObservableTransformer<LoadUser, PatientsTabEvent> {
+c2d2205b84 vinay@obvious.in 2020-05-26T13:43+05:30 142)     return ObservableTransformer { effects ->
+c2d2205b84 vinay@obvious.in 2020-05-26T13:43+05:30 143)       effects
+c2d2205b84 vinay@obvious.in 2020-05-26T13:43+05:30 144)           .switchMap { userSession.loggedInUser() }
+c2d2205b84 vinay@obvious.in 2020-05-26T13:43+05:30 145)           .filterAndUnwrapJust()
+c2d2205b84 vinay@obvious.in 2020-05-26T13:43+05:30 146)           .map(::UserDetailsLoaded)
+f3ba8e1078 vinay@obvious.in 2020-05-26T12:19:22+05:30 147)     }
+f3ba8e1078 vinay@obvious.in 2020-05-26T12:19:22+05:30 148)   }
+ceb1e96b93 vinay@obvious.in 2020-05-26T14:08:13+05:30 149) 
+549c27d9c5 vinay@obvious.in 2020-05-28T16:01:34+05:30 150)   private fun loadRequiredInfoForShowingApprovalStatus(): ObservableTransformer<LoadInfoForShowingApprovalStatus, PatientsTabEvent> {
+ceb1e96b93 vinay@obvious.in 2020-05-26T14:08:13+05:30 151)     return ObservableTransformer { effects ->
+ceb1e96b93 vinay@obvious.in 2020-05-26T14:08:13+05:30 152)       effects
+ceb1e96b93 vinay@obvious.in 2020-05-26T14:08:13+05:30 153)           .observeOn(schedulers.io())
+89de41a338 vinay@obvious.in 2020-05-28T09:46:16+05:30 154)           .map {
+89de41a338 vinay@obvious.in 2020-05-28T09:46:16+05:30 155)             DataForShowingApprovedStatusLoaded(
+89de41a338 vinay@obvious.in 2020-05-28T09:46:16+05:30 156)                 currentTime = Instant.now(utcClock),
+89de41a338 vinay@obvious.in 2020-05-28T09:46:16+05:30 157)                 approvalStatusUpdatedAt = approvalStatusUpdatedAtPref.get(),
+89de41a338 vinay@obvious.in 2020-05-28T09:46:16+05:30 158)                 hasBeenDismissed = hasUserDismissedApprovedStatusPref.get()
+89de41a338 vinay@obvious.in 2020-05-28T09:46:16+05:30 159)             )
+89de41a338 vinay@obvious.in 2020-05-28T09:46:16+05:30 160)           }
+ceb1e96b93 vinay@obvious.in 2020-05-26T14:08:13+05:30 161)     }
+ceb1e96b93 vinay@obvious.in 2020-05-26T14:08:13+05:30 162)   }
+d1dbb1d3b8 vinay@obvious.in 2020-05-27T12:01:46+05:30 163) 
+549c27d9c5 vinay@obvious.in 2020-05-28T16:01:34+05:30 164)   private fun loadInfoForShowingAppUpdate(): ObservableTransformer<LoadInfoForShowingAppUpdateMessage, PatientsTabEvent> {
+b54e6db864 vinay@obvious.in 2020-05-27T14:28:13+05:30 165)     return ObservableTransformer { effects ->
+b54e6db864 vinay@obvious.in 2020-05-27T14:28:13+05:30 166)       effects
+b54e6db864 vinay@obvious.in 2020-05-27T14:28:13+05:30 167)           .switchMap { checkAppUpdate.listen() }
+b54e6db864 vinay@obvious.in 2020-05-27T14:28:13+05:30 168)           .map {
+b54e6db864 vinay@obvious.in 2020-05-27T14:28:13+05:30 169)             val today = LocalDate.now(userClock)
+b54e6db864 vinay@obvious.in 2020-05-27T14:28:13+05:30 170)             val updateLastShownOn = appUpdateDialogShownAtPref.get().toLocalDateAtZone(userClock.zone)
+b54e6db864 vinay@obvious.in 2020-05-27T14:28:13+05:30 171) 
+b54e6db864 vinay@obvious.in 2020-05-27T14:28:13+05:30 172)             RequiredInfoForShowingAppUpdateLoaded(
+b54e6db864 vinay@obvious.in 2020-05-27T14:28:13+05:30 173)                 isAppUpdateAvailable = it is AppUpdateState.ShowAppUpdate,
+b54e6db864 vinay@obvious.in 2020-05-27T14:28:13+05:30 174)                 appUpdateLastShownOn = updateLastShownOn,
+2a40c07b20 58420800+janhavisinghh@users.noreply.github.com 2022-03-30T08:48:53+05:30 175)                 currentDate = today,
+d871093eb1 58420800+janhavisinghh@users.noreply.github.com 2022-05-03T14:20:39+05:30 176)                 appUpdateNudgePriority = (it as? AppUpdateState.ShowAppUpdate)?.appUpdateNudgePriority,
+d871093eb1 58420800+janhavisinghh@users.noreply.github.com 2022-05-03T14:20:39+05:30 177)                 appStaleness = (it as? AppUpdateState.ShowAppUpdate)?.appStaleness
+b54e6db864 vinay@obvious.in 2020-05-27T14:28:13+05:30 178)             )
+b54e6db864 vinay@obvious.in 2020-05-27T14:28:13+05:30 179)           }
+b54e6db864 vinay@obvious.in 2020-05-27T14:28:13+05:30 180)     }
+b54e6db864 vinay@obvious.in 2020-05-27T14:28:13+05:30 181)   }
+a3be84d588 vinay@obvious.in 2020-05-22T11:53:45+05:30 182) }

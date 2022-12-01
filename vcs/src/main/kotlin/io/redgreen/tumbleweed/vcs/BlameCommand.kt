@@ -19,5 +19,5 @@ class BlameCommand(
   }
 
   private fun blameLines(commandResult: CommandResult): List<BlameLine> =
-    commandResult.output.lines().map { rawBlameLine -> BlameLine.from(rawBlameLine) }
+    commandResult.output.lines().map(BlameLine::from)
 }

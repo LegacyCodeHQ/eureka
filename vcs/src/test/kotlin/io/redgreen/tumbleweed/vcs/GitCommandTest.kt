@@ -27,14 +27,13 @@ class GitCommandTest {
   @Test
   fun `it should get blame output`() {
     // given
-    val command = GitCommand(
-      "blame",
-      arrayOf("-e", "app/src/main/java/org/simple/clinic/home/patients/PatientsEffectHandler.kt"),
-      simpleAndroidRepo.path,
+    val blameCommand = BlameCommand(
+      Repo(simpleAndroidRepo.path),
+      RepoFile("app/src/main/java/org/simple/clinic/home/patients/PatientsEffectHandler.kt"),
     )
 
     // when
-    val result = command.execute()
+    val result = blameCommand.execute()
 
     // then
     Approvals.verify(result.orNull()?.output)

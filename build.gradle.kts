@@ -38,7 +38,7 @@ subprojects {
     val testRuntimeOnly by configurations
 
     // logging
-    implementation("ch.qos.logback:logback-classic:1.4.4")
+    implementation("ch.qos.logback:logback-classic:1.4.5")
 
     // testing
     testImplementation(kotlin("test-junit5"))

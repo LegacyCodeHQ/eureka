@@ -1,6 +1,10 @@
-package io.redgreen.tumbleweed.vcs
+package io.redgreen.tumbleweed.vcs.blame
 
 import arrow.core.Either
+import io.redgreen.tumbleweed.vcs.CommandResult
+import io.redgreen.tumbleweed.vcs.GitCommand
+import io.redgreen.tumbleweed.vcs.Repo
+import io.redgreen.tumbleweed.vcs.RepoFile
 
 class BlameCommand(
   repo: Repo,
@@ -19,5 +23,5 @@ class BlameCommand(
   }
 
   private fun blameLines(commandResult: CommandResult): List<BlameLine> =
-    commandResult.output.lines().map(BlameLine::from)
+    commandResult.output.lines().map(BlameLine.Companion::from)
 }

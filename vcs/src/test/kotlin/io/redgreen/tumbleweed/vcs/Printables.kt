@@ -1,5 +1,8 @@
 package io.redgreen.tumbleweed.vcs
 
+import io.redgreen.tumbleweed.vcs.blame.BlameLine
+import io.redgreen.tumbleweed.vcs.blame.BlameResult
+
 val BlameResult.printable: String
   get() {
     return lines.joinToString(System.lineSeparator()) { line ->

@@ -1,6 +1,8 @@
-package io.redgreen.tumbleweed.vcs
+package io.redgreen.tumbleweed.vcs.blame
 
 import com.google.common.truth.Truth.assertThat
+import io.redgreen.tumbleweed.vcs.CommitHash
+import io.redgreen.tumbleweed.vcs.Email
 import java.time.LocalDateTime
 import java.time.Month
 import java.time.ZoneId

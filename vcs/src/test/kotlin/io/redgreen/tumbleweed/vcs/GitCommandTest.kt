@@ -1,6 +1,7 @@
 package io.redgreen.tumbleweed.vcs
 
 import com.google.common.truth.Truth.assertThat
+import io.redgreen.tumbleweed.vcs.blame.BlameCommand
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
 

@@ -1,4 +1,7 @@
-package io.redgreen.tumbleweed.vcs
+package io.redgreen.tumbleweed.vcs.blame
+
+import io.redgreen.tumbleweed.vcs.CommitHash
+import io.redgreen.tumbleweed.vcs.Email
 
 class BlameResult(
   val lines: List<BlameLine>,

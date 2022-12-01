@@ -1,5 +1,10 @@
-package io.redgreen.tumbleweed.vcs
+package io.redgreen.tumbleweed.vcs.blame
 
+import io.redgreen.tumbleweed.vcs.Repo
+import io.redgreen.tumbleweed.vcs.RepoFile
+import io.redgreen.tumbleweed.vcs.TestRepo
+import io.redgreen.tumbleweed.vcs.commitHashGroupPrintable
+import io.redgreen.tumbleweed.vcs.emailGroupPrintable
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
 

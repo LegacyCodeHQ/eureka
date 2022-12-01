@@ -6,3 +6,11 @@ val BlameResult.printable: String
       "${line.commitHash.value} ${line.email.value} ${line.timestamp} ${line.number}) ${line.content}"
     }
   }
+
+val Map<CommitHash, List<BlameLine>>.printable: Map<String, List<Int>>
+  get() {
+    return mapKeys { (commitHash, _) -> commitHash.value }
+      .mapValues { blameLines ->
+        blameLines.value.map(BlameLine::number)
+      }
+  }

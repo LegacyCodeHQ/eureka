@@ -13,7 +13,7 @@ data class BlameLine(
 ) {
   companion object {
     private const val BLAME_LINE_REGEX =
-      "(?<CommitHash>[a-fA-F0-9]+) \\(\\<(?<Identity>.+)\\> (?<ZonedDateTime>.+) (?<LineNumber>\\d+)\\) (?<Content>.*)"
+      "(?<CommitHash>[a-fA-F0-9]+) \\(\\<(?<Email>.+)\\> (?<ZonedDateTime>.+) (?<LineNumber>\\d+)\\) (?<Content>.*)"
     private val blameLinePattern = Pattern.compile(BLAME_LINE_REGEX)
 
     private const val DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss Z"
@@ -27,7 +27,7 @@ data class BlameLine(
       return BlameLine(
         CommitHash(blameLineMatcher.group("CommitHash")),
         ZonedDateTime.parse(rawZonedDateTime, DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)),
-        Email(blameLineMatcher.group("Identity")),
+        Email(blameLineMatcher.group("Email")),
         blameLineMatcher.group("LineNumber").toInt(),
         blameLineMatcher.group("Content"),
       )

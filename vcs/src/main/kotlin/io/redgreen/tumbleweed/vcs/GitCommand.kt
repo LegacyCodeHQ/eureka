@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory
 class GitCommand(
   private val command: String,
   private val options: Array<String>,
-  private val repoPath: String?,
+  private val repoPath: String? = null,
 ) {
   companion object {
     private val logger = LoggerFactory.getLogger(GitCommand::class.java)

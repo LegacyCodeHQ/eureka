@@ -15,8 +15,8 @@ class OwnershipCommand : Runnable {
   }
 
   @CommandLine.Option(
-    names = ["-d", "--dir"],
-    description = ["path to the git repository directory"],
+    names = ["-r", "--repo"],
+    description = ["path to the git repo"],
     required = true,
   )
   lateinit var repoDir: File

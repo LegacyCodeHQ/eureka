@@ -34,4 +34,29 @@ class BlameLineTest {
         )
       )
   }
+
+  @Test
+  fun `it should parse a blame line with file path`() {
+    // given
+    val rawBlameLine =
+      "b065618bf2 app/src/main/java/org/simple/clinic/patient/PatientRepository.kt                  (<pratul@uncommon.is>                              2018-06-15 20:02:04 +0530   1) package org.simple.clinic.patient"
+
+    // when
+    val line = BlameLine.from(rawBlameLine)
+
+    // then
+    val localDateTime = LocalDateTime.of(2018, Month.JUNE, 15, 20, 2, 4)
+    val zoneId = ZoneId.of("+05:30")
+
+    assertThat(line)
+      .isEqualTo(
+        BlameLine(
+          CommitHash("b065618bf2"),
+          ZonedDateTime.of(localDateTime, zoneId),
+          Email("pratul@uncommon.is"),
+          1,
+          "package org.simple.clinic.patient"
+        )
+      )
+  }
 }

@@ -13,9 +13,14 @@ import io.redgreen.tumbleweed.vcs.Repo
 import io.redgreen.tumbleweed.vcs.RepoFile
 import io.redgreen.tumbleweed.vcs.blame.BlameCommand
 import io.redgreen.tumbleweed.vcs.blame.observablehq.OwnershipTreemapJson
+import io.redgreen.tumbleweed.web.owneship.OwnershipServer.Companion.PARAM_FILE
 import org.slf4j.LoggerFactory
 
 class OwnershipServer {
+  companion object {
+    internal const val PARAM_FILE = "file"
+  }
+
   private val logger = LoggerFactory.getLogger(OwnershipServer::class.java)
 
   private lateinit var webServer: ApplicationEngine
@@ -35,7 +40,7 @@ fun Application.setupRoutes(repo: Repo) {
     get("/") {
       val ownershipTreemap = ownershipTreemapJson(
         repo,
-        "app/src/main/java/org/simple/clinic/home/patients/PatientsEffectHandler.kt"
+        call.parameters[PARAM_FILE]!!,
       )
       call.respondText(ownershipTreemap.toJson(), ContentType.Application.Json)
     }

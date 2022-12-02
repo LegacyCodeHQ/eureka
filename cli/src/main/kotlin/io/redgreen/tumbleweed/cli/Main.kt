@@ -6,6 +6,7 @@ import io.redgreen.tumbleweed.cli.dev.convert.ConvertCommand
 import io.redgreen.tumbleweed.cli.dev.diff.DiffCommand
 import io.redgreen.tumbleweed.cli.dev.json.JsonCommand
 import io.redgreen.tumbleweed.cli.dev.view.ViewCommand
+import io.redgreen.tumbleweed.cli.ownership.OwnershipCommand
 import io.redgreen.tumbleweed.cli.watch.WatchCommand
 import java.util.Properties
 import kotlin.system.exitProcess
@@ -25,6 +26,7 @@ const val DEFAULT_PORT = 7070
     ViewCommand::class,
     ConvertCommand::class,
     DiffCommand::class,
+    OwnershipCommand::class,
   ],
 )
 class TumbleweedCommand {

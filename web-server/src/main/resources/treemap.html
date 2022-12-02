@@ -5,8 +5,14 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>Ownership Treemap</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    #treemap {
+      margin: auto;
+    }
+  </style>
 </head>
 <body>
+<div id="treemap"></div>
 </body>
 <script>
   // Copyright 2021 Observable, Inc.
@@ -146,10 +152,10 @@
     group: (d, n) => n.ancestors().slice(-2)[0].data.name, // e.g., "animate" in flare/animate/Easing; color
     label: (d, n) => [...d.name.split(/(?=[A-Z][a-z])/g), n.value.toLocaleString("en")].join("\n"),
     title: (d, n) => `${n.ancestors().reverse().map(d => d.data.name).join(".")}\n${n.value.toLocaleString("en")}`,
-    width: 1152,
-    height: 1152
+    width: 640,
+    height: 640,
   });
 
-  document.body.appendChild(chart);
+  document.getElementById('treemap').appendChild(chart);
 </script>
 </html>

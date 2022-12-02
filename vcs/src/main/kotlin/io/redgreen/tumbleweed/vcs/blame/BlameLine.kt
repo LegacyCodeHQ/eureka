@@ -5,6 +5,7 @@ import io.redgreen.tumbleweed.vcs.Email
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.regex.Pattern
+import org.slf4j.LoggerFactory
 
 data class BlameLine(
   val commitHash: CommitHash,
@@ -20,7 +21,11 @@ data class BlameLine(
 
     private const val DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss Z"
 
+    private val logger = LoggerFactory.getLogger(BlameLine::class.java)
+
     fun from(rawBlameLine: String): BlameLine {
+      logger.debug("Parsing raw blame line: {}", rawBlameLine)
+
       val blameLineMatcher = blameLinePattern.matcher(rawBlameLine)
       blameLineMatcher.matches()
 

@@ -150,7 +150,7 @@
   let chart = Treemap(flare, {
     value: d => d.size, // size of each node (file); null for internal nodes (folders)
     group: (d, n) => n.ancestors().slice(-2)[0].data.name, // e.g., "animate" in flare/animate/Easing; color
-    label: (d, n) => [...d.name.split(/(?=[A-Z][a-z])/g), n.value.toLocaleString("en")].join("\n"),
+    label: (d, n) => [...d.name.split(/(?=[A-Z][a-z])/g), n.value.toLocaleString("en")].join("\n") + ' (' + d.percentage + '%)',
     title: (d, n) => `${n.ancestors().reverse().map(d => d.data.name).join(".")}\n${n.value.toLocaleString("en")}`,
     width: 640,
     height: 640,

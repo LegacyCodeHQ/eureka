@@ -1,6 +1,6 @@
 package io.redgreen.tumbleweed.web.observablehq
 
-import kotlin.test.assertEquals
+import com.google.common.truth.Truth.assertThat
 import org.junit.jupiter.api.Test
 
 internal class BilevelEdgeBundlingGraphValidJsonTest {
@@ -37,7 +37,8 @@ internal class BilevelEdgeBundlingGraphValidJsonTest {
     val isJsonValid = BilevelEdgeBundlingGraph.isValidJson(jsonString)
 
     // then
-    assertEquals(isJsonValid, true)
+    assertThat(isJsonValid)
+      .isTrue()
   }
 
   @Test
@@ -66,6 +67,7 @@ internal class BilevelEdgeBundlingGraphValidJsonTest {
     val isJsonValid = BilevelEdgeBundlingGraph.isValidJson(jsonString)
 
     // then
-    assertEquals(isJsonValid, false)
+    assertThat(isJsonValid)
+      .isFalse()
   }
 }

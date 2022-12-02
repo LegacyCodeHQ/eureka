@@ -1,12 +1,14 @@
 package io.redgreen.tumbleweed.web.observablehq
 
 import com.google.common.truth.Truth.assertThat
+import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
 
 internal class BilevelEdgeBundlingGraphValidJsonTest {
   @Test
   internal fun `valid edge bundling graph json`() {
     // given
+    @Language("json")
     val jsonString = """
       {
         "nodes": [
@@ -44,6 +46,7 @@ internal class BilevelEdgeBundlingGraphValidJsonTest {
   @Test
   internal fun `invalid edge bundling graph json`() {
     // given
+    @Language("json")
     val jsonString = """
       {
         "nodes": [

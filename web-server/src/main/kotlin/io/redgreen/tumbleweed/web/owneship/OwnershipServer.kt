@@ -33,13 +33,17 @@ class OwnershipServer {
 fun Application.setupRoutes(repo: Repo) {
   routing {
     get("/") {
-      val blameCommand = BlameCommand(
+      val ownershipTreemap = ownershipTreemapJson(
         repo,
-        RepoFile("app/src/main/java/org/simple/clinic/home/patients/PatientsEffectHandler.kt"),
+        "app/src/main/java/org/simple/clinic/home/patients/PatientsEffectHandler.kt"
       )
-      val blameResult = blameCommand.execute().orNull()!!
-      val ownershipTreemap = OwnershipTreemapJson.from(blameResult)
       call.respondText(ownershipTreemap.toJson(), ContentType.Application.Json)
     }
   }
+}
+
+private fun ownershipTreemapJson(repo: Repo, filePath: String): OwnershipTreemapJson {
+  val blameCommand = BlameCommand(repo, RepoFile(filePath))
+  val blameResult = blameCommand.execute().orNull()!!
+  return OwnershipTreemapJson.from(blameResult)
 }

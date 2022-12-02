@@ -38,17 +38,26 @@ class OwnershipServer {
 fun Application.setupRoutes(repo: Repo) {
   routing {
     get("/") {
-      val ownershipTreemap = ownershipTreemapJson(
-        repo,
-        call.parameters[PARAM_FILE]!!,
-      )
-      call.respondText(ownershipTreemap.toJson(), ContentType.Application.Json)
+      val filePath = call.parameters[PARAM_FILE]!!
+      val ownershipTreemapJson = ownershipTreemapJson(repo, filePath).toJson()
+      val treemapHtml = getTreemapHtml(ownershipTreemapJson)
+      call.respondText(treemapHtml, ContentType.Text.Html)
     }
   }
 }
 
-private fun ownershipTreemapJson(repo: Repo, filePath: String): OwnershipTreemapJson {
+private fun ownershipTreemapJson(
+  repo: Repo,
+  filePath: String,
+): OwnershipTreemapJson {
   val blameCommand = BlameCommand(repo, RepoFile(filePath))
   val blameResult = blameCommand.execute().orNull()!!
   return OwnershipTreemapJson.from(blameResult)
+}
+
+private fun getTreemapHtml(json: String): String {
+  return OwnershipServer::class.java.getResourceAsStream("/treemap.html")
+    .bufferedReader()
+    .use { it.readText() }
+    .replace("{{treemap-data}}", json)
 }

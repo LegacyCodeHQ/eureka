@@ -59,4 +59,29 @@ class BlameLineTest {
         )
       )
   }
+
+  @Test
+  fun `it should parse a blame line with time zone in UTC`() {
+    // given
+    val rawBlameLine =
+      "947a7331f7 app/src/androidTest/java/org/simple/clinic/DatabaseMigrationAndroidTest.kt                    (<vinay@obvious.in>       2019-06-13 05:30:31 +0000 2406)       require(db.version == 43) { \"Required DB version: 43; Found: ${'$'}{db.version}\" }"
+
+    // when
+    val line = BlameLine.from(rawBlameLine)
+
+    // then
+    val localDateTime = LocalDateTime.of(2019, Month.JUNE, 13, 5, 30, 31)
+    val zoneId = ZoneId.of("+0000")
+
+    assertThat(line)
+      .isEqualTo(
+        BlameLine(
+          CommitHash("947a7331f7"),
+          ZonedDateTime.of(localDateTime, zoneId),
+          Email("vinay@obvious.in"),
+          2406,
+          "      require(db.version == 43) { \"Required DB version: 43; Found: ${'$'}{db.version}\" }"
+        )
+      )
+  }
 }

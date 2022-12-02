@@ -4,8 +4,9 @@
   <CurrentIssues>
     <ID>ImplicitDefaultLocale:OwnershipTreemapJson.kt$OwnershipTreemapJson.Companion$String.format("%.2f", percentage)</ID>
     <ID>MagicNumber:OwnershipTreemapJson.kt$OwnershipTreemapJson.Companion$100</ID>
-    <ID>MaxLineLength:BlameLine.kt$BlameLine.Companion$"(?&lt;CommitHash&gt;[a-fA-F0-9]+) (.*)? \\(\\&lt;(?&lt;Email&gt;.+)\\&gt; (?&lt;ZonedDateTime&gt;.+) (?&lt;LineNumber&gt;\\d+)\\) (?&lt;Content&gt;.*)"</ID>
+    <ID>MaxLineLength:BlameLine.kt$BlameLine.Companion$"(?&lt;CommitHash&gt;[a-fA-F0-9]+) (.*)? \\(\\&lt;(?&lt;Email&gt;.+)\\&gt; (?&lt;ZonedDateTime&gt;.+?) (?&lt;LineNumber&gt;\\d+)\\) (?&lt;Content&gt;.*)"</ID>
     <ID>MaxLineLength:BlameLineTest.kt$BlameLineTest$"42e7f2b2e8 (&lt;vinay@obvious.in&gt; 2020-05-28 09:57:16 +0530 3) import android.annotation.SuppressLint"</ID>
+    <ID>MaxLineLength:BlameLineTest.kt$BlameLineTest$"947a7331f7 app/src/androidTest/java/org/simple/clinic/DatabaseMigrationAndroidTest.kt (&lt;vinay@obvious.in&gt; 2019-06-13 05:30:31 +0000 2406) require(db.version == 43) { \"Required DB version: 43; Found: ${'$'}{db.version}\" }"</ID>
     <ID>MaxLineLength:BlameLineTest.kt$BlameLineTest$"b065618bf2 app/src/main/java/org/simple/clinic/patient/PatientRepository.kt (&lt;pratul@uncommon.is&gt; 2018-06-15 20:02:04 +0530 1) package org.simple.clinic.patient"</ID>
     <ID>SpreadOperator:GitCommand.kt$GitCommand$("git", *args)</ID>
   </CurrentIssues>

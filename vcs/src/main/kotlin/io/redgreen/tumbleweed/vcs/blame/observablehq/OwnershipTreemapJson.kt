@@ -10,18 +10,18 @@ data class Ownership(
   val percentage: Double,
 )
 
-data class OwnershipTreemap(
+data class OwnershipTreemapJson(
   val name: String,
   val children: List<Ownership>,
 ) {
   companion object {
-    fun from(blameResult: BlameResult): OwnershipTreemap {
+    fun from(blameResult: BlameResult): OwnershipTreemapJson {
       val ownershipByEmail = blameResult.byEmail()
       val ownerships = ownershipByEmail.map { (email, blameLines) ->
         val percentage = calculatePercentage(blameLines.size, blameResult.lines.size)
         Ownership(email.address, blameLines.size, percentage)
       }
-      return OwnershipTreemap(blameResult.repoFile.name, ownerships)
+      return OwnershipTreemapJson(blameResult.repoFile.name, ownerships)
     }
 
     private fun calculatePercentage(

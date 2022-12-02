@@ -7,7 +7,7 @@ import io.redgreen.tumbleweed.vcs.blame.BlameCommand
 import org.approvaltests.JsonApprovals
 import org.junit.jupiter.api.Test
 
-class OwnershipTreemapTest {
+class OwnershipTreemapJsonTest {
   @Test
   fun `it should generate treemap data from blame result`() {
     // given
@@ -19,7 +19,7 @@ class OwnershipTreemapTest {
     val blameResult = blameCommand.execute().orNull()!!
 
     // when
-    val ownershipTreemap = OwnershipTreemap.from(blameResult)
+    val ownershipTreemap = OwnershipTreemapJson.from(blameResult)
 
     // then
     JsonApprovals.verifyJson(ownershipTreemap.toJson())

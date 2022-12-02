@@ -1,7 +1,7 @@
 package io.redgreen.tumbleweed
 
-import io.redgreen.tumbleweed.samples.ConstantReferencedInReturnStatement
 import io.redgreen.tumbleweed.samples.ConstantReferencedInConditional
+import io.redgreen.tumbleweed.samples.ConstantReferencedInReturnStatement
 import io.redgreen.tumbleweed.samples.Constants
 import io.redgreen.tumbleweed.samples.IntegerConstants
 import io.redgreen.tumbleweed.samples.LambdaAccessingField

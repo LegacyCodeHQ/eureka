@@ -1,6 +1,6 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-import org.jreleaser.model.Active
 import java.util.Properties
+import org.jreleaser.model.Active
 
 @Suppress("PropertyName")
 val CLI_VERSION = "0.37.0-SNAPSHOT"

@@ -1,7 +1,7 @@
 package io.redgreen.tumbleweed.web.observablehq
 
-import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
+import org.junit.jupiter.api.Test
 
 internal class BilevelEdgeBundlingGraphValidJsonTest {
   @Test

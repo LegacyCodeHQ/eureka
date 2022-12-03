@@ -7,7 +7,8 @@
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <style>
     #treemap {
-      margin: auto;
+      width: 80%;
+      height: 80%;
     }
   </style>
 </head>
@@ -147,15 +148,17 @@
 
   let flare = JSON.parse('{{treemap-data}}');
 
+  let treemapElement = document.getElementById('treemap');
+  let size = Math.min(treemapElement.offsetWidth, treemapElement.offsetHeight);
   let chart = Treemap(flare, {
     value: d => d.size, // size of each node (file); null for internal nodes (folders)
     group: (d, n) => n.ancestors().slice(-2)[0].data.name, // e.g., "animate" in flare/animate/Easing; color
     label: (d, n) => [...d.name.split(/(?=[A-Z][a-z])/g), n.value.toLocaleString("en")].join("\n") + ` (${d.percentage}%)`,
     title: (d, n) => `${d.name}\n${n.value.toLocaleString("en")} (${d.percentage}%)`,
-    width: 640,
-    height: 640,
+    width: size,
+    height: size,
   });
 
-  document.getElementById('treemap').appendChild(chart);
+  treemapElement.appendChild(chart);
 </script>
 </html>

@@ -21,11 +21,17 @@ You can try this [sample interactive graph](https://redgreenio.github.io/) for S
 App's [StoryViewerPageFragment](https://github.com/signalapp/Signal-Android/blob/ff8f9ca81ae6a25e1e946612c817206b9410d9a1/app/src/main/java/org/thoughtcrime/securesms/stories/viewer/page/StoryViewerPageFragment.kt)
 class.
 
-## Screenshot
+## Screenshots
+
+### Class visualization—edge bundling graph
 
 Visualizing [ConversationParentFragment.java](https://github.com/signalapp/Signal-Android/blob/ff8f9ca81ae6a25e1e946612c817206b9410d9a1/app/src/main/java/org/thoughtcrime/securesms/conversation/ConversationParentFragment.java)—a **3,510 LOC** class from the Signal Android App.
 
-![Screenshot](docs/screenshot.png)
+![Edge bundling graph](docs/screenshot.png)
+
+### File ownership—treemap
+
+![Treemap](docs/ownership.png)
 
 ## Installation
 

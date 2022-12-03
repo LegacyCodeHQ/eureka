@@ -146,11 +146,11 @@
     return Object.assign(svg.node(), {scales: {color}});
   }
 
-  let flare = JSON.parse('{{treemap-data}}');
+  let data = JSON.parse('{{treemap-data}}');
 
   let treemapElement = document.getElementById('treemap');
   let size = Math.min(treemapElement.offsetWidth, treemapElement.offsetHeight);
-  let chart = Treemap(flare, {
+  let chart = Treemap(data, {
     value: d => d.size, // size of each node (file); null for internal nodes (folders)
     group: (d, n) => n.ancestors().slice(-2)[0].data.name, // e.g., "animate" in flare/animate/Easing; color
     label: (d, n) => [...d.name.split(/(?=[A-Z][a-z])/g), n.value.toLocaleString("en")].join("\n") + ` (${d.percentage}%)`,

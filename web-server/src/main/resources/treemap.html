@@ -6,14 +6,25 @@
   <title>Ownership Treemap</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <style>
+    body {
+      font-family: 'IBM Plex Sans', 'Helvetica Neue', sans-serif, Arial;
+      overflow: hidden;
+    }
+
     #treemap {
       width: 80%;
       height: 80%;
     }
+
+    h1 {
+      line-height: 24px;
+    }
   </style>
 </head>
 <body>
-<div id="treemap"></div>
+<div id="treemap">
+  <h1 id="title"></h1>
+</div>
 </body>
 <script>
   // Copyright 2021 Observable, Inc.
@@ -98,7 +109,6 @@
       .attr("width", width)
       .attr("height", height)
       .attr("style", "max-width: 100%; height: auto; height: intrinsic;")
-      .attr("font-family", "sans-serif")
       .attr("font-size", 10);
 
     const node = svg.selectAll("a")
@@ -159,6 +169,9 @@
     height: size,
   });
 
+  document.getElementById('title').innerText = data.name;
   treemapElement.appendChild(chart);
 </script>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM%20Plex%20Sans&display=swap" rel="stylesheet">
 </html>

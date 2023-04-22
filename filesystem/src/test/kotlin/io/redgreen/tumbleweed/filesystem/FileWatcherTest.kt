@@ -10,55 +10,60 @@ import org.junit.jupiter.api.io.TempDir
 
 class FileWatcherTest {
   private val fileWatcher = FileWatcher()
-  private val fileChangedEventQueue = ArrayBlockingQueue<Boolean>(1)
-  private val fileChangedCallback = { fileChangedEventQueue.put(true) }
+  private val fileModifiedEventQueue = ArrayBlockingQueue<Boolean>(1)
+  private val fileModifiedCallback = { fileModifiedEventQueue.put(true) }
 
   @Test
-  fun `it should watch for file changes`(@TempDir directory: Path) {
+  fun `it should watch for file changes`(@TempDir tempDirectory: Path) {
     // given
-    val filename = "file.txt"
-    val fileToWatch = directory.resolve(filename).also { it.toFile().writeText("Hello, world!") }
-    fileWatcher.startWatching(fileToWatch, fileChangedCallback)
+    val fileToWatch = tempDirectory.createFile("file.txt", "Hello, world!")
+    fileWatcher.startWatching(fileToWatch, fileModifiedCallback)
 
     // when
     fileToWatch.writeText("Hello, world! How are you?")
 
     // then
-    assertThat(fileChangedEventQueue.take())
+    assertThat(fileModifiedEventQueue.take())
       .isTrue()
   }
 
   @Test
-  fun `it should not receive notifications after stop watching for changes`(@TempDir directory: Path) {
+  fun `it should not receive notifications after stop watching for changes`(@TempDir tempDirectory: Path) {
     // given
-    val filename = "file.txt"
-    val fileToWatch = directory.resolve(filename).also { it.toFile().writeText("Hello, world!") }
-    fileWatcher.startWatching(fileToWatch, fileChangedCallback)
+    val fileToWatch = tempDirectory.createFile("file.txt", "Hello, world!")
+    fileWatcher.startWatching(fileToWatch, fileModifiedCallback)
 
     // when
     fileWatcher.stopWatching()
     fileToWatch.writeText("Hello, world! How are you?")
 
     // then
-    assertThat(fileChangedEventQueue.poll(3, TimeUnit.SECONDS))
+    assertThat(fileModifiedEventQueue.poll(3, TimeUnit.SECONDS))
       .isNull()
   }
 
   @Test
-  fun `it should only send notifications for the file that is being watched`(@TempDir directory: Path) {
+  fun `it should only send notifications for the file that is being watched`(@TempDir tempDirectory: Path) {
     // given
-    val filenameA = "file-a.txt"
-    val filenameB = "file-b.txt"
-    val fileToWatch = directory.resolve(filenameA).also { it.toFile().writeText("Hello, A!") }
-    val fileNotToWatch = directory.resolve(filenameB).also { it.toFile().writeText("Hello, B!") }
+    val fileToWatch = tempDirectory.createFile("file-a.txt", "Hello, A!")
+    val fileNotToWatch = tempDirectory.createFile("file-b.txt", "Hello, B!")
 
-    fileWatcher.startWatching(fileToWatch, fileChangedCallback)
+    fileWatcher.startWatching(fileToWatch, fileModifiedCallback)
 
     // when
     fileNotToWatch.writeText("Sssshhh…")
 
     // then
-    assertThat(fileChangedEventQueue.poll(3, TimeUnit.SECONDS))
+    assertThat(fileModifiedEventQueue.poll(3, TimeUnit.SECONDS))
       .isNull()
+  }
+
+  private fun Path.createFile(
+    filename: String,
+    content: String,
+  ): Path {
+    return resolve(filename).also {
+      it.toFile().writeText(content)
+    }
   }
 }

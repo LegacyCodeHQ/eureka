@@ -19,10 +19,10 @@ class FileWatcher {
   private val watchService: WatchService = FileSystems.getDefault().newWatchService()
   private val eventsToWatchFor = arrayOf(ENTRY_CREATE, ENTRY_MODIFY, ENTRY_DELETE)
 
-  fun startWatching(file: Path, onFileChanged: () -> Unit) {
+  fun startWatching(file: Path, onFileModified: () -> Unit) {
     val watchKey = file.parent.register(watchService, eventsToWatchFor, HIGH)
     logger.info("Watching for file changes in {}", file.parent)
-    Thread(PollEventsRunnable(file, watchService, watchKey, onFileChanged)).start()
+    Thread(PollEventsRunnable(file, watchService, watchKey, onFileModified)).start()
   }
 
   fun stopWatching() {

@@ -12,8 +12,7 @@ plugins {
 }
 
 allprojects {
-  group = "io.redgreen"
-  version = "0.1.0-SNAPSHOT"
+  group = "com.legacycode"
 
   repositories {
     mavenCentral()

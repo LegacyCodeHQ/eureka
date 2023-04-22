@@ -1,7 +1,7 @@
 package io.redgreen.tumbleweed.cli.dev.diff
 
 import io.redgreen.tumbleweed.cli.dev.convert.from
-import io.redgreen.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
+import com.legacycode.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.api.extension.ParameterContext
 import org.junit.jupiter.api.extension.ParameterResolver

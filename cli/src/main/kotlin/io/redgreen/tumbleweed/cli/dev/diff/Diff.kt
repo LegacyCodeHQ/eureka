@@ -1,8 +1,8 @@
 package io.redgreen.tumbleweed.cli.dev.diff
 
-import io.redgreen.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
-import io.redgreen.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph.Link
-import io.redgreen.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph.Node
+import com.legacycode.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
+import com.legacycode.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph.Link
+import com.legacycode.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph.Node
 
 data class Diff(val missing: Missing) {
   companion object {

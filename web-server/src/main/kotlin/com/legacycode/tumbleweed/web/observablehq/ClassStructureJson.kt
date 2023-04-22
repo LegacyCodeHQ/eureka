@@ -1,4 +1,4 @@
-package io.redgreen.tumbleweed.web.observablehq
+package com.legacycode.tumbleweed.web.observablehq
 
 import io.redgreen.tumbleweed.ClassStructure
 import io.redgreen.tumbleweed.Field

@@ -1,8 +1,8 @@
 package io.redgreen.tumbleweed.cli.dev.convert
 
-import io.redgreen.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
-import io.redgreen.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph.Link
-import io.redgreen.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph.Node
+import com.legacycode.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
+import com.legacycode.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph.Link
+import com.legacycode.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph.Node
 import org.apache.commons.csv.CSVFormat
 import org.apache.commons.csv.CSVParser
 import org.apache.commons.csv.CSVRecord

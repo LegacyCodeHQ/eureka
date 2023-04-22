@@ -1,8 +1,8 @@
-package io.redgreen.tumbleweed.web
+package com.legacycode.tumbleweed.web
 
+import com.legacycode.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
+import com.legacycode.tumbleweed.web.observablehq.graph
 import io.redgreen.tumbleweed.ClassScanner
-import io.redgreen.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
-import io.redgreen.tumbleweed.web.observablehq.graph
 import java.io.File
 import kotlin.time.ExperimentalTime
 import kotlin.time.measureTimedValue

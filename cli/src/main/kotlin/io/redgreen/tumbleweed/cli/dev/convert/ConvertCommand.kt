@@ -1,6 +1,6 @@
 package io.redgreen.tumbleweed.cli.dev.convert
 
-import io.redgreen.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
+import com.legacycode.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
 import java.io.File
 import picocli.CommandLine.Command
 import picocli.CommandLine.Parameters

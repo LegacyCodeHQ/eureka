@@ -1,5 +1,6 @@
-package io.redgreen.tumbleweed.web.owneship
+package com.legacycode.tumbleweed.web.owneship
 
+import com.legacycode.tumbleweed.web.owneship.OwnershipServer.Companion.PARAM_FILE
 import io.ktor.http.ContentType
 import io.ktor.server.application.Application
 import io.ktor.server.application.call
@@ -13,7 +14,6 @@ import io.redgreen.tumbleweed.vcs.Repo
 import io.redgreen.tumbleweed.vcs.RepoFile
 import io.redgreen.tumbleweed.vcs.blame.BlameCommand
 import io.redgreen.tumbleweed.vcs.blame.observablehq.OwnershipTreemapJson
-import io.redgreen.tumbleweed.web.owneship.OwnershipServer.Companion.PARAM_FILE
 import org.slf4j.LoggerFactory
 
 class OwnershipServer {

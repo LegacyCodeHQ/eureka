@@ -1,6 +1,6 @@
 package io.redgreen.tumbleweed.cli.dev.convert
 
-import io.redgreen.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
+import com.legacycode.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
 import org.approvaltests.JsonApprovals
 import org.junit.jupiter.api.Test
 

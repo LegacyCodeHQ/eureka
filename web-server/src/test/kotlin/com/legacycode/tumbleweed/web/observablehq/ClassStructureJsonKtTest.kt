@@ -1,4 +1,4 @@
-package io.redgreen.tumbleweed.web.observablehq
+package com.legacycode.tumbleweed.web.observablehq
 
 import io.redgreen.tumbleweed.ClassScanner
 import io.redgreen.tumbleweed.samples.AccessSuperClassMembers

@@ -1,4 +1,4 @@
-package io.redgreen.tumbleweed.web
+package com.legacycode.tumbleweed.web
 
 import io.ktor.http.ContentType
 import io.ktor.server.application.Application

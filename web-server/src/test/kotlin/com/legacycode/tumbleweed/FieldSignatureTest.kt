@@ -1,6 +1,8 @@
-package io.redgreen.tumbleweed
+package com.legacycode.tumbleweed
 
 import com.google.common.truth.Truth.assertThat
+import io.redgreen.tumbleweed.FieldSignature
+import io.redgreen.tumbleweed.QualifiedType
 import org.junit.jupiter.api.Test
 
 internal class FieldSignatureTest {

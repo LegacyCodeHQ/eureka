@@ -3,7 +3,7 @@
 package io.redgreen.tumbleweed.cli.dev.diff
 
 import io.redgreen.tumbleweed.cli.dev.diff.EdgeBundlingGraphExtension.*
-import io.redgreen.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
+import com.legacycode.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith

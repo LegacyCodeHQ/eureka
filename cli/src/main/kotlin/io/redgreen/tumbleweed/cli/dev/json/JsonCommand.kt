@@ -2,7 +2,7 @@ package io.redgreen.tumbleweed.cli.dev.json
 
 import io.redgreen.tumbleweed.ClassScanner
 import io.redgreen.tumbleweed.filesystem.CompiledClassFileFinder
-import io.redgreen.tumbleweed.web.observablehq.graph
+import com.legacycode.tumbleweed.web.observablehq.graph
 import java.io.File
 import picocli.CommandLine.Command
 import picocli.CommandLine.Option

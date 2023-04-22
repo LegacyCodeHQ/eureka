@@ -1,4 +1,4 @@
-package io.redgreen.tumbleweed.web.observablehq
+package com.legacycode.tumbleweed.web.observablehq
 
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper

@@ -1,4 +1,4 @@
-package io.redgreen.tumbleweed.web.observablehq
+package com.legacycode.tumbleweed.web.observablehq
 
 import com.google.common.truth.Truth.assertThat
 import org.intellij.lang.annotations.Language

@@ -1,4 +1,4 @@
-# Tumbleweed (early preview)
+# Tumbleweed (early preview) ![CI](https://github.com/redgreenio/tumbleweed/actions/workflows/jvm-tests.yml/badge.svg) ![CI](https://github.com/redgreenio/tumbleweed/actions/workflows/js-tests.yml/badge.svg)
 
 Effortlessly understand and analyze Kotlin/Java classes in your codebase 😎
 

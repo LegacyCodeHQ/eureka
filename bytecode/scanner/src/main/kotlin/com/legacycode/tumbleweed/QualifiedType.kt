@@ -1,4 +1,4 @@
-package io.redgreen.tumbleweed
+package com.legacycode.tumbleweed
 
 /*
  * FIXME: This class represents both external and internal qualified name

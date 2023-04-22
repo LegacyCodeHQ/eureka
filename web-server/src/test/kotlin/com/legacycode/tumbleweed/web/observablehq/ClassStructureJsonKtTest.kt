@@ -1,6 +1,6 @@
 package com.legacycode.tumbleweed.web.observablehq
 
-import io.redgreen.tumbleweed.ClassScanner
+import com.legacycode.tumbleweed.ClassScanner
 import io.redgreen.tumbleweed.samples.AccessSuperClassMembers
 import io.redgreen.tumbleweed.samples.InterfaceImplementation
 import io.redgreen.tumbleweed.samples.OnlyMethods

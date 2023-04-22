@@ -1,4 +1,4 @@
-package io.redgreen.tumbleweed
+package com.legacycode.tumbleweed
 
 import io.redgreen.tumbleweed.samples.ConstantReferencedInConditional
 import io.redgreen.tumbleweed.samples.ConstantReferencedInReturnStatement

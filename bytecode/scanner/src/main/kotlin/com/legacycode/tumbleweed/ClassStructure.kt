@@ -1,6 +1,6 @@
-package io.redgreen.tumbleweed
+package com.legacycode.tumbleweed
 
-import io.redgreen.tumbleweed.ClassStructure.Companion.logger
+import com.legacycode.tumbleweed.ClassStructure.Companion.logger
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 

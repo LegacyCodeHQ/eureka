@@ -1,14 +1,14 @@
-package io.redgreen.tumbleweed
+package com.legacycode.tumbleweed
 
-import io.redgreen.tumbleweed.Opcodes.areturn
-import io.redgreen.tumbleweed.Opcodes.iconst_0
-import io.redgreen.tumbleweed.Opcodes.iconst_1
-import io.redgreen.tumbleweed.Opcodes.iconst_2
-import io.redgreen.tumbleweed.Opcodes.iconst_3
-import io.redgreen.tumbleweed.Opcodes.iconst_4
-import io.redgreen.tumbleweed.Opcodes.iconst_5
-import io.redgreen.tumbleweed.Opcodes.iconst_m1
-import io.redgreen.tumbleweed.Opcodes.invokespecial
+import com.legacycode.tumbleweed.Opcodes.areturn
+import com.legacycode.tumbleweed.Opcodes.iconst_0
+import com.legacycode.tumbleweed.Opcodes.iconst_1
+import com.legacycode.tumbleweed.Opcodes.iconst_2
+import com.legacycode.tumbleweed.Opcodes.iconst_3
+import com.legacycode.tumbleweed.Opcodes.iconst_4
+import com.legacycode.tumbleweed.Opcodes.iconst_5
+import com.legacycode.tumbleweed.Opcodes.iconst_m1
+import com.legacycode.tumbleweed.Opcodes.invokespecial
 import net.bytebuddy.jar.asm.Handle
 import net.bytebuddy.jar.asm.Label
 import net.bytebuddy.jar.asm.MethodVisitor

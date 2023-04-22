@@ -1,4 +1,4 @@
-package io.redgreen.tumbleweed
+package com.legacycode.tumbleweed
 
 val ClassStructure.printable: Any
   get() {

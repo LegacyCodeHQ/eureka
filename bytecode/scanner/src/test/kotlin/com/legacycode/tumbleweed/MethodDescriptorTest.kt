@@ -1,4 +1,4 @@
-package io.redgreen.tumbleweed
+package com.legacycode.tumbleweed
 
 import com.google.common.truth.Truth.assertThat
 import org.junit.jupiter.api.Test

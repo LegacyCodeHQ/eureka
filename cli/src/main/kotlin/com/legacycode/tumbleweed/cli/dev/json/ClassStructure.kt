@@ -1,7 +1,7 @@
 package com.legacycode.tumbleweed.cli.dev.json
 
-import io.redgreen.tumbleweed.ClassStructure
-import io.redgreen.tumbleweed.Member
+import com.legacycode.tumbleweed.ClassStructure
+import com.legacycode.tumbleweed.Member
 
 fun ClassStructure.check() {
   val membersInClassStructure = (fields + methods).toSet()

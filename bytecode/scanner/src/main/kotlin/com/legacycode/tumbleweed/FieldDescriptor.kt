@@ -1,4 +1,4 @@
-package io.redgreen.tumbleweed
+package com.legacycode.tumbleweed
 
 @JvmInline
 value class FieldDescriptor(private val typeToken: TypeToken) {

@@ -1,4 +1,4 @@
-package io.redgreen.tumbleweed
+package com.legacycode.tumbleweed
 
 @JvmInline
 value class TypeToken(private val descriptor: String) {

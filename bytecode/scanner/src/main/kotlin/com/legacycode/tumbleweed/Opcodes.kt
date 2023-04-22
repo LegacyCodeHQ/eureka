@@ -1,4 +1,4 @@
-package io.redgreen.tumbleweed
+package com.legacycode.tumbleweed
 
 object Opcodes {
   const val iconst_m1 = 0x02

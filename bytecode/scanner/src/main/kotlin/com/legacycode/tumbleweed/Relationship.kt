@@ -1,4 +1,4 @@
-package io.redgreen.tumbleweed
+package com.legacycode.tumbleweed
 
 import net.bytebuddy.jar.asm.Opcodes.GETFIELD
 import net.bytebuddy.jar.asm.Opcodes.GETSTATIC

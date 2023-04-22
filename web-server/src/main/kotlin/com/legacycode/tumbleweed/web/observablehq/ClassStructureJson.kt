@@ -1,10 +1,10 @@
 package com.legacycode.tumbleweed.web.observablehq
 
-import io.redgreen.tumbleweed.ClassStructure
-import io.redgreen.tumbleweed.Field
-import io.redgreen.tumbleweed.Member
-import io.redgreen.tumbleweed.Method
-import io.redgreen.tumbleweed.Relationship
+import com.legacycode.tumbleweed.ClassStructure
+import com.legacycode.tumbleweed.Field
+import com.legacycode.tumbleweed.Member
+import com.legacycode.tumbleweed.Method
+import com.legacycode.tumbleweed.Relationship
 
 val ClassStructure.graph: BilevelEdgeBundlingGraph
   get() {

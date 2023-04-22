@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 
 class FileWatcherTest {
+  private val fileWatcher = FileWatcher()
+
   @Test
   fun `it should watch for file changes`(@TempDir directory: Path) {
     // given
@@ -14,7 +16,6 @@ class FileWatcherTest {
     val fileToWatch = directory.resolve(filename).also { it.toFile().writeText("Hello, world!") }
     var fileChanged = false
 
-    val fileWatcher = FileWatcher()
     fileWatcher.startWatching(fileToWatch) { fileChanged = true }
 
     // when
@@ -33,7 +34,6 @@ class FileWatcherTest {
     val fileToWatch = directory.resolve(filename).also { it.toFile().writeText("Hello, world!") }
     var fileChanged = false
 
-    val fileWatcher = FileWatcher()
     fileWatcher.startWatching(fileToWatch) { fileChanged = true }
 
     // when

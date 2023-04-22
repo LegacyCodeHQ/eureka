@@ -52,7 +52,7 @@ $ brew upgrade twd
 Build the project first and then run the command line tool.
 
 ```bash
-$ twd watch io.redgreen.ExampleClass
+$ twd watch com.legacycode.ExampleClass
 ```
 
 The command will start a web server on port 7070. Go to `localhost:7070` in your browser to see the diagram.

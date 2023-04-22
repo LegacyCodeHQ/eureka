@@ -193,7 +193,7 @@ describe('class vocabulary', () => {
     }],
     'meta': {
       'classInfo': {
-        'name': 'io.redgreen.tumbleweed.samples.PropertiesAndFunctions'
+        'name': 'com.legacycode.tumbleweed.samples.PropertiesAndFunctions'
       }
     }
   };

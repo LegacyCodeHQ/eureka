@@ -35,8 +35,8 @@
   ],
   "meta": {
     "classInfo": {
-      "name": "io.redgreen.tumbleweed.samples.AccessSuperClassMembers",
-      "extends": "io.redgreen.tumbleweed.samples.SuperClass"
+      "name": "com.legacycode.tumbleweed.samples.AccessSuperClassMembers",
+      "extends": "com.legacycode.tumbleweed.samples.SuperClass"
     }
   }
 }

@@ -1,7 +1,7 @@
-Package: io.redgreen.tumbleweed.samples
+Package: com.legacycode.tumbleweed.samples
 Class: InterfaceImplementation
 Extends: java.lang.Object
-Implements: io.redgreen.tumbleweed.samples.CounterActions
+Implements: com.legacycode.tumbleweed.samples.CounterActions
 Fields:
   - int count
 Methods:

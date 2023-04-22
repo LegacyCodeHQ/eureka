@@ -1,28 +1,27 @@
 package com.legacycode.tumbleweed
 
-import io.redgreen.tumbleweed.samples.AccessSuperClassMembers
-import io.redgreen.tumbleweed.samples.AnonymousFunctionDifferentPackage
-import io.redgreen.tumbleweed.samples.AnonymousFunctionWritingField
-import io.redgreen.tumbleweed.samples.Counter
-import io.redgreen.tumbleweed.samples.DeeplyNestedLambdaFunctions
-import io.redgreen.tumbleweed.samples.EmptyClass
-import io.redgreen.tumbleweed.samples.ExtendsRelationship
-import io.redgreen.tumbleweed.samples.ExtensionFunctionsWithReceivers
-import io.redgreen.tumbleweed.samples.ExtensionInlineFunctions
-import io.redgreen.tumbleweed.samples.ExternalClassAccessingClassMembers
-import io.redgreen.tumbleweed.samples.ExternalClassAccessingSuperClassMembers
-import io.redgreen.tumbleweed.samples.FunctionCallsInsideLambdas
-import io.redgreen.tumbleweed.samples.InlineFunction
-import io.redgreen.tumbleweed.samples.InterfaceImplementation
-import io.redgreen.tumbleweed.samples.LateinitVar
-import io.redgreen.tumbleweed.samples.LazyProperty
-import io.redgreen.tumbleweed.samples.MethodsCallingMethods
-import io.redgreen.tumbleweed.samples.NestedAnonymousFunctionWritingField
-import io.redgreen.tumbleweed.samples.OnlyFields
-import io.redgreen.tumbleweed.samples.OnlyMethods
-import io.redgreen.tumbleweed.samples.RecursiveFunction
-import io.redgreen.tumbleweed.samples.StaticFieldAccess
-import io.redgreen.tumbleweed.samples.SyntheticBridges
+import com.legacycode.tumbleweed.samples.AnonymousFunctionDifferentPackage
+import com.legacycode.tumbleweed.samples.AnonymousFunctionWritingField
+import com.legacycode.tumbleweed.samples.Counter
+import com.legacycode.tumbleweed.samples.DeeplyNestedLambdaFunctions
+import com.legacycode.tumbleweed.samples.EmptyClass
+import com.legacycode.tumbleweed.samples.ExtendsRelationship
+import com.legacycode.tumbleweed.samples.ExtensionFunctionsWithReceivers
+import com.legacycode.tumbleweed.samples.ExtensionInlineFunctions
+import com.legacycode.tumbleweed.samples.ExternalClassAccessingClassMembers
+import com.legacycode.tumbleweed.samples.ExternalClassAccessingSuperClassMembers
+import com.legacycode.tumbleweed.samples.FunctionCallsInsideLambdas
+import com.legacycode.tumbleweed.samples.InlineFunction
+import com.legacycode.tumbleweed.samples.InterfaceImplementation
+import com.legacycode.tumbleweed.samples.LateinitVar
+import com.legacycode.tumbleweed.samples.LazyProperty
+import com.legacycode.tumbleweed.samples.MethodsCallingMethods
+import com.legacycode.tumbleweed.samples.NestedAnonymousFunctionWritingField
+import com.legacycode.tumbleweed.samples.OnlyFields
+import com.legacycode.tumbleweed.samples.OnlyMethods
+import com.legacycode.tumbleweed.samples.RecursiveFunction
+import com.legacycode.tumbleweed.samples.StaticFieldAccess
+import com.legacycode.tumbleweed.samples.SyntheticBridges
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
 
@@ -190,7 +189,7 @@ class ClassScannerKotlinTest {
   fun `12 - it can scan a class that calls functions declared in the super class`() {
     // given
     val accessSuperClassMembers = defaultKotlinClassLocation.copy(
-      fqClassName = AccessSuperClassMembers::class.java.name,
+      fqClassName = com.legacycode.tumbleweed.samples.AccessSuperClassMembers::class.java.name,
     )
 
     // when

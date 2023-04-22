@@ -1,9 +1,8 @@
 package com.legacycode.tumbleweed.web.observablehq
 
 import com.legacycode.tumbleweed.ClassScanner
-import io.redgreen.tumbleweed.samples.AccessSuperClassMembers
-import io.redgreen.tumbleweed.samples.InterfaceImplementation
-import io.redgreen.tumbleweed.samples.OnlyMethods
+import com.legacycode.tumbleweed.samples.InterfaceImplementation
+import com.legacycode.tumbleweed.samples.OnlyMethods
 import java.io.File
 import org.approvaltests.JsonApprovals
 import org.junit.jupiter.api.Test
@@ -14,7 +13,7 @@ internal class ClassStructureJsonKtTest {
     // given
     val classFile = File(
       "../bytecode/samples/build/classes/kotlin/main/" +
-        AccessSuperClassMembers::class.java.name.replace(".", "/") + ".class"
+        com.legacycode.tumbleweed.samples.AccessSuperClassMembers::class.java.name.replace(".", "/") + ".class"
     )
     val classStructure = ClassScanner.scan(classFile)
 

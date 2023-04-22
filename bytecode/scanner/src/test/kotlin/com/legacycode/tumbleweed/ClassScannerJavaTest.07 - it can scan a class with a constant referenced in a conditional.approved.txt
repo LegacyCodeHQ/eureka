@@ -1,6 +1,6 @@
-Package: io.redgreen.tumbleweed.samples
+Package: com.legacycode.tumbleweed.samples
 Class: ConstantReferencedInConditional
-Extends: io.redgreen.tumbleweed.samples.Activity
+Extends: com.legacycode.tumbleweed.samples.Activity
 Fields:
   - int TAKE_PHOTO
 Methods:

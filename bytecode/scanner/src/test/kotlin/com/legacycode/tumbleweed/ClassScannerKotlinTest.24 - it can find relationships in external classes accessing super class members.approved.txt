@@ -1,6 +1,6 @@
-Package: io.redgreen.tumbleweed.samples
+Package: com.legacycode.tumbleweed.samples
 Class: ExternalClassAccessingSuperClassMembers
-Extends: io.redgreen.tumbleweed.samples.InternalSuperClass
+Extends: com.legacycode.tumbleweed.samples.InternalSuperClass
 Methods:
   - void <init>()
   - void foo()

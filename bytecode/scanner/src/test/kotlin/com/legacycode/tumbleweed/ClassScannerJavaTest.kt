@@ -1,14 +1,5 @@
 package com.legacycode.tumbleweed
 
-import io.redgreen.tumbleweed.samples.ConstantReferencedInConditional
-import io.redgreen.tumbleweed.samples.ConstantReferencedInReturnStatement
-import io.redgreen.tumbleweed.samples.Constants
-import io.redgreen.tumbleweed.samples.IntegerConstants
-import io.redgreen.tumbleweed.samples.LambdaAccessingField
-import io.redgreen.tumbleweed.samples.MethodReadingField
-import io.redgreen.tumbleweed.samples.MethodWritingField
-import io.redgreen.tumbleweed.samples.StaticBlock
-import io.redgreen.tumbleweed.samples.StringConcatenation
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
 
@@ -22,7 +13,7 @@ class ClassScannerJavaTest {
   fun `01 - it can scan a class with methods reading a field`() {
     // given
     val methodReadingField = defaultJavaClassLocation.copy(
-      fqClassName = MethodReadingField::class.java.name,
+      fqClassName = com.legacycode.tumbleweed.samples.MethodReadingField::class.java.name,
     )
 
     // when
@@ -36,7 +27,7 @@ class ClassScannerJavaTest {
   fun `02 - it can scan a class with methods writing a field`() {
     // given
     val methodWritingField = defaultJavaClassLocation.copy(
-      fqClassName = MethodWritingField::class.java.name,
+      fqClassName = com.legacycode.tumbleweed.samples.MethodWritingField::class.java.name,
     )
 
     // when
@@ -50,7 +41,7 @@ class ClassScannerJavaTest {
   fun `03 - it can scan a class with a lambda function accessing a field`() {
     // given
     val methodReadingAndWritingField = defaultJavaClassLocation.copy(
-      fqClassName = LambdaAccessingField::class.java.name,
+      fqClassName = com.legacycode.tumbleweed.samples.LambdaAccessingField::class.java.name,
     )
 
     // when
@@ -64,7 +55,7 @@ class ClassScannerJavaTest {
   fun `04 - it can scan a class with string concatenation`() {
     // given
     val stringConcatenation = defaultJavaClassLocation.copy(
-      fqClassName = StringConcatenation::class.java.name,
+      fqClassName = com.legacycode.tumbleweed.samples.StringConcatenation::class.java.name,
     )
 
     // when
@@ -78,7 +69,7 @@ class ClassScannerJavaTest {
   fun `05 - it can scan a class with constants`() {
     // given
     val constants = defaultJavaClassLocation.copy(
-      fqClassName = Constants::class.java.name,
+      fqClassName = com.legacycode.tumbleweed.samples.Constants::class.java.name,
     )
 
     // when
@@ -92,7 +83,7 @@ class ClassScannerJavaTest {
   fun `06 - it can scan a class with integer constants`() {
     // given
     val integerConstants = defaultJavaClassLocation.copy(
-      fqClassName = IntegerConstants::class.java.name,
+      fqClassName = com.legacycode.tumbleweed.samples.IntegerConstants::class.java.name,
     )
 
     // when
@@ -106,7 +97,7 @@ class ClassScannerJavaTest {
   fun `07 - it can scan a class with a constant referenced in a conditional`() {
     // given
     val constantReferencedInConditional = defaultJavaClassLocation.copy(
-      fqClassName = ConstantReferencedInConditional::class.java.name,
+      fqClassName = com.legacycode.tumbleweed.samples.ConstantReferencedInConditional::class.java.name,
     )
 
     // when
@@ -120,7 +111,7 @@ class ClassScannerJavaTest {
   fun `08 - it can scan a class with a constant referenced in return statements`() {
     // given
     val constantReferencedInReturnStatement = defaultJavaClassLocation.copy(
-      fqClassName = ConstantReferencedInReturnStatement::class.java.name,
+      fqClassName = com.legacycode.tumbleweed.samples.ConstantReferencedInReturnStatement::class.java.name,
     )
 
     // when
@@ -134,7 +125,7 @@ class ClassScannerJavaTest {
   fun `09 - it can scan a class with a static block containing a function call`() {
     // given
     val staticBlock = defaultJavaClassLocation.copy(
-      fqClassName = StaticBlock::class.java.name,
+      fqClassName = com.legacycode.tumbleweed.samples.StaticBlock::class.java.name,
     )
 
     // when

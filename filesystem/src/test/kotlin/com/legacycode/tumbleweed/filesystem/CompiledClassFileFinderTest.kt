@@ -10,7 +10,7 @@ class CompiledClassFileFinderTest {
   fun `it should find the path of the class given the fully qualified name`() {
     // given & when
     val path = CompiledClassFileFinder.find(
-      className = "io.redgreen.tumbleweed.samples.FindMeJavaClass",
+      className = "com.legacycode.tumbleweed.samples.FindMeJavaClass",
       searchDirectory = "../",
     )
 
@@ -64,7 +64,7 @@ class CompiledClassFileFinderTest {
   fun `it returns null if the class is not found`() {
     // given & when
     val path = CompiledClassFileFinder.find(
-      className = "io.redgreen.tumbleweed.samples.MissingClass",
+      className = "com.legacycode.tumbleweed.samples.MissingClass",
       searchDirectory = "src/test/resources",
     )
 

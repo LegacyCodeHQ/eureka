@@ -1,6 +1,6 @@
-Package: io.redgreen.tumbleweed.samples
+Package: com.legacycode.tumbleweed.samples
 Class: AccessSuperClassMembers
-Extends: io.redgreen.tumbleweed.samples.SuperClass
+Extends: com.legacycode.tumbleweed.samples.SuperClass
 Methods:
   - void <init>()
   - void bar()

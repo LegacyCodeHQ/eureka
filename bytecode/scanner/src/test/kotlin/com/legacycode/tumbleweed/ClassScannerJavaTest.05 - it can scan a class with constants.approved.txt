@@ -1,4 +1,4 @@
-Package: io.redgreen.tumbleweed.samples
+Package: com.legacycode.tumbleweed.samples
 Class: Constants
 Extends: java.lang.Object
 Fields:

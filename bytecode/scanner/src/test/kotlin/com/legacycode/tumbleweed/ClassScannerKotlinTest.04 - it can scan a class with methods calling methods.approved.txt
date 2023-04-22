@@ -1,4 +1,4 @@
-Package: io.redgreen.tumbleweed.samples
+Package: com.legacycode.tumbleweed.samples
 Class: MethodsCallingMethods
 Extends: java.lang.Object
 Methods:

@@ -1,4 +1,4 @@
-Package: io.redgreen.tumbleweed.samples
+Package: com.legacycode.tumbleweed.samples
 Class: ExtensionFunctionsWithReceivers
 Extends: java.lang.Object
 Fields:
@@ -6,10 +6,10 @@ Fields:
 Methods:
   - void <init>()
   - void start(int)
-  - void installWebSockets(io.redgreen.tumbleweed.samples.Application, int)
+  - void installWebSockets(com.legacycode.tumbleweed.samples.Application, int)
 Reads:
   - void start(int) -> int defaultPort
 Writes:
   - void <init>() -> int defaultPort
 Calls:
-  - void start(int) -> void installWebSockets(io.redgreen.tumbleweed.samples.Application, int)
+  - void start(int) -> void installWebSockets(com.legacycode.tumbleweed.samples.Application, int)

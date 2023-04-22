@@ -59,9 +59,9 @@
   ],
   "meta": {
     "classInfo": {
-      "name": "io.redgreen.tumbleweed.samples.InterfaceImplementation",
+      "name": "com.legacycode.tumbleweed.samples.InterfaceImplementation",
       "implements": [
-        "io.redgreen.tumbleweed.samples.CounterActions"
+        "com.legacycode.tumbleweed.samples.CounterActions"
       ]
     }
   }

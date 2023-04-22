@@ -1,5 +1,5 @@
-Package: io.redgreen.tumbleweed.samples
+Package: com.legacycode.tumbleweed.samples
 Class: ExtendsRelationship
-Extends: io.redgreen.tumbleweed.samples.Ancestor
+Extends: com.legacycode.tumbleweed.samples.Ancestor
 Methods:
   - void <init>()

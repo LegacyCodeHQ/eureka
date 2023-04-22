@@ -1,17 +1,17 @@
-Package: io.redgreen.tumbleweed.samples
+Package: com.legacycode.tumbleweed.samples
 Class: DeeplyNestedLambdaFunctions
 Extends: java.lang.Object
 Fields:
   - java.util.Queue structureUpdatesQueue
 Methods:
   - void <init>()
-  - void setupRoutes(io.redgreen.tumbleweed.samples.Application, io.redgreen.tumbleweed.samples.Source, int)
+  - void setupRoutes(com.legacycode.tumbleweed.samples.Application, com.legacycode.tumbleweed.samples.Source, int)
   - void serveIndexPage(int)
-  - void openWsConnectionForStructureUpdates(java.util.Queue, io.redgreen.tumbleweed.samples.Source)
+  - void openWsConnectionForStructureUpdates(java.util.Queue, com.legacycode.tumbleweed.samples.Source)
 Reads:
-  - void setupRoutes(io.redgreen.tumbleweed.samples.Application, io.redgreen.tumbleweed.samples.Source, int) -> java.util.Queue structureUpdatesQueue
+  - void setupRoutes(com.legacycode.tumbleweed.samples.Application, com.legacycode.tumbleweed.samples.Source, int) -> java.util.Queue structureUpdatesQueue
 Writes:
   - void <init>() -> java.util.Queue structureUpdatesQueue
 Calls:
-  - void setupRoutes(io.redgreen.tumbleweed.samples.Application, io.redgreen.tumbleweed.samples.Source, int) -> void serveIndexPage(int)
-  - void setupRoutes(io.redgreen.tumbleweed.samples.Application, io.redgreen.tumbleweed.samples.Source, int) -> void openWsConnectionForStructureUpdates(java.util.Queue, io.redgreen.tumbleweed.samples.Source)
+  - void setupRoutes(com.legacycode.tumbleweed.samples.Application, com.legacycode.tumbleweed.samples.Source, int) -> void serveIndexPage(int)
+  - void setupRoutes(com.legacycode.tumbleweed.samples.Application, com.legacycode.tumbleweed.samples.Source, int) -> void openWsConnectionForStructureUpdates(java.util.Queue, com.legacycode.tumbleweed.samples.Source)

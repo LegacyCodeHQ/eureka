@@ -44,7 +44,7 @@
   "links": [],
   "meta": {
     "classInfo": {
-      "name": "io.redgreen.tumbleweed.samples.OnlyMethods"
+      "name": "com.legacycode.tumbleweed.samples.OnlyMethods"
     }
   }
 }

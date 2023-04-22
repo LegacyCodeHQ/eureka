@@ -2,28 +2,29 @@ package io.redgreen.tumbleweed.filesystem
 
 import com.google.common.truth.Truth.assertThat
 import java.nio.file.Path
+import java.util.concurrent.ArrayBlockingQueue
+import java.util.concurrent.TimeUnit
 import kotlin.io.path.writeText
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.io.TempDir
 
 class FileWatcherTest {
   private val fileWatcher = FileWatcher()
+  private val fileChangedEventQueue = ArrayBlockingQueue<Boolean>(1)
+  private val fileChangedCallback = { fileChangedEventQueue.put(true) }
 
   @Test
   fun `it should watch for file changes`(@TempDir directory: Path) {
     // given
     val filename = "file.txt"
     val fileToWatch = directory.resolve(filename).also { it.toFile().writeText("Hello, world!") }
-    var fileChanged = false
-
-    fileWatcher.startWatching(fileToWatch) { fileChanged = true }
+    fileWatcher.startWatching(fileToWatch, fileChangedCallback)
 
     // when
     fileToWatch.writeText("Hello, world! How are you?")
-    Thread.sleep(3000)
 
     // then
-    assertThat(fileChanged)
+    assertThat(fileChangedEventQueue.take())
       .isTrue()
   }
 
@@ -32,18 +33,15 @@ class FileWatcherTest {
     // given
     val filename = "file.txt"
     val fileToWatch = directory.resolve(filename).also { it.toFile().writeText("Hello, world!") }
-    var fileChanged = false
-
-    fileWatcher.startWatching(fileToWatch) { fileChanged = true }
+    fileWatcher.startWatching(fileToWatch, fileChangedCallback)
 
     // when
     fileWatcher.stopWatching()
     fileToWatch.writeText("Hello, world! How are you?")
-    Thread.sleep(3000)
 
     // then
-    assertThat(fileChanged)
-      .isFalse()
+    assertThat(fileChangedEventQueue.poll(3, TimeUnit.SECONDS))
+      .isNull()
   }
 
   @Test
@@ -53,16 +51,14 @@ class FileWatcherTest {
     val filenameB = "file-b.txt"
     val fileToWatch = directory.resolve(filenameA).also { it.toFile().writeText("Hello, A!") }
     val fileNotToWatch = directory.resolve(filenameB).also { it.toFile().writeText("Hello, B!") }
-    var fileChanged = false
 
-    fileWatcher.startWatching(fileToWatch) { fileChanged = true }
+    fileWatcher.startWatching(fileToWatch, fileChangedCallback)
 
     // when
     fileNotToWatch.writeText("Sssshhh…")
-    Thread.sleep(3000)
 
     // then
-    assertThat(fileChanged)
-      .isFalse()
+    assertThat(fileChangedEventQueue.poll(3, TimeUnit.SECONDS))
+      .isNull()
   }
 }

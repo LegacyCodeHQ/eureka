@@ -9,6 +9,7 @@ import java.nio.file.StandardWatchEventKinds.ENTRY_DELETE
 import java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY
 import java.nio.file.WatchKey
 import java.nio.file.WatchService
+import kotlin.io.path.name
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -21,7 +22,7 @@ class FileWatcher {
   fun startWatching(file: Path, onFileChanged: () -> Unit) {
     val watchKey = file.parent.register(watchService, eventsToWatchFor, HIGH)
     logger.info("Watching for file changes in {}", file.parent)
-    Thread(PollEventsRunnable(watchService, watchKey, onFileChanged)).start()
+    Thread(PollEventsRunnable(file, watchService, watchKey, onFileChanged)).start()
   }
 
   fun stopWatching() {
@@ -30,6 +31,7 @@ class FileWatcher {
 }
 
 class PollEventsRunnable(
+  private val fileToWatch: Path,
   private val watchService: WatchService,
   private val initialWatchKey: WatchKey,
   private val onFileChanged: () -> Unit,
@@ -43,7 +45,9 @@ class PollEventsRunnable(
       for (pollEvent in pollEvents) {
         val affectedFile = pollEvent.context() as Path
         logger.debug("WatchEvent: {} on {}", pollEvent.kind(), affectedFile)
-        onFileChanged()
+        if (fileToWatch.name == affectedFile.name) {
+          onFileChanged()
+        }
       }
       watchKey.reset()
 

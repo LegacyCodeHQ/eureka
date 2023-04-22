@@ -45,4 +45,24 @@ class FileWatcherTest {
     assertThat(fileChanged)
       .isFalse()
   }
+
+  @Test
+  fun `it should only send notifications for the file that is being watched`(@TempDir directory: Path) {
+    // given
+    val filenameA = "file-a.txt"
+    val filenameB = "file-b.txt"
+    val fileToWatch = directory.resolve(filenameA).also { it.toFile().writeText("Hello, A!") }
+    val fileNotToWatch = directory.resolve(filenameB).also { it.toFile().writeText("Hello, B!") }
+    var fileChanged = false
+
+    fileWatcher.startWatching(fileToWatch) { fileChanged = true }
+
+    // when
+    fileNotToWatch.writeText("Sssshhh…")
+    Thread.sleep(3000)
+
+    // then
+    assertThat(fileChanged)
+      .isFalse()
+  }
 }

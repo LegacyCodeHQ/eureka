@@ -1,13 +1,13 @@
-package io.redgreen.tumbleweed.cli
+package com.legacycode.tumbleweed.cli
 
 import ch.qos.logback.classic.Logger as LogbackLogger
 import ch.qos.logback.classic.Level
-import io.redgreen.tumbleweed.cli.dev.convert.ConvertCommand
-import io.redgreen.tumbleweed.cli.dev.diff.DiffCommand
-import io.redgreen.tumbleweed.cli.dev.json.JsonCommand
-import io.redgreen.tumbleweed.cli.dev.view.ViewCommand
-import io.redgreen.tumbleweed.cli.ownership.OwnershipCommand
-import io.redgreen.tumbleweed.cli.watch.WatchCommand
+import com.legacycode.tumbleweed.cli.dev.convert.ConvertCommand
+import com.legacycode.tumbleweed.cli.dev.diff.DiffCommand
+import com.legacycode.tumbleweed.cli.dev.json.JsonCommand
+import com.legacycode.tumbleweed.cli.dev.view.ViewCommand
+import com.legacycode.tumbleweed.cli.ownership.OwnershipCommand
+import com.legacycode.tumbleweed.cli.watch.WatchCommand
 import java.util.Properties
 import kotlin.system.exitProcess
 import org.slf4j.Logger

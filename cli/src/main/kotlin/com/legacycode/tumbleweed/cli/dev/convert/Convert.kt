@@ -1,4 +1,4 @@
-package io.redgreen.tumbleweed.cli.dev.convert
+package com.legacycode.tumbleweed.cli.dev.convert
 
 import com.legacycode.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
 import com.legacycode.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph.Link

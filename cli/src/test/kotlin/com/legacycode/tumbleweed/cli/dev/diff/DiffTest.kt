@@ -1,9 +1,9 @@
 @file:Suppress("JUnitMalformedDeclaration")
 
-package io.redgreen.tumbleweed.cli.dev.diff
+package com.legacycode.tumbleweed.cli.dev.diff
 
+import com.legacycode.tumbleweed.cli.dev.diff.EdgeBundlingGraphExtension.*
 import com.legacycode.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
-import io.redgreen.tumbleweed.cli.dev.diff.EdgeBundlingGraphExtension.*
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith

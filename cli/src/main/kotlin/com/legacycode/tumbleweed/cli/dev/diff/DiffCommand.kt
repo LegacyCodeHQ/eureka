@@ -1,4 +1,4 @@
-package io.redgreen.tumbleweed.cli.dev.diff
+package com.legacycode.tumbleweed.cli.dev.diff
 
 import com.legacycode.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
 import java.io.File

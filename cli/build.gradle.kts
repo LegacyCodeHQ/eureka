@@ -13,13 +13,13 @@ plugins {
 
 application {
   applicationName = "twd"
-  mainClassName = "io.redgreen.tumbleweed.cli.MainKt"
+  mainClassName = "com.legacycode.tumbleweed.cli.MainKt"
 }
 
 tasks.withType<Jar> {
   manifest {
     attributes(
-      "Main-Class" to "io.redgreen.tumbleweed.cli.MainKt",
+      "Main-Class" to "com.legacycode.tumbleweed.cli.MainKt",
     )
   }
 }

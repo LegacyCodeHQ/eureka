@@ -1,4 +1,4 @@
-package io.redgreen.tumbleweed.cli.ownership
+package com.legacycode.tumbleweed.cli.ownership
 
 import com.legacycode.tumbleweed.web.owneship.OwnershipServer
 import java.io.File

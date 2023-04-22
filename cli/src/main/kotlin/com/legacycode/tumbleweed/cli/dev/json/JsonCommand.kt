@@ -1,4 +1,4 @@
-package io.redgreen.tumbleweed.cli.dev.json
+package com.legacycode.tumbleweed.cli.dev.json
 
 import com.legacycode.tumbleweed.filesystem.CompiledClassFileFinder
 import com.legacycode.tumbleweed.web.observablehq.graph

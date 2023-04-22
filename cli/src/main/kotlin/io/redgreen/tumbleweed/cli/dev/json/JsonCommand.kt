@@ -1,8 +1,8 @@
 package io.redgreen.tumbleweed.cli.dev.json
 
+import com.legacycode.tumbleweed.filesystem.CompiledClassFileFinder
 import com.legacycode.tumbleweed.web.observablehq.graph
 import io.redgreen.tumbleweed.ClassScanner
-import io.redgreen.tumbleweed.filesystem.CompiledClassFileFinder
 import java.io.File
 import picocli.CommandLine.Command
 import picocli.CommandLine.Option

@@ -28,7 +28,7 @@ const WorkbenchHeader = () => (
         <HeaderGlobalBar>
           <HeaderGlobalAction aria-label="GitHub" tooltipAlignment="center">
             <LogoGithub size={20} onClick={() => {
-              window.open('https://github.com/redgreenio/tumbleweed', '_blank');
+              window.open('https://github.com/legacycodehq/tumbleweed', '_blank');
             }}/>
           </HeaderGlobalAction>
           <HeaderGlobalAction aria-label="App Switcher" tooltipAlignment="end">

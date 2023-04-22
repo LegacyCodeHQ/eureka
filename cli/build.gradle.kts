@@ -70,17 +70,17 @@ jreleaser {
   project {
     name.set("Tumbleweed")
     description.set("Understand and break down large classes without breaking a sweat.")
-    website.set("https://github.com/redgreenio/tumbleweed")
+    website.set("https://github.com/LegacyCodeHQ/tumbleweed")
     license.set("Apache-2.0")
     copyright.set("2022-Present Ragunath Jawahar")
   }
 
   release {
     github {
-      repoOwner.set("redgreenio")
+      repoOwner.set("LegacyCodeHQ")
       name.set("tumbleweed")
       branch.set("main")
-      repoUrl.set("git@github.com:redgreenio/tumbleweed.git")
+      repoUrl.set("git@github.com:LegacyCodeHQ/tumbleweed.git")
 
       tagName.set("twd-$CLI_VERSION")
       releaseName.set("TWD $CLI_VERSION")
@@ -101,7 +101,7 @@ jreleaser {
         formulaName.set("twd")
 
         repoTap {
-          repoOwner.set("redgreenio")
+          repoOwner.set("LegacyCodeHQ")
           name.set("homebrew-tap")
         }
 

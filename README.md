@@ -1,4 +1,4 @@
-# Tumbleweed (early preview) ![CI](https://github.com/redgreenio/tumbleweed/actions/workflows/jvm-tests.yml/badge.svg) ![CI](https://github.com/redgreenio/tumbleweed/actions/workflows/js-tests.yml/badge.svg)
+# Tumbleweed (early preview) ![CI](https://github.com/legacycodehq/tumbleweed/actions/workflows/jvm-tests.yml/badge.svg) ![CI](https://github.com/legacycodehq/tumbleweed/actions/workflows/js-tests.yml/badge.svg)
 
 Effortlessly understand and analyze Kotlin/Java classes in your codebase 😎
 
@@ -17,7 +17,7 @@ If you have any of these requirements, then this tool is for you 😉
 
 ## Live demo
 
-You can try this [sample interactive graph](https://redgreenio.github.io/) for Signal Android
+You can try this [sample interactive graph](https://legacycodehq.github.io/) for Signal Android
 App's [StoryViewerPageFragment](https://github.com/signalapp/Signal-Android/blob/ff8f9ca81ae6a25e1e946612c817206b9410d9a1/app/src/main/java/org/thoughtcrime/securesms/stories/viewer/page/StoryViewerPageFragment.kt)
 class.
 
@@ -36,7 +36,7 @@ Visualizing [ConversationParentFragment.java](https://github.com/signalapp/Signa
 ## Installation
 
 ```bash
-$ brew tap redgreenio/tap
+$ brew tap legacycodehq/tap
 
 $ brew install twd
 ```

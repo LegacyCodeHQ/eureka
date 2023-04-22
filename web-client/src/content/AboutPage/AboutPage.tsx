@@ -3,16 +3,16 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   Button,
-  Tabs,
+  Column,
+  Grid,
   Tab,
   TabList,
-  TabPanels,
   TabPanel,
-  Grid,
-  Column,
+  TabPanels,
+  Tabs,
 } from '@carbon/react';
-import { InfoSection, InfoCard } from '../../components/Info';
-import { Globe, Application, PersonFavorite } from '@carbon/react/icons';
+import {InfoCard, InfoSection} from '../../components/Info';
+import {Application, Globe, PersonFavorite} from '@carbon/react/icons';
 
 const AboutPage = () => {
   return (

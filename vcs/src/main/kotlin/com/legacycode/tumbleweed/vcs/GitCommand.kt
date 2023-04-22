@@ -1,4 +1,4 @@
-package io.redgreen.tumbleweed.vcs
+package com.legacycode.tumbleweed.vcs
 
 import arrow.core.Either
 import org.buildobjects.process.ProcBuilder

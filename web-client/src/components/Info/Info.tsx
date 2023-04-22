@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Column } from '@carbon/react';
+import {Column, Grid} from '@carbon/react';
 
 const InfoSection = (props) => (
   <Grid className={`${props.className} info-section`}>

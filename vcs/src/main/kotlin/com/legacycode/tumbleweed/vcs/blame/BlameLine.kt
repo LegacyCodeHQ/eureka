@@ -1,7 +1,7 @@
-package io.redgreen.tumbleweed.vcs.blame
+package com.legacycode.tumbleweed.vcs.blame
 
-import io.redgreen.tumbleweed.vcs.CommitHash
-import io.redgreen.tumbleweed.vcs.Email
+import com.legacycode.tumbleweed.vcs.CommitHash
+import com.legacycode.tumbleweed.vcs.Email
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.regex.Pattern

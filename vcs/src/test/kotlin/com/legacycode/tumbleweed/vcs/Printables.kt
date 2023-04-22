@@ -1,7 +1,7 @@
-package io.redgreen.tumbleweed.vcs
+package com.legacycode.tumbleweed.vcs
 
-import io.redgreen.tumbleweed.vcs.blame.BlameLine
-import io.redgreen.tumbleweed.vcs.blame.BlameResult
+import com.legacycode.tumbleweed.vcs.blame.BlameLine
+import com.legacycode.tumbleweed.vcs.blame.BlameResult
 
 val BlameResult.printable: String
   get() {

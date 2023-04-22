@@ -1,8 +1,8 @@
-package io.redgreen.tumbleweed.vcs.blame.observablehq
+package com.legacycode.tumbleweed.vcs.blame.observablehq
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.kotlinModule
-import io.redgreen.tumbleweed.vcs.blame.BlameResult
+import com.legacycode.tumbleweed.vcs.blame.BlameResult
 
 data class Ownership(
   val name: String,

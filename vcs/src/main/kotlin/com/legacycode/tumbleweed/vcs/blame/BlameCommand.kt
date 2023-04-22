@@ -1,10 +1,10 @@
-package io.redgreen.tumbleweed.vcs.blame
+package com.legacycode.tumbleweed.vcs.blame
 
 import arrow.core.Either
-import io.redgreen.tumbleweed.vcs.CommandResult
-import io.redgreen.tumbleweed.vcs.GitCommand
-import io.redgreen.tumbleweed.vcs.Repo
-import io.redgreen.tumbleweed.vcs.RepoFile
+import com.legacycode.tumbleweed.vcs.CommandResult
+import com.legacycode.tumbleweed.vcs.GitCommand
+import com.legacycode.tumbleweed.vcs.Repo
+import com.legacycode.tumbleweed.vcs.RepoFile
 
 class BlameCommand(
   repo: Repo,

@@ -11,8 +11,8 @@ import {
   SkipToContent,
 } from '@carbon/react';
 
-import { LogoGithub, Switcher } from '@carbon/react/icons';
-import { Link } from 'react-router-dom';
+import {LogoGithub, Switcher} from '@carbon/react/icons';
+import {Link} from 'react-router-dom';
 
 const WorkbenchHeader = () => (
   <HeaderContainer

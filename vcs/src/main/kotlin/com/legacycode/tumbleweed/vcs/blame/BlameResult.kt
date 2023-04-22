@@ -1,8 +1,8 @@
-package io.redgreen.tumbleweed.vcs.blame
+package com.legacycode.tumbleweed.vcs.blame
 
-import io.redgreen.tumbleweed.vcs.CommitHash
-import io.redgreen.tumbleweed.vcs.Email
-import io.redgreen.tumbleweed.vcs.RepoFile
+import com.legacycode.tumbleweed.vcs.CommitHash
+import com.legacycode.tumbleweed.vcs.Email
+import com.legacycode.tumbleweed.vcs.RepoFile
 
 class BlameResult(
   val repoFile: RepoFile,

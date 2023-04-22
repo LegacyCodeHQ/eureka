@@ -1,4 +1,4 @@
-package io.redgreen.tumbleweed.vcs
+package com.legacycode.tumbleweed.vcs
 
 data class CommandResult(
   val exitCode: Int,

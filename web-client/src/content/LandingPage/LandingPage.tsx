@@ -1,6 +1,6 @@
 import React from 'react';
 import RepoTable from './RepoTable';
-import { Grid, Column } from '@carbon/react';
+import {Column, Grid} from '@carbon/react';
 
 const headers = [
   {

@@ -1,9 +1,9 @@
-package io.redgreen.tumbleweed.vcs.blame.observablehq
+package com.legacycode.tumbleweed.vcs.blame.observablehq
 
-import io.redgreen.tumbleweed.vcs.Repo
-import io.redgreen.tumbleweed.vcs.RepoFile
-import io.redgreen.tumbleweed.vcs.TestRepo
-import io.redgreen.tumbleweed.vcs.blame.BlameCommand
+import com.legacycode.tumbleweed.vcs.Repo
+import com.legacycode.tumbleweed.vcs.RepoFile
+import com.legacycode.tumbleweed.vcs.TestRepo
+import com.legacycode.tumbleweed.vcs.blame.BlameCommand
 import org.approvaltests.JsonApprovals
 import org.junit.jupiter.api.Test
 

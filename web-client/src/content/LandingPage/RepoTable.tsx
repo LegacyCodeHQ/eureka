@@ -1,16 +1,16 @@
 import React from 'react';
 import {
   DataTable,
-  TableContainer,
   Table,
-  TableHead,
-  TableRow,
-  TableExpandHeader,
-  TableHeader,
   TableBody,
-  TableExpandRow,
   TableCell,
+  TableContainer,
   TableExpandedRow,
+  TableExpandHeader,
+  TableExpandRow,
+  TableHead,
+  TableHeader,
+  TableRow,
 } from '@carbon/react';
 
 const RepoTable = ({ rows, headers }) => {

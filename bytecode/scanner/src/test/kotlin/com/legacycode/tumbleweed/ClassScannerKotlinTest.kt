@@ -29,7 +29,7 @@ class ClassScannerKotlinTest {
   @Test
   fun `01 - it can scan an empty class`() {
     // given
-    val emptyClass = SampleClassFile.Kotlin(EmptyClass::class)
+    val emptyClass = SampleClass.Kotlin(EmptyClass::class)
 
     // when
     val classStructure = ClassScanner.scan(emptyClass.file)
@@ -41,7 +41,7 @@ class ClassScannerKotlinTest {
   @Test
   fun `02 - it can scan a class with fields`() {
     // given
-    val onlyFields = SampleClassFile.Kotlin(OnlyFields::class)
+    val onlyFields = SampleClass.Kotlin(OnlyFields::class)
 
     // when
     val classStructure = ClassScanner.scan(onlyFields.file)
@@ -53,7 +53,7 @@ class ClassScannerKotlinTest {
   @Test
   fun `03 - it can scan a class with methods`() {
     // given
-    val onlyMethods = SampleClassFile.Kotlin(OnlyMethods::class)
+    val onlyMethods = SampleClass.Kotlin(OnlyMethods::class)
 
     // when
     val classStructure = ClassScanner.scan(onlyMethods.file)
@@ -65,7 +65,7 @@ class ClassScannerKotlinTest {
   @Test
   fun `04 - it can scan a class with methods calling methods`() {
     // given
-    val methodsCallingMethods = SampleClassFile.Kotlin(MethodsCallingMethods::class)
+    val methodsCallingMethods = SampleClass.Kotlin(MethodsCallingMethods::class)
 
     // when
     val classStructure = ClassScanner.scan(methodsCallingMethods.file)
@@ -77,7 +77,7 @@ class ClassScannerKotlinTest {
   @Test
   fun `05 - it can scan a class with recursive function`() {
     // given
-    val recursiveFunction = SampleClassFile.Kotlin(RecursiveFunction::class)
+    val recursiveFunction = SampleClass.Kotlin(RecursiveFunction::class)
 
     // when
     val classStructure = ClassScanner.scan(recursiveFunction.file)
@@ -89,7 +89,7 @@ class ClassScannerKotlinTest {
   @Test
   fun `06 - it can scan a class with anonymous function writing field`() {
     // given
-    val anonymousFunctionWritingField = SampleClassFile.Kotlin(AnonymousFunctionWritingField::class)
+    val anonymousFunctionWritingField = SampleClass.Kotlin(AnonymousFunctionWritingField::class)
 
     // when
     val classStructure = ClassScanner.scan(anonymousFunctionWritingField.file)
@@ -101,7 +101,7 @@ class ClassScannerKotlinTest {
   @Test
   fun `07 - it can scan a class with nested anonymous function writing field`() {
     // given
-    val nestedAnonymousFunctionWritingField = SampleClassFile.Kotlin(NestedAnonymousFunctionWritingField::class)
+    val nestedAnonymousFunctionWritingField = SampleClass.Kotlin(NestedAnonymousFunctionWritingField::class)
 
     // when
     val classStructure = ClassScanner.scan(nestedAnonymousFunctionWritingField.file)
@@ -113,7 +113,7 @@ class ClassScannerKotlinTest {
   @Test
   fun `08 - it can scan a class with external class static field access and ignore them`() {
     // given
-    val staticFieldAccess = SampleClassFile.Kotlin(StaticFieldAccess::class)
+    val staticFieldAccess = SampleClass.Kotlin(StaticFieldAccess::class)
 
     // when
     val classStructure = ClassScanner.scan(staticFieldAccess.file)
@@ -125,7 +125,7 @@ class ClassScannerKotlinTest {
   @Test
   fun `09 - it can scan a class with a lateinit field`() {
     // given
-    val staticMethodAccess = SampleClassFile.Kotlin(LateinitVar::class)
+    val staticMethodAccess = SampleClass.Kotlin(LateinitVar::class)
 
     // when
     val classStructure = ClassScanner.scan(staticMethodAccess.file)
@@ -137,7 +137,7 @@ class ClassScannerKotlinTest {
   @Test
   fun `10 - it can scan a class with a lazy field`() {
     // given
-    val staticMethodAccess = SampleClassFile.Kotlin(LazyProperty::class)
+    val staticMethodAccess = SampleClass.Kotlin(LazyProperty::class)
 
     // when
     val classStructure = ClassScanner.scan(staticMethodAccess.file)
@@ -149,7 +149,7 @@ class ClassScannerKotlinTest {
   @Test
   fun `11 - it can scan a class that implements an interface`() {
     // given
-    val interfaceImplementation = SampleClassFile.Kotlin(InterfaceImplementation::class)
+    val interfaceImplementation = SampleClass.Kotlin(InterfaceImplementation::class)
 
     // when
     val classStructure = ClassScanner.scan(interfaceImplementation.file)
@@ -162,7 +162,7 @@ class ClassScannerKotlinTest {
   fun `12 - it can scan a class that calls functions declared in the super class`() {
     // given
     val accessSuperClassMembers =
-      SampleClassFile.Kotlin(com.legacycode.tumbleweed.samples.AccessSuperClassMembers::class)
+      SampleClass.Kotlin(com.legacycode.tumbleweed.samples.AccessSuperClassMembers::class)
 
     // when
     val classStructure = ClassScanner.scan(accessSuperClassMembers.file)
@@ -174,7 +174,7 @@ class ClassScannerKotlinTest {
   @Test
   fun `13 - it can scan a class with synthetic access functions`() {
     // given
-    val syntheticBridges = SampleClassFile.Kotlin(SyntheticBridges::class)
+    val syntheticBridges = SampleClass.Kotlin(SyntheticBridges::class)
 
     // when
     val classStructure = ClassScanner.scan(syntheticBridges.file)
@@ -186,7 +186,7 @@ class ClassScannerKotlinTest {
   @Test
   fun `14 - it can scan a class with extension functions with receivers`() {
     // given
-    val extensionFunctionsWithReceivers = SampleClassFile.Kotlin(ExtensionFunctionsWithReceivers::class)
+    val extensionFunctionsWithReceivers = SampleClass.Kotlin(ExtensionFunctionsWithReceivers::class)
 
     // when
     val classStructure = ClassScanner.scan(extensionFunctionsWithReceivers.file)
@@ -198,7 +198,7 @@ class ClassScannerKotlinTest {
   @Test
   fun `15 - it can scan a class with calls to a function inside lambdas`() {
     // given
-    val functionCallsInsideLambdas = SampleClassFile.Kotlin(FunctionCallsInsideLambdas::class)
+    val functionCallsInsideLambdas = SampleClass.Kotlin(FunctionCallsInsideLambdas::class)
 
     // when
     val classStructure = ClassScanner.scan(functionCallsInsideLambdas.file)
@@ -210,7 +210,7 @@ class ClassScannerKotlinTest {
   @Test
   fun `16 - it can scan a class with deeply nested lambda calls`() {
     // given
-    val deeplyNestedLambdaFunctions = SampleClassFile.Kotlin(DeeplyNestedLambdaFunctions::class)
+    val deeplyNestedLambdaFunctions = SampleClass.Kotlin(DeeplyNestedLambdaFunctions::class)
 
     // when
     val classStructure = ClassScanner.scan(deeplyNestedLambdaFunctions.file)
@@ -222,7 +222,7 @@ class ClassScannerKotlinTest {
   @Test
   fun `17 - it can scan a class with an inline function`() {
     // given
-    val inlineFunction = SampleClassFile.Kotlin(InlineFunction::class)
+    val inlineFunction = SampleClass.Kotlin(InlineFunction::class)
 
     // when
     val classStructure = ClassScanner.scan(inlineFunction.file)
@@ -234,7 +234,7 @@ class ClassScannerKotlinTest {
   @Test
   fun `18 - it can scan a class with a copy constructor`() {
     // given
-    val copyConstructor = SampleClassFile.Kotlin(Counter::class)
+    val copyConstructor = SampleClass.Kotlin(Counter::class)
 
     // when
     val classStructure = ClassScanner.scan(copyConstructor.file)
@@ -246,7 +246,7 @@ class ClassScannerKotlinTest {
   @Test
   fun `19 - it can find relationships from anonymous functions from different package`() {
     // given
-    val anonymousFunctionDifferentPackage = SampleClassFile.Kotlin(AnonymousFunctionDifferentPackage::class)
+    val anonymousFunctionDifferentPackage = SampleClass.Kotlin(AnonymousFunctionDifferentPackage::class)
 
     // when
     val classStructure = ClassScanner.scan(anonymousFunctionDifferentPackage.file)
@@ -258,7 +258,7 @@ class ClassScannerKotlinTest {
   @Test
   fun `20 - it can find relationships referenced from inline extension functions`() {
     // given
-    val extensionInlineFunctions = SampleClassFile.Kotlin(ExtensionInlineFunctions::class)
+    val extensionInlineFunctions = SampleClass.Kotlin(ExtensionInlineFunctions::class)
 
     // when
     val classStructure = ClassScanner.scan(extensionInlineFunctions.file)
@@ -270,7 +270,7 @@ class ClassScannerKotlinTest {
   @Test
   fun `21 - it can find the super class`() {
     // given
-    val extendsRelationship = SampleClassFile.Kotlin(ExtendsRelationship::class)
+    val extendsRelationship = SampleClass.Kotlin(ExtendsRelationship::class)
 
     // when
     val classStructure = ClassScanner.scan(extendsRelationship.file)
@@ -282,7 +282,7 @@ class ClassScannerKotlinTest {
   @Test
   fun `22 - it can find the interfaces implemented by a class`() {
     // given
-    val implementsInterface = SampleClassFile.Kotlin(InterfaceImplementation::class)
+    val implementsInterface = SampleClass.Kotlin(InterfaceImplementation::class)
 
     // when
     val classStructure = ClassScanner.scan(implementsInterface.file)
@@ -294,7 +294,7 @@ class ClassScannerKotlinTest {
   @Test
   fun `23 - it can find relationships in external classes accessing class members`() {
     // given
-    val externalClassesAccessingClassMembers = SampleClassFile.Kotlin(ExternalClassAccessingClassMembers::class)
+    val externalClassesAccessingClassMembers = SampleClass.Kotlin(ExternalClassAccessingClassMembers::class)
 
     // when
     val classStructure = ClassScanner.scan(externalClassesAccessingClassMembers.file)
@@ -307,7 +307,7 @@ class ClassScannerKotlinTest {
   fun `24 - it can find relationships in external classes accessing super class members`() {
     // given
     val externalClassesAccessingSuperClassMembers =
-      SampleClassFile.Kotlin(ExternalClassAccessingSuperClassMembers::class)
+      SampleClass.Kotlin(ExternalClassAccessingSuperClassMembers::class)
 
     // when
     val classStructure = ClassScanner.scan(externalClassesAccessingSuperClassMembers.file)

@@ -16,7 +16,7 @@ class ClassScannerJavaTest {
   @Test
   fun `01 - it can scan a class with methods reading a field`() {
     // given
-    val methodReadingField = SampleClassFile.Java(MethodReadingField::class)
+    val methodReadingField = SampleClass.Java(MethodReadingField::class)
 
     // when
     val classStructure = ClassScanner.scan(methodReadingField.file)
@@ -28,7 +28,7 @@ class ClassScannerJavaTest {
   @Test
   fun `02 - it can scan a class with methods writing a field`() {
     // given
-    val methodWritingField = SampleClassFile.Java(MethodWritingField::class)
+    val methodWritingField = SampleClass.Java(MethodWritingField::class)
 
     // when
     val classStructure = ClassScanner.scan(methodWritingField.file)
@@ -40,7 +40,7 @@ class ClassScannerJavaTest {
   @Test
   fun `03 - it can scan a class with a lambda function accessing a field`() {
     // given
-    val methodReadingAndWritingField = SampleClassFile.Java(LambdaAccessingField::class)
+    val methodReadingAndWritingField = SampleClass.Java(LambdaAccessingField::class)
 
     // when
     val classStructure = ClassScanner.scan(methodReadingAndWritingField.file)
@@ -52,7 +52,7 @@ class ClassScannerJavaTest {
   @Test
   fun `04 - it can scan a class with string concatenation`() {
     // given
-    val stringConcatenation = SampleClassFile.Java(StringConcatenation::class)
+    val stringConcatenation = SampleClass.Java(StringConcatenation::class)
 
     // when
     val classStructure = ClassScanner.scan(stringConcatenation.file)
@@ -64,7 +64,7 @@ class ClassScannerJavaTest {
   @Test
   fun `05 - it can scan a class with constants`() {
     // given
-    val constants = SampleClassFile.Java(Constants::class)
+    val constants = SampleClass.Java(Constants::class)
 
     // when
     val classStructure = ClassScanner.scan(constants.file)
@@ -76,7 +76,7 @@ class ClassScannerJavaTest {
   @Test
   fun `06 - it can scan a class with integer constants`() {
     // given
-    val integerConstants = SampleClassFile.Java(IntegerConstants::class)
+    val integerConstants = SampleClass.Java(IntegerConstants::class)
 
     // when
     val classStructure = ClassScanner.scan(integerConstants.file)
@@ -88,7 +88,7 @@ class ClassScannerJavaTest {
   @Test
   fun `07 - it can scan a class with a constant referenced in a conditional`() {
     // given
-    val constantReferencedInConditional = SampleClassFile.Java(ConstantReferencedInConditional::class)
+    val constantReferencedInConditional = SampleClass.Java(ConstantReferencedInConditional::class)
 
     // when
     val classStructure = ClassScanner.scan(constantReferencedInConditional.file)
@@ -100,7 +100,7 @@ class ClassScannerJavaTest {
   @Test
   fun `08 - it can scan a class with a constant referenced in return statements`() {
     // given
-    val constantReferencedInReturnStatement = SampleClassFile.Java(ConstantReferencedInReturnStatement::class)
+    val constantReferencedInReturnStatement = SampleClass.Java(ConstantReferencedInReturnStatement::class)
 
     // when
     val classStructure = ClassScanner.scan(constantReferencedInReturnStatement.file)
@@ -112,7 +112,7 @@ class ClassScannerJavaTest {
   @Test
   fun `09 - it can scan a class with a static block containing a function call`() {
     // given
-    val staticBlock = SampleClassFile.Java(StaticBlock::class)
+    val staticBlock = SampleClass.Java(StaticBlock::class)
 
     // when
     val classStructure = ClassScanner.scan(staticBlock.file)

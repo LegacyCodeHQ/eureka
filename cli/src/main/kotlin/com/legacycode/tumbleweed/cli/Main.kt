@@ -8,7 +8,6 @@ import com.legacycode.tumbleweed.cli.dev.json.JsonCommand
 import com.legacycode.tumbleweed.cli.dev.view.ViewCommand
 import com.legacycode.tumbleweed.cli.ownership.OwnershipCommand
 import com.legacycode.tumbleweed.cli.watch.WatchCommand
-import java.util.Properties
 import kotlin.system.exitProcess
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -32,7 +31,7 @@ const val DEFAULT_PORT = 7070
 class TumbleweedCommand {
   @Option(
     names = ["--version", "-v"],
-    description = ["prints twd (Tumbleweed) version"],
+    description = ["prints Tumbleweed version"],
     versionHelp = true,
   )
   var version: Boolean = false
@@ -64,7 +63,5 @@ fun main(args: Array<String>) {
 }
 
 private fun printVersion() {
-  val properties = TumbleweedCommand::class.java.classLoader
-    .getResourceAsStream("version.properties").use { Properties().apply { load(it) } }
-  println(properties["version"])
+  println(TwdProperties.get().version)
 }

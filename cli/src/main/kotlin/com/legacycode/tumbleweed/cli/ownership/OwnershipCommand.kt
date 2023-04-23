@@ -1,6 +1,6 @@
 package com.legacycode.tumbleweed.cli.ownership
 
-import com.legacycode.tumbleweed.web.owneship.OwnershipServer
+import com.legacycode.tumbleweed.web.ownership.OwnershipServer
 import java.io.File
 import picocli.CommandLine
 import picocli.CommandLine.Command

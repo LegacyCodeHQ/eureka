@@ -1,10 +1,10 @@
-package com.legacycode.tumbleweed.web.owneship
+package com.legacycode.tumbleweed.web.ownership
 
 import com.legacycode.tumbleweed.vcs.Repo
 import com.legacycode.tumbleweed.vcs.RepoFile
 import com.legacycode.tumbleweed.vcs.blame.BlameCommand
 import com.legacycode.tumbleweed.vcs.blame.observablehq.OwnershipTreemapJson
-import com.legacycode.tumbleweed.web.owneship.OwnershipServer.Companion.PARAM_FILE
+import com.legacycode.tumbleweed.web.ownership.OwnershipServer.Companion.PARAM_FILE
 import io.ktor.http.ContentType
 import io.ktor.server.application.Application
 import io.ktor.server.application.call

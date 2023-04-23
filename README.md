@@ -36,9 +36,7 @@ Visualizing [ConversationParentFragment.java](https://github.com/signalapp/Signa
 ## Installation
 
 ```bash
-$ brew tap legacycodehq/tap
-
-$ brew install twd
+$ brew install legacycodehq/tap/twd
 ```
 
 ## Updates

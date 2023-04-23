@@ -39,7 +39,7 @@ class TumbleweedCommand {
   @Suppress("unused") // Used by picocli.
   @Option(
     names = ["--debug", "-d"],
-    description = ["turns on debug level logging"],
+    description = ["turns on debug logging"],
     defaultValue = "false",
   )
   fun setDebug(debug: Boolean) {

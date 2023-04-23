@@ -11,7 +11,7 @@ import picocli.CommandLine.Parameters
 
 @Command(
   name = "watch",
-  description = ["see the real-time structure of a JVM class in your browser"],
+  description = ["visualize real-time JVM class structure in your browser"],
 )
 class WatchCommand : Runnable {
   @Parameters(
@@ -30,7 +30,7 @@ class WatchCommand : Runnable {
 
   @Option(
     names = ["-p", "--port"],
-    description = ["port number to run the server on"],
+    description = ["the server port number"],
     defaultValue = "$DEFAULT_PORT",
     required = false,
   )

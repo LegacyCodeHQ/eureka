@@ -7,7 +7,7 @@ import picocli.CommandLine.Command
 
 @Command(
   name = "ownership",
-  description = ["see ownership information of a given file in your browser"],
+  description = ["visualize file ownership information in your browser"],
 )
 class OwnershipCommand : Runnable {
   companion object {

@@ -26,7 +26,7 @@ import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
 
 class ClassScannerKotlinTest {
-  private val defaultKotlinClassLocation = ClassFileLocation(
+  private val defaultKotlinClassLocation = SampleClassFile(
     compiledClassesDirectory = "../samples/build/classes/kotlin/main",
     fqClassName = "replace-kotlin-class-?"
   )

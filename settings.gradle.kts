@@ -6,4 +6,5 @@ include(
   ":web-server",
   ":filesystem",
   ":vcs",
+  ":bytecode:testing",
 )

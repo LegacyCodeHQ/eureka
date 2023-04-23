@@ -9,6 +9,7 @@ import com.legacycode.tumbleweed.samples.MethodReadingField
 import com.legacycode.tumbleweed.samples.MethodWritingField
 import com.legacycode.tumbleweed.samples.StaticBlock
 import com.legacycode.tumbleweed.samples.StringConcatenation
+import com.legacycode.tumbleweed.testing.SampleClass
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
 

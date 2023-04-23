@@ -1,4 +1,4 @@
-package com.legacycode.tumbleweed
+package com.legacycode.tumbleweed.testing
 
 import java.io.File
 import kotlin.reflect.KClass

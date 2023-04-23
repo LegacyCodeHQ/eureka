@@ -22,6 +22,7 @@ import com.legacycode.tumbleweed.samples.OnlyMethods
 import com.legacycode.tumbleweed.samples.RecursiveFunction
 import com.legacycode.tumbleweed.samples.StaticFieldAccess
 import com.legacycode.tumbleweed.samples.SyntheticBridges
+import com.legacycode.tumbleweed.testing.SampleClass
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
 

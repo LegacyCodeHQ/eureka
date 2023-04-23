@@ -11,5 +11,6 @@ dependencies {
   implementation("com.spotify.mobius:mobius-rx3:1.5.11")
 
   testImplementation(project(":bytecode:samples"))
+  testImplementation(project(":bytecode:testing"))
   testImplementation("com.spotify.mobius:mobius-test:1.5.11")
 }

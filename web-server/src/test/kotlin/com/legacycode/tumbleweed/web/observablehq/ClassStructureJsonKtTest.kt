@@ -1,9 +1,10 @@
 package com.legacycode.tumbleweed.web.observablehq
 
 import com.legacycode.tumbleweed.ClassScanner
+import com.legacycode.tumbleweed.samples.AccessSuperClassMembers
 import com.legacycode.tumbleweed.samples.InterfaceImplementation
 import com.legacycode.tumbleweed.samples.OnlyMethods
-import java.io.File
+import com.legacycode.tumbleweed.testing.SampleClass
 import org.approvaltests.JsonApprovals
 import org.junit.jupiter.api.Test
 
@@ -11,10 +12,7 @@ internal class ClassStructureJsonKtTest {
   @Test
   internal fun `serialize class structure with a super type as edge bundling graph JSON`() {
     // given
-    val classFile = File(
-      "../bytecode/samples/build/classes/kotlin/main/" +
-        com.legacycode.tumbleweed.samples.AccessSuperClassMembers::class.java.name.replace(".", "/") + ".class"
-    )
+    val classFile = SampleClass.Kotlin(AccessSuperClassMembers::class).file
     val classStructure = ClassScanner.scan(classFile)
 
     // when & then
@@ -24,10 +22,7 @@ internal class ClassStructureJsonKtTest {
   @Test
   internal fun `serialize class structure that does not inherit a super type`() {
     // given
-    val classFile = File(
-      "../bytecode/samples/build/classes/kotlin/main/" +
-        OnlyMethods::class.java.name.replace(".", "/") + ".class"
-    )
+    val classFile = SampleClass.Kotlin(OnlyMethods::class).file
     val classStructure = ClassScanner.scan(classFile)
 
     // when & then
@@ -37,10 +32,7 @@ internal class ClassStructureJsonKtTest {
   @Test
   internal fun `serialize class structure that implements an interface`() {
     // given
-    val classFile = File(
-      "../bytecode/samples/build/classes/kotlin/main/" +
-        InterfaceImplementation::class.java.name.replace(".", "/") + ".class"
-    )
+    val classFile = SampleClass.Kotlin(InterfaceImplementation::class).file
     val classStructure = ClassScanner.scan(classFile)
 
     // when & then

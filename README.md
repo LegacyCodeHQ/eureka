@@ -36,13 +36,13 @@ Visualizing [ConversationParentFragment.java](https://github.com/signalapp/Signa
 ## Installation
 
 ```bash
-$ brew install legacycodehq/tap/twd
+brew install legacycodehq/tap/twd
 ```
 
 ## Updates
 
 ```bash
-$ brew upgrade twd
+brew upgrade twd
 ```
 
 ## Quick start
@@ -50,7 +50,7 @@ $ brew upgrade twd
 Build the project first and then run the command line tool.
 
 ```bash
-$ twd watch com.legacycode.ExampleClass
+twd watch com.legacycode.ExampleClass
 ```
 
 The command will start a web server on port 7070. Go to `localhost:7070` in your browser to see the diagram.

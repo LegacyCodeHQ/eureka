@@ -1,2 +1,11 @@
-td {
+.serial {
+    font-weight: bold;
+}
+
+.name {
+    font-style: italic;
+}
+
+.frequency {
+    text-align: end;
 }

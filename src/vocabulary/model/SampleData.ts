@@ -35,3 +35,9 @@ export let typeTokenStats = [
   new TokenStat(new Token("CheckBox"), 1),
   new TokenStat(new Token("ImageButton"), 1),
 ];
+
+export let wordTokenStats = [
+  new TokenStat(new Token("on"), 15),
+  new TokenStat(new Token("posts"), 8),
+  new TokenStat(new Token("new"), 7),
+];

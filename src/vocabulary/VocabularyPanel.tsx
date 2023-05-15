@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import TokenStatsTable from "./TokenStatsTable";
 import {TokenStat} from "./model/TokenStat";
-import {typeTokenStats} from "./model/SampleData";
+import {typeTokenStats, wordTokenStats} from "./model/SampleData";
 
 const VocabularyPanel = () => {
   const [activeTab, setActiveTab] = useState('types');
@@ -18,7 +18,7 @@ const VocabularyPanel = () => {
           Types ({typeTokenStats.length})
         </button>
         <button onClick={() => setActiveTab('words')}>
-          Words
+          Words ({wordTokenStats.length})
         </button>
       </div>
       <div>
@@ -26,7 +26,7 @@ const VocabularyPanel = () => {
           activeTab === 'types' && <TokenStatsTable tokenStats={typeTokenStats} onStatRowClick={handleStatRowClick}/>
         }
         {
-          activeTab === 'words' && <div>Showing Words</div>
+          activeTab === 'words' && <TokenStatsTable tokenStats={wordTokenStats} onStatRowClick={handleStatRowClick}/>
         }
       </div>
       {selectedTypeTokenStat &&

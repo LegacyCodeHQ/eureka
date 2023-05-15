@@ -18,7 +18,7 @@ const TokenStatsTable: React.FC<TokenStatsTableProps> = ({tokenStats}) => {
       </thead>
       <tbody>
       {tokenStats.map((tokenStat, index) =>
-        <TokenStatRow serialNumber={index + 1} tokenStat={tokenStat}/>
+        <TokenStatRow serial={index + 1} tokenStat={tokenStat}/>
       )}
       </tbody>
     </table>

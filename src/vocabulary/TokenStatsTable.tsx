@@ -20,7 +20,7 @@ const TokenStatsTable: React.FC<TokenStatsTableProps> = ({tokenStats, onStatRowC
       </thead>
       <tbody>
       {tokenStats.map((tokenStat, index) =>
-        <TokenStatRow serial={index + 1} tokenStat={tokenStat} onRowClick={onStatRowClick}/>
+        <TokenStatRow key={tokenStat.token.name} serial={index + 1} tokenStat={tokenStat} onRowClick={onStatRowClick}/>
       )}
       </tbody>
     </table>

@@ -1,3 +1,60 @@
 table {
     border-spacing: 0;
+    font-size: 14px;
+}
+
+tr {
+    height: 32px;
+}
+
+th {
+    user-select: none;
+    text-align: start;
+    color: rgb(244, 244, 244);
+    background-color: rgb(82, 82, 82);
+}
+
+th.column-serial {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+th.column-name {
+    padding-right: 16px;
+}
+
+th.column-frequency {
+    padding-right: 16px;
+}
+
+.token-stat-row {
+    user-select: none;
+    color: rgb(198, 198, 198);
+    background-color: rgb(57, 57, 57);
+}
+
+.token-stat-row.selected {
+    background-color: rgb(50, 50, 50);
+}
+
+.token-stat-row:hover {
+    color: rgb(244, 244, 244);
+    background-color: rgb(71, 71, 71);
+}
+
+.column-serial {
+    padding-left: 16px;
+}
+
+.column-name {
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.column-frequency {
+    padding-right: 16px;
+}
+
+.number {
+    text-align: end;
 }

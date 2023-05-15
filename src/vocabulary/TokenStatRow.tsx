@@ -1,6 +1,5 @@
 import React from "react";
 import {TokenStat} from "./model/TokenStat";
-import "./TokenStatRow.css"
 
 interface TokenStatRowProps {
   serial: number;
@@ -12,9 +11,9 @@ interface TokenStatRowProps {
 const TokenStatRow: React.FC<TokenStatRowProps> = ({serial, tokenStat, isSelected, onRowClick}) => {
   return (
     <tr className={`token-stat-row ${isSelected ? "selected" : ""}`} onClick={() => onRowClick(tokenStat)}>
-      <td className="serial">{serial}</td>
-      <td className="name">{tokenStat.token.name}</td>
-      <td className="frequency">{tokenStat.frequency}</td>
+      <td className="column-serial">{serial}</td>
+      <td className="column-name">{tokenStat.token.name}</td>
+      <td className="column-frequency number">{tokenStat.frequency}</td>
     </tr>
   )
 }

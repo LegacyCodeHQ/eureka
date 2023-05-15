@@ -12,7 +12,8 @@ const TokenStatsTable: React.FC<TokenStatsTableProps> = ({tokenStats, onStatRowC
   const [selectedTokenStat, setSelectedTokenStat] = useState<TokenStat | null>(null);
 
   const handleStatRowClick = (tokenStat: TokenStat) => {
-    if (selectedTokenStat === tokenStat) {
+    let deselect = selectedTokenStat === tokenStat;
+    if (deselect) {
       setSelectedTokenStat(null);
       onStatRowClick(null);
     } else {
@@ -25,9 +26,9 @@ const TokenStatsTable: React.FC<TokenStatsTableProps> = ({tokenStats, onStatRowC
     <table>
       <thead>
       <tr>
-        <th>#</th>
-        <th>Type</th>
-        <th>Freq.</th>
+        <th className="column-serial">#</th>
+        <th className="column-name">Type</th>
+        <th className="column-frequency">Freq.</th>
       </tr>
       </thead>
       <tbody>

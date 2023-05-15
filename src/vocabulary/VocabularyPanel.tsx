@@ -23,10 +23,12 @@ const VocabularyPanel = () => {
       </div>
       <div>
         {
-          activeTab === 'types' && <TokenStatsTable tokenStats={typeTokenStats} onStatRowClick={handleStatRowClick}/>
+          activeTab === 'types' &&
+            <TokenStatsTable kind="Type" tokenStats={typeTokenStats} onStatRowClick={handleStatRowClick}/>
         }
         {
-          activeTab === 'words' && <TokenStatsTable tokenStats={wordTokenStats} onStatRowClick={handleStatRowClick}/>
+          activeTab === 'words' &&
+            <TokenStatsTable kind="Word" tokenStats={wordTokenStats} onStatRowClick={handleStatRowClick}/>
         }
       </div>
       {selectedTypeTokenStat &&

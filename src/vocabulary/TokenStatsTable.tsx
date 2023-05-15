@@ -4,11 +4,12 @@ import React, {useState} from "react";
 import "./TokenStatsTable.css"
 
 interface TokenStatsTableProps {
+  kind: string;
   tokenStats: TokenStat[];
   onStatRowClick: (tokenStat: TokenStat | null) => void;
 }
 
-const TokenStatsTable: React.FC<TokenStatsTableProps> = ({tokenStats, onStatRowClick}) => {
+const TokenStatsTable: React.FC<TokenStatsTableProps> = ({kind, tokenStats, onStatRowClick}) => {
   const [selectedTokenStat, setSelectedTokenStat] = useState<TokenStat | null>(null);
 
   const handleStatRowClick = (tokenStat: TokenStat) => {
@@ -28,7 +29,7 @@ const TokenStatsTable: React.FC<TokenStatsTableProps> = ({tokenStats, onStatRowC
         <thead>
         <tr>
           <th className="column-serial">#</th>
-          <th className="column-name">Type</th>
+          <th className="column-name">{kind}</th>
           <th className="column-count">Count</th>
         </tr>
         </thead>

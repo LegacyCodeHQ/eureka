@@ -19,12 +19,8 @@ let tokenStats = [
 function App() {
   const [selectedTokenStat, setSelectedTokenStat] = useState<TokenStat | null>(null);
 
-  const handleStatRowClick = (tokenStat: TokenStat) => {
-    if (selectedTokenStat === tokenStat) {
-      setSelectedTokenStat(null);
-    } else {
-      setSelectedTokenStat((tokenStat));
-    }
+  const handleStatRowClick = (tokenStat: TokenStat | null) => {
+    setSelectedTokenStat(tokenStat);
   };
 
   return (

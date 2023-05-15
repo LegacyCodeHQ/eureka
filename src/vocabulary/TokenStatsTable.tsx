@@ -1,14 +1,26 @@
 import {TokenStat} from "./model/TokenStat";
 import TokenStatRow from "./TokenStatRow";
-import React from "react";
+import React, {useState} from "react";
 import "./TokenStatsTable.css"
 
 interface TokenStatsTableProps {
   tokenStats: TokenStat[];
-  onStatRowClick: (tokenStat: TokenStat) => void;
+  onStatRowClick: (tokenStat: TokenStat | null) => void;
 }
 
 const TokenStatsTable: React.FC<TokenStatsTableProps> = ({tokenStats, onStatRowClick}) => {
+  const [selectedTokenStat, setSelectedTokenStat] = useState<TokenStat | null>(null);
+
+  const handleStatRowClick = (tokenStat: TokenStat) => {
+    if (selectedTokenStat === tokenStat) {
+      setSelectedTokenStat(null);
+      onStatRowClick(null);
+    } else {
+      setSelectedTokenStat(tokenStat);
+      onStatRowClick(tokenStat);
+    }
+  };
+
   return (
     <table>
       <thead>
@@ -20,7 +32,7 @@ const TokenStatsTable: React.FC<TokenStatsTableProps> = ({tokenStats, onStatRowC
       </thead>
       <tbody>
       {tokenStats.map((tokenStat, index) =>
-        <TokenStatRow key={tokenStat.token.name} serial={index + 1} tokenStat={tokenStat} onRowClick={onStatRowClick}/>
+        <TokenStatRow key={tokenStat.token.name} serial={index + 1} tokenStat={tokenStat} onRowClick={handleStatRowClick}/>
       )}
       </tbody>
     </table>

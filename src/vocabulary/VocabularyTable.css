@@ -27,13 +27,13 @@ th.column-count {
     padding-right: 16px;
 }
 
-.stats-container {
+.table-container {
     display: flex;
     flex-direction: column;
     height: 100vh;
 }
 
-.table-container {
+.table-body-container {
     flex: 1;
     overflow: auto;
 }

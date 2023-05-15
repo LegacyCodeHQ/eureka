@@ -5,10 +5,10 @@ import {typeTokenStats, wordTokenStats} from "./model/SampleData";
 
 const VocabularyPanel = () => {
   const [activeTab, setActiveTab] = useState('types');
-  const [selectedTypeTokenStat, setSelectedTypeTokenStat] = useState<TokenStat | null>(null);
+  const [selectedTokenStat, setSelectedTokenStat] = useState<TokenStat | null>(null);
 
   const handleStatRowClick = (tokenStat: TokenStat | null) => {
-    setSelectedTypeTokenStat(tokenStat);
+    setSelectedTokenStat(tokenStat);
   };
 
   return (
@@ -31,9 +31,9 @@ const VocabularyPanel = () => {
             <VocabularyTable kind="Word" tokenStats={wordTokenStats} onStatRowClick={handleStatRowClick}/>
         }
       </div>
-      {selectedTypeTokenStat &&
+      {selectedTokenStat &&
           <p className="debug-element">
-              <span><b>Selected</b><br/>{selectedTypeTokenStat.token.name}: {selectedTypeTokenStat.count}</span>
+              <span><b>Selected</b><br/>{selectedTokenStat.token.name}: {selectedTokenStat.count}</span>
           </p>
       }
     </div>

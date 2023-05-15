@@ -24,7 +24,7 @@ const VocabularyTable: React.FC<TokenStatsTableProps> = ({kind, tokenStats, onSt
   };
 
   return (
-    <div className="stats-container">
+    <div className="table-container">
       <table>
         <thead>
         <tr>
@@ -34,7 +34,7 @@ const VocabularyTable: React.FC<TokenStatsTableProps> = ({kind, tokenStats, onSt
         </tr>
         </thead>
       </table>
-      <div className="table-container">
+      <div className="table-body-container">
         <table>
           <tbody>
           {tokenStats.map((tokenStat, index) =>

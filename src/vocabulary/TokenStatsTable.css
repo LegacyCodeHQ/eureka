@@ -27,6 +27,11 @@ th.column-frequency {
     padding-right: 16px;
 }
 
+.stats-table-container {
+    height: 100vh;
+    overflow: auto;
+}
+
 .token-stat-row {
     user-select: none;
     color: rgb(198, 198, 198);

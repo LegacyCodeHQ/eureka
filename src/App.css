@@ -5,7 +5,6 @@
     position: fixed;
     top: 0;
     right: 0;
-    padding-right: 10px;
+    padding-right: 24px;
     text-align: end;
-    background-color: rgba(255, 255, 255, 0.8);  /* optional, in case you want a background */
 }

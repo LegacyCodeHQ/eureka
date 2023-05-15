@@ -23,25 +23,27 @@ const TokenStatsTable: React.FC<TokenStatsTableProps> = ({tokenStats, onStatRowC
   };
 
   return (
-    <table>
-      <thead>
-      <tr>
-        <th className="column-serial">#</th>
-        <th className="column-name">Type</th>
-        <th className="column-frequency">Freq.</th>
-      </tr>
-      </thead>
-      <tbody>
-      {tokenStats.map((tokenStat, index) =>
-        <TokenStatRow
-          key={tokenStat.token.name}
-          serial={index + 1}
-          tokenStat={tokenStat}
-          isSelected={selectedTokenStat === tokenStat}
-          onRowClick={handleStatRowClick}/>
-      )}
-      </tbody>
-    </table>
+    <div className="stats-table-container">
+      <table>
+        <thead>
+        <tr>
+          <th className="column-serial">#</th>
+          <th className="column-name">Type</th>
+          <th className="column-frequency">Freq.</th>
+        </tr>
+        </thead>
+        <tbody>
+        {tokenStats.map((tokenStat, index) =>
+          <TokenStatRow
+            key={tokenStat.token.name}
+            serial={index + 1}
+            tokenStat={tokenStat}
+            isSelected={selectedTokenStat === tokenStat}
+            onRowClick={handleStatRowClick}/>
+        )}
+        </tbody>
+      </table>
+    </div>
   )
 }
 

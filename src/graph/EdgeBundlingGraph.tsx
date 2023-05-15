@@ -1,12 +1,15 @@
 import React from "react";
+import "./EdgeBundlingGraph.css";
 
 interface EdgeBundlingGraphProps {
   classJson: any | null
 }
 
-const EdgeBundlingGraph : React.FC<EdgeBundlingGraphProps> = ({classJson}) => {
+const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({classJson}) => {
   return (
-    <code>{classJson}</code>
+    <div className="json">
+      <code>{classJson}</code>
+    </div>
   );
 }
 

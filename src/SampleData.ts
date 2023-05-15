@@ -1,5 +1,5 @@
-import {TokenStat} from "./TokenStat";
-import {Token} from "./Token";
+import {TokenStat} from "./vocabulary/model/TokenStat";
+import {Token} from "./vocabulary/model/Token";
 
 export let typeTokenStats = [
   new TokenStat(new Token("void"), 25),
@@ -41,3 +41,10 @@ export let wordTokenStats = [
   new TokenStat(new Token("posts"), 8),
   new TokenStat(new Token("new"), 7),
 ];
+
+export let classJson = `
+{
+  "name": "Tumbleweed",
+  "version": "0.5.0"
+}
+`;

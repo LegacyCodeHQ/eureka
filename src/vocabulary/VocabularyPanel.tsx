@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import VocabularyTable from "./VocabularyTable";
 import {TokenStat} from "./model/TokenStat";
-import {typeTokenStats, wordTokenStats} from "./model/SampleData";
+import {typeTokenStats, wordTokenStats} from "../SampleData";
 import "./VocabularyPanel.css"
 
 const VocabularyPanel = () => {

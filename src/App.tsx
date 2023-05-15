@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import {Token} from "./vocabulary/model/Token";
 import {TokenStat} from "./vocabulary/model/TokenStat";
@@ -16,14 +16,25 @@ let tokenStats = [
   new TokenStat(new Token("Activity"), 2),
 ];
 
-const handleStatRowClick = (tokenStat: TokenStat) => {
-  console.log(`Row clicked: ${tokenStat.token.name}`)
-};
-
 function App() {
+  const [selectedTokenStat, setSelectedTokenStat] = useState<TokenStat | null>(null);
+
+  const handleStatRowClick = (tokenStat: TokenStat) => {
+    if (selectedTokenStat === tokenStat) {
+      setSelectedTokenStat(null);
+    } else {
+      setSelectedTokenStat((tokenStat));
+    }
+  };
+
   return (
     <div className="App">
       <TokenStatsTable tokenStats={tokenStats} onStatRowClick={handleStatRowClick}/>
+      {selectedTokenStat &&
+          <p>
+              <span><b>Selected</b> {selectedTokenStat.token.name}: {selectedTokenStat.frequency}</span>
+          </p>
+      }
     </div>
   );
 }

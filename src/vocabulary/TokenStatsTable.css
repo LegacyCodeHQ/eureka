@@ -30,6 +30,9 @@ th.column-frequency {
 .stats-table-container {
     height: 100vh;
     overflow: auto;
+    position: fixed;
+    top: 0;
+    right: 0;
 }
 
 .token-stat-row {

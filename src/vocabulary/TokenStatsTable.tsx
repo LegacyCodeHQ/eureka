@@ -5,9 +5,10 @@ import "./TokenStatsTable.css"
 
 interface TokenStatsTableProps {
   tokenStats: TokenStat[];
+  onStatRowClick: (tokenStat: TokenStat) => void;
 }
 
-const TokenStatsTable: React.FC<TokenStatsTableProps> = ({tokenStats}) => {
+const TokenStatsTable: React.FC<TokenStatsTableProps> = ({tokenStats, onStatRowClick}) => {
   return (
     <table>
       <thead>
@@ -19,7 +20,7 @@ const TokenStatsTable: React.FC<TokenStatsTableProps> = ({tokenStats}) => {
       </thead>
       <tbody>
       {tokenStats.map((tokenStat, index) =>
-        <TokenStatRow serial={index + 1} tokenStat={tokenStat}/>
+        <TokenStatRow serial={index + 1} tokenStat={tokenStat} onRowClick={onStatRowClick}/>
       )}
       </tbody>
     </table>

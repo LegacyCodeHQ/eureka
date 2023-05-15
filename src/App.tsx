@@ -16,10 +16,14 @@ let tokenStats = [
   new TokenStat(new Token("Activity"), 2),
 ];
 
+const handleStatRowClick = (tokenStat: TokenStat) => {
+  console.log(`Row clicked: ${tokenStat.token.name}`)
+};
+
 function App() {
   return (
     <div className="App">
-      <TokenStatsTable tokenStats={tokenStats}/>
+      <TokenStatsTable tokenStats={tokenStats} onStatRowClick={handleStatRowClick}/>
     </div>
   );
 }

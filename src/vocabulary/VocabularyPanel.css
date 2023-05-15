@@ -1,5 +1,8 @@
 .vocabulary-panel {
     width: 300px;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 .tab-bar {

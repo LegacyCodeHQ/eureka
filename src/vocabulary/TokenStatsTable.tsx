@@ -29,7 +29,7 @@ const TokenStatsTable: React.FC<TokenStatsTableProps> = ({tokenStats, onStatRowC
         <tr>
           <th className="column-serial">#</th>
           <th className="column-name">Type</th>
-          <th className="column-frequency">Freq.</th>
+          <th className="column-count">Count</th>
         </tr>
         </thead>
       </table>

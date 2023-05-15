@@ -31,7 +31,7 @@ const VocabularyPanel = () => {
       </div>
       {selectedTypeTokenStat &&
           <p className="debug-element">
-              <span><b>Selected</b><br/>{selectedTypeTokenStat.token.name}: {selectedTypeTokenStat.frequency}</span>
+              <span><b>Selected</b><br/>{selectedTypeTokenStat.token.name}: {selectedTypeTokenStat.count}</span>
           </p>
       }
     </div>

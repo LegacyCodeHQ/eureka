@@ -13,7 +13,7 @@ const TokenStatRow: React.FC<TokenStatRowProps> = ({serial, tokenStat, isSelecte
     <tr className={`token-stat-row ${isSelected ? "selected" : ""}`} onClick={() => onRowClick(tokenStat)}>
       <td className="column-serial">{serial}</td>
       <td className="column-name">{tokenStat.token.name}</td>
-      <td className="column-frequency number">{tokenStat.frequency}</td>
+      <td className="column-count number">{tokenStat.count}</td>
     </tr>
   )
 }

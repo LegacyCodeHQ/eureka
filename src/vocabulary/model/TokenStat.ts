@@ -2,10 +2,10 @@ import {Token} from "./Token";
 
 export class TokenStat {
   token: Token;
-  frequency: number;
+  count: number;
 
-  constructor(token: Token, frequency: number) {
+  constructor(token: Token, count: number) {
     this.token = token;
-    this.frequency = frequency
+    this.count = count
   }
 }

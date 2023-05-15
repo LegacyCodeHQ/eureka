@@ -1,8 +1,5 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
-import {Token} from "./vocabulary/model/Token";
-import {TokenStat} from "./vocabulary/model/TokenStat";
-import VocabularyTable from "./vocabulary/VocabularyTable";
 import VocabularyPanel from "./vocabulary/VocabularyPanel";
 
 function App() {

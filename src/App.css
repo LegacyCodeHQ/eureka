@@ -3,7 +3,7 @@
 
 .debug-element {
     position: fixed;
-    top: 0;
+    bottom: 0;
     left: 0;
     text-align: left;
     padding-left: 24px;

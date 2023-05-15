@@ -32,7 +32,12 @@ const TokenStatsTable: React.FC<TokenStatsTableProps> = ({tokenStats, onStatRowC
       </thead>
       <tbody>
       {tokenStats.map((tokenStat, index) =>
-        <TokenStatRow key={tokenStat.token.name} serial={index + 1} tokenStat={tokenStat} onRowClick={handleStatRowClick}/>
+        <TokenStatRow
+          key={tokenStat.token.name}
+          serial={index + 1}
+          tokenStat={tokenStat}
+          isSelected={selectedTokenStat === tokenStat}
+          onRowClick={handleStatRowClick}/>
       )}
       </tbody>
     </table>

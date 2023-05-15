@@ -2,6 +2,10 @@
     background-color: aliceblue;
 }
 
+.token-stat-row.selected {
+    background-color: deepskyblue;
+}
+
 .token-stat-row:hover {
     font-weight: bold;
     background-color: aqua;

@@ -17,4 +17,4 @@ const TokenStatRow: React.FC<TokenStatRowProps> = ({serialNumber, tokenStat}) =>
   )
 }
 
-export default TokenStatRow
+export default TokenStatRow;

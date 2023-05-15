@@ -2,9 +2,7 @@ import React from 'react';
 import './App.css';
 import {Token} from "./vocabulary/model/Token";
 import {TokenStat} from "./vocabulary/model/TokenStat";
-import TokenStatRow from "./vocabulary/TokenStatRow";
-
-let tokenStat = new TokenStat(new Token("TextView"), 5);
+import TokenStatsTable from "./vocabulary/TokenStatsTable";
 
 let tokenStats = [
   new TokenStat(new Token("void"), 25),
@@ -21,21 +19,7 @@ let tokenStats = [
 function App() {
   return (
     <div className="App">
-      <table>
-        <thead>
-        <tr>
-          <th>#</th>
-          <th>Type</th>
-          <th>Freq.</th>
-        </tr>
-        </thead>
-        <tbody>
-        {tokenStats.map((tokenStat, index) =>
-          <TokenStatRow serialNumber={index + 1} tokenStat={tokenStat}/>
-        )}
-        </tbody>
-      </table>
-      <TokenStatRow serialNumber={1} tokenStat={tokenStat}/>
+      <TokenStatsTable tokenStats={tokenStats}/>
     </div>
   );
 }

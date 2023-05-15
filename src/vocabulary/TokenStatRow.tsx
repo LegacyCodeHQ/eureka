@@ -9,7 +9,7 @@ interface TokenStatRowProps {
 
 const TokenStatRow: React.FC<TokenStatRowProps> = ({serial, tokenStat}) => {
   return (
-    <tr>
+    <tr className="token-stat-row">
       <td className="serial">{serial}</td>
       <td className="name">{tokenStat.token.name}</td>
       <td className="frequency">{tokenStat.frequency}</td>

@@ -1,6 +1,7 @@
 import {TokenStat} from "./model/TokenStat";
 import TokenStatRow from "./TokenStatRow";
 import React from "react";
+import "./TokenStatsTable.css"
 
 interface TokenStatsTableProps {
   tokenStats: TokenStat[];

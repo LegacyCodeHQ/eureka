@@ -1,9 +1,18 @@
-.serial {
+.token-stat-row {
+    background-color: aliceblue;
+}
+
+.token-stat-row:hover {
     font-weight: bold;
+    background-color: aqua;
+}
+
+.serial {
+    padding-right: 8px;
 }
 
 .name {
-    font-style: italic;
+    /* placeholder */
 }
 
 .frequency {

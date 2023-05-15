@@ -27,12 +27,18 @@ th.column-frequency {
     padding-right: 16px;
 }
 
-.stats-table-container {
-    height: 100vh;
-    overflow: auto;
+.stats-container {
     position: fixed;
     top: 0;
     right: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.table-container {
+    flex: 1;
+    overflow: auto;
 }
 
 .token-stat-row {

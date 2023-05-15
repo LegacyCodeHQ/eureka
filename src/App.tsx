@@ -2,12 +2,11 @@ import React from 'react';
 import './App.css';
 import VocabularyPanel from "./vocabulary/VocabularyPanel";
 import EdgeBundlingGraph from "./graph/EdgeBundlingGraph";
-import {classJson} from "./SampleData";
 
 function App() {
   return (
     <div className="App">
-      <EdgeBundlingGraph classJson={classJson}/>
+      <EdgeBundlingGraph data={[10, 5, 15, 20]}/>
       <VocabularyPanel/>
     </div>
   );

@@ -1,7 +1,7 @@
 import {TokenStat} from "./model/TokenStat";
 import TokenStatRow from "./TokenStatRow";
 import React, {useState} from "react";
-import "./TokenStatsTable.css"
+import "./VocabularyTable.css"
 
 interface TokenStatsTableProps {
   kind: string;
@@ -9,7 +9,7 @@ interface TokenStatsTableProps {
   onStatRowClick: (tokenStat: TokenStat | null) => void;
 }
 
-const TokenStatsTable: React.FC<TokenStatsTableProps> = ({kind, tokenStats, onStatRowClick}) => {
+const VocabularyTable: React.FC<TokenStatsTableProps> = ({kind, tokenStats, onStatRowClick}) => {
   const [selectedTokenStat, setSelectedTokenStat] = useState<TokenStat | null>(null);
 
   const handleStatRowClick = (tokenStat: TokenStat) => {
@@ -52,4 +52,4 @@ const TokenStatsTable: React.FC<TokenStatsTableProps> = ({kind, tokenStats, onSt
   )
 }
 
-export default TokenStatsTable;
+export default VocabularyTable;

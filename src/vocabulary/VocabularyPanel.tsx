@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import TokenStatsTable from "./TokenStatsTable";
+import VocabularyTable from "./VocabularyTable";
 import {TokenStat} from "./model/TokenStat";
 import {typeTokenStats, wordTokenStats} from "./model/SampleData";
 
@@ -24,11 +24,11 @@ const VocabularyPanel = () => {
       <div>
         {
           activeTab === 'types' &&
-            <TokenStatsTable kind="Type" tokenStats={typeTokenStats} onStatRowClick={handleStatRowClick}/>
+            <VocabularyTable kind="Type" tokenStats={typeTokenStats} onStatRowClick={handleStatRowClick}/>
         }
         {
           activeTab === 'words' &&
-            <TokenStatsTable kind="Word" tokenStats={wordTokenStats} onStatRowClick={handleStatRowClick}/>
+            <VocabularyTable kind="Word" tokenStats={wordTokenStats} onStatRowClick={handleStatRowClick}/>
         }
       </div>
       {selectedTypeTokenStat &&

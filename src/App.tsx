@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import {Token} from "./vocabulary/model/Token";
 import {TokenStat} from "./vocabulary/model/TokenStat";
-import TokenStatsTable from "./vocabulary/TokenStatsTable";
+import VocabularyTable from "./vocabulary/VocabularyTable";
 import VocabularyPanel from "./vocabulary/VocabularyPanel";
 
 function App() {

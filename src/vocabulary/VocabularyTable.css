@@ -28,9 +28,6 @@ th.column-count {
 }
 
 .stats-container {
-    position: fixed;
-    top: 0;
-    right: 0;
     display: flex;
     flex-direction: column;
     height: 100vh;

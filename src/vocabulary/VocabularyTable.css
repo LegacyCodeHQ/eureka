@@ -1,17 +1,23 @@
 table {
     border-spacing: 0;
     font-size: 14px;
+    width: 100%;
 }
 
 tr {
     height: 32px;
 }
 
+tr th {
+    height: 40px;
+}
+
 th {
     user-select: none;
     text-align: start;
     color: rgb(244, 244, 244);
-    background-color: rgb(82, 82, 82);
+    background-color: rgb(57, 57, 57);
+    border-bottom: 2px solid rgb(71, 71, 71);
 }
 
 th.column-serial {
@@ -25,12 +31,14 @@ th.column-name {
 
 th.column-count {
     padding-right: 16px;
+    text-align: right;
 }
 
 .table-container {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    background-color: rgb(57, 57, 57);
 }
 
 .table-body-container {

@@ -1,33 +1,42 @@
-import React, {useState} from 'react';
+import React, {useState} from "react";
 import VocabularyTable from "./VocabularyTable";
 import {TokenStat} from "./model/TokenStat";
 import {typeTokenStats, wordTokenStats} from "./model/SampleData";
+import "./VocabularyPanel.css"
 
 const VocabularyPanel = () => {
-  const [activeTab, setActiveTab] = useState('types');
+  const [activeTab, setActiveTab] = useState("types");
   const [selectedTokenStat, setSelectedTokenStat] = useState<TokenStat | null>(null);
 
   const handleStatRowClick = (tokenStat: TokenStat | null) => {
     setSelectedTokenStat(tokenStat);
   };
 
+  function isTabActive(tab: string): boolean {
+    return tab === activeTab
+  }
+
+  function getTabClass(tab: string): string {
+    return `tab ${isTabActive(tab) ? "active" : ""}`
+  }
+
   return (
-    <div>
-      <div>
-        <button onClick={() => setActiveTab('types')}>
+    <div className="vocabulary-panel">
+      <div className="tab-bar">
+        <button className={getTabClass("types")} onClick={() => setActiveTab("types")}>
           Types ({typeTokenStats.length})
         </button>
-        <button onClick={() => setActiveTab('words')}>
+        <button className={getTabClass("words")} onClick={() => setActiveTab("words")}>
           Words ({wordTokenStats.length})
         </button>
       </div>
       <div>
         {
-          activeTab === 'types' &&
+          activeTab === "types" &&
             <VocabularyTable kind="Type" tokenStats={typeTokenStats} onStatRowClick={handleStatRowClick}/>
         }
         {
-          activeTab === 'words' &&
+          activeTab === "words" &&
             <VocabularyTable kind="Word" tokenStats={wordTokenStats} onStatRowClick={handleStatRowClick}/>
         }
       </div>

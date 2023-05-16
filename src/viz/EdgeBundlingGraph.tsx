@@ -12,11 +12,11 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({data}) => {
   const width = 954;
   const radius = width / 2;
 
-  const colorselected = "#000";
-  const colorunselected = "#999";
-  const colorin = "#00f";
-  const colorout = "#f00";
-  const colornone = "#ddd";
+  const colorSelected = "#000";
+  const colorDeselected = "#999";
+  const colorIn = "#00f";
+  const colorOut = "#f00";
+  const colorNone = "#ddd";
 
   function countableTextDependencies(count: number): string {
     if (count === 1) {
@@ -53,7 +53,7 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({data}) => {
       svg.attr("viewBox", [-width / 2, -width / 2, width, width]);
 
       const link = svg.append("g")
-        .attr("stroke", colornone)
+        .attr("stroke", colorNone)
         .attr("fill", "none")
         .selectAll("path")
         .data(root.leaves().flatMap((leaf: any) => leaf.dependencies))
@@ -66,24 +66,24 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({data}) => {
 
       function overed(event: any, d: any) {
         link.style("mix-blend-mode", null);
-        d3.select(event.currentTarget).attr("fill", colorselected);
-        d3.selectAll(d.dependents.map((d: any) => d.path)).attr("stroke", colorin).raise();
+        d3.select(event.currentTarget).attr("fill", colorSelected);
+        d3.selectAll(d.dependents.map((d: any) => d.path)).attr("stroke", colorIn).raise();
         // @ts-ignore
-        d3.selectAll(d.dependents.map(([d]) => d.text)).attr("fill", colorin);
-        d3.selectAll(d.dependencies.map((d: any) => d.path)).attr("stroke", colorout).raise();
+        d3.selectAll(d.dependents.map(([d]) => d.text)).attr("fill", colorIn);
+        d3.selectAll(d.dependencies.map((d: any) => d.path)).attr("stroke", colorOut).raise();
         // @ts-ignore
-        d3.selectAll(d.dependencies.map(([, d]) => d.text)).attr("fill", colorout);
+        d3.selectAll(d.dependencies.map(([, d]) => d.text)).attr("fill", colorOut);
       }
 
       function outed(event: any, d: any) {
         link.style("mix-blend-mode", "multiply");
-        d3.select(event.currentTarget).attr("fill", colorunselected);
+        d3.select(event.currentTarget).attr("fill", colorDeselected);
         d3.selectAll(d.dependents.map((d: any) => d.path)).attr("stroke", null);
         // @ts-ignore
-        d3.selectAll(d.dependents.map(([d]) => d.text)).attr("fill", colorunselected).attr("font-weight", null);
+        d3.selectAll(d.dependents.map(([d]) => d.text)).attr("fill", colorDeselected).attr("font-weight", null);
         d3.selectAll(d.dependencies.map((d: any) => d.path)).attr("stroke", null);
         // @ts-ignore
-        d3.selectAll(d.dependencies.map(([, d]) => d.text)).attr("fill", colorunselected).attr("font-weight", null);
+        d3.selectAll(d.dependencies.map(([, d]) => d.text)).attr("fill", colorDeselected).attr("font-weight", null);
       }
 
       svg.append("g")
@@ -94,7 +94,7 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({data}) => {
         .join("g")
         .attr("transform", d => `rotate(${d.x * 180 / Math.PI - 90}) translate(${d.y},0)`)
         .append("text")
-        .attr("fill", colorunselected)
+        .attr("fill", colorDeselected)
         .attr("dy", "0.31em")
         .attr("x", d => d.x < Math.PI ? 6 : -6)
         .attr("text-anchor", d => d.x < Math.PI ? "start" : "end")

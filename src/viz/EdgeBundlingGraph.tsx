@@ -1,6 +1,8 @@
 import React, {useEffect, useRef} from "react";
 import * as d3 from "d3";
 import "./EdgeBundlingGraph.css";
+import {graphData} from "../SampleData";
+import {GraphData, toChartData} from "./Model";
 
 interface EdgeBundlingGraphProps {
   data: number[];
@@ -27,6 +29,9 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({data}) => {
         .attr("fill", "lightblue");
     }
   }, [data]);
+
+  const graphDataJson: GraphData = JSON.parse(graphData);
+  console.log(d3.hierarchy(toChartData(graphDataJson)))
 
   return <svg ref={svgRef} width={dimension} height={dimension}/>;
 }

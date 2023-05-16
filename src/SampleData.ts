@@ -42,9 +42,47 @@ export let wordTokenStats = [
   new TokenStat(new Token("new"), 7),
 ];
 
-export let classJson = `
+export let graphData = `
 {
-  "name": "Tumbleweed",
-  "version": "0.5.0"
+  "nodes": [
+    {
+      "id": "void \u003cinit\u003e()",
+      "group": 2
+    },
+    {
+      "id": "void bar()",
+      "group": 2
+    },
+    {
+      "id": "void baz()",
+      "group": 2
+    },
+    {
+      "id": "void foo()",
+      "group": 2
+    },
+    {
+      "id": "String getBaz()",
+      "group": 2
+    }
+  ],
+  "links": [
+    {
+      "source": "void bar()",
+      "target": "void foo()",
+      "value": 1
+    },
+    {
+      "source": "void baz()",
+      "target": "String getBaz()",
+      "value": 1
+    }
+  ],
+  "meta": {
+    "classInfo": {
+      "name": "com.legacycode.tumbleweed.samples.AccessSuperClassMembers",
+      "extends": "com.legacycode.tumbleweed.samples.SuperClass"
+    }
+  }
 }
 `;

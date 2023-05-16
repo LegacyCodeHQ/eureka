@@ -1,5 +1,6 @@
 import * as d3 from "d3";
 import {ClusterLayout, HierarchyNode, HierarchyPointNode} from "d3";
+import {graphData} from "../SampleData";
 
 export interface GraphData {
   nodes: Node[];
@@ -72,3 +73,7 @@ export const line = d3.lineRadial()
   .curve(d3.curveBundle.beta(0.85))
   .radius((d: any) => d.y)
   .angle((d: any) => d.x);
+
+export function parseGraphData(graphDataJson: string): GraphData {
+  return JSON.parse(graphData);
+}

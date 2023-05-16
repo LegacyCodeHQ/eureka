@@ -1,17 +1,23 @@
 import {GraphData} from "../viz/model/GraphData";
-import React, {ReactNode} from "react";
+import React, {useEffect, useState} from "react";
 import {graphDataJson} from "../SampleData";
 import {parseGraphData} from "../viz/GraphFunctions";
 
+
 interface GraphDataSourceProps {
-  children: (data: GraphData) => ReactNode;
+  children: (data: GraphData | null) => React.ReactElement | null;
 }
 
-class GraphDataSource extends React.Component<GraphDataSourceProps> {
-  render() {
-    let graphData = parseGraphData(graphDataJson);
-    return this.props.children(graphData);
-  }
-}
+const GraphDataSource: React.FC<GraphDataSourceProps> = ({children}) => {
+  const [graphData, setGraphData] = useState<GraphData | null>(null);
+
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'development') {
+      setGraphData(parseGraphData(graphDataJson));
+    }
+  }, []);
+
+  return children(graphData) || null;
+};
 
 export default GraphDataSource;

@@ -1,7 +1,7 @@
-import {TokenStat} from "./model/TokenStat";
-import TokenStatRow from "./TokenStatRow";
-import React, {useState} from "react";
-import "./VocabularyTable.css"
+import { TokenStat } from './model/TokenStat';
+import TokenStatRow from './TokenStatRow';
+import React, { useState } from 'react';
+import './VocabularyTable.css';
 
 interface TokenStatsTableProps {
   kind: string;

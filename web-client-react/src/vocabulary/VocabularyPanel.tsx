@@ -1,10 +1,10 @@
-import React, {useState} from "react";
-import VocabularyTable from "./VocabularyTable";
-import {TokenStat} from "./model/TokenStat";
-import "./VocabularyPanel.css"
-import {vocabulary, vocabularyStats} from "./model/Vocabulary";
-import {Token} from "./model/Token";
-import {GraphData} from "../viz/model/GraphData";
+import React, { useState } from 'react';
+import VocabularyTable from './VocabularyTable';
+import { TokenStat } from './model/TokenStat';
+import './VocabularyPanel.css';
+import { vocabulary, vocabularyStats } from './model/Vocabulary';
+import { Token } from './model/Token';
+import { GraphData } from '../viz/model/GraphData';
 
 interface VocabularyPanelProps {
   data: GraphData;

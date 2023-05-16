@@ -1,6 +1,6 @@
-import * as d3 from "d3";
-import {ClusterLayout, HierarchyNode, HierarchyPointNode} from "d3";
-import {GraphData} from "./model/GraphData";
+import * as d3 from 'd3';
+import { ClusterLayout, HierarchyNode, HierarchyPointNode } from 'd3';
+import { GraphData } from './model/GraphData';
 
 function bilink(root: any): any {
   const map: Map<string, HierarchyNode<any>> = new Map(root.leaves().map((d: any) => [d.data.id, d]));

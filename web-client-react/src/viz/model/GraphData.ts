@@ -1,5 +1,5 @@
-import {Link} from "./Link";
-import {Node} from "./Node";
+import { Link } from './Link';
+import { Node } from './Node';
 
 export interface GraphData {
   nodes: Node[];

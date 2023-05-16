@@ -1,5 +1,5 @@
-import React from "react";
-import {TokenStat} from "./model/TokenStat";
+import React from 'react';
+import { TokenStat } from './model/TokenStat';
 
 interface TokenStatRowProps {
   serial: number;

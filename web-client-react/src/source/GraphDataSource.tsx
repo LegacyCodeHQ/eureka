@@ -1,7 +1,7 @@
-import {GraphData} from "../viz/model/GraphData";
-import React, {useEffect, useState} from "react";
-import {graphDataJson} from "../SampleData";
-import {parseGraphData} from "../viz/GraphFunctions";
+import { GraphData } from '../viz/model/GraphData';
+import React, { useEffect, useState } from 'react';
+import { graphDataJson } from '../SampleData';
+import { parseGraphData } from '../viz/GraphFunctions';
 
 
 interface GraphDataSourceProps {

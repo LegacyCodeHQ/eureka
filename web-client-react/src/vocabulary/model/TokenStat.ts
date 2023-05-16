@@ -6,7 +6,7 @@ export class TokenStat {
 
   constructor(token: Token, count: number) {
     this.token = token;
-    this.count = count
+    this.count = count;
   }
 
   isEqual(other: TokenStat | null): boolean {

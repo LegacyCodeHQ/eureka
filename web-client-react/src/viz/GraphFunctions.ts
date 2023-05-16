@@ -19,27 +19,27 @@ function bilink(root: any): any {
 }
 
 function toChartData(graphData: GraphData): any {
-  const {nodes, links} = graphData;
+  const { nodes, links } = graphData;
   const groupById = new Map();
   const nodeById = new Map(nodes.map(node => [node.id, node]));
 
   for (const node of nodes) {
     let group = groupById.get(node.group);
     if (!group) {
-      groupById.set(node.group, group = {id: node.group, children: []});
+      groupById.set(node.group, group = { id: node.group, children: [] });
     }
     group.children.push(node);
     node.targets = [];
   }
 
-  for (const {source: sourceId, target: targetId} of links) {
+  for (const { source: sourceId, target: targetId } of links) {
     let sourceNode = nodeById.get(sourceId.toString());
     if (sourceNode) {
       sourceNode.targets.push(targetId);
     }
   }
 
-  return {children: [...groupById.values()]};
+  return { children: [...groupById.values()] };
 }
 
 function tree(radius: number): ClusterLayout<any> {

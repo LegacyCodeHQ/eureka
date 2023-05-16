@@ -8,7 +8,7 @@ interface GraphDataSourceProps {
   children: (data: GraphData | null) => React.ReactElement | null;
 }
 
-const GraphDataSource: React.FC<GraphDataSourceProps> = ({children}) => {
+const GraphDataSource: React.FC<GraphDataSourceProps> = ({ children }) => {
   const [graphData, setGraphData] = useState<GraphData | null>(null);
 
   useEffect(() => {

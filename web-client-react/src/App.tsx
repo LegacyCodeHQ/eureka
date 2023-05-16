@@ -9,14 +9,14 @@ function App() {
   return (
     <GraphDataSource>
       {(data: GraphData | null) =>
-        <div className="App">
-          <div className="viz">
+        <div className='App'>
+          <div className='viz'>
             {data &&
-                <EdgeBundlingGraph data={data}/>
+              <EdgeBundlingGraph data={data} />
             }
           </div>
           {data &&
-              <VocabularyPanel data={data}/>
+            <VocabularyPanel data={data} />
           }
         </div>
       }

@@ -27,7 +27,7 @@ export function tokenize(signature: string) {
     let identifier = parts[1];
     return {
       returnType,
-      identifier
+      identifier,
     };
   }
 
@@ -62,7 +62,7 @@ export function tokenize(signature: string) {
   function tokenizeMethod(methodSignature: string) {
     let {
       returnType,
-      identifier
+      identifier,
     } = returnTypeAndIdentifier(methodSignature);
     let parameterTypes = getParameterTypes(methodSignature);
 

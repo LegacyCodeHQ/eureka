@@ -9,7 +9,7 @@ interface EdgeBundlingGraphProps {
 
 const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({data}) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
-  const width = 954;
+  const width = 800;
   const radius = width / 2;
 
   const colorSelected = "#000";
@@ -118,7 +118,7 @@ Effort* = ${effort(d.dependencies.length, d.dependents.length)}, I = ${isNaN(ins
     }
   }, [data]);
 
-  return <svg ref={svgRef} width={width} height={width}/>;
+  return <svg ref={svgRef} width="100%" height="100vh"/>;
 }
 
 export default EdgeBundlingGraph;

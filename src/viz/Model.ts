@@ -1,3 +1,5 @@
+import {HierarchyNode} from "d3";
+
 export interface GraphData {
   nodes: Node[];
   links: Link[];
@@ -13,6 +15,22 @@ interface Link {
   source: String;
   target: String;
   value: number;
+}
+
+export function bilink(root: any): any {
+  const map: Map<string, HierarchyNode<any>> = new Map(root.leaves().map((d: any) => [d.data.id, d]));
+  for (const d of root.leaves()) {
+    d.dependents = [];
+    d.dependencies = d.data.targets.map((i: any) => [d, map.get(i)]);
+  }
+
+  for (const d of root.leaves()) {
+    for (const o of d.dependencies) {
+      o[1].dependents.push(o);
+    }
+  }
+
+  return root;
 }
 
 export function toChartData(graphData: GraphData): any {

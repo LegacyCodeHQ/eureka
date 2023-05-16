@@ -67,3 +67,8 @@ export function createRoot(graphData: GraphData, radius: number): HierarchyPoint
   return tree(radius)(bilink(d3.hierarchy(toChartData(graphData))))
     .sort((a, b) => d3.ascending(a.height, b.height) || d3.ascending(a.data.id, b.data.id));
 }
+
+export const line = d3.lineRadial()
+  .curve(d3.curveBundle.beta(0.85))
+  .radius((d: any) => d.y)
+  .angle((d: any) => d.x);

@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import VocabularyPanel from "./vocabulary/VocabularyPanel";
-import EdgeBundlingGraph from "./graph/EdgeBundlingGraph";
+import EdgeBundlingGraph from "./viz/EdgeBundlingGraph";
 
 function App() {
   return (

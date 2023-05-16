@@ -2,7 +2,7 @@ import React, {useEffect, useRef} from "react";
 import * as d3 from "d3";
 import "./EdgeBundlingGraph.css";
 import {graphData} from "../SampleData";
-import {bilink, toChartData} from "./Model";
+import {createRoot} from "./Model";
 
 interface EdgeBundlingGraphProps {
   data: number[];
@@ -30,8 +30,8 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({data}) => {
     }
   }, [data]);
 
-  let bilinkedData = bilink(d3.hierarchy(toChartData(JSON.parse(graphData))));
-  console.log(bilinkedData)
+  let root = createRoot(954 / 2, JSON.parse(graphData));
+  console.log(root)
 
   return <svg ref={svgRef} width={dimension} height={dimension}/>;
 }

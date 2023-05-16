@@ -1,4 +1,5 @@
-import {HierarchyNode} from "d3";
+import * as d3 from "d3";
+import {ClusterLayout, HierarchyNode, HierarchyPointNode} from "d3";
 
 export interface GraphData {
   nodes: Node[];
@@ -17,7 +18,7 @@ interface Link {
   value: number;
 }
 
-export function bilink(root: any): any {
+function bilink(root: any): any {
   const map: Map<string, HierarchyNode<any>> = new Map(root.leaves().map((d: any) => [d.data.id, d]));
   for (const d of root.leaves()) {
     d.dependents = [];
@@ -33,7 +34,7 @@ export function bilink(root: any): any {
   return root;
 }
 
-export function toChartData(graphData: GraphData): any {
+function toChartData(graphData: GraphData): any {
   const {nodes, links} = graphData;
   const groupById = new Map();
   const nodeById = new Map(nodes.map(node => [node.id, node]));
@@ -54,5 +55,14 @@ export function toChartData(graphData: GraphData): any {
     }
   }
 
-  return { children: [...groupById.values()] }
+  return {children: [...groupById.values()]};
+}
+
+function tree(radius: number): ClusterLayout<any> {
+  return d3.cluster()
+    .size([2 * Math.PI, radius - 100]);
+}
+
+export function createRoot(radius: number, graphData: GraphData): HierarchyPointNode<any> {
+  return tree(radius)(bilink(d3.hierarchy(toChartData(graphData))));
 }

@@ -7,7 +7,9 @@ import {graphData} from "./SampleData";
 function App() {
   return (
     <div className="App">
-      <EdgeBundlingGraph data={JSON.parse(graphData)}/>
+      <div className="viz">
+        <EdgeBundlingGraph data={JSON.parse(graphData)}/>
+      </div>
       <VocabularyPanel/>
     </div>
   );

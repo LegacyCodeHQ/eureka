@@ -1,4 +1,13 @@
 .App {
+    display: flex;
+    flex-direction: row;
+}
+
+.viz {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
 }
 
 .debug-element {

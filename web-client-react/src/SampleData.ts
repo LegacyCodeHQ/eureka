@@ -1,4 +1,4 @@
-export let graphData = `
+export let graphDataJson = `
 {
   "nodes": [{
     "id": "SegmentedProgressBar progressBar",

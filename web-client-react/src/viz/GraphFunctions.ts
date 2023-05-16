@@ -1,6 +1,5 @@
 import * as d3 from "d3";
 import {ClusterLayout, HierarchyNode, HierarchyPointNode} from "d3";
-import {graphData} from "../SampleData";
 import {GraphData} from "./model/GraphData";
 
 function bilink(root: any): any {
@@ -59,5 +58,5 @@ export const line = d3.lineRadial()
   .angle((d: any) => d.x);
 
 export function parseGraphData(graphDataJson: string): GraphData {
-  return JSON.parse(graphData);
+  return JSON.parse(graphDataJson);
 }

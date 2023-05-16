@@ -2,19 +2,21 @@ import React from 'react';
 import './App.css';
 import VocabularyPanel from "./vocabulary/VocabularyPanel";
 import EdgeBundlingGraph from "./viz/EdgeBundlingGraph";
-import {graphData} from "./SampleData";
-import {parseGraphData} from "./viz/GraphFunctions";
+import GraphDataSource from "./source/GraphDataSource";
+import {GraphData} from "./viz/model/GraphData";
 
 function App() {
-  let data = parseGraphData(graphData);
-
   return (
-    <div className="App">
-      <div className="viz">
-        <EdgeBundlingGraph data={data}/>
-      </div>
-      <VocabularyPanel data={data}/>
-    </div>
+    <GraphDataSource>
+      {(data: GraphData) =>
+        <div className="App">
+          <div className="viz">
+            <EdgeBundlingGraph data={data}/>
+          </div>
+          <VocabularyPanel data={data}/>
+        </div>
+      }
+    </GraphDataSource>
   );
 }
 

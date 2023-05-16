@@ -30,7 +30,7 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({data}) => {
     }
   }, [data]);
 
-  let root = createRoot(954 / 2, JSON.parse(graphData));
+  let root = createRoot(JSON.parse(graphData), 954 / 2);
   console.log(root)
 
   return <svg ref={svgRef} width={dimension} height={dimension}/>;

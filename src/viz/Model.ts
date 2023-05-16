@@ -63,6 +63,6 @@ function tree(radius: number): ClusterLayout<any> {
     .size([2 * Math.PI, radius - 100]);
 }
 
-export function createRoot(radius: number, graphData: GraphData): HierarchyPointNode<any> {
+export function createRoot(graphData: GraphData, radius: number): HierarchyPointNode<any> {
   return tree(radius)(bilink(d3.hierarchy(toChartData(graphData))));
 }

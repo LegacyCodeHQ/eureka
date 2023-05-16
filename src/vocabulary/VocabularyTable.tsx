@@ -2,19 +2,19 @@ import {TokenStat} from "./model/TokenStat";
 import TokenStatRow from "./TokenStatRow";
 import React, {useState} from "react";
 import "./VocabularyTable.css"
-import {Token} from "./model/Token";
 
 interface TokenStatsTableProps {
   kind: string;
-  tokenCountMap: any;
+  tokenStats: TokenStat[];
   onStatRowClick: (tokenStat: TokenStat | null) => void;
 }
 
-const VocabularyTable: React.FC<TokenStatsTableProps> = ({kind, tokenCountMap, onStatRowClick}) => {
+const VocabularyTable: React.FC<TokenStatsTableProps> = ({kind, tokenStats, onStatRowClick}) => {
   const [selectedTokenStat, setSelectedTokenStat] = useState<TokenStat | null>(null);
 
   const handleStatRowClick = (tokenStat: TokenStat) => {
-    let deselect = selectedTokenStat === tokenStat;
+    let deselect = tokenStat.isEqual(selectedTokenStat)
+
     if (deselect) {
       setSelectedTokenStat(null);
       onStatRowClick(null);
@@ -38,12 +38,12 @@ const VocabularyTable: React.FC<TokenStatsTableProps> = ({kind, tokenCountMap, o
       <div className="table-body-container">
         <table>
           <tbody>
-          {Object.keys(tokenCountMap).map((token, index) =>
+          {tokenStats.map((tokenStat, index) =>
             <TokenStatRow
-              key={token}
+              key={tokenStat.token.name}
               serial={index + 1}
-              tokenStat={new TokenStat(new Token(token), tokenCountMap[token])}
-              isSelected={selectedTokenStat?.token.name === token}
+              tokenStat={tokenStat}
+              isSelected={tokenStat.isEqual(selectedTokenStat)}
               onRowClick={handleStatRowClick}/>
           )}
           </tbody>

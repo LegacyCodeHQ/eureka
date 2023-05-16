@@ -4,4 +4,8 @@ export class Token {
   constructor(name: string) {
     this.name = name;
   }
+
+  isEqual(other: Token | null) {
+    return other != null && (this === other || this.name === other.name);
+  }
 }

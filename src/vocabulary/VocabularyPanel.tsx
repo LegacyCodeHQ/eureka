@@ -4,6 +4,7 @@ import {TokenStat} from "./model/TokenStat";
 import "./VocabularyPanel.css"
 import {GraphData} from "../viz/Model";
 import {vocabulary, vocabularyStats} from "./model/Vocabulary";
+import {Token} from "./model/Token";
 
 interface VocabularyPanelProps {
   data: GraphData;
@@ -13,6 +14,8 @@ const VocabularyPanel: React.FC<VocabularyPanelProps> = ({data}) => {
   const [activeTab, setActiveTab] = useState("types");
   const [selectedTokenStat, setSelectedTokenStat] = useState<TokenStat | null>(null);
   let {types, words} = vocabularyStats(vocabulary(data));
+  let typeTokenStats = Object.keys(types).map((name: string) => new TokenStat(new Token(name), types[name]));
+  let wordTokenStats = Object.keys(words).map((name: string) => new TokenStat(new Token(name), words[name]));
 
   const handleStatRowClick = (tokenStat: TokenStat | null) => {
     setSelectedTokenStat(tokenStat);
@@ -30,20 +33,20 @@ const VocabularyPanel: React.FC<VocabularyPanelProps> = ({data}) => {
     <div className="vocabulary-panel">
       <div className="tab-bar">
         <button className={getTabClass("types")} onClick={() => setActiveTab("types")}>
-          Types ({Object.keys(types).length})
+          Types ({typeTokenStats.length})
         </button>
         <button className={getTabClass("words")} onClick={() => setActiveTab("words")}>
-          Words ({Object.keys(words).length})
+          Words ({wordTokenStats.length})
         </button>
       </div>
       <div>
         {
           activeTab === "types" &&
-            <VocabularyTable kind="Type" tokenCountMap={types} onStatRowClick={handleStatRowClick}/>
+            <VocabularyTable kind="Type" tokenStats={typeTokenStats} onStatRowClick={handleStatRowClick}/>
         }
         {
           activeTab === "words" &&
-            <VocabularyTable kind="Word" tokenCountMap={words} onStatRowClick={handleStatRowClick}/>
+            <VocabularyTable kind="Word" tokenStats={wordTokenStats} onStatRowClick={handleStatRowClick}/>
         }
       </div>
       {selectedTokenStat &&

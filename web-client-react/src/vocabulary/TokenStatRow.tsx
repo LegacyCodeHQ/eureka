@@ -1,5 +1,6 @@
 import React from 'react';
 import { TokenStat } from './model/TokenStat';
+import './TokenStatRow.css';
 
 interface TokenStatRowProps {
   serial: number;

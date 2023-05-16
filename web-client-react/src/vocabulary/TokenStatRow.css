@@ -1,0 +1,14 @@
+.token-stat-row {
+    user-select: none;
+    color: rgb(198, 198, 198);
+    background-color: rgb(57, 57, 57);
+}
+
+.token-stat-row.selected {
+    background-color: rgb(50, 50, 50);
+}
+
+.token-stat-row:hover {
+    color: rgb(244, 244, 244);
+    background-color: rgb(71, 71, 71);
+}

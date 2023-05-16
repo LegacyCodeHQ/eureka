@@ -2,14 +2,15 @@ import {TokenStat} from "./model/TokenStat";
 import TokenStatRow from "./TokenStatRow";
 import React, {useState} from "react";
 import "./VocabularyTable.css"
+import {Token} from "./model/Token";
 
 interface TokenStatsTableProps {
   kind: string;
-  tokenStats: TokenStat[];
+  tokenCountMap: any;
   onStatRowClick: (tokenStat: TokenStat | null) => void;
 }
 
-const VocabularyTable: React.FC<TokenStatsTableProps> = ({kind, tokenStats, onStatRowClick}) => {
+const VocabularyTable: React.FC<TokenStatsTableProps> = ({kind, tokenCountMap, onStatRowClick}) => {
   const [selectedTokenStat, setSelectedTokenStat] = useState<TokenStat | null>(null);
 
   const handleStatRowClick = (tokenStat: TokenStat) => {
@@ -37,12 +38,12 @@ const VocabularyTable: React.FC<TokenStatsTableProps> = ({kind, tokenStats, onSt
       <div className="table-body-container">
         <table>
           <tbody>
-          {tokenStats.map((tokenStat, index) =>
+          {Object.keys(tokenCountMap).map((token, index) =>
             <TokenStatRow
-              key={tokenStat.token.name}
+              key={token}
               serial={index + 1}
-              tokenStat={tokenStat}
-              isSelected={selectedTokenStat === tokenStat}
+              tokenStat={new TokenStat(new Token(token), tokenCountMap[token])}
+              isSelected={selectedTokenStat?.token.name === token}
               onRowClick={handleStatRowClick}/>
           )}
           </tbody>

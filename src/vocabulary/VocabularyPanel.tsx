@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import VocabularyTable from "./VocabularyTable";
 import {TokenStat} from "./model/TokenStat";
-import {typeTokenStats, wordTokenStats} from "../SampleData";
 import "./VocabularyPanel.css"
 import {GraphData} from "../viz/Model";
+import {vocabulary, vocabularyStats} from "./model/Vocabulary";
 
 interface VocabularyPanelProps {
   data: GraphData;
@@ -12,6 +12,7 @@ interface VocabularyPanelProps {
 const VocabularyPanel: React.FC<VocabularyPanelProps> = ({data}) => {
   const [activeTab, setActiveTab] = useState("types");
   const [selectedTokenStat, setSelectedTokenStat] = useState<TokenStat | null>(null);
+  let {types, words} = vocabularyStats(vocabulary(data));
 
   const handleStatRowClick = (tokenStat: TokenStat | null) => {
     setSelectedTokenStat(tokenStat);
@@ -29,20 +30,20 @@ const VocabularyPanel: React.FC<VocabularyPanelProps> = ({data}) => {
     <div className="vocabulary-panel">
       <div className="tab-bar">
         <button className={getTabClass("types")} onClick={() => setActiveTab("types")}>
-          Types ({typeTokenStats.length})
+          Types ({Object.keys(types).length})
         </button>
         <button className={getTabClass("words")} onClick={() => setActiveTab("words")}>
-          Words ({wordTokenStats.length})
+          Words ({Object.keys(words).length})
         </button>
       </div>
       <div>
         {
           activeTab === "types" &&
-            <VocabularyTable kind="Type" tokenStats={typeTokenStats} onStatRowClick={handleStatRowClick}/>
+            <VocabularyTable kind="Type" tokenCountMap={types} onStatRowClick={handleStatRowClick}/>
         }
         {
           activeTab === "words" &&
-            <VocabularyTable kind="Word" tokenStats={wordTokenStats} onStatRowClick={handleStatRowClick}/>
+            <VocabularyTable kind="Word" tokenCountMap={words} onStatRowClick={handleStatRowClick}/>
         }
       </div>
       {selectedTokenStat &&

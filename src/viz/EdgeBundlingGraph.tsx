@@ -1,6 +1,7 @@
 import React, {useEffect, useRef} from "react";
 import * as d3 from "d3";
-import {createRoot, GraphData, line} from "./Model";
+import {createRoot, line} from "./GraphFunctions";
+import {GraphData} from "./model/GraphData";
 
 interface EdgeBundlingGraphProps {
   data: GraphData;

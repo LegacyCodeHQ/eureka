@@ -2,9 +2,9 @@ import React, {useState} from "react";
 import VocabularyTable from "./VocabularyTable";
 import {TokenStat} from "./model/TokenStat";
 import "./VocabularyPanel.css"
-import {GraphData} from "../viz/Model";
 import {vocabulary, vocabularyStats} from "./model/Vocabulary";
 import {Token} from "./model/Token";
+import {GraphData} from "../viz/model/GraphData";
 
 interface VocabularyPanelProps {
   data: GraphData;

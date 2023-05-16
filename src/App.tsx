@@ -3,7 +3,7 @@ import './App.css';
 import VocabularyPanel from "./vocabulary/VocabularyPanel";
 import EdgeBundlingGraph from "./viz/EdgeBundlingGraph";
 import {graphData} from "./SampleData";
-import {parseGraphData} from "./viz/Model";
+import {parseGraphData} from "./viz/GraphFunctions";
 
 function App() {
   let data = parseGraphData(graphData);

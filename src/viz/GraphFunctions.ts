@@ -1,23 +1,7 @@
 import * as d3 from "d3";
 import {ClusterLayout, HierarchyNode, HierarchyPointNode} from "d3";
 import {graphData} from "../SampleData";
-
-export interface GraphData {
-  nodes: Node[];
-  links: Link[];
-}
-
-export interface Node {
-  id: string;
-  group: number;
-  targets: any[]; /* incoming data does not have this field, the `toChartData` function sets this value. */
-}
-
-interface Link {
-  source: String;
-  target: String;
-  value: number;
-}
+import {GraphData} from "./model/GraphData";
 
 function bilink(root: any): any {
   const map: Map<string, HierarchyNode<any>> = new Map(root.leaves().map((d: any) => [d.data.id, d]));

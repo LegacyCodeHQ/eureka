@@ -1,4 +1,5 @@
-import {GraphData, Node} from "../../viz/Model";
+import {GraphData} from "../../viz/model/GraphData";
+import {Node} from "../../viz/model/Node";
 
 export function tokenize(signature: string) {
   function tokenizeField(fieldSignature: string) {

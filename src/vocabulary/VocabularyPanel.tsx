@@ -3,8 +3,13 @@ import VocabularyTable from "./VocabularyTable";
 import {TokenStat} from "./model/TokenStat";
 import {typeTokenStats, wordTokenStats} from "../SampleData";
 import "./VocabularyPanel.css"
+import {GraphData} from "../viz/Model";
 
-const VocabularyPanel = () => {
+interface VocabularyPanelProps {
+  data: GraphData;
+}
+
+const VocabularyPanel: React.FC<VocabularyPanelProps> = ({data}) => {
   const [activeTab, setActiveTab] = useState("types");
   const [selectedTokenStat, setSelectedTokenStat] = useState<TokenStat | null>(null);
 

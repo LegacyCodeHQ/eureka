@@ -13,7 +13,7 @@ function App() {
       <div className="viz">
         <EdgeBundlingGraph data={data}/>
       </div>
-      <VocabularyPanel/>
+      <VocabularyPanel data={data}/>
     </div>
   );
 }

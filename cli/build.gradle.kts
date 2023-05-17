@@ -121,10 +121,10 @@ tasks.register<DefaultTask>("promoteSnapshotVersion") {
   val currentVersion = CLI_VERSION
   val newVersion = currentVersion.removeSuffix("-SNAPSHOT")
 
-  val updatedBuildScript = File("cli/build.gradle.kts").readText().replace(currentVersion, newVersion)
-  File("cli/build.gradle.kts").writeText(updatedBuildScript)
-
   doLast {
+    val updatedBuildScript = File("cli/build.gradle.kts").readText().replace(currentVersion, newVersion)
+    File("cli/build.gradle.kts").writeText(updatedBuildScript)
+
     println("Promoted version: $currentVersion -> $newVersion")
   }
 }

@@ -4,6 +4,7 @@ import VocabularyPanel from './vocabulary/VocabularyPanel';
 import EdgeBundlingGraph from './viz/EdgeBundlingGraph';
 import GraphDataSource from './source/GraphDataSource';
 import { GraphData } from './viz/model/GraphData';
+import SimpleJvmClassName from './SimpleJvmClassName';
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
         <div>
           <div className="toolbar">
             <span className="product-name">TWD</span>
-            {data && <span className="class-name">{data.meta.classInfo.name}</span>}
+            {data && <SimpleJvmClassName classInfo={data.meta.classInfo} />}
           </div>
           <div className="App">
             <div className="viz">{data && <EdgeBundlingGraph data={data} />}</div>

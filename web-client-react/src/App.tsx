@@ -4,7 +4,7 @@ import VocabularyPanel from './vocabulary/VocabularyPanel';
 import EdgeBundlingGraph from './viz/EdgeBundlingGraph';
 import GraphDataSource from './source/GraphDataSource';
 import { GraphData } from './viz/model/GraphData';
-import SimpleJvmClassName from './SimpleJvmClassName';
+import SimpleJvmClassName from './toolbar/SimpleJvmClassName';
 import { getSimpleClassName } from './types/Functions';
 import { ClassInfo } from './viz/model/ClassInfo';
 

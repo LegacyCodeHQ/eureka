@@ -69,7 +69,7 @@ class TumbleweedServer {
         openWsConnectionForStructureUpdates(structureUpdatesQueue, source)
       }
       static("/static") {
-        staticBasePackage = "files"
+        staticBasePackage = "static"
         resources("")
       }
     }

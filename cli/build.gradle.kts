@@ -129,10 +129,18 @@ tasks.register<DefaultTask>("promoteSnapshotVersion") {
   }
 }
 
-tasks.register<Exec>("prepareRelease") {
+tasks.register<DefaultTask>("prepareRelease") {
   description = "Promotes snapshot version, includes latest web client and prepares CLI for release."
 
   dependsOn(":web-client-react:copyWebClientToServer", "promoteSnapshotVersion")
 
-  commandLine("git", "commit", "-am", "build: prepare release")
+  doLast {
+    exec {
+      commandLine("git", "add", "-A")
+    }
+
+    exec {
+      commandLine("git", "commit", "-am", "build: prepare release")
+    }
+  }
 }

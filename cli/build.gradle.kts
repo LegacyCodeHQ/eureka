@@ -144,3 +144,13 @@ tasks.register<DefaultTask>("prepareRelease") {
     }
   }
 }
+
+tasks.register<DefaultTask>("release") {
+  description = "Publishes the latest TWD version on GitHub and Homebrew."
+  dependsOn("jreleaserFullRelease", "uploadRelease")
+}
+
+tasks.register<DefaultTask>("uploadRelease") {
+  mustRunAfter("jreleaserFullRelease")
+  dependsOn("jreleaserUpload")
+}

@@ -114,3 +114,17 @@ jreleaser {
     }
   }
 }
+
+tasks.register<DefaultTask>("promoteSnapshotVersion") {
+  description = "Promotes the SNAPSHOT version to production."
+
+  val currentVersion = CLI_VERSION
+  val newVersion = currentVersion.removeSuffix("-SNAPSHOT")
+
+  val updatedBuildScript = File("cli/build.gradle.kts").readText().replace(currentVersion, newVersion)
+  File("cli/build.gradle.kts").writeText(updatedBuildScript)
+
+  doLast {
+    println("Promoted version: $currentVersion -> $newVersion")
+  }
+}

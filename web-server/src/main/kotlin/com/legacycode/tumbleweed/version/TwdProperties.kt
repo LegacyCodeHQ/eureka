@@ -1,4 +1,4 @@
-package com.legacycode.tumbleweed.cli
+package com.legacycode.tumbleweed.version
 
 import java.util.Properties
 

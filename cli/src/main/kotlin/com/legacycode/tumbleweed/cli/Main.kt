@@ -8,6 +8,7 @@ import com.legacycode.tumbleweed.cli.dev.json.JsonCommand
 import com.legacycode.tumbleweed.cli.dev.view.ViewCommand
 import com.legacycode.tumbleweed.cli.ownership.OwnershipCommand
 import com.legacycode.tumbleweed.cli.watch.WatchCommand
+import com.legacycode.tumbleweed.version.TwdProperties
 import kotlin.system.exitProcess
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

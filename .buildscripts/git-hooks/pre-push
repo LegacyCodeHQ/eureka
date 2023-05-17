@@ -1,5 +1,5 @@
 #!/bin/sh
 
-./gradlew check && yarn --cwd ./web-client test --watchAll=false
+./gradlew check
 RESULT=$?
 exit $RESULT

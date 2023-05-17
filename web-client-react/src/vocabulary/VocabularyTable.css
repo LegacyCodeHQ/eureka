@@ -20,20 +20,6 @@ th {
     border-bottom: 2px solid rgb(71, 71, 71);
 }
 
-th.column-serial {
-    padding-left: 16px;
-    padding-right: 16px;
-}
-
-th.column-name {
-    padding-right: 16px;
-}
-
-th.column-count {
-    padding-right: 16px;
-    text-align: right;
-}
-
 .table-container {
     display: flex;
     flex-direction: column;
@@ -44,6 +30,12 @@ th.column-count {
 .table-body-container {
     flex: 1;
     overflow: auto;
+}
+
+.row-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .column-serial {
@@ -60,7 +52,7 @@ th.column-count {
 }
 
 .number {
-    text-align: end;
+    margin-left: auto;
 }
 
 .ellipsis {

@@ -29,9 +29,13 @@ const VocabularyTable: React.FC<TokenStatsTableProps> = ({ kind, tokenStats, onS
       <table>
         <thead>
           <tr>
-            <th className="column-serial">#</th>
-            <th className="column-name">{kind}</th>
-            <th className="column-count">Count</th>
+            <th>
+              <div className="row-content">
+                <span className="column-serial">#</span>
+                <span className="column-name">{kind}</span>
+                <span className="column-count number">Count</span>
+              </div>
+            </th>
           </tr>
         </thead>
       </table>

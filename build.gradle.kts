@@ -6,9 +6,10 @@ buildscript {
 }
 
 plugins {
-  kotlin("jvm") version "1.7.21" apply false
-  id("com.github.ben-manes.versions") version "0.42.0" apply false
+  kotlin("jvm") version ("1.7.21") apply false
+  id("com.github.ben-manes.versions") version ("0.42.0") apply false
   id("io.gitlab.arturbosch.detekt") version ("1.21.0") apply false
+  id("com.github.node-gradle.node") version ("5.0.0") apply false
 }
 
 allprojects {
@@ -20,11 +21,10 @@ allprojects {
 }
 
 subprojects {
-  apply(plugin = "com.github.ben-manes.versions")
-  if (this.name == "web-client") {
+  if (this.name == "web-client-react") {
     return@subprojects
   }
-
+  apply(plugin = "com.github.ben-manes.versions")
   apply(plugin = "org.jetbrains.kotlin.jvm")
   apply(plugin = "jacoco")
 

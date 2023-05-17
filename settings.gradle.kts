@@ -7,4 +7,5 @@ include(
   ":filesystem",
   ":vcs",
   ":bytecode:testing",
+  ":web-client-react",
 )

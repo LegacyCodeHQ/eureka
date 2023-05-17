@@ -1,6 +1,7 @@
 package com.legacycode.tumbleweed.web
 
 import com.legacycode.tumbleweed.filesystem.FileWatcher
+import com.legacycode.tumbleweed.version.TwdProperties
 import io.ktor.http.ContentType
 import io.ktor.server.application.Application
 import io.ktor.server.application.ApplicationCall
@@ -12,6 +13,7 @@ import io.ktor.server.http.content.resources
 import io.ktor.server.http.content.static
 import io.ktor.server.http.content.staticBasePackage
 import io.ktor.server.netty.Netty
+import io.ktor.server.response.respond
 import io.ktor.server.response.respondText
 import io.ktor.server.routing.get
 import io.ktor.server.routing.routing
@@ -65,6 +67,7 @@ class TumbleweedServer {
   private fun Application.setupRoutes(source: Source, port: Int) {
     routing {
       get("/") { serveIndexPage(port) }
+      get("/version") { serveVersionText() }
       webSocket("/structure-updates") {
         openWsConnectionForStructureUpdates(structureUpdatesQueue, source)
       }
@@ -73,6 +76,10 @@ class TumbleweedServer {
         resources("")
       }
     }
+  }
+
+  private suspend fun PipelineContext<Unit, ApplicationCall>.serveVersionText() {
+    call.respond(TwdProperties.get().version.name)
   }
 
   private suspend fun PipelineContext<Unit, ApplicationCall>.serveIndexPage(port: Int) {

@@ -7,20 +7,20 @@ import { GraphData } from './viz/model/GraphData';
 
 function App() {
   return (
-    <div>
-      <div className="toolbar">
-        <span className="product-name">TWD</span>
-        <span className="class-name">StoryViewerFragment</span>
-      </div>
-      <GraphDataSource>
-        {(data: GraphData | null) => (
+    <GraphDataSource>
+      {(data: GraphData | null) => (
+        <div>
+          <div className="toolbar">
+            <span className="product-name">TWD</span>
+            {data && <span className="class-name">{data.meta.classInfo.name}</span>}
+          </div>
           <div className="App">
             <div className="viz">{data && <EdgeBundlingGraph data={data} />}</div>
             {data && <VocabularyPanel data={data} />}
           </div>
-        )}
-      </GraphDataSource>
-    </div>
+        </div>
+      )}
+    </GraphDataSource>
   );
 }
 

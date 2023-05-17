@@ -2,7 +2,7 @@ package com.legacycode.tumbleweed.cli
 
 import java.util.Properties
 
-class TwdProperties(private val properties: Properties) {
+class TwdProperties private constructor(private val properties: Properties) {
   companion object {
     private const val PROPERTIES_FILENAME = "version.properties"
     private const val KEY_VERSION = "version"

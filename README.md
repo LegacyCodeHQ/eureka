@@ -1,4 +1,4 @@
-# Tumbleweed (early preview) ![CI](https://github.com/legacycodehq/tumbleweed/actions/workflows/jvm-tests.yml/badge.svg) ![CI](https://github.com/legacycodehq/tumbleweed/actions/workflows/js-tests.yml/badge.svg)
+# Tumbleweed (early preview) ![CI](https://github.com/legacycodehq/tumbleweed/actions/workflows/jvm-tests.yml/badge.svg) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/legacycodehq/tumbleweed)
 
 Effortlessly understand and analyze Kotlin/Java classes in your codebase 😎
 

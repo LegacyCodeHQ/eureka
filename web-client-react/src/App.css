@@ -12,6 +12,7 @@
 .product-name {
     font-weight: bold;
     padding-right: 8px;
+    user-select: none;
 }
 
 .App {

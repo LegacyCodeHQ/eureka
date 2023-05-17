@@ -7,6 +7,7 @@
     padding-left: 16px;
     padding-right: 16px;
     border-bottom: 1px solid #535353;
+    justify-content: space-between;
 }
 
 .product-name {

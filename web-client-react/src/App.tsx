@@ -7,6 +7,7 @@ import { GraphData } from './viz/model/GraphData';
 import SimpleJvmClassName from './toolbar/SimpleJvmClassName';
 import { getSimpleClassName } from './types/Functions';
 import { ClassInfo } from './viz/model/ClassInfo';
+import AppVersion from './toolbar/AppVersion';
 
 function App() {
   function makeTitle(classInfo: ClassInfo | undefined): string {
@@ -29,6 +30,7 @@ function App() {
             <div className="toolbar">
               <span className="product-name">TWD</span>
               {data && <SimpleJvmClassName classInfo={data.meta.classInfo} />}
+              <AppVersion />
             </div>
             <div className="App">
               <div className="viz">{data && <EdgeBundlingGraph data={data} />}</div>

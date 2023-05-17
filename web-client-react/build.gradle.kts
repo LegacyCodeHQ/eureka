@@ -7,7 +7,7 @@ tasks.register<NpmTask>("runBuild") {
   args.set(listOf("run", "build"))
 }
 
-tasks.register<Copy>("copyWebAppToServer") {
+tasks.register<Copy>("copyWebClientToServer") {
   description = "Builds and copies the web client to the web-server module."
   dependsOn("runBuild", "copyCss", "copyJs", "copyIndexHtml")
 }

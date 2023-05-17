@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as d3 from 'd3';
 import { ClusterLayout, HierarchyNode, HierarchyPointNode } from 'd3';
 import { GraphData } from './model/GraphData';
@@ -21,19 +22,19 @@ function bilink(root: any): any {
 function toChartData(graphData: GraphData): any {
   const { nodes, links } = graphData;
   const groupById = new Map();
-  const nodeById = new Map(nodes.map(node => [node.id, node]));
+  const nodeById = new Map(nodes.map((node) => [node.id, node]));
 
   for (const node of nodes) {
     let group = groupById.get(node.group);
     if (!group) {
-      groupById.set(node.group, group = { id: node.group, children: [] });
+      groupById.set(node.group, (group = { id: node.group, children: [] }));
     }
     group.children.push(node);
     node.targets = [];
   }
 
   for (const { source: sourceId, target: targetId } of links) {
-    let sourceNode = nodeById.get(sourceId.toString());
+    const sourceNode = nodeById.get(sourceId.toString());
     if (sourceNode) {
       sourceNode.targets.push(targetId);
     }
@@ -43,16 +44,17 @@ function toChartData(graphData: GraphData): any {
 }
 
 function tree(radius: number): ClusterLayout<any> {
-  return d3.cluster()
-    .size([2 * Math.PI, radius - 100]);
+  return d3.cluster().size([2 * Math.PI, radius - 100]);
 }
 
 export function createRoot(graphData: GraphData, radius: number): HierarchyPointNode<any> {
-  return tree(radius)(bilink(d3.hierarchy(toChartData(graphData))))
-    .sort((a, b) => d3.ascending(a.height, b.height) || d3.ascending(a.data.id, b.data.id));
+  return tree(radius)(bilink(d3.hierarchy(toChartData(graphData)))).sort(
+    (a, b) => d3.ascending(a.height, b.height) || d3.ascending(a.data.id, b.data.id),
+  );
 }
 
-export const line = d3.lineRadial()
+export const line = d3
+  .lineRadial()
   .curve(d3.curveBundle.beta(0.85))
   .radius((d: any) => d.y)
   .angle((d: any) => d.x);

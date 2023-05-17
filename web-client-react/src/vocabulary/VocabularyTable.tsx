@@ -13,7 +13,7 @@ const VocabularyTable: React.FC<TokenStatsTableProps> = ({ kind, tokenStats, onS
   const [selectedTokenStat, setSelectedTokenStat] = useState<TokenStat | null>(null);
 
   const handleStatRowClick = (tokenStat: TokenStat) => {
-    let deselect = tokenStat.isEqual(selectedTokenStat);
+    const deselect = tokenStat.isEqual(selectedTokenStat);
 
     if (deselect) {
       setSelectedTokenStat(null);
@@ -25,27 +25,28 @@ const VocabularyTable: React.FC<TokenStatsTableProps> = ({ kind, tokenStats, onS
   };
 
   return (
-    <div className='table-container'>
+    <div className="table-container">
       <table>
         <thead>
-        <tr>
-          <th className='column-serial'>#</th>
-          <th className='column-name'>{kind}</th>
-          <th className='column-count'>Count</th>
-        </tr>
+          <tr>
+            <th className="column-serial">#</th>
+            <th className="column-name">{kind}</th>
+            <th className="column-count">Count</th>
+          </tr>
         </thead>
       </table>
-      <div className='table-body-container'>
+      <div className="table-body-container">
         <table>
           <tbody>
-          {tokenStats.map((tokenStat, index) =>
-            <TokenStatRow
-              key={tokenStat.token.name}
-              serial={index + 1}
-              tokenStat={tokenStat}
-              isSelected={tokenStat.isEqual(selectedTokenStat)}
-              onRowClick={handleStatRowClick} />,
-          )}
+            {tokenStats.map((tokenStat, index) => (
+              <TokenStatRow
+                key={tokenStat.token.name}
+                serial={index + 1}
+                tokenStat={tokenStat}
+                isSelected={tokenStat.isEqual(selectedTokenStat)}
+                onRowClick={handleStatRowClick}
+              />
+            ))}
           </tbody>
         </table>
       </div>

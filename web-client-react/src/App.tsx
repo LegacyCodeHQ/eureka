@@ -8,18 +8,12 @@ import { GraphData } from './viz/model/GraphData';
 function App() {
   return (
     <GraphDataSource>
-      {(data: GraphData | null) =>
-        <div className='App'>
-          <div className='viz'>
-            {data &&
-              <EdgeBundlingGraph data={data} />
-            }
-          </div>
-          {data &&
-            <VocabularyPanel data={data} />
-          }
+      {(data: GraphData | null) => (
+        <div className="App">
+          <div className="viz">{data && <EdgeBundlingGraph data={data} />}</div>
+          {data && <VocabularyPanel data={data} />}
         </div>
-      }
+      )}
     </GraphDataSource>
   );
 }

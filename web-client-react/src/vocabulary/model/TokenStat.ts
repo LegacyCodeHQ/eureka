@@ -10,7 +10,6 @@ export class TokenStat {
   }
 
   isEqual(other: TokenStat | null): boolean {
-    return other != null &&
-      (this === other || (this.token.isEqual(other.token) && this.count === other.count));
+    return other != null && (this === other || (this.token.isEqual(other.token) && this.count === other.count));
   }
 }

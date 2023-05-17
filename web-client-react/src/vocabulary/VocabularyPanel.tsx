@@ -13,9 +13,9 @@ interface VocabularyPanelProps {
 const VocabularyPanel: React.FC<VocabularyPanelProps> = ({ data }) => {
   const [activeTab, setActiveTab] = useState('types');
   const [selectedTokenStat, setSelectedTokenStat] = useState<TokenStat | null>(null);
-  let { types, words } = vocabularyStats(vocabulary(data));
-  let typeTokenStats = Object.keys(types).map((name: string) => new TokenStat(new Token(name), types[name]));
-  let wordTokenStats = Object.keys(words).map((name: string) => new TokenStat(new Token(name), words[name]));
+  const { types, words } = vocabularyStats(vocabulary(data));
+  const typeTokenStats = Object.keys(types).map((name: string) => new TokenStat(new Token(name), types[name]));
+  const wordTokenStats = Object.keys(words).map((name: string) => new TokenStat(new Token(name), words[name]));
 
   const handleStatRowClick = (tokenStat: TokenStat | null) => {
     setSelectedTokenStat(tokenStat);
@@ -30,8 +30,8 @@ const VocabularyPanel: React.FC<VocabularyPanelProps> = ({ data }) => {
   }
 
   return (
-    <div className='vocabulary-panel'>
-      <div className='tab-bar'>
+    <div className="vocabulary-panel">
+      <div className="tab-bar">
         <button className={getTabClass('types')} onClick={() => setActiveTab('types')}>
           Types ({typeTokenStats.length})
         </button>
@@ -40,20 +40,22 @@ const VocabularyPanel: React.FC<VocabularyPanelProps> = ({ data }) => {
         </button>
       </div>
       <div>
-        {
-          activeTab === 'types' &&
-          <VocabularyTable kind='Type' tokenStats={typeTokenStats} onStatRowClick={handleStatRowClick} />
-        }
-        {
-          activeTab === 'words' &&
-          <VocabularyTable kind='Word' tokenStats={wordTokenStats} onStatRowClick={handleStatRowClick} />
-        }
+        {activeTab === 'types' && (
+          <VocabularyTable kind="Type" tokenStats={typeTokenStats} onStatRowClick={handleStatRowClick} />
+        )}
+        {activeTab === 'words' && (
+          <VocabularyTable kind="Word" tokenStats={wordTokenStats} onStatRowClick={handleStatRowClick} />
+        )}
       </div>
-      {selectedTokenStat &&
-        <p className='debug-element'>
-          <span><b>Selected</b><br />{selectedTokenStat.token.name}: {selectedTokenStat.count}</span>
+      {selectedTokenStat && (
+        <p className="debug-element">
+          <span>
+            <b>Selected</b>
+            <br />
+            {selectedTokenStat.token.name}: {selectedTokenStat.count}
+          </span>
         </p>
-      }
+      )}
     </div>
   );
 };

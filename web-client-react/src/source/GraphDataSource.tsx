@@ -7,35 +7,46 @@ interface GraphDataSourceProps {
   children: (data: GraphData | null) => React.ReactElement | null;
 }
 
-const GraphDataSource: React.FC<GraphDataSourceProps> = ({ children }) => {
+const GraphDataSource: React.FC<GraphDataSourceProps> = (props) => {
+  if (process.env.NODE_ENV === 'development') {
+    return <GraphDataSourceDev {...props} />;
+  }
+  return <GraphDataSourceProd {...props} />;
+};
+
+const GraphDataSourceDev: React.FC<GraphDataSourceProps> = ({ children }) => {
   const [graphData, setGraphData] = useState<GraphData | null>(null);
-  const wsUrl = 'ws://localhost:7070/structure-updates';
-  let webSocket: WebSocket | null = null;
 
   useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      setGraphData(parseGraphData(graphDataJson));
-    } else {
-      const ws = new WebSocket(wsUrl);
-      webSocket = ws;
+    setGraphData(parseGraphData(graphDataJson));
+  }, []);
 
-      ws.onopen = () => {
-        console.log('Connected to WebSocket server');
-      };
+  return children(graphData) || null;
+};
 
-      ws.onmessage = (event) => {
-        console.log(event.data);
-        setGraphData(parseGraphData(event.data));
-      };
+const GraphDataSourceProd: React.FC<GraphDataSourceProps> = ({ children }) => {
+  const [graphData, setGraphData] = useState<GraphData | null>(null);
+  const wsUrl = 'ws://localhost:7070/structure-updates';
 
-      ws.onerror = (error) => {
-        console.log(`WebSocket error: ${error}`);
-      };
+  useEffect(() => {
+    const webSocket = new WebSocket(wsUrl);
 
-      ws.onclose = () => {
-        console.log('WebSocket connection closed');
-      };
-    }
+    webSocket.onopen = () => {
+      console.log('Connected to WebSocket server');
+    };
+
+    webSocket.onmessage = (event) => {
+      console.log(event.data);
+      setGraphData(parseGraphData(event.data));
+    };
+
+    webSocket.onerror = (error) => {
+      console.log(`WebSocket error: ${error}`);
+    };
+
+    webSocket.onclose = () => {
+      console.log('WebSocket connection closed');
+    };
 
     return () => {
       webSocket?.close();

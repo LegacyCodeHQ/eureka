@@ -129,8 +129,11 @@ tasks.register<DefaultTask>("promoteSnapshotVersion") {
   }
 }
 
+val publicReleaseTaskGroup = "Public release"
+
 tasks.register<DefaultTask>("prepareRelease") {
-  description = "Promotes snapshot version, includes latest web client and prepares CLI for release."
+  group = publicReleaseTaskGroup
+  description = "Promotes snapshot version, builds latest web client, and prepares tool for release."
 
   dependsOn(":web-client-react:copyWebClientToServer", "promoteSnapshotVersion")
 
@@ -146,7 +149,9 @@ tasks.register<DefaultTask>("prepareRelease") {
 }
 
 tasks.register<DefaultTask>("release") {
-  description = "Publishes the latest TWD version on GitHub and Homebrew."
+  group = publicReleaseTaskGroup
+  description = "Publishes the latest version of the tool on GitHub and Homebrew."
+
   dependsOn("jreleaserFullRelease", "uploadRelease")
 }
 

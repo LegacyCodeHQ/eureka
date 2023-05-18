@@ -45,15 +45,6 @@ const VocabularyPanel: React.FC<VocabularyPanelProps> = ({ data }) => {
       {activeTab === 'words' && (
         <VocabularyTable kind="Word" tokenStats={wordTokenStats} onStatRowClick={handleStatRowClick} />
       )}
-      {selectedTokenStat && (
-        <p className="debug-element">
-          <span>
-            <b>Selected</b>
-            <br />
-            {selectedTokenStat.token.name}: {selectedTokenStat.count}
-          </span>
-        </p>
-      )}
     </div>
   );
 };

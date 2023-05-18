@@ -2,7 +2,6 @@ package com.legacycode.tumbleweed.web
 
 import com.legacycode.tumbleweed.filesystem.FileWatcher
 import com.legacycode.tumbleweed.version.TwdProperties
-import io.ktor.http.ContentType
 import io.ktor.server.application.Application
 import io.ktor.server.application.ApplicationCall
 import io.ktor.server.application.call
@@ -83,7 +82,8 @@ class TumbleweedServer {
   }
 
   private suspend fun PipelineContext<Unit, ApplicationCall>.serveIndexPage(port: Int) {
-    call.respondText(getIndexHtml(port), ContentType.parse("text/html"))
+    val indexPage = IndexPage.withPort(port)
+    call.respondText(indexPage.content, indexPage.contentType)
   }
 
   private suspend fun DefaultWebSocketServerSession.openWsConnectionForStructureUpdates(
@@ -114,11 +114,5 @@ class TumbleweedServer {
         structureUpdatesQueue.add(source.graph.toJson())
       }
     }
-  }
-
-  private fun getIndexHtml(port: Int): String {
-    return TumbleweedServer::class.java.classLoader.getResourceAsStream("index.html")!!
-      .bufferedReader()
-      .use { it.readText().replace("localhost:7070", "localhost:$port") }
   }
 }

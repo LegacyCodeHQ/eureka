@@ -119,6 +119,6 @@ class TumbleweedServer {
   private fun getIndexHtml(port: Int): String {
     return TumbleweedServer::class.java.classLoader.getResourceAsStream("index.html")!!
       .bufferedReader()
-      .use { it.readText().replace("{port}", "$port") }
+      .use { it.readText().replace("localhost:7070", "localhost:$port") }
   }
 }

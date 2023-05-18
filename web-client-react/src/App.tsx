@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import VocabularyPanel from './vocabulary/VocabularyPanel';
 import EdgeBundlingGraph from './viz/EdgeBundlingGraph';
@@ -10,7 +10,14 @@ import Toolbar from './toolbar/Toolbar';
 import { Host, HostProvider } from './HostContext';
 
 function App() {
-  const host = new Host('localhost:7070');
+  const [host, setHost] = useState<Host | null>(null);
+
+  useEffect(() => {
+    const hostName = document.getElementById('root')?.dataset.hostName;
+    if (hostName) {
+      setHost(new Host(hostName));
+    }
+  });
 
   function makeTitle(classInfo: ClassInfo | undefined): string {
     return 'TWD ' + getSimpleClassName(classInfo ? classInfo.name : '');
@@ -23,23 +30,27 @@ function App() {
   }
 
   return (
-    <HostProvider host={host}>
-      <GraphDataSource>
-        {(data: GraphData | null) => {
-          setTitle(makeTitle(data?.meta.classInfo));
+    <>
+      {host && (
+        <HostProvider host={host}>
+          <GraphDataSource>
+            {(data: GraphData | null) => {
+              setTitle(makeTitle(data?.meta.classInfo));
 
-          return (
-            <div>
-              <Toolbar data={data} />
-              <div className="main-panel">
-                <div className="viz">{data && <EdgeBundlingGraph data={data} />}</div>
-                {data && <VocabularyPanel data={data} />}
-              </div>
-            </div>
-          );
-        }}
-      </GraphDataSource>
-    </HostProvider>
+              return (
+                <div>
+                  <Toolbar data={data} />
+                  <div className="main-panel">
+                    <div className="viz">{data && <EdgeBundlingGraph data={data} />}</div>
+                    {data && <VocabularyPanel data={data} />}
+                  </div>
+                </div>
+              );
+            }}
+          </GraphDataSource>
+        </HostProvider>
+      )}
+    </>
   );
 }
 

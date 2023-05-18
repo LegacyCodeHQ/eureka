@@ -3,6 +3,7 @@ import React from 'react';
 import SimpleJvmClassName from './SimpleJvmClassName';
 import AppVersion from './AppVersion';
 import './Toolbar.css';
+import GitHubProjectLogo from './GitHubProjectLogo';
 
 interface ToolbarProps {
   data: GraphData | null;
@@ -14,6 +15,7 @@ const Toolbar: React.FC<ToolbarProps> = ({ data }) => {
       <span className="product-name">TWD</span>
       {data && <SimpleJvmClassName classInfo={data.meta.classInfo} />}
       <AppVersion />
+      <GitHubProjectLogo account="LegacyCodeHQ" project="tumbleweed" />
     </div>
   );
 };

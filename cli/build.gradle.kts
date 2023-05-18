@@ -3,7 +3,7 @@ import java.util.Properties
 import org.jreleaser.model.Active
 
 @Suppress("PropertyName")
-val CLI_VERSION = "0.42.0"
+val CLI_VERSION = "0.43.0-SNAPSHOT"
 
 plugins {
   application
@@ -118,10 +118,10 @@ jreleaser {
 tasks.register<DefaultTask>("promoteSnapshotVersion") {
   description = "Promotes the SNAPSHOT version to production."
 
-  val currentVersion = CLI_VERSION
-  val newVersion = currentVersion.removeSuffix("-SNAPSHOT")
-
   doLast {
+    val currentVersion = CLI_VERSION
+    val newVersion = currentVersion.removeSuffix("-SNAPSHOT")
+
     updateVersion(currentVersion, newVersion)
 
     println("Promoted version: $currentVersion -> $newVersion")
@@ -163,11 +163,11 @@ tasks.register<DefaultTask>("nextIteration") {
   group = publicReleaseTaskGroup
   description = "Updates the version name for the next iteration."
 
-  val currentVersion = CLI_VERSION
-  val (major, minor, bugfix) = currentVersion.split('.').map(String::toInt)
-  val nextVersion = arrayOf(major, minor + 1, bugfix).joinToString(".") + "-SNAPSHOT"
-
   doLast {
+    val currentVersion = CLI_VERSION
+    val (major, minor, bugfix) = currentVersion.split('.').map(String::toInt)
+    val nextVersion = arrayOf(major, minor + 1, bugfix).joinToString(".") + "-SNAPSHOT"
+
     updateVersion(currentVersion, nextVersion)
     println("Next iteration: $currentVersion -> $nextVersion")
 

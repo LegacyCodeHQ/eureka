@@ -1,7 +1,16 @@
+.table-container {
+    background-color: rgb(57, 57, 57);
+}
+
 .table-container table {
     border-spacing: 0;
     font-size: 14px;
     width: 100%;
+}
+
+.table-body-container {
+    height: 100vh;
+    background-color: rgb(57, 57, 57);
 }
 
 tr {
@@ -18,18 +27,6 @@ th {
     color: rgb(244, 244, 244);
     background-color: rgb(57, 57, 57);
     border-bottom: 2px solid rgb(71, 71, 71);
-}
-
-.table-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    background-color: rgb(57, 57, 57);
-}
-
-.table-body-container {
-    flex: 1;
-    overflow: auto;
 }
 
 .row-content {

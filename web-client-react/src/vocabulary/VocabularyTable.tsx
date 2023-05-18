@@ -2,6 +2,7 @@ import { TokenStat } from './model/TokenStat';
 import TokenStatRow from './TokenStatRow';
 import React, { useState } from 'react';
 import './VocabularyTable.css';
+import VocabularyTableBody from './VocabularyTableBody';
 
 interface TokenStatsTableProps {
   kind: string;
@@ -40,19 +41,11 @@ const VocabularyTable: React.FC<TokenStatsTableProps> = ({ kind, tokenStats, onS
         </thead>
       </table>
       <div className="table-body-container">
-        <table>
-          <tbody>
-            {tokenStats.map((tokenStat, index) => (
-              <TokenStatRow
-                key={tokenStat.token.name}
-                serial={index + 1}
-                tokenStat={tokenStat}
-                isSelected={tokenStat.isEqual(selectedTokenStat)}
-                onRowClick={handleStatRowClick}
-              />
-            ))}
-          </tbody>
-        </table>
+        <VocabularyTableBody
+          tokenStats={tokenStats}
+          selectedTokenStat={selectedTokenStat}
+          onStatRowClick={handleStatRowClick}
+        />
       </div>
     </div>
   );

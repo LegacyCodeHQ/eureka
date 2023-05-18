@@ -1,6 +1,7 @@
 .legend {
     margin: 16px;
     font-size: 1em;
+    user-select: none;
 }
 
 .legend-table {

@@ -8,6 +8,7 @@ import SimpleJvmClassName from './toolbar/SimpleJvmClassName';
 import { getSimpleClassName } from './types/Functions';
 import { ClassInfo } from './viz/model/ClassInfo';
 import AppVersion from './toolbar/AppVersion';
+import Toolbar from './toolbar/Toolbar';
 
 function App() {
   function makeTitle(classInfo: ClassInfo | undefined): string {
@@ -27,11 +28,7 @@ function App() {
 
         return (
           <div>
-            <div className="toolbar">
-              <span className="product-name">TWD</span>
-              {data && <SimpleJvmClassName classInfo={data.meta.classInfo} />}
-              <AppVersion />
-            </div>
+            <Toolbar data={data} />
             <div className="main-panel">
               <div className="viz">{data && <EdgeBundlingGraph data={data} />}</div>
               {data && <VocabularyPanel data={data} />}

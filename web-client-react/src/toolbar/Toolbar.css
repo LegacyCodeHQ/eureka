@@ -1,0 +1,17 @@
+.toolbar {
+    display: flex;
+    align-items: center;
+    color: #F1F1F2;
+    background-color: #232323;
+    height: 48px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-bottom: 1px solid #535353;
+    justify-content: space-between;
+}
+
+.product-name {
+    font-weight: bold;
+    padding-right: 8px;
+    user-select: none;
+}

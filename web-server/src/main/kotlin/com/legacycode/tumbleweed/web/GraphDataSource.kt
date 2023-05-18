@@ -8,12 +8,12 @@ import kotlin.time.ExperimentalTime
 import kotlin.time.measureTimedValue
 import org.slf4j.LoggerFactory
 
-sealed interface Source {
+sealed interface GraphDataSource {
   val location: File
   val graph: BilevelEdgeBundlingGraph
 }
 
-class CompiledClassFile(override val location: File) : Source {
+class CompiledClassFile(override val location: File) : GraphDataSource {
   private val logger = LoggerFactory.getLogger(CompiledClassFile::class.java)
 
   @OptIn(ExperimentalTime::class)
@@ -25,7 +25,7 @@ class CompiledClassFile(override val location: File) : Source {
     }
 }
 
-class JsonFile(override val location: File) : Source {
+class JsonFile(override val location: File) : GraphDataSource {
   override val graph: BilevelEdgeBundlingGraph
     get() = BilevelEdgeBundlingGraph.fromJson(location.readText())
 }

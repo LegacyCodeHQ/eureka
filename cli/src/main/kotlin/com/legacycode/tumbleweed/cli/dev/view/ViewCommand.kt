@@ -36,7 +36,7 @@ class ViewCommand : Runnable {
     } else if (!BilevelEdgeBundlingGraph.isValidJson(jsonFile.readText())) {
       println("❌ Provided JSON file is not valid. Please provide a valid JSON file")
     } else {
-      TumbleweedServer().start(port, JsonFile(jsonFile))
+      TumbleweedServer().start(JsonFile(jsonFile), port)
     }
   }
 }

@@ -41,6 +41,6 @@ class WatchCommand : Runnable {
       .find(className, (buildDir ?: File("")).absolutePath)
       ?: throw IllegalArgumentException("Class file not found for $className")
 
-    TumbleweedServer().start(port, CompiledClassFile(classFilePath.toFile()))
+    TumbleweedServer().start(CompiledClassFile(classFilePath.toFile()), port)
   }
 }

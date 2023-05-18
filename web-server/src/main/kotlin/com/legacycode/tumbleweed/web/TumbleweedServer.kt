@@ -39,7 +39,7 @@ class TumbleweedServer {
 
   private val classFileChangesWatcher = FileWatcher()
 
-  fun start(port: Int, source: Source) {
+  fun start(source: GraphDataSource, port: Int) {
     startWatchingFileForChanges(source)
 
     logger.info("Starting web server @ http://localhost:{}", port)
@@ -63,7 +63,7 @@ class TumbleweedServer {
     }
   }
 
-  private fun Application.setupRoutes(source: Source, port: Int) {
+  private fun Application.setupRoutes(source: GraphDataSource, port: Int) {
     routing {
       get("/") { serveIndexPage(port) }
       get("/version") { serveVersionText() }
@@ -88,7 +88,7 @@ class TumbleweedServer {
 
   private suspend fun DefaultWebSocketServerSession.openWsConnectionForStructureUpdates(
     messageQueue: BlockingQueue<String>,
-    source: Source,
+    source: GraphDataSource,
   ) {
     logger.info("Web socket connection opened. Ready to send updates.")
     send(Frame.Text(source.graph.toJson()))
@@ -102,7 +102,7 @@ class TumbleweedServer {
     }
   }
 
-  private fun startWatchingFileForChanges(source: Source) {
+  private fun startWatchingFileForChanges(source: GraphDataSource) {
     val location = source.location
 
     logger.info("Watching for changes: {}", location)

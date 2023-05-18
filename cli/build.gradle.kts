@@ -122,8 +122,7 @@ tasks.register<DefaultTask>("promoteSnapshotVersion") {
   val newVersion = currentVersion.removeSuffix("-SNAPSHOT")
 
   doLast {
-    val updatedBuildScript = File("cli/build.gradle.kts").readText().replace(currentVersion, newVersion)
-    File("cli/build.gradle.kts").writeText(updatedBuildScript)
+    updateVersion(currentVersion, newVersion)
 
     println("Promoted version: $currentVersion -> $newVersion")
   }
@@ -158,4 +157,35 @@ tasks.register<DefaultTask>("release") {
 tasks.register<DefaultTask>("uploadRelease") {
   mustRunAfter("jreleaserFullRelease")
   dependsOn("jreleaserUpload")
+}
+
+tasks.register<DefaultTask>("nextIteration") {
+  group = publicReleaseTaskGroup
+  description = "Updates the version name for the next iteration."
+
+  val currentVersion = CLI_VERSION
+  val (major, minor, bugfix) = currentVersion.split('.').map(String::toInt)
+  val nextVersion = arrayOf(major, minor + 1, bugfix).joinToString(".") + "-SNAPSHOT"
+
+  doLast {
+    updateVersion(currentVersion, nextVersion)
+    println("Next iteration: $currentVersion -> $nextVersion")
+
+    exec {
+      commandLine("git", "add", "-A")
+    }
+
+    exec {
+      commandLine("git", "commit", "-am", "build: prepare next iteration")
+    }
+  }
+}
+
+fun updateVersion(currentVersion: String, nextVersion: String) {
+  val updatedBuildScript = File("cli/build.gradle.kts")
+    .readText()
+    .replace(currentVersion, nextVersion)
+
+  File("cli/build.gradle.kts")
+    .writeText(updatedBuildScript)
 }

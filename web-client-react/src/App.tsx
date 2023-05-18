@@ -4,13 +4,14 @@ import VocabularyPanel from './vocabulary/VocabularyPanel';
 import EdgeBundlingGraph from './viz/EdgeBundlingGraph';
 import GraphDataSource from './datasource/GraphDataSource';
 import { GraphData } from './viz/model/GraphData';
-import SimpleJvmClassName from './toolbar/SimpleJvmClassName';
 import { getSimpleClassName } from './types/Functions';
 import { ClassInfo } from './viz/model/ClassInfo';
-import AppVersion from './toolbar/AppVersion';
 import Toolbar from './toolbar/Toolbar';
+import { Host, HostProvider } from './HostContext';
 
 function App() {
+  const host = new Host('localhost:7070');
+
   function makeTitle(classInfo: ClassInfo | undefined): string {
     return 'TWD ' + getSimpleClassName(classInfo ? classInfo.name : '');
   }
@@ -22,21 +23,23 @@ function App() {
   }
 
   return (
-    <GraphDataSource>
-      {(data: GraphData | null) => {
-        setTitle(makeTitle(data?.meta.classInfo));
+    <HostProvider host={host}>
+      <GraphDataSource>
+        {(data: GraphData | null) => {
+          setTitle(makeTitle(data?.meta.classInfo));
 
-        return (
-          <div>
-            <Toolbar data={data} />
-            <div className="main-panel">
-              <div className="viz">{data && <EdgeBundlingGraph data={data} />}</div>
-              {data && <VocabularyPanel data={data} />}
+          return (
+            <div>
+              <Toolbar data={data} />
+              <div className="main-panel">
+                <div className="viz">{data && <EdgeBundlingGraph data={data} />}</div>
+                {data && <VocabularyPanel data={data} />}
+              </div>
             </div>
-          </div>
-        );
-      }}
-    </GraphDataSource>
+          );
+        }}
+      </GraphDataSource>
+    </HostProvider>
   );
 }
 

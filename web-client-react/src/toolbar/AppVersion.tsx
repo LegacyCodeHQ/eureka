@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './AppVersion.css';
+import { useHost } from '../HostContext';
 
 const AppVersion: React.FC = () => {
   if (process.env.NODE_ENV === 'development') {
@@ -10,9 +11,10 @@ const AppVersion: React.FC = () => {
 
 const AppVersionProd: React.FC = () => {
   const [versionName, setVersionName] = useState<string | null>(null);
+  const versionEndpoint = useHost().resolveHttp('/version');
 
   useEffect(() => {
-    fetch('http://localhost:7070/version')
+    fetch(versionEndpoint)
       .then((response) => response.text())
       .then((data) => {
         setVersionName(data);

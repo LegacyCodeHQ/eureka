@@ -2,6 +2,7 @@ import { GraphData } from '../viz/model/GraphData';
 import React, { useEffect, useState } from 'react';
 import { graphDataJson } from './SampleData';
 import { parseGraphData } from '../viz/GraphFunctions';
+import { useHost } from '../HostContext';
 
 interface GraphDataSourceProps {
   children: (data: GraphData | null) => React.ReactElement | null;
@@ -26,7 +27,7 @@ const GraphDataSourceDev: React.FC<GraphDataSourceProps> = ({ children }) => {
 
 const GraphDataSourceProd: React.FC<GraphDataSourceProps> = ({ children }) => {
   const [graphData, setGraphData] = useState<GraphData | null>(null);
-  const wsUrl = 'ws://localhost:7070/structure-updates';
+  const wsUrl = useHost().resolveWs('/structure-updates');
 
   useEffect(() => {
     const webSocket = new WebSocket(wsUrl);

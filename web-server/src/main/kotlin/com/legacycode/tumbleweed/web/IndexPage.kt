@@ -2,24 +2,28 @@ package com.legacycode.tumbleweed.web
 
 import io.ktor.http.ContentType
 
-class IndexPage(
+class IndexPage private constructor(
   private val port: Int,
+  private val resourceFilename: String,
 ) {
   companion object {
-    private const val INDEX_PAGE_FILE = "index.html"
+    private const val INDEX_FILENAME = "index.html"
     private const val MIME_TYPE_HTML = "text/html"
 
     private const val HOST = "localhost"
     private const val DEFAULT_PORT = 7070
     private const val HOST_PORT_IN_HTML = "$HOST:$DEFAULT_PORT"
 
-    fun withPort(port: Int): IndexPage =
-      IndexPage(port)
+    fun withPort(
+      port: Int,
+      resourceFilename: String = INDEX_FILENAME,
+    ): IndexPage =
+      IndexPage(port, resourceFilename)
   }
 
   val content: String by lazy {
     val indexPageContent = IndexPage::class.java.classLoader
-      .getResourceAsStream(INDEX_PAGE_FILE)!!
+      .getResourceAsStream(resourceFilename)!!
       .bufferedReader()
       .readText()
 

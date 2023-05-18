@@ -18,7 +18,7 @@ function App() {
     if (hostName) {
       setHost(new Host(hostName));
     }
-  });
+  }, []);
 
   function makeTitle(classInfo: ClassInfo | undefined): string {
     return 'TWD ' + getSimpleClassName(classInfo ? classInfo.name : '');

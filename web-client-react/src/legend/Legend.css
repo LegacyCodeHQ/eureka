@@ -1,0 +1,26 @@
+.legend {
+    margin: 16px;
+    font-size: 1em;
+}
+
+.legend-table {
+    border-collapse: collapse;
+}
+
+.circle {
+    height: 0.80em;
+    width: 0.80em;
+    clear: both;
+    margin-right: 0.3em;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+}
+
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}

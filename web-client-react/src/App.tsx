@@ -8,6 +8,7 @@ import { getSimpleClassName } from './types/Functions';
 import { ClassInfo } from './viz/model/ClassInfo';
 import Toolbar from './toolbar/Toolbar';
 import { Host, HostProvider } from './HostContext';
+import Legend from './legend/Legend';
 
 function App() {
   const [host, setHost] = useState<Host | null>(null);
@@ -41,6 +42,9 @@ function App() {
                 <div>
                   <Toolbar data={data} />
                   <div className="main-panel">
+                    <div className="floating-legend">
+                      <Legend dependencies={5} dependents={12} />
+                    </div>
                     <div className="viz">{data && <EdgeBundlingGraph data={data} />}</div>
                     {data && <VocabularyPanel data={data} />}
                   </div>

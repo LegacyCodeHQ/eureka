@@ -1,4 +1,6 @@
 #!/bin/bash
 
 # Woo hoo! To the moon… 🚀
-./gradlew prepareRelease release nextIteration
+./gradlew prepareRelease
+./gradlew release
+./gradlew nextIteration

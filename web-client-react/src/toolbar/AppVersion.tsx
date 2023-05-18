@@ -19,7 +19,7 @@ const AppVersionProd: React.FC = () => {
       });
   }, []);
 
-  return <span className="app-version">v{versionName}</span>;
+  return <span className="app-version">{versionName ? 'v' + versionName : ''}</span>;
 };
 
 const AppVersionDev: React.FC = () => {

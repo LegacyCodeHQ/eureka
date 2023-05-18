@@ -16,7 +16,7 @@
     user-select: none;
 }
 
-.App {
+.main-panel {
     display: flex;
     flex-direction: row;
 }

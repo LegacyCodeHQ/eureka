@@ -32,7 +32,7 @@ function App() {
               {data && <SimpleJvmClassName classInfo={data.meta.classInfo} />}
               <AppVersion />
             </div>
-            <div className="App">
+            <div className="main-panel">
               <div className="viz">{data && <EdgeBundlingGraph data={data} />}</div>
               {data && <VocabularyPanel data={data} />}
             </div>

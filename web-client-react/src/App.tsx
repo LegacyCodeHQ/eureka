@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import './App.css';
 import VocabularyPanel from './vocabulary/VocabularyPanel';
 import EdgeBundlingGraph from './viz/EdgeBundlingGraph';
-import GraphDataSource from './source/GraphDataSource';
+import GraphDataSource from './datasource/GraphDataSource';
 import { GraphData } from './viz/model/GraphData';
 import SimpleJvmClassName from './toolbar/SimpleJvmClassName';
 import { getSimpleClassName } from './types/Functions';

@@ -1,14 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as d3 from 'd3';
 import { createRoot, line } from './GraphFunctions';
 import { GraphData } from './model/GraphData';
 
-interface EdgeBundlingGraphProps {
-  data: GraphData;
+export interface NodeHoverEvent {
+  name: string;
+  dependencyCount: number;
+  dependentCount: number;
 }
 
-const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data }) => {
+interface EdgeBundlingGraphProps {
+  data: GraphData;
+  onNodeHover: (event: NodeHoverEvent | null) => void;
+}
+
+const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, onNodeHover }) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
   const width = 800;
   const radius = width / 2;
@@ -79,6 +86,14 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data }) => {
           .raise();
         // @ts-ignore
         d3.selectAll(d.dependencies.map(([, d]) => d.text)).attr('fill', colorOut);
+
+        const hoverEvent: NodeHoverEvent = {
+          name: d.data.id,
+          dependencyCount: d.dependencies.length,
+          dependentCount: d.dependents.length,
+        };
+
+        onNodeHover(hoverEvent);
       }
 
       function outed(event: any, d: any) {
@@ -94,6 +109,8 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data }) => {
         d3.selectAll(d.dependencies.map(([, d]) => d.text))
           .attr('fill', colorDeselected)
           .attr('font-weight', null);
+
+        onNodeHover(null);
       }
       /* eslint-enable @typescript-eslint/ban-ts-comment */
 

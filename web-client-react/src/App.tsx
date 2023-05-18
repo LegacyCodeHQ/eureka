@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import VocabularyPanel from './vocabulary/VocabularyPanel';
-import EdgeBundlingGraph from './viz/EdgeBundlingGraph';
+import EdgeBundlingGraph, { NodeHoverEvent } from './viz/EdgeBundlingGraph';
 import GraphDataSource from './datasource/GraphDataSource';
 import { GraphData } from './viz/model/GraphData';
 import { getSimpleClassName } from './types/Functions';
@@ -12,6 +12,8 @@ import Legend from './legend/Legend';
 
 function App() {
   const [host, setHost] = useState<Host | null>(null);
+  const [dependencyCount, setDependencyCount] = useState<number | null>(null);
+  const [dependentCount, setDependentCount] = useState<number | null>(null);
 
   useEffect(() => {
     const hostName = document.getElementById('root')?.dataset.hostName;
@@ -30,6 +32,11 @@ function App() {
     }, [title]);
   }
 
+  const handleNodeHover = (event: NodeHoverEvent | null) => {
+    setDependencyCount(event ? event.dependencyCount : null);
+    setDependentCount(event ? event.dependentCount : null);
+  };
+
   return (
     <>
       {host && (
@@ -43,9 +50,9 @@ function App() {
                   <Toolbar data={data} />
                   <div className="main-panel">
                     <div className="floating-legend">
-                      <Legend dependencies={5} dependents={12} />
+                      <Legend dependencyCount={dependencyCount} dependentCount={dependentCount} />
                     </div>
-                    <div className="viz">{data && <EdgeBundlingGraph data={data} />}</div>
+                    <div className="viz">{data && <EdgeBundlingGraph data={data} onNodeHover={handleNodeHover} />}</div>
                     {data && <VocabularyPanel data={data} />}
                   </div>
                 </div>

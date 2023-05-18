@@ -2,11 +2,11 @@ import React from 'react';
 import './Legend.css';
 
 interface LegendProps {
-  dependencies: number | null;
-  dependents: number | null;
+  dependencyCount: number | null;
+  dependentCount: number | null;
 }
 
-const Legend: React.FC<LegendProps> = ({ dependencies, dependents }) => {
+const Legend: React.FC<LegendProps> = ({ dependencyCount, dependentCount }) => {
   return (
     <div className="legend">
       <table className="legend-table">
@@ -15,18 +15,28 @@ const Legend: React.FC<LegendProps> = ({ dependencies, dependents }) => {
             <td>
               <div className="circle red"></div>
             </td>
-            <td>Dependencies</td>
+            <td>Dependencies {formatCount(dependencyCount)}</td>
           </tr>
           <tr>
             <td>
               <div className="circle blue"></div>
             </td>
-            <td>Dependents</td>
+            <td>Dependents {formatCount(dependentCount)}</td>
           </tr>
         </tbody>
       </table>
     </div>
   );
 };
+
+function formatCount(count: number | null): string {
+  if (count === 0) {
+    return ' (None)';
+  } else if (count) {
+    return ` (${count})`;
+  } else {
+    return '';
+  }
+}
 
 export default Legend;

@@ -2,7 +2,6 @@ package com.legacycode.tumbleweed.web
 
 import com.legacycode.tumbleweed.ClassScanner
 import com.legacycode.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
-import com.legacycode.tumbleweed.web.observablehq.classifiers.BasicMemberClassifier
 import com.legacycode.tumbleweed.web.observablehq.classifiers.MemberClassifier
 import com.legacycode.tumbleweed.web.observablehq.toGraph
 import java.io.File

@@ -59,7 +59,7 @@ dependencies {
 
   implementation("org.apache.commons:commons-csv:1.10.0")
 
-  implementation("info.picocli:picocli:4.7.0")
+  implementation("info.picocli:picocli:4.7.3")
 }
 
 /* Ported from https://github.com/mobile-dev-inc/maestro/blob/main/maestro-cli/build.gradle */

@@ -4,7 +4,6 @@ import io.ktor.http.ContentType
 
 class IndexPage private constructor(
   private val port: Int,
-  private val resourceFilename: String,
 ) {
   companion object {
     private const val INDEX_FILENAME = "index.html"
@@ -16,14 +15,13 @@ class IndexPage private constructor(
 
     fun withPort(
       port: Int,
-      resourceFilename: String = INDEX_FILENAME,
     ): IndexPage =
-      IndexPage(port, resourceFilename)
+      IndexPage(port)
   }
 
   val content: String by lazy {
     val indexPageContent = IndexPage::class.java.classLoader
-      .getResourceAsStream(resourceFilename)!!
+      .getResourceAsStream(INDEX_FILENAME)!!
       .bufferedReader()
       .readText()
 

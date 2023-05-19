@@ -1,8 +1,0 @@
-<html>
-  <head>
-    <title>Test HTML</title>
-  </head>
-  <body>
-    <div>localhost:7997</div>
-  </body>
-</html>

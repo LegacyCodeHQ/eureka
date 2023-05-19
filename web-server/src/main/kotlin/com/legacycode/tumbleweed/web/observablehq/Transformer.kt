@@ -3,6 +3,8 @@ package com.legacycode.tumbleweed.web.observablehq
 import com.legacycode.tumbleweed.ClassStructure
 import com.legacycode.tumbleweed.Member
 import com.legacycode.tumbleweed.Relationship
+import com.legacycode.tumbleweed.web.observablehq.classifiers.BasicMemberClassifier
+import com.legacycode.tumbleweed.web.observablehq.classifiers.MemberClassifier
 
 class Transformer(
   private val classifier: MemberClassifier = BasicMemberClassifier(),

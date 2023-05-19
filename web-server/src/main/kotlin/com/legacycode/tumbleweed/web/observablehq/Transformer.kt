@@ -4,7 +4,9 @@ import com.legacycode.tumbleweed.ClassStructure
 import com.legacycode.tumbleweed.Member
 import com.legacycode.tumbleweed.Relationship
 
-class Transformer {
+class Transformer(
+  private val classifier: MemberClassifier = BasicMemberClassifier(),
+) {
   fun transform(classStructure: ClassStructure): BilevelEdgeBundlingGraph {
     val nodes = (classStructure.fields + classStructure.methods).map(::toNode)
     val links = classStructure.relationships.map(::toLink)
@@ -12,16 +14,12 @@ class Transformer {
   }
 
   private fun toNode(member: Member): BilevelEdgeBundlingGraph.Node {
-    val group = groupOf(member)
+    val group = classifier.groupOf(member)
 
     return BilevelEdgeBundlingGraph.Node(
       id = member.signature.concise,
       group = group
     )
-  }
-
-  private fun groupOf(member: Member): Int {
-    return BasicMemberClassifier().groupOf(member)
   }
 
   private fun toLink(relationship: Relationship): BilevelEdgeBundlingGraph.Link {

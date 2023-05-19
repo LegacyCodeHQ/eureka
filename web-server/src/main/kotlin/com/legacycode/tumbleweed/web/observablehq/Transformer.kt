@@ -1,9 +1,7 @@
 package com.legacycode.tumbleweed.web.observablehq
 
 import com.legacycode.tumbleweed.ClassStructure
-import com.legacycode.tumbleweed.Field
 import com.legacycode.tumbleweed.Member
-import com.legacycode.tumbleweed.Method
 import com.legacycode.tumbleweed.Relationship
 
 class Transformer {
@@ -23,10 +21,7 @@ class Transformer {
   }
 
   private fun groupOf(member: Member): Int {
-    return when (member) {
-      is Field -> 1
-      is Method -> 2
-    }
+    return BasicMemberClassifier().groupOf(member)
   }
 
   private fun toLink(relationship: Relationship): BilevelEdgeBundlingGraph.Link {

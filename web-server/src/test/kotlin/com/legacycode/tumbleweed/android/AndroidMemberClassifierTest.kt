@@ -1,4 +1,4 @@
-package com.legacycode.tumbleweed.web.observablehq.classifiers
+package com.legacycode.tumbleweed.android
 
 import com.legacycode.tumbleweed.test.TestClassResource
 import com.legacycode.tumbleweed.web.CompiledClassFile

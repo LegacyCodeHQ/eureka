@@ -1,0 +1,8 @@
+void <init>(java.lang.String)
+void setIntentRedelivery(boolean)
+void onCreate()
+void onStart(android.content.Intent, int)
+int onStartCommand(android.content.Intent, int, int)
+void onDestroy()
+android.os.IBinder onBind(android.content.Intent)
+void onHandleIntent(android.content.Intent)

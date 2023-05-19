@@ -1,0 +1,3 @@
+void onAnimationStart(android.view.animation.Animation)
+void onAnimationEnd(android.view.animation.Animation)
+void onAnimationRepeat(android.view.animation.Animation)

@@ -114,7 +114,7 @@
     },
     {
       "id": "void onViewCreated(View, Bundle)",
-      "group": 2
+      "group": 4
     },
     {
       "id": "void onResume()",
@@ -126,7 +126,7 @@
     },
     {
       "id": "void onDestroyView()",
-      "group": 2
+      "group": 4
     },
     {
       "id": "void onFinishForwardAction()",
@@ -294,39 +294,39 @@
     },
     {
       "id": "Bundle requireArguments()",
-      "group": 2
+      "group": 4
     },
     {
       "id": "Context requireContext()",
-      "group": 2
+      "group": 4
     },
     {
       "id": "LifecycleOwner getViewLifecycleOwner()",
-      "group": 2
+      "group": 4
     },
     {
       "id": "FragmentManager getChildFragmentManager()",
-      "group": 2
+      "group": 4
     },
     {
       "id": "View requireView()",
-      "group": 2
+      "group": 4
     },
     {
       "id": "Resources getResources()",
-      "group": 2
+      "group": 4
     },
     {
       "id": "String getString(int)",
-      "group": 2
+      "group": 4
     },
     {
       "id": "String getString(int, []Object)",
-      "group": 2
+      "group": 4
     },
     {
       "id": "Context getContext()",
-      "group": 2
+      "group": 4
     }
   ],
   "links": [

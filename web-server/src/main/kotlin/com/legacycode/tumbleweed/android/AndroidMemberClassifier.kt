@@ -22,8 +22,29 @@ class AndroidMemberClassifier : MemberClassifier {
   ).map { "$it." }
 
   private val frameworkMethodLists by lazy {
-    listOf("android.app.Activity")
-      .map(MethodList::fromResource)
+    listOf(
+      "android.app.Activity",
+      "android.app.Application",
+      "android.app.Dialog",
+      "android.app.DialogFragment",
+      "android.app.Fragment",
+      "android.app.IntentService",
+      "android.app.Service",
+      "android.content.BroadcastReceiver",
+      "android.content.ContentProvider",
+      "android.content.Context",
+      "android.view.View",
+      "android.view.animation.Animation${'$'}AnimationListener",
+      "androidx.activity.ComponentActivity",
+      "androidx.activity.ComponentDialog",
+      "androidx.appcompat.app.AlertDialog",
+      "androidx.appcompat.app.AppCompatActivity",
+      "androidx.fragment.app.DialogFragment",
+      "androidx.fragment.app.Fragment",
+      "androidx.fragment.app.FragmentActivity",
+      "androidx.fragment.app.ListFragment",
+      "androidx.lifecycle.LifecycleOwner",
+    ).map(MethodList::fromResource)
   }
 
   override fun groupOf(member: Member): Int {

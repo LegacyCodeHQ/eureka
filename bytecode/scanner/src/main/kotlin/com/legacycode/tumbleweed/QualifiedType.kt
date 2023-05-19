@@ -6,6 +6,20 @@ package com.legacycode.tumbleweed
  */
 @JvmInline
 value class QualifiedType(val name: String) {
+  companion object {
+    const val DEFAULT_PACKAGE_NAME = ""
+  }
+
+  val packageName: String
+    get() {
+      if (name.contains("[]") && name.contains(".")) {
+        return name.substringAfterLast("[]").substringBeforeLast(".")
+      } else if (name.contains(".")) {
+        return name.substringBeforeLast(".")
+      }
+      return DEFAULT_PACKAGE_NAME
+    }
+
   val simpleName: String
     get() {
       val isArray = name.startsWith("[]")

@@ -1,6 +1,6 @@
 package com.legacycode.tumbleweed
 
-data class Field constructor(
+data class Field(
   override val name: String,
   val descriptor: FieldDescriptor,
   override val owner: QualifiedType,

@@ -118,11 +118,11 @@
     },
     {
       "id": "void onResume()",
-      "group": 2
+      "group": 4
     },
     {
       "id": "void onPause()",
-      "group": 2
+      "group": 4
     },
     {
       "id": "void onDestroyView()",

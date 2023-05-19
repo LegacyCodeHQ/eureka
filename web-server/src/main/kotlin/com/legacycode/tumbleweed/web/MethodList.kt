@@ -13,6 +13,9 @@ class MethodList(private val content: String) {
   }
 
   val methodSignatures: List<String> by lazy {
-    content.trim().split("/n")
+    content.trim().lines()
   }
+
+  fun has(signature: String): Boolean =
+    methodSignatures.contains(signature)
 }

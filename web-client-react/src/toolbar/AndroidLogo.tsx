@@ -5,7 +5,6 @@ const AndroidLogo: React.FC = () => {
 
   useEffect(() => {
     const experiment = document.getElementById('root')?.dataset.experiment;
-    console.log(experiment);
     setActiveExperiment(experiment === 'android');
   }, []);
 

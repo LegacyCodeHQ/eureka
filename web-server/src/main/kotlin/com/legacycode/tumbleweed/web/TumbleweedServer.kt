@@ -1,5 +1,6 @@
 package com.legacycode.tumbleweed.web
 
+import com.legacycode.tumbleweed.Experiment
 import com.legacycode.tumbleweed.filesystem.FileWatcher
 import com.legacycode.tumbleweed.version.TwdProperties
 import io.ktor.server.application.Application
@@ -30,7 +31,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.slf4j.LoggerFactory
 
-class TumbleweedServer {
+class TumbleweedServer(private val activeExperiment: Experiment? = null) {
   private val logger = LoggerFactory.getLogger(TumbleweedServer::class.java)
 
   private lateinit var webServer: ApplicationEngine
@@ -82,7 +83,7 @@ class TumbleweedServer {
   }
 
   private suspend fun PipelineContext<Unit, ApplicationCall>.serveIndexPage(port: Int) {
-    val indexPage = IndexPage.withPort(port)
+    val indexPage = IndexPage.newInstance(port, activeExperiment)
     call.respondText(indexPage.content, indexPage.contentType)
   }
 

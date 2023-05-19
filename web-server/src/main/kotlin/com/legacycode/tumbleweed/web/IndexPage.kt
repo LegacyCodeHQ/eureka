@@ -1,9 +1,11 @@
 package com.legacycode.tumbleweed.web
 
+import com.legacycode.tumbleweed.Experiment
 import io.ktor.http.ContentType
 
 class IndexPage private constructor(
   private val port: Int,
+  private val activeExperiment: Experiment?,
 ) {
   companion object {
     private const val INDEX_FILENAME = "index.html"
@@ -13,10 +15,11 @@ class IndexPage private constructor(
     private const val DEFAULT_PORT = 7070
     private const val HOST_PORT_IN_HTML = "$HOST:$DEFAULT_PORT"
 
-    fun withPort(
+    fun newInstance(
       port: Int,
+      activeExperiment: Experiment? = null,
     ): IndexPage =
-      IndexPage(port)
+      IndexPage(port, activeExperiment)
   }
 
   val content: String by lazy {
@@ -25,7 +28,14 @@ class IndexPage private constructor(
       .bufferedReader()
       .readText()
 
-    indexPageContent.replace(HOST_PORT_IN_HTML, "$HOST:$port")
+    val modifiedContent = indexPageContent
+      .replace(HOST_PORT_IN_HTML, "$HOST:$port")
+
+    return@lazy if (activeExperiment != null) {
+      modifiedContent.replace("data-experiment=\"none\"", "data-experiment=\"$activeExperiment\"")
+    } else {
+      modifiedContent
+    }
   }
 
   val contentType: ContentType by lazy {

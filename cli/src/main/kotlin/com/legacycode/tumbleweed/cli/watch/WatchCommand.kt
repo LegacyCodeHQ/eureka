@@ -1,8 +1,9 @@
 package com.legacycode.tumbleweed.cli.watch
 
+import com.legacycode.tumbleweed.Experiment
+import com.legacycode.tumbleweed.Experiment.android
 import com.legacycode.tumbleweed.android.AndroidMemberClassifier
 import com.legacycode.tumbleweed.cli.DEFAULT_PORT
-import com.legacycode.tumbleweed.cli.watch.WatchCommand.Experiment.android
 import com.legacycode.tumbleweed.filesystem.CompiledClassFileFinder
 import com.legacycode.tumbleweed.web.CompiledClassFile
 import com.legacycode.tumbleweed.web.TumbleweedServer
@@ -39,11 +40,6 @@ class WatchCommand : Runnable {
   )
   var port: Int = DEFAULT_PORT
 
-  @Suppress("EnumNaming")
-  enum class Experiment {
-    android,
-  }
-
   @Option(
     names = ["-x", "--experiment"],
     description = ["available features: ${'$'}{COMPLETION-CANDIDATES}"],
@@ -62,6 +58,6 @@ class WatchCommand : Runnable {
       BasicMemberClassifier()
     }
 
-    TumbleweedServer().start(CompiledClassFile(classFilePath.toFile(), classifier), port)
+    TumbleweedServer(experiment).start(CompiledClassFile(classFilePath.toFile(), classifier), port)
   }
 }

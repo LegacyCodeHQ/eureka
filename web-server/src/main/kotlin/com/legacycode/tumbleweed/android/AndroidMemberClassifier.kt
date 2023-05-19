@@ -4,6 +4,7 @@ import com.legacycode.tumbleweed.Field
 import com.legacycode.tumbleweed.FieldSignature
 import com.legacycode.tumbleweed.Member
 import com.legacycode.tumbleweed.Method
+import com.legacycode.tumbleweed.web.MethodList
 import com.legacycode.tumbleweed.web.observablehq.classifiers.BasicMemberClassifier
 import com.legacycode.tumbleweed.web.observablehq.classifiers.MemberClassifier
 
@@ -20,10 +21,10 @@ class AndroidMemberClassifier : MemberClassifier {
     "androidx",
   ).map { "$it." }
 
-  private val frameworkMethodSignatures = listOf(
-    "void onResume()",
-    "void onPause()",
-  )
+  private val frameworkMethodLists by lazy {
+    listOf("android.app.Activity")
+      .map(MethodList::fromResource)
+  }
 
   override fun groupOf(member: Member): Int {
     return when (member) {
@@ -45,7 +46,7 @@ class AndroidMemberClassifier : MemberClassifier {
 
   private fun groupMethod(method: Method): Int {
     val methodSignature = method.signature.verbose
-    val isAndroidFrameworkMethod = methodSignature in frameworkMethodSignatures
+    val isAndroidFrameworkMethod = frameworkMethodLists.any { it.has(methodSignature) }
     return if (isAndroidFrameworkMethod) {
       ANDROID_FRAMEWORK_METHOD_GROUP
     } else {

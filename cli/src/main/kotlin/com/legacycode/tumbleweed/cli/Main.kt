@@ -5,6 +5,7 @@ import ch.qos.logback.classic.Level
 import com.legacycode.tumbleweed.cli.dev.convert.ConvertCommand
 import com.legacycode.tumbleweed.cli.dev.diff.DiffCommand
 import com.legacycode.tumbleweed.cli.dev.json.JsonCommand
+import com.legacycode.tumbleweed.cli.dev.methods.MethodsCommand
 import com.legacycode.tumbleweed.cli.dev.view.ViewCommand
 import com.legacycode.tumbleweed.cli.ownership.OwnershipCommand
 import com.legacycode.tumbleweed.cli.watch.WatchCommand
@@ -22,11 +23,14 @@ const val DEFAULT_PORT = 7070
   name = "twd",
   subcommands = [
     WatchCommand::class,
+    OwnershipCommand::class,
+
+    /* dev commands */
     JsonCommand::class,
     ViewCommand::class,
     ConvertCommand::class,
     DiffCommand::class,
-    OwnershipCommand::class,
+    MethodsCommand::class,
   ],
 )
 class TumbleweedCommand {

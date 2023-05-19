@@ -2,7 +2,7 @@ package com.legacycode.tumbleweed.web
 
 import com.legacycode.tumbleweed.ClassScanner
 import com.legacycode.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
-import com.legacycode.tumbleweed.web.observablehq.graph
+import com.legacycode.tumbleweed.web.observablehq.toGraph
 import java.io.File
 import kotlin.time.ExperimentalTime
 import kotlin.time.measureTimedValue
@@ -21,7 +21,7 @@ class CompiledClassFile(override val location: File) : GraphDataSource {
     get() {
       val (classStructure, duration) = measureTimedValue { ClassScanner.scan(location) }
       logger.info("Scanned class file in {}.", duration)
-      return classStructure.graph
+      return classStructure.toGraph()
     }
 }
 

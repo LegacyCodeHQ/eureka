@@ -2,7 +2,7 @@ package com.legacycode.tumbleweed.cli.dev.json
 
 import com.legacycode.tumbleweed.ClassScanner
 import com.legacycode.tumbleweed.filesystem.CompiledClassFileFinder
-import com.legacycode.tumbleweed.web.observablehq.graph
+import com.legacycode.tumbleweed.web.observablehq.toGraph
 import java.io.File
 import picocli.CommandLine.Command
 import picocli.CommandLine.Option
@@ -44,7 +44,7 @@ class JsonCommand : Runnable {
     if (check) {
       classStructure.check()
     } else {
-      println(classStructure.graph.toJson())
+      println(classStructure.toGraph().toJson())
     }
   }
 }

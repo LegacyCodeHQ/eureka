@@ -16,7 +16,7 @@ internal class ClassStructureJsonKtTest {
     val classStructure = ClassScanner.scan(classFile)
 
     // when & then
-    JsonApprovals.verifyAsJson(classStructure.graph)
+    JsonApprovals.verifyAsJson(classStructure.toGraph())
   }
 
   @Test
@@ -26,7 +26,7 @@ internal class ClassStructureJsonKtTest {
     val classStructure = ClassScanner.scan(classFile)
 
     // when & then
-    JsonApprovals.verifyAsJson(classStructure.graph)
+    JsonApprovals.verifyAsJson(classStructure.toGraph())
   }
 
   @Test
@@ -36,6 +36,6 @@ internal class ClassStructureJsonKtTest {
     val classStructure = ClassScanner.scan(classFile)
 
     // when & then
-    JsonApprovals.verifyAsJson(classStructure.graph)
+    JsonApprovals.verifyAsJson(classStructure.toGraph())
   }
 }

@@ -14,15 +14,19 @@ class Transformer {
   }
 
   private fun toNode(member: Member): BilevelEdgeBundlingGraph.Node {
-    val group = when (member) {
-      is Field -> 1
-      is Method -> 2
-    }
+    val group = groupOf(member)
 
     return BilevelEdgeBundlingGraph.Node(
       id = member.signature.concise,
       group = group
     )
+  }
+
+  private fun groupOf(member: Member): Int {
+    return when (member) {
+      is Field -> 1
+      is Method -> 2
+    }
   }
 
   private fun toLink(relationship: Relationship): BilevelEdgeBundlingGraph.Link {

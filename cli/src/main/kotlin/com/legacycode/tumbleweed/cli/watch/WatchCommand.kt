@@ -4,6 +4,7 @@ import com.legacycode.tumbleweed.cli.DEFAULT_PORT
 import com.legacycode.tumbleweed.filesystem.CompiledClassFileFinder
 import com.legacycode.tumbleweed.web.CompiledClassFile
 import com.legacycode.tumbleweed.web.TumbleweedServer
+import com.legacycode.tumbleweed.web.observablehq.classifiers.BasicMemberClassifier
 import java.io.File
 import picocli.CommandLine.Command
 import picocli.CommandLine.Option
@@ -41,6 +42,7 @@ class WatchCommand : Runnable {
       .find(className, (buildDir ?: File("")).absolutePath)
       ?: throw IllegalArgumentException("Class file not found for $className")
 
-    TumbleweedServer().start(CompiledClassFile(classFilePath.toFile()), port)
+    val classifier = BasicMemberClassifier()
+    TumbleweedServer().start(CompiledClassFile(classFilePath.toFile(), classifier), port)
   }
 }

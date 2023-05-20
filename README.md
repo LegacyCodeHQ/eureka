@@ -25,8 +25,6 @@ class.
 
 ### Class visualization—edge bundling graph
 
-Visualizing [ConversationParentFragment.java](https://github.com/signalapp/Signal-Android/blob/ff8f9ca81ae6a25e1e946612c817206b9410d9a1/app/src/main/java/org/thoughtcrime/securesms/conversation/ConversationParentFragment.java)—a **3,510 LOC** class from the Signal Android App.
-
 ![Edge bundling graph](docs/images/screenshot.png)
 
 ### File ownership—treemap
@@ -39,13 +37,7 @@ Visualizing [ConversationParentFragment.java](https://github.com/signalapp/Signa
 brew install legacycodehq/tap/twd
 ```
 
-## Updates
-
-```bash
-brew upgrade twd
-```
-
-## Quick start
+## Usage
 
 Build the project first and then run the command line tool.
 
@@ -58,6 +50,21 @@ The command will start a web server on port 7070. Go to `localhost:7070` in your
 The diagram will be updated in real-time as you make changes to the source code and compile the project.
 
 For more options, run `twd watch --help`.
+
+### Experimental Android support
+
+```bash
+twd watch com.example.android.ProfileFragment -x android
+```
+
+Tumbleweed will show 4 groups instead of 2. Properties and methods are further grouped into Android framework properties
+and methods. This visualization helps categorize business domain members separately from framework members.
+
+## Updates
+
+```bash
+brew upgrade twd
+```
 
 ## Licenses
 

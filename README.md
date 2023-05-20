@@ -27,11 +27,11 @@ class.
 
 Visualizing [ConversationParentFragment.java](https://github.com/signalapp/Signal-Android/blob/ff8f9ca81ae6a25e1e946612c817206b9410d9a1/app/src/main/java/org/thoughtcrime/securesms/conversation/ConversationParentFragment.java)—a **3,510 LOC** class from the Signal Android App.
 
-![Edge bundling graph](docs/screenshot.png)
+![Edge bundling graph](docs/images/screenshot.png)
 
 ### File ownership—treemap
 
-![Treemap](docs/ownership.png)
+![Treemap](docs/images/ownership.png)
 
 ## Installation
 

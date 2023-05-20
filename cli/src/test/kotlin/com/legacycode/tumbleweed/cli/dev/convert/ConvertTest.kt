@@ -1,6 +1,6 @@
 package com.legacycode.tumbleweed.cli.dev.convert
 
-import com.legacycode.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
+import com.legacycode.tumbleweed.viz.edgebundling.EdgeBundlingGraph
 import org.approvaltests.JsonApprovals
 import org.junit.jupiter.api.Test
 
@@ -15,7 +15,7 @@ class ConvertTest {
     """.trimIndent()
 
     // when
-    val graph = BilevelEdgeBundlingGraph.from(csv)
+    val graph = EdgeBundlingGraph.from(csv)
 
     // then
     JsonApprovals.verifyAsJson(graph)

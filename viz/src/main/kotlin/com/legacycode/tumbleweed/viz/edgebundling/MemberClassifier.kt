@@ -1,4 +1,4 @@
-package com.legacycode.tumbleweed.web.observablehq.classifiers
+package com.legacycode.tumbleweed.viz.edgebundling
 
 import com.legacycode.tumbleweed.Member
 

@@ -56,6 +56,8 @@ dependencies {
   implementation(project(":web-server"))
   implementation(project(":filesystem"))
   implementation(project(":bytecode:scanner")) /* only for the `json` debug command */
+  implementation(project(":viz"))
+  implementation(project(":android"))
 
   implementation("org.apache.commons:commons-csv:1.10.0")
 

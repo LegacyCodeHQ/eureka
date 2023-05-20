@@ -1,9 +1,9 @@
 package com.legacycode.tumbleweed.cli.dev.view
 
 import com.legacycode.tumbleweed.cli.DEFAULT_PORT
-import com.legacycode.tumbleweed.web.JsonFile
+import com.legacycode.tumbleweed.viz.edgebundling.EdgeBundlingGraph
+import com.legacycode.tumbleweed.viz.edgebundling.JsonFile
 import com.legacycode.tumbleweed.web.TumbleweedServer
-import com.legacycode.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
 import java.io.File
 import picocli.CommandLine.Command
 import picocli.CommandLine.Option
@@ -33,7 +33,7 @@ class ViewCommand : Runnable {
   override fun run() {
     if (!jsonFile.exists() && !jsonFile.isFile) {
       println("❌ JSON file not found at given path: $jsonFile, please provide a valid file path")
-    } else if (!BilevelEdgeBundlingGraph.isValidJson(jsonFile.readText())) {
+    } else if (!EdgeBundlingGraph.isValidJson(jsonFile.readText())) {
       println("❌ Provided JSON file is not valid. Please provide a valid JSON file")
     } else {
       TumbleweedServer().start(JsonFile(jsonFile), port)

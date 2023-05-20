@@ -1,6 +1,6 @@
 package com.legacycode.tumbleweed.cli.dev.convert
 
-import com.legacycode.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
+import com.legacycode.tumbleweed.viz.edgebundling.EdgeBundlingGraph
 import java.io.File
 import picocli.CommandLine.Command
 import picocli.CommandLine.Parameters
@@ -19,7 +19,7 @@ class ConvertCommand : Runnable {
   lateinit var csvFile: File
 
   override fun run() {
-    val graph = BilevelEdgeBundlingGraph.from(csvFile.readText())
+    val graph = EdgeBundlingGraph.from(csvFile.readText())
     println(graph.toJson())
   }
 }

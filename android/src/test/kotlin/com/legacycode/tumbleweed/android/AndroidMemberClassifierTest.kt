@@ -1,7 +1,7 @@
 package com.legacycode.tumbleweed.android
 
-import com.legacycode.tumbleweed.test.TestClassResource
-import com.legacycode.tumbleweed.web.CompiledClassFile
+import com.legacycode.tumbleweed.android.test.TestClassResource
+import com.legacycode.tumbleweed.viz.edgebundling.CompiledClassFile
 import org.approvaltests.JsonApprovals
 import org.junit.jupiter.api.Test
 

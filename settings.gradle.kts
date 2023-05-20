@@ -8,4 +8,6 @@ include(
   ":vcs",
   ":bytecode:testing",
   ":web-client-react",
+  ":android",
+  ":viz",
 )

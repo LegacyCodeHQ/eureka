@@ -1,7 +1,7 @@
 package com.legacycode.tumbleweed.cli.dev.diff
 
 import com.legacycode.tumbleweed.cli.dev.convert.from
-import com.legacycode.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
+import com.legacycode.tumbleweed.viz.edgebundling.EdgeBundlingGraph
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.api.extension.ParameterContext
 import org.junit.jupiter.api.extension.ParameterResolver
@@ -16,14 +16,14 @@ class EdgeBundlingGraphExtension : ParameterResolver {
     parameterContext: ParameterContext,
     extensionContext: ExtensionContext,
   ): Boolean {
-    return parameterContext.parameter.type == BilevelEdgeBundlingGraph::class.java &&
+    return parameterContext.parameter.type == EdgeBundlingGraph::class.java &&
       parameterContext.parameter.annotations.any { it is Graph }
   }
 
   override fun resolveParameter(
     parameterContext: ParameterContext,
     extensionContext: ExtensionContext,
-  ): BilevelEdgeBundlingGraph {
+  ): EdgeBundlingGraph {
     val filename = parameterContext.parameter.annotations
       .find { it is Graph }!!
       .let { it as Graph }.csvFilename
@@ -32,6 +32,6 @@ class EdgeBundlingGraphExtension : ParameterResolver {
     val csv = EdgeBundlingGraphExtension::class.java.getResource(resourcePath)!!
       .readText()
 
-    return BilevelEdgeBundlingGraph.from(csv)
+    return EdgeBundlingGraph.from(csv)
   }
 }

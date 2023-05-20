@@ -3,6 +3,7 @@ package com.legacycode.tumbleweed.web
 import com.legacycode.tumbleweed.Experiment
 import com.legacycode.tumbleweed.filesystem.FileWatcher
 import com.legacycode.tumbleweed.version.TwdProperties
+import com.legacycode.tumbleweed.viz.edgebundling.GraphDataSource
 import io.ktor.server.application.Application
 import io.ktor.server.application.ApplicationCall
 import io.ktor.server.application.call

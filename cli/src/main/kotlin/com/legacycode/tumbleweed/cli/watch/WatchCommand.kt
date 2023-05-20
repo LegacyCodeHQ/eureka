@@ -5,9 +5,9 @@ import com.legacycode.tumbleweed.Experiment.android
 import com.legacycode.tumbleweed.android.AndroidMemberClassifier
 import com.legacycode.tumbleweed.cli.DEFAULT_PORT
 import com.legacycode.tumbleweed.filesystem.CompiledClassFileFinder
-import com.legacycode.tumbleweed.web.CompiledClassFile
+import com.legacycode.tumbleweed.viz.edgebundling.BasicMemberClassifier
+import com.legacycode.tumbleweed.viz.edgebundling.CompiledClassFile
 import com.legacycode.tumbleweed.web.TumbleweedServer
-import com.legacycode.tumbleweed.web.observablehq.classifiers.BasicMemberClassifier
 import java.io.File
 import picocli.CommandLine.Command
 import picocli.CommandLine.Option

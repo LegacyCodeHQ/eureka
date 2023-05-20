@@ -1,6 +1,6 @@
 package com.legacycode.tumbleweed.cli.dev.diff
 
-import com.legacycode.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
+import com.legacycode.tumbleweed.viz.edgebundling.EdgeBundlingGraph
 import java.io.File
 import picocli.CommandLine.Command
 import picocli.CommandLine.Option
@@ -26,8 +26,8 @@ class DiffCommand : Runnable {
   lateinit var implementationJson: File
 
   override fun run() {
-    val baseline = BilevelEdgeBundlingGraph.fromJson(baselineJson.readText())
-    val implementation = BilevelEdgeBundlingGraph.fromJson(implementationJson.readText())
+    val baseline = EdgeBundlingGraph.fromJson(baselineJson.readText())
+    val implementation = EdgeBundlingGraph.fromJson(implementationJson.readText())
 
     val diff = Diff.of(baseline, implementation)
 

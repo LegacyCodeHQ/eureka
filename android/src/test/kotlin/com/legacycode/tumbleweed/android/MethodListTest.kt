@@ -1,4 +1,4 @@
-package com.legacycode.tumbleweed.web
+package com.legacycode.tumbleweed.android
 
 import com.google.common.truth.Truth.assertThat
 import org.approvaltests.Approvals

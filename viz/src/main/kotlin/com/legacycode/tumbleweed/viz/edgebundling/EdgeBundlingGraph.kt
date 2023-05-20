@@ -1,25 +1,25 @@
-package com.legacycode.tumbleweed.web.observablehq
+package com.legacycode.tumbleweed.viz.edgebundling
 
 import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.slf4j.LoggerFactory
 
-data class BilevelEdgeBundlingGraph(
+data class EdgeBundlingGraph(
   val nodes: List<Node>,
   val links: List<Link>,
   val meta: Map<String, Any> = emptyMap(),
 ) {
   companion object {
-    fun fromJson(json: String): BilevelEdgeBundlingGraph {
+    fun fromJson(json: String): EdgeBundlingGraph {
       return jacksonObjectMapper()
-        .readValue(json, BilevelEdgeBundlingGraph::class.java)
+        .readValue(json, EdgeBundlingGraph::class.java)
     }
 
     fun isValidJson(json: String): Boolean {
-      val logger = LoggerFactory.getLogger(BilevelEdgeBundlingGraph::class.java)
+      val logger = LoggerFactory.getLogger(EdgeBundlingGraph::class.java)
       return try {
         jacksonObjectMapper()
-          .readValue(json, BilevelEdgeBundlingGraph::class.java)
+          .readValue(json, EdgeBundlingGraph::class.java)
         true
       } catch (e: JsonProcessingException) {
         logger.error("Failed to parse the JSON", e)

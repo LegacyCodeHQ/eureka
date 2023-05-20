@@ -1,14 +1,14 @@
 package com.legacycode.tumbleweed.cli.dev.diff
 
-import com.legacycode.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
-import com.legacycode.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph.Link
-import com.legacycode.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph.Node
+import com.legacycode.tumbleweed.viz.edgebundling.EdgeBundlingGraph
+import com.legacycode.tumbleweed.viz.edgebundling.EdgeBundlingGraph.Link
+import com.legacycode.tumbleweed.viz.edgebundling.EdgeBundlingGraph.Node
 
 data class Diff(val missing: Missing) {
   companion object {
     fun of(
-      baseline: BilevelEdgeBundlingGraph,
-      implementation: BilevelEdgeBundlingGraph,
+      baseline: EdgeBundlingGraph,
+      implementation: EdgeBundlingGraph,
     ): Diff {
       val missingNodes = baseline.nodes - implementation.nodes.toSet()
       val missingLinks = baseline.links - implementation.links.toSet()
@@ -32,7 +32,7 @@ val Diff.report: String
         |❌ Missing nodes (${nodes.count()}):
         |${nodes.joinToString(separator = System.lineSeparator()) { "  - (group: ${it.group}) ${it.id}" }}
         |""".trimMargin() +
-      """
+        """
         |❌ Missing links (${links.count()}):
         |${links.joinToString(separator = System.lineSeparator()) { "  - ${it.source} -> ${it.target}" }}
         |""".trimMargin()

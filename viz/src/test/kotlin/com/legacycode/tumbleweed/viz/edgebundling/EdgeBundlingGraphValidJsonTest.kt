@@ -1,10 +1,10 @@
-package com.legacycode.tumbleweed.web.observablehq
+package com.legacycode.tumbleweed.viz.edgebundling
 
 import com.google.common.truth.Truth.assertThat
 import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Test
 
-internal class BilevelEdgeBundlingGraphValidJsonTest {
+internal class EdgeBundlingGraphValidJsonTest {
   @Test
   internal fun `valid edge bundling graph json`() {
     // given
@@ -36,7 +36,7 @@ internal class BilevelEdgeBundlingGraphValidJsonTest {
     """
 
     // when
-    val isJsonValid = BilevelEdgeBundlingGraph.isValidJson(jsonString)
+    val isJsonValid = EdgeBundlingGraph.isValidJson(jsonString)
 
     // then
     assertThat(isJsonValid)
@@ -67,7 +67,7 @@ internal class BilevelEdgeBundlingGraphValidJsonTest {
     """
 
     // when
-    val isJsonValid = BilevelEdgeBundlingGraph.isValidJson(jsonString)
+    val isJsonValid = EdgeBundlingGraph.isValidJson(jsonString)
 
     // then
     assertThat(isJsonValid)

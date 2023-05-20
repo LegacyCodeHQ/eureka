@@ -1,30 +1,29 @@
-package com.legacycode.tumbleweed.web.observablehq
+package com.legacycode.tumbleweed.viz.edgebundling
 
 import com.legacycode.tumbleweed.ClassStructure
 import com.legacycode.tumbleweed.Member
 import com.legacycode.tumbleweed.Relationship
-import com.legacycode.tumbleweed.web.observablehq.classifiers.MemberClassifier
 
 class Transformer(
   private val classifier: MemberClassifier,
 ) {
-  fun transform(classStructure: ClassStructure): BilevelEdgeBundlingGraph {
+  fun transform(classStructure: ClassStructure): EdgeBundlingGraph {
     val nodes = (classStructure.fields + classStructure.methods).map(::toNode)
     val links = classStructure.relationships.map(::toLink)
-    return BilevelEdgeBundlingGraph(nodes, links, classStructure.classInfoMap())
+    return EdgeBundlingGraph(nodes, links, classStructure.classInfoMap())
   }
 
-  private fun toNode(member: Member): BilevelEdgeBundlingGraph.Node {
+  private fun toNode(member: Member): EdgeBundlingGraph.Node {
     val group = classifier.groupOf(member)
 
-    return BilevelEdgeBundlingGraph.Node(
+    return EdgeBundlingGraph.Node(
       id = member.signature.concise,
       group = group
     )
   }
 
-  private fun toLink(relationship: Relationship): BilevelEdgeBundlingGraph.Link {
-    return BilevelEdgeBundlingGraph.Link(
+  private fun toLink(relationship: Relationship): EdgeBundlingGraph.Link {
+    return EdgeBundlingGraph.Link(
       source = relationship.source.signature.concise,
       target = relationship.target.signature.concise
     )

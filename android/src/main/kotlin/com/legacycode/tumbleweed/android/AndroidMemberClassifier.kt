@@ -4,9 +4,8 @@ import com.legacycode.tumbleweed.Field
 import com.legacycode.tumbleweed.FieldSignature
 import com.legacycode.tumbleweed.Member
 import com.legacycode.tumbleweed.Method
-import com.legacycode.tumbleweed.web.MethodList
-import com.legacycode.tumbleweed.web.observablehq.classifiers.BasicMemberClassifier
-import com.legacycode.tumbleweed.web.observablehq.classifiers.MemberClassifier
+import com.legacycode.tumbleweed.viz.edgebundling.BasicMemberClassifier
+import com.legacycode.tumbleweed.viz.edgebundling.MemberClassifier
 
 class AndroidMemberClassifier : MemberClassifier {
   companion object {

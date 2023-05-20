@@ -1,9 +1,6 @@
-package com.legacycode.tumbleweed.web
+package com.legacycode.tumbleweed.viz.edgebundling
 
 import com.legacycode.tumbleweed.ClassScanner
-import com.legacycode.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
-import com.legacycode.tumbleweed.web.observablehq.classifiers.MemberClassifier
-import com.legacycode.tumbleweed.web.observablehq.toGraph
 import java.io.File
 import kotlin.time.ExperimentalTime
 import kotlin.time.measureTimedValue
@@ -11,7 +8,7 @@ import org.slf4j.LoggerFactory
 
 sealed interface GraphDataSource {
   val location: File
-  val graph: BilevelEdgeBundlingGraph
+  val graph: EdgeBundlingGraph
 }
 
 class CompiledClassFile(
@@ -21,7 +18,7 @@ class CompiledClassFile(
   private val logger = LoggerFactory.getLogger(CompiledClassFile::class.java)
 
   @OptIn(ExperimentalTime::class)
-  override val graph: BilevelEdgeBundlingGraph
+  override val graph: EdgeBundlingGraph
     get() {
       val (classStructure, duration) = measureTimedValue { ClassScanner.scan(location) }
       logger.info("Scanned class file in {}.", duration)
@@ -30,6 +27,6 @@ class CompiledClassFile(
 }
 
 class JsonFile(override val location: File) : GraphDataSource {
-  override val graph: BilevelEdgeBundlingGraph
-    get() = BilevelEdgeBundlingGraph.fromJson(location.readText())
+  override val graph: EdgeBundlingGraph
+    get() = EdgeBundlingGraph.fromJson(location.readText())
 }

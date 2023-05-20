@@ -1,4 +1,4 @@
-package com.legacycode.tumbleweed.web.observablehq
+package com.legacycode.tumbleweed.viz.edgebundling
 
 import com.legacycode.tumbleweed.ClassScanner
 import com.legacycode.tumbleweed.samples.AccessSuperClassMembers

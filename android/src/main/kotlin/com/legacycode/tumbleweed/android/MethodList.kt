@@ -1,4 +1,4 @@
-package com.legacycode.tumbleweed.web
+package com.legacycode.tumbleweed.android
 
 class MethodList(private val content: String) {
   companion object {

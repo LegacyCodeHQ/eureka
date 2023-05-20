@@ -3,7 +3,7 @@
 package com.legacycode.tumbleweed.cli.dev.diff
 
 import com.legacycode.tumbleweed.cli.dev.diff.EdgeBundlingGraphExtension.*
-import com.legacycode.tumbleweed.web.observablehq.BilevelEdgeBundlingGraph
+import com.legacycode.tumbleweed.viz.edgebundling.EdgeBundlingGraph
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -12,8 +12,8 @@ import org.junit.jupiter.api.extension.ExtendWith
 class DiffTest {
   @Test
   fun `01 - it returns an empty list when the baseline and implementation are same`(
-    @Graph("01-baseline.csv") baseline: BilevelEdgeBundlingGraph,
-    @Graph("01-implementation.csv") implementation: BilevelEdgeBundlingGraph,
+    @Graph("01-baseline.csv") baseline: EdgeBundlingGraph,
+    @Graph("01-implementation.csv") implementation: EdgeBundlingGraph,
   ) {
     // when
     val diff = Diff.of(baseline, implementation)
@@ -24,8 +24,8 @@ class DiffTest {
 
   @Test
   fun `02 - it returns a list of missing nodes when the implementation is empty`(
-    @Graph("02-baseline.csv") baseline: BilevelEdgeBundlingGraph,
-    @Graph("02-implementation.csv") implementation: BilevelEdgeBundlingGraph,
+    @Graph("02-baseline.csv") baseline: EdgeBundlingGraph,
+    @Graph("02-implementation.csv") implementation: EdgeBundlingGraph,
   ) {
     // when
     val diff = Diff.of(baseline, implementation)
@@ -36,8 +36,8 @@ class DiffTest {
 
   @Test
   fun `03 - it returns a list of missing nodes when the implementation is missing some nodes`(
-    @Graph("03-baseline.csv") baseline: BilevelEdgeBundlingGraph,
-    @Graph("03-implementation.csv") implementation: BilevelEdgeBundlingGraph,
+    @Graph("03-baseline.csv") baseline: EdgeBundlingGraph,
+    @Graph("03-implementation.csv") implementation: EdgeBundlingGraph,
   ) {
     // when
     val diff = Diff.of(baseline, implementation)

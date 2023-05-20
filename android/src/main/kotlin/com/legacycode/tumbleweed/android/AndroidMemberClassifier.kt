@@ -32,6 +32,7 @@ class AndroidMemberClassifier : MemberClassifier {
       "android.content.BroadcastReceiver",
       "android.content.ContentProvider",
       "android.content.Context",
+      "android.support.v7.widget.RecyclerView${'$'}Adapter",
       "android.view.View",
       "android.view.animation.Animation${'$'}AnimationListener",
       "androidx.activity.ComponentActivity",
@@ -43,6 +44,7 @@ class AndroidMemberClassifier : MemberClassifier {
       "androidx.fragment.app.FragmentActivity",
       "androidx.fragment.app.ListFragment",
       "androidx.lifecycle.LifecycleOwner",
+      "androidx.recyclerview.widget.RecyclerView${'$'}Adapter",
     ).map(MethodList::fromResource)
   }
 

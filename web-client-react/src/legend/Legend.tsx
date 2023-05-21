@@ -15,13 +15,13 @@ const Legend: React.FC<LegendProps> = ({ dependencyCount, dependentCount }) => {
             <td>
               <div className="circle red"></div>
             </td>
-            <td>Dependencies {formatCount(dependencyCount)}</td>
+            <td>Needs {formatCount(dependencyCount)}</td>
           </tr>
           <tr>
             <td>
               <div className="circle blue"></div>
             </td>
-            <td>Dependents {formatCount(dependentCount)}</td>
+            <td>Used by {formatCount(dependentCount)}</td>
           </tr>
         </tbody>
       </table>

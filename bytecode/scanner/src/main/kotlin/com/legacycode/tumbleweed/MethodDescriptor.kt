@@ -63,8 +63,16 @@ value class MethodDescriptor(private val descriptor: String) {
         }
       }
 
-      return typeTokens.map(TypeToken::type)
+      return typeTokens.map(TypeToken::type).map(::fixForIncorrectParameterTypeParsing)
     }
+
+  private fun fixForIncorrectParameterTypeParsing(typeToken: String): String {
+    return if (typeToken.contains(";L")) {
+      typeToken.substring(typeToken.indexOf(";L") + 2)
+    } else {
+      typeToken
+    }
+  }
 
   private fun nonPrimitiveTypeTokenRanges(parametersDescriptor: String): List<ClassTokenRange> {
     val startIndicesOfNonPrimitiveTypeTokens =
@@ -80,9 +88,7 @@ value class MethodDescriptor(private val descriptor: String) {
 
     return startIndicesOfNonPrimitiveTypeTokens
       .zip(endIndicesOfTokens)
-      .map { (start, end) ->
-        ClassTokenRange(start, end)
-      }
+      .map { (start, end) -> ClassTokenRange(start, end) }
   }
 
   private val hasNoParameters: Boolean

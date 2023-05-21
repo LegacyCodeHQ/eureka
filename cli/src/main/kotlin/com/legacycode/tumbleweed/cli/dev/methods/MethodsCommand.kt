@@ -1,6 +1,7 @@
 package com.legacycode.tumbleweed.cli.dev.methods
 
 import com.legacycode.tumbleweed.ClassScanner
+import com.legacycode.tumbleweed.ClassStructure
 import java.io.File
 import picocli.CommandLine.Command
 import picocli.CommandLine.Parameters
@@ -26,10 +27,7 @@ class MethodsCommand : Runnable {
   override fun run() {
     val classStructure = ClassScanner.scan(compiledClassFile)
 
-    val methodList = classStructure.methods
-      .map { it.signature.verbose }
-      .filter { it !in skipList }
-      .joinToString("\n")
+    val methodList = classStructure.createMethodList(skipList)
 
     val classFileDirectory = compiledClassFile.parentFile
     val fullyQualifiedClassName = classStructure.type.name.replace("/", ".")
@@ -39,4 +37,11 @@ class MethodsCommand : Runnable {
 
     println("Method list written to: $methodListOutputFile")
   }
+}
+
+fun ClassStructure.createMethodList(skipList: List<String>): String {
+  return methods
+    .map { it.signature.verbose }
+    .filter { it !in skipList }
+    .joinToString("\n")
 }

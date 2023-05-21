@@ -1,4 +1,4 @@
-package com.legacycode.tumbleweed.android.test
+package com.legacycode.tumbleweed.testing
 
 import java.io.File
 

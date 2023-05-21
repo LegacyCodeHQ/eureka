@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import { createRoot, line } from './GraphFunctions';
 import { GraphData } from './model/GraphData';
-import { NodeHoverEvent, Count } from './NodeHoverEvent';
+import { NodeHoverEvent } from './NodeHoverEvent';
 
 interface EdgeBundlingGraphProps {
   data: GraphData;

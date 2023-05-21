@@ -9,11 +9,13 @@ import { ClassInfo } from './viz/model/ClassInfo';
 import Toolbar from './toolbar/Toolbar';
 import { Host, HostProvider } from './HostContext';
 import Legend from './legend/Legend';
+import { WsConnectionStatus } from './toolbar/LiveUpdatesStatus';
 
 function App() {
   const [host, setHost] = useState<Host | null>(null);
   const [dependencyCount, setDependencyCount] = useState<number | null>(null);
   const [dependentCount, setDependentCount] = useState<number | null>(null);
+  const [connectionStatus, setConnectionStatus] = useState(WsConnectionStatus.Disconnected);
 
   useEffect(() => {
     const hostName = document.getElementById('root')?.dataset.hostName;
@@ -37,17 +39,22 @@ function App() {
     setDependentCount(event ? event.dependentCount : null);
   };
 
+  const handleConnectionStatus = (connectionStatus: WsConnectionStatus) => {
+    setConnectionStatus(connectionStatus);
+  };
+
   return (
     <>
       {host && (
         <HostProvider host={host}>
-          <GraphDataSource>
+          <GraphDataSource onConnectionStatusChange={handleConnectionStatus}>
             {(data: GraphData | null) => {
               setTitle(makeTitle(data?.meta.classInfo));
+              const classInfo = data?.meta.classInfo;
 
               return (
                 <div>
-                  <Toolbar data={data} />
+                  {classInfo && <Toolbar classInfo={classInfo} connectionStatus={connectionStatus} />}
                   <div className="main-panel">
                     <div className="floating-legend">
                       <Legend dependencyCount={dependencyCount} dependentCount={dependentCount} />

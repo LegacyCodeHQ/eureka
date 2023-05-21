@@ -1,22 +1,25 @@
-import { GraphData } from '../viz/model/GraphData';
 import React from 'react';
 import SimpleJvmClassName from './SimpleJvmClassName';
 import AppVersion from './AppVersion';
 import './Toolbar.css';
 import GitHubProjectLogo from './GitHubProjectLogo';
 import AndroidLogo from './AndroidLogo';
+import LiveUpdatesStatus, { WsConnectionStatus } from './LiveUpdatesStatus';
+import { ClassInfo } from '../viz/model/ClassInfo';
 
 interface ToolbarProps {
-  data: GraphData | null;
+  classInfo: ClassInfo | null;
+  connectionStatus: WsConnectionStatus;
 }
 
-const Toolbar: React.FC<ToolbarProps> = ({ data }) => {
+const Toolbar: React.FC<ToolbarProps> = ({ classInfo, connectionStatus }) => {
   return (
     <div className="toolbar">
       <span className="product-name">TWD</span>
       <AndroidLogo />
-      {data && <SimpleJvmClassName classInfo={data.meta.classInfo} />}
+      {classInfo && <SimpleJvmClassName classInfo={classInfo} />}
       <div className="right-content">
+        <LiveUpdatesStatus connectionStatus={connectionStatus} />
         <AppVersion />
         <GitHubProjectLogo account="LegacyCodeHQ" project="tumbleweed" />
       </div>

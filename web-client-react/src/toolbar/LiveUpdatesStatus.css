@@ -1,0 +1,23 @@
+.connection-status {
+    font-size: 0.8em;
+    margin-right: 8px;
+}
+
+.status-led {
+    height: 8px;
+    width: 8px;
+    clear: both;
+    margin-right: 8px;
+    margin-top: 2px;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+}
+
+.disconnected {
+    background-color: red;
+}
+
+.connected {
+    background-color: limegreen;
+}

@@ -19,3 +19,9 @@
 .android-logo {
     padding-right: 8px;
 }
+
+.right-content {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}

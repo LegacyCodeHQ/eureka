@@ -16,8 +16,10 @@ const Toolbar: React.FC<ToolbarProps> = ({ data }) => {
       <span className="product-name">TWD</span>
       <AndroidLogo />
       {data && <SimpleJvmClassName classInfo={data.meta.classInfo} />}
-      <AppVersion />
-      <GitHubProjectLogo account="LegacyCodeHQ" project="tumbleweed" />
+      <div className="right-content">
+        <AppVersion />
+        <GitHubProjectLogo account="LegacyCodeHQ" project="tumbleweed" />
+      </div>
     </div>
   );
 };

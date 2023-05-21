@@ -72,6 +72,22 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, onNodeHover
           d.path = this;
         });
 
+      function getNodeIds(nodes: any, index: number): string[] {
+        return nodes.map((d: any) => d[index].data.id);
+      }
+
+      function countNodes(nodes: any, index: number): number {
+        return [...new Set(getNodeIds(nodes, index))].length;
+      }
+
+      function countDependencies(d: any): number {
+        return countNodes(d.dependencies, 1);
+      }
+
+      function countDependents(d: any): number {
+        return countNodes(d.dependents, 0);
+      }
+
       /* eslint-disable @typescript-eslint/ban-ts-comment */
       function overed(event: any, d: any) {
         link.style('mix-blend-mode', null);
@@ -89,8 +105,8 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, onNodeHover
 
         const hoverEvent: NodeHoverEvent = {
           name: d.data.id,
-          dependencyCount: d.dependencies.length,
-          dependentCount: d.dependents.length,
+          dependencyCount: countDependencies(d),
+          dependentCount: countDependents(d),
         };
 
         onNodeHover(hoverEvent);
@@ -142,8 +158,8 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, onNodeHover
         .call((text) =>
           text.append('title').text(
             (d: any) => `${d.data.id}
-${countableTextDependencies(d.dependencies.length)}
-${countableTextDependents(d.dependents.length)}
+${countableTextDependencies(countDependencies(d))}
+${countableTextDependents(countDependents(d))}
 Effort* = ${effort(d.dependencies.length, d.dependents.length)}, I = ${
               isNaN(instability(d.dependencies.length, d.dependents.length))
                 ? 'N/A'

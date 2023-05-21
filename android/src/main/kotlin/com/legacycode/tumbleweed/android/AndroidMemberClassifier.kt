@@ -44,6 +44,7 @@ class AndroidMemberClassifier : MemberClassifier {
       "androidx.fragment.app.FragmentActivity",
       "androidx.fragment.app.ListFragment",
       "androidx.lifecycle.LifecycleOwner",
+      "androidx.loader.app.LoaderManager${'$'}LoaderCallbacks",
       "androidx.recyclerview.widget.RecyclerView${'$'}Adapter",
     ).map(MethodList::fromResource)
   }

@@ -1,12 +1,12 @@
 import React from 'react';
 import './Legend.css';
+import { Count } from '../viz/NodeHoverEvent';
 
 interface LegendProps {
-  dependencyCount: number | null;
-  dependentCount: number | null;
+  count: Count | null;
 }
 
-const Legend: React.FC<LegendProps> = ({ dependencyCount, dependentCount }) => {
+const Legend: React.FC<LegendProps> = ({ count }) => {
   return (
     <div className="legend">
       <table className="legend-table">
@@ -15,13 +15,13 @@ const Legend: React.FC<LegendProps> = ({ dependencyCount, dependentCount }) => {
             <td>
               <div className="circle red"></div>
             </td>
-            <td>Needs {formatCount(dependencyCount)}</td>
+            <td>Needs {formatCount(count ? count.dependencies : null)}</td>
           </tr>
           <tr>
             <td>
               <div className="circle blue"></div>
             </td>
-            <td>Used by {formatCount(dependentCount)}</td>
+            <td>Used by {formatCount(count ? count.dependents : null)}</td>
           </tr>
         </tbody>
       </table>

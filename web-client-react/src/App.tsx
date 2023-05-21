@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import VocabularyPanel from './vocabulary/VocabularyPanel';
-import EdgeBundlingGraph, { NodeHoverEvent } from './viz/EdgeBundlingGraph';
+import EdgeBundlingGraph from './viz/EdgeBundlingGraph';
 import GraphDataSource from './datasource/GraphDataSource';
 import { GraphData } from './viz/model/GraphData';
 import { getSimpleClassName } from './types/Functions';
@@ -10,11 +10,11 @@ import Toolbar from './toolbar/Toolbar';
 import { Host, HostProvider } from './HostContext';
 import Legend from './legend/Legend';
 import { WsConnectionStatus } from './toolbar/LiveUpdatesStatus';
+import { Count, NodeHoverEvent } from './viz/NodeHoverEvent';
 
 function App() {
   const [host, setHost] = useState<Host | null>(null);
-  const [dependencyCount, setDependencyCount] = useState<number | null>(null);
-  const [dependentCount, setDependentCount] = useState<number | null>(null);
+  const [count, setCount] = useState<Count | null>(null);
   const [connectionStatus, setConnectionStatus] = useState(WsConnectionStatus.Disconnected);
 
   useEffect(() => {
@@ -35,8 +35,7 @@ function App() {
   }
 
   const handleNodeHover = (event: NodeHoverEvent | null) => {
-    setDependencyCount(event ? event.dependencyCount : null);
-    setDependentCount(event ? event.dependentCount : null);
+    setCount(event ? event.count : null);
   };
 
   const handleConnectionStatus = (connectionStatus: WsConnectionStatus) => {
@@ -57,7 +56,7 @@ function App() {
                   {classInfo && <Toolbar classInfo={classInfo} connectionStatus={connectionStatus} />}
                   <div className="main-panel">
                     <div className="floating-legend">
-                      <Legend dependencyCount={dependencyCount} dependentCount={dependentCount} />
+                      <Legend count={count} />
                     </div>
                     <div className="viz">{data && <EdgeBundlingGraph data={data} onNodeHover={handleNodeHover} />}</div>
                     {data && <VocabularyPanel data={data} />}

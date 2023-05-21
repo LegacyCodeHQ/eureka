@@ -1,14 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import { createRoot, line } from './GraphFunctions';
 import { GraphData } from './model/GraphData';
-
-export interface NodeHoverEvent {
-  name: string;
-  dependencyCount: number;
-  dependentCount: number;
-}
+import { NodeHoverEvent, Count } from './NodeHoverEvent';
 
 interface EdgeBundlingGraphProps {
   data: GraphData;
@@ -105,8 +100,10 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, onNodeHover
 
         const hoverEvent: NodeHoverEvent = {
           name: d.data.id,
-          dependencyCount: countDependencies(d),
-          dependentCount: countDependents(d),
+          count: {
+            dependencies: countDependencies(d),
+            dependents: countDependents(d),
+          },
         };
 
         onNodeHover(hoverEvent);

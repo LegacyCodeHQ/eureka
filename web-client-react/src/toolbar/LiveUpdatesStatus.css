@@ -1,13 +1,12 @@
 .connection-status {
     font-size: 0.8em;
-    margin-right: 8px;
 }
 
 .status-led {
     height: 8px;
     width: 8px;
     clear: both;
-    margin-right: 8px;
+    margin-right: 12px;
     margin-top: 2px;
     border-radius: 50%;
     -moz-border-radius: 50%;
@@ -16,8 +15,19 @@
 
 .disconnected {
     background-color: red;
+    box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000;
 }
 
 .connected {
     background-color: limegreen;
+    animation: glow-green 2s ease-in-out infinite;
+}
+
+@keyframes glow-green {
+    0%, 100% {
+        box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00;
+    }
+    50% {
+        box-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00, 0 0 50px #00ff00;
+    }
 }

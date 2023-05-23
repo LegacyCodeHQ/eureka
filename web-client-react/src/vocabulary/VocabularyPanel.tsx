@@ -14,8 +14,8 @@ const VocabularyPanel: React.FC<VocabularyPanelProps> = ({ data }) => {
   const [activeTab, setActiveTab] = useState('types');
   const [selectedTokenStat, setSelectedTokenStat] = useState<TokenStat | null>(null);
   const { types, words } = vocabularyStats(vocabulary(data));
-  const typeTokenStats = Object.keys(types).map((name: string) => new TokenStat(new Token(name), types[name]));
-  const wordTokenStats = Object.keys(words).map((name: string) => new TokenStat(new Token(name), words[name]));
+  const typeTokenStats = getTypeTokenStats(types);
+  const wordTokenStats = getTypeTokenStats(words);
 
   const handleStatRowClick = (tokenStat: TokenStat | null) => {
     setSelectedTokenStat(tokenStat);
@@ -48,5 +48,9 @@ const VocabularyPanel: React.FC<VocabularyPanelProps> = ({ data }) => {
     </div>
   );
 };
+
+function getTypeTokenStats(stats: any): TokenStat[] {
+  return Object.keys(stats).map((name: string) => new TokenStat(new Token(name), stats[name]));
+}
 
 export default VocabularyPanel;

@@ -10,4 +10,5 @@ include(
   ":web-client-react",
   ":android",
   ":viz",
+  ":build-systems:gradle",
 )

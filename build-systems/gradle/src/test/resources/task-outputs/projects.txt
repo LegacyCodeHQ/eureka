@@ -1,0 +1,39 @@
+
+------------------------------------------------------------
+Root project 'Signal'
+------------------------------------------------------------
+
+Root project 'Signal'
++--- Project ':benchmark'
++--- Project ':contacts'
++--- Project ':contacts-app'
++--- Project ':core-ui'
++--- Project ':core-util'
++--- Project ':device-transfer'
++--- Project ':device-transfer-app'
++--- Project ':donations'
++--- Project ':donations-app'
++--- Project ':glide-config'
++--- Project ':image-editor'
++--- Project ':image-editor-app'
++--- Project ':libsignal-service'
++--- Project ':lintchecks'
++--- Project ':microbenchmark'
++--- Project ':paging'
++--- Project ':paging-app'
++--- Project ':photoview'
++--- Project ':qr'
++--- Project ':qr-app'
++--- Project ':Signal-Android'
++--- Project ':sms-exporter'
++--- Project ':sms-exporter-app'
++--- Project ':spinner'
++--- Project ':spinner-app'
++--- Project ':sticky-header-grid'
+\--- Project ':video'
+
+Included builds
+\--- Included build ':build-logic'
+
+To see a list of the tasks of a project, run gradlew <project-path>:tasks
+For example, try running gradlew :benchmark:tasks

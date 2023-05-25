@@ -10,9 +10,9 @@ class ProjectStructureTest {
     val projectsTaskOutput = TaskOutputResource("projects.txt").content
 
     // when
-    val projectStructure = ProjectStructure.fromCommandLineOutput(projectsTaskOutput)
+    val projectStructure = ProjectStructure.from(projectsTaskOutput)
 
     // then
-    Approvals.verify(projectStructure.printableProjectStructure)
+    Approvals.verify(projectStructure.printable)
   }
 }

@@ -1,5 +1,5 @@
 dependencies {
-  implementation(project(":bytecode:scanner"))
+  implementation(project(":bytecode-scanner"))
   implementation(project(":filesystem"))
   implementation(project(":vcs"))
   implementation(project(":android"))

@@ -55,7 +55,7 @@ tasks {
 dependencies {
   implementation(project(":web-server"))
   implementation(project(":filesystem"))
-  implementation(project(":bytecode:scanner")) /* only for the `json` debug command */
+  implementation(project(":bytecode-scanner")) /* only for the `json` debug command */
   implementation(project(":viz"))
   implementation(project(":android"))
 
@@ -63,7 +63,7 @@ dependencies {
 
   implementation("info.picocli:picocli:4.7.3")
 
-  testImplementation(project(":bytecode:testing"))
+  testImplementation(project(":bytecode-testing"))
 }
 
 /* Ported from https://github.com/mobile-dev-inc/maestro/blob/main/maestro-cli/build.gradle */

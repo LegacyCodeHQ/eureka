@@ -1,4 +1,4 @@
-package com.legacycode.ureka.gradle
+package com.legacycode.ureka.gradle.commands
 
 import java.io.File
 

@@ -1,4 +1,4 @@
-package com.legacycode.ureka.gradle
+package com.legacycode.ureka.gradle.commands
 
 import com.google.common.truth.Truth.assertThat
 import java.io.File

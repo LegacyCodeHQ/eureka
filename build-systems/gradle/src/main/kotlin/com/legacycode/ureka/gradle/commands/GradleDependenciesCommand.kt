@@ -5,7 +5,7 @@ import com.legacycode.ureka.gradle.ProjectStructure
 
 class GradleDependenciesCommand(
   private val project: Project,
-) {
+) : Command {
   companion object {
     fun from(project: Project): GradleDependenciesCommand {
       return GradleDependenciesCommand(project)
@@ -16,6 +16,6 @@ class GradleDependenciesCommand(
     }
   }
 
-  val text: String
+  override val text: String
     get() = "./gradlew -q ${project.name}:dependencies"
 }

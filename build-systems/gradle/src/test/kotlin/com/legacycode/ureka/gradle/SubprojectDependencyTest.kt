@@ -1,6 +1,8 @@
 package com.legacycode.ureka.gradle
 
 import com.google.common.truth.Truth.assertThat
+import com.legacycode.ureka.gradle.testing.TaskOutputResource
+import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
@@ -39,5 +41,18 @@ class SubprojectDependencyTest {
     // then
     assertThat(dependency)
       .isNull()
+  }
+
+  @Test
+  fun `it can parse project dependencies from task output`() {
+    // given
+    val dependenciesOutput = TaskOutputResource.dependencies("Signal-Android.txt").output
+
+    // when
+    val subprojectDependencies = SubprojectDependency.from(dependenciesOutput)
+
+    // then
+    val subprojectDependenciesList = subprojectDependencies.joinToString("\n") { it.name }
+    Approvals.verify(subprojectDependenciesList)
   }
 }

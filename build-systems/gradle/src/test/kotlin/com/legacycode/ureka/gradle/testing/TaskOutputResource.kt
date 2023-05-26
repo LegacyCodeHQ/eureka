@@ -18,10 +18,11 @@ class TaskOutputResource private constructor(
 
   val output: CommandOutput
     get() {
+      val resourcePath = "$taskName-outputs/$filename"
       val content = TaskOutputResource::class.java
         .classLoader
-        .getResource("$taskName-outputs/$filename")!!
-        .readText()
-      return CommandOutput(content)
+        .getResource(resourcePath)
+        ?.readText()
+      return CommandOutput(content!!)
     }
 }

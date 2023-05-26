@@ -13,5 +13,11 @@ value class SubprojectDependency(val name: String) {
       }
       return null
     }
+
+    fun from(output: CommandOutput): List<SubprojectDependency> {
+      return output.content.lines()
+        .mapNotNull(Companion::from)
+        .distinct()
+    }
   }
 }

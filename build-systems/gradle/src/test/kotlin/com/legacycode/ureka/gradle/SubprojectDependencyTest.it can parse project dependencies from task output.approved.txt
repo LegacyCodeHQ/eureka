@@ -1,0 +1,16 @@
+libsignal-service
+paging
+core-util
+glide-config
+video
+device-transfer
+image-editor
+donations
+contacts
+qr
+sms-exporter
+sticky-header-grid
+photoview
+core-ui
+Signal-Android
+spinner

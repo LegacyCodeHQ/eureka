@@ -24,7 +24,7 @@ class GradleDependenciesCommandTest {
   @Test
   fun `create multiple commands from project structure`() {
     // given
-    val projectsTaskOutput = TaskOutputResource("projects.txt").content
+    val projectsTaskOutput = TaskOutputResource.projects("Signal.txt").content
     val projectStructure = ProjectStructure.from(projectsTaskOutput)
 
     // when

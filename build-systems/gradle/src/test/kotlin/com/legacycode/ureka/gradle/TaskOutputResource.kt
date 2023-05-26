@@ -1,11 +1,24 @@
 package com.legacycode.ureka.gradle
 
-class TaskOutputResource(private val filename: String) {
+class TaskOutputResource private constructor(
+  private val taskName: String,
+  private val filename: String,
+) {
+  companion object {
+    fun projects(filename: String): TaskOutputResource {
+      return TaskOutputResource("projects", filename)
+    }
+
+    fun dependencies(filename: String): TaskOutputResource {
+      return TaskOutputResource("dependencies", filename)
+    }
+  }
+
   val content: String
     get() {
       return TaskOutputResource::class.java
         .classLoader
-        .getResource("task-outputs/$filename")!!
+        .getResource("$taskName-outputs/$filename")!!
         .readText()
     }
 }

@@ -8,7 +8,7 @@ class ProjectStructureTest {
   @Test
   fun `parse project structure`() {
     // given
-    val projectsTaskOutput = TaskOutputResource.projects("Signal.txt").content
+    val projectsTaskOutput = TaskOutputResource.projects("Signal.txt").output
 
     // when
     val projectStructure = ProjectStructure.from(projectsTaskOutput)

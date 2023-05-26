@@ -5,8 +5,8 @@ data class ProjectStructure(
   val subprojects: List<Project>,
 ) {
   companion object {
-    fun from(commandLineOutput: String): ProjectStructure {
-      val lines = commandLineOutput.lines()
+    fun from(output: CommandOutput): ProjectStructure {
+      val lines = output.content.lines()
       val rootProject = parseRootProject(lines)
 
       val subprojects = mutableListOf<Project>()

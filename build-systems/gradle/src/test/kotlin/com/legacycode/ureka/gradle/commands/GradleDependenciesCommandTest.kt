@@ -1,6 +1,7 @@
 package com.legacycode.ureka.gradle.commands
 
 import com.google.common.truth.Truth.assertThat
+import com.legacycode.ureka.gradle.CommandOutput
 import com.legacycode.ureka.gradle.Project
 import com.legacycode.ureka.gradle.ProjectStructure
 import com.legacycode.ureka.gradle.testing.TaskOutputResource
@@ -24,7 +25,7 @@ class GradleDependenciesCommandTest {
   @Test
   fun `create multiple commands from project structure`() {
     // given
-    val projectsTaskOutput = TaskOutputResource.projects("Signal.txt").content
+    val projectsTaskOutput = TaskOutputResource.projects("Signal.txt").output
     val projectStructure = ProjectStructure.from(projectsTaskOutput)
 
     // when

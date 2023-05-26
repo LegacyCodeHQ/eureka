@@ -1,3 +1,4 @@
+import com.legacycode.ureka.gradle.CommandOutput
 import com.legacycode.ureka.gradle.ProjectStructure
 import com.legacycode.ureka.gradle.commands.GradleDependenciesCommand
 import com.legacycode.ureka.gradle.commands.GradleProjectsCommand
@@ -9,7 +10,7 @@ fun main() {
   val projectsCommand = GradleProjectsCommand(projectRoot)
   val projectsOutput = projectsCommand.execute()
 
-  val projectStructure = ProjectStructure.from(projectsOutput)
+  val projectStructure = ProjectStructure.from(CommandOutput(projectsOutput))
   val gradleDependenciesCommands = GradleDependenciesCommand.from(projectStructure)
 
   gradleDependenciesCommands.onEach {

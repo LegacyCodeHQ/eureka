@@ -19,12 +19,19 @@ class ModulesCommand : Runnable {
   lateinit var projectRoot: File
 
   override fun run() {
-    var uml: String
-    val timeMillis = measureTimeMillis {
-      uml = runGradleCommands(projectRoot)
+    if (!projectRoot.isGradleProject()) {
+      println("Ouch... does the path contain a Gradle project? ($projectRoot)")
+    } else {
+      var uml: String
+      val timeMillis = measureTimeMillis {
+        uml = runGradleCommands(projectRoot)
+      }
+      println("Execution took: ${timeMillis}ms")
+      println()
+      println(uml)
     }
-    println("Execution took: ${timeMillis}ms")
-    println()
-    println(uml)
   }
+
+  private fun File.isGradleProject(): Boolean =
+    this.resolve("gradlew").exists()
 }

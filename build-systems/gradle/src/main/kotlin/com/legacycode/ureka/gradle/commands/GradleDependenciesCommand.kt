@@ -4,7 +4,7 @@ import com.legacycode.ureka.gradle.Project
 import com.legacycode.ureka.gradle.ProjectStructure
 
 class GradleDependenciesCommand(
-  private val project: Project,
+  val project: Project,
 ) : Command {
   companion object {
     fun from(project: Project): GradleDependenciesCommand {

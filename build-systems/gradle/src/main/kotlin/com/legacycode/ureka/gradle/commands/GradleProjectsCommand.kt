@@ -10,5 +10,5 @@ class GradleProjectsCommand(private val projectRoot: File): Command {
   }
 
   override val text: String
-    get() = "${projectRoot.resolve("gradlew")} -q projects"
+    get() = "${projectRoot.resolve("gradlew")} -p ${projectRoot.absolutePath} -q projects"
 }

@@ -8,11 +8,11 @@ class GradleProjectsCommandTest {
   @Test
   fun `create a projects task command`() {
     // given
-    val projectRoot = File("~/MyProjects/Signal-Android")
+    val projectRoot = File("/projects/Signal-Android")
     val command = GradleProjectsCommand.from(projectRoot)
 
     // when & then
     assertThat(command.text)
-      .isEqualTo("~/MyProjects/Signal-Android/gradlew -q projects")
+      .isEqualTo("/projects/Signal-Android/gradlew -p /projects/Signal-Android -q projects")
   }
 }

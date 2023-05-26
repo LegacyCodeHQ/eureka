@@ -1,10 +1,10 @@
 package com.legacycode.ureka.gradle.commands
 
 import com.google.common.truth.Truth.assertThat
-import com.legacycode.ureka.gradle.CommandOutput
 import com.legacycode.ureka.gradle.Project
 import com.legacycode.ureka.gradle.ProjectStructure
 import com.legacycode.ureka.gradle.testing.TaskOutputResource
+import java.io.File
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
 
@@ -15,11 +15,11 @@ class GradleDependenciesCommandTest {
     val project = Project("contacts")
 
     // when
-    val command = GradleDependenciesCommand.from(project)
+    val command = GradleDependenciesCommand.from(File("/project/root"), project)
 
     // then
     assertThat(command.text)
-      .isEqualTo("./gradlew -q contacts:dependencies")
+      .isEqualTo("./gradlew -p /project/root -q contacts:dependencies")
   }
 
   @Test
@@ -29,7 +29,7 @@ class GradleDependenciesCommandTest {
     val projectStructure = ProjectStructure.from(projectsTaskOutput)
 
     // when
-    val commands = GradleDependenciesCommand.from(projectStructure)
+    val commands = GradleDependenciesCommand.from(File("/project/root"), projectStructure)
 
     // then
     val listOfCommands = commands.joinToString("\n") { it.text }

@@ -1,27 +1,27 @@
-./gradlew -q benchmark:dependencies
-./gradlew -q contacts:dependencies
-./gradlew -q contacts-app:dependencies
-./gradlew -q core-ui:dependencies
-./gradlew -q core-util:dependencies
-./gradlew -q device-transfer:dependencies
-./gradlew -q device-transfer-app:dependencies
-./gradlew -q donations:dependencies
-./gradlew -q donations-app:dependencies
-./gradlew -q glide-config:dependencies
-./gradlew -q image-editor:dependencies
-./gradlew -q image-editor-app:dependencies
-./gradlew -q libsignal-service:dependencies
-./gradlew -q lintchecks:dependencies
-./gradlew -q microbenchmark:dependencies
-./gradlew -q paging:dependencies
-./gradlew -q paging-app:dependencies
-./gradlew -q photoview:dependencies
-./gradlew -q qr:dependencies
-./gradlew -q qr-app:dependencies
-./gradlew -q Signal-Android:dependencies
-./gradlew -q sms-exporter:dependencies
-./gradlew -q sms-exporter-app:dependencies
-./gradlew -q spinner:dependencies
-./gradlew -q spinner-app:dependencies
-./gradlew -q sticky-header-grid:dependencies
-./gradlew -q video:dependencies
+./gradlew -p /project/root -q benchmark:dependencies
+./gradlew -p /project/root -q contacts:dependencies
+./gradlew -p /project/root -q contacts-app:dependencies
+./gradlew -p /project/root -q core-ui:dependencies
+./gradlew -p /project/root -q core-util:dependencies
+./gradlew -p /project/root -q device-transfer:dependencies
+./gradlew -p /project/root -q device-transfer-app:dependencies
+./gradlew -p /project/root -q donations:dependencies
+./gradlew -p /project/root -q donations-app:dependencies
+./gradlew -p /project/root -q glide-config:dependencies
+./gradlew -p /project/root -q image-editor:dependencies
+./gradlew -p /project/root -q image-editor-app:dependencies
+./gradlew -p /project/root -q libsignal-service:dependencies
+./gradlew -p /project/root -q lintchecks:dependencies
+./gradlew -p /project/root -q microbenchmark:dependencies
+./gradlew -p /project/root -q paging:dependencies
+./gradlew -p /project/root -q paging-app:dependencies
+./gradlew -p /project/root -q photoview:dependencies
+./gradlew -p /project/root -q qr:dependencies
+./gradlew -p /project/root -q qr-app:dependencies
+./gradlew -p /project/root -q Signal-Android:dependencies
+./gradlew -p /project/root -q sms-exporter:dependencies
+./gradlew -p /project/root -q sms-exporter-app:dependencies
+./gradlew -p /project/root -q spinner:dependencies
+./gradlew -p /project/root -q spinner-app:dependencies
+./gradlew -p /project/root -q sticky-header-grid:dependencies
+./gradlew -p /project/root -q video:dependencies

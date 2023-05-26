@@ -12,7 +12,7 @@ fun runGradleCommands(projectRoot: File) {
   val projectsOutput = projectsCommand.execute()
 
   val projectStructure = ProjectStructure.from(CommandOutput(projectsOutput))
-  val gradleDependenciesCommands = GradleDependenciesCommand.from(projectStructure)
+  val gradleDependenciesCommands = GradleDependenciesCommand.from(projectRoot, projectStructure)
 
   val resolvedDependencies = resolveDependencies(cmdFile, gradleDependenciesCommands)
 

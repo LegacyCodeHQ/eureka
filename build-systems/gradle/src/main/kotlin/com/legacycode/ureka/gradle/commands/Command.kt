@@ -10,6 +10,8 @@ interface Command {
     val cmdArgs = text.split(" ")
     val cmd = cmdFile?.path ?: cmdArgs.first()
     val args = cmdArgs.drop(1).toTypedArray()
+
+    println("Executing: $text")
     return ProcBuilder.run(cmd, *args)!!
   }
 }

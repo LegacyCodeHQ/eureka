@@ -6,7 +6,7 @@ import com.legacycode.ureka.gradle.commands.GradleDependenciesCommand
 import com.legacycode.ureka.gradle.commands.GradleProjectsCommand
 import java.io.File
 
-fun runGradleCommands(projectRoot: File) {
+fun runGradleCommands(projectRoot: File): String {
   val cmdFile = projectRoot.resolve("gradlew")
   val projectsCommand = GradleProjectsCommand(projectRoot)
   val projectsOutput = projectsCommand.execute()
@@ -16,8 +16,7 @@ fun runGradleCommands(projectRoot: File) {
 
   val resolvedDependencies = resolveDependencies(cmdFile, gradleDependenciesCommands)
 
-  println()
-  printPlantUmlOutput(resolvedDependencies)
+  return plantUmlOutput(resolvedDependencies)
 }
 
 private fun resolveDependencies(
@@ -34,23 +33,29 @@ private fun resolveDependencies(
   return resolvedDependencies.toMap()
 }
 
-private fun printPlantUmlOutput(resolvedDependencies: Map<Project, List<SubprojectDependency>>) {
-  println("@startuml")
-  println("skinparam showEmptyMembers true")
-  println()
+private fun plantUmlOutput(
+  resolvedDependencies: Map<Project, List<SubprojectDependency>>,
+): String {
+  val umlBuilder = StringBuilder()
+
+  umlBuilder.appendLine("@startuml")
+  umlBuilder.appendLine("skinparam showEmptyMembers true")
+  umlBuilder.appendLine()
   resolvedDependencies.entries.onEach { (project, dependencies) ->
     dependencies.forEach { dependency ->
-      println("[${project.name}] ..> [${dependency.name}]")
+      umlBuilder.appendLine("[${project.name}] ..> [${dependency.name}]")
     }
   }
-  println()
-  println("'workaround: show components without in/out dependencies")
+  umlBuilder.appendLine()
+  umlBuilder.appendLine("'workaround: show components without in/out dependencies")
   resolvedDependencies.entries.filter { it.value.isEmpty() }.onEach { (project, _) ->
-    println("[${project.name}] --[hidden]-> [${project.name}]")
+    umlBuilder.appendLine("[${project.name}] --[hidden]-> [${project.name}]")
   }
-  println("'end workaround")
-  println()
-  println("@enduml")
+  umlBuilder.appendLine("'end workaround")
+  umlBuilder.appendLine()
+  umlBuilder.appendLine("@enduml")
+
+  return umlBuilder.toString()
 }
 
 private fun printDebugOutput(resolvedDependencies: Map<Project, List<SubprojectDependency>>) {

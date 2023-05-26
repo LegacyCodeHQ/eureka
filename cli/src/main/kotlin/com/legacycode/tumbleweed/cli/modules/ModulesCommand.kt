@@ -19,9 +19,12 @@ class ModulesCommand : Runnable {
   lateinit var projectRoot: File
 
   override fun run() {
+    var uml: String
     val timeMillis = measureTimeMillis {
-      runGradleCommands(projectRoot)
+      uml = runGradleCommands(projectRoot)
     }
-    println("Took: ${timeMillis}ms")
+    println("Execution took: ${timeMillis}ms")
+    println()
+    println(uml)
   }
 }

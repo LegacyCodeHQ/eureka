@@ -1,19 +1,13 @@
-# Tumbleweed (early preview) ![CI](https://github.com/legacycodehq/tumbleweed/actions/workflows/jvm-tests.yml/badge.svg) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/legacycodehq/tumbleweed)
+# Tumbleweed (alpha) ![CI](https://github.com/legacycodehq/tumbleweed/actions/workflows/jvm-tests.yml/badge.svg) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/legacycodehq/tumbleweed)
 
-Effortlessly understand and analyze Kotlin/Java classes in your codebase 😎
+Understand Kotlin and Java classes with ease 😎
 
 ## Is this for me?
 
-- You constantly feel that there's something off with the design but can't articulate it well to your team members.
 - You have joined a new team or an organization and want to understand the codebase.
-- You have this one class that you can't understand because it's way too large, and the previous maintainers have
-  left the team or organization.
 - You want to contribute to an open-source project to build your portfolio.
-- You are curious about how well your codebase is designed and want to know how you could improve it.
-- You are refactoring a class and want to identify clusters so that you can extract them into smaller classes.
-- You want to analyze the codebase to identify code smells and refactor them.
-
-If you have any of these requirements, then this tool is for you 😉
+- You want to break down a large class.
+- You want to bring a function under test and want to break dependencies and see them in real-time.
 
 ## Live demo
 
@@ -25,10 +19,10 @@ class.
 
 ### 1. Class visualization
 
-You must build the project first and then run the tool.
+You must first build the project and then run the tool.
 
 The command will start a web server on port 7070. Go to `localhost:7070` in your browser to see the diagram. The diagram
-will be updated in real-time as you make changes to the source code and compile the project.
+updates in real-time as you make changes to the source code and compile the project.
 
 For more options, run `twd watch --help`.
 
@@ -59,7 +53,7 @@ twd watch MediaPreviewActivity
 twd ownership --repo <path-to-git-repo>
 ```
 
-The command will start a web server on port 7080. Visit the URL on `localhost:7080`.
+The command will start a web server on port 7080. Visit the app on `localhost:7080`.
 
 After visiting the app, update the URL on the address bar to find the ownership information for the target file.
 
@@ -70,6 +64,25 @@ http://localhost:7080/?file=cli/src/../OwnershipCommand.kt
 ```
 
 The `file` query parameter should use the full path of the target file.
+
+### 3. Module dependency diagram (experimental)
+
+![PlantUML component diagram](docs/images/modules.png)
+
+#### Usage
+
+This feature requires an installation of [PlantUML](https://plantuml.com) to generate diagrams.
+
+```bash
+twd modules ~/GitHubProjects/Signal-Android
+```
+
+The command will print a PlantUML component diagram. Copy and save it to a text file (e.g. **signal-android.uml**) and use
+the `plantuml` commandline tool to generate the diagram.
+
+```bash
+plantuml signal-android.uml
+```
 
 ## Installation
 

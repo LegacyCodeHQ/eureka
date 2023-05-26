@@ -17,6 +17,11 @@ fun main() {
 
   val resolvedDependencies = resolveDependencies(cmdFile, gradleDependenciesCommands)
 
+  println()
+  printReadableOutput(resolvedDependencies)
+}
+
+private fun printReadableOutput(resolvedDependencies: Map<Project, List<SubprojectDependency>>) {
   resolvedDependencies.entries.onEach { (project, dependencies) ->
     println("${project.name} (${dependencies.size})")
 

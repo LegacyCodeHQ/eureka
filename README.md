@@ -21,44 +21,61 @@ You can try this [sample interactive graph](https://redgreenio.github.io/) for S
 App's [StoryViewerPageFragment](https://github.com/signalapp/Signal-Android/blob/ff8f9ca81ae6a25e1e946612c817206b9410d9a1/app/src/main/java/org/thoughtcrime/securesms/stories/viewer/page/StoryViewerPageFragment.kt)
 class.
 
-## Screenshots
+## Features
 
-### Class visualization—edge bundling graph
+### 1. Class visualization
+
+You must build the project first and then run the tool.
+
+The command will start a web server on port 7070. Go to `localhost:7070` in your browser to see the diagram. The diagram
+will be updated in real-time as you make changes to the source code and compile the project.
+
+For more options, run `twd watch --help`.
 
 ![Edge bundling graph](docs/images/screenshot.png)
 
-### File ownership—treemap
+#### 1.1 Android support (experimental)
+
+```bash
+twd watch -x android MediaPreviewActivity
+```
+
+Read [this blog post](https://legacycode.com/android-support) to learn how to use this feature when examining Android
+classes.
+
+#### 1.2 Without Android support
+
+```bash
+twd watch MediaPreviewActivity
+```
+
+### 2. File ownership (experimental)
 
 ![Treemap](docs/images/ownership.png)
+
+#### Usage
+
+```bash
+twd ownership --repo <path-to-git-repo>
+```
+
+The command will start a web server on port 7080. Visit the URL on `localhost:7080`.
+
+After visiting the app, update the URL on the address bar to find the ownership information for the target file.
+
+For example,
+
+```
+http://localhost:7080/?file=cli/src/../OwnershipCommand.kt
+```
+
+The `file` query parameter should use the full path of the target file.
 
 ## Installation
 
 ```bash
 brew install legacycodehq/tap/twd
 ```
-
-## Usage
-
-Build the project first and then run the command line tool.
-
-```bash
-twd watch com.legacycode.ExampleClass
-```
-
-The command will start a web server on port 7070. Go to `localhost:7070` in your browser to see the diagram.
-
-The diagram will be updated in real-time as you make changes to the source code and compile the project.
-
-For more options, run `twd watch --help`.
-
-### Experimental Android support
-
-```bash
-twd watch com.example.android.ProfileFragment -x android
-```
-
-Tumbleweed will show 4 groups instead of 2. Properties and methods are further grouped into Android framework properties
-and methods. This visualization helps categorize business domain members separately from framework members.
 
 ## Updates
 

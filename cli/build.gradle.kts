@@ -58,6 +58,7 @@ dependencies {
   implementation(project(":bytecode-scanner")) /* only for the `json` debug command */
   implementation(project(":viz"))
   implementation(project(":android"))
+  implementation(project(":build-systems-gradle"))
 
   implementation("org.apache.commons:commons-csv:1.10.0")
 

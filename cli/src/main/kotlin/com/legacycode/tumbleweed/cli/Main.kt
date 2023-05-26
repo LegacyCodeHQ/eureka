@@ -7,6 +7,7 @@ import com.legacycode.tumbleweed.cli.dev.diff.DiffCommand
 import com.legacycode.tumbleweed.cli.dev.json.JsonCommand
 import com.legacycode.tumbleweed.cli.dev.methods.MethodsCommand
 import com.legacycode.tumbleweed.cli.dev.view.ViewCommand
+import com.legacycode.tumbleweed.cli.modules.ModulesCommand
 import com.legacycode.tumbleweed.cli.ownership.OwnershipCommand
 import com.legacycode.tumbleweed.cli.watch.WatchCommand
 import com.legacycode.tumbleweed.version.TwdProperties
@@ -24,6 +25,7 @@ const val DEFAULT_PORT = 7070
   subcommands = [
     WatchCommand::class,
     OwnershipCommand::class,
+    ModulesCommand::class,
 
     /* dev commands */
     JsonCommand::class,

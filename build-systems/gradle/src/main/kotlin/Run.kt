@@ -6,11 +6,6 @@ import com.legacycode.ureka.gradle.commands.GradleDependenciesCommand
 import com.legacycode.ureka.gradle.commands.GradleProjectsCommand
 import java.io.File
 
-fun main() {
-  val projectRoot = File("")
-  runGradleCommands(projectRoot.absoluteFile)
-}
-
 fun runGradleCommands(projectRoot: File) {
   val cmdFile = projectRoot.resolve("gradlew")
   val projectsCommand = GradleProjectsCommand(projectRoot)

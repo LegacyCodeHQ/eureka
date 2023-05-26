@@ -29,7 +29,7 @@ private fun resolveDependencies(
     val project = dependenciesCommand.project
     val output = CommandOutput(dependenciesCommand.execute(cmdFile))
     val dependencies = SubprojectDependency.from(output)
-    resolvedDependencies[project] = dependencies
+    resolvedDependencies[project] = dependencies.filter { it.name != project.name }
   }
   return resolvedDependencies.toMap()
 }

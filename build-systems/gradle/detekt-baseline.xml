@@ -2,7 +2,7 @@
 <SmellBaseline>
   <ManuallySuppressedIssues></ManuallySuppressedIssues>
   <CurrentIssues>
-    <ID>SpreadOperator:Command.kt$Command$(cmd, *args)</ID>
+    <ID>SpreadOperator:Command.kt$Command$(*args)</ID>
     <ID>UnusedPrivateMember:Run.kt$private fun printDebugOutput(resolvedDependencies: Map&lt;Project, List&lt;SubprojectDependency&gt;&gt;)</ID>
   </CurrentIssues>
 </SmellBaseline>

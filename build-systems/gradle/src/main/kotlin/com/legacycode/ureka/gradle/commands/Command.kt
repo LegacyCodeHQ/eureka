@@ -12,6 +12,10 @@ interface Command {
     val args = cmdArgs.drop(1).toTypedArray()
 
     println("Executing: $text")
-    return ProcBuilder.run(cmd, *args)!!
+    return ProcBuilder(cmd)
+      .withNoTimeout()
+      .withArgs(*args)
+      .run()!!
+      .outputString
   }
 }

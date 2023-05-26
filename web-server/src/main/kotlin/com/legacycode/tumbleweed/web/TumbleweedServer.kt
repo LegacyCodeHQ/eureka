@@ -14,6 +14,7 @@ import io.ktor.server.http.content.resources
 import io.ktor.server.http.content.static
 import io.ktor.server.http.content.staticBasePackage
 import io.ktor.server.netty.Netty
+import io.ktor.server.plugins.cors.routing.CORS
 import io.ktor.server.response.respond
 import io.ktor.server.response.respondText
 import io.ktor.server.routing.get
@@ -25,6 +26,7 @@ import io.ktor.server.websocket.timeout
 import io.ktor.server.websocket.webSocket
 import io.ktor.util.pipeline.PipelineContext
 import io.ktor.websocket.Frame
+import java.net.NetworkInterface
 import java.time.Duration
 import java.util.concurrent.BlockingQueue
 import java.util.concurrent.LinkedBlockingQueue
@@ -46,9 +48,21 @@ class TumbleweedServer(private val activeExperiment: Experiment? = null) {
 
     logger.info("Starting web server @ http://localhost:{}", port)
     webServer = embeddedServer(Netty, port = port) {
+      installCors(port)
       installWebSockets()
       setupRoutes(source, port)
     }.start(wait = true)
+  }
+
+  private fun Application.installCors(port: Int) {
+    val knownHosts = listOfNotNull("localhost", "0.0.0.0", "127.0.0.1", getIpAddress())
+    val allowedSchemes = listOf("http", "ws")
+
+    install(CORS) {
+      knownHosts
+        .map { "$it:$port" }
+        .onEach { host -> allowHost(host, allowedSchemes) }
+    }
   }
 
   fun stop() {
@@ -102,6 +116,21 @@ class TumbleweedServer(private val activeExperiment: Experiment? = null) {
       logger.info("Sending updated structure to client")
       send(Frame.Text(message))
     }
+  }
+
+  private fun getIpAddress(): String? {
+    val interfaces = NetworkInterface.getNetworkInterfaces()
+    while (interfaces.hasMoreElements()) {
+      val networkInterface = interfaces.nextElement()
+      val addresses = networkInterface.inetAddresses
+      while (addresses.hasMoreElements()) {
+        val address = addresses.nextElement()
+        if (!address.isLoopbackAddress && address.hostAddress.indexOf(':') == -1) {
+          return address.hostAddress
+        }
+      }
+    }
+    return null
   }
 
   private fun startWatchingFileForChanges(source: GraphDataSource) {

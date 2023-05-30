@@ -77,12 +77,10 @@ This feature requires an installation of [PlantUML](https://plantuml.com) to gen
 twd modules ~/GitHubProjects/Signal-Android
 ```
 
-The command will print a PlantUML component diagram. Copy and save it to a text file (e.g. **signal-android.uml**) and use
-the `plantuml` commandline tool to generate the diagram.
+The command will print a Graphviz directed graph DSL.
 
-```bash
-plantuml signal-android.uml
-```
+1. Copy the DSL and paste it into the [online Graphviz tool](https://dreampuf.github.io/GraphvizOnline).
+2. The tool selects the **dot** engine by default, for best results use the **circo** engine from the engine dropdown.
 
 ## Installation
 

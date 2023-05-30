@@ -71,8 +71,6 @@ The `file` query parameter should use the full path of the target file.
 
 #### Usage
 
-This feature requires an installation of [PlantUML](https://plantuml.com) to generate diagrams.
-
 ```bash
 twd modules ~/GitHubProjects/Signal-Android
 ```

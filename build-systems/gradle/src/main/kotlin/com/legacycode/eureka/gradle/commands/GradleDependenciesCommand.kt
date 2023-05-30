@@ -1,7 +1,7 @@
-package com.legacycode.ureka.gradle.commands
+package com.legacycode.eureka.gradle.commands
 
-import com.legacycode.ureka.gradle.Project
-import com.legacycode.ureka.gradle.ProjectStructure
+import com.legacycode.eureka.gradle.Project
+import com.legacycode.eureka.gradle.ProjectStructure
 import java.io.File
 
 class GradleDependenciesCommand(

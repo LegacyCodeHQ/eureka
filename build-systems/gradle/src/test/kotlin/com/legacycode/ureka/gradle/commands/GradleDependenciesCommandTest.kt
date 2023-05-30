@@ -1,8 +1,9 @@
 package com.legacycode.ureka.gradle.commands
 
 import com.google.common.truth.Truth.assertThat
-import com.legacycode.ureka.gradle.Project
-import com.legacycode.ureka.gradle.ProjectStructure
+import com.legacycode.eureka.gradle.Project
+import com.legacycode.eureka.gradle.ProjectStructure
+import com.legacycode.eureka.gradle.commands.GradleDependenciesCommand
 import com.legacycode.ureka.gradle.testing.TaskOutputResource
 import java.io.File
 import org.approvaltests.Approvals

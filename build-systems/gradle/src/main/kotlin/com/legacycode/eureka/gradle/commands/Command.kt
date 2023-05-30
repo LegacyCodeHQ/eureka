@@ -1,4 +1,4 @@
-package com.legacycode.ureka.gradle.commands
+package com.legacycode.eureka.gradle.commands
 
 import java.io.File
 import org.buildobjects.process.ProcBuilder

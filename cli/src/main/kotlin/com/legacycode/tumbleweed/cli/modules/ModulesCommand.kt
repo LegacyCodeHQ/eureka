@@ -1,10 +1,10 @@
 package com.legacycode.tumbleweed.cli.modules
 
+import com.legacycode.eureka.gradle.runGradleCommands
 import java.io.File
 import kotlin.system.measureTimeMillis
 import picocli.CommandLine.Command
 import picocli.CommandLine.Parameters
-import runGradleCommands
 
 @Command(
   name = "modules",

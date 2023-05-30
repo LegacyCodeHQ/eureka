@@ -1,4 +1,4 @@
-package com.legacycode.ureka.gradle
+package com.legacycode.eureka.gradle
 
 data class ProjectStructure(
   val rootProject: Project,

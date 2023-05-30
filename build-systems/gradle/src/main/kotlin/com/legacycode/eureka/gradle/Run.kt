@@ -1,9 +1,7 @@
-import com.legacycode.ureka.gradle.CommandOutput
-import com.legacycode.ureka.gradle.Project
-import com.legacycode.ureka.gradle.ProjectStructure
-import com.legacycode.ureka.gradle.SubprojectDependency
-import com.legacycode.ureka.gradle.commands.GradleDependenciesCommand
-import com.legacycode.ureka.gradle.commands.GradleProjectsCommand
+package com.legacycode.eureka.gradle
+
+import com.legacycode.eureka.gradle.commands.GradleDependenciesCommand
+import com.legacycode.eureka.gradle.commands.GradleProjectsCommand
 import java.io.File
 
 fun runGradleCommands(projectRoot: File): String {

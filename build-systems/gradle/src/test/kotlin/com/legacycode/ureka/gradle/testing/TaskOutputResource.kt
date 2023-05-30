@@ -1,6 +1,6 @@
 package com.legacycode.ureka.gradle.testing
 
-import com.legacycode.ureka.gradle.CommandOutput
+import com.legacycode.eureka.gradle.CommandOutput
 
 class TaskOutputResource private constructor(
   private val taskName: String,

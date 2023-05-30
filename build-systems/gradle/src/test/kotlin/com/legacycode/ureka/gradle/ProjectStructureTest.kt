@@ -1,5 +1,6 @@
 package com.legacycode.ureka.gradle
 
+import com.legacycode.eureka.gradle.ProjectStructure
 import com.legacycode.ureka.gradle.testing.TaskOutputResource
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test

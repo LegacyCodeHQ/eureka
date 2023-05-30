@@ -1,7 +1,6 @@
-package com.legacycode.ureka.gradle.commands
+package com.legacycode.eureka.gradle.commands
 
 import com.google.common.truth.Truth.assertThat
-import com.legacycode.eureka.gradle.commands.GradleProjectsCommand
 import java.io.File
 import org.junit.jupiter.api.Test
 

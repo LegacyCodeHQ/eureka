@@ -1,8 +1,7 @@
-package com.legacycode.ureka.gradle
+package com.legacycode.eureka.gradle
 
 import com.google.common.truth.Truth.assertThat
-import com.legacycode.eureka.gradle.SubprojectDependency
-import com.legacycode.ureka.gradle.testing.TaskOutputResource
+import com.legacycode.eureka.gradle.testing.TaskOutputResource
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest

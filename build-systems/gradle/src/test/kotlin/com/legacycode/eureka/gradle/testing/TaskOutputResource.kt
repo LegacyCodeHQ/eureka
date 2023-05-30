@@ -1,4 +1,4 @@
-package com.legacycode.ureka.gradle.testing
+package com.legacycode.eureka.gradle.testing
 
 import com.legacycode.eureka.gradle.CommandOutput
 

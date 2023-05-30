@@ -1,6 +1,5 @@
-package com.legacycode.ureka.gradle
+package com.legacycode.eureka.gradle
 
-import com.legacycode.eureka.gradle.ProjectStructure
 import org.approvaltests.strings.Printable
 
 val ProjectStructure.printable: Printable<ProjectStructure>

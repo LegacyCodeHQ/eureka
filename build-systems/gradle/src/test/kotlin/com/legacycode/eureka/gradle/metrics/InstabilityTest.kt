@@ -29,7 +29,7 @@ class InstabilityTest {
   }
 
   @Test
-  fun unused() {
+  fun independent() {
     val instability = Instability(0, 0)
 
     assertThat(instability.value)

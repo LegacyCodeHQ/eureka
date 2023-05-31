@@ -5,7 +5,7 @@ import com.legacycode.eureka.gradle.commands.GradleProjectsCommand
 import com.legacycode.eureka.gradle.metrics.Instability
 import com.legacycode.eureka.gradle.metrics.Instability.Companion.MAXIMALLY_STABLE
 import com.legacycode.eureka.gradle.metrics.Instability.Companion.MAXIMALLY_UNSTABLE
-import com.legacycode.eureka.gradle.metrics.Instability.Companion.UNUSED
+import com.legacycode.eureka.gradle.metrics.Instability.Companion.INDEPENDENT
 import java.io.File
 
 private const val RADIX_HEX = 16
@@ -94,7 +94,7 @@ private fun nodeStyle(instability: Instability): String {
   val color = when (instability.value) {
     MAXIMALLY_UNSTABLE -> "#01BFFFFF"
     MAXIMALLY_STABLE -> "#FF7F50FF"
-    UNUSED -> "#C1CDCDFF"
+    INDEPENDENT -> "#C1CDCDFF"
     else -> {
       val alpha = ((1 - instability.value.toFloat()) * CHANNEL_MAX).toInt()
       "#FF7F50${alpha.toString(RADIX_HEX)}"

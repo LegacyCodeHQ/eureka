@@ -4,14 +4,14 @@ digraph "tumbleweed" {
   "android" [label="android\n(3, 2, I=0.60)", style="filled", fillcolor="#FF7F5065"]
   "build-systems-gradle" [label="build-systems-gradle\n(0, 1, I=0)", style="filled", fillcolor="#FF7F50FF"]
   "bytecode-samples" [label="bytecode-samples\n(0, 3, I=0)", style="filled", fillcolor="#FF7F50FF"]
-  "bytecode-scanner" [label="bytecode-scanner\n(2, 4, I=0.33)", style="filled", fillcolor="#FF7F50aa"]
+  "bytecode-scanner" [label="bytecode-scanner\n(2, 4, I=0.33)", style="filled", fillcolor="#FF7F50AA"]
   "bytecode-testing" [label="bytecode-testing\n(0, 4, I=0)", style="filled", fillcolor="#FF7F50FF"]
   "cli" [label="cli\n(7, 0, I=1)", style="filled", fillcolor="#01BFFFFF"]
-  "filesystem" [label="filesystem\n(1, 2, I=0.33)", style="filled", fillcolor="#FF7F50aa"]
+  "filesystem" [label="filesystem\n(1, 2, I=0.33)", style="filled", fillcolor="#FF7F50AA"]
   "vcs" [label="vcs\n(0, 1, I=0)", style="filled", fillcolor="#FF7F50FF"]
-  "viz" [label="viz\n(3, 3, I=0.50)", style="filled", fillcolor="#FF7F507f"]
+  "viz" [label="viz\n(3, 3, I=0.50)", style="filled", fillcolor="#FF7F507F"]
   "web-client-react" [label="web-client-react\n(0, 0, I=∞)", style="filled", fillcolor="#C1CDCDFF"]
-  "web-server" [label="web-server\n(5, 1, I=0.83)", style="filled", fillcolor="#FF7F502b"]
+  "web-server" [label="web-server\n(5, 1, I=0.83)", style="filled", fillcolor="#FF7F502B"]
 
   "android" -> "bytecode-scanner"
   "android" -> "viz"

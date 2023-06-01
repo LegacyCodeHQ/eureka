@@ -7,6 +7,7 @@ import com.legacycode.eureka.gradle.metrics.Instability.Companion.MAXIMALLY_STAB
 import com.legacycode.eureka.gradle.metrics.Instability.Companion.MAXIMALLY_UNSTABLE
 import com.legacycode.eureka.gradle.metrics.Instability.Companion.INDEPENDENT
 import java.io.File
+import java.util.Locale
 
 private const val RADIX_HEX = 16
 private const val CHANNEL_MAX = 255
@@ -97,11 +98,15 @@ private fun nodeStyle(instability: Instability): String {
     INDEPENDENT -> "#C1CDCDFF"
     else -> {
       val alpha = ((1 - instability.value.toFloat()) * CHANNEL_MAX).toInt()
-      "#FF7F50${alpha.toString(RADIX_HEX)}"
+      "#FF7F50${decimalToHex(alpha)}"
     }
   }
 
   return """, style="filled", fillcolor="$color"]"""
+}
+
+private fun decimalToHex(value: Int): String {
+  return value.toString(RADIX_HEX).uppercase(Locale.ENGLISH)
 }
 
 private fun mapProjectToDependency(

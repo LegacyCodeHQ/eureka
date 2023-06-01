@@ -1,7 +1,7 @@
 dependencies {
   implementation(project(":bytecode-scanner"))
 
-  implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.14.0")
+  implementation(libs.jackson.kotlin)
 
   testImplementation(project(":bytecode-samples"))
   testImplementation(project(":bytecode-testing"))

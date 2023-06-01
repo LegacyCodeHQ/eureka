@@ -60,9 +60,9 @@ dependencies {
   implementation(project(":android"))
   implementation(project(":build-systems-gradle"))
 
-  implementation("org.apache.commons:commons-csv:1.10.0")
+  implementation(libs.commonsCsv)
 
-  implementation("info.picocli:picocli:4.7.3")
+  implementation(libs.picocli)
 
   testImplementation(project(":bytecode-testing"))
 }

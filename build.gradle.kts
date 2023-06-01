@@ -38,18 +38,18 @@ subprojects {
     val testRuntimeOnly by configurations
 
     // logging
-    implementation("ch.qos.logback:logback-classic:1.4.7")
+    implementation(rootProject.libs.logback)
 
     // testing
     testImplementation(kotlin("test-junit5"))
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.1")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:5.9.1")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.1")
+    testImplementation(rootProject.testLibs.junit.api)
+    testImplementation(rootProject.testLibs.junit.params)
+    testRuntimeOnly(rootProject.testLibs.junit.engine)
 
-    testImplementation("com.google.truth:truth:1.1.3")
+    testImplementation(rootProject.testLibs.truth)
 
-    testImplementation("com.approvaltests:approvaltests:18.6.0")
-    testImplementation("com.google.code.gson:gson:2.10.1") /* Used by Approvals for pretty-printing JSON */
+    testImplementation(rootProject.testLibs.approvalTests)
+    testImplementation(rootProject.testLibs.gson) /* Used by Approvals for pretty-printing JSON */
   }
 
   tasks.withType<KotlinCompile> {

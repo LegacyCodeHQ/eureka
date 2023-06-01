@@ -1,7 +1,8 @@
 dependencies {
-  implementation("org.buildobjects:jproc:2.8.2")
-  api("io.arrow-kt:arrow-core:1.1.2")
-  implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.14.0")
+  api(libs.arrow.core)
+
+  implementation(libs.jproc)
+  implementation(libs.jackson.kotlin)
 }
 
 task<Exec>("cloneTestRepo") {

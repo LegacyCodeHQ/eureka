@@ -1,5 +1,5 @@
 dependencies {
-  implementation("net.bytebuddy:byte-buddy:1.14.4")
+  implementation(libs.byteBuddy)
 
   testImplementation(project(":bytecode-samples"))
   testImplementation(project(":bytecode-testing"))

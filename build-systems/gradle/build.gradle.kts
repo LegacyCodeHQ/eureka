@@ -1,3 +1,3 @@
 dependencies {
-  implementation("org.buildobjects:jproc:2.8.2")
+  implementation(libs.jproc)
 }

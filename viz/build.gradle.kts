@@ -1,8 +1,8 @@
 dependencies {
-  implementation(project(":bytecode-scanner"))
+  implementation(projects.bytecodeScanner)
 
   implementation(libs.jackson.kotlin)
 
-  testImplementation(project(":bytecode-samples"))
-  testImplementation(project(":bytecode-testing"))
+  testImplementation(projects.bytecodeSamples)
+  testImplementation(projects.bytecodeTesting)
 }

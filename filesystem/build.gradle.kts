@@ -1,3 +1,3 @@
 dependencies {
-  testImplementation(project(":bytecode-samples"))
+  testImplementation(projects.bytecodeSamples)
 }

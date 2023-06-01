@@ -1,6 +1,6 @@
 dependencies {
-  implementation(project(":bytecode-scanner"))
-  implementation(project(":viz"))
+  implementation(projects.bytecodeScanner)
+  implementation(projects.viz)
 
-  testImplementation(project(":bytecode-testing"))
+  testImplementation(projects.bytecodeTesting)
 }

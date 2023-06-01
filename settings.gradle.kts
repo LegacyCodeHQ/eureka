@@ -19,6 +19,8 @@ project(":bytecode-testing").projectDir = file("bytecode/testing")
 
 project(":build-systems-gradle").projectDir = file("build-systems/gradle")
 
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 dependencyResolutionManagement {
   versionCatalogs {
     create("libs") {

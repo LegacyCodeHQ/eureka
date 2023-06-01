@@ -1,9 +1,9 @@
 dependencies {
-  implementation(project(":bytecode-scanner"))
-  implementation(project(":filesystem"))
-  implementation(project(":vcs"))
-  implementation(project(":android"))
-  implementation(project(":viz"))
+  implementation(projects.bytecodeScanner)
+  implementation(projects.filesystem)
+  implementation(projects.vcs)
+  implementation(projects.android)
+  implementation(projects.viz)
 
   implementation(libs.ktor.server.netty)
   implementation(libs.ktor.server.websockets)

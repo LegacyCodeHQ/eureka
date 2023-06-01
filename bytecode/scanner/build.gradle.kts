@@ -1,6 +1,6 @@
 dependencies {
   implementation(libs.byteBuddy)
 
-  testImplementation(project(":bytecode-samples"))
-  testImplementation(project(":bytecode-testing"))
+  testImplementation(projects.bytecodeSamples)
+  testImplementation(projects.bytecodeTesting)
 }

@@ -166,17 +166,13 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, onNodeHover
           d.text = this;
 
           const angle = (d.x * 180) / Math.PI;
+          const group = d.data.group;
 
-          // Initialize group entry if it doesn't exist
-          if (!groupAngles[d.data.group]) {
-            groupAngles[d.data.group] = { minAngle: angle, maxAngle: angle };
+          if (!groupAngles[group]) {
+            groupAngles[group] = { minAngle: angle, maxAngle: angle };
           }
-
-          // Update min and max angles for the group
-          groupAngles[d.data.group].minAngle = Math.min(groupAngles[d.data.group].minAngle, angle);
-          groupAngles[d.data.group].maxAngle = Math.max(groupAngles[d.data.group].maxAngle, angle);
-
-          console.log(d.data.group, groupAngles[d.data.group]);
+          groupAngles[group].minAngle = Math.min(groupAngles[group].minAngle, angle);
+          groupAngles[group].maxAngle = Math.max(groupAngles[group].maxAngle, angle);
         })
         .on('mouseover', overed)
         .on('mouseout', outed)

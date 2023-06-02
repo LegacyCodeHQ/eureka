@@ -2,25 +2,25 @@ export const graphDataJson = `
 {
   "nodes": [{
     "id": "SegmentedProgressBar progressBar",
-    "group": 1
+    "group": 3
   }, {
     "id": "StorySlateView storySlate",
-    "group": 1
+    "group": 3
   }, {
     "id": "TextView viewsAndReplies",
-    "group": 1
+    "group": 3
   }, {
     "id": "StoriesSharedElementCrossFaderView storyCrossfader",
     "group": 1
   }, {
     "id": "ImageView blurContainer",
-    "group": 1
+    "group": 3
   }, {
     "id": "FrameLayout storyCaptionContainer",
-    "group": 1
+    "group": 3
   }, {
     "id": "FrameLayout storyContentContainer",
-    "group": 1
+    "group": 3
   }, {
     "id": "Callback callback",
     "group": 1
@@ -29,7 +29,7 @@ export const graphDataJson = `
     "group": 1
   }, {
     "id": "AnimatorSet animatorSet",
-    "group": 1
+    "group": 3
   }, {
     "id": "Lazy viewModel$delegate",
     "group": 1
@@ -86,16 +86,16 @@ export const graphDataJson = `
     "group": 2
   }, {
     "id": "void onViewCreated(View, Bundle)",
-    "group": 2
+    "group": 4
   }, {
     "id": "void onResume()",
-    "group": 2
+    "group": 4
   }, {
     "id": "void onPause()",
-    "group": 2
+    "group": 4
   }, {
     "id": "void onDestroyView()",
-    "group": 2
+    "group": 4
   }, {
     "id": "void onFinishForwardAction()",
     "group": 2
@@ -206,10 +206,10 @@ export const graphDataJson = `
     "group": 2
   }, {
     "id": "void onAnimationStarted()",
-    "group": 2
+    "group": 4
   }, {
     "id": "void onAnimationFinished()",
-    "group": 2
+    "group": 4
   }, {
     "id": "void <init>()",
     "group": 2
@@ -221,40 +221,40 @@ export const graphDataJson = `
     "group": 2
   }, {
     "id": "Bundle requireArguments()",
-    "group": 2
+    "group": 4
   }, {
     "id": "Context requireContext()",
-    "group": 2
+    "group": 4
   }, {
     "id": "LifecycleOwner getViewLifecycleOwner()",
-    "group": 2
+    "group": 4
   }, {
     "id": "FragmentManager getChildFragmentManager()",
-    "group": 2
+    "group": 4
   }, {
     "id": "FragmentActivity requireActivity()",
-    "group": 2
+    "group": 4
   }, {
     "id": "View requireView()",
-    "group": 2
+    "group": 4
   }, {
     "id": "Context getContext()",
-    "group": 2
+    "group": 4
   }, {
     "id": "Resources getResources()",
-    "group": 2
+    "group": 4
   }, {
     "id": "void startActivity(Intent)",
-    "group": 2
+    "group": 4
   }, {
     "id": "String getString(int, []Object)",
-    "group": 2
+    "group": 4
   }, {
     "id": "String getString(int)",
-    "group": 2
+    "group": 4
   }, {
     "id": "Fragment requireParentFragment()",
-    "group": 2
+    "group": 4
   }],
   "links": [{
     "source": "StoryViewerPageViewModel getViewModel()",

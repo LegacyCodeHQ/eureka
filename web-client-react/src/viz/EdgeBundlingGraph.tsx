@@ -10,6 +10,13 @@ interface EdgeBundlingGraphProps {
   onNodeHover: (event: NodeHoverEvent | null) => void;
 }
 
+interface GroupAngles {
+  [group: string]: {
+    minAngle: number;
+    maxAngle: number;
+  };
+}
+
 const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, onNodeHover }) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
   const width = 800;
@@ -19,6 +26,14 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, onNodeHover
   const colorIn = '#00f';
   const colorOut = '#f00';
   const colorNone = '#ddd';
+
+  const groupAngles = {} as GroupAngles;
+  const groupColors: Record<string, string> = {
+    '1': '#0088FF', // field
+    '2': '#0088FF', // method
+    '3': '#32DC80', // Android field
+    '4': '#32DC80', // Android method
+  };
 
   function countableTextDependencies(count: number): string {
     if (count === 1) {
@@ -149,6 +164,19 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, onNodeHover
         .text((d) => d.data.id)
         .each(function (d: any) {
           d.text = this;
+
+          const angle = (d.x * 180) / Math.PI;
+
+          // Initialize group entry if it doesn't exist
+          if (!groupAngles[d.data.group]) {
+            groupAngles[d.data.group] = { minAngle: angle, maxAngle: angle };
+          }
+
+          // Update min and max angles for the group
+          groupAngles[d.data.group].minAngle = Math.min(groupAngles[d.data.group].minAngle, angle);
+          groupAngles[d.data.group].maxAngle = Math.max(groupAngles[d.data.group].maxAngle, angle);
+
+          console.log(d.data.group, groupAngles[d.data.group]);
         })
         .on('mouseover', overed)
         .on('mouseout', outed)
@@ -164,6 +192,34 @@ Effort* = ${effort(d.dependencies.length, d.dependents.length)}, I = ${
             }`,
           ),
         );
+
+      const outerRadius = width / 2.69;
+      const innerRadius = outerRadius - 5;
+
+      Object.entries(groupAngles).forEach(([group, { minAngle, maxAngle }]) => {
+        // Convert the angles from degrees to radians
+        const startAngle = minAngle * (Math.PI / 180);
+        const endAngle = maxAngle * (Math.PI / 180);
+
+        // Define the arc generator
+        const arcGenerator = d3.arc().innerRadius(innerRadius).outerRadius(outerRadius);
+
+        // Append the arc path to the SVG
+        svg
+          .append('g')
+          .append('path')
+          .attr(
+            'd',
+            arcGenerator({
+              startAngle: startAngle,
+              endAngle: endAngle,
+              innerRadius: innerRadius,
+              outerRadius: outerRadius,
+            }),
+          )
+          .attr('fill', `${groupColors[group]}C8`)
+          .attr('stroke', `${groupColors[group]}FF`);
+      });
     }
   }, [data]);
 

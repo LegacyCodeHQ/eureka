@@ -26,7 +26,7 @@ updates in real-time as you make changes to the source code and compile the proj
 
 For more options, run `twd watch --help`.
 
-![Edge bundling graph](docs/images/screenshot.png)
+![Edge bundling graph](docs/images/watch.png)
 
 #### 1.1 Android support (experimental)
 

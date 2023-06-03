@@ -190,7 +190,8 @@ Effort* = ${effort(d.dependencies.length, d.dependents.length)}, I = ${
         );
 
       const outerRadius = width / 2.69;
-      const innerRadius = outerRadius - 5;
+      const thickness = 12;
+      const innerRadius = outerRadius - thickness;
 
       Object.entries(groupAngles).forEach(([group, { minAngle, maxAngle }]) => {
         // Convert the angles from degrees to radians

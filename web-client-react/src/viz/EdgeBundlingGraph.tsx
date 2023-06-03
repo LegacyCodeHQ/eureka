@@ -29,8 +29,8 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, onNodeHover
 
   const groupAngles = {} as GroupAngles;
   const groupColors: Record<string, string> = {
-    '1': '#0088FF', // field
-    '2': '#0088FF', // method
+    '1': '#0088FF', // Field
+    '2': '#0088FF', // Method
     '3': '#32DC80', // Android field
     '4': '#32DC80', // Android method
   };
@@ -214,7 +214,24 @@ Effort* = ${effort(d.dependencies.length, d.dependents.length)}, I = ${
             }),
           )
           .attr('fill', `${groupColors[group]}C8`)
-          .attr('stroke', `${groupColors[group]}FF`);
+          .attr('stroke', `${groupColors[group]}FF`)
+          .call((path) => {
+            function getHint(group: string): string {
+              switch (group) {
+                case '1':
+                  return 'Fields';
+                case '2':
+                  return 'Methods';
+                case '3':
+                  return 'Android fields';
+                case '4':
+                  return 'Android methods';
+              }
+              throw new Error('Unknown group: ' + group);
+            }
+
+            path.append('title').text(getHint(group));
+          });
       });
     }
   }, [data]);

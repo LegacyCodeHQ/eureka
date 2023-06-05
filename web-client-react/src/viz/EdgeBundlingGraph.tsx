@@ -69,7 +69,9 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, onNodeHover
 
       svg.attr('viewBox', [-width / 2, -width / 2, width, width]);
 
-      const link = svg
+      const g = svg.append('g');
+
+      const link = g
         .append('g')
         .attr('stroke', colorNone)
         .attr('fill', 'none')
@@ -142,7 +144,7 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, onNodeHover
       }
       /* eslint-enable @typescript-eslint/ban-ts-comment */
 
-      svg
+      const textElements = g
         .append('g')
         .attr('font-family', 'sans-serif')
         .attr('font-size', 10)
@@ -189,6 +191,14 @@ Effort* = ${effort(d.dependencies.length, d.dependents.length)}, I = ${
           ),
         );
 
+      const zoom = d3
+        .zoom()
+        .scaleExtent([0.9, 1.2])
+        .on('zoom', (event) => {
+          g.attr('transform', event.transform);
+        });
+      svg.call(zoom as any);
+
       const outerRadius = width / 2.69;
       const thickness = 12;
       const innerRadius = outerRadius - thickness;
@@ -202,8 +212,7 @@ Effort* = ${effort(d.dependencies.length, d.dependents.length)}, I = ${
         const arcGenerator = d3.arc().innerRadius(innerRadius).outerRadius(outerRadius);
 
         // Append the arc path to the SVG
-        svg
-          .append('g')
+        g.append('g')
           .append('path')
           .attr(
             'd',

@@ -14,6 +14,7 @@ import io.ktor.server.netty.Netty
 import io.ktor.server.response.respondText
 import io.ktor.server.routing.get
 import io.ktor.server.routing.routing
+import java.io.File
 import org.slf4j.LoggerFactory
 
 class OwnershipServer {
@@ -30,20 +31,72 @@ class OwnershipServer {
     webServer = embeddedServer(
       Netty,
       port = port,
-      module = { setupRoutes(Repo(path)) }
+      module = { setupRoutes(Repo(path), port) }
     ).start(wait = true)
   }
 }
 
-fun Application.setupRoutes(repo: Repo) {
+fun Application.setupRoutes(repo: Repo, port: Int) {
   routing {
     get("/") {
-      val filePath = call.parameters[PARAM_FILE]!!
-      val ownershipTreemapJson = ownershipTreemapJson(repo, filePath).toJson()
-      val treemapHtml = getTreemapHtml(ownershipTreemapJson)
-      call.respondText(treemapHtml, ContentType.Text.Html)
+      val filePath = call.parameters[PARAM_FILE]
+
+      val html = if (filePath != null) {
+        val ownershipTreemapJson = ownershipTreemapJson(repo, filePath).toJson()
+        val treemapHtml = getTreemapHtml(ownershipTreemapJson)
+        treemapHtml
+      } else {
+        showFilesHtml(repo, port)
+      }
+      call.respondText(html, ContentType.Text.Html)
     }
   }
+}
+
+private fun showFilesHtml(repo: Repo, port: Int): String {
+  val repoDirectory = File(repo.path)
+  val filePaths = ListFilesGitCommand(repoDirectory).execute()
+
+  val filePathLinks = filePaths
+    .joinToString("\n") { path ->
+      """  <div><a href="${ownershipFilePathUrl(path, port)}" target="_blank">$path</a></div>"""
+    }
+
+  val repoDirectoryName = getRepoName(repoDirectory)
+
+  return """
+    <html>
+    <head>
+      <title>Ownership · $repoDirectoryName</title>
+      <style>
+        body {
+          font-family: sans-serif;
+          font-size: medium;
+        }
+
+      </style>
+    </head>
+    <body>
+      <h1>$repoDirectoryName (${filePaths.size})</h1>
+    $filePathLinks
+    </body>
+    </html>
+  """.trimIndent()
+}
+
+private fun getRepoName(repoDirectory: File): String {
+  return if (repoDirectory.absoluteFile.name == ".git") {
+    repoDirectory.absoluteFile.parentFile.name
+  } else {
+    repoDirectory.absoluteFile.name
+  }
+}
+
+private fun ownershipFilePathUrl(
+  path: String,
+  port: Int,
+): String {
+  return "http://localhost:$port?file=$path"
 }
 
 private fun ownershipTreemapJson(
@@ -56,7 +109,7 @@ private fun ownershipTreemapJson(
 }
 
 private fun getTreemapHtml(json: String): String {
-  return OwnershipServer::class.java.getResourceAsStream("/treemap.html")
+  return OwnershipServer::class.java.getResourceAsStream("/treemap.html")!!
     .bufferedReader()
     .use { it.readText() }
     .replace("{{treemap-data}}", json)

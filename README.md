@@ -9,6 +9,18 @@ Understand Kotlin and Java classes with ease 😎
 - You want to break down a large class.
 - You want to bring a function under test and want to break dependencies and see them in real-time.
 
+## Installation
+
+```bash
+brew install legacycodehq/tap/twd
+```
+
+## Updates
+
+```bash
+brew upgrade twd
+```
+
 ## Live demo
 
 You can try this [sample interactive graph](https://redgreenio.github.io/) for Signal Android
@@ -69,18 +81,6 @@ The command will print a Graphviz directed graph DSL.
 
 1. Copy the DSL and paste it into the [online Graphviz tool](https://dreampuf.github.io/GraphvizOnline).
 2. The tool selects the **dot** engine by default, for best results use the **circo** engine from the engine dropdown.
-
-## Installation
-
-```bash
-brew install legacycodehq/tap/twd
-```
-
-## Updates
-
-```bash
-brew upgrade twd
-```
 
 ## Licenses
 

@@ -156,4 +156,28 @@ class BlameLineTest {
         )
       )
   }
+
+  @Test
+  fun `it can parse blame line with whitespace unicode chars`() {
+    // given
+    val rawBlameLine = "fddba2906ab app/src/main/res/values/strings.xml (<android@signal.org>                                2021-04-06 13:03:33 -0300 3082)     <string name=\"PaymentsHomeFragment__learn_more__activate_payments\" translatable=\"false\">https://support.signal.org/hc/articles/360057625692#payments_activate\u2028</string>"
+
+    // when
+    val line = BlameLine.from(rawBlameLine)
+
+    // then
+    val localDateTime = LocalDateTime.of(2021, Month.APRIL, 6, 13, 3, 33)
+    val zoneId = ZoneId.of("-0300")
+
+    assertThat(line)
+      .isEqualTo(
+        BlameLine(
+          CommitHash("fddba2906ab"),
+          ZonedDateTime.of(localDateTime, zoneId),
+          Email("android@signal.org"),
+          3082,
+          "    <string name=\"PaymentsHomeFragment__learn_more__activate_payments\" translatable=\"false\">https://support.signal.org/hc/articles/360057625692#payments_activate\u2028</string>"
+        )
+      )
+  }
 }

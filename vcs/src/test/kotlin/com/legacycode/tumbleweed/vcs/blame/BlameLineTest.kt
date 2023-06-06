@@ -108,4 +108,28 @@ class BlameLineTest {
         )
       )
   }
+
+  @Test
+  fun `it should parse a blame line with commit hashes prefixed with a caret`() {
+    // given
+    val rawBlameLine = "^bbea3fe1b1 (<moxie@thoughtcrime.org>    2011-12-20 10:20:44 -0800  1) .classpath"
+
+    // when
+    val line = BlameLine.from(rawBlameLine)
+
+    // then
+    val localDateTime = LocalDateTime.of(2011, Month.DECEMBER, 20, 10, 20, 44)
+    val zoneId = ZoneId.of("-0800")
+
+    assertThat(line)
+      .isEqualTo(
+        BlameLine(
+          CommitHash("bbea3fe1b1"),
+          ZonedDateTime.of(localDateTime, zoneId),
+          Email("moxie@thoughtcrime.org"),
+          1,
+          ".classpath"
+        )
+      )
+  }
 }

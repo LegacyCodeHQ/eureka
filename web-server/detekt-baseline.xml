@@ -3,5 +3,6 @@
   <ManuallySuppressedIssues></ManuallySuppressedIssues>
   <CurrentIssues>
     <ID>MagicNumber:TumbleweedServer.kt$TumbleweedServer$15</ID>
+    <ID>SpreadOperator:ListFilesGitCommand.kt$ListFilesGitCommand$(*args)</ID>
   </CurrentIssues>
 </SmellBaseline>

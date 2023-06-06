@@ -8,4 +8,5 @@ dependencies {
   implementation(libs.ktor.server.netty)
   implementation(libs.ktor.server.websockets)
   implementation(libs.ktor.server.cors)
+  implementation(libs.jproc)
 }

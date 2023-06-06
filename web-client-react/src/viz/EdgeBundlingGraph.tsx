@@ -144,8 +144,7 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, onNodeHover
       }
       /* eslint-enable @typescript-eslint/ban-ts-comment */
 
-      g
-        .append('g')
+      g.append('g')
         .attr('font-family', 'sans-serif')
         .attr('font-size', 10)
         .selectAll('g')

@@ -132,4 +132,28 @@ class BlameLineTest {
         )
       )
   }
+
+  @Test
+  fun `it can parse blame line with content containing angled brackets`() {
+    // given
+    val rawBlameLine = "174cd860a04 app/src/androidTest/java/org/thoughtcrime/securesms/database/DistributionListDatabaseTest.kt (<alex@signal.org>     2022-02-24 13:40:28 -0400 40)     val members: List<RecipientId> = recipientList(1, 2, 3)"
+
+    // when
+    val line = BlameLine.from(rawBlameLine)
+
+    // then
+    val localDateTime = LocalDateTime.of(2022, Month.FEBRUARY, 24, 13, 40, 28)
+    val zoneId = ZoneId.of("-0400")
+
+    assertThat(line)
+      .isEqualTo(
+        BlameLine(
+          CommitHash("174cd860a04"),
+          ZonedDateTime.of(localDateTime, zoneId),
+          Email("alex@signal.org"),
+          40,
+          "    val members: List<RecipientId> = recipientList(1, 2, 3)"
+        )
+      )
+  }
 }

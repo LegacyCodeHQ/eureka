@@ -16,11 +16,11 @@ data class BlameLine(
 ) {
   companion object {
     private const val BLAME_LINE_REGEX =
-      "\\^?(?<CommitHash>[a-fA-F0-9]+) \\(\\<(?<Email>.+)\\> (?<ZonedDateTime>.+?) (?<LineNumber>\\d+)\\)(\\s(?<Content>.*))?"
+      "\\^?(?<CommitHash>[a-fA-F0-9]+) \\(\\<(?<Email>.+?)\\> (?<ZonedDateTime>.+?) (?<LineNumber>\\d+)\\)(\\s(?<Content>.*))?"
     private val blameLinePattern = Pattern.compile(BLAME_LINE_REGEX)
 
     private const val BLAME_LINE_REGEX_WITH_FILE_PATH =
-      "\\^?(?<CommitHash>[a-fA-F0-9]+) (.*)? \\(\\<(?<Email>.+)\\> (?<ZonedDateTime>.+?) (?<LineNumber>\\d+)\\)(\\s(?<Content>.*))?"
+      "\\^?(?<CommitHash>[a-fA-F0-9]+) (.+)? \\(\\<(?<Email>.+?)\\> (?<ZonedDateTime>.+?) (?<LineNumber>\\d+)\\)(\\s(?<Content>.*))?"
     private val blameLineWithFilePathPattern = Pattern.compile(BLAME_LINE_REGEX_WITH_FILE_PATH)
 
     private const val DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss Z"

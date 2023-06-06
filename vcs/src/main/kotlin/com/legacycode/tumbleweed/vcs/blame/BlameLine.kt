@@ -16,11 +16,11 @@ data class BlameLine(
 ) {
   companion object {
     private const val BLAME_LINE_REGEX =
-      "(?<CommitHash>[a-fA-F0-9]+) \\(\\<(?<Email>.+)\\> (?<ZonedDateTime>.+?) (?<LineNumber>\\d+)\\) (?<Content>.*)"
+      "(?<CommitHash>[a-fA-F0-9]+) \\(\\<(?<Email>.+)\\> (?<ZonedDateTime>.+?) (?<LineNumber>\\d+)\\)(\\s(?<Content>.*))?"
     private val blameLinePattern = Pattern.compile(BLAME_LINE_REGEX)
 
     private const val BLAME_LINE_REGEX_WITH_FILE_PATH =
-      "(?<CommitHash>[a-fA-F0-9]+) (.*)? \\(\\<(?<Email>.+)\\> (?<ZonedDateTime>.+?) (?<LineNumber>\\d+)\\) (?<Content>.*)"
+      "(?<CommitHash>[a-fA-F0-9]+) (.*)? \\(\\<(?<Email>.+)\\> (?<ZonedDateTime>.+?) (?<LineNumber>\\d+)\\)(\\s(?<Content>.*))?"
     private val blameLineWithFilePathPattern = Pattern.compile(BLAME_LINE_REGEX_WITH_FILE_PATH)
 
     private const val DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss Z"
@@ -37,13 +37,14 @@ data class BlameLine(
       }
 
       val rawZonedDateTime = blameLineMatcher.group("ZonedDateTime").trim()
+      val content = blameLineMatcher.group("Content") ?: ""
 
       return BlameLine(
         CommitHash(blameLineMatcher.group("CommitHash")),
         ZonedDateTime.parse(rawZonedDateTime, DateTimeFormatter.ofPattern(DATE_TIME_FORMAT)),
         Email(blameLineMatcher.group("Email")),
         blameLineMatcher.group("LineNumber").toInt(),
-        blameLineMatcher.group("Content"),
+        content,
       )
     }
   }

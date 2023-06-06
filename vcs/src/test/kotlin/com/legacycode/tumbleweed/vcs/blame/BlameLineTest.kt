@@ -84,4 +84,28 @@ class BlameLineTest {
         )
       )
   }
+
+  @Test
+  fun `it should parse a blame line with no content`() {
+    // given
+    val rawBlameLine = "597f7bbafd2 proguard-jackson.pro (<me@jake.su> 2015-04-01 18:04:23 -0700 12)"
+
+    // when
+    val line = BlameLine.from(rawBlameLine)
+
+    // then
+    val localDateTime = LocalDateTime.of(2015, Month.APRIL, 1, 18, 4, 23)
+    val zoneId = ZoneId.of("-0700")
+
+    assertThat(line)
+      .isEqualTo(
+        BlameLine(
+          CommitHash("597f7bbafd2"),
+          ZonedDateTime.of(localDateTime, zoneId),
+          Email("me@jake.su"),
+          12,
+          ""
+        )
+      )
+  }
 }

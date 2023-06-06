@@ -43,7 +43,7 @@ For more options, run `twd watch --help`.
 #### 1.1 Android support (experimental)
 
 ```bash
-twd watch -x android MediaPreviewActivity
+twd watch -x android ImageEditorFragment
 ```
 
 Read [this blog post](https://legacycode.com/android-support) to learn how to use this feature when examining Android
@@ -52,7 +52,7 @@ classes.
 #### 1.2 Without Android support
 
 ```bash
-twd watch MediaPreviewActivity
+twd watch ImageEditorFragment
 ```
 
 ### 2. File ownership (experimental)

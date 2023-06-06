@@ -55,16 +55,6 @@ twd ownership --repo <path-to-git-repo>
 
 The command will start a web server on port 7080. Visit the app on `localhost:7080`.
 
-After visiting the app, update the URL on the address bar to find the ownership information for the target file.
-
-For example,
-
-```
-http://localhost:7080/?file=cli/src/../OwnershipCommand.kt
-```
-
-The `file` query parameter should use the full path of the target file.
-
 ### 3. Module dependency diagram (experimental)
 
 ![PlantUML component diagram](docs/images/modules.png)

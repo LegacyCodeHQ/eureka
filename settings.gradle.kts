@@ -11,6 +11,7 @@ include(
   ":android",
   ":viz",
   ":build-systems-gradle",
+  ":selenium",
 )
 
 project(":bytecode-scanner").projectDir = file("bytecode/scanner")

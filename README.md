@@ -67,6 +67,10 @@ twd ownership --repo <path-to-git-repo>
 
 The command will start a web server on port 7080. Visit the app on `localhost:7080`.
 
+#### Known issues
+
+- Throws exceptions when visiting binary or empty files.
+
 ### 3. Module dependency diagram (experimental)
 
 ![PlantUML component diagram](docs/images/modules.png)

@@ -73,7 +73,6 @@ private fun showFilesHtml(repo: Repo, port: Int): String {
           font-family: sans-serif;
           font-size: medium;
         }
-
       </style>
     </head>
     <body>
@@ -85,10 +84,11 @@ private fun showFilesHtml(repo: Repo, port: Int): String {
 }
 
 private fun getRepoName(repoDirectory: File): String {
-  return if (repoDirectory.absoluteFile.name == ".git") {
-    repoDirectory.absoluteFile.parentFile.name
+  val repoDirectoryAbsoluteFile = repoDirectory.absoluteFile
+  return if (repoDirectoryAbsoluteFile.name == ".git") {
+    repoDirectoryAbsoluteFile.parentFile.name
   } else {
-    repoDirectory.absoluteFile.name
+    repoDirectoryAbsoluteFile.name
   }
 }
 

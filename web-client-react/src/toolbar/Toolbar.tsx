@@ -21,7 +21,7 @@ const Toolbar: React.FC<ToolbarProps> = ({ classInfo, connectionStatus }) => {
       <div className="right-content">
         <LiveUpdatesStatus connectionStatus={connectionStatus} />
         <AppVersion />
-        <GitHubProjectLogo account="LegacyCodeHQ" project="tumbleweed" />
+        <GitHubProjectLogo account="LegacyCodeHQ" project="eureka" />
       </div>
     </div>
   );

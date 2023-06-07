@@ -1,4 +1,4 @@
-rootProject.name = "tumbleweed"
+rootProject.name = "eureka"
 include(
   ":cli",
   ":bytecode-scanner",

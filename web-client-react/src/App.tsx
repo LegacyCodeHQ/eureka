@@ -25,7 +25,7 @@ function App() {
   }, []);
 
   function makeTitle(classInfo: ClassInfo | undefined): string {
-    return 'TWD ' + getSimpleClassName(classInfo ? classInfo.name : '');
+    return 'EUREKA ' + getSimpleClassName(classInfo ? classInfo.name : '');
   }
 
   function setTitle(title: string) {

@@ -15,7 +15,7 @@ interface ToolbarProps {
 const Toolbar: React.FC<ToolbarProps> = ({ classInfo, connectionStatus }) => {
   return (
     <div className="toolbar">
-      <span className="product-name">TWD</span>
+      <span className="product-name">EUREKA</span>
       <AndroidLogo />
       {classInfo && <SimpleJvmClassName classInfo={classInfo} />}
       <div className="right-content">

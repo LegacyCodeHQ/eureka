@@ -2,7 +2,7 @@
   <configuration default="false" name="twd --debug json" type="JetRunConfigurationType">
     <option name="MAIN_CLASS_NAME" value="com.legacycode.eureka.cli.MainKt" />
     <module name="eureka.cli.main" />
-    <option name="PROGRAM_PARAMETERS" value="--debug json TumbleweedServer" />
+    <option name="PROGRAM_PARAMETERS" value="--debug json WatchServer" />
     <shortenClasspath name="NONE" />
     <method v="2">
       <option name="Make" enabled="true" />

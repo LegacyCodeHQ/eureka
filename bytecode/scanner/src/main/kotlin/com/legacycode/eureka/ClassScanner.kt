@@ -1,9 +1,5 @@
 package com.legacycode.eureka
 
-import com.legacycode.eureka.Opcodes.areturn
-import com.legacycode.eureka.Opcodes.iconst_0
-import com.legacycode.eureka.Opcodes.iconst_m1
-import com.legacycode.eureka.Opcodes.invokespecial
 import java.io.BufferedInputStream
 import java.io.File
 import net.bytebuddy.jar.asm.ClassReader
@@ -147,7 +143,7 @@ object ClassScanner {
               val callee = Method(methodName, MethodDescriptor(methodDescriptor), QualifiedType(owner))
               val relationship = Relationship(method, callee, Relationship.Type.from(opcode))
 
-              if (method.name == "<clinit>" && opcode == invokespecial) {
+              if (method.name == "<clinit>" && opcode == Opcodes.invokespecial) {
                 logger.debug("Skipping synthetic bridge call from static block: {}", relationship)
               } else {
                 logger.debug("Adding relationship: {}", relationship)
@@ -205,13 +201,13 @@ object ClassScanner {
           override fun visitInsn(opcode: Opcode) {
             logger.debug("Visiting instruction: {}", opcode.instruction)
 
-            if (opcode == iconst_m1) {
+            if (opcode == Opcodes.iconst_m1) {
               maybeConstantFieldReferencedByInsn = constantPool[-1]
             } else if (Opcodes.isIntInsn(opcode)) {
-              maybeConstantFieldReferencedByInsn = constantPool[opcode - iconst_0]
+              maybeConstantFieldReferencedByInsn = constantPool[opcode - Opcodes.iconst_0]
             }
 
-            if (opcode == areturn && maybeConstantFieldReferencedByInsn != null) {
+            if (opcode == Opcodes.areturn && maybeConstantFieldReferencedByInsn != null) {
               val relationship = Relationship(method, maybeConstantFieldReferencedByInsn!!, Relationship.Type.Reads)
               logger.debug("Adding relationship: {}", relationship)
               outRelationships.add(relationship)
@@ -266,25 +262,25 @@ object ClassScanner {
 internal val Opcode.instruction: String
   get() {
     return when (this) {
-      0xb1 -> "return"
-      0xb2 -> "getstatic"
-      0xb3 -> "putstatic"
-      0xb5 -> "putfield"
-      0xb4 -> "getfield"
-      invokespecial -> "invokespecial"
-      0xb6 -> "invokevirtual"
-      0xb8 -> "invokestatic"
-      0xb9 -> "invokeinterface"
-      0x10 -> "bipush"
-      iconst_m1 -> "iconst_m1"
-      iconst_0 -> "iconst_0"
+      Opcodes.`return` -> "return"
+      Opcodes.getstatic -> "getstatic"
+      Opcodes.putstatic -> "putstatic"
+      Opcodes.putfield -> "putfield"
+      Opcodes.getfield -> "getfield"
+      Opcodes.invokespecial -> "invokespecial"
+      Opcodes.invokevirtual -> "invokevirtual"
+      Opcodes.invokestatic -> "invokestatic"
+      Opcodes.invokeinterface -> "invokeinterface"
+      Opcodes.bipush -> "bipush"
+      Opcodes.iconst_m1 -> "iconst_m1"
+      Opcodes.iconst_0 -> "iconst_0"
       Opcodes.iconst_1 -> "iconst_1"
       Opcodes.iconst_2 -> "iconst_2"
       Opcodes.iconst_3 -> "iconst_3"
       Opcodes.iconst_4 -> "iconst_4"
       Opcodes.iconst_5 -> "iconst_5"
-      0xa0 -> "if_icmpne"
-      0xb0 -> "areturn"
+      Opcodes.if_icmpne -> "if_icmpne"
+      Opcodes.areturn -> "areturn"
       else -> "unmapped (${"0x%02x".format(this)})})"
     }
   }

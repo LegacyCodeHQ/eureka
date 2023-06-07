@@ -14,7 +14,6 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 typealias ConstantPool = MutableMap<Any?, Field>
-typealias Opcode = Int
 
 const val ASM_API_VERSION = ASM9
 
@@ -113,7 +112,7 @@ object ClassScanner {
           private var maybeConstantFieldReferencedByInsn: Field? = null
 
           override fun visitFieldInsn(
-            opcode: Opcode,
+            opcode: Int,
             owner: String,
             fieldName: String,
             fieldDescriptor: String,
@@ -131,7 +130,7 @@ object ClassScanner {
           }
 
           override fun visitMethodInsn(
-            opcode: Opcode,
+            opcode: Int,
             owner: String,
             methodName: String,
             methodDescriptor: String,
@@ -191,14 +190,14 @@ object ClassScanner {
             super.visitLdcInsn(value)
           }
 
-          override fun visitIntInsn(opcode: Opcode, operand: Int) {
+          override fun visitIntInsn(opcode: Int, operand: Int) {
             logger.debug("Visiting int instruction: {}", opcode.instruction)
 
             maybeConstantFieldReferencedByInsn = constantPool[operand]
             super.visitIntInsn(opcode, operand)
           }
 
-          override fun visitInsn(opcode: Opcode) {
+          override fun visitInsn(opcode: Int) {
             logger.debug("Visiting instruction: {}", opcode.instruction)
 
             if (opcode == Opcodes.iconst_m1) {
@@ -216,7 +215,7 @@ object ClassScanner {
             super.visitInsn(opcode)
           }
 
-          override fun visitJumpInsn(opcode: Opcode, label: Label?) {
+          override fun visitJumpInsn(opcode: Int, label: Label?) {
             logger.debug("Visiting jump instruction: {}", opcode.instruction)
 
             if (maybeConstantFieldReferencedByInsn != null) {
@@ -259,7 +258,7 @@ object ClassScanner {
 }
 
 @Suppress("MagicNumber")
-internal val Opcode.instruction: String
+internal val Int.instruction: String
   get() {
     return when (this) {
       Opcodes.`return` -> "return"

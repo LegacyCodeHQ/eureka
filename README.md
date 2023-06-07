@@ -9,13 +9,13 @@ Understand Kotlin and Java classes with ease 😎
 - You want to break down a large class.
 - You want to bring a function under test and want to break dependencies and see them in real-time.
 
-## Installation
+## 🚀 Installation
 
 ```bash
 brew install legacycodehq/tap/twd
 ```
 
-## Updates
+## 🎊 Updates
 
 ```bash
 brew upgrade twd

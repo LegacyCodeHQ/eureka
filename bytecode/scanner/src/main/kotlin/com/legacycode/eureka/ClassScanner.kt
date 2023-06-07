@@ -35,7 +35,7 @@ class ClassScanner {
         visitedClassFiles.add(classFileToScan)
 
         logger.debug("Scanning class file: {}", classFileToScan.absolutePath)
-        val classStructure = classStructure(classFileToScan, visitedClassFiles, outClassFilesQueue)
+        val classStructure = getClassStructure(classFileToScan, visitedClassFiles, outClassFilesQueue)
         classStructures.add(classStructure)
       }
     }
@@ -47,7 +47,7 @@ class ClassScanner {
     return classStructure.normalize()
   }
 
-  private fun classStructure(
+  private fun getClassStructure(
     classFile: File,
     visitedClassFiles: Set<File>,
     outClassFilesQueue: ArrayDeque<File>,
@@ -293,6 +293,6 @@ internal val Opcode.insn: String
       Opcodes.ICONST_5 -> "iconst_5"
       Opcodes.IF_ICMPNE -> "if_icmpne"
       Opcodes.ARETURN -> "areturn"
-      else -> "unmapped (${"0x%02x".format(this)})})"
+      else -> "unmapped (${"0x%02x".format(this)})"
     }
   }

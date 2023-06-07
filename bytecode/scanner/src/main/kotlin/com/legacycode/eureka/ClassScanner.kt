@@ -8,11 +8,13 @@ import net.bytebuddy.jar.asm.FieldVisitor
 import net.bytebuddy.jar.asm.Handle
 import net.bytebuddy.jar.asm.Label
 import net.bytebuddy.jar.asm.MethodVisitor
+import net.bytebuddy.jar.asm.Opcodes
 import net.bytebuddy.jar.asm.Opcodes.ACC_STATIC
 import net.bytebuddy.jar.asm.Opcodes.ASM9
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
+typealias Opcode = Int
 typealias ConstantPool = MutableMap<Any?, Field>
 
 const val ASM_API_VERSION = ASM9
@@ -112,12 +114,12 @@ object ClassScanner {
           private var maybeConstantFieldReferencedByInsn: Field? = null
 
           override fun visitFieldInsn(
-            opcode: Int,
+            opcode: Opcode,
             owner: String,
             fieldName: String,
             fieldDescriptor: String,
           ) {
-            logger.debug("Visiting field instruction ({}): {}/{}", opcode.instruction, owner, fieldName)
+            logger.debug("Visiting field instruction ({}): {}/{}", opcode.insn, owner, fieldName)
 
             val field = Field(fieldName, FieldDescriptor.from(fieldDescriptor), QualifiedType(owner))
             val relationship = Relationship(method, field, Relationship.Type.from(opcode))
@@ -130,26 +132,26 @@ object ClassScanner {
           }
 
           override fun visitMethodInsn(
-            opcode: Int,
+            opcode: Opcode,
             owner: String,
             methodName: String,
             methodDescriptor: String,
             isInterface: Boolean,
           ) {
-            logger.debug("Visiting method instruction ({}): {}/{}", opcode.instruction, owner, methodName)
+            logger.debug("Visiting method instruction ({}): {}/{}", opcode.insn, owner, methodName)
 
             if (topLevelType.name.startsWith(owner) || owner.startsWith("${topLevelType.name}\$")) {
               val callee = Method(methodName, MethodDescriptor(methodDescriptor), QualifiedType(owner))
               val relationship = Relationship(method, callee, Relationship.Type.from(opcode))
 
-              if (method.name == "<clinit>" && opcode == Opcodes.invokespecial) {
+              if (method.name == "<clinit>" && opcode == Opcodes.INVOKESPECIAL) {
                 logger.debug("Skipping synthetic bridge call from static block: {}", relationship)
               } else {
                 logger.debug("Adding relationship: {}", relationship)
                 outRelationships.add(relationship)
               }
             } else {
-              logger.debug("Skipping method instruction ({}): {}/{}", opcode.instruction, owner, methodName)
+              logger.debug("Skipping method instruction ({}): {}/{}", opcode.insn, owner, methodName)
             }
 
             if (maybeConstantFieldReferencedByInsn != null) {
@@ -190,23 +192,23 @@ object ClassScanner {
             super.visitLdcInsn(value)
           }
 
-          override fun visitIntInsn(opcode: Int, operand: Int) {
-            logger.debug("Visiting int instruction: {}", opcode.instruction)
+          override fun visitIntInsn(opcode: Opcode, operand: Int) {
+            logger.debug("Visiting int instruction: {}", opcode.insn)
 
             maybeConstantFieldReferencedByInsn = constantPool[operand]
             super.visitIntInsn(opcode, operand)
           }
 
-          override fun visitInsn(opcode: Int) {
-            logger.debug("Visiting instruction: {}", opcode.instruction)
+          override fun visitInsn(opcode: Opcode) {
+            logger.debug("Visiting instruction: {}", opcode.insn)
 
-            if (opcode == Opcodes.iconst_m1) {
+            if (opcode == Opcodes.ICONST_M1) {
               maybeConstantFieldReferencedByInsn = constantPool[-1]
-            } else if (Opcodes.isIntInsn(opcode)) {
-              maybeConstantFieldReferencedByInsn = constantPool[opcode - Opcodes.iconst_0]
+            } else if (opcode.isIntInsn) {
+              maybeConstantFieldReferencedByInsn = constantPool[opcode - Opcodes.ICONST_0]
             }
 
-            if (opcode == Opcodes.areturn && maybeConstantFieldReferencedByInsn != null) {
+            if (opcode == Opcodes.ARETURN && maybeConstantFieldReferencedByInsn != null) {
               val relationship = Relationship(method, maybeConstantFieldReferencedByInsn!!, Relationship.Type.Reads)
               logger.debug("Adding relationship: {}", relationship)
               outRelationships.add(relationship)
@@ -215,8 +217,8 @@ object ClassScanner {
             super.visitInsn(opcode)
           }
 
-          override fun visitJumpInsn(opcode: Int, label: Label?) {
-            logger.debug("Visiting jump instruction: {}", opcode.instruction)
+          override fun visitJumpInsn(opcode: Opcode, label: Label?) {
+            logger.debug("Visiting jump instruction: {}", opcode.insn)
 
             if (maybeConstantFieldReferencedByInsn != null) {
               val relationship = Relationship(method, maybeConstantFieldReferencedByInsn!!, Relationship.Type.Reads)
@@ -256,3 +258,41 @@ object ClassScanner {
     )
   }
 }
+
+val Opcode.isIntInsn: Boolean
+  get() {
+    return this == Opcodes.ICONST_M1 ||
+      this == Opcodes.ICONST_0 ||
+      this == Opcodes.ICONST_1 ||
+      this == Opcodes.ICONST_2 ||
+      this == Opcodes.ICONST_3 ||
+      this == Opcodes.ICONST_4 ||
+      this == Opcodes.ICONST_5
+  }
+
+@Suppress("MagicNumber")
+internal val Opcode.insn: String
+  get() {
+    return when (this) {
+      Opcodes.RETURN -> "return"
+      Opcodes.GETSTATIC -> "getstatic"
+      Opcodes.PUTSTATIC -> "putstatic"
+      Opcodes.PUTFIELD -> "putfield"
+      Opcodes.GETFIELD -> "getfield"
+      Opcodes.INVOKESPECIAL -> "invokespecial"
+      Opcodes.INVOKEVIRTUAL -> "invokevirtual"
+      Opcodes.INVOKESTATIC -> "invokestatic"
+      Opcodes.INVOKEINTERFACE -> "invokeinterface"
+      Opcodes.BIPUSH -> "bipush"
+      Opcodes.ICONST_M1 -> "iconst_m1"
+      Opcodes.ICONST_0 -> "iconst_0"
+      Opcodes.ICONST_1 -> "iconst_1"
+      Opcodes.ICONST_2 -> "iconst_2"
+      Opcodes.ICONST_3 -> "iconst_3"
+      Opcodes.ICONST_4 -> "iconst_4"
+      Opcodes.ICONST_5 -> "iconst_5"
+      Opcodes.IF_ICMPNE -> "if_icmpne"
+      Opcodes.ARETURN -> "areturn"
+      else -> "unmapped (${"0x%02x".format(this)})})"
+    }
+  }

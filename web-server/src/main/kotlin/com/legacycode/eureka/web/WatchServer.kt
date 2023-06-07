@@ -34,8 +34,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.slf4j.LoggerFactory
 
-class TumbleweedServer(private val activeExperiment: Experiment? = null) {
-  private val logger = LoggerFactory.getLogger(TumbleweedServer::class.java)
+class WatchServer(private val activeExperiment: Experiment? = null) {
+  private val logger = LoggerFactory.getLogger(WatchServer::class.java)
 
   private lateinit var webServer: ApplicationEngine
 

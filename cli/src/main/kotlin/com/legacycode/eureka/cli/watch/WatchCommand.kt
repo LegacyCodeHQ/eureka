@@ -7,7 +7,7 @@ import com.legacycode.eureka.cli.DEFAULT_PORT
 import com.legacycode.eureka.filesystem.CompiledClassFileFinder
 import com.legacycode.eureka.viz.edgebundling.BasicMemberClassifier
 import com.legacycode.eureka.viz.edgebundling.CompiledClassFile
-import com.legacycode.eureka.web.TumbleweedServer
+import com.legacycode.eureka.web.WatchServer
 import java.io.File
 import picocli.CommandLine.Command
 import picocli.CommandLine.Option
@@ -58,6 +58,6 @@ class WatchCommand : Runnable {
       BasicMemberClassifier()
     }
 
-    TumbleweedServer(experiment).start(CompiledClassFile(classFilePath.toFile(), classifier), port)
+    WatchServer(experiment).start(CompiledClassFile(classFilePath.toFile(), classifier), port)
   }
 }

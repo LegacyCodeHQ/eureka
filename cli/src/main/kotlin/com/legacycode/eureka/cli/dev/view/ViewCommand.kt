@@ -3,7 +3,7 @@ package com.legacycode.eureka.cli.dev.view
 import com.legacycode.eureka.cli.DEFAULT_PORT
 import com.legacycode.eureka.viz.edgebundling.EdgeBundlingGraph
 import com.legacycode.eureka.viz.edgebundling.JsonFile
-import com.legacycode.eureka.web.TumbleweedServer
+import com.legacycode.eureka.web.WatchServer
 import java.io.File
 import picocli.CommandLine.Command
 import picocli.CommandLine.Option
@@ -36,7 +36,7 @@ class ViewCommand : Runnable {
     } else if (!EdgeBundlingGraph.isValidJson(jsonFile.readText())) {
       println("❌ Provided JSON file is not valid. Please provide a valid JSON file")
     } else {
-      TumbleweedServer().start(JsonFile(jsonFile), port)
+      WatchServer().start(JsonFile(jsonFile), port)
     }
   }
 }

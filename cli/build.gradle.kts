@@ -170,8 +170,8 @@ tasks.register<DefaultTask>("nextIteration") {
 
   doLast {
     val currentVersion = CLI_VERSION
-    val (major, minor, bugfix) = currentVersion.split('.').map(String::toInt)
-    val nextVersion = arrayOf(major, minor + 1, bugfix).joinToString(".") + "-SNAPSHOT"
+    val (major, minor, _) = currentVersion.split('.').map(String::toInt)
+    val nextVersion = arrayOf(major, minor + 1, 0).joinToString(".") + "-SNAPSHOT"
 
     updateVersion(currentVersion, nextVersion)
     println("Next iteration: $currentVersion -> $nextVersion")

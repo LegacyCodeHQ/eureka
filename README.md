@@ -1,4 +1,4 @@
-# Tumbleweed (alpha) ![CI](https://github.com/legacycodehq/tumbleweed/actions/workflows/jvm-tests.yml/badge.svg) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/legacycodehq/tumbleweed)
+# Eureka (formerly Tumbleweed) ![CI](https://github.com/legacycodehq/tumbleweed/actions/workflows/jvm-tests.yml/badge.svg) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/legacycodehq/tumbleweed)
 
 Understand Kotlin and Java classes with ease 😎
 

@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="twd modules eureka" type="JetRunConfigurationType">
+  <configuration default="false" name="eureka modules eureka" type="JetRunConfigurationType">
     <option name="MAIN_CLASS_NAME" value="com.legacycode.eureka.cli.MainKt" />
     <module name="eureka.cli.main" />
     <option name="PROGRAM_PARAMETERS" value="--debug modules ." />

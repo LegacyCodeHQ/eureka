@@ -34,3 +34,30 @@ object Opcodes {
       opcode == iconst_5
   }
 }
+
+@Suppress("MagicNumber")
+internal val Int.instruction: String
+  get() {
+    return when (this) {
+      Opcodes.`return` -> "return"
+      Opcodes.getstatic -> "getstatic"
+      Opcodes.putstatic -> "putstatic"
+      Opcodes.putfield -> "putfield"
+      Opcodes.getfield -> "getfield"
+      Opcodes.invokespecial -> "invokespecial"
+      Opcodes.invokevirtual -> "invokevirtual"
+      Opcodes.invokestatic -> "invokestatic"
+      Opcodes.invokeinterface -> "invokeinterface"
+      Opcodes.bipush -> "bipush"
+      Opcodes.iconst_m1 -> "iconst_m1"
+      Opcodes.iconst_0 -> "iconst_0"
+      Opcodes.iconst_1 -> "iconst_1"
+      Opcodes.iconst_2 -> "iconst_2"
+      Opcodes.iconst_3 -> "iconst_3"
+      Opcodes.iconst_4 -> "iconst_4"
+      Opcodes.iconst_5 -> "iconst_5"
+      Opcodes.if_icmpne -> "if_icmpne"
+      Opcodes.areturn -> "areturn"
+      else -> "unmapped (${"0x%02x".format(this)})})"
+    }
+  }

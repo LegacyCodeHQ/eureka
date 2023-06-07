@@ -7,7 +7,7 @@ class TestRepo(private val name: String) {
     get() {
       val userHome = System.getProperty("user.home")
       return File(userHome)
-        .resolve(".tumbleweed-test-data")
+        .resolve(".eureka-test-data")
         .resolve(name)
         .canonicalPath
     }

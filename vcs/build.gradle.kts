@@ -31,7 +31,7 @@ task<Exec>("cloneTestRepo") {
     process.waitFor()
   }
 
-  val testDataDirectory = File(System.getProperty("user.home")).resolve(".tumbleweed-test-data")
+  val testDataDirectory = File(System.getProperty("user.home")).resolve(".eureka-test-data")
   if (!testDataDirectory.exists()) {
     println("Test data directory does not exist, creating...")
     testDataDirectory.mkdir()

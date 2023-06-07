@@ -10,7 +10,7 @@ class MethodsCommandTest {
   fun `create a method list`() {
     // given
     val testClassResource = TestClassResource("LoaderManager${'$'}LoaderCallbacks")
-    val classStructure = ClassScanner.scan(testClassResource.file)
+    val classStructure = ClassScanner().scan(testClassResource.file)
 
     // when
     val methodList = classStructure.createMethodList(emptyList())

@@ -25,7 +25,7 @@ class MethodsCommand : Runnable {
   ) /* should skip java.lang.Object methods, etc., */
 
   override fun run() {
-    val classStructure = ClassScanner.scan(compiledClassFile)
+    val classStructure = ClassScanner().scan(compiledClassFile)
 
     val methodList = classStructure.createMethodList(skipList)
 

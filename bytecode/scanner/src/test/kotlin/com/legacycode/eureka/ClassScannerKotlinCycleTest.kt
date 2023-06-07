@@ -5,6 +5,8 @@ import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
 
 class ClassScannerKotlinCycleTest {
+  private val scanner = ClassScanner()
+
   @Test
   fun `01 - it can detect cycles caused by bridge functions`() {
     // given
@@ -13,7 +15,7 @@ class ClassScannerKotlinCycleTest {
     )
 
     // when
-    val classStructure = ClassScanner.scan(serverClassFile)
+    val classStructure = scanner.scan(serverClassFile)
 
     // then
     Approvals.verify(classStructure.printable)
@@ -27,7 +29,7 @@ class ClassScannerKotlinCycleTest {
     )
 
     // when
-    val classStructure = ClassScanner.scan(classStructureClass)
+    val classStructure = scanner.scan(classStructureClass)
 
     // then
     Approvals.verify(classStructure.printable)

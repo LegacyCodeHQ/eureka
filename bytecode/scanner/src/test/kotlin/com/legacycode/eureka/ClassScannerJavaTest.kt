@@ -14,13 +14,15 @@ import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
 
 class ClassScannerJavaTest {
+  private val scanner = ClassScanner()
+
   @Test
   fun `01 - it can scan a class with methods reading a field`() {
     // given
     val methodReadingField = SampleClass.Java(MethodReadingField::class)
 
     // when
-    val classStructure = ClassScanner.scan(methodReadingField.file)
+    val classStructure = scanner.scan(methodReadingField.file)
 
     // then
     Approvals.verify(classStructure.printable)
@@ -32,7 +34,7 @@ class ClassScannerJavaTest {
     val methodWritingField = SampleClass.Java(MethodWritingField::class)
 
     // when
-    val classStructure = ClassScanner.scan(methodWritingField.file)
+    val classStructure = scanner.scan(methodWritingField.file)
 
     // then
     Approvals.verify(classStructure.printable)
@@ -44,7 +46,7 @@ class ClassScannerJavaTest {
     val methodReadingAndWritingField = SampleClass.Java(LambdaAccessingField::class)
 
     // when
-    val classStructure = ClassScanner.scan(methodReadingAndWritingField.file)
+    val classStructure = scanner.scan(methodReadingAndWritingField.file)
 
     // then
     Approvals.verify(classStructure.printable)
@@ -56,7 +58,7 @@ class ClassScannerJavaTest {
     val stringConcatenation = SampleClass.Java(StringConcatenation::class)
 
     // when
-    val classStructure = ClassScanner.scan(stringConcatenation.file)
+    val classStructure = scanner.scan(stringConcatenation.file)
 
     // then
     Approvals.verify(classStructure.printable)
@@ -68,7 +70,7 @@ class ClassScannerJavaTest {
     val constants = SampleClass.Java(Constants::class)
 
     // when
-    val classStructure = ClassScanner.scan(constants.file)
+    val classStructure = scanner.scan(constants.file)
 
     // then
     Approvals.verify(classStructure.printable)
@@ -80,7 +82,7 @@ class ClassScannerJavaTest {
     val integerConstants = SampleClass.Java(IntegerConstants::class)
 
     // when
-    val classStructure = ClassScanner.scan(integerConstants.file)
+    val classStructure = scanner.scan(integerConstants.file)
 
     // then
     Approvals.verify(classStructure.printable)
@@ -92,7 +94,7 @@ class ClassScannerJavaTest {
     val constantReferencedInConditional = SampleClass.Java(ConstantReferencedInConditional::class)
 
     // when
-    val classStructure = ClassScanner.scan(constantReferencedInConditional.file)
+    val classStructure = scanner.scan(constantReferencedInConditional.file)
 
     // then
     Approvals.verify(classStructure.printable)
@@ -104,7 +106,7 @@ class ClassScannerJavaTest {
     val constantReferencedInReturnStatement = SampleClass.Java(ConstantReferencedInReturnStatement::class)
 
     // when
-    val classStructure = ClassScanner.scan(constantReferencedInReturnStatement.file)
+    val classStructure = scanner.scan(constantReferencedInReturnStatement.file)
 
     // then
     Approvals.verify(classStructure.printable)
@@ -116,7 +118,7 @@ class ClassScannerJavaTest {
     val staticBlock = SampleClass.Java(StaticBlock::class)
 
     // when
-    val classStructure = ClassScanner.scan(staticBlock.file)
+    val classStructure = scanner.scan(staticBlock.file)
 
     // then
     Approvals.verify(classStructure.printable)

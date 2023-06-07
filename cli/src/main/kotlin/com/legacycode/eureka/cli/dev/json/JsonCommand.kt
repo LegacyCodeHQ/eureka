@@ -40,7 +40,7 @@ class JsonCommand : Runnable {
       .find(className, (buildDir ?: File("")).absolutePath)
       ?: throw IllegalArgumentException("Class file not found for $className")
 
-    val classStructure = ClassScanner.scan(classFilePath.toFile())
+    val classStructure = ClassScanner().scan(classFilePath.toFile())
     if (check) {
       classStructure.check()
     } else {

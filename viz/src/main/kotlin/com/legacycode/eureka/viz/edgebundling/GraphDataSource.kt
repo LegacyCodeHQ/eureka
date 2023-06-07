@@ -20,7 +20,7 @@ class CompiledClassFile(
   @OptIn(ExperimentalTime::class)
   override val graph: EdgeBundlingGraph
     get() {
-      val (classStructure, duration) = measureTimedValue { ClassScanner.scan(location) }
+      val (classStructure, duration) = measureTimedValue { ClassScanner().scan(location) }
       logger.info("Scanned class file in {}.", duration)
       return classStructure.toGraph(classifier)
     }

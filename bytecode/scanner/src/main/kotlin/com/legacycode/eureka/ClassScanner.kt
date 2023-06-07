@@ -21,7 +21,7 @@ const val ASM_API_VERSION = ASM9
 
 fun constantPool(): ConstantPool = mutableMapOf()
 
-object ClassScanner {
+class ClassScanner {
   private val logger: Logger = LoggerFactory.getLogger(ClassScanner::class.java)
 
   fun scan(classFile: File): ClassStructure {

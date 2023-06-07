@@ -4,10 +4,13 @@ package com.legacycode.eureka
  * FIXME: This class represents both external and internal qualified name
  * FIXME: types without a distinction. (e.g. java.lang.Object and java/lang/Object)
  */
-@JvmInline
-value class QualifiedType(val name: String) {
+data class QualifiedType(val name: String) {
   companion object {
     const val DEFAULT_PACKAGE_NAME = ""
+
+    fun from(internalName: String): QualifiedType {
+      return QualifiedType(internalName.replace('/', '.'))
+    }
   }
 
   val packageName: String

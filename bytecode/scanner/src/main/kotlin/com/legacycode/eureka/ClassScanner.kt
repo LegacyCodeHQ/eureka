@@ -52,7 +52,7 @@ class ClassScanner {
     visitedClassFiles: Set<File>,
     outClassFilesQueue: ArrayDeque<File>,
   ): ClassStructure {
-    lateinit var superClassName: String
+    lateinit var superClass: QualifiedType
     val outInterfaces = mutableListOf<QualifiedType>()
     val outFields = mutableListOf<Field>()
     val outMethods = mutableListOf<Method>()
@@ -73,9 +73,10 @@ class ClassScanner {
         interfaces: Array<out String>?,
       ) {
         super.visit(version, access, name, signature, superName, interfaces)
-        superClassName = superName.replace('/', '.')
+        superClass = QualifiedType.from(superName)
         interfaces?.forEach { interfaceName ->
-          outInterfaces.add(QualifiedType(interfaceName.replace('/', '.')))
+          val qualifiedType = QualifiedType.from(interfaceName)
+          outInterfaces.add(qualifiedType)
         }
       }
 
@@ -249,7 +250,7 @@ class ClassScanner {
     return ClassStructure(
       classInfo.packageName,
       classInfo.className,
-      QualifiedType(superClassName),
+      superClass,
       outInterfaces.toList(),
       outFields,
       outMethods,

@@ -1,9 +1,0 @@
-Package: com.legacycode.tumbleweed.samples
-Class: ExtensionInlineFunctions
-Extends: java.lang.Object
-Methods:
-  - void <init>()
-  - void main()
-  - void bax()
-Calls:
-  - void main() -> void bax()

@@ -1,0 +1,5 @@
+Package: com.legacycode.eureka.samples
+Class: EmptyClass
+Extends: java.lang.Object
+Methods:
+  - void <init>()

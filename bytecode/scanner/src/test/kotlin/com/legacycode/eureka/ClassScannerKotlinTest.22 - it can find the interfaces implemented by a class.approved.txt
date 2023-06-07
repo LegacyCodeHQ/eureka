@@ -1,0 +1,20 @@
+Package: com.legacycode.eureka.samples
+Class: InterfaceImplementation
+Extends: java.lang.Object
+Implements: com.legacycode.eureka.samples.CounterActions
+Fields:
+  - int count
+Methods:
+  - void <init>()
+  - int getCount()
+  - void setCount(int)
+  - void increment()
+  - void decrement()
+Reads:
+  - int getCount() -> int count
+  - void increment() -> int count
+  - void decrement() -> int count
+Writes:
+  - void setCount(int) -> int count
+  - void increment() -> int count
+  - void decrement() -> int count

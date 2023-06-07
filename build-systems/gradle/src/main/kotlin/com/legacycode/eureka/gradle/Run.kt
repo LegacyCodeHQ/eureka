@@ -3,9 +3,9 @@ package com.legacycode.eureka.gradle
 import com.legacycode.eureka.gradle.commands.GradleDependenciesCommand
 import com.legacycode.eureka.gradle.commands.GradleProjectsCommand
 import com.legacycode.eureka.gradle.metrics.Instability
+import com.legacycode.eureka.gradle.metrics.Instability.Companion.INDEPENDENT
 import com.legacycode.eureka.gradle.metrics.Instability.Companion.MAXIMALLY_STABLE
 import com.legacycode.eureka.gradle.metrics.Instability.Companion.MAXIMALLY_UNSTABLE
-import com.legacycode.eureka.gradle.metrics.Instability.Companion.INDEPENDENT
 import java.io.File
 import java.util.Locale
 

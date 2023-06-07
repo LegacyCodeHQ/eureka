@@ -1,0 +1,10 @@
+Package: com.legacycode.eureka.samples
+Class: ConstantReferencedInConditional
+Extends: com.legacycode.eureka.samples.Activity
+Fields:
+  - int TAKE_PHOTO
+Methods:
+  - void <init>()
+  - void onActivityResult(int, int)
+Reads:
+  - void onActivityResult(int, int) -> int TAKE_PHOTO

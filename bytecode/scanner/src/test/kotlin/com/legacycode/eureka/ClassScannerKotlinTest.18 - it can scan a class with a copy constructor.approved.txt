@@ -1,0 +1,27 @@
+Package: com.legacycode.eureka.samples
+Class: Counter
+Extends: java.lang.Object
+Fields:
+  - int count
+Methods:
+  - void <init>(int)
+  - void <init>(int, int, kotlin.jvm.internal.DefaultConstructorMarker)
+  - int getCount()
+  - com.legacycode.eureka.samples.Counter increment()
+  - int component1()
+  - com.legacycode.eureka.samples.Counter copy(int)
+  - java.lang.String toString()
+  - int hashCode()
+  - boolean equals(java.lang.Object)
+  - void <init>()
+Reads:
+  - int getCount() -> int count
+  - com.legacycode.eureka.samples.Counter increment() -> int count
+  - int component1() -> int count
+  - java.lang.String toString() -> int count
+  - int hashCode() -> int count
+  - boolean equals(java.lang.Object) -> int count
+Writes:
+  - void <init>(int) -> int count
+Calls:
+  - com.legacycode.eureka.samples.Counter increment() -> com.legacycode.eureka.samples.Counter copy(int)

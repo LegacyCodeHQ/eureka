@@ -1,0 +1,7 @@
+Package: com.legacycode.eureka.samples
+Class: StaticFieldAccess
+Extends: java.lang.Object
+Methods:
+  - void <init>()
+  - void turnDebugOn()
+  - void turnDebugOff()

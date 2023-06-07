@@ -1,9 +1,0 @@
-Package: com.legacycode.tumbleweed.samples
-Class: FunctionCallsInsideLambdas
-Extends: java.lang.Object
-Methods:
-  - void <init>()
-  - void foo()
-  - void bar()
-Calls:
-  - void foo() -> void bar()

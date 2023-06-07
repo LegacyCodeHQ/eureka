@@ -1,0 +1,25 @@
+Package: com.legacycode.eureka.samples
+Class: Constants
+Extends: java.lang.Object
+Fields:
+  - java.lang.String STRING
+  - int INT
+  - long LONG
+  - double DOUBLE
+  - float FLOAT
+  - int CHAR
+  - short SHORT
+  - byte BYTE
+  - boolean BOOLEAN
+Methods:
+  - void <init>()
+  - void main([]java.lang.String)
+Reads:
+  - void main([]java.lang.String) -> java.lang.String STRING
+  - void main([]java.lang.String) -> int INT
+  - void main([]java.lang.String) -> long LONG
+  - void main([]java.lang.String) -> double DOUBLE
+  - void main([]java.lang.String) -> float FLOAT
+  - void main([]java.lang.String) -> int CHAR
+  - void main([]java.lang.String) -> short SHORT
+  - void main([]java.lang.String) -> boolean BOOLEAN

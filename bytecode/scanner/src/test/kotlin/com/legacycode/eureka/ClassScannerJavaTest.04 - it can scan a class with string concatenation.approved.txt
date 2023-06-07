@@ -1,0 +1,9 @@
+Package: com.legacycode.eureka.samples
+Class: StringConcatenation
+Extends: java.lang.Object
+Methods:
+  - void <init>()
+  - void printHappyNewYear()
+  - java.lang.String salutation(java.lang.String)
+Calls:
+  - void printHappyNewYear() -> java.lang.String salutation(java.lang.String)

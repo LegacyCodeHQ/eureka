@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="twd modules tumbleweed" type="JetRunConfigurationType">
-    <option name="MAIN_CLASS_NAME" value="com.legacycode.tumbleweed.cli.MainKt" />
+    <option name="MAIN_CLASS_NAME" value="com.legacycode.eureka.cli.MainKt" />
     <module name="tumbleweed.cli.main" />
     <option name="PROGRAM_PARAMETERS" value="--debug modules ." />
     <shortenClasspath name="NONE" />

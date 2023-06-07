@@ -1,0 +1,15 @@
+Package: com.legacycode.eureka.samples
+Class: ExternalClassAccessingClassMembers
+Extends: java.lang.Object
+Fields:
+  - int severity
+Methods:
+  - void <init>()
+  - java.lang.String whoIs(java.lang.String)
+  - void foo()
+Reads:
+  - void foo() -> int severity
+Writes:
+  - void <init>() -> int severity
+Calls:
+  - void foo() -> java.lang.String whoIs(java.lang.String)

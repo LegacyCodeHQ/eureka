@@ -1,0 +1,13 @@
+Package: com.legacycode.eureka.samples
+Class: LateinitVar
+Extends: java.lang.Object
+Fields:
+  - java.lang.String bingo
+Methods:
+  - void <init>()
+  - java.lang.String getBingo()
+  - void setBingo(java.lang.String)
+Reads:
+  - java.lang.String getBingo() -> java.lang.String bingo
+Writes:
+  - void setBingo(java.lang.String) -> java.lang.String bingo

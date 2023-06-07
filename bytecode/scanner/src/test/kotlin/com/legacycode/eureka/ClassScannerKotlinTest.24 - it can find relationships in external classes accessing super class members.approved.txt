@@ -1,0 +1,11 @@
+Package: com.legacycode.eureka.samples
+Class: ExternalClassAccessingSuperClassMembers
+Extends: com.legacycode.eureka.samples.InternalSuperClass
+Methods:
+  - void <init>()
+  - void foo()
+  - int getSeverity()
+  - java.lang.String whoIs(java.lang.String)
+Calls:
+  - void foo() -> int getSeverity()
+  - void foo() -> java.lang.String whoIs(java.lang.String)

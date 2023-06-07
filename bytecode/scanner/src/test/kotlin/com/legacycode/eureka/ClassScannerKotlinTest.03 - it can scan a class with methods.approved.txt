@@ -1,0 +1,14 @@
+Package: com.legacycode.eureka.samples
+Class: OnlyMethods
+Extends: java.lang.Object
+Methods:
+  - void <init>()
+  - void methodWithNoArgumentsNoReturnType()
+  - int methodWithNoArgumentsWithReturnType()
+  - java.lang.String methodWithArgumentsWithReturnType(java.lang.String, java.time.format.DateTimeFormatter)
+  - int methodWithPrimitiveArgs(int, boolean, double, long)
+  - void methodWithArgumentNoReturnType(java.util.Currency)
+  - java.util.List methodWithGenericReturnType(java.util.Set)
+  - void methodWithPrimitiveArrayArgumentNoReturnType([]java.lang.Integer)
+  - []java.util.Date methodWithNoArgumentsObjectArrayReturnType()
+  - []int methodWithNoArgumentsPrimitiveArrayReturnType()

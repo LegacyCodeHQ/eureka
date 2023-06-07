@@ -1,0 +1,16 @@
+Package: com.legacycode.eureka.samples
+Class: NestedAnonymousFunctionWritingField
+Extends: java.lang.Object
+Fields:
+  - int counter
+Methods:
+  - void <init>()
+  - int getCounter()
+  - void setCounter(int)
+  - void incrementCounter()
+Reads:
+  - int getCounter() -> int counter
+  - void incrementCounter() -> int counter
+Writes:
+  - void setCounter(int) -> int counter
+  - void incrementCounter() -> int counter

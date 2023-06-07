@@ -1,5 +1,0 @@
-Package: com.legacycode.tumbleweed.samples
-Class: ExtendsRelationship
-Extends: com.legacycode.tumbleweed.samples.Ancestor
-Methods:
-  - void <init>()

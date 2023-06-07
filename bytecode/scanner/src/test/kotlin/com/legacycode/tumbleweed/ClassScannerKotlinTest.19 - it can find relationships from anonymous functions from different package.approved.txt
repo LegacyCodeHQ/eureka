@@ -1,9 +1,0 @@
-Package: com.legacycode.tumbleweed.samples
-Class: AnonymousFunctionDifferentPackage
-Extends: java.lang.Object
-Methods:
-  - void <init>()
-  - void main()
-  - void celebrate()
-Calls:
-  - void main() -> void celebrate()

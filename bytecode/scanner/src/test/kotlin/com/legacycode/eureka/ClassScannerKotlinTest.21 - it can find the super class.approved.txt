@@ -1,0 +1,5 @@
+Package: com.legacycode.eureka.samples
+Class: ExtendsRelationship
+Extends: com.legacycode.eureka.samples.Ancestor
+Methods:
+  - void <init>()

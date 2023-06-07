@@ -1,7 +1,0 @@
-Package: com.legacycode.tumbleweed.samples
-Class: StaticFieldAccess
-Extends: java.lang.Object
-Methods:
-  - void <init>()
-  - void turnDebugOn()
-  - void turnDebugOff()

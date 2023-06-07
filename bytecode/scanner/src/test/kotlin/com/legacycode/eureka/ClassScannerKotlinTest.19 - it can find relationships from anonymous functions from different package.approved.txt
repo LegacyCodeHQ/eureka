@@ -1,0 +1,9 @@
+Package: com.legacycode.eureka.samples
+Class: AnonymousFunctionDifferentPackage
+Extends: java.lang.Object
+Methods:
+  - void <init>()
+  - void main()
+  - void celebrate()
+Calls:
+  - void main() -> void celebrate()

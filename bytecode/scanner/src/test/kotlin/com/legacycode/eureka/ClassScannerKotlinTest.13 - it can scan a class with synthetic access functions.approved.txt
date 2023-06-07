@@ -1,0 +1,9 @@
+Package: com.legacycode.eureka.samples
+Class: SyntheticBridges
+Extends: java.lang.Object
+Fields:
+  - java.lang.String field
+Methods:
+  - void <init>()
+Writes:
+  - void <init>() -> java.lang.String field

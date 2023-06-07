@@ -1,4 +1,4 @@
-digraph "tumbleweed" {
+digraph "eureka" {
   node [fontname="Arial"];
 
   "android" [label="android\n(3, 2, I=0.60)", style="filled", fillcolor="#FF7F5065"]

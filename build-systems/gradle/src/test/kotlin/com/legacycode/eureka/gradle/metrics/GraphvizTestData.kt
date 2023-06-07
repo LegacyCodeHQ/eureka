@@ -5,7 +5,7 @@ import com.legacycode.eureka.gradle.ProjectStructure
 import com.legacycode.eureka.gradle.SubprojectDependency
 
 private val structure = ProjectStructure(
-  Project("tumbleweed"),
+  Project("eureka"),
   listOf(
     "android",
     "build-systems-gradle",

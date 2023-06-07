@@ -2,7 +2,7 @@ package com.legacycode.eureka.web
 
 import com.legacycode.eureka.Experiment
 import com.legacycode.eureka.filesystem.FileWatcher
-import com.legacycode.eureka.version.TwdProperties
+import com.legacycode.eureka.version.EurekaProperties
 import com.legacycode.eureka.viz.edgebundling.GraphDataSource
 import io.ktor.server.application.Application
 import io.ktor.server.application.ApplicationCall
@@ -94,7 +94,7 @@ class WatchServer(private val activeExperiment: Experiment? = null) {
   }
 
   private suspend fun PipelineContext<Unit, ApplicationCall>.serveVersionText() {
-    call.respond(TwdProperties.get().version.name)
+    call.respond(EurekaProperties.get().version.name)
   }
 
   private suspend fun PipelineContext<Unit, ApplicationCall>.serveIndexPage(port: Int) {

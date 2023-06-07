@@ -10,7 +10,7 @@ import com.legacycode.eureka.cli.dev.view.ViewCommand
 import com.legacycode.eureka.cli.modules.ModulesCommand
 import com.legacycode.eureka.cli.ownership.OwnershipCommand
 import com.legacycode.eureka.cli.watch.WatchCommand
-import com.legacycode.eureka.version.TwdProperties
+import com.legacycode.eureka.version.EurekaProperties
 import kotlin.system.exitProcess
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -70,5 +70,5 @@ fun main(args: Array<String>) {
 }
 
 private fun printVersion() {
-  println(TwdProperties.get().version)
+  println(EurekaProperties.get().version)
 }

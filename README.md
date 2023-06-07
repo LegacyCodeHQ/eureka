@@ -1,4 +1,4 @@
-# Eureka (formerly Tumbleweed) ![CI](https://github.com/legacycodehq/tumbleweed/actions/workflows/jvm-tests.yml/badge.svg) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/legacycodehq/tumbleweed)
+# Eureka (formerly Tumbleweed) ![CI](https://github.com/legacycodehq/eureka/actions/workflows/jvm-tests.yml/badge.svg) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/legacycodehq/eureka)
 
 Understand Kotlin and Java classes with ease 😎
 
@@ -12,13 +12,13 @@ Understand Kotlin and Java classes with ease 😎
 ## 🚀 Installation
 
 ```bash
-brew install legacycodehq/tap/twd
+brew install legacycodehq/tap/eureka
 ```
 
 ## 🎊 Updates
 
 ```bash
-brew upgrade twd
+brew upgrade eureka
 ```
 
 ## Live demo
@@ -36,14 +36,14 @@ You must first build the project and then run the tool.
 The command will start a web server on port 7070. Go to `localhost:7070` in your browser to see the diagram. The diagram
 updates in real-time as you make changes to the source code and compile the project.
 
-For more options, run `twd watch --help`.
+For more options, run `eureka watch --help`.
 
 ![Edge bundling graph](docs/images/watch.png)
 
 #### 1.1 Android support (experimental)
 
 ```bash
-twd watch -x android ImageEditorFragment
+eureka watch -x android ImageEditorFragment
 ```
 
 Read [this blog post](https://legacycode.com/android-support) to learn how to use this feature when examining Android
@@ -52,7 +52,7 @@ classes.
 #### 1.2 Without Android support
 
 ```bash
-twd watch ImageEditorFragment
+eureka watch ImageEditorFragment
 ```
 
 ### 2. File ownership (experimental)
@@ -62,7 +62,7 @@ twd watch ImageEditorFragment
 #### Usage
 
 ```bash
-twd ownership --repo <path-to-git-repo>
+eureka ownership --repo <path-to-git-repo>
 ```
 
 The command will start a web server on port 7080. Visit the app on `localhost:7080`.
@@ -78,7 +78,7 @@ The command will start a web server on port 7080. Visit the app on `localhost:70
 #### Usage
 
 ```bash
-twd modules ~/GitHubProjects/Signal-Android
+eureka modules ~/GitHubProjects/Signal-Android
 ```
 
 The command will print a Graphviz directed graph DSL.

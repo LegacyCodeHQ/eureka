@@ -3,4 +3,4 @@
 set -e
 
 ./gradlew :cli:installDist -q
-./cli/build/install/twd/bin/twd $*
+./cli/build/install/eureka/bin/eureka $*

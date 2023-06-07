@@ -21,7 +21,7 @@ import picocli.CommandLine.Option
 const val DEFAULT_PORT = 7070
 
 @Command(
-  name = "twd",
+  name = "eureka",
   subcommands = [
     WatchCommand::class,
     OwnershipCommand::class,

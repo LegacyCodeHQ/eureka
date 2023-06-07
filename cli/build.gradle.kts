@@ -12,7 +12,7 @@ plugins {
 }
 
 application {
-  applicationName = "twd"
+  applicationName = "eureka"
   mainClassName = "com.legacycode.eureka.cli.MainKt"
 }
 
@@ -26,7 +26,7 @@ tasks.withType<Jar> {
 
 tasks {
   named<ShadowJar>("shadowJar") {
-    archiveBaseName.set("twd")
+    archiveBaseName.set("eureka")
     mergeServiceFiles()
   }
 
@@ -73,9 +73,9 @@ jreleaser {
   gitRootSearch.set(true)
 
   project {
-    name.set("Tumbleweed")
+    name.set("Eureka")
     description.set("Understand and break down large classes without breaking a sweat.")
-    website.set("https://github.com/LegacyCodeHQ/tumbleweed")
+    website.set("https://github.com/LegacyCodeHQ/eureka")
     license.set("Apache-2.0")
     copyright.set("2022-Present Ragunath Jawahar")
   }
@@ -83,12 +83,12 @@ jreleaser {
   release {
     github {
       repoOwner.set("LegacyCodeHQ")
-      name.set("tumbleweed")
+      name.set("eureka")
       branch.set("main")
-      repoUrl.set("git@github.com:LegacyCodeHQ/tumbleweed.git")
+      repoUrl.set("git@github.com:LegacyCodeHQ/eureka.git")
 
-      tagName.set("twd-$CLI_VERSION")
-      releaseName.set("TWD $CLI_VERSION")
+      tagName.set("eureka-$CLI_VERSION")
+      releaseName.set("Eureka $CLI_VERSION")
       overwrite.set(true)
 
       token.set(System.getenv("GITHUB_TOKEN"))
@@ -96,14 +96,14 @@ jreleaser {
   }
 
   distributions {
-    create("twd") {
+    create("eureka") {
       artifact {
-        path.set(File("build/distributions/twd-$CLI_VERSION.zip"))
+        path.set(File("build/distributions/eureka-$CLI_VERSION.zip"))
       }
 
       brew {
         active.set(Active.RELEASE)
-        formulaName.set("twd")
+        formulaName.set("eureka")
 
         repoTap {
           repoOwner.set("LegacyCodeHQ")

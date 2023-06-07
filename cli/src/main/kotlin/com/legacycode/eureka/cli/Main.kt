@@ -35,7 +35,7 @@ const val DEFAULT_PORT = 7070
     MethodsCommand::class,
   ],
 )
-class TumbleweedCommand {
+class EurekaCommand {
   @Option(
     names = ["--version", "-v"],
     description = ["prints Eureka version"],
@@ -58,7 +58,7 @@ class TumbleweedCommand {
 }
 
 fun main(args: Array<String>) {
-  val commandLine = CommandLine(TumbleweedCommand())
+  val commandLine = CommandLine(EurekaCommand())
   val exitCode = commandLine.execute(*args)
 
   if (commandLine.isVersionHelpRequested) {

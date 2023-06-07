@@ -30,7 +30,7 @@ object ClassScanner {
         visitedClassFiles.add(classFileToScan)
 
         logger.debug("Scanning class file: {}", classFileToScan.absolutePath)
-        val classStructure = classStructure(classFileToScan, outClassFilesQueue, visitedClassFiles)
+        val classStructure = classStructure(classFileToScan, visitedClassFiles, outClassFilesQueue)
         classStructures.add(classStructure)
       }
     }
@@ -44,8 +44,8 @@ object ClassScanner {
 
   private fun classStructure(
     classFile: File,
-    outClassFilesQueue: ArrayDeque<File>,
     visitedClassFiles: Set<File>,
+    outClassFilesQueue: ArrayDeque<File>,
   ): ClassStructure {
     lateinit var superClassName: String
     val outInterfaces = mutableListOf<QualifiedType>()

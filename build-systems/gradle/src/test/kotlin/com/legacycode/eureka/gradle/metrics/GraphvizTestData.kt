@@ -58,7 +58,7 @@ private val resolvedDependencies = mapOf(
   ),
 )
 
-val tumbleweed = structure to resolvedDependencies
+val eureka = structure to resolvedDependencies
 
 private fun subprojectDependencies(
   vararg names: String,

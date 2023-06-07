@@ -8,7 +8,7 @@ class GraphvizTest {
   @Test
   fun `print graphviz dsl`() {
     // given
-    val (projectStructure, subprojectDependencies) = tumbleweed
+    val (projectStructure, subprojectDependencies) = eureka
 
     // when
     val graphviz = graphvizOutput(projectStructure, subprojectDependencies)

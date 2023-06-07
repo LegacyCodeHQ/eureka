@@ -3,6 +3,7 @@
   <ManuallySuppressedIssues></ManuallySuppressedIssues>
   <CurrentIssues>
     <ID>ForbiddenComment:QualifiedType.kt$QualifiedType$/* * FIXME: This class represents both external and internal qualified name * FIXME: types without a distinction. (e.g. java.lang.Object and java/lang/Object) */</ID>
+    <ID>LongMethod:ClassScanner.kt$ClassScanner.&lt;no name provided&gt;$override fun visitMethod( access: Int, name: String?, descriptor: String?, signature: String?, exceptions: Array&lt;out String&gt;?, ): MethodVisitor</ID>
     <ID>MagicNumber:ClassStructure.kt$ClassStructure$3</ID>
     <ID>NestedBlockDepth:ClassStructure.kt$ClassStructure$private fun skipLambdasInCallChain(relationships: List&lt;Relationship&gt;): List&lt;Relationship&gt;</ID>
     <ID>TooManyFunctions:ClassStructure.kt$ClassStructure</ID>

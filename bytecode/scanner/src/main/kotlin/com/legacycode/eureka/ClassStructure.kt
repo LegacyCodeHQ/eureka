@@ -176,7 +176,7 @@ data class ClassStructure(
     return relationships
       .filter { it.type == Relationship.Type.Calls }
       .filter { (it.target as Method).name == "<init>" }
-      .filter { it.target.owner.name != className }
+      .filter { !it.target.owner.name.endsWith(className) }
   }
 }
 
@@ -224,9 +224,8 @@ internal fun List<ClassStructure>.combine(): ClassStructure {
 
     val expandedRelationships = classStructure.relationships -
       syntheticInnerClassConstructorInvocation + innerClassInvocationReplacements
-    classStructure = classStructure.copy(
-      relationships = expandedRelationships
-    )
+
+    classStructure = classStructure.copy(relationships = expandedRelationships)
   }
 
   return classStructure

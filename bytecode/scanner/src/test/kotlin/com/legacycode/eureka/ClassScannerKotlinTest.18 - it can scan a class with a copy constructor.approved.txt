@@ -24,4 +24,7 @@ Reads:
 Writes:
   - void <init>(int) -> int count
 Calls:
+  - void <init>(int, int, kotlin.jvm.internal.DefaultConstructorMarker) -> void <init>(int)
   - com.legacycode.eureka.samples.Counter increment() -> com.legacycode.eureka.samples.Counter copy(int)
+  - com.legacycode.eureka.samples.Counter copy(int) -> void <init>(int)
+  - void <init>() -> void <init>(int, int, kotlin.jvm.internal.DefaultConstructorMarker)

@@ -76,11 +76,6 @@ Reads:
   - boolean equals(java.lang.Object) -> java.util.List fields
   - boolean equals(java.lang.Object) -> java.util.List methods
   - boolean equals(java.lang.Object) -> java.util.List relationships
-  - io.redgreen.tumbleweed.ClassStructure copy(java.lang.String, java.lang.String, java.util.List, java.util.List, java.util.List) -> java.lang.String packageName
-  - io.redgreen.tumbleweed.ClassStructure copy(java.lang.String, java.lang.String, java.util.List, java.util.List, java.util.List) -> java.lang.String className
-  - io.redgreen.tumbleweed.ClassStructure copy(java.lang.String, java.lang.String, java.util.List, java.util.List, java.util.List) -> java.util.List fields
-  - io.redgreen.tumbleweed.ClassStructure copy(java.lang.String, java.lang.String, java.util.List, java.util.List, java.util.List) -> java.util.List methods
-  - io.redgreen.tumbleweed.ClassStructure copy(java.lang.String, java.lang.String, java.util.List, java.util.List, java.util.List) -> java.util.List relationships
 Writes:
   - void <init>(java.lang.String, java.lang.String, java.util.List, java.util.List, java.util.List) -> java.lang.String packageName
   - void <init>(java.lang.String, java.lang.String, java.util.List, java.util.List, java.util.List) -> java.lang.String className
@@ -96,10 +91,10 @@ Calls:
   - io.redgreen.tumbleweed.ClassStructure normalize() -> java.util.List nonSyntheticRelationships(java.util.Set)
   - java.util.List nonSyntheticRelationships(java.util.Set) -> java.util.List skipLambdasInCallChain(java.util.List)
   - java.util.List skipLambdasInCallChain(java.util.List) -> java.util.Map asGraph(java.util.List)
-  - io.redgreen.tumbleweed.ClassStructure normalize() -> io.redgreen.tumbleweed.ClassStructure copy(java.lang.String, java.lang.String, java.util.List, java.util.List, java.util.List)
   - java.util.List skipLambdasInCallChain(java.util.List) -> boolean isRecursiveCall(java.util.List, io.redgreen.tumbleweed.ClassStructure$Node, int)
   - java.util.List skipLambdasInCallChain(java.util.List) -> java.util.List removeSyntheticsFromChain(java.util.List)
   - java.util.List skipLambdasInCallChain(java.util.List) -> java.util.List toRelationships(java.util.List)
+  - io.redgreen.tumbleweed.ClassStructure normalize() -> io.redgreen.tumbleweed.ClassStructure copy(java.lang.String, java.lang.String, java.util.List, java.util.List, java.util.List)
+  - io.redgreen.tumbleweed.ClassStructure copy(java.lang.String, java.lang.String, java.util.List, java.util.List, java.util.List) -> void <init>(java.lang.String, java.lang.String, java.util.List, java.util.List, java.util.List)
   - boolean isRecursiveCall(java.util.List, io.redgreen.tumbleweed.ClassStructure$Node, int) -> boolean isCyclicCall(io.redgreen.tumbleweed.Signature, io.redgreen.tumbleweed.ClassStructure$Node)
   - boolean isRecursiveCall$default(io.redgreen.tumbleweed.ClassStructure, java.util.List, io.redgreen.tumbleweed.ClassStructure$Node, int, int, io.redgreen.tumbleweed.ClassStructure$Node;IILjava.lang.Object) -> boolean isRecursiveCall(java.util.List, io.redgreen.tumbleweed.ClassStructure$Node, int)
-  - io.redgreen.tumbleweed.ClassStructure copy(java.lang.String, java.lang.String, java.util.List, java.util.List, java.util.List) -> io.redgreen.tumbleweed.ClassStructure copy(java.lang.String, java.lang.String, java.util.List, java.util.List, java.util.List)

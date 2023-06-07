@@ -109,8 +109,9 @@ object ClassScanner {
 
       override fun visitInnerClass(name: String, outerName: String?, innerName: String?, access: Int) {
         logger.debug("Visiting inner class: {}", name)
+        val innerClassFilename = "${name.substring(name.lastIndexOf('/') + 1)}.class"
 
-        val innerClassFile = classFile.parentFile.resolve("${name.substring(name.lastIndexOf('/') + 1)}.class")
+        val innerClassFile = classFile.parentFile.resolve(innerClassFilename)
         if (innerClassFile.exists() && innerClassFile !in visitedClassFiles) {
           logger.debug("Adding new file to scan: ${innerClassFile.canonicalPath}")
           outClassFilesQueue.addLast(innerClassFile)

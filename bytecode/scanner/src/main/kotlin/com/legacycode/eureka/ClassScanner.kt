@@ -25,17 +25,17 @@ class ClassScanner {
   private val logger: Logger = LoggerFactory.getLogger(ClassScanner::class.java)
 
   fun scan(classFile: File): ClassStructure {
-    val outClassFilesQueue = ArrayDeque(listOf(classFile))
+    val classFilesToScanQueue = ArrayDeque(listOf(classFile))
     val visitedClassFiles = mutableSetOf<File>()
     val classStructures = mutableListOf<ClassStructure>()
 
-    while (outClassFilesQueue.isNotEmpty()) {
-      val classFileToScan = outClassFilesQueue.removeFirst()
+    while (classFilesToScanQueue.isNotEmpty()) {
+      val classFileToScan = classFilesToScanQueue.removeFirst()
       if (classFileToScan !in visitedClassFiles) {
         visitedClassFiles.add(classFileToScan)
 
         logger.debug("Scanning class file: {}", classFileToScan.absolutePath)
-        val classStructure = getClassStructure(classFileToScan, visitedClassFiles, outClassFilesQueue)
+        val classStructure = getClassStructure(classFileToScan, classFilesToScanQueue, visitedClassFiles)
         classStructures.add(classStructure)
       }
     }
@@ -49,8 +49,8 @@ class ClassScanner {
 
   private fun getClassStructure(
     classFile: File,
+    classFilesToScanQueue: ArrayDeque<File>,
     visitedClassFiles: Set<File>,
-    outClassFilesQueue: ArrayDeque<File>,
   ): ClassStructure {
     lateinit var superClass: QualifiedType
     val outInterfaces = mutableListOf<QualifiedType>()
@@ -239,7 +239,7 @@ class ClassScanner {
 
         if (innerClassFile.exists() && innerClassFile !in visitedClassFiles) {
           logger.debug("Adding new file to scan: ${innerClassFile.canonicalPath}")
-          outClassFilesQueue.addLast(innerClassFile)
+          classFilesToScanQueue.addLast(innerClassFile)
         }
       }
 

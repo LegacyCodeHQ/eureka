@@ -1,5 +1,16 @@
 #!/bin/sh
 
+# Run gradlew check
 ./gradlew check
-RESULT=$?
-exit $RESULT
+GRADLE_RESULT=$?
+
+if [ $GRADLE_RESULT -eq 0 ]; then
+  cd ./web-client-react || exit
+
+  CI=true npm test
+  NPM_RESULT=$?
+
+  exit $NPM_RESULT
+fi
+
+exit $GRADLE_RESULT

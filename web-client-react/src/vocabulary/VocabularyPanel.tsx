@@ -30,7 +30,7 @@ const VocabularyPanel: React.FC<VocabularyPanelProps> = ({ data }) => {
   }
 
   return (
-    <div className="vocabulary-panel">
+    <div className="vocabulary-panel hide-on-resize">
       <div className="tab-bar">
         <button className={getTabClass('types')} onClick={() => setActiveTab('types')}>
           Types ({typeTokenStats.length})

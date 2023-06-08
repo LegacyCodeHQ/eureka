@@ -26,3 +26,9 @@
     color: rgb(244, 244, 244);
     background-color: rgb(57, 57, 57);
 }
+
+@media (max-width: 1024px) {
+    .hide-on-resize {
+        display: none;
+    }
+}

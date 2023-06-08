@@ -10,6 +10,7 @@ plugins {
   id("com.github.ben-manes.versions") version ("0.42.0") apply false
   id("io.gitlab.arturbosch.detekt") version ("1.21.0") apply false
   id("com.github.node-gradle.node") version ("5.0.0") apply false
+  id("org.jetbrains.kotlinx.kover") version ("0.7.1") apply false
 }
 
 allprojects {
@@ -24,9 +25,10 @@ subprojects {
   if (this.name == "web-client-react") {
     return@subprojects
   }
+
   apply(plugin = "com.github.ben-manes.versions")
   apply(plugin = "org.jetbrains.kotlin.jvm")
-  apply(plugin = "jacoco")
+  apply(plugin = "org.jetbrains.kotlinx.kover")
 
   if (this.name != "bytecode-samples") {
     apply(plugin = "io.gitlab.arturbosch.detekt")

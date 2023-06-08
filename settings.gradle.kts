@@ -33,9 +33,9 @@ dependencyResolutionManagement {
       library("arrow-core", "io.arrow-kt:arrow-core:1.1.2")
       library("byteBuddy", "net.bytebuddy:byte-buddy:1.14.5")
 
-      library("ktor-server-netty", "io.ktor:ktor-server-netty:2.1.3")
-      library("ktor-server-websockets", "io.ktor:ktor-server-websockets:2.1.3")
-      library("ktor-server-cors", "io.ktor:ktor-server-cors:2.1.3")
+      library("ktor-server-netty", "io.ktor:ktor-server-netty:2.3.1")
+      library("ktor-server-websockets", "io.ktor:ktor-server-websockets:2.3.1")
+      library("ktor-server-cors", "io.ktor:ktor-server-cors:2.3.1")
     }
 
     create("testLibs") {

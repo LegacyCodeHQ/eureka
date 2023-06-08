@@ -86,7 +86,7 @@ class ClassScanner {
         descriptor: String?,
         signature: String?,
         value: Any?,
-      ): FieldVisitor {
+      ): FieldVisitor? {
         logger.debug("Visiting field: {}", name)
 
         val field = Field(name!!, FieldDescriptor.from(descriptor!!), topLevelType)
@@ -96,7 +96,7 @@ class ClassScanner {
         }
 
         outFields.add(field)
-        return object : FieldVisitor(ASM_API_VERSION) { /* no-op */ }
+        return null
       }
 
       override fun visitMethod(

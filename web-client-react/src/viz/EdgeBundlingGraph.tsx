@@ -192,7 +192,7 @@ Effort* = ${effort(d.dependencies.length, d.dependents.length)}, I = ${
 
       const zoom = d3
         .zoom()
-        .scaleExtent([0.9, 1.2])
+        .scaleExtent([0.65, 1.3])
         .on('zoom', (event) => {
           g.attr('transform', event.transform);
         });

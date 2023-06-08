@@ -1,4 +1,4 @@
-# Eureka (formerly Tumbleweed) ![CI](https://github.com/legacycodehq/eureka/actions/workflows/jvm-tests.yml/badge.svg) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/legacycodehq/eureka)
+# Eureka (formerly Tumbleweed) ![CI](https://github.com/legacycodehq/eureka/actions/workflows/build.yml/badge.svg) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/legacycodehq/eureka)
 
 Understand Kotlin and Java classes with ease 😎
 

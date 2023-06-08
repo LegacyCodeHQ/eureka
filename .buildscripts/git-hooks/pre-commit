@@ -1,5 +1,20 @@
 #!/bin/sh
 
 ./gradlew detekt
-RESULT=$?
-exit $RESULT
+GRADLE_RESULT=$?
+
+if [ $GRADLE_RESULT -eq 0 ]; then
+  cd ./web-client-react || exit
+
+  # Run ESLint check
+  npm run lint
+  ESLINT_RESULT=$?
+
+  if [ $ESLINT_RESULT -eq 0 ]; then
+    exit 0
+  else
+    exit $ESLINT_RESULT
+  fi
+fi
+
+exit $GRADLE_RESULT

@@ -1,5 +1,5 @@
 export interface Link {
-  source: String;
-  target: String;
+  source: string;
+  target: string;
   value: number;
 }

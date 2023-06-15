@@ -21,11 +21,11 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, onNodeHover
   const svgRef = useRef<SVGSVGElement | null>(null);
   const width = 800;
   const radius = width / 2;
-  const colorSelected = '#000';
-  const colorDeselected = '#999';
-  const colorIn = '#00f';
+  const colorSelected = '#fff';
+  const colorDeselected = '#ccc';
+  const colorIn = '#0cf';
   const colorOut = '#f00';
-  const colorNone = '#ddd';
+  const colorNone = '#555';
 
   const groupAngles = {} as GroupAngles;
   const groupColors: Record<string, string> = {
@@ -78,7 +78,6 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, onNodeHover
         .selectAll('path')
         .data(root.leaves().flatMap((leaf: any) => leaf.dependencies))
         .join('path')
-        .style('mix-blend-mode', 'multiply')
         .attr('d', ([i, o]) => line(i.path(o)))
         .each(function (d) {
           d.path = this;
@@ -102,7 +101,6 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, onNodeHover
 
       /* eslint-disable @typescript-eslint/ban-ts-comment */
       function overed(event: any, d: any) {
-        link.style('mix-blend-mode', null);
         d3.select(event.currentTarget).attr('fill', colorSelected);
         d3.selectAll(d.dependents.map((d: any) => d.path))
           .attr('stroke', colorIn)
@@ -127,7 +125,6 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, onNodeHover
       }
 
       function outed(event: any, d: any) {
-        link.style('mix-blend-mode', 'multiply');
         d3.select(event.currentTarget).attr('fill', colorDeselected);
         d3.selectAll(d.dependents.map((d: any) => d.path)).attr('stroke', null);
         // @ts-ignore

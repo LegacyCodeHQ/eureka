@@ -8,6 +8,7 @@
     justify-content: center;
     flex: 1;
     overflow: hidden;
+    background-color: #1f1f1f;
 }
 
 .floating-legend {

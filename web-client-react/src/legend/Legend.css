@@ -1,6 +1,7 @@
 .legend {
     margin: 16px;
     font-size: 1em;
+    color: #fff;
     user-select: none;
 }
 
@@ -23,5 +24,5 @@
 }
 
 .blue {
-    background-color: blue;
+    background-color: #0cf;
 }

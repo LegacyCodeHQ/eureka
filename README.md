@@ -43,7 +43,7 @@ For more options, run `eureka watch --help`.
 #### 1.1 Android support (experimental)
 
 ```bash
-eureka watch -x android ImageEditorFragment
+eureka watch -x android StoryViewerPageFragment
 ```
 
 Read [this blog post](https://legacycode.com/android-support) to learn how to use this feature when examining Android
@@ -52,7 +52,7 @@ classes.
 #### 1.2 Without Android support
 
 ```bash
-eureka watch ImageEditorFragment
+eureka watch StoryViewerPageFragment
 ```
 
 ### 2. File ownership (experimental)

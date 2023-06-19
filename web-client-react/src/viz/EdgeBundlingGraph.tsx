@@ -27,6 +27,8 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, onNodeHover
   const colorOut = '#f00';
   const colorNone = '#555';
 
+  const overedThickness = 1.6;
+
   const groupAngles = {} as GroupAngles;
   const groupColors: Record<string, string> = {
     '1': '#0088FF', // Field
@@ -103,11 +105,13 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, onNodeHover
       function overed(event: any, d: any) {
         d3.select(event.currentTarget).attr('fill', colorSelected);
         d3.selectAll(d.dependents.map((d: any) => d.path))
+          .attr('stroke-width', overedThickness)
           .attr('stroke', colorIn)
           .raise();
         // @ts-ignore
         d3.selectAll(d.dependents.map(([d]) => d.text)).attr('fill', colorIn);
         d3.selectAll(d.dependencies.map((d: any) => d.path))
+          .attr('stroke-width', overedThickness)
           .attr('stroke', colorOut)
           .raise();
         // @ts-ignore
@@ -126,12 +130,16 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, onNodeHover
 
       function outed(event: any, d: any) {
         d3.select(event.currentTarget).attr('fill', colorDeselected);
-        d3.selectAll(d.dependents.map((d: any) => d.path)).attr('stroke', null);
+        d3.selectAll(d.dependents.map((d: any) => d.path))
+          .attr('stroke-width', null)
+          .attr('stroke', null);
         // @ts-ignore
         d3.selectAll(d.dependents.map(([d]) => d.text))
           .attr('fill', colorDeselected)
           .attr('font-weight', null);
-        d3.selectAll(d.dependencies.map((d: any) => d.path)).attr('stroke', null);
+        d3.selectAll(d.dependencies.map((d: any) => d.path))
+          .attr('stroke-width', null)
+          .attr('stroke', null);
         // @ts-ignore
         d3.selectAll(d.dependencies.map(([, d]) => d.text))
           .attr('fill', colorDeselected)

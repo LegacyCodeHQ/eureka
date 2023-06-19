@@ -73,8 +73,7 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, onNodeHover
 
       const g = svg.append('g');
 
-      const link = g
-        .append('g')
+      g.append('g')
         .attr('stroke', colorNone)
         .attr('fill', 'none')
         .selectAll('path')

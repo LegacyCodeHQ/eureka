@@ -26,11 +26,11 @@ class Cluster {
       }
     }
 
-    if (blockedNodeId) {
+    if (blockedNodeIds.length > 0) {
       const filteredLinks = Array.from(connectedLinks).filter(
         (link) =>
-          link.source !== blockedNodeId ||
-          (link.source === blockedNodeId && pathExists(startNodeId, link.target, blockedNodeId, classLinks)),
+          !blockedNodeIds.includes(link.source) ||
+          (blockedNodeIds.includes(link.source) && pathExists(startNodeId, link.target, blockedNodeIds, classLinks)),
       );
       return new Cluster(removeDuplicates(filteredLinks));
     }
@@ -42,7 +42,7 @@ class Cluster {
 function pathExists(
   startNodeId: string,
   destinationNodeId: string,
-  blockedNodeId: string,
+  blockedNodeIds: string[],
   classLinks: Link[],
 ): boolean {
   const visited = new Set<string>();
@@ -59,7 +59,7 @@ function pathExists(
       if (nextNodeId === destinationNodeId) {
         return true;
       }
-      if (nextNodeId !== blockedNodeId && !visited.has(nextNodeId) && !stack.includes(nextNodeId)) {
+      if (!blockedNodeIds.includes(nextNodeId) && !visited.has(nextNodeId) && !stack.includes(nextNodeId)) {
         stack.push(nextNodeId);
       }
     }

@@ -115,4 +115,26 @@ describe('Cluster', () => {
     ];
     expect(cluster.links).toEqual(expectedResult);
   });
+
+  it('should use make use of multiple blocked nodes to filter unwanted relationships', () => {
+    // given
+    const multipleLinks: Link[] = [
+      { source: 'A', target: 'X', value: 1 },
+      { source: 'B', target: 'X', value: 1 },
+      { source: 'C', target: 'X', value: 1 },
+      { source: 'A', target: 'Y', value: 1 },
+      { source: 'A', target: 'Z', value: 1 },
+      { source: 'B', target: 'Y', value: 1 },
+      { source: 'B', target: 'Z', value: 1 },
+    ];
+    const cluster = Cluster.from(multipleLinks, 'X', ['A', 'B']);
+
+    // when & then
+    const expectedResult: Link[] = [
+      { source: 'A', target: 'X', value: 1 },
+      { source: 'B', target: 'X', value: 1 },
+      { source: 'C', target: 'X', value: 1 },
+    ];
+    expect(cluster.links).toEqual(expectedResult);
+  });
 });

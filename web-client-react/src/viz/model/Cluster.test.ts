@@ -82,7 +82,7 @@ describe('Cluster', () => {
       { source: 'onViewCreated', target: 'setupProgressBar', value: 1 },
       { source: 'createUi', target: 'setupProgressBar', value: 1 },
     ];
-    const cluster = Cluster.from(multipleLinks, 'chrome', 'onViewCreated');
+    const cluster = Cluster.from(multipleLinks, 'chrome', ['onViewCreated']);
 
     // when & then
     const expectedResult: Link[] = [
@@ -98,7 +98,7 @@ describe('Cluster', () => {
   it('should identify a cluster from a large network', () => {
     // given
     const multipleLinks: Link[] = JSON.parse(graphDataJson).links;
-    const cluster = Cluster.from(multipleLinks, 'List chrome', 'void onViewCreated(View, Bundle)');
+    const cluster = Cluster.from(multipleLinks, 'List chrome', ['void onViewCreated(View, Bundle)']);
 
     // when & then
     const expectedResult: Link[] = [

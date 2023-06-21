@@ -5,10 +5,11 @@ class Cluster {
     // empty
   }
 
-  static from(classLinks: Link[], startNodeId: string, blockedNodeId: string | null = null): Cluster {
+  static from(classLinks: Link[], startNodeId: string, blockedNodeIds: string[] = []): Cluster {
     const visited = new Set<string>();
     const connectedLinks = new Set<Link>();
     const stack: string[] = [startNodeId];
+    const blockedNodeId = blockedNodeIds.length > 0 ? blockedNodeIds[0] : null;
 
     while (stack.length > 0) {
       const currentNodeId = stack.pop()!;

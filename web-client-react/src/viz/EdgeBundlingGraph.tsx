@@ -4,6 +4,7 @@ import * as d3 from 'd3';
 import { createRoot, line } from './GraphFunctions';
 import { GraphData } from './model/GraphData';
 import { NodeHoverEvent } from './NodeHoverEvent';
+import Cluster from './model/Cluster';
 
 interface EdgeBundlingGraphProps {
   data: GraphData;
@@ -27,7 +28,7 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, onNodeHover
   const colorOut = '#f00';
   const colorNone = '#555';
 
-  const overedThickness = 1.6;
+  const overedWidth = 1.6;
 
   const groupAngles = {} as GroupAngles;
   const groupColors: Record<string, string> = {
@@ -61,6 +62,10 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, onNodeHover
     const i = dependencies / (dependencies + dependents);
     return Math.round((i + Number.EPSILON) * 100) / 100;
   }
+
+  const selectedNodeIds = Cluster.from(data.links, 'List chrome', ['void onViewCreated(View, Bundle)'])
+    .links.map((link) => [link.source, link.target])
+    .flatMap((pair) => pair);
 
   useEffect(() => {
     if (svgRef.current) {
@@ -104,13 +109,13 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, onNodeHover
       function overed(event: any, d: any) {
         d3.select(event.currentTarget).attr('fill', colorSelected);
         d3.selectAll(d.dependents.map((d: any) => d.path))
-          .attr('stroke-width', overedThickness)
+          .attr('stroke-width', overedWidth)
           .attr('stroke', colorIn)
           .raise();
         // @ts-ignore
         d3.selectAll(d.dependents.map(([d]) => d.text)).attr('fill', colorIn);
         d3.selectAll(d.dependencies.map((d: any) => d.path))
-          .attr('stroke-width', overedThickness)
+          .attr('stroke-width', overedWidth)
           .attr('stroke', colorOut)
           .raise();
         // @ts-ignore
@@ -245,6 +250,16 @@ Effort* = ${effort(d.dependencies.length, d.dependents.length)}, I = ${
 
             path.append('title').text(getHint(group));
           });
+      });
+
+      svg.selectAll('g').each(function (d: any) {
+        if (d && selectedNodeIds.includes(d.data.id)) {
+          d3.select(this).select('text').attr('fill', 'magenta');
+          d3.selectAll(d.dependents.map((d: any) => d.path))
+            .attr('stroke-width', overedWidth)
+            .attr('stroke', 'magenta')
+            .raise();
+        }
       });
     }
   }, [data]);

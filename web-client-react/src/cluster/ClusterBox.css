@@ -1,0 +1,17 @@
+.cluster-box {
+    border: 1px solid black;
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+}
+
+.visible {
+    display: block;
+}
+
+.hidden {
+    display: none;
+}

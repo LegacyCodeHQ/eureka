@@ -60,4 +60,25 @@ describe('Cluster', () => {
     ];
     expect(result).toEqual(expectedResult);
   });
+
+  it(`should include relationships that are connected to the start node's network`, () => {
+    // given
+    const multipleLinks: Link[] = [
+      { source: 'void main()', target: 'add(Int, Int): Int', value: 1 },
+      { source: 'void main()', target: 'subtract(Int, Int): Int', value: 1 },
+      { source: 'multiply(Int, Int): Int', target: 'add(Int, Int): Int', value: 1 },
+    ];
+    const cluster = Cluster.from(multipleLinks, 'void main()');
+
+    // when
+    const result = cluster.links();
+
+    // then
+    const expectedResult: Link[] = [
+      { source: 'void main()', target: 'add(Int, Int): Int', value: 1 },
+      { source: 'void main()', target: 'subtract(Int, Int): Int', value: 1 },
+      { source: 'multiply(Int, Int): Int', target: 'add(Int, Int): Int', value: 1 },
+    ];
+    expect(result).toEqual(expectedResult);
+  });
 });

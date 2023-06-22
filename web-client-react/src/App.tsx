@@ -59,7 +59,7 @@ function App() {
                     <div className="floating-legend">
                       <Legend count={count} />
                     </div>
-                    <ClusterBox text="Allo, allo! This is awesome!" />
+                    {data && <ClusterBox members={data.members()} />}
                     <div className="viz">{data && <EdgeBundlingGraph data={data} onNodeHover={handleNodeHover} />}</div>
                     {data && <VocabularyPanel data={data} />}
                   </div>

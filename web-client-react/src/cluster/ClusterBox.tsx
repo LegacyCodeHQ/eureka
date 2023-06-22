@@ -2,12 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import './ClusterBox.css';
 
 interface ClusterBoxProps {
-  text: string;
+  members: string[];
 }
 
-const ClusterBox: React.FC<ClusterBoxProps> = ({ text }) => {
+const ClusterBox: React.FC<ClusterBoxProps> = ({ members }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const [inputText, setInputText] = useState(text);
+  const [inputText, setInputText] = useState('');
+  const [filteredMembers, setFilteredMembers] = useState<string[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleKeyDown = (event: KeyboardEvent) => {
@@ -33,6 +34,23 @@ const ClusterBox: React.FC<ClusterBoxProps> = ({ text }) => {
     }
   }, [isVisible]);
 
+  function filterMember(inputText: string, member: string): boolean {
+    const trimmedInputText = inputText.trim();
+    if (trimmedInputText === '' || trimmedInputText.length == 1) {
+      return false;
+    }
+    return member.toLowerCase().includes(inputText.toLowerCase());
+  }
+
+  useEffect(() => {
+    const filterMembers = () => {
+      const filtered = members.filter((member) => filterMember(inputText, member));
+      setFilteredMembers(filtered);
+    };
+
+    filterMembers();
+  }, [inputText, members]);
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputText(event.target.value);
   };
@@ -41,7 +59,14 @@ const ClusterBox: React.FC<ClusterBoxProps> = ({ text }) => {
 
   return (
     <div className={boxClassName}>
-      {isVisible && <input type="text" value={inputText} onChange={handleInputChange} ref={inputRef} />}
+      {isVisible && (
+        <div>
+          <input type="text" value={inputText} onChange={handleInputChange} ref={inputRef} />
+          {filteredMembers.map((member) => (
+            <div key={member}>{member}</div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

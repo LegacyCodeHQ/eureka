@@ -60,5 +60,6 @@ export const line = d3
   .angle((d: any) => d.x);
 
 export function parseGraphData(graphDataJson: string): GraphData {
-  return JSON.parse(graphDataJson);
+  const parsedData = JSON.parse(graphDataJson) as GraphData;
+  return new GraphData(parsedData.nodes, parsedData.links, parsedData.meta);
 }

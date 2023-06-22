@@ -15,3 +15,7 @@
 .hidden {
     display: none;
 }
+
+.start-node-input {
+    width: 100%;
+}

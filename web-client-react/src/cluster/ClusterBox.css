@@ -19,3 +19,12 @@
 .start-node-input {
     width: 100%;
 }
+
+.start-node-selected {
+    display: flex;
+    align-items: center;
+}
+
+.start-node-selected div {
+    margin-left: 5px; /* Adjust the spacing between elements */
+}

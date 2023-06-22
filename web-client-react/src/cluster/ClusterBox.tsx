@@ -1,28 +1,37 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './ClusterBox.css';
-import MemberListItem from './MemberListItem';
+import FilteredMemberList from './FilteredMemberList';
+
+interface ClusterSelection {
+  startMember: string | null;
+}
 
 interface ClusterBoxProps {
   members: string[];
 }
 
 const ClusterBox: React.FC<ClusterBoxProps> = ({ members }) => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isClusterBoxVisible, setIsClusterBoxVisible] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredMembers, setFilteredMembers] = useState<string[]>([]);
   const [focusedMember, setFocusedMember] = useState<string | null>(null);
+  const [clusterSelection, setClusterSelection] = useState<ClusterSelection>({ startMember: null });
 
   const startNodeInputRef = useRef<HTMLInputElement>(null);
 
   const handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === 'k' && event.metaKey) {
-      setIsVisible(!isVisible);
+      setIsClusterBoxVisible(!isClusterBoxVisible);
     }
     if (event.key === 'Escape') {
-      setIsVisible(false);
+      setIsClusterBoxVisible(false);
     }
 
-    if (isVisible && (event.key === 'ArrowUp' || event.key === 'ArrowDown')) {
+    if (!isClusterBoxVisible) {
+      return;
+    }
+
+    if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
       event.preventDefault();
       if (filteredMembers.length === 0) {
         return;
@@ -41,6 +50,8 @@ const ClusterBox: React.FC<ClusterBoxProps> = ({ members }) => {
       }
 
       setFocusedMember(filteredMembers[nextIndex]);
+    } else if (event.key === 'Enter') {
+      setClusterSelection({ startMember: focusedMember });
     }
   };
 
@@ -49,14 +60,14 @@ const ClusterBox: React.FC<ClusterBoxProps> = ({ members }) => {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isVisible, focusedMember, filteredMembers]);
+  }, [isClusterBoxVisible, focusedMember, filteredMembers]);
 
   useEffect(() => {
-    if (isVisible && startNodeInputRef.current) {
+    if (isClusterBoxVisible && startNodeInputRef.current) {
       startNodeInputRef.current.focus();
       startNodeInputRef.current.select();
     }
-  }, [isVisible]);
+  }, [isClusterBoxVisible, clusterSelection]);
 
   function filterMember(searchTerm: string, member: string): boolean {
     const trimmedSearchTerm = searchTerm.trim();
@@ -82,22 +93,41 @@ const ClusterBox: React.FC<ClusterBoxProps> = ({ members }) => {
     setSearchTerm(event.target.value);
   };
 
-  const boxClassName = isVisible ? 'cluster-box visible' : 'cluster-box hidden';
+  const boxClassName = isClusterBoxVisible ? 'cluster-box visible' : 'cluster-box hidden';
+
+  function isStartNodeSelected(): boolean {
+    return clusterSelection.startMember !== null;
+  }
+
+  function removeSelectedStartNode() {
+    setClusterSelection({ startMember: null });
+  }
 
   return (
     <div className={boxClassName}>
-      {isVisible && (
+      {isClusterBoxVisible && (
         <div>
-          <input
-            className="start-node-input"
-            type="text"
-            value={searchTerm}
-            onChange={handleInputChange}
-            ref={startNodeInputRef}
-          />
-          {filteredMembers.map((member) => (
-            <MemberListItem key={member} member={member} focusedMember={focusedMember} />
-          ))}
+          {isStartNodeSelected() ? (
+            <div className="start-node-selected">
+              {clusterSelection.startMember}
+              <div onClick={removeSelectedStartNode}>X</div>
+            </div>
+          ) : (
+            <React.Fragment>
+              <label htmlFor="startNodeInput">Cluster member</label>
+              <input
+                id="startNodeInput"
+                className="start-node-input"
+                type="text"
+                value={searchTerm}
+                onChange={handleInputChange}
+                ref={startNodeInputRef}
+              />
+            </React.Fragment>
+          )}
+          {!isStartNodeSelected() && (
+            <FilteredMemberList focusedMember={focusedMember} filteredMembers={filteredMembers} />
+          )}
         </div>
       )}
     </div>

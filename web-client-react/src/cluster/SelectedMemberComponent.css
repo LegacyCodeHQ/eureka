@@ -1,0 +1,43 @@
+.selected-member-container {
+    width: 300px;
+    color: white;
+    background-color: #232323;
+    display: flex;
+    align-items: center;
+}
+
+.member-icon {
+    margin: 4px 0 4px 4px;
+    font-family: monospace;
+    font-weight: bold;
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.field {
+    color: orangered;
+    background: wheat;
+    border: 2px solid orangered;
+}
+
+.method {
+    color: limegreen;
+    background: wheat;
+    border: 2px solid limegreen;
+    line-height: 13px;
+}
+
+.member {
+    text-align: left;
+    user-select: none;
+}
+
+.remove-button {
+    margin-left: auto;
+    user-select: none;
+    height: 24px;
+    width: 24px;
+    text-align: center;
+}

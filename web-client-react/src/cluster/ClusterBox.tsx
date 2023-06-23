@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './ClusterBox.css';
 import FilteredMemberList from './FilteredMemberList';
+import SelectedMemberComponent from './SelectedMemberComponent';
 
 interface ClusterSelection {
   startMember: string | null;
@@ -34,11 +35,11 @@ const ClusterBox: React.FC<ClusterBoxProps> = ({ members, onStartMemberChanged }
 
     if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
       event.preventDefault();
-      if (filteredMembers.length === 0) {
+      if (filteredMembers.length === 0 || !focusedMember) {
         return;
       }
 
-      let currentIndex = filteredMembers.indexOf(focusedMember!);
+      let currentIndex = filteredMembers.indexOf(focusedMember);
       if (currentIndex === -1) {
         currentIndex = 0;
       }
@@ -113,10 +114,10 @@ const ClusterBox: React.FC<ClusterBoxProps> = ({ members, onStartMemberChanged }
       {isClusterBoxVisible && (
         <div>
           {isStartNodeSelected() ? (
-            <div className="start-node-selected">
-              {clusterSelection.startMember}
-              <div onClick={removeSelectedStartNode}>X</div>
-            </div>
+            <SelectedMemberComponent
+              member={clusterSelection.startMember!}
+              onRemoveClicked={(member) => removeSelectedStartNode()}
+            />
           ) : (
             <React.Fragment>
               <label htmlFor="startNodeInput">Cluster member</label>

@@ -8,9 +8,10 @@ interface ClusterSelection {
 
 interface ClusterBoxProps {
   members: string[];
+  onStartMemberChanged: (member: string | null) => void;
 }
 
-const ClusterBox: React.FC<ClusterBoxProps> = ({ members }) => {
+const ClusterBox: React.FC<ClusterBoxProps> = ({ members, onStartMemberChanged }) => {
   const [isClusterBoxVisible, setIsClusterBoxVisible] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredMembers, setFilteredMembers] = useState<string[]>([]);
@@ -102,6 +103,10 @@ const ClusterBox: React.FC<ClusterBoxProps> = ({ members }) => {
   function removeSelectedStartNode() {
     setClusterSelection({ startMember: null });
   }
+
+  useEffect(() => {
+    onStartMemberChanged(clusterSelection.startMember);
+  }, [clusterSelection]);
 
   return (
     <div className={boxClassName}>

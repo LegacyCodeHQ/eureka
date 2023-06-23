@@ -8,6 +8,7 @@ import Cluster from './model/Cluster';
 
 interface EdgeBundlingGraphProps {
   data: GraphData;
+  startNodeId: string | null;
   onNodeHover: (event: NodeHoverEvent | null) => void;
 }
 
@@ -18,7 +19,7 @@ interface GroupAngles {
   };
 }
 
-const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, onNodeHover }) => {
+const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, startNodeId, onNodeHover }) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
   const width = 800;
   const radius = width / 2;
@@ -62,10 +63,6 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, onNodeHover
     const i = dependencies / (dependencies + dependents);
     return Math.round((i + Number.EPSILON) * 100) / 100;
   }
-
-  const selectedNodeIds = Cluster.from(data.links, 'List chrome', ['void onViewCreated(View, Bundle)'])
-    .links.map((link) => [link.source, link.target])
-    .flatMap((pair) => pair);
 
   useEffect(() => {
     if (svgRef.current) {
@@ -252,17 +249,23 @@ Effort* = ${effort(d.dependencies.length, d.dependents.length)}, I = ${
           });
       });
 
-      svg.selectAll('g').each(function (d: any) {
-        if (d && selectedNodeIds.includes(d.data.id)) {
-          d3.select(this).select('text').attr('fill', 'magenta');
-          d3.selectAll(d.dependents.map((d: any) => d.path))
-            .attr('stroke-width', overedWidth)
-            .attr('stroke', 'magenta')
-            .raise();
-        }
-      });
+      if (startNodeId) {
+        const selectedNodeIds = Cluster.from(data.links, startNodeId, ['void onViewCreated(View, Bundle)'])
+          .links.map((link) => [link.source, link.target])
+          .flatMap((pair) => pair);
+
+        svg.selectAll('g').each(function (d: any) {
+          if (d && selectedNodeIds.includes(d.data.id)) {
+            d3.select(this).select('text').attr('fill', 'magenta');
+            d3.selectAll(d.dependents.map((d: any) => d.path))
+              .attr('stroke-width', overedWidth)
+              .attr('stroke', 'magenta')
+              .raise();
+          }
+        });
+      }
     }
-  }, [data]);
+  }, [data, startNodeId]);
 
   return <svg ref={svgRef} width="100%" height="100vh" />;
 };

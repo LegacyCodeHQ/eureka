@@ -17,6 +17,7 @@ function App() {
   const [host, setHost] = useState<Host | null>(null);
   const [count, setCount] = useState<Count | null>(null);
   const [connectionStatus, setConnectionStatus] = useState(WsConnectionStatus.Disconnected);
+  const [startMember, setStartMember] = useState<string | null>(null);
 
   useEffect(() => {
     const hostName = document.getElementById('root')?.dataset.hostName;
@@ -43,6 +44,10 @@ function App() {
     setConnectionStatus(connectionStatus);
   };
 
+  const handleStartMemberChanged = (member: string | null) => {
+    setStartMember(member);
+  };
+
   return (
     <>
       {host && (
@@ -59,8 +64,12 @@ function App() {
                     <div className="floating-legend">
                       <Legend count={count} />
                     </div>
-                    {data && <ClusterBox members={data.members()} />}
-                    <div className="viz">{data && <EdgeBundlingGraph data={data} onNodeHover={handleNodeHover} />}</div>
+                    {data && <ClusterBox members={data.members()} onStartMemberChanged={handleStartMemberChanged} />}
+                    <div className="viz">
+                      {data && (
+                        <EdgeBundlingGraph data={data} startNodeId={startMember} onNodeHover={handleNodeHover} />
+                      )}
+                    </div>
                     {data && <VocabularyPanel data={data} />}
                   </div>
                 </div>

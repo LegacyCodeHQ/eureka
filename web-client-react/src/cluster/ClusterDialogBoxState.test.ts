@@ -82,5 +82,49 @@ describe('Cluster dialog box state', () => {
       expect(searchResultState).toMatchSnapshot();
       expect(searchResultState.focusedMember).toEqual(new Member('void onCreate()'));
     });
+
+    it('should select the next member when pressing the down arrow', () => {
+      // when
+      const state = searchResultState.focusNextMember();
+
+      // then
+      expect(state).toMatchSnapshot();
+      expect(state.focusedMember).toEqual(new Member('void onPause()'));
+    });
+
+    it('should select the previous member when pressing the up arrow', () => {
+      // given
+      let state = searchResultState.focusNextMember();
+      expect(state.focusedMember).toEqual(new Member('void onPause()'));
+
+      // when
+      state = state.focusPreviousMember();
+
+      // then
+      expect(state).toMatchSnapshot();
+      expect(state.focusedMember).toEqual(new Member('void onCreate()'));
+    });
+
+    it('should select the last member from the search result when pressing the up arrow on the first item', () => {
+      // when
+      const state = searchResultState.focusPreviousMember();
+
+      // then
+      expect(state).toMatchSnapshot();
+      expect(state.focusedMember).toEqual(new Member('void onResume()'));
+    });
+
+    it('should select the first member from the search result when pressing down arrow on the last item', () => {
+      // given
+      let state = searchResultState.focusPreviousMember();
+      expect(state.focusedMember).toEqual(new Member('void onResume()'));
+
+      // when
+      state = state.focusNextMember();
+
+      // then
+      expect(state).toMatchSnapshot();
+      expect(state.focusedMember).toEqual(new Member('void onCreate()'));
+    });
   });
 });

@@ -34,6 +34,142 @@ ClusterDialogBoxState {
 }
 `;
 
+exports[`Cluster dialog box state focused member functionality should select the first member from the search result when pressing down arrow on the last item 1`] = `
+ClusterDialogBoxState {
+  "filteredMembers": Array [
+    Member {
+      "nodeId": "void onCreate()",
+    },
+    Member {
+      "nodeId": "void onPause()",
+    },
+    Member {
+      "nodeId": "void onResume()",
+    },
+  ],
+  "focusedMember": Member {
+    "nodeId": "void onCreate()",
+  },
+  "members": Array [
+    Member {
+      "nodeId": "List chrome",
+    },
+    Member {
+      "nodeId": "void onCreate()",
+    },
+    Member {
+      "nodeId": "void onPause()",
+    },
+    Member {
+      "nodeId": "void onResume()",
+    },
+  ],
+  "searchTerm": "void",
+}
+`;
+
+exports[`Cluster dialog box state focused member functionality should select the last member from the search result when pressing the up arrow on the first item 1`] = `
+ClusterDialogBoxState {
+  "filteredMembers": Array [
+    Member {
+      "nodeId": "void onCreate()",
+    },
+    Member {
+      "nodeId": "void onPause()",
+    },
+    Member {
+      "nodeId": "void onResume()",
+    },
+  ],
+  "focusedMember": Member {
+    "nodeId": "void onResume()",
+  },
+  "members": Array [
+    Member {
+      "nodeId": "List chrome",
+    },
+    Member {
+      "nodeId": "void onCreate()",
+    },
+    Member {
+      "nodeId": "void onPause()",
+    },
+    Member {
+      "nodeId": "void onResume()",
+    },
+  ],
+  "searchTerm": "void",
+}
+`;
+
+exports[`Cluster dialog box state focused member functionality should select the next member when pressing the down arrow 1`] = `
+ClusterDialogBoxState {
+  "filteredMembers": Array [
+    Member {
+      "nodeId": "void onCreate()",
+    },
+    Member {
+      "nodeId": "void onPause()",
+    },
+    Member {
+      "nodeId": "void onResume()",
+    },
+  ],
+  "focusedMember": Member {
+    "nodeId": "void onPause()",
+  },
+  "members": Array [
+    Member {
+      "nodeId": "List chrome",
+    },
+    Member {
+      "nodeId": "void onCreate()",
+    },
+    Member {
+      "nodeId": "void onPause()",
+    },
+    Member {
+      "nodeId": "void onResume()",
+    },
+  ],
+  "searchTerm": "void",
+}
+`;
+
+exports[`Cluster dialog box state focused member functionality should select the previous member when pressing the up arrow 1`] = `
+ClusterDialogBoxState {
+  "filteredMembers": Array [
+    Member {
+      "nodeId": "void onCreate()",
+    },
+    Member {
+      "nodeId": "void onPause()",
+    },
+    Member {
+      "nodeId": "void onResume()",
+    },
+  ],
+  "focusedMember": Member {
+    "nodeId": "void onCreate()",
+  },
+  "members": Array [
+    Member {
+      "nodeId": "List chrome",
+    },
+    Member {
+      "nodeId": "void onCreate()",
+    },
+    Member {
+      "nodeId": "void onPause()",
+    },
+    Member {
+      "nodeId": "void onResume()",
+    },
+  ],
+  "searchTerm": "void",
+}
+`;
+
 exports[`Cluster dialog box state search functionality should filter members based on the search term 1`] = `
 ClusterDialogBoxState {
   "filteredMembers": Array [

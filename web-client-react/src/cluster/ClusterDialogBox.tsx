@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './ClusterBox.css';
+import './ClusterDialogBox.css';
 import FilteredMemberList from './FilteredMemberList';
 import SelectedMemberComponent from './SelectedMemberComponent';
 
@@ -7,12 +7,12 @@ interface ClusterSelection {
   startMember: string | null;
 }
 
-interface ClusterBoxProps {
+interface ClusterDialogBoxProps {
   members: string[];
   onStartMemberChanged: (member: string | null) => void;
 }
 
-const ClusterBox: React.FC<ClusterBoxProps> = ({ members, onStartMemberChanged }) => {
+const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMemberChanged }) => {
   const [isClusterBoxVisible, setIsClusterBoxVisible] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredMembers, setFilteredMembers] = useState<string[]>([]);
@@ -140,4 +140,4 @@ const ClusterBox: React.FC<ClusterBoxProps> = ({ members, onStartMemberChanged }
   );
 };
 
-export default ClusterBox;
+export default ClusterDialogBox;

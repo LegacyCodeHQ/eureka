@@ -11,7 +11,7 @@ import { Host, HostProvider } from './HostContext';
 import Legend from './legend/Legend';
 import { WsConnectionStatus } from './toolbar/LiveUpdatesStatus';
 import { Count, NodeHoverEvent } from './viz/NodeHoverEvent';
-import ClusterBox from './cluster/ClusterBox';
+import ClusterDialogBox from './cluster/ClusterDialogBox';
 
 function App() {
   const [host, setHost] = useState<Host | null>(null);
@@ -64,7 +64,9 @@ function App() {
                     <div className="floating-legend">
                       <Legend count={count} />
                     </div>
-                    {data && <ClusterBox members={data.members()} onStartMemberChanged={handleStartMemberChanged} />}
+                    {data && (
+                      <ClusterDialogBox members={data.members()} onStartMemberChanged={handleStartMemberChanged} />
+                    )}
                     <div className="viz">
                       {data && (
                         <EdgeBundlingGraph data={data} startNodeId={startMember} onNodeHover={handleNodeHover} />

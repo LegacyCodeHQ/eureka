@@ -1,0 +1,201 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Cluster dialog box state should filter members based on the search term 1`] = `
+ClusterDialogBoxState {
+  "filteredMembers": Array [
+    Member {
+      "nodeId": "List chrome",
+    },
+  ],
+  "focusedMember": Member {
+    "nodeId": "List chrome",
+  },
+  "members": Array [
+    Member {
+      "nodeId": "List chrome",
+    },
+    Member {
+      "nodeId": "void onCreate()",
+    },
+    Member {
+      "nodeId": "void onPause()",
+    },
+    Member {
+      "nodeId": "void onResume()",
+    },
+  ],
+  "searchTerm": "chr",
+}
+`;
+
+exports[`Cluster dialog box state should filter members based on the search term but ignore whitespaces 1`] = `
+ClusterDialogBoxState {
+  "filteredMembers": Array [
+    Member {
+      "nodeId": "List chrome",
+    },
+  ],
+  "focusedMember": Member {
+    "nodeId": "List chrome",
+  },
+  "members": Array [
+    Member {
+      "nodeId": "List chrome",
+    },
+    Member {
+      "nodeId": "void onCreate()",
+    },
+    Member {
+      "nodeId": "void onPause()",
+    },
+    Member {
+      "nodeId": "void onResume()",
+    },
+  ],
+  "searchTerm": "chr",
+}
+`;
+
+exports[`Cluster dialog box state should have an initial state 1`] = `
+ClusterDialogBoxState {
+  "filteredMembers": Array [],
+  "focusedMember": null,
+  "members": Array [
+    Member {
+      "nodeId": "List chrome",
+    },
+    Member {
+      "nodeId": "void onCreate()",
+    },
+    Member {
+      "nodeId": "void onPause()",
+    },
+    Member {
+      "nodeId": "void onResume()",
+    },
+  ],
+  "searchTerm": "",
+}
+`;
+
+exports[`Cluster dialog box state should not filter members when the search term has < 2 characters 1`] = `
+ClusterDialogBoxState {
+  "filteredMembers": Array [],
+  "focusedMember": null,
+  "members": Array [
+    Member {
+      "nodeId": "List chrome",
+    },
+    Member {
+      "nodeId": "void onCreate()",
+    },
+    Member {
+      "nodeId": "void onPause()",
+    },
+    Member {
+      "nodeId": "void onResume()",
+    },
+  ],
+  "searchTerm": "c",
+}
+`;
+
+exports[`Cluster dialog box state should not filter members when the search term is empty 1`] = `
+ClusterDialogBoxState {
+  "filteredMembers": Array [],
+  "focusedMember": null,
+  "members": Array [
+    Member {
+      "nodeId": "List chrome",
+    },
+    Member {
+      "nodeId": "void onCreate()",
+    },
+    Member {
+      "nodeId": "void onPause()",
+    },
+    Member {
+      "nodeId": "void onResume()",
+    },
+  ],
+  "searchTerm": "",
+}
+`;
+
+exports[`Cluster dialog box state should not filter members when the search term only contains spaces 1`] = `
+ClusterDialogBoxState {
+  "filteredMembers": Array [],
+  "focusedMember": null,
+  "members": Array [
+    Member {
+      "nodeId": "List chrome",
+    },
+    Member {
+      "nodeId": "void onCreate()",
+    },
+    Member {
+      "nodeId": "void onPause()",
+    },
+    Member {
+      "nodeId": "void onResume()",
+    },
+  ],
+  "searchTerm": "",
+}
+`;
+
+exports[`Cluster dialog box state should not have filtered results for a non-matching search term 1`] = `
+ClusterDialogBoxState {
+  "filteredMembers": Array [],
+  "focusedMember": null,
+  "members": Array [
+    Member {
+      "nodeId": "List chrome",
+    },
+    Member {
+      "nodeId": "void onCreate()",
+    },
+    Member {
+      "nodeId": "void onPause()",
+    },
+    Member {
+      "nodeId": "void onResume()",
+    },
+  ],
+  "searchTerm": "hello",
+}
+`;
+
+exports[`Cluster dialog box state should select the first matching member and mark it as focused from the search result 1`] = `
+ClusterDialogBoxState {
+  "filteredMembers": Array [
+    Member {
+      "nodeId": "void onCreate()",
+    },
+    Member {
+      "nodeId": "void onPause()",
+    },
+    Member {
+      "nodeId": "void onResume()",
+    },
+  ],
+  "focusedMember": Member {
+    "nodeId": "void onCreate()",
+  },
+  "members": Array [
+    Member {
+      "nodeId": "List chrome",
+    },
+    Member {
+      "nodeId": "void onCreate()",
+    },
+    Member {
+      "nodeId": "void onPause()",
+    },
+    Member {
+      "nodeId": "void onResume()",
+    },
+  ],
+  "searchTerm": "void",
+}
+`;

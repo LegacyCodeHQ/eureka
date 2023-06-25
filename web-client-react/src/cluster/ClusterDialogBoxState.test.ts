@@ -22,27 +22,27 @@ describe('Cluster dialog box state', () => {
   describe('search functionality', () => {
     it('should not filter members when the search term is empty', () => {
       // when
-      const searchState = initialState.search('');
+      const searchResultState = initialState.search('');
 
       // then
-      expect(searchState).toMatchSnapshot();
+      expect(searchResultState).toMatchSnapshot();
     });
 
     it('should not filter members when the search term only contains spaces', () => {
       // when
-      const searchState = initialState.search('      ');
+      const searchResultState = initialState.search('      ');
 
       // then
-      expect(searchState).toMatchSnapshot();
-      expect(searchState.isSearchTermEmpty()).toBe(true);
+      expect(searchResultState).toMatchSnapshot();
+      expect(searchResultState.isSearchTermEmpty()).toBe(true);
     });
 
     it('should not filter members when the search term has < 2 characters', () => {
       // when
-      const searchState = initialState.search('c');
+      const searchResultState = initialState.search('c');
 
       // then
-      expect(searchState).toMatchSnapshot();
+      expect(searchResultState).toMatchSnapshot();
     });
 
     it('should filter members based on the search term', () => {
@@ -85,46 +85,46 @@ describe('Cluster dialog box state', () => {
 
     it('should select the next member when pressing the down arrow', () => {
       // when
-      const state = searchResultState.focusNextMember();
+      const focusNextMemberState = searchResultState.focusNextMember();
 
       // then
-      expect(state).toMatchSnapshot();
-      expect(state.focusedMember).toEqual(new Member('void onPause()'));
+      expect(focusNextMemberState).toMatchSnapshot();
+      expect(focusNextMemberState.focusedMember).toEqual(new Member('void onPause()'));
     });
 
     it('should select the previous member when pressing the up arrow', () => {
       // given
-      let state = searchResultState.focusNextMember();
-      expect(state.focusedMember).toEqual(new Member('void onPause()'));
+      const focusNextMemberState = searchResultState.focusNextMember();
+      expect(focusNextMemberState.focusedMember).toEqual(new Member('void onPause()'));
 
       // when
-      state = state.focusPreviousMember();
+      const focusPreviousMemberState = focusNextMemberState.focusPreviousMember();
 
       // then
-      expect(state).toMatchSnapshot();
-      expect(state.focusedMember).toEqual(new Member('void onCreate()'));
+      expect(focusPreviousMemberState).toMatchSnapshot();
+      expect(focusPreviousMemberState.focusedMember).toEqual(new Member('void onCreate()'));
     });
 
     it('should select the last member from the search result when pressing the up arrow on the first item', () => {
       // when
-      const state = searchResultState.focusPreviousMember();
+      const focusPreviousMemberState = searchResultState.focusPreviousMember();
 
       // then
-      expect(state).toMatchSnapshot();
-      expect(state.focusedMember).toEqual(new Member('void onResume()'));
+      expect(focusPreviousMemberState).toMatchSnapshot();
+      expect(focusPreviousMemberState.focusedMember).toEqual(new Member('void onResume()'));
     });
 
     it('should select the first member from the search result when pressing down arrow on the last item', () => {
       // given
-      let state = searchResultState.focusPreviousMember();
-      expect(state.focusedMember).toEqual(new Member('void onResume()'));
+      const focusPreviousMemberState = searchResultState.focusPreviousMember();
+      expect(focusPreviousMemberState.focusedMember).toEqual(new Member('void onResume()'));
 
       // when
-      state = state.focusNextMember();
+      const focusNextMemberState = focusPreviousMemberState.focusNextMember();
 
       // then
-      expect(state).toMatchSnapshot();
-      expect(state.focusedMember).toEqual(new Member('void onCreate()'));
+      expect(focusNextMemberState).toMatchSnapshot();
+      expect(focusNextMemberState.focusedMember).toEqual(new Member('void onCreate()'));
     });
   });
 

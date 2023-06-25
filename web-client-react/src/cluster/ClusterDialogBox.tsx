@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import './ClusterDialogBox.css';
 import FilteredMemberList from './FilteredMemberList';
 import SelectedMemberComponent from './SelectedMemberComponent';
+import ClusterDialogBoxState from './ClusterDialogBoxState';
+import { Member } from './Member';
 
 interface ClusterSelection {
   startMember: string | null;
@@ -14,10 +16,13 @@ interface ClusterDialogBoxProps {
 
 const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMemberChanged }) => {
   const [isClusterBoxVisible, setIsClusterBoxVisible] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
   const [filteredMembers, setFilteredMembers] = useState<string[]>([]);
   const [focusedMember, setFocusedMember] = useState<string | null>(null);
   const [clusterSelection, setClusterSelection] = useState<ClusterSelection>({ startMember: null });
+
+  const [dialogState, setDialogState] = useState(
+    ClusterDialogBoxState.initialState(members.map((member) => new Member(member))),
+  );
 
   const startNodeInputRef = useRef<HTMLInputElement>(null);
 
@@ -81,7 +86,7 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
 
   useEffect(() => {
     const filterMembers = () => {
-      const filtered = members.filter((member) => filterMember(searchTerm, member));
+      const filtered = members.filter((member) => filterMember(dialogState.searchTerm, member));
       setFilteredMembers(filtered);
       if (filtered.length > 0) {
         setFocusedMember(filtered[0]);
@@ -89,10 +94,10 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
     };
 
     filterMembers();
-  }, [searchTerm, members]);
+  }, [members, dialogState]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
+    setDialogState(dialogState.search(event.target.value));
   };
 
   const boxClassName = isClusterBoxVisible ? 'cluster-box visible' : 'cluster-box hidden';
@@ -125,7 +130,7 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
                 id="startNodeInput"
                 className="start-node-input"
                 type="text"
-                value={searchTerm}
+                value={dialogState.searchTerm}
                 onChange={handleInputChange}
                 ref={startNodeInputRef}
               />

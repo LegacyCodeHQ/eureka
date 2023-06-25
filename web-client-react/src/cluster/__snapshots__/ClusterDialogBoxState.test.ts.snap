@@ -175,7 +175,7 @@ ClusterDialogBoxState {
 }
 `;
 
-exports[`Cluster dialog box state search functionality should filter members based on the search term 1`] = `
+exports[`Cluster dialog box state search start node functionality should filter members based on the search term 1`] = `
 ClusterDialogBoxState {
   "filteredMembers": Array [
     Member {
@@ -204,7 +204,7 @@ ClusterDialogBoxState {
 }
 `;
 
-exports[`Cluster dialog box state search functionality should filter members based on the search term but ignore whitespaces 1`] = `
+exports[`Cluster dialog box state search start node functionality should filter members based on the search term but ignore whitespaces 1`] = `
 ClusterDialogBoxState {
   "filteredMembers": Array [
     Member {
@@ -233,7 +233,7 @@ ClusterDialogBoxState {
 }
 `;
 
-exports[`Cluster dialog box state search functionality should not filter members when the search term has < 2 characters 1`] = `
+exports[`Cluster dialog box state search start node functionality should not filter members when the search term has < 2 characters 1`] = `
 ClusterDialogBoxState {
   "filteredMembers": Array [],
   "focusedMember": null,
@@ -256,7 +256,7 @@ ClusterDialogBoxState {
 }
 `;
 
-exports[`Cluster dialog box state search functionality should not filter members when the search term is empty 1`] = `
+exports[`Cluster dialog box state search start node functionality should not filter members when the search term is empty 1`] = `
 ClusterDialogBoxState {
   "filteredMembers": Array [],
   "focusedMember": null,
@@ -279,7 +279,7 @@ ClusterDialogBoxState {
 }
 `;
 
-exports[`Cluster dialog box state search functionality should not filter members when the search term only contains spaces 1`] = `
+exports[`Cluster dialog box state search start node functionality should not filter members when the search term only contains spaces 1`] = `
 ClusterDialogBoxState {
   "filteredMembers": Array [],
   "focusedMember": null,
@@ -302,7 +302,7 @@ ClusterDialogBoxState {
 }
 `;
 
-exports[`Cluster dialog box state search functionality should not have filtered results for a non-matching search term 1`] = `
+exports[`Cluster dialog box state search start node functionality should not have filtered results for a non-matching search term 1`] = `
 ClusterDialogBoxState {
   "filteredMembers": Array [],
   "focusedMember": null,

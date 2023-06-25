@@ -19,7 +19,7 @@ describe('Cluster dialog box state', () => {
     expect(initialState).toMatchSnapshot();
   });
 
-  describe('search functionality', () => {
+  describe('search start node functionality', () => {
     it('should not filter members when the search term is empty', () => {
       // when
       const searchResultState = initialState.search('');

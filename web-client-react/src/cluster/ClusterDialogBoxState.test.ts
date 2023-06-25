@@ -127,4 +127,32 @@ describe('Cluster dialog box state', () => {
       expect(state.focusedMember).toEqual(new Member('void onCreate()'));
     });
   });
+
+  describe('start node selection', () => {
+    let searchResultState: ClusterDialogBoxState;
+
+    beforeEach(() => {
+      searchResultState = initialState.search('void');
+    });
+
+    it('should select the currently focused element as the start node', () => {
+      // when
+      const startNodeSelectedState = searchResultState.selectStartNode();
+
+      // then
+      expect(startNodeSelectedState).toMatchSnapshot();
+    });
+
+    it('should select the currently focused element as the start node', () => {
+      // given
+      const startNodeSelectedState = searchResultState.selectStartNode();
+      expect(startNodeSelectedState.startNode).toEqual(new Member('void onCreate()'));
+
+      // when
+      const startNodeDeselectedState = startNodeSelectedState.deselectStartNode();
+
+      // then
+      expect(startNodeDeselectedState).toMatchSnapshot();
+    });
+  });
 });

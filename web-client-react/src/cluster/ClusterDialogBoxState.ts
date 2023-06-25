@@ -6,6 +6,7 @@ class ClusterDialogBoxState {
     public readonly searchTerm: string = '',
     public readonly filteredMembers: Member[] = [],
     public readonly focusedMember: Member | null = null,
+    public readonly startNode: Member | null = null,
   ) {
     // empty
   }
@@ -54,6 +55,20 @@ class ClusterDialogBoxState {
       currentFocusedMemberIndex - 1 < 0 ? this.filteredMembers.length - 1 : currentFocusedMemberIndex - 1;
     const previousFocusedMember = this.filteredMembers[previousFocusedMemberIndex];
     return new ClusterDialogBoxState(this.members, this.searchTerm, this.filteredMembers, previousFocusedMember);
+  }
+
+  selectStartNode(): ClusterDialogBoxState {
+    return new ClusterDialogBoxState(
+      this.members,
+      this.searchTerm,
+      this.filteredMembers,
+      this.focusedMember,
+      this.focusedMember,
+    );
+  }
+
+  deselectStartNode(): ClusterDialogBoxState {
+    return new ClusterDialogBoxState(this.members, this.searchTerm, this.filteredMembers, this.focusedMember, null);
   }
 }
 

@@ -31,6 +31,7 @@ ClusterDialogBoxState {
     },
   ],
   "searchTerm": "void",
+  "startNode": null,
 }
 `;
 
@@ -65,6 +66,7 @@ ClusterDialogBoxState {
     },
   ],
   "searchTerm": "void",
+  "startNode": null,
 }
 `;
 
@@ -99,6 +101,7 @@ ClusterDialogBoxState {
     },
   ],
   "searchTerm": "void",
+  "startNode": null,
 }
 `;
 
@@ -133,6 +136,7 @@ ClusterDialogBoxState {
     },
   ],
   "searchTerm": "void",
+  "startNode": null,
 }
 `;
 
@@ -167,6 +171,7 @@ ClusterDialogBoxState {
     },
   ],
   "searchTerm": "void",
+  "startNode": null,
 }
 `;
 
@@ -195,6 +200,7 @@ ClusterDialogBoxState {
     },
   ],
   "searchTerm": "chr",
+  "startNode": null,
 }
 `;
 
@@ -223,6 +229,7 @@ ClusterDialogBoxState {
     },
   ],
   "searchTerm": "chr",
+  "startNode": null,
 }
 `;
 
@@ -245,6 +252,7 @@ ClusterDialogBoxState {
     },
   ],
   "searchTerm": "c",
+  "startNode": null,
 }
 `;
 
@@ -267,6 +275,7 @@ ClusterDialogBoxState {
     },
   ],
   "searchTerm": "",
+  "startNode": null,
 }
 `;
 
@@ -289,6 +298,7 @@ ClusterDialogBoxState {
     },
   ],
   "searchTerm": "",
+  "startNode": null,
 }
 `;
 
@@ -311,6 +321,7 @@ ClusterDialogBoxState {
     },
   ],
   "searchTerm": "hello",
+  "startNode": null,
 }
 `;
 
@@ -333,5 +344,78 @@ ClusterDialogBoxState {
     },
   ],
   "searchTerm": "",
+  "startNode": null,
+}
+`;
+
+exports[`Cluster dialog box state start node selection should select the currently focused element as the start node 1`] = `
+ClusterDialogBoxState {
+  "filteredMembers": Array [
+    Member {
+      "nodeId": "void onCreate()",
+    },
+    Member {
+      "nodeId": "void onPause()",
+    },
+    Member {
+      "nodeId": "void onResume()",
+    },
+  ],
+  "focusedMember": Member {
+    "nodeId": "void onCreate()",
+  },
+  "members": Array [
+    Member {
+      "nodeId": "List chrome",
+    },
+    Member {
+      "nodeId": "void onCreate()",
+    },
+    Member {
+      "nodeId": "void onPause()",
+    },
+    Member {
+      "nodeId": "void onResume()",
+    },
+  ],
+  "searchTerm": "void",
+  "startNode": Member {
+    "nodeId": "void onCreate()",
+  },
+}
+`;
+
+exports[`Cluster dialog box state start node selection should select the currently focused element as the start node 2`] = `
+ClusterDialogBoxState {
+  "filteredMembers": Array [
+    Member {
+      "nodeId": "void onCreate()",
+    },
+    Member {
+      "nodeId": "void onPause()",
+    },
+    Member {
+      "nodeId": "void onResume()",
+    },
+  ],
+  "focusedMember": Member {
+    "nodeId": "void onCreate()",
+  },
+  "members": Array [
+    Member {
+      "nodeId": "List chrome",
+    },
+    Member {
+      "nodeId": "void onCreate()",
+    },
+    Member {
+      "nodeId": "void onPause()",
+    },
+    Member {
+      "nodeId": "void onResume()",
+    },
+  ],
+  "searchTerm": "void",
+  "startNode": null,
 }
 `;

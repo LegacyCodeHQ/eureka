@@ -175,6 +175,35 @@ ClusterDialogBoxState {
 }
 `;
 
+exports[`Cluster dialog box state search start node functionality should do a case insensitive search 1`] = `
+ClusterDialogBoxState {
+  "filteredMembers": Array [
+    Member {
+      "nodeId": "void onResume()",
+    },
+  ],
+  "focusedMember": Member {
+    "nodeId": "void onResume()",
+  },
+  "members": Array [
+    Member {
+      "nodeId": "List chrome",
+    },
+    Member {
+      "nodeId": "void onCreate()",
+    },
+    Member {
+      "nodeId": "void onPause()",
+    },
+    Member {
+      "nodeId": "void onResume()",
+    },
+  ],
+  "searchTerm": "resume",
+  "startNode": null,
+}
+`;
+
 exports[`Cluster dialog box state search start node functionality should filter members based on the search term 1`] = `
 ClusterDialogBoxState {
   "filteredMembers": Array [

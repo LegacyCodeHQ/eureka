@@ -1,13 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './ClusterDialogBox.css';
-import FilteredMemberList from './FilteredMemberList';
-import SelectedMemberComponent from './SelectedMemberComponent';
 import ClusterDialogBoxState from './ClusterDialogBoxState';
 import { Member } from './Member';
-
-interface ClusterSelection {
-  startMember: string | null;
-}
+import FilteredMemberList from './FilteredMemberList';
+import SelectedMemberComponent from './SelectedMemberComponent';
 
 interface ClusterDialogBoxProps {
   members: string[];
@@ -16,14 +12,9 @@ interface ClusterDialogBoxProps {
 
 const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMemberChanged }) => {
   const [isClusterBoxVisible, setIsClusterBoxVisible] = useState(false);
-  const [filteredMembers, setFilteredMembers] = useState<string[]>([]);
-  const [focusedMember, setFocusedMember] = useState<string | null>(null);
-  const [clusterSelection, setClusterSelection] = useState<ClusterSelection>({ startMember: null });
-
   const [dialogState, setDialogState] = useState(
     ClusterDialogBoxState.initialState(members.map((member) => new Member(member))),
   );
-
   const startNodeInputRef = useRef<HTMLInputElement>(null);
 
   const handleKeyDown = (event: KeyboardEvent) => {
@@ -34,32 +25,26 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
       setIsClusterBoxVisible(false);
     }
 
-    if (!isClusterBoxVisible) {
+    if (!isClusterBoxVisible || dialogState.filteredMembers.length === 0 || dialogState.startNode) {
       return;
     }
 
     if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
       event.preventDefault();
-      if (filteredMembers.length === 0 || !focusedMember) {
-        return;
-      }
 
-      let currentIndex = filteredMembers.indexOf(focusedMember);
-      if (currentIndex === -1) {
-        currentIndex = 0;
-      }
-
-      let nextIndex;
       if (event.key === 'ArrowUp') {
-        nextIndex = currentIndex === 0 ? filteredMembers.length - 1 : currentIndex - 1;
+        setDialogState(dialogState.focusPreviousMember());
       } else {
-        nextIndex = currentIndex === filteredMembers.length - 1 ? 0 : currentIndex + 1;
+        setDialogState(dialogState.focusNextMember());
       }
-
-      setFocusedMember(filteredMembers[nextIndex]);
     } else if (event.key === 'Enter') {
-      setClusterSelection({ startMember: focusedMember });
+      setDialogState(dialogState.selectStartNode());
     }
+  };
+
+  const handleInputChange = (event: React.FormEvent<HTMLInputElement>) => {
+    const newSearchTerm = event.currentTarget.value;
+    setDialogState(dialogState.search(newSearchTerm));
   };
 
   useEffect(() => {
@@ -67,79 +52,46 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isClusterBoxVisible, focusedMember, filteredMembers]);
+  }, [isClusterBoxVisible, dialogState]);
 
   useEffect(() => {
     if (isClusterBoxVisible && startNodeInputRef.current) {
       startNodeInputRef.current.focus();
       startNodeInputRef.current.select();
     }
-  }, [isClusterBoxVisible, clusterSelection]);
-
-  function filterMember(searchTerm: string, member: string): boolean {
-    const trimmedSearchTerm = searchTerm.trim();
-    if (trimmedSearchTerm === '' || trimmedSearchTerm.length === 1) {
-      return false;
-    }
-    return member.toLowerCase().includes(trimmedSearchTerm.toLowerCase());
-  }
+  }, [isClusterBoxVisible, dialogState.startNode]);
 
   useEffect(() => {
-    const filterMembers = () => {
-      const filtered = members.filter((member) => filterMember(dialogState.searchTerm, member));
-      setFilteredMembers(filtered);
-      if (filtered.length > 0) {
-        setFocusedMember(filtered[0]);
-      }
-    };
+    onStartMemberChanged(dialogState.startNode ? dialogState.startNode.nodeId : null);
+  }, [dialogState.startNode]);
 
-    filterMembers();
-  }, [members, dialogState]);
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setDialogState(dialogState.search(event.target.value));
-  };
-
-  const boxClassName = isClusterBoxVisible ? 'cluster-box visible' : 'cluster-box hidden';
-
-  function isStartNodeSelected(): boolean {
-    return clusterSelection.startMember !== null;
-  }
-
-  function removeSelectedStartNode() {
-    setClusterSelection({ startMember: null });
-  }
-
-  useEffect(() => {
-    onStartMemberChanged(clusterSelection.startMember);
-  }, [clusterSelection]);
+  const dialogBoxClassName = isClusterBoxVisible ? 'cluster-box visible' : 'cluster-box hidden';
 
   return (
-    <div className={boxClassName}>
-      {isClusterBoxVisible && (
-        <div>
-          {isStartNodeSelected() ? (
-            <SelectedMemberComponent
-              member={clusterSelection.startMember!}
-              onRemoveClicked={(member) => removeSelectedStartNode()}
-            />
-          ) : (
-            <React.Fragment>
-              <label htmlFor="startNodeInput">Cluster member</label>
-              <input
-                id="startNodeInput"
-                className="start-node-input"
-                type="text"
-                value={dialogState.searchTerm}
-                onChange={handleInputChange}
-                ref={startNodeInputRef}
-              />
-            </React.Fragment>
-          )}
-          {!isStartNodeSelected() && (
-            <FilteredMemberList focusedMember={focusedMember} filteredMembers={filteredMembers} />
-          )}
-        </div>
+    <div className={dialogBoxClassName}>
+      {dialogState.startNode ? (
+        <SelectedMemberComponent
+          member={dialogState.startNode!}
+          onRemoveClicked={() => setDialogState(dialogState.deselectStartNode())}
+        />
+      ) : (
+        <React.Fragment>
+          <label htmlFor="startNodeInput">Cluster member</label>
+          <input
+            id="startNodeInput"
+            className="start-node-input"
+            type="text"
+            value={dialogState.searchTerm}
+            onChange={handleInputChange}
+            ref={startNodeInputRef}
+          />
+        </React.Fragment>
+      )}
+      {!dialogState.startNode && dialogState.focusedMember && (
+        <FilteredMemberList
+          focusedMember={dialogState.focusedMember.nodeId}
+          filteredMembers={dialogState.filteredMembers}
+        />
       )}
     </div>
   );

@@ -69,6 +69,14 @@ describe('Cluster dialog box state', () => {
       expect(searchResultState).toMatchSnapshot();
       expect(searchResultState.isSearchTermEmpty()).toBe(false);
     });
+
+    it('should do a case insensitive search', () => {
+      // when
+      const searchResultState = initialState.search('resume');
+
+      // then
+      expect(searchResultState).toMatchSnapshot();
+    });
   });
 
   describe('focused member functionality', () => {

@@ -20,9 +20,11 @@ class ClusterDialogBoxState {
 
     let filteredMembers: Member[];
     if (trimmedSearchTerm.length > 2) {
-      filteredMembers = this.members.filter((member) => member.nodeId.includes(trimmedSearchTerm));
+      filteredMembers = this.members.filter((member) =>
+        member.nodeId.toLowerCase().includes(trimmedSearchTerm.toLowerCase()),
+      );
     } else {
-      filteredMembers = this.filteredMembers;
+      filteredMembers = [];
     }
 
     let focusedMember: Member | null = null;

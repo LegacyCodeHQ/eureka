@@ -39,7 +39,7 @@ class SelectionModel {
     return new SelectionModel(this.searchTerm, this.searchResult, previousFocusedMember, this.selected);
   }
 
-  search(searchTerm: string, members: Member[]): SelectionModel {
+  search(members: Member[], searchTerm: string): SelectionModel {
     const trimmedSearchTerm = this.sanitizeSearchTerm(searchTerm);
 
     let filteredMembers: Member[];
@@ -77,7 +77,7 @@ class ClusterDialogBoxState {
   }
 
   search(searchTerm: string): ClusterDialogBoxState {
-    const selectionModel = this.startNodeSelectionModel.search(searchTerm, this.members);
+    const selectionModel = this.startNodeSelectionModel.search(this.members, searchTerm);
     return new ClusterDialogBoxState(this.members, selectionModel);
   }
 

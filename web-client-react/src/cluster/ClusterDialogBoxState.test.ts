@@ -145,7 +145,7 @@ describe('Cluster dialog box state', () => {
 
     it('should select the currently focused element as the start node', () => {
       // when
-      const startNodeSelectedState = searchResultState.selectStartNode();
+      const startNodeSelectedState = searchResultState.select();
 
       // then
       expect(startNodeSelectedState).toMatchSnapshot();
@@ -153,13 +153,101 @@ describe('Cluster dialog box state', () => {
 
     it('should deselect the start node', () => {
       // given
-      const startNodeSelectedState = searchResultState.selectStartNode();
+      const startNodeSelectedState = searchResultState.select();
       expect(startNodeSelectedState.startNodeSelectionModel.selected).toEqual(new Member('void onCreate()'));
 
       // when
       const startNodeDeselectedState = startNodeSelectedState.deselectStartNode();
 
       // then
+      expect(startNodeDeselectedState).toMatchSnapshot();
+    });
+  });
+
+  describe('block node search', () => {
+    it('should list search results for block node', () => {
+      // given
+      const initialState = ClusterDialogBoxState.initialState(members);
+      const startNodeSearchResultState = initialState.search('voi');
+      const startNodeSelectedState = startNodeSearchResultState.select();
+
+      // when
+      const blockNodeSearchResultState = startNodeSelectedState.search('void');
+
+      // then
+      expect(blockNodeSearchResultState).toMatchSnapshot();
+    });
+  });
+
+  describe('block node focus', () => {
+    let blockNodeSearchResultState: ClusterDialogBoxState;
+
+    beforeEach(() => {
+      const initialState = ClusterDialogBoxState.initialState(members);
+      const startNodeSearchResultState = initialState.search('voi');
+      const startNodeSelectedState = startNodeSearchResultState.select();
+      blockNodeSearchResultState = startNodeSelectedState.search('void');
+    });
+
+    it('should focus the next member on the search result after pressing down arrow', () => {
+      // when
+      const nextMemberFocusedState = blockNodeSearchResultState.focusNextMember();
+
+      // then
+      expect(nextMemberFocusedState).toMatchSnapshot();
+      expect(nextMemberFocusedState.blockNodeSelectionModel.focused).toEqual(new Member('void onResume()'));
+    });
+
+    it('should focus the previous member on the search result after pressing up arrow', () => {
+      // when
+      const previousMemberFocusedState = blockNodeSearchResultState.focusPreviousMember();
+
+      // then
+      expect(previousMemberFocusedState).toMatchSnapshot();
+      expect(previousMemberFocusedState.blockNodeSelectionModel.focused).toEqual(new Member('void onResume()'));
+    });
+  });
+
+  describe('block node selection', () => {
+    let blockNodeSearchResultState: ClusterDialogBoxState;
+
+    beforeEach(() => {
+      const initialState = ClusterDialogBoxState.initialState(members);
+      const startNodeSearchResultState = initialState.search('voi');
+      const startNodeSelectedState = startNodeSearchResultState.select();
+      blockNodeSearchResultState = startNodeSelectedState.search('void');
+    });
+
+    it('should select the currently focused node on pressing enter', () => {
+      // when
+      const blockNodeSelectedState = blockNodeSearchResultState.select();
+
+      // then
+      expect(blockNodeSelectedState.blockNodeSelectionModel.selected).toEqual(new Member('void onPause()'));
+      expect(blockNodeSelectedState).toMatchSnapshot();
+    });
+
+    it("should deselect the currently focused node on clicking the 'x' button", () => {
+      // given
+      const blockNodeSelectedState = blockNodeSearchResultState.select();
+
+      // when
+      const blockNodeDeselectedState = blockNodeSelectedState.deselectBlockNode();
+
+      // then
+      expect(blockNodeDeselectedState.blockNodeSelectionModel.selected).toBeNull();
+      expect(blockNodeDeselectedState).toMatchSnapshot();
+    });
+
+    it('should allow to deselect the start node', () => {
+      // given
+      const blockNodeSelectedState = blockNodeSearchResultState.select();
+
+      // when
+      const startNodeDeselectedState = blockNodeSelectedState.deselectStartNode();
+
+      // then
+      expect(startNodeDeselectedState.startNodeSelectionModel.selected).toBeNull();
       expect(startNodeDeselectedState).toMatchSnapshot();
     });
   });

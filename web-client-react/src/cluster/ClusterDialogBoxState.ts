@@ -39,13 +39,14 @@ class SelectionModel {
     return new SelectionModel(this.searchTerm, this.searchResult, previousFocusedMember, this.selected);
   }
 
-  search(members: Member[], searchTerm: string): SelectionModel {
+  search(members: Member[], searchTerm: string, membersToIgnore: Member[] = []): SelectionModel {
     const trimmedSearchTerm = this.sanitizeSearchTerm(searchTerm);
 
     let filteredMembers: Member[];
     if (trimmedSearchTerm.length > SelectionModel.MIN_SEARCH_TERM_LENGTH) {
-      filteredMembers = members.filter((member) =>
-        member.nodeId.toLowerCase().includes(trimmedSearchTerm.toLowerCase()),
+      filteredMembers = members.filter(
+        (member) =>
+          member.nodeId.toLowerCase().includes(trimmedSearchTerm.toLowerCase()) && !membersToIgnore.includes(member),
       );
     } else {
       filteredMembers = [];
@@ -68,17 +69,28 @@ class SelectionModel {
 }
 
 class ClusterDialogBoxState {
-  constructor(public readonly members: Member[], public readonly startNodeSelectionModel: SelectionModel) {
+  constructor(
+    public readonly members: Member[],
+    public readonly startNodeSelectionModel: SelectionModel,
+    public readonly blockNodeSelectionModel: SelectionModel,
+  ) {
     // empty
   }
 
   static initialState(members: Member[]): ClusterDialogBoxState {
-    return new ClusterDialogBoxState(members, SelectionModel.DEFAULT);
+    return new ClusterDialogBoxState(members, SelectionModel.DEFAULT, SelectionModel.DEFAULT);
   }
 
   search(searchTerm: string): ClusterDialogBoxState {
-    const selectionModel = this.startNodeSelectionModel.search(this.members, searchTerm);
-    return new ClusterDialogBoxState(this.members, selectionModel);
+    if (this.startNodeSelectionModel.selected === null) {
+      const selectionModel = this.startNodeSelectionModel.search(this.members, searchTerm);
+      return new ClusterDialogBoxState(this.members, selectionModel, this.blockNodeSelectionModel);
+    } else {
+      const blockSelectionModel = this.blockNodeSelectionModel.search(this.members, searchTerm, [
+        this.startNodeSelectionModel.selected,
+      ]);
+      return new ClusterDialogBoxState(this.members, this.startNodeSelectionModel, blockSelectionModel);
+    }
   }
 
   isSearchTermEmpty(): boolean {
@@ -86,25 +98,64 @@ class ClusterDialogBoxState {
   }
 
   focusNextMember(): ClusterDialogBoxState {
-    return this.changeFocus(this.startNodeSelectionModel.focusNextMember());
+    const isStartNodeSelected = this.startNodeSelectionModel.selected !== null;
+    if (isStartNodeSelected) {
+      return new ClusterDialogBoxState(
+        this.members,
+        this.startNodeSelectionModel,
+        this.blockNodeSelectionModel.focusNextMember(),
+      );
+    }
+
+    return new ClusterDialogBoxState(
+      this.members,
+      this.startNodeSelectionModel.focusNextMember(),
+      this.blockNodeSelectionModel,
+    );
   }
 
   focusPreviousMember(): ClusterDialogBoxState {
-    return this.changeFocus(this.startNodeSelectionModel.focusPreviousMember());
+    const isStartNodeSelected = this.startNodeSelectionModel.selected !== null;
+    if (isStartNodeSelected) {
+      return new ClusterDialogBoxState(
+        this.members,
+        this.startNodeSelectionModel,
+        this.blockNodeSelectionModel.focusPreviousMember(),
+      );
+    }
+
+    return new ClusterDialogBoxState(
+      this.members,
+      this.startNodeSelectionModel.focusPreviousMember(),
+      this.blockNodeSelectionModel,
+    );
   }
 
-  selectStartNode(): ClusterDialogBoxState {
-    const selectionModel = this.startNodeSelectionModel.select();
-    return new ClusterDialogBoxState(this.members, selectionModel);
+  select(): ClusterDialogBoxState {
+    if (!this.startNodeSelectionModel.selected) {
+      return new ClusterDialogBoxState(
+        this.members,
+        this.startNodeSelectionModel.select(),
+        this.blockNodeSelectionModel,
+      );
+    }
+    return new ClusterDialogBoxState(this.members, this.startNodeSelectionModel, this.blockNodeSelectionModel.select());
+  }
+
+  deselectBlockNode(): ClusterDialogBoxState {
+    return new ClusterDialogBoxState(
+      this.members,
+      this.startNodeSelectionModel,
+      this.blockNodeSelectionModel.deselect(),
+    );
   }
 
   deselectStartNode(): ClusterDialogBoxState {
-    const selectionModel = this.startNodeSelectionModel.deselect();
-    return new ClusterDialogBoxState(this.members, selectionModel);
-  }
-
-  private changeFocus(selectionModel: SelectionModel) {
-    return new ClusterDialogBoxState(this.members, selectionModel);
+    return new ClusterDialogBoxState(
+      this.members,
+      this.startNodeSelectionModel.deselect(),
+      this.blockNodeSelectionModel,
+    );
   }
 }
 

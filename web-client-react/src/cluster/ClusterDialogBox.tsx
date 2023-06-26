@@ -8,9 +8,10 @@ import SelectedMemberComponent from './SelectedMemberComponent';
 interface ClusterDialogBoxProps {
   members: string[];
   onStartMemberChanged: (member: string | null) => void;
+  onBlockMemberChanged: (member: string | null) => void;
 }
 
-const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMemberChanged }) => {
+const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMemberChanged, onBlockMemberChanged }) => {
   const [isClusterBoxVisible, setIsClusterBoxVisible] = useState(false);
   const [dialogState, setDialogState] = useState(
     ClusterDialogBoxState.initialState(members.map((member) => new Member(member))),
@@ -28,7 +29,7 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
     if (
       !isClusterBoxVisible ||
       dialogState.startNodeSelectionModel.searchResult.length === 0 ||
-      dialogState.startNodeSelectionModel.selected
+      (dialogState.startNodeSelectionModel.selected && dialogState.blockNodeSelectionModel.selected)
     ) {
       return;
     }
@@ -42,7 +43,7 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
         setDialogState(dialogState.focusNextMember());
       }
     } else if (event.key === 'Enter') {
-      setDialogState(dialogState.selectStartNode());
+      setDialogState(dialogState.select());
     }
   };
 
@@ -63,7 +64,7 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
       startNodeInputRef.current.focus();
       startNodeInputRef.current.select();
     }
-  }, [isClusterBoxVisible, dialogState.startNodeSelectionModel.selected]);
+  }, [isClusterBoxVisible, dialogState.startNodeSelectionModel.selected, dialogState.blockNodeSelectionModel.selected]);
 
   useEffect(() => {
     onStartMemberChanged(
@@ -71,23 +72,54 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
     );
   }, [dialogState.startNodeSelectionModel.selected]);
 
+  useEffect(() => {
+    onBlockMemberChanged(
+      dialogState.blockNodeSelectionModel.selected ? dialogState.blockNodeSelectionModel.selected.nodeId : null,
+    );
+  }, [dialogState.blockNodeSelectionModel.selected]);
+
   const dialogBoxClassName = isClusterBoxVisible ? 'cluster-box visible' : 'cluster-box hidden';
 
   return (
     <div className={dialogBoxClassName}>
       {dialogState.startNodeSelectionModel.selected ? (
-        <SelectedMemberComponent
-          member={dialogState.startNodeSelectionModel.selected!}
-          onRemoveClicked={() => setDialogState(dialogState.deselectStartNode())}
-        />
+        <React.Fragment>
+          <div>Start node</div>
+          <SelectedMemberComponent
+            member={dialogState.startNodeSelectionModel.selected!}
+            onRemoveClicked={() => setDialogState(dialogState.deselectStartNode())}
+          />
+        </React.Fragment>
       ) : (
         <React.Fragment>
-          <label htmlFor="startNodeInput">Cluster member</label>
+          <div>Start node</div>
           <input
             id="startNodeInput"
-            className="start-node-input"
+            className="node-input"
             type="text"
             value={dialogState.startNodeSelectionModel.searchTerm}
+            onChange={handleInputChange}
+            ref={startNodeInputRef}
+          />
+        </React.Fragment>
+      )}
+      {dialogState.blockNodeSelectionModel.selected && dialogState.startNodeSelectionModel.selected && (
+        <React.Fragment>
+          <div>Block node</div>
+          <SelectedMemberComponent
+            member={dialogState.blockNodeSelectionModel.selected!}
+            onRemoveClicked={() => setDialogState(dialogState.deselectBlockNode())}
+          />
+        </React.Fragment>
+      )}
+      {dialogState.startNodeSelectionModel.selected && !dialogState.blockNodeSelectionModel.selected && (
+        <React.Fragment>
+          <label htmlFor="blockNodeInput">Block node</label>
+          <input
+            id="blockNodeInput"
+            className="node-input"
+            type="text"
+            value={dialogState.blockNodeSelectionModel.searchTerm}
             onChange={handleInputChange}
             ref={startNodeInputRef}
           />
@@ -99,6 +131,14 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
           filteredMembers={dialogState.startNodeSelectionModel.searchResult}
         />
       )}
+      {dialogState.startNodeSelectionModel.selected &&
+        !dialogState.blockNodeSelectionModel.selected &&
+        dialogState.blockNodeSelectionModel.focused && (
+          <FilteredMemberList
+            focusedMember={dialogState.blockNodeSelectionModel.focused.nodeId}
+            filteredMembers={dialogState.blockNodeSelectionModel.searchResult}
+          />
+        )}
     </div>
   );
 };

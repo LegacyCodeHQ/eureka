@@ -18,6 +18,7 @@ function App() {
   const [count, setCount] = useState<Count | null>(null);
   const [connectionStatus, setConnectionStatus] = useState(WsConnectionStatus.Disconnected);
   const [startMember, setStartMember] = useState<string | null>(null);
+  const [blockMember, setBlockMember] = useState<string | null>(null);
 
   useEffect(() => {
     const hostName = document.getElementById('root')?.dataset.hostName;
@@ -48,6 +49,10 @@ function App() {
     setStartMember(member);
   };
 
+  const handleBlockMemberChanged = (member: string | null) => {
+    setBlockMember(member);
+  };
+
   return (
     <>
       {host && (
@@ -65,11 +70,20 @@ function App() {
                       <Legend count={count} />
                     </div>
                     {data && (
-                      <ClusterDialogBox members={data.members()} onStartMemberChanged={handleStartMemberChanged} />
+                      <ClusterDialogBox
+                        members={data.members()}
+                        onStartMemberChanged={handleStartMemberChanged}
+                        onBlockMemberChanged={handleBlockMemberChanged}
+                      />
                     )}
                     <div className="viz">
                       {data && (
-                        <EdgeBundlingGraph data={data} startNodeId={startMember} onNodeHover={handleNodeHover} />
+                        <EdgeBundlingGraph
+                          data={data}
+                          startNodeId={startMember}
+                          blockNodeId={blockMember}
+                          onNodeHover={handleNodeHover}
+                        />
                       )}
                     </div>
                     {data && <VocabularyPanel data={data} />}

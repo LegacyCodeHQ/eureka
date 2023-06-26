@@ -9,6 +9,7 @@ import Cluster from './model/Cluster';
 interface EdgeBundlingGraphProps {
   data: GraphData;
   startNodeId: string | null;
+  blockNodeId: string | null;
   onNodeHover: (event: NodeHoverEvent | null) => void;
 }
 
@@ -19,7 +20,7 @@ interface GroupAngles {
   };
 }
 
-const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, startNodeId, onNodeHover }) => {
+const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, startNodeId, blockNodeId, onNodeHover }) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
   const width = 800;
   const radius = width / 2;
@@ -250,7 +251,8 @@ Effort* = ${effort(d.dependencies.length, d.dependents.length)}, I = ${
       });
 
       if (startNodeId) {
-        const selectedNodeIds = Cluster.from(data.links, startNodeId, ['void onViewCreated(View, Bundle)'])
+        const blockedNodeIds = blockNodeId ? [blockNodeId] : [];
+        const selectedNodeIds = Cluster.from(data.links, startNodeId, blockedNodeIds)
           .links.map((link) => [link.source, link.target])
           .flatMap((pair) => pair);
 
@@ -265,7 +267,7 @@ Effort* = ${effort(d.dependencies.length, d.dependents.length)}, I = ${
         });
       }
     }
-  }, [data, startNodeId]);
+  }, [data, startNodeId, blockNodeId]);
 
   return <svg ref={svgRef} width="100%" height="100vh" />;
 };

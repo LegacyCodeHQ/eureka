@@ -18,7 +18,10 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "filteredMembers": Array [
+    "focusedMember": Member {
+      "nodeId": "void onCreate()",
+    },
+    "searchResult": Array [
       Member {
         "nodeId": "void onCreate()",
       },
@@ -29,9 +32,6 @@ ClusterDialogBoxState {
         "nodeId": "void onResume()",
       },
     ],
-    "focusedMember": Member {
-      "nodeId": "void onCreate()",
-    },
     "searchTerm": "void",
   },
 }
@@ -55,7 +55,10 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "filteredMembers": Array [
+    "focusedMember": Member {
+      "nodeId": "void onCreate()",
+    },
+    "searchResult": Array [
       Member {
         "nodeId": "void onCreate()",
       },
@@ -66,9 +69,6 @@ ClusterDialogBoxState {
         "nodeId": "void onResume()",
       },
     ],
-    "focusedMember": Member {
-      "nodeId": "void onCreate()",
-    },
     "searchTerm": "void",
   },
 }
@@ -92,7 +92,10 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "filteredMembers": Array [
+    "focusedMember": Member {
+      "nodeId": "void onResume()",
+    },
+    "searchResult": Array [
       Member {
         "nodeId": "void onCreate()",
       },
@@ -103,9 +106,6 @@ ClusterDialogBoxState {
         "nodeId": "void onResume()",
       },
     ],
-    "focusedMember": Member {
-      "nodeId": "void onResume()",
-    },
     "searchTerm": "void",
   },
 }
@@ -129,7 +129,10 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "filteredMembers": Array [
+    "focusedMember": Member {
+      "nodeId": "void onPause()",
+    },
+    "searchResult": Array [
       Member {
         "nodeId": "void onCreate()",
       },
@@ -140,9 +143,6 @@ ClusterDialogBoxState {
         "nodeId": "void onResume()",
       },
     ],
-    "focusedMember": Member {
-      "nodeId": "void onPause()",
-    },
     "searchTerm": "void",
   },
 }
@@ -166,7 +166,10 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "filteredMembers": Array [
+    "focusedMember": Member {
+      "nodeId": "void onCreate()",
+    },
+    "searchResult": Array [
       Member {
         "nodeId": "void onCreate()",
       },
@@ -177,9 +180,6 @@ ClusterDialogBoxState {
         "nodeId": "void onResume()",
       },
     ],
-    "focusedMember": Member {
-      "nodeId": "void onCreate()",
-    },
     "searchTerm": "void",
   },
 }
@@ -203,14 +203,14 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "filteredMembers": Array [
+    "focusedMember": Member {
+      "nodeId": "void onResume()",
+    },
+    "searchResult": Array [
       Member {
         "nodeId": "void onResume()",
       },
     ],
-    "focusedMember": Member {
-      "nodeId": "void onResume()",
-    },
     "searchTerm": "resume",
   },
 }
@@ -234,14 +234,14 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "filteredMembers": Array [
+    "focusedMember": Member {
+      "nodeId": "List chrome",
+    },
+    "searchResult": Array [
       Member {
         "nodeId": "List chrome",
       },
     ],
-    "focusedMember": Member {
-      "nodeId": "List chrome",
-    },
     "searchTerm": "chr",
   },
 }
@@ -265,14 +265,14 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "filteredMembers": Array [
+    "focusedMember": Member {
+      "nodeId": "List chrome",
+    },
+    "searchResult": Array [
       Member {
         "nodeId": "List chrome",
       },
     ],
-    "focusedMember": Member {
-      "nodeId": "List chrome",
-    },
     "searchTerm": "chr",
   },
 }
@@ -296,8 +296,8 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "filteredMembers": Array [],
     "focusedMember": null,
+    "searchResult": Array [],
     "searchTerm": "c",
   },
 }
@@ -321,8 +321,8 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "filteredMembers": Array [],
     "focusedMember": null,
+    "searchResult": Array [],
     "searchTerm": "",
   },
 }
@@ -346,8 +346,8 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "filteredMembers": Array [],
     "focusedMember": null,
+    "searchResult": Array [],
     "searchTerm": "",
   },
 }
@@ -371,8 +371,8 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "filteredMembers": Array [],
     "focusedMember": null,
+    "searchResult": Array [],
     "searchTerm": "hello",
   },
 }
@@ -396,8 +396,8 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "filteredMembers": Array [],
     "focusedMember": null,
+    "searchResult": Array [],
     "searchTerm": "",
   },
 }
@@ -423,7 +423,10 @@ ClusterDialogBoxState {
     "nodeId": "void onCreate()",
   },
   "startNodeSelectionModel": SelectionModel {
-    "filteredMembers": Array [
+    "focusedMember": Member {
+      "nodeId": "void onCreate()",
+    },
+    "searchResult": Array [
       Member {
         "nodeId": "void onCreate()",
       },
@@ -434,9 +437,6 @@ ClusterDialogBoxState {
         "nodeId": "void onResume()",
       },
     ],
-    "focusedMember": Member {
-      "nodeId": "void onCreate()",
-    },
     "searchTerm": "void",
   },
 }
@@ -460,7 +460,10 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "filteredMembers": Array [
+    "focusedMember": Member {
+      "nodeId": "void onCreate()",
+    },
+    "searchResult": Array [
       Member {
         "nodeId": "void onCreate()",
       },
@@ -471,9 +474,6 @@ ClusterDialogBoxState {
         "nodeId": "void onResume()",
       },
     ],
-    "focusedMember": Member {
-      "nodeId": "void onCreate()",
-    },
     "searchTerm": "void",
   },
 }

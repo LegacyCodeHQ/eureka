@@ -4,7 +4,7 @@ class SelectionModel {
   private constructor(
     public readonly searchTerm: string,
     public readonly focusedMember: Member | null,
-    public readonly filteredMembers: Member[],
+    public readonly searchResult: Member[],
   ) {
     // empty
   }
@@ -20,21 +20,21 @@ class SelectionModel {
   }
 
   focusNextMember(): SelectionModel {
-    const currentFocusedMemberIndex = this.filteredMembers.indexOf(this.focusedMember!);
+    const currentFocusedMemberIndex = this.searchResult.indexOf(this.focusedMember!);
     const nextFocusedMemberIndex =
-      currentFocusedMemberIndex + 1 === this.filteredMembers.length ? 0 : currentFocusedMemberIndex + 1;
-    const nextFocusedMember = this.filteredMembers[nextFocusedMemberIndex];
+      currentFocusedMemberIndex + 1 === this.searchResult.length ? 0 : currentFocusedMemberIndex + 1;
+    const nextFocusedMember = this.searchResult[nextFocusedMemberIndex];
 
-    return new SelectionModel(this.searchTerm, nextFocusedMember, this.filteredMembers);
+    return new SelectionModel(this.searchTerm, nextFocusedMember, this.searchResult);
   }
 
   focusPreviousMember(): SelectionModel {
-    const currentFocusedMemberIndex = this.filteredMembers.indexOf(this.focusedMember!);
+    const currentFocusedMemberIndex = this.searchResult.indexOf(this.focusedMember!);
     const previousFocusedMemberIndex =
-      currentFocusedMemberIndex - 1 < 0 ? this.filteredMembers.length - 1 : currentFocusedMemberIndex - 1;
-    const previousFocusedMember = this.filteredMembers[previousFocusedMemberIndex];
+      currentFocusedMemberIndex - 1 < 0 ? this.searchResult.length - 1 : currentFocusedMemberIndex - 1;
+    const previousFocusedMember = this.searchResult[previousFocusedMemberIndex];
 
-    return new SelectionModel(this.searchTerm, previousFocusedMember, this.filteredMembers);
+    return new SelectionModel(this.searchTerm, previousFocusedMember, this.searchResult);
   }
 
   search(searchTerm: string, members: Member[]): SelectionModel {

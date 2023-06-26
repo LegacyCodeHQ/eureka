@@ -34,6 +34,25 @@ class SelectionModel {
 
     return new SelectionModel(this.searchTerm, previousFocusedMember, this.filteredMembers);
   }
+
+  search(searchTerm: string, members: Member[]): SelectionModel {
+    const trimmedSearchTerm = this.sanitizeSearchTerm(searchTerm);
+
+    let filteredMembers: Member[];
+    if (trimmedSearchTerm.length > 2) {
+      filteredMembers = members.filter((member) =>
+        member.nodeId.toLowerCase().includes(trimmedSearchTerm.toLowerCase()),
+      );
+    } else {
+      filteredMembers = [];
+    }
+
+    let focusedMember: Member | null = null;
+    if (trimmedSearchTerm.length > 0 && filteredMembers.length > 0) {
+      focusedMember = filteredMembers[0];
+    }
+    return new SelectionModel(trimmedSearchTerm, focusedMember, filteredMembers);
+  }
 }
 
 class ClusterDialogBoxState {
@@ -50,27 +69,8 @@ class ClusterDialogBoxState {
   }
 
   search(searchTerm: string): ClusterDialogBoxState {
-    const trimmedSearchTerm = this.startNodeSelectionModel.sanitizeSearchTerm(searchTerm);
-
-    let filteredMembers: Member[];
-    if (trimmedSearchTerm.length > 2) {
-      filteredMembers = this.members.filter((member) =>
-        member.nodeId.toLowerCase().includes(trimmedSearchTerm.toLowerCase()),
-      );
-    } else {
-      filteredMembers = [];
-    }
-
-    let focusedMember: Member | null = null;
-    if (trimmedSearchTerm.length > 0 && filteredMembers.length > 0) {
-      focusedMember = filteredMembers[0];
-    }
-
-    return new ClusterDialogBoxState(
-      this.members,
-      this.startNode,
-      new SelectionModel(trimmedSearchTerm, focusedMember, filteredMembers),
-    );
+    const selectionModel = this.startNodeSelectionModel.search(searchTerm, this.members);
+    return new ClusterDialogBoxState(this.members, this.startNode, selectionModel);
   }
 
   isSearchTermEmpty(): boolean {

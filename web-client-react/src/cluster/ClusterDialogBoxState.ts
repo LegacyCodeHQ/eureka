@@ -1,7 +1,11 @@
 import { Member } from './Member';
 
 class SelectionModel {
-  constructor(public readonly searchTerm: string, public readonly focusedMember: Member | null) {
+  constructor(
+    public readonly searchTerm: string,
+    public readonly focusedMember: Member | null,
+    public readonly filteredMembers: Member[],
+  ) {
     // empty
   }
 
@@ -17,7 +21,6 @@ class SelectionModel {
 class ClusterDialogBoxState {
   constructor(
     public readonly members: Member[],
-    public readonly filteredMembers: Member[],
     public readonly startNode: Member | null,
     public readonly startNodeSelectionModel: SelectionModel,
   ) {
@@ -25,7 +28,7 @@ class ClusterDialogBoxState {
   }
 
   static initialState(members: Member[]): ClusterDialogBoxState {
-    return new ClusterDialogBoxState(members, [], null, new SelectionModel('', null));
+    return new ClusterDialogBoxState(members, null, new SelectionModel('', null, []));
   }
 
   search(searchTerm: string): ClusterDialogBoxState {
@@ -47,9 +50,8 @@ class ClusterDialogBoxState {
 
     return new ClusterDialogBoxState(
       this.members,
-      filteredMembers,
       this.startNode,
-      new SelectionModel(trimmedSearchTerm, focusedMember),
+      new SelectionModel(trimmedSearchTerm, focusedMember, filteredMembers),
     );
   }
 
@@ -58,42 +60,54 @@ class ClusterDialogBoxState {
   }
 
   focusNextMember(): ClusterDialogBoxState {
-    const currentFocusedMemberIndex = this.filteredMembers.indexOf(this.startNodeSelectionModel.focusedMember!);
-    const nextFocusedMemberIndex =
-      currentFocusedMemberIndex + 1 === this.filteredMembers.length ? 0 : currentFocusedMemberIndex + 1;
-    const nextFocusedMember = this.filteredMembers[nextFocusedMemberIndex];
-    return new ClusterDialogBoxState(
-      this.members,
-      this.filteredMembers,
-      this.startNode,
-      new SelectionModel(this.startNodeSelectionModel.searchTerm, nextFocusedMember),
+    const currentFocusedMemberIndex = this.startNodeSelectionModel.filteredMembers.indexOf(
+      this.startNodeSelectionModel.focusedMember!,
     );
+    const nextFocusedMemberIndex =
+      currentFocusedMemberIndex + 1 === this.startNodeSelectionModel.filteredMembers.length
+        ? 0
+        : currentFocusedMemberIndex + 1;
+    const nextFocusedMember = this.startNodeSelectionModel.filteredMembers[nextFocusedMemberIndex];
+
+    const selectionModel = new SelectionModel(
+      this.startNodeSelectionModel.searchTerm,
+      nextFocusedMember,
+      this.startNodeSelectionModel.filteredMembers,
+    );
+
+    return new ClusterDialogBoxState(this.members, this.startNode, selectionModel);
   }
 
   focusPreviousMember(): ClusterDialogBoxState {
-    const currentFocusedMemberIndex = this.filteredMembers.indexOf(this.startNodeSelectionModel.focusedMember!);
+    const currentFocusedMemberIndex = this.startNodeSelectionModel.filteredMembers.indexOf(
+      this.startNodeSelectionModel.focusedMember!,
+    );
     const previousFocusedMemberIndex =
-      currentFocusedMemberIndex - 1 < 0 ? this.filteredMembers.length - 1 : currentFocusedMemberIndex - 1;
-    const previousFocusedMember = this.filteredMembers[previousFocusedMemberIndex];
+      currentFocusedMemberIndex - 1 < 0
+        ? this.startNodeSelectionModel.filteredMembers.length - 1
+        : currentFocusedMemberIndex - 1;
+    const previousFocusedMember = this.startNodeSelectionModel.filteredMembers[previousFocusedMemberIndex];
     return new ClusterDialogBoxState(
       this.members,
-      this.filteredMembers,
       this.startNode,
-      new SelectionModel(this.startNodeSelectionModel.searchTerm, previousFocusedMember),
+      new SelectionModel(
+        this.startNodeSelectionModel.searchTerm,
+        previousFocusedMember,
+        this.startNodeSelectionModel.filteredMembers,
+      ),
     );
   }
 
   selectStartNode(): ClusterDialogBoxState {
     return new ClusterDialogBoxState(
       this.members,
-      this.filteredMembers,
       this.startNodeSelectionModel.focusedMember,
       this.startNodeSelectionModel,
     );
   }
 
   deselectStartNode(): ClusterDialogBoxState {
-    return new ClusterDialogBoxState(this.members, this.filteredMembers, null, this.startNodeSelectionModel);
+    return new ClusterDialogBoxState(this.members, null, this.startNodeSelectionModel);
   }
 }
 

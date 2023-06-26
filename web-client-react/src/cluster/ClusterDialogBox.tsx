@@ -25,7 +25,11 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
       setIsClusterBoxVisible(false);
     }
 
-    if (!isClusterBoxVisible || dialogState.filteredMembers.length === 0 || dialogState.startNode) {
+    if (
+      !isClusterBoxVisible ||
+      dialogState.startNodeSelectionModel.filteredMembers.length === 0 ||
+      dialogState.startNode
+    ) {
       return;
     }
 
@@ -90,7 +94,7 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
       {!dialogState.startNode && dialogState.startNodeSelectionModel.focusedMember && (
         <FilteredMemberList
           focusedMember={dialogState.startNodeSelectionModel.focusedMember.nodeId}
-          filteredMembers={dialogState.filteredMembers}
+          filteredMembers={dialogState.startNodeSelectionModel.filteredMembers}
         />
       )}
     </div>

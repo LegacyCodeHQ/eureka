@@ -2,17 +2,6 @@
 
 exports[`Cluster dialog box state focused member functionality should select the first matching member and mark it as focused from the search result 1`] = `
 ClusterDialogBoxState {
-  "filteredMembers": Array [
-    Member {
-      "nodeId": "void onCreate()",
-    },
-    Member {
-      "nodeId": "void onPause()",
-    },
-    Member {
-      "nodeId": "void onResume()",
-    },
-  ],
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -29,6 +18,17 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "filteredMembers": Array [
+      Member {
+        "nodeId": "void onCreate()",
+      },
+      Member {
+        "nodeId": "void onPause()",
+      },
+      Member {
+        "nodeId": "void onResume()",
+      },
+    ],
     "focusedMember": Member {
       "nodeId": "void onCreate()",
     },
@@ -39,17 +39,6 @@ ClusterDialogBoxState {
 
 exports[`Cluster dialog box state focused member functionality should select the first member from the search result when pressing down arrow on the last item 1`] = `
 ClusterDialogBoxState {
-  "filteredMembers": Array [
-    Member {
-      "nodeId": "void onCreate()",
-    },
-    Member {
-      "nodeId": "void onPause()",
-    },
-    Member {
-      "nodeId": "void onResume()",
-    },
-  ],
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -66,6 +55,17 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "filteredMembers": Array [
+      Member {
+        "nodeId": "void onCreate()",
+      },
+      Member {
+        "nodeId": "void onPause()",
+      },
+      Member {
+        "nodeId": "void onResume()",
+      },
+    ],
     "focusedMember": Member {
       "nodeId": "void onCreate()",
     },
@@ -76,17 +76,6 @@ ClusterDialogBoxState {
 
 exports[`Cluster dialog box state focused member functionality should select the last member from the search result when pressing the up arrow on the first item 1`] = `
 ClusterDialogBoxState {
-  "filteredMembers": Array [
-    Member {
-      "nodeId": "void onCreate()",
-    },
-    Member {
-      "nodeId": "void onPause()",
-    },
-    Member {
-      "nodeId": "void onResume()",
-    },
-  ],
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -103,6 +92,17 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "filteredMembers": Array [
+      Member {
+        "nodeId": "void onCreate()",
+      },
+      Member {
+        "nodeId": "void onPause()",
+      },
+      Member {
+        "nodeId": "void onResume()",
+      },
+    ],
     "focusedMember": Member {
       "nodeId": "void onResume()",
     },
@@ -113,17 +113,6 @@ ClusterDialogBoxState {
 
 exports[`Cluster dialog box state focused member functionality should select the next member when pressing the down arrow 1`] = `
 ClusterDialogBoxState {
-  "filteredMembers": Array [
-    Member {
-      "nodeId": "void onCreate()",
-    },
-    Member {
-      "nodeId": "void onPause()",
-    },
-    Member {
-      "nodeId": "void onResume()",
-    },
-  ],
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -140,6 +129,17 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "filteredMembers": Array [
+      Member {
+        "nodeId": "void onCreate()",
+      },
+      Member {
+        "nodeId": "void onPause()",
+      },
+      Member {
+        "nodeId": "void onResume()",
+      },
+    ],
     "focusedMember": Member {
       "nodeId": "void onPause()",
     },
@@ -150,17 +150,6 @@ ClusterDialogBoxState {
 
 exports[`Cluster dialog box state focused member functionality should select the previous member when pressing the up arrow 1`] = `
 ClusterDialogBoxState {
-  "filteredMembers": Array [
-    Member {
-      "nodeId": "void onCreate()",
-    },
-    Member {
-      "nodeId": "void onPause()",
-    },
-    Member {
-      "nodeId": "void onResume()",
-    },
-  ],
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -177,6 +166,17 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "filteredMembers": Array [
+      Member {
+        "nodeId": "void onCreate()",
+      },
+      Member {
+        "nodeId": "void onPause()",
+      },
+      Member {
+        "nodeId": "void onResume()",
+      },
+    ],
     "focusedMember": Member {
       "nodeId": "void onCreate()",
     },
@@ -187,11 +187,6 @@ ClusterDialogBoxState {
 
 exports[`Cluster dialog box state search start node functionality should do a case insensitive search 1`] = `
 ClusterDialogBoxState {
-  "filteredMembers": Array [
-    Member {
-      "nodeId": "void onResume()",
-    },
-  ],
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -208,6 +203,11 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "filteredMembers": Array [
+      Member {
+        "nodeId": "void onResume()",
+      },
+    ],
     "focusedMember": Member {
       "nodeId": "void onResume()",
     },
@@ -218,11 +218,6 @@ ClusterDialogBoxState {
 
 exports[`Cluster dialog box state search start node functionality should filter members based on the search term 1`] = `
 ClusterDialogBoxState {
-  "filteredMembers": Array [
-    Member {
-      "nodeId": "List chrome",
-    },
-  ],
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -239,6 +234,11 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "filteredMembers": Array [
+      Member {
+        "nodeId": "List chrome",
+      },
+    ],
     "focusedMember": Member {
       "nodeId": "List chrome",
     },
@@ -249,11 +249,6 @@ ClusterDialogBoxState {
 
 exports[`Cluster dialog box state search start node functionality should filter members based on the search term but ignore whitespaces 1`] = `
 ClusterDialogBoxState {
-  "filteredMembers": Array [
-    Member {
-      "nodeId": "List chrome",
-    },
-  ],
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -270,6 +265,11 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "filteredMembers": Array [
+      Member {
+        "nodeId": "List chrome",
+      },
+    ],
     "focusedMember": Member {
       "nodeId": "List chrome",
     },
@@ -280,7 +280,6 @@ ClusterDialogBoxState {
 
 exports[`Cluster dialog box state search start node functionality should not filter members when the search term has < 2 characters 1`] = `
 ClusterDialogBoxState {
-  "filteredMembers": Array [],
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -297,6 +296,7 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "filteredMembers": Array [],
     "focusedMember": null,
     "searchTerm": "c",
   },
@@ -305,7 +305,6 @@ ClusterDialogBoxState {
 
 exports[`Cluster dialog box state search start node functionality should not filter members when the search term is empty 1`] = `
 ClusterDialogBoxState {
-  "filteredMembers": Array [],
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -322,6 +321,7 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "filteredMembers": Array [],
     "focusedMember": null,
     "searchTerm": "",
   },
@@ -330,7 +330,6 @@ ClusterDialogBoxState {
 
 exports[`Cluster dialog box state search start node functionality should not filter members when the search term only contains spaces 1`] = `
 ClusterDialogBoxState {
-  "filteredMembers": Array [],
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -347,6 +346,7 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "filteredMembers": Array [],
     "focusedMember": null,
     "searchTerm": "",
   },
@@ -355,7 +355,6 @@ ClusterDialogBoxState {
 
 exports[`Cluster dialog box state search start node functionality should not have filtered results for a non-matching search term 1`] = `
 ClusterDialogBoxState {
-  "filteredMembers": Array [],
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -372,6 +371,7 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "filteredMembers": Array [],
     "focusedMember": null,
     "searchTerm": "hello",
   },
@@ -380,7 +380,6 @@ ClusterDialogBoxState {
 
 exports[`Cluster dialog box state should have an initial state 1`] = `
 ClusterDialogBoxState {
-  "filteredMembers": Array [],
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -397,6 +396,7 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "filteredMembers": Array [],
     "focusedMember": null,
     "searchTerm": "",
   },
@@ -405,17 +405,6 @@ ClusterDialogBoxState {
 
 exports[`Cluster dialog box state start node selection should select the currently focused element as the start node 1`] = `
 ClusterDialogBoxState {
-  "filteredMembers": Array [
-    Member {
-      "nodeId": "void onCreate()",
-    },
-    Member {
-      "nodeId": "void onPause()",
-    },
-    Member {
-      "nodeId": "void onResume()",
-    },
-  ],
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -434,6 +423,17 @@ ClusterDialogBoxState {
     "nodeId": "void onCreate()",
   },
   "startNodeSelectionModel": SelectionModel {
+    "filteredMembers": Array [
+      Member {
+        "nodeId": "void onCreate()",
+      },
+      Member {
+        "nodeId": "void onPause()",
+      },
+      Member {
+        "nodeId": "void onResume()",
+      },
+    ],
     "focusedMember": Member {
       "nodeId": "void onCreate()",
     },
@@ -444,17 +444,6 @@ ClusterDialogBoxState {
 
 exports[`Cluster dialog box state start node selection should select the currently focused element as the start node 2`] = `
 ClusterDialogBoxState {
-  "filteredMembers": Array [
-    Member {
-      "nodeId": "void onCreate()",
-    },
-    Member {
-      "nodeId": "void onPause()",
-    },
-    Member {
-      "nodeId": "void onResume()",
-    },
-  ],
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -471,6 +460,17 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "filteredMembers": Array [
+      Member {
+        "nodeId": "void onCreate()",
+      },
+      Member {
+        "nodeId": "void onPause()",
+      },
+      Member {
+        "nodeId": "void onResume()",
+      },
+    ],
     "focusedMember": Member {
       "nodeId": "void onCreate()",
     },

@@ -1,13 +1,15 @@
 import { Member } from './Member';
 
 class SelectionModel {
-  constructor(
+  private constructor(
     public readonly searchTerm: string,
     public readonly focusedMember: Member | null,
     public readonly filteredMembers: Member[],
   ) {
     // empty
   }
+
+  static DEFAULT = new SelectionModel('', null, []);
 
   isSearchTermEmpty(): boolean {
     return this.sanitizeSearchTerm(this.searchTerm).length === 0;
@@ -65,7 +67,7 @@ class ClusterDialogBoxState {
   }
 
   static initialState(members: Member[]): ClusterDialogBoxState {
-    return new ClusterDialogBoxState(members, null, new SelectionModel('', null, []));
+    return new ClusterDialogBoxState(members, null, SelectionModel.DEFAULT);
   }
 
   search(searchTerm: string): ClusterDialogBoxState {
@@ -78,11 +80,11 @@ class ClusterDialogBoxState {
   }
 
   focusNextMember(): ClusterDialogBoxState {
-    return new ClusterDialogBoxState(this.members, this.startNode, this.startNodeSelectionModel.focusNextMember());
+    return this.changeFocus(this.startNodeSelectionModel.focusNextMember());
   }
 
   focusPreviousMember(): ClusterDialogBoxState {
-    return new ClusterDialogBoxState(this.members, this.startNode, this.startNodeSelectionModel.focusPreviousMember());
+    return this.changeFocus(this.startNodeSelectionModel.focusPreviousMember());
   }
 
   selectStartNode(): ClusterDialogBoxState {
@@ -95,6 +97,10 @@ class ClusterDialogBoxState {
 
   deselectStartNode(): ClusterDialogBoxState {
     return new ClusterDialogBoxState(this.members, null, this.startNodeSelectionModel);
+  }
+
+  private changeFocus(selectionModel: SelectionModel) {
+    return new ClusterDialogBoxState(this.members, this.startNode, selectionModel);
   }
 }
 

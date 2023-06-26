@@ -13,9 +13,6 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "focusedMember": Member {
-    "nodeId": "void onCreate()",
-  },
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -32,6 +29,9 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "focusedMember": Member {
+      "nodeId": "void onCreate()",
+    },
     "searchTerm": "void",
   },
 }
@@ -50,9 +50,6 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "focusedMember": Member {
-    "nodeId": "void onCreate()",
-  },
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -69,6 +66,9 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "focusedMember": Member {
+      "nodeId": "void onCreate()",
+    },
     "searchTerm": "void",
   },
 }
@@ -87,9 +87,6 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "focusedMember": Member {
-    "nodeId": "void onResume()",
-  },
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -106,6 +103,9 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "focusedMember": Member {
+      "nodeId": "void onResume()",
+    },
     "searchTerm": "void",
   },
 }
@@ -124,9 +124,6 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "focusedMember": Member {
-    "nodeId": "void onPause()",
-  },
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -143,6 +140,9 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "focusedMember": Member {
+      "nodeId": "void onPause()",
+    },
     "searchTerm": "void",
   },
 }
@@ -161,9 +161,6 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "focusedMember": Member {
-    "nodeId": "void onCreate()",
-  },
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -180,6 +177,9 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "focusedMember": Member {
+      "nodeId": "void onCreate()",
+    },
     "searchTerm": "void",
   },
 }
@@ -192,9 +192,6 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "focusedMember": Member {
-    "nodeId": "void onResume()",
-  },
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -211,6 +208,9 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "focusedMember": Member {
+      "nodeId": "void onResume()",
+    },
     "searchTerm": "resume",
   },
 }
@@ -223,9 +223,6 @@ ClusterDialogBoxState {
       "nodeId": "List chrome",
     },
   ],
-  "focusedMember": Member {
-    "nodeId": "List chrome",
-  },
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -242,6 +239,9 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "focusedMember": Member {
+      "nodeId": "List chrome",
+    },
     "searchTerm": "chr",
   },
 }
@@ -254,9 +254,6 @@ ClusterDialogBoxState {
       "nodeId": "List chrome",
     },
   ],
-  "focusedMember": Member {
-    "nodeId": "List chrome",
-  },
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -273,6 +270,9 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "focusedMember": Member {
+      "nodeId": "List chrome",
+    },
     "searchTerm": "chr",
   },
 }
@@ -281,7 +281,6 @@ ClusterDialogBoxState {
 exports[`Cluster dialog box state search start node functionality should not filter members when the search term has < 2 characters 1`] = `
 ClusterDialogBoxState {
   "filteredMembers": Array [],
-  "focusedMember": null,
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -298,6 +297,7 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "focusedMember": null,
     "searchTerm": "c",
   },
 }
@@ -306,7 +306,6 @@ ClusterDialogBoxState {
 exports[`Cluster dialog box state search start node functionality should not filter members when the search term is empty 1`] = `
 ClusterDialogBoxState {
   "filteredMembers": Array [],
-  "focusedMember": null,
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -323,6 +322,7 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "focusedMember": null,
     "searchTerm": "",
   },
 }
@@ -331,7 +331,6 @@ ClusterDialogBoxState {
 exports[`Cluster dialog box state search start node functionality should not filter members when the search term only contains spaces 1`] = `
 ClusterDialogBoxState {
   "filteredMembers": Array [],
-  "focusedMember": null,
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -348,6 +347,7 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "focusedMember": null,
     "searchTerm": "",
   },
 }
@@ -356,7 +356,6 @@ ClusterDialogBoxState {
 exports[`Cluster dialog box state search start node functionality should not have filtered results for a non-matching search term 1`] = `
 ClusterDialogBoxState {
   "filteredMembers": Array [],
-  "focusedMember": null,
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -373,6 +372,7 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "focusedMember": null,
     "searchTerm": "hello",
   },
 }
@@ -381,7 +381,6 @@ ClusterDialogBoxState {
 exports[`Cluster dialog box state should have an initial state 1`] = `
 ClusterDialogBoxState {
   "filteredMembers": Array [],
-  "focusedMember": null,
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -398,6 +397,7 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "focusedMember": null,
     "searchTerm": "",
   },
 }
@@ -416,9 +416,6 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "focusedMember": Member {
-    "nodeId": "void onCreate()",
-  },
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -437,6 +434,9 @@ ClusterDialogBoxState {
     "nodeId": "void onCreate()",
   },
   "startNodeSelectionModel": SelectionModel {
+    "focusedMember": Member {
+      "nodeId": "void onCreate()",
+    },
     "searchTerm": "void",
   },
 }
@@ -455,9 +455,6 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "focusedMember": Member {
-    "nodeId": "void onCreate()",
-  },
   "members": Array [
     Member {
       "nodeId": "List chrome",
@@ -474,6 +471,9 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
+    "focusedMember": Member {
+      "nodeId": "void onCreate()",
+    },
     "searchTerm": "void",
   },
 }

@@ -30,8 +30,10 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "searchTerm": "void",
   "startNode": null,
+  "startNodeSelectionModel": SelectionModel {
+    "searchTerm": "void",
+  },
 }
 `;
 
@@ -65,8 +67,10 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "searchTerm": "void",
   "startNode": null,
+  "startNodeSelectionModel": SelectionModel {
+    "searchTerm": "void",
+  },
 }
 `;
 
@@ -100,8 +104,10 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "searchTerm": "void",
   "startNode": null,
+  "startNodeSelectionModel": SelectionModel {
+    "searchTerm": "void",
+  },
 }
 `;
 
@@ -135,8 +141,10 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "searchTerm": "void",
   "startNode": null,
+  "startNodeSelectionModel": SelectionModel {
+    "searchTerm": "void",
+  },
 }
 `;
 
@@ -170,8 +178,10 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "searchTerm": "void",
   "startNode": null,
+  "startNodeSelectionModel": SelectionModel {
+    "searchTerm": "void",
+  },
 }
 `;
 
@@ -199,8 +209,10 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "searchTerm": "resume",
   "startNode": null,
+  "startNodeSelectionModel": SelectionModel {
+    "searchTerm": "resume",
+  },
 }
 `;
 
@@ -228,8 +240,10 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "searchTerm": "chr",
   "startNode": null,
+  "startNodeSelectionModel": SelectionModel {
+    "searchTerm": "chr",
+  },
 }
 `;
 
@@ -257,8 +271,10 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "searchTerm": "chr",
   "startNode": null,
+  "startNodeSelectionModel": SelectionModel {
+    "searchTerm": "chr",
+  },
 }
 `;
 
@@ -280,8 +296,10 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "searchTerm": "c",
   "startNode": null,
+  "startNodeSelectionModel": SelectionModel {
+    "searchTerm": "c",
+  },
 }
 `;
 
@@ -303,8 +321,10 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "searchTerm": "",
   "startNode": null,
+  "startNodeSelectionModel": SelectionModel {
+    "searchTerm": "",
+  },
 }
 `;
 
@@ -326,8 +346,10 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "searchTerm": "",
   "startNode": null,
+  "startNodeSelectionModel": SelectionModel {
+    "searchTerm": "",
+  },
 }
 `;
 
@@ -349,8 +371,10 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "searchTerm": "hello",
   "startNode": null,
+  "startNodeSelectionModel": SelectionModel {
+    "searchTerm": "hello",
+  },
 }
 `;
 
@@ -372,8 +396,10 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "searchTerm": "",
   "startNode": null,
+  "startNodeSelectionModel": SelectionModel {
+    "searchTerm": "",
+  },
 }
 `;
 
@@ -407,9 +433,11 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "searchTerm": "void",
   "startNode": Member {
     "nodeId": "void onCreate()",
+  },
+  "startNodeSelectionModel": SelectionModel {
+    "searchTerm": "void",
   },
 }
 `;
@@ -444,7 +472,9 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "searchTerm": "void",
   "startNode": null,
+  "startNodeSelectionModel": SelectionModel {
+    "searchTerm": "void",
+  },
 }
 `;

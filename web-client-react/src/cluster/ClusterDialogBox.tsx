@@ -81,7 +81,7 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
             id="startNodeInput"
             className="start-node-input"
             type="text"
-            value={dialogState.searchTerm}
+            value={dialogState.startNodeSelectionModel.searchTerm}
             onChange={handleInputChange}
             ref={startNodeInputRef}
           />

@@ -11,6 +11,7 @@ class SelectionModel {
   }
 
   static DEFAULT = new SelectionModel('', [], null, null);
+  static MIN_SEARCH_TERM_LENGTH = 1;
 
   isSearchTermEmpty(): boolean {
     return this.sanitizeSearchTerm(this.searchTerm).length === 0;
@@ -42,7 +43,7 @@ class SelectionModel {
     const trimmedSearchTerm = this.sanitizeSearchTerm(searchTerm);
 
     let filteredMembers: Member[];
-    if (trimmedSearchTerm.length > 2) {
+    if (trimmedSearchTerm.length > SelectionModel.MIN_SEARCH_TERM_LENGTH) {
       filteredMembers = members.filter((member) =>
         member.nodeId.toLowerCase().includes(trimmedSearchTerm.toLowerCase()),
       );
@@ -51,7 +52,7 @@ class SelectionModel {
     }
 
     let focusedMember: Member | null = null;
-    if (trimmedSearchTerm.length > 0 && filteredMembers.length > 0) {
+    if (trimmedSearchTerm.length > SelectionModel.MIN_SEARCH_TERM_LENGTH && filteredMembers.length > 0) {
       focusedMember = filteredMembers[0];
     }
     return new SelectionModel(trimmedSearchTerm, filteredMembers, focusedMember, this.selected);

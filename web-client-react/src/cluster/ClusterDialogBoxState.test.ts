@@ -88,7 +88,7 @@ describe('Cluster dialog box state', () => {
 
     it('should select the first matching member and mark it as focused from the search result', () => {
       expect(searchResultState).toMatchSnapshot();
-      expect(searchResultState.startNodeSelectionModel.focusedMember).toEqual(new Member('void onCreate()'));
+      expect(searchResultState.startNodeSelectionModel.focused).toEqual(new Member('void onCreate()'));
     });
 
     it('should select the next member when pressing the down arrow', () => {
@@ -97,20 +97,20 @@ describe('Cluster dialog box state', () => {
 
       // then
       expect(focusNextMemberState).toMatchSnapshot();
-      expect(focusNextMemberState.startNodeSelectionModel.focusedMember).toEqual(new Member('void onPause()'));
+      expect(focusNextMemberState.startNodeSelectionModel.focused).toEqual(new Member('void onPause()'));
     });
 
     it('should select the previous member when pressing the up arrow', () => {
       // given
       const focusNextMemberState = searchResultState.focusNextMember();
-      expect(focusNextMemberState.startNodeSelectionModel.focusedMember).toEqual(new Member('void onPause()'));
+      expect(focusNextMemberState.startNodeSelectionModel.focused).toEqual(new Member('void onPause()'));
 
       // when
       const focusPreviousMemberState = focusNextMemberState.focusPreviousMember();
 
       // then
       expect(focusPreviousMemberState).toMatchSnapshot();
-      expect(focusPreviousMemberState.startNodeSelectionModel.focusedMember).toEqual(new Member('void onCreate()'));
+      expect(focusPreviousMemberState.startNodeSelectionModel.focused).toEqual(new Member('void onCreate()'));
     });
 
     it('should select the last member from the search result when pressing the up arrow on the first item', () => {
@@ -119,20 +119,20 @@ describe('Cluster dialog box state', () => {
 
       // then
       expect(focusPreviousMemberState).toMatchSnapshot();
-      expect(focusPreviousMemberState.startNodeSelectionModel.focusedMember).toEqual(new Member('void onResume()'));
+      expect(focusPreviousMemberState.startNodeSelectionModel.focused).toEqual(new Member('void onResume()'));
     });
 
     it('should select the first member from the search result when pressing down arrow on the last item', () => {
       // given
       const focusPreviousMemberState = searchResultState.focusPreviousMember();
-      expect(focusPreviousMemberState.startNodeSelectionModel.focusedMember).toEqual(new Member('void onResume()'));
+      expect(focusPreviousMemberState.startNodeSelectionModel.focused).toEqual(new Member('void onResume()'));
 
       // when
       const focusNextMemberState = focusPreviousMemberState.focusNextMember();
 
       // then
       expect(focusNextMemberState).toMatchSnapshot();
-      expect(focusNextMemberState.startNodeSelectionModel.focusedMember).toEqual(new Member('void onCreate()'));
+      expect(focusNextMemberState.startNodeSelectionModel.focused).toEqual(new Member('void onCreate()'));
     });
   });
 

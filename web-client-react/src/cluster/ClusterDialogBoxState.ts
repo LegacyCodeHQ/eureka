@@ -3,7 +3,7 @@ import { Member } from './Member';
 class SelectionModel {
   private constructor(
     public readonly searchTerm: string,
-    public readonly focusedMember: Member | null,
+    public readonly focused: Member | null,
     public readonly searchResult: Member[],
   ) {
     // empty
@@ -20,7 +20,7 @@ class SelectionModel {
   }
 
   focusNextMember(): SelectionModel {
-    const currentFocusedMemberIndex = this.searchResult.indexOf(this.focusedMember!);
+    const currentFocusedMemberIndex = this.searchResult.indexOf(this.focused!);
     const nextFocusedMemberIndex =
       currentFocusedMemberIndex + 1 === this.searchResult.length ? 0 : currentFocusedMemberIndex + 1;
     const nextFocusedMember = this.searchResult[nextFocusedMemberIndex];
@@ -29,7 +29,7 @@ class SelectionModel {
   }
 
   focusPreviousMember(): SelectionModel {
-    const currentFocusedMemberIndex = this.searchResult.indexOf(this.focusedMember!);
+    const currentFocusedMemberIndex = this.searchResult.indexOf(this.focused!);
     const previousFocusedMemberIndex =
       currentFocusedMemberIndex - 1 < 0 ? this.searchResult.length - 1 : currentFocusedMemberIndex - 1;
     const previousFocusedMember = this.searchResult[previousFocusedMemberIndex];
@@ -88,11 +88,7 @@ class ClusterDialogBoxState {
   }
 
   selectStartNode(): ClusterDialogBoxState {
-    return new ClusterDialogBoxState(
-      this.members,
-      this.startNodeSelectionModel.focusedMember,
-      this.startNodeSelectionModel,
-    );
+    return new ClusterDialogBoxState(this.members, this.startNodeSelectionModel.focused, this.startNodeSelectionModel);
   }
 
   deselectStartNode(): ClusterDialogBoxState {

@@ -91,9 +91,9 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
           />
         </React.Fragment>
       )}
-      {!dialogState.startNode && dialogState.startNodeSelectionModel.focusedMember && (
+      {!dialogState.startNode && dialogState.startNodeSelectionModel.focused && (
         <FilteredMemberList
-          focusedMember={dialogState.startNodeSelectionModel.focusedMember.nodeId}
+          focusedMember={dialogState.startNodeSelectionModel.focused.nodeId}
           filteredMembers={dialogState.startNodeSelectionModel.searchResult}
         />
       )}

@@ -18,7 +18,7 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "focusedMember": Member {
+    "focused": Member {
       "nodeId": "void onCreate()",
     },
     "searchResult": Array [
@@ -55,7 +55,7 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "focusedMember": Member {
+    "focused": Member {
       "nodeId": "void onCreate()",
     },
     "searchResult": Array [
@@ -92,7 +92,7 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "focusedMember": Member {
+    "focused": Member {
       "nodeId": "void onResume()",
     },
     "searchResult": Array [
@@ -129,7 +129,7 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "focusedMember": Member {
+    "focused": Member {
       "nodeId": "void onPause()",
     },
     "searchResult": Array [
@@ -166,7 +166,7 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "focusedMember": Member {
+    "focused": Member {
       "nodeId": "void onCreate()",
     },
     "searchResult": Array [
@@ -203,7 +203,7 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "focusedMember": Member {
+    "focused": Member {
       "nodeId": "void onResume()",
     },
     "searchResult": Array [
@@ -234,7 +234,7 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "focusedMember": Member {
+    "focused": Member {
       "nodeId": "List chrome",
     },
     "searchResult": Array [
@@ -265,7 +265,7 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "focusedMember": Member {
+    "focused": Member {
       "nodeId": "List chrome",
     },
     "searchResult": Array [
@@ -296,7 +296,7 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "focusedMember": null,
+    "focused": null,
     "searchResult": Array [],
     "searchTerm": "c",
   },
@@ -321,7 +321,7 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "focusedMember": null,
+    "focused": null,
     "searchResult": Array [],
     "searchTerm": "",
   },
@@ -346,7 +346,7 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "focusedMember": null,
+    "focused": null,
     "searchResult": Array [],
     "searchTerm": "",
   },
@@ -371,7 +371,7 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "focusedMember": null,
+    "focused": null,
     "searchResult": Array [],
     "searchTerm": "hello",
   },
@@ -396,7 +396,7 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "focusedMember": null,
+    "focused": null,
     "searchResult": Array [],
     "searchTerm": "",
   },
@@ -423,7 +423,7 @@ ClusterDialogBoxState {
     "nodeId": "void onCreate()",
   },
   "startNodeSelectionModel": SelectionModel {
-    "focusedMember": Member {
+    "focused": Member {
       "nodeId": "void onCreate()",
     },
     "searchResult": Array [
@@ -460,7 +460,7 @@ ClusterDialogBoxState {
   ],
   "startNode": null,
   "startNodeSelectionModel": SelectionModel {
-    "focusedMember": Member {
+    "focused": Member {
       "nodeId": "void onCreate()",
     },
     "searchResult": Array [

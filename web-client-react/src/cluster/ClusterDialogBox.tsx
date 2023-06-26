@@ -28,7 +28,7 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
     if (
       !isClusterBoxVisible ||
       dialogState.startNodeSelectionModel.searchResult.length === 0 ||
-      dialogState.startNode
+      dialogState.startNodeSelectionModel.selected
     ) {
       return;
     }
@@ -63,19 +63,21 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
       startNodeInputRef.current.focus();
       startNodeInputRef.current.select();
     }
-  }, [isClusterBoxVisible, dialogState.startNode]);
+  }, [isClusterBoxVisible, dialogState.startNodeSelectionModel.selected]);
 
   useEffect(() => {
-    onStartMemberChanged(dialogState.startNode ? dialogState.startNode.nodeId : null);
-  }, [dialogState.startNode]);
+    onStartMemberChanged(
+      dialogState.startNodeSelectionModel.selected ? dialogState.startNodeSelectionModel.selected.nodeId : null,
+    );
+  }, [dialogState.startNodeSelectionModel.selected]);
 
   const dialogBoxClassName = isClusterBoxVisible ? 'cluster-box visible' : 'cluster-box hidden';
 
   return (
     <div className={dialogBoxClassName}>
-      {dialogState.startNode ? (
+      {dialogState.startNodeSelectionModel.selected ? (
         <SelectedMemberComponent
-          member={dialogState.startNode!}
+          member={dialogState.startNodeSelectionModel.selected!}
           onRemoveClicked={() => setDialogState(dialogState.deselectStartNode())}
         />
       ) : (
@@ -91,7 +93,7 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
           />
         </React.Fragment>
       )}
-      {!dialogState.startNode && dialogState.startNodeSelectionModel.focused && (
+      {!dialogState.startNodeSelectionModel.selected && dialogState.startNodeSelectionModel.focused && (
         <FilteredMemberList
           focusedMember={dialogState.startNodeSelectionModel.focused.nodeId}
           filteredMembers={dialogState.startNodeSelectionModel.searchResult}

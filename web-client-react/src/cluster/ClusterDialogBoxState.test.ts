@@ -151,10 +151,10 @@ describe('Cluster dialog box state', () => {
       expect(startNodeSelectedState).toMatchSnapshot();
     });
 
-    it('should select the currently focused element as the start node', () => {
+    it('should deselect the start node', () => {
       // given
       const startNodeSelectedState = searchResultState.selectStartNode();
-      expect(startNodeSelectedState.startNode).toEqual(new Member('void onCreate()'));
+      expect(startNodeSelectedState.startNodeSelectionModel.selected).toEqual(new Member('void onCreate()'));
 
       // when
       const startNodeDeselectedState = startNodeSelectedState.deselectStartNode();

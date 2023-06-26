@@ -5,11 +5,12 @@ class SelectionModel {
     public readonly searchTerm: string,
     public readonly focused: Member | null,
     public readonly searchResult: Member[],
+    public readonly selected: Member | null,
   ) {
     // empty
   }
 
-  static DEFAULT = new SelectionModel('', null, []);
+  static DEFAULT = new SelectionModel('', null, [], null);
 
   isSearchTermEmpty(): boolean {
     return this.sanitizeSearchTerm(this.searchTerm).length === 0;
@@ -25,7 +26,7 @@ class SelectionModel {
       currentFocusedMemberIndex + 1 === this.searchResult.length ? 0 : currentFocusedMemberIndex + 1;
     const nextFocusedMember = this.searchResult[nextFocusedMemberIndex];
 
-    return new SelectionModel(this.searchTerm, nextFocusedMember, this.searchResult);
+    return new SelectionModel(this.searchTerm, nextFocusedMember, this.searchResult, this.selected);
   }
 
   focusPreviousMember(): SelectionModel {
@@ -34,7 +35,7 @@ class SelectionModel {
       currentFocusedMemberIndex - 1 < 0 ? this.searchResult.length - 1 : currentFocusedMemberIndex - 1;
     const previousFocusedMember = this.searchResult[previousFocusedMemberIndex];
 
-    return new SelectionModel(this.searchTerm, previousFocusedMember, this.searchResult);
+    return new SelectionModel(this.searchTerm, previousFocusedMember, this.searchResult, this.selected);
   }
 
   search(searchTerm: string, members: Member[]): SelectionModel {
@@ -53,26 +54,30 @@ class SelectionModel {
     if (trimmedSearchTerm.length > 0 && filteredMembers.length > 0) {
       focusedMember = filteredMembers[0];
     }
-    return new SelectionModel(trimmedSearchTerm, focusedMember, filteredMembers);
+    return new SelectionModel(trimmedSearchTerm, focusedMember, filteredMembers, this.selected);
+  }
+
+  select(): SelectionModel {
+    return new SelectionModel(this.searchTerm, this.focused, this.searchResult, this.focused);
+  }
+
+  deselect(): SelectionModel {
+    return new SelectionModel(this.searchTerm, this.focused, this.searchResult, null);
   }
 }
 
 class ClusterDialogBoxState {
-  constructor(
-    public readonly members: Member[],
-    public readonly startNode: Member | null,
-    public readonly startNodeSelectionModel: SelectionModel,
-  ) {
+  constructor(public readonly members: Member[], public readonly startNodeSelectionModel: SelectionModel) {
     // empty
   }
 
   static initialState(members: Member[]): ClusterDialogBoxState {
-    return new ClusterDialogBoxState(members, null, SelectionModel.DEFAULT);
+    return new ClusterDialogBoxState(members, SelectionModel.DEFAULT);
   }
 
   search(searchTerm: string): ClusterDialogBoxState {
     const selectionModel = this.startNodeSelectionModel.search(searchTerm, this.members);
-    return new ClusterDialogBoxState(this.members, this.startNode, selectionModel);
+    return new ClusterDialogBoxState(this.members, selectionModel);
   }
 
   isSearchTermEmpty(): boolean {
@@ -88,15 +93,17 @@ class ClusterDialogBoxState {
   }
 
   selectStartNode(): ClusterDialogBoxState {
-    return new ClusterDialogBoxState(this.members, this.startNodeSelectionModel.focused, this.startNodeSelectionModel);
+    const selectionModel = this.startNodeSelectionModel.select();
+    return new ClusterDialogBoxState(this.members, selectionModel);
   }
 
   deselectStartNode(): ClusterDialogBoxState {
-    return new ClusterDialogBoxState(this.members, null, this.startNodeSelectionModel);
+    const selectionModel = this.startNodeSelectionModel.deselect();
+    return new ClusterDialogBoxState(this.members, selectionModel);
   }
 
   private changeFocus(selectionModel: SelectionModel) {
-    return new ClusterDialogBoxState(this.members, this.startNode, selectionModel);
+    return new ClusterDialogBoxState(this.members, selectionModel);
   }
 }
 

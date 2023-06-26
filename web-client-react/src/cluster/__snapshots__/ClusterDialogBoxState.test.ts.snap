@@ -16,7 +16,6 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "startNode": null,
   "startNodeSelectionModel": SelectionModel {
     "focused": Member {
       "nodeId": "void onCreate()",
@@ -33,6 +32,7 @@ ClusterDialogBoxState {
       },
     ],
     "searchTerm": "void",
+    "selected": null,
   },
 }
 `;
@@ -53,7 +53,6 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "startNode": null,
   "startNodeSelectionModel": SelectionModel {
     "focused": Member {
       "nodeId": "void onCreate()",
@@ -70,6 +69,7 @@ ClusterDialogBoxState {
       },
     ],
     "searchTerm": "void",
+    "selected": null,
   },
 }
 `;
@@ -90,7 +90,6 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "startNode": null,
   "startNodeSelectionModel": SelectionModel {
     "focused": Member {
       "nodeId": "void onResume()",
@@ -107,6 +106,7 @@ ClusterDialogBoxState {
       },
     ],
     "searchTerm": "void",
+    "selected": null,
   },
 }
 `;
@@ -127,7 +127,6 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "startNode": null,
   "startNodeSelectionModel": SelectionModel {
     "focused": Member {
       "nodeId": "void onPause()",
@@ -144,6 +143,7 @@ ClusterDialogBoxState {
       },
     ],
     "searchTerm": "void",
+    "selected": null,
   },
 }
 `;
@@ -164,7 +164,6 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "startNode": null,
   "startNodeSelectionModel": SelectionModel {
     "focused": Member {
       "nodeId": "void onCreate()",
@@ -181,6 +180,7 @@ ClusterDialogBoxState {
       },
     ],
     "searchTerm": "void",
+    "selected": null,
   },
 }
 `;
@@ -201,7 +201,6 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "startNode": null,
   "startNodeSelectionModel": SelectionModel {
     "focused": Member {
       "nodeId": "void onResume()",
@@ -212,6 +211,7 @@ ClusterDialogBoxState {
       },
     ],
     "searchTerm": "resume",
+    "selected": null,
   },
 }
 `;
@@ -232,7 +232,6 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "startNode": null,
   "startNodeSelectionModel": SelectionModel {
     "focused": Member {
       "nodeId": "List chrome",
@@ -243,6 +242,7 @@ ClusterDialogBoxState {
       },
     ],
     "searchTerm": "chr",
+    "selected": null,
   },
 }
 `;
@@ -263,7 +263,6 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "startNode": null,
   "startNodeSelectionModel": SelectionModel {
     "focused": Member {
       "nodeId": "List chrome",
@@ -274,6 +273,7 @@ ClusterDialogBoxState {
       },
     ],
     "searchTerm": "chr",
+    "selected": null,
   },
 }
 `;
@@ -294,11 +294,11 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "startNode": null,
   "startNodeSelectionModel": SelectionModel {
     "focused": null,
     "searchResult": Array [],
     "searchTerm": "c",
+    "selected": null,
   },
 }
 `;
@@ -319,11 +319,11 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "startNode": null,
   "startNodeSelectionModel": SelectionModel {
     "focused": null,
     "searchResult": Array [],
     "searchTerm": "",
+    "selected": null,
   },
 }
 `;
@@ -344,11 +344,11 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "startNode": null,
   "startNodeSelectionModel": SelectionModel {
     "focused": null,
     "searchResult": Array [],
     "searchTerm": "",
+    "selected": null,
   },
 }
 `;
@@ -369,11 +369,11 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "startNode": null,
   "startNodeSelectionModel": SelectionModel {
     "focused": null,
     "searchResult": Array [],
     "searchTerm": "hello",
+    "selected": null,
   },
 }
 `;
@@ -394,11 +394,48 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "startNode": null,
   "startNodeSelectionModel": SelectionModel {
     "focused": null,
     "searchResult": Array [],
     "searchTerm": "",
+    "selected": null,
+  },
+}
+`;
+
+exports[`Cluster dialog box state start node selection should deselect the start node 1`] = `
+ClusterDialogBoxState {
+  "members": Array [
+    Member {
+      "nodeId": "List chrome",
+    },
+    Member {
+      "nodeId": "void onCreate()",
+    },
+    Member {
+      "nodeId": "void onPause()",
+    },
+    Member {
+      "nodeId": "void onResume()",
+    },
+  ],
+  "startNodeSelectionModel": SelectionModel {
+    "focused": Member {
+      "nodeId": "void onCreate()",
+    },
+    "searchResult": Array [
+      Member {
+        "nodeId": "void onCreate()",
+      },
+      Member {
+        "nodeId": "void onPause()",
+      },
+      Member {
+        "nodeId": "void onResume()",
+      },
+    ],
+    "searchTerm": "void",
+    "selected": null,
   },
 }
 `;
@@ -419,9 +456,6 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
   ],
-  "startNode": Member {
-    "nodeId": "void onCreate()",
-  },
   "startNodeSelectionModel": SelectionModel {
     "focused": Member {
       "nodeId": "void onCreate()",
@@ -438,43 +472,9 @@ ClusterDialogBoxState {
       },
     ],
     "searchTerm": "void",
-  },
-}
-`;
-
-exports[`Cluster dialog box state start node selection should select the currently focused element as the start node 2`] = `
-ClusterDialogBoxState {
-  "members": Array [
-    Member {
-      "nodeId": "List chrome",
-    },
-    Member {
+    "selected": Member {
       "nodeId": "void onCreate()",
     },
-    Member {
-      "nodeId": "void onPause()",
-    },
-    Member {
-      "nodeId": "void onResume()",
-    },
-  ],
-  "startNode": null,
-  "startNodeSelectionModel": SelectionModel {
-    "focused": Member {
-      "nodeId": "void onCreate()",
-    },
-    "searchResult": Array [
-      Member {
-        "nodeId": "void onCreate()",
-      },
-      Member {
-        "nodeId": "void onPause()",
-      },
-      Member {
-        "nodeId": "void onResume()",
-      },
-    ],
-    "searchTerm": "void",
   },
 }
 `;

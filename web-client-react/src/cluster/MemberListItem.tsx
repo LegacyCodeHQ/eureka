@@ -1,14 +1,20 @@
 import React from 'react';
-import './MemberListItem.css';
+import { Member } from './Member';
+import MemberIcon from './MemberIcon';
 
 interface MemberListItemProps {
-  member: string;
-  focusedMember: string | null;
+  member: Member;
+  focusedMember: Member | null;
 }
 
 const MemberListItem: React.FC<MemberListItemProps> = ({ member, focusedMember }) => {
   const focusClassName = member === focusedMember ? 'focused' : 'unfocused';
-  return <div className={`member ${focusClassName}`}>{member}</div>;
+  return (
+    <div className={`member ${focusClassName}`}>
+      <MemberIcon member={member} />
+      {member.nodeId}
+    </div>
+  );
 };
 
 export default MemberListItem;

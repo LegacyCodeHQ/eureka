@@ -1,0 +1,26 @@
+.member-icon {
+    user-select: none;
+    margin: 0 8px 0 0;
+    font-family: monospace;
+    font-size: small;
+    font-weight: bold;
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.field {
+    color: orangered;
+    background: whitesmoke;
+    border: 2px solid orangered;
+    line-height: 1.4em;
+}
+
+.method {
+    color: limegreen;
+    background: whitesmoke;
+    border: 2px solid limegreen;
+    line-height: 1.3em;
+}

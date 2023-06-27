@@ -1,11 +1,10 @@
 .cluster-box {
-    border: 1px solid black;
-    padding: 10px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: white;
+    border: #8d8d8d 2px solid;
+    background: #262626;
 }
 
 .visible {
@@ -16,15 +15,26 @@
     display: none;
 }
 
-.node-input {
+input {
+    padding: 8px;
+    border-bottom: 1px solid #8d8d8d;
+    background-color: #393939;
+    color: #e0e0e0;
+    font-size: small;
     width: 100%;
+    box-sizing: border-box;
 }
 
-.start-node-selected {
-    display: flex;
-    align-items: center;
+input:focus {
+    outline: none;
+    border-color: #ffffff;
 }
 
-.start-node-selected div {
-    margin-left: 5px; /* Adjust the spacing between elements */
+.input-title {
+    user-select: none;
+    font-weight: bold;
+    font-size: small;
+    color: white;
+    padding: 8px;
+    background: #393939;
 }

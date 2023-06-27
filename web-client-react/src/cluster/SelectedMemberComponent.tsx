@@ -1,6 +1,7 @@
 import React from 'react';
 import './SelectedMemberComponent.css';
 import { Member } from './Member';
+import MemberIcon from './MemberIcon';
 
 interface SelectedMemberComponentProps {
   member: Member;
@@ -8,17 +9,10 @@ interface SelectedMemberComponentProps {
 }
 
 const SelectedMemberComponent: React.FC<SelectedMemberComponentProps> = ({ member, onRemoveClicked }) => {
-  function isMethod(member: Member) {
-    return member.nodeId.endsWith(')');
-  }
-
-  const memberClass = isMethod(member) ? 'method' : 'field';
-  const memberChar = isMethod(member) ? 'm' : 'f';
-
   return (
-    <div className="selected-member-container">
-      <div className={`member-icon ${memberClass}`}>{memberChar}</div>
-      <div className="member">{member.nodeId}</div>
+    <div className="selected-member">
+      <MemberIcon member={member} />
+      {member.nodeId}
       <div className="remove-button" onClick={() => onRemoveClicked()}>
         x
       </div>

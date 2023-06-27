@@ -150,6 +150,7 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, startNodeId
             dependents: countDependents(d),
           },
         };
+        drawClusterSelection(svg, data, startNodeId, blockNodeId);
 
         onNodeHover(hoverEvent);
       }
@@ -170,6 +171,7 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, startNodeId
         d3.selectAll(d.dependencies.map(([, d]) => d.text))
           .attr('fill', colorDeselected)
           .attr('font-weight', null);
+        drawClusterSelection(svg, data, startNodeId, blockNodeId);
 
         onNodeHover(null);
       }

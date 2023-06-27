@@ -84,7 +84,7 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
     <div className={dialogBoxClassName}>
       {dialogState.startNodeSelectionModel.selected ? (
         <React.Fragment>
-          <div className="input-title">— Start node —</div>
+          <div className="input-title">‣ Start node</div>
           <SelectedMemberComponent
             member={dialogState.startNodeSelectionModel.selected!}
             onRemoveClicked={() => setDialogState(dialogState.deselectStartNode())}
@@ -92,9 +92,8 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
         </React.Fragment>
       ) : (
         <React.Fragment>
-          <div className="input-title">— Start node —</div>
+          <div className="input-title">‣ Start node</div>
           <input
-            id="startNodeInput"
             type="text"
             value={dialogState.startNodeSelectionModel.searchTerm}
             onChange={handleInputChange}
@@ -104,7 +103,7 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
       )}
       {dialogState.blockNodeSelectionModel.selected && dialogState.startNodeSelectionModel.selected && (
         <React.Fragment>
-          <div className="input-title">— Block node —</div>
+          <div className="input-title">‣ Block node</div>
           <SelectedMemberComponent
             member={dialogState.blockNodeSelectionModel.selected!}
             onRemoveClicked={() => setDialogState(dialogState.deselectBlockNode())}
@@ -113,9 +112,8 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
       )}
       {dialogState.startNodeSelectionModel.selected && !dialogState.blockNodeSelectionModel.selected && (
         <React.Fragment>
-          <div className="input-title">— Block node —</div>
+          <div className="input-title">‣ Block node</div>
           <input
-            id="blockNodeInput"
             type="text"
             value={dialogState.blockNodeSelectionModel.searchTerm}
             onChange={handleInputChange}

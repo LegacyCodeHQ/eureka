@@ -34,10 +34,10 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, startNodeId
 
   const groupAngles = {} as GroupAngles;
   const groupColors: Record<string, string> = {
-    '1': '#0088FF', // Field
-    '2': '#0088FF', // Method
-    '3': '#32DC80', // Android field
-    '4': '#32DC80', // Android method
+    '1': '#0088ff', // Field
+    '2': '#0088ff', // Method
+    '3': '#32dc80', // Android field
+    '4': '#32dc80', // Android method
   };
 
   function countableTextDependencies(count: number): string {
@@ -86,6 +86,30 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, startNodeId
         .each(function (d) {
           d.path = this;
         });
+
+      function drawClusterSelection(
+        svg: d3.Selection<SVGSVGElement, unknown, null, undefined>,
+        data: GraphData,
+        startNodeId: string | null,
+        blockNodeId: string | null,
+      ) {
+        if (startNodeId) {
+          const blockedNodeIds = blockNodeId ? [blockNodeId] : [];
+          const selectedNodeIds = Cluster.from(data.links, startNodeId, blockedNodeIds)
+            .links.map((link) => [link.source, link.target])
+            .flatMap((pair) => pair);
+
+          svg.selectAll('g').each(function (d: any) {
+            if (d && selectedNodeIds.includes(d.data.id)) {
+              d3.select(this).select('text').attr('fill', 'magenta');
+              d3.selectAll(d.dependents.map((d: any) => d.path))
+                .attr('stroke-width', overedWidth)
+                .attr('stroke', 'magenta')
+                .raise();
+            }
+          });
+        }
+      }
 
       function getNodeIds(nodes: any, index: number): string[] {
         return nodes.map((d: any) => d[index].data.id);
@@ -229,8 +253,8 @@ Effort* = ${effort(d.dependencies.length, d.dependents.length)}, I = ${
               outerRadius: outerRadius,
             }),
           )
-          .attr('fill', `${groupColors[group]}C8`)
-          .attr('stroke', `${groupColors[group]}FF`)
+          .attr('fill', `${groupColors[group]}c8`)
+          .attr('stroke', `${groupColors[group]}ff`)
           .call((path) => {
             function getHint(group: string): string {
               switch (group) {
@@ -250,22 +274,7 @@ Effort* = ${effort(d.dependencies.length, d.dependents.length)}, I = ${
           });
       });
 
-      if (startNodeId) {
-        const blockedNodeIds = blockNodeId ? [blockNodeId] : [];
-        const selectedNodeIds = Cluster.from(data.links, startNodeId, blockedNodeIds)
-          .links.map((link) => [link.source, link.target])
-          .flatMap((pair) => pair);
-
-        svg.selectAll('g').each(function (d: any) {
-          if (d && selectedNodeIds.includes(d.data.id)) {
-            d3.select(this).select('text').attr('fill', 'magenta');
-            d3.selectAll(d.dependents.map((d: any) => d.path))
-              .attr('stroke-width', overedWidth)
-              .attr('stroke', 'magenta')
-              .raise();
-          }
-        });
-      }
+      drawClusterSelection(svg, data, startNodeId, blockNodeId);
     }
   }, [data, startNodeId, blockNodeId]);
 

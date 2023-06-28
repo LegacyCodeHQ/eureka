@@ -69,14 +69,14 @@ function App() {
                     <div className="floating-legend">
                       <Legend count={count} />
                     </div>
-                    {data && (
-                      <ClusterDialogBox
-                        members={data.members()}
-                        onStartMemberChanged={handleStartMemberChanged}
-                        onBlockMemberChanged={handleBlockMemberChanged}
-                      />
-                    )}
                     <div className="viz">
+                      {data && (
+                        <ClusterDialogBox
+                          members={data.members()}
+                          onStartMemberChanged={handleStartMemberChanged}
+                          onBlockMemberChanged={handleBlockMemberChanged}
+                        />
+                      )}
                       {data && (
                         <EdgeBundlingGraph
                           data={data}

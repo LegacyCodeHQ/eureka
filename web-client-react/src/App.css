@@ -9,6 +9,7 @@
     flex: 1;
     overflow: hidden;
     background-color: #1f1f1f;
+    position: relative;
 }
 
 .floating-legend {

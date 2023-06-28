@@ -17,6 +17,7 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
     ClusterDialogBoxState.initialState(members.map((member) => new Member(member))),
   );
   const startNodeInputRef = useRef<HTMLInputElement>(null);
+  const dialogBoxRef = useRef<HTMLDivElement>(null);
 
   const handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === 'k' && event.metaKey) {
@@ -78,10 +79,18 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
     );
   }, [dialogState.blockNodeSelectionModel.selected]);
 
+  useEffect(() => {
+    const parentContainer = dialogBoxRef.current?.parentElement;
+    if (parentContainer) {
+      const top = parentContainer.offsetHeight / 3;
+      dialogBoxRef.current.style.top = `${top}px`;
+    }
+  }, [isClusterBoxVisible]);
+
   const dialogBoxClassName = isClusterBoxVisible ? 'cluster-box visible' : 'cluster-box hidden';
 
   return (
-    <div className={dialogBoxClassName}>
+    <div className={dialogBoxClassName} ref={dialogBoxRef}>
       {dialogState.startNodeSelectionModel.selected ? (
         <React.Fragment>
           <div className="input-title">‣ Start node</div>
@@ -94,6 +103,7 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
         <React.Fragment>
           <div className="input-title">‣ Start node</div>
           <input
+            id="startNodeInput"
             type="text"
             value={dialogState.startNodeSelectionModel.searchTerm}
             onChange={handleInputChange}
@@ -114,6 +124,7 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
         <React.Fragment>
           <div className="input-title">‣ Block node</div>
           <input
+            id="blockNodeInput"
             type="text"
             value={dialogState.blockNodeSelectionModel.searchTerm}
             onChange={handleInputChange}

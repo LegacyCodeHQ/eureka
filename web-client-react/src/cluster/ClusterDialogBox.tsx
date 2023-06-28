@@ -11,6 +11,19 @@ interface ClusterDialogBoxProps {
   onBlockMemberChanged: (member: string | null) => void;
 }
 
+const StartNode: React.FC = () => {
+  return (
+    <div className="input-title">
+      ‣ Start node
+      <span className="experimental">🌱 experimental</span>
+    </div>
+  );
+};
+
+const BlockNode: React.FC = () => {
+  return <div className="input-title">‣ Block node</div>;
+};
+
 const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMemberChanged, onBlockMemberChanged }) => {
   const [isClusterBoxVisible, setIsClusterBoxVisible] = useState(false);
   const [dialogState, setDialogState] = useState(
@@ -93,7 +106,7 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
     <div className={dialogBoxClassName} ref={dialogBoxRef}>
       {dialogState.startNodeSelectionModel.selected ? (
         <React.Fragment>
-          <div className="input-title">‣ Start node</div>
+          <StartNode />
           <SelectedMemberComponent
             member={dialogState.startNodeSelectionModel.selected!}
             onRemoveClicked={() => setDialogState(dialogState.deselectStartNode())}
@@ -101,7 +114,7 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
         </React.Fragment>
       ) : (
         <React.Fragment>
-          <div className="input-title">‣ Start node</div>
+          <StartNode />
           <input
             id="startNodeInput"
             type="text"
@@ -113,7 +126,7 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
       )}
       {dialogState.blockNodeSelectionModel.selected && dialogState.startNodeSelectionModel.selected && (
         <React.Fragment>
-          <div className="input-title">‣ Block node</div>
+          <BlockNode />
           <SelectedMemberComponent
             member={dialogState.blockNodeSelectionModel.selected!}
             onRemoveClicked={() => setDialogState(dialogState.deselectBlockNode())}
@@ -122,7 +135,7 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
       )}
       {dialogState.startNodeSelectionModel.selected && !dialogState.blockNodeSelectionModel.selected && (
         <React.Fragment>
-          <div className="input-title">‣ Block node</div>
+          <BlockNode />
           <input
             id="blockNodeInput"
             type="text"

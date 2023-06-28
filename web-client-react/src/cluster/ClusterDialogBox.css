@@ -38,3 +38,12 @@ input:focus {
     padding: 8px;
     background: #393939;
 }
+
+.experimental {
+    padding: 2px 8px 2px 4px;
+    margin-left: 8px;
+    background: mediumpurple;
+    border-radius: 16px;
+    font-weight: bolder;
+    font-size: x-small;
+}

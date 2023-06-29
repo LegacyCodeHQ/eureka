@@ -19,9 +19,15 @@ class TopCommand : Runnable {
 
   @Option(
     names = ["-c", "--count"],
-    description = ["number of files to list"]
+    description = ["number of files to list"],
   )
   var count: Int? = null
+
+  @Option(
+    names = ["--csv"],
+    description = ["print output in CSV format"],
+  )
+  var csv: Boolean = false
 
   override fun run() {
     val pwd = Path.of("").toAbsolutePath()
@@ -31,11 +37,27 @@ class TopCommand : Runnable {
     }
     val filePaths = ListFilesGitCommand(pwd.toFile()).execute()
     val sourceFiles = filePaths.map(::File).countLines()
-    if (count != null) {
-      printFileLocTable(sourceFiles.take(count!!), sourceFiles.size)
+
+    printCommandOutput(sourceFiles)
+  }
+
+  private fun printCommandOutput(sourceFiles: List<LineCount>) {
+    if (csv) {
+      printCommandOutputCsv(sourceFiles)
     } else {
-      printFileLocTable(sourceFiles)
+      if (count != null) {
+        printFileLocTable(sourceFiles.take(count!!), sourceFiles.size)
+      } else {
+        printFileLocTable(sourceFiles)
+      }
     }
+  }
+
+  private fun printCommandOutputCsv(sourceFiles: List<LineCount>) {
+    println("File,Lines")
+    sourceFiles
+      .take(count ?: sourceFiles.size)
+      .forEach { lineCount -> println("${lineCount.file},${lineCount.lines}") }
   }
 
   private fun printFileLocTable(

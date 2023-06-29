@@ -37,8 +37,12 @@ class TopCommand : Runnable {
 
   private fun List<File>.countLines(): List<LineCount> {
     return this
-      .filter { it.extension.lowercase(Locale.ENGLISH) in desiredExtensions }
+      .filter(::isDesiredFile)
       .map(LineCount::from)
-      .sortedByDescending { it.lines }
+      .sortedByDescending(LineCount::lines)
+  }
+
+  private fun isDesiredFile(file: File): Boolean {
+    return file.extension.lowercase(Locale.ENGLISH) in desiredExtensions
   }
 }

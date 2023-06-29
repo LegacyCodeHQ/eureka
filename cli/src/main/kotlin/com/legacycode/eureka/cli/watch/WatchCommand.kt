@@ -50,7 +50,11 @@ class WatchCommand : Runnable {
   override fun run() {
     val classFilePath = CompiledClassFileFinder
       .find(className, (buildDir ?: File("")).absolutePath)
-      ?: throw IllegalArgumentException("Class file not found for $className")
+
+    if (classFilePath == null) {
+      printClassNotFoundMessage(className)
+      return
+    }
 
     val classifier = if (experiment == android) {
       AndroidMemberClassifier()
@@ -59,5 +63,11 @@ class WatchCommand : Runnable {
     }
 
     WatchServer(experiment).start(CompiledClassFile(classFilePath.toFile(), classifier), port)
+  }
+
+  private fun printClassNotFoundMessage(className: String) {
+    println("Sorry, but the class '${className}' could not be found.")
+    println("  • Ensure that you have built the project before running eureka.")
+    println("  • If your Kotlin source file does not contain a top-level class, try using '${className}Kt' instead.")
   }
 }

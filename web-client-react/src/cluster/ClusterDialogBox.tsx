@@ -8,7 +8,7 @@ import SelectedMemberComponent from './SelectedMemberComponent';
 interface ClusterDialogBoxProps<T extends Member> {
   members: string[];
   onStartSelectionChanged: (member: T | null) => void;
-  onBlockSelectionChanged: (member: T | null) => void;
+  onBlockSelectionChanged: (member: T[] | null) => void;
 }
 
 const StartNode: React.FC = () => {
@@ -89,7 +89,9 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps<Member>> = ({
   }, [dialogState.startNodeSelectionModel.selected]);
 
   useEffect(() => {
-    onBlockSelectionChanged(dialogState.blockNodeSelectionModel.selected);
+    onBlockSelectionChanged(
+      dialogState.blockNodeSelectionModel.selected ? [dialogState.blockNodeSelectionModel.selected] : null,
+    );
   }, [dialogState.blockNodeSelectionModel.selected]);
 
   useEffect(() => {

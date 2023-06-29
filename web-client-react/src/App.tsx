@@ -19,7 +19,7 @@ function App() {
   const [count, setCount] = useState<Count | null>(null);
   const [connectionStatus, setConnectionStatus] = useState(WsConnectionStatus.Disconnected);
   const [startMember, setStartMember] = useState<Member | null>(null);
-  const [blockMember, setBlockMember] = useState<Member | null>(null);
+  const [blockMembers, setBlockMembers] = useState<Member[] | null>(null);
 
   useEffect(() => {
     const hostName = document.getElementById('root')?.dataset.hostName;
@@ -50,8 +50,8 @@ function App() {
     setStartMember(selection);
   };
 
-  const handleBlockSelectionChanged = (selection: Member | null) => {
-    setBlockMember(selection);
+  const handleBlockSelectionChanged = (selection: Member[] | null) => {
+    setBlockMembers(selection);
   };
 
   return (
@@ -82,7 +82,7 @@ function App() {
                         <EdgeBundlingGraph
                           data={data}
                           startNodeId={startMember?.nodeId ? startMember.nodeId : null}
-                          blockNodeId={blockMember?.nodeId ? blockMember.nodeId : null}
+                          blockNodeId={blockMembers ? blockMembers[0].nodeId : null}
                           onNodeHover={handleNodeHover}
                         />
                       )}

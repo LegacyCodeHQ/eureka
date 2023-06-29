@@ -29,7 +29,7 @@ dependencyResolutionManagement {
       library("logback", "ch.qos.logback:logback-classic:1.4.8")
       library("commonsCsv", "org.apache.commons:commons-csv:1.10.0")
       library("jproc", "org.buildobjects:jproc:2.8.2")
-      library("jackson-kotlin", "com.fasterxml.jackson.module:jackson-module-kotlin:2.14.0")
+      library("jackson-kotlin", "com.fasterxml.jackson.module:jackson-module-kotlin:2.15.2")
       library("arrow-core", "io.arrow-kt:arrow-core:1.1.2")
       library("byteBuddy", "net.bytebuddy:byte-buddy:1.14.5")
 

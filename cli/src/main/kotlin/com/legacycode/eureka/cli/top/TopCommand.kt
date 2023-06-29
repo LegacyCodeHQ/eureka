@@ -5,6 +5,8 @@ import com.legacycode.eureka.vcs.ListFilesGitCommand
 import java.io.File
 import java.nio.file.Path
 import java.util.Locale
+import kotlin.io.path.exists
+import kotlin.io.path.name
 import picocli.CommandLine.Command
 import picocli.CommandLine.Option
 
@@ -23,6 +25,10 @@ class TopCommand : Runnable {
 
   override fun run() {
     val pwd = Path.of("").toAbsolutePath()
+    if (!pwd.isGitRepo) {
+      println("Uh oh! not a git repo. Run the command inside a git directory.")
+      return
+    }
     val filePaths = ListFilesGitCommand(pwd.toFile()).execute()
     val sourceFiles = filePaths.map(::File).countLines()
     if (count != null) {
@@ -66,3 +72,8 @@ class TopCommand : Runnable {
     return file.extension.lowercase(Locale.ENGLISH) in desiredExtensions
   }
 }
+
+private val Path.isGitRepo: Boolean
+  get() {
+    return name == ".git" || resolve(".git").exists()
+  }

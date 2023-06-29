@@ -32,12 +32,13 @@ class TopCommand : Runnable {
     val filePaths = ListFilesGitCommand(pwd.toFile()).execute()
     val sourceFiles = filePaths.map(::File).countLines()
     if (count != null) {
-      return printCommandOutput(sourceFiles.take(count!!), sourceFiles.size)
+      printFileLocTable(sourceFiles.take(count!!), sourceFiles.size)
+    } else {
+      printFileLocTable(sourceFiles)
     }
-    printCommandOutput(sourceFiles)
   }
 
-  private fun printCommandOutput(
+  private fun printFileLocTable(
     sourceFiles: List<LineCount>,
     actualCount: Int = sourceFiles.size,
   ) {

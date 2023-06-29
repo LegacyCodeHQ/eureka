@@ -1,4 +1,4 @@
-package com.legacycode.eureka.web.ownership
+package com.legacycode.eureka.vcs
 
 import java.io.File
 import org.buildobjects.process.ProcBuilder

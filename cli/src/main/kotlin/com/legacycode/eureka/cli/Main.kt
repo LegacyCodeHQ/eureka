@@ -9,6 +9,7 @@ import com.legacycode.eureka.cli.dev.methods.MethodsCommand
 import com.legacycode.eureka.cli.dev.view.ViewCommand
 import com.legacycode.eureka.cli.modules.ModulesCommand
 import com.legacycode.eureka.cli.ownership.OwnershipCommand
+import com.legacycode.eureka.cli.top.TopCommand
 import com.legacycode.eureka.cli.watch.WatchCommand
 import com.legacycode.eureka.version.EurekaProperties
 import kotlin.system.exitProcess
@@ -26,6 +27,7 @@ const val DEFAULT_PORT = 7070
     WatchCommand::class,
     OwnershipCommand::class,
     ModulesCommand::class,
+    TopCommand::class,
 
     /* dev commands */
     JsonCommand::class,

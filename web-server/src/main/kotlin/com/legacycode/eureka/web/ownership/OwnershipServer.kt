@@ -1,5 +1,6 @@
 package com.legacycode.eureka.web.ownership
 
+import com.legacycode.eureka.vcs.ListFilesGitCommand
 import com.legacycode.eureka.vcs.Repo
 import com.legacycode.eureka.vcs.RepoFile
 import com.legacycode.eureka.vcs.blame.BlameCommand

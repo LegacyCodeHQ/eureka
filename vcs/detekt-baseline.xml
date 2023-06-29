@@ -13,5 +13,6 @@
     <ID>MaxLineLength:BlameLineTest.kt$BlameLineTest$val rawBlameLine = "174cd860a04 app/src/androidTest/java/org/thoughtcrime/securesms/database/DistributionListDatabaseTest.kt (&lt;alex@signal.org&gt; 2022-02-24 13:40:28 -0400 40) val members: List&lt;RecipientId&gt; = recipientList(1, 2, 3)"</ID>
     <ID>MaxLineLength:BlameLineTest.kt$BlameLineTest$val rawBlameLine = "fddba2906ab app/src/main/res/values/strings.xml (&lt;android@signal.org&gt; 2021-04-06 13:03:33 -0300 3082) &lt;string name=\"PaymentsHomeFragment__learn_more__activate_payments\" translatable=\"false\"&gt;https://support.signal.org/hc/articles/360057625692#payments_activate\u2028&lt;/string&gt;"</ID>
     <ID>SpreadOperator:GitCommand.kt$GitCommand$("git", *args)</ID>
+    <ID>SpreadOperator:ListFilesGitCommand.kt$ListFilesGitCommand$(*args)</ID>
   </CurrentIssues>
 </SmellBaseline>

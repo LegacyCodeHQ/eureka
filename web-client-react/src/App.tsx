@@ -46,12 +46,12 @@ function App() {
     setConnectionStatus(connectionStatus);
   };
 
-  const handleStartMemberChanged = (member: Member | null) => {
-    setStartMember(member);
+  const handleStartSelectionChanged = (selection: Member | null) => {
+    setStartMember(selection);
   };
 
-  const handleBlockMemberChanged = (member: Member | null) => {
-    setBlockMember(member);
+  const handleBlockSelectionChanged = (selection: Member | null) => {
+    setBlockMember(selection);
   };
 
   return (
@@ -74,8 +74,8 @@ function App() {
                       {data && (
                         <ClusterDialogBox
                           members={data.members()}
-                          onStartMemberChanged={handleStartMemberChanged}
-                          onBlockMemberChanged={handleBlockMemberChanged}
+                          onStartSelectionChanged={handleStartSelectionChanged}
+                          onBlockSelectionChanged={handleBlockSelectionChanged}
                         />
                       )}
                       {data && (

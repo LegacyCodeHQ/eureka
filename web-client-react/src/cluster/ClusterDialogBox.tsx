@@ -5,10 +5,10 @@ import { Member } from './Member';
 import MemberList from './MemberList';
 import SelectedMemberComponent from './SelectedMemberComponent';
 
-interface ClusterDialogBoxProps {
+interface ClusterDialogBoxProps<T extends Member> {
   members: string[];
-  onStartMemberChanged: (member: Member | null) => void;
-  onBlockMemberChanged: (member: Member | null) => void;
+  onStartSelectionChanged: (member: T | null) => void;
+  onBlockSelectionChanged: (member: T | null) => void;
 }
 
 const StartNode: React.FC = () => {
@@ -24,7 +24,11 @@ const BlockNode: React.FC = () => {
   return <div className="input-title">‣ Block node</div>;
 };
 
-const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMemberChanged, onBlockMemberChanged }) => {
+const ClusterDialogBox: React.FC<ClusterDialogBoxProps<Member>> = ({
+  members,
+  onStartSelectionChanged,
+  onBlockSelectionChanged,
+}) => {
   const [isClusterBoxVisible, setIsClusterBoxVisible] = useState(false);
   const [dialogState, setDialogState] = useState(
     ClusterDialogBoxState.initialState(members.map((member) => new Member(member))),
@@ -81,11 +85,11 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
   }, [isClusterBoxVisible, dialogState.startNodeSelectionModel.selected, dialogState.blockNodeSelectionModel.selected]);
 
   useEffect(() => {
-    onStartMemberChanged(dialogState.startNodeSelectionModel.selected);
+    onStartSelectionChanged(dialogState.startNodeSelectionModel.selected);
   }, [dialogState.startNodeSelectionModel.selected]);
 
   useEffect(() => {
-    onBlockMemberChanged(dialogState.blockNodeSelectionModel.selected);
+    onBlockSelectionChanged(dialogState.blockNodeSelectionModel.selected);
   }, [dialogState.blockNodeSelectionModel.selected]);
 
   useEffect(() => {

@@ -6,6 +6,7 @@ import java.io.File
 import java.nio.file.Path
 import java.util.Locale
 import picocli.CommandLine.Command
+import picocli.CommandLine.Option
 
 @Command(
   name = "top",
@@ -14,17 +15,36 @@ import picocli.CommandLine.Command
 class TopCommand : Runnable {
   private val desiredExtensions = listOf("java", "kt")
 
+  @Option(
+    names = ["-c", "--count"],
+    description = ["number of files to list"]
+  )
+  var count: Int? = null
+
   override fun run() {
     val pwd = Path.of("").toAbsolutePath()
     val filePaths = ListFilesGitCommand(pwd.toFile()).execute()
     val sourceFiles = filePaths.map(::File).countLines()
+    if (count != null) {
+      return printCommandOutput(sourceFiles.take(count!!), sourceFiles.size)
+    }
     printCommandOutput(sourceFiles)
   }
 
-  private fun printCommandOutput(sourceFiles: List<LineCount>) {
+  private fun printCommandOutput(
+    sourceFiles: List<LineCount>,
+    actualCount: Int = sourceFiles.size,
+  ) {
+    val showingFewerFilesThanDiscovered = actualCount > sourceFiles.size
+    if (showingFewerFilesThanDiscovered) {
+      val message = "Showing ${sourceFiles.size} of $actualCount"
+      println(message)
+      repeat(message.length) { print("-") }
+      println()
+    }
     val filesTable = table {
       sourceFiles.forEachIndexed { index, (file, lines) ->
-        row("${fileRank(index, sourceFiles.size)}. $file", lines)
+        row("${fileRank(index, sourceFiles.size)}. $file", "  $lines")
       }
     }
     println(filesTable)

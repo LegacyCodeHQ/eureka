@@ -1,11 +1,11 @@
 import { Member } from './Member';
 
-class SelectionModel {
+class SelectionModel<T> {
   constructor(
     public readonly searchTerm: string,
     public readonly searchResult: Member[],
     public readonly focused: Member | null,
-    public readonly selected: Member | null,
+    public readonly selected: T,
   ) {
     // empty
   }
@@ -21,25 +21,25 @@ class SelectionModel {
     return searchTerm.trim();
   }
 
-  focusNextMember(): SelectionModel {
+  focusNextMember(): SelectionModel<T> {
     const currentFocusedMemberIndex = this.searchResult.indexOf(this.focused!);
     const nextFocusedMemberIndex =
       currentFocusedMemberIndex + 1 === this.searchResult.length ? 0 : currentFocusedMemberIndex + 1;
     const nextFocusedMember = this.searchResult[nextFocusedMemberIndex];
 
-    return new SelectionModel(this.searchTerm, this.searchResult, nextFocusedMember, this.selected);
+    return new SelectionModel(this.searchTerm, this.searchResult, nextFocusedMember, this.selected as T);
   }
 
-  focusPreviousMember(): SelectionModel {
+  focusPreviousMember(): SelectionModel<T> {
     const currentFocusedMemberIndex = this.searchResult.indexOf(this.focused!);
     const previousFocusedMemberIndex =
       currentFocusedMemberIndex - 1 < 0 ? this.searchResult.length - 1 : currentFocusedMemberIndex - 1;
     const previousFocusedMember = this.searchResult[previousFocusedMemberIndex];
 
-    return new SelectionModel(this.searchTerm, this.searchResult, previousFocusedMember, this.selected);
+    return new SelectionModel(this.searchTerm, this.searchResult, previousFocusedMember, this.selected as T);
   }
 
-  search(members: Member[], searchTerm: string, membersToIgnore: Member[] = []): SelectionModel {
+  search(members: Member[], searchTerm: string, membersToIgnore: Member[] = []): SelectionModel<T> {
     const trimmedSearchTerm = this.sanitizeSearchTerm(searchTerm);
 
     let filteredMembers: Member[];
@@ -56,23 +56,23 @@ class SelectionModel {
     if (trimmedSearchTerm.length > SelectionModel.MIN_SEARCH_TERM_LENGTH && filteredMembers.length > 0) {
       focusedMember = filteredMembers[0];
     }
-    return new SelectionModel(trimmedSearchTerm, filteredMembers, focusedMember, this.selected);
+    return new SelectionModel(trimmedSearchTerm, filteredMembers, focusedMember, this.selected as T);
   }
 
-  select(): SelectionModel {
-    return new SelectionModel(this.searchTerm, this.searchResult, this.focused, this.focused);
+  select(): SelectionModel<T> {
+    return new SelectionModel(this.searchTerm, this.searchResult, this.focused, this.focused as T);
   }
 
-  deselect(): SelectionModel {
-    return new SelectionModel(this.searchTerm, this.searchResult, this.focused, null);
+  deselect(): SelectionModel<T> {
+    return new SelectionModel(this.searchTerm, this.searchResult, this.focused, null as T);
   }
 }
 
 class ClusterDialogBoxState {
   constructor(
     public readonly members: Member[],
-    public readonly startNodeSelectionModel: SelectionModel,
-    public readonly blockNodeSelectionModel: SelectionModel,
+    public readonly startNodeSelectionModel: SelectionModel<Member | null>,
+    public readonly blockNodeSelectionModel: SelectionModel<Member | null>,
   ) {
     // empty
   }

@@ -12,13 +12,14 @@ import Legend from './legend/Legend';
 import { WsConnectionStatus } from './toolbar/LiveUpdatesStatus';
 import { Count, NodeHoverEvent } from './viz/NodeHoverEvent';
 import ClusterDialogBox from './cluster/ClusterDialogBox';
+import { Member } from './cluster/Member';
 
 function App() {
   const [host, setHost] = useState<Host | null>(null);
   const [count, setCount] = useState<Count | null>(null);
   const [connectionStatus, setConnectionStatus] = useState(WsConnectionStatus.Disconnected);
-  const [startMember, setStartMember] = useState<string | null>(null);
-  const [blockMember, setBlockMember] = useState<string | null>(null);
+  const [startMember, setStartMember] = useState<Member | null>(null);
+  const [blockMember, setBlockMember] = useState<Member | null>(null);
 
   useEffect(() => {
     const hostName = document.getElementById('root')?.dataset.hostName;
@@ -45,11 +46,11 @@ function App() {
     setConnectionStatus(connectionStatus);
   };
 
-  const handleStartMemberChanged = (member: string | null) => {
+  const handleStartMemberChanged = (member: Member | null) => {
     setStartMember(member);
   };
 
-  const handleBlockMemberChanged = (member: string | null) => {
+  const handleBlockMemberChanged = (member: Member | null) => {
     setBlockMember(member);
   };
 
@@ -80,8 +81,8 @@ function App() {
                       {data && (
                         <EdgeBundlingGraph
                           data={data}
-                          startNodeId={startMember}
-                          blockNodeId={blockMember}
+                          startNodeId={startMember?.nodeId ? startMember.nodeId : null}
+                          blockNodeId={blockMember?.nodeId ? blockMember.nodeId : null}
                           onNodeHover={handleNodeHover}
                         />
                       )}

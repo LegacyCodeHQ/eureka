@@ -7,8 +7,8 @@ import SelectedMemberComponent from './SelectedMemberComponent';
 
 interface ClusterDialogBoxProps {
   members: string[];
-  onStartMemberChanged: (member: string | null) => void;
-  onBlockMemberChanged: (member: string | null) => void;
+  onStartMemberChanged: (member: Member | null) => void;
+  onBlockMemberChanged: (member: Member | null) => void;
 }
 
 const StartNode: React.FC = () => {
@@ -81,15 +81,11 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps> = ({ members, onStartMem
   }, [isClusterBoxVisible, dialogState.startNodeSelectionModel.selected, dialogState.blockNodeSelectionModel.selected]);
 
   useEffect(() => {
-    onStartMemberChanged(
-      dialogState.startNodeSelectionModel.selected ? dialogState.startNodeSelectionModel.selected.nodeId : null,
-    );
+    onStartMemberChanged(dialogState.startNodeSelectionModel.selected);
   }, [dialogState.startNodeSelectionModel.selected]);
 
   useEffect(() => {
-    onBlockMemberChanged(
-      dialogState.blockNodeSelectionModel.selected ? dialogState.blockNodeSelectionModel.selected.nodeId : null,
-    );
+    onBlockMemberChanged(dialogState.blockNodeSelectionModel.selected);
   }, [dialogState.blockNodeSelectionModel.selected]);
 
   useEffect(() => {

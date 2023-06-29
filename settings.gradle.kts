@@ -36,6 +36,8 @@ dependencyResolutionManagement {
       library("ktor-server-netty", "io.ktor:ktor-server-netty:2.3.1")
       library("ktor-server-websockets", "io.ktor:ktor-server-websockets:2.3.1")
       library("ktor-server-cors", "io.ktor:ktor-server-cors:2.3.1")
+
+      library("picnic", "com.jakewharton.picnic:picnic:0.6.0")
     }
 
     create("testLibs") {

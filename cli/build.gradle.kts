@@ -59,10 +59,11 @@ dependencies {
   implementation(projects.viz)
   implementation(projects.android)
   implementation(projects.buildSystemsGradle)
+  implementation(projects.vcs)
 
   implementation(libs.commonsCsv)
-
   implementation(libs.picocli)
+  implementation(libs.picnic)
 
   testImplementation(projects.bytecodeTesting)
 }

@@ -86,6 +86,33 @@ The command will print a Graphviz directed graph DSL.
 1. Copy the DSL and paste it into the [online Graphviz tool](https://dreampuf.github.io/GraphvizOnline).
 2. The tool selects the **dot** engine by default, for best results use the **circo** engine from the engine dropdown.
 
+### 4. Count lines of code for Kotlin and Java sources (experimental)
+
+#### Usage
+
+```bash
+eureka top --count 10
+```
+
+#### Output
+
+```
+Showing 10 of 140
+-----------------
+ 1. bytecode/scanner/src/test/kotlin/com/legacycode/eureka/ClassScannerKotlinTest.kt   321
+ 2. bytecode/scanner/src/main/kotlin/com/legacycode/eureka/ClassScanner.kt             303
+ 3. bytecode/scanner/src/main/kotlin/com/legacycode/eureka/ClassStructure.kt           232
+ 4. vcs/src/test/kotlin/com/legacycode/eureka/vcs/blame/BlameLineTest.kt               183
+ 5. web-server/src/main/kotlin/com/legacycode/eureka/web/WatchServer.kt                149
+ 6. bytecode/scanner/src/test/kotlin/com/legacycode/eureka/ClassScannerJavaTest.kt     126
+ 7. build-systems/gradle/src/main/kotlin/com/legacycode/eureka/gradle/Run.kt           117
+ 8. web-server/src/main/kotlin/com/legacycode/eureka/web/ownership/OwnershipServer.kt  117
+ 9. bytecode/scanner/src/test/kotlin/com/legacycode/eureka/QualifiedTypeTest.kt        114
+10. bytecode/scanner/src/main/kotlin/com/legacycode/eureka/MethodDescriptor.kt         96 
+```
+
+Run the command without the `--count` option to list all Kotlin and Java files.
+
 ## Licenses
 
 ```

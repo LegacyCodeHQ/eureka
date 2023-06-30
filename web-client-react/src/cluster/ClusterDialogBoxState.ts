@@ -5,12 +5,12 @@ class SelectionModel<T> {
     public readonly searchTerm: string,
     public readonly searchResult: Member[],
     public readonly focused: Member | null,
-    public readonly selected: T,
+    public readonly selected: T | null,
   ) {
     // empty
   }
 
-  static DEFAULT = new SelectionModel('', [], null, null);
+  static DEFAULT = new SelectionModel<Member>('', [], null, null);
   static MIN_SEARCH_TERM_LENGTH = 1;
 
   isSearchTermEmpty(): boolean {
@@ -71,8 +71,8 @@ class SelectionModel<T> {
 class ClusterDialogBoxState {
   constructor(
     public readonly members: Member[],
-    public readonly startNodeSelectionModel: SelectionModel<Member | null>,
-    public readonly blockNodeSelectionModel: SelectionModel<Member | null>,
+    public readonly startNodeSelectionModel: SelectionModel<Member>,
+    public readonly blockNodeSelectionModel: SelectionModel<Member>,
   ) {
     // empty
   }

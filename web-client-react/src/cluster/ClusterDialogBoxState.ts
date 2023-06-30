@@ -1,5 +1,7 @@
 import { Member } from './Member';
-import { SelectionModel } from './SelectionModel';
+import SelectionModel from './SelectionModel';
+import { MultipleSelectionModel } from './MultipleSelectionModel';
+import { SingleSelectionModel } from './SingleSelectionModel';
 
 class ClusterDialogBoxState {
   constructor(
@@ -11,7 +13,7 @@ class ClusterDialogBoxState {
   }
 
   static initialState(members: Member[]): ClusterDialogBoxState {
-    return new ClusterDialogBoxState(members, SelectionModel.SINGLE, SelectionModel.MULTIPLE);
+    return new ClusterDialogBoxState(members, SingleSelectionModel.DEFAULT, MultipleSelectionModel.DEFAULT);
   }
 
   search(searchTerm: string): ClusterDialogBoxState {

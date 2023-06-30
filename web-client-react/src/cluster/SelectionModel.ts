@@ -1,6 +1,6 @@
 import { Member } from './Member';
 
-export class SelectionModel<T> {
+abstract class SelectionModel<T> {
   constructor(
     public readonly searchTerm: string,
     public readonly searchResult: Member[],
@@ -10,8 +10,6 @@ export class SelectionModel<T> {
     // empty
   }
 
-  static SINGLE = new SelectionModel<Member | null>('', [], null, null);
-  static MULTIPLE = new SelectionModel<Member[]>('', [], null, []);
   static MIN_SEARCH_TERM_LENGTH = 1;
 
   isSearchTermEmpty(): boolean {
@@ -28,7 +26,7 @@ export class SelectionModel<T> {
       currentFocusedMemberIndex + 1 === this.searchResult.length ? 0 : currentFocusedMemberIndex + 1;
     const nextFocusedMember = this.searchResult[nextFocusedMemberIndex];
 
-    return new SelectionModel(this.searchTerm, this.searchResult, nextFocusedMember, this.selected as T);
+    return this.copy(this.searchTerm, this.searchResult, nextFocusedMember, this.selected);
   }
 
   focusPreviousMember(): SelectionModel<T> {
@@ -37,7 +35,7 @@ export class SelectionModel<T> {
       currentFocusedMemberIndex - 1 < 0 ? this.searchResult.length - 1 : currentFocusedMemberIndex - 1;
     const previousFocusedMember = this.searchResult[previousFocusedMemberIndex];
 
-    return new SelectionModel(this.searchTerm, this.searchResult, previousFocusedMember, this.selected as T);
+    return this.copy(this.searchTerm, this.searchResult, previousFocusedMember, this.selected);
   }
 
   search(members: Member[], searchTerm: string, membersToIgnore: Member[] = []): SelectionModel<T> {
@@ -57,38 +55,25 @@ export class SelectionModel<T> {
     if (trimmedSearchTerm.length > SelectionModel.MIN_SEARCH_TERM_LENGTH && filteredMembers.length > 0) {
       focusedMember = filteredMembers[0];
     }
-    return new SelectionModel(trimmedSearchTerm, filteredMembers, focusedMember, this.selected as T);
-  }
-
-  select(): SelectionModel<T> {
-    let selected: T;
-    let searchResult: Member[];
-    let focused: Member | null;
-
-    const isBlockNodesSelectionModel = Array.isArray(this.selected);
-    if (isBlockNodesSelectionModel) {
-      const selectedMembers = this.selected as Member[];
-      selected = [...selectedMembers, this.focused] as T;
-      searchResult = this.searchResult.filter((member) => !(selected as Member[]).includes(member));
-      const currentFocusedIndex = searchResult.findIndex((member) => member === this.focused);
-      if (searchResult[currentFocusedIndex + 1]) {
-        focused = searchResult[currentFocusedIndex + 1];
-      } else {
-        focused = null;
-      }
-    } else {
-      selected = this.focused as T;
-      searchResult = this.searchResult;
-      focused = this.focused;
-    }
-    return new SelectionModel(this.searchTerm, searchResult, focused, selected);
+    return this.copy(trimmedSearchTerm, filteredMembers, focusedMember, this.selected as T);
   }
 
   deselect(): SelectionModel<T> {
     if (Array.isArray(this.selected)) {
       const searchResult = [...this.selected, ...this.searchResult];
-      return new SelectionModel(this.searchTerm, searchResult, this.focused, [] as T);
+      return this.copy(this.searchTerm, searchResult, this.focused, [] as T);
     }
-    return new SelectionModel(this.searchTerm, this.searchResult, this.focused, null as T);
+    return this.copy(this.searchTerm, this.searchResult, this.focused, null as T);
   }
+
+  abstract select(): SelectionModel<T>;
+
+  protected abstract copy(
+    searchTerm: string,
+    searchResult: Member[],
+    focused: Member | null,
+    selected: T,
+  ): SelectionModel<T>;
 }
+
+export default SelectionModel;

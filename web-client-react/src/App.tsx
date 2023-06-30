@@ -62,7 +62,7 @@ function App() {
             {(data: GraphData | null) => {
               setTitle(makeTitle(data?.meta.classInfo));
               const classInfo = data?.meta.classInfo;
-              const blockNodeIds = blockedMembers ? blockedMembers?.map((member) => member.nodeId) : null;
+              const blockedNodeIds = blockedMembers ? blockedMembers?.map((member) => member.nodeId) : null;
 
               return (
                 <div>
@@ -83,7 +83,7 @@ function App() {
                         <EdgeBundlingGraph
                           data={data}
                           startNodeId={startMember?.nodeId ? startMember.nodeId : null}
-                          blockedNodeIds={blockNodeIds}
+                          blockedNodeIds={blockedNodeIds}
                           onNodeHover={handleNodeHover}
                         />
                       )}

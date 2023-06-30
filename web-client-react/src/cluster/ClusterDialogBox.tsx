@@ -47,7 +47,8 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps<Member>> = ({
     if (
       !isClusterBoxVisible ||
       dialogState.startNodeSelectionModel.searchResult.length === 0 ||
-      (dialogState.startNodeSelectionModel.selected && dialogState.blockNodeSelectionModel.selected.length > 0)
+      (dialogState.startNodeSelectionModel.selected !== null &&
+        dialogState.blockNodeSelectionModel.searchResult.length === 0)
     ) {
       return;
     }
@@ -124,9 +125,9 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps<Member>> = ({
           />
         </React.Fragment>
       )}
+      {dialogState.startNodeSelectionModel.selected && <BlockNode />}
       {dialogState.blockNodeSelectionModel.selected.length > 0 && dialogState.startNodeSelectionModel.selected && (
         <React.Fragment>
-          <BlockNode />
           {dialogState.blockNodeSelectionModel.selected.map((member) => (
             <SelectedMemberComponent
               member={member}
@@ -135,9 +136,8 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps<Member>> = ({
           ))}
         </React.Fragment>
       )}
-      {dialogState.startNodeSelectionModel.selected && dialogState.blockNodeSelectionModel.selected.length === 0 && (
+      {dialogState.startNodeSelectionModel.selected && (
         <React.Fragment>
-          <BlockNode />
           <input
             id="blockNodeInput"
             type="text"
@@ -153,14 +153,12 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps<Member>> = ({
           filteredMembers={dialogState.startNodeSelectionModel.searchResult}
         />
       )}
-      {dialogState.startNodeSelectionModel.selected &&
-        dialogState.blockNodeSelectionModel.selected.length === 0 &&
-        dialogState.blockNodeSelectionModel.focused && (
-          <MemberList
-            focusedMember={dialogState.blockNodeSelectionModel.focused}
-            filteredMembers={dialogState.blockNodeSelectionModel.searchResult}
-          />
-        )}
+      {dialogState.startNodeSelectionModel.selected && dialogState.blockNodeSelectionModel.focused && (
+        <MemberList
+          focusedMember={dialogState.blockNodeSelectionModel.focused}
+          filteredMembers={dialogState.blockNodeSelectionModel.searchResult}
+        />
+      )}
     </div>
   );
 };

@@ -9,7 +9,7 @@ import Cluster from './model/Cluster';
 interface EdgeBundlingGraphProps {
   data: GraphData;
   startNodeId: string | null;
-  blockNodeId: string | null;
+  blockedNodeIds: string[] | null;
   onNodeHover: (event: NodeHoverEvent | null) => void;
 }
 
@@ -20,7 +20,7 @@ interface GroupAngles {
   };
 }
 
-const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, startNodeId, blockNodeId, onNodeHover }) => {
+const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, startNodeId, blockedNodeIds, onNodeHover }) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
   const width = 800;
   const radius = width / 2;
@@ -91,11 +91,10 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, startNodeId
         svg: d3.Selection<SVGSVGElement, unknown, null, undefined>,
         data: GraphData,
         startNodeId: string | null,
-        blockNodeId: string | null,
+        blockedNodeIds: string[] | null,
       ) {
         if (startNodeId) {
-          const blockedNodeIds = blockNodeId ? [blockNodeId] : [];
-          const selectedNodeIds = Cluster.from(data.links, startNodeId, blockedNodeIds)
+          const selectedNodeIds = Cluster.from(data.links, startNodeId, blockedNodeIds ? blockedNodeIds : [])
             .links.map((link) => [link.source, link.target])
             .flatMap((pair) => pair);
 
@@ -150,7 +149,7 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, startNodeId
             dependents: countDependents(d),
           },
         };
-        drawClusterSelection(svg, data, startNodeId, blockNodeId);
+        drawClusterSelection(svg, data, startNodeId, blockedNodeIds);
 
         onNodeHover(hoverEvent);
       }
@@ -171,7 +170,7 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, startNodeId
         d3.selectAll(d.dependencies.map(([, d]) => d.text))
           .attr('fill', colorDeselected)
           .attr('font-weight', null);
-        drawClusterSelection(svg, data, startNodeId, blockNodeId);
+        drawClusterSelection(svg, data, startNodeId, blockedNodeIds);
 
         onNodeHover(null);
       }
@@ -276,9 +275,9 @@ Effort* = ${effort(d.dependencies.length, d.dependents.length)}, I = ${
           });
       });
 
-      drawClusterSelection(svg, data, startNodeId, blockNodeId);
+      drawClusterSelection(svg, data, startNodeId, blockedNodeIds);
     }
-  }, [data, startNodeId, blockNodeId]);
+  }, [data, startNodeId, blockedNodeIds]);
 
   return <svg ref={svgRef} width="100%" height="100vh" />;
 };

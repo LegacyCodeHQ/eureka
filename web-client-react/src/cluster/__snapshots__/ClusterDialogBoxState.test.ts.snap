@@ -15,7 +15,7 @@ ClusterDialogBoxState {
       },
     ],
     "searchTerm": "void",
-    "selected": null,
+    "selected": Array [],
   },
   "members": Array [
     Member {
@@ -69,7 +69,7 @@ ClusterDialogBoxState {
       },
     ],
     "searchTerm": "void",
-    "selected": null,
+    "selected": Array [],
   },
   "members": Array [
     Member {
@@ -123,7 +123,59 @@ ClusterDialogBoxState {
       },
     ],
     "searchTerm": "void",
-    "selected": null,
+    "selected": Array [],
+  },
+  "members": Array [
+    Member {
+      "nodeId": "List chrome",
+    },
+    Member {
+      "nodeId": "void onCreate()",
+    },
+    Member {
+      "nodeId": "void onPause()",
+    },
+    Member {
+      "nodeId": "void onResume()",
+    },
+  ],
+  "startNodeSelectionModel": SelectionModel {
+    "focused": Member {
+      "nodeId": "void onCreate()",
+    },
+    "searchResult": Array [
+      Member {
+        "nodeId": "void onCreate()",
+      },
+      Member {
+        "nodeId": "void onPause()",
+      },
+      Member {
+        "nodeId": "void onResume()",
+      },
+    ],
+    "searchTerm": "voi",
+    "selected": Member {
+      "nodeId": "void onCreate()",
+    },
+  },
+}
+`;
+
+exports[`Cluster dialog box state block node selection should allow selecting multiple nodes 1`] = `
+ClusterDialogBoxState {
+  "blockNodeSelectionModel": SelectionModel {
+    "focused": null,
+    "searchResult": Array [],
+    "searchTerm": "void",
+    "selected": Array [
+      Member {
+        "nodeId": "void onPause()",
+      },
+      Member {
+        "nodeId": "void onResume()",
+      },
+    ],
   },
   "members": Array [
     Member {
@@ -166,20 +218,19 @@ exports[`Cluster dialog box state block node selection should allow to deselect 
 ClusterDialogBoxState {
   "blockNodeSelectionModel": SelectionModel {
     "focused": Member {
-      "nodeId": "void onPause()",
+      "nodeId": "void onResume()",
     },
     "searchResult": Array [
-      Member {
-        "nodeId": "void onPause()",
-      },
       Member {
         "nodeId": "void onResume()",
       },
     ],
     "searchTerm": "void",
-    "selected": Member {
-      "nodeId": "void onPause()",
-    },
+    "selected": Array [
+      Member {
+        "nodeId": "void onPause()",
+      },
+    ],
   },
   "members": Array [
     Member {
@@ -220,7 +271,7 @@ exports[`Cluster dialog box state block node selection should deselect the curre
 ClusterDialogBoxState {
   "blockNodeSelectionModel": SelectionModel {
     "focused": Member {
-      "nodeId": "void onPause()",
+      "nodeId": "void onResume()",
     },
     "searchResult": Array [
       Member {
@@ -231,7 +282,7 @@ ClusterDialogBoxState {
       },
     ],
     "searchTerm": "void",
-    "selected": null,
+    "selected": Array [],
   },
   "members": Array [
     Member {
@@ -274,20 +325,19 @@ exports[`Cluster dialog box state block node selection should select the current
 ClusterDialogBoxState {
   "blockNodeSelectionModel": SelectionModel {
     "focused": Member {
-      "nodeId": "void onPause()",
+      "nodeId": "void onResume()",
     },
     "searchResult": Array [
-      Member {
-        "nodeId": "void onPause()",
-      },
       Member {
         "nodeId": "void onResume()",
       },
     ],
     "searchTerm": "void",
-    "selected": Member {
-      "nodeId": "void onPause()",
-    },
+    "selected": Array [
+      Member {
+        "nodeId": "void onPause()",
+      },
+    ],
   },
   "members": Array [
     Member {
@@ -332,7 +382,7 @@ ClusterDialogBoxState {
     "focused": null,
     "searchResult": Array [],
     "searchTerm": "",
-    "selected": null,
+    "selected": Array [],
   },
   "members": Array [
     Member {
@@ -375,7 +425,7 @@ ClusterDialogBoxState {
     "focused": null,
     "searchResult": Array [],
     "searchTerm": "",
-    "selected": null,
+    "selected": Array [],
   },
   "members": Array [
     Member {
@@ -418,7 +468,7 @@ ClusterDialogBoxState {
     "focused": null,
     "searchResult": Array [],
     "searchTerm": "",
-    "selected": null,
+    "selected": Array [],
   },
   "members": Array [
     Member {
@@ -461,7 +511,7 @@ ClusterDialogBoxState {
     "focused": null,
     "searchResult": Array [],
     "searchTerm": "",
-    "selected": null,
+    "selected": Array [],
   },
   "members": Array [
     Member {
@@ -504,7 +554,7 @@ ClusterDialogBoxState {
     "focused": null,
     "searchResult": Array [],
     "searchTerm": "",
-    "selected": null,
+    "selected": Array [],
   },
   "members": Array [
     Member {
@@ -547,7 +597,7 @@ ClusterDialogBoxState {
     "focused": null,
     "searchResult": Array [],
     "searchTerm": "",
-    "selected": null,
+    "selected": Array [],
   },
   "members": Array [
     Member {
@@ -584,7 +634,7 @@ ClusterDialogBoxState {
     "focused": null,
     "searchResult": Array [],
     "searchTerm": "",
-    "selected": null,
+    "selected": Array [],
   },
   "members": Array [
     Member {
@@ -621,7 +671,7 @@ ClusterDialogBoxState {
     "focused": null,
     "searchResult": Array [],
     "searchTerm": "",
-    "selected": null,
+    "selected": Array [],
   },
   "members": Array [
     Member {
@@ -658,7 +708,7 @@ ClusterDialogBoxState {
     "focused": null,
     "searchResult": Array [],
     "searchTerm": "",
-    "selected": null,
+    "selected": Array [],
   },
   "members": Array [
     Member {
@@ -689,7 +739,7 @@ ClusterDialogBoxState {
     "focused": null,
     "searchResult": Array [],
     "searchTerm": "",
-    "selected": null,
+    "selected": Array [],
   },
   "members": Array [
     Member {
@@ -720,7 +770,7 @@ ClusterDialogBoxState {
     "focused": null,
     "searchResult": Array [],
     "searchTerm": "",
-    "selected": null,
+    "selected": Array [],
   },
   "members": Array [
     Member {
@@ -751,7 +801,7 @@ ClusterDialogBoxState {
     "focused": null,
     "searchResult": Array [],
     "searchTerm": "",
-    "selected": null,
+    "selected": Array [],
   },
   "members": Array [
     Member {
@@ -782,7 +832,7 @@ ClusterDialogBoxState {
     "focused": null,
     "searchResult": Array [],
     "searchTerm": "",
-    "selected": null,
+    "selected": Array [],
   },
   "members": Array [
     Member {
@@ -813,7 +863,7 @@ ClusterDialogBoxState {
     "focused": null,
     "searchResult": Array [],
     "searchTerm": "",
-    "selected": null,
+    "selected": Array [],
   },
   "members": Array [
     Member {
@@ -856,7 +906,7 @@ ClusterDialogBoxState {
     "focused": null,
     "searchResult": Array [],
     "searchTerm": "",
-    "selected": null,
+    "selected": Array [],
   },
   "members": Array [
     Member {

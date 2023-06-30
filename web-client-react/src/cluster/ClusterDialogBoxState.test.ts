@@ -223,7 +223,7 @@ describe('Cluster dialog box state', () => {
       const blockNodeSelectedState = blockNodeSearchResultState.select();
 
       // then
-      expect(blockNodeSelectedState.blockNodeSelectionModel.selected).toEqual(new Member('void onPause()'));
+      expect(blockNodeSelectedState.blockNodeSelectionModel.selected).toEqual([new Member('void onPause()')]);
       expect(blockNodeSelectedState).toMatchSnapshot();
     });
 
@@ -235,7 +235,7 @@ describe('Cluster dialog box state', () => {
       const blockNodeDeselectedState = blockNodeSelectedState.deselectBlockNode();
 
       // then
-      expect(blockNodeDeselectedState.blockNodeSelectionModel.selected).toBeNull();
+      expect(blockNodeDeselectedState.blockNodeSelectionModel.selected).toEqual([]);
       expect(blockNodeDeselectedState).toMatchSnapshot();
     });
 
@@ -249,6 +249,17 @@ describe('Cluster dialog box state', () => {
       // then
       expect(startNodeDeselectedState.startNodeSelectionModel.selected).toBeNull();
       expect(startNodeDeselectedState).toMatchSnapshot();
+    });
+
+    it('should allow selecting multiple nodes', () => {
+      // given
+      const blockNodeSelectedState = blockNodeSearchResultState.select();
+
+      // when
+      const multipleBlockNodesSelectedState = blockNodeSelectedState.select();
+
+      // then
+      expect(multipleBlockNodesSelectedState).toMatchSnapshot();
     });
   });
 });

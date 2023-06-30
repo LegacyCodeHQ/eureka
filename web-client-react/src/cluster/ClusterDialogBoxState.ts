@@ -5,12 +5,13 @@ class SelectionModel<T> {
     public readonly searchTerm: string,
     public readonly searchResult: Member[],
     public readonly focused: Member | null,
-    public readonly selected: T | null,
+    public readonly selected: T,
   ) {
     // empty
   }
 
-  static DEFAULT = new SelectionModel<Member>('', [], null, null);
+  static SINGLE = new SelectionModel<Member | null>('', [], null, null);
+  static MULTIPLE = new SelectionModel<Member[]>('', [], null, []);
   static MIN_SEARCH_TERM_LENGTH = 1;
 
   isSearchTermEmpty(): boolean {
@@ -60,10 +61,34 @@ class SelectionModel<T> {
   }
 
   select(): SelectionModel<T> {
-    return new SelectionModel(this.searchTerm, this.searchResult, this.focused, this.focused as T);
+    let selected: T;
+    let searchResult: Member[];
+    let focused: Member | null;
+
+    const isBlockNodesSelectionModel = Array.isArray(this.selected);
+    if (isBlockNodesSelectionModel) {
+      const selectedMembers = this.selected as Member[];
+      selected = [...selectedMembers, this.focused] as T;
+      searchResult = this.searchResult.filter((member) => !(selected as Member[]).includes(member));
+      const currentFocusedIndex = searchResult.findIndex((member) => member === this.focused);
+      if (searchResult[currentFocusedIndex + 1]) {
+        focused = searchResult[currentFocusedIndex + 1];
+      } else {
+        focused = null;
+      }
+    } else {
+      selected = this.focused as T;
+      searchResult = this.searchResult;
+      focused = this.focused;
+    }
+    return new SelectionModel(this.searchTerm, searchResult, focused, selected);
   }
 
   deselect(): SelectionModel<T> {
+    if (Array.isArray(this.selected)) {
+      const searchResult = [...this.selected, ...this.searchResult];
+      return new SelectionModel(this.searchTerm, searchResult, this.focused, [] as T);
+    }
     return new SelectionModel(this.searchTerm, this.searchResult, this.focused, null as T);
   }
 }
@@ -71,14 +96,14 @@ class SelectionModel<T> {
 class ClusterDialogBoxState {
   constructor(
     public readonly members: Member[],
-    public readonly startNodeSelectionModel: SelectionModel<Member>,
-    public readonly blockNodeSelectionModel: SelectionModel<Member>,
+    public readonly startNodeSelectionModel: SelectionModel<Member | null>,
+    public readonly blockNodeSelectionModel: SelectionModel<Member[]>,
   ) {
     // empty
   }
 
   static initialState(members: Member[]): ClusterDialogBoxState {
-    return new ClusterDialogBoxState(members, SelectionModel.DEFAULT, SelectionModel.DEFAULT);
+    return new ClusterDialogBoxState(members, SelectionModel.SINGLE, SelectionModel.MULTIPLE);
   }
 
   search(searchTerm: string): ClusterDialogBoxState {
@@ -88,6 +113,7 @@ class ClusterDialogBoxState {
     } else {
       const blockSelectionModel = this.blockNodeSelectionModel.search(this.members, searchTerm, [
         this.startNodeSelectionModel.selected,
+        ...this.blockNodeSelectionModel.selected,
       ]);
       return new ClusterDialogBoxState(this.members, this.startNodeSelectionModel, blockSelectionModel);
     }

@@ -47,7 +47,7 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps<Member>> = ({
     if (
       !isClusterBoxVisible ||
       dialogState.startNodeSelectionModel.searchResult.length === 0 ||
-      (dialogState.startNodeSelectionModel.selected && dialogState.blockNodeSelectionModel.selected)
+      (dialogState.startNodeSelectionModel.selected && dialogState.blockNodeSelectionModel.selected.length > 0)
     ) {
       return;
     }
@@ -89,9 +89,7 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps<Member>> = ({
   }, [dialogState.startNodeSelectionModel.selected]);
 
   useEffect(() => {
-    onBlockSelectionChanged(
-      dialogState.blockNodeSelectionModel.selected ? [dialogState.blockNodeSelectionModel.selected] : null,
-    );
+    onBlockSelectionChanged(dialogState.blockNodeSelectionModel.selected);
   }, [dialogState.blockNodeSelectionModel.selected]);
 
   useEffect(() => {
@@ -126,16 +124,18 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps<Member>> = ({
           />
         </React.Fragment>
       )}
-      {dialogState.blockNodeSelectionModel.selected && dialogState.startNodeSelectionModel.selected && (
+      {dialogState.blockNodeSelectionModel.selected.length > 0 && dialogState.startNodeSelectionModel.selected && (
         <React.Fragment>
           <BlockNode />
-          <SelectedMemberComponent
-            member={dialogState.blockNodeSelectionModel.selected!}
-            onRemoveClicked={() => setDialogState(dialogState.deselectBlockNode())}
-          />
+          {dialogState.blockNodeSelectionModel.selected.map((member) => (
+            <SelectedMemberComponent
+              member={member}
+              onRemoveClicked={() => setDialogState(dialogState.deselectBlockNode())}
+            />
+          ))}
         </React.Fragment>
       )}
-      {dialogState.startNodeSelectionModel.selected && !dialogState.blockNodeSelectionModel.selected && (
+      {dialogState.startNodeSelectionModel.selected && dialogState.blockNodeSelectionModel.selected.length === 0 && (
         <React.Fragment>
           <BlockNode />
           <input
@@ -154,7 +154,7 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps<Member>> = ({
         />
       )}
       {dialogState.startNodeSelectionModel.selected &&
-        !dialogState.blockNodeSelectionModel.selected &&
+        dialogState.blockNodeSelectionModel.selected.length === 0 &&
         dialogState.blockNodeSelectionModel.focused && (
           <MemberList
             focusedMember={dialogState.blockNodeSelectionModel.focused}

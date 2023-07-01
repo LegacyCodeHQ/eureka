@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Profiler, useEffect, useState } from 'react';
 import './App.css';
 import VocabularyPanel from './vocabulary/VocabularyPanel';
 import EdgeBundlingGraph from './viz/EdgeBundlingGraph';
@@ -73,11 +73,20 @@ function App() {
                     </div>
                     <div className="viz">
                       {data && (
-                        <ClusterDialogBox
-                          members={data.members()}
-                          onStartSelectionChanged={handleStartSelectionChanged}
-                          onBlockSelectionChanged={handleBlockSelectionChanged}
-                        />
+                        <Profiler
+                          id="ClusterDialogBoxProfiler"
+                          onRender={(id, phase, actualDuration) => {
+                            console.log(
+                              `Component "${id}" re-rendered in phase "${phase}" with duration "${actualDuration}" ms`,
+                            );
+                          }}
+                        >
+                          <ClusterDialogBox
+                            members={data.members()}
+                            onStartSelectionChanged={handleStartSelectionChanged}
+                            onBlockSelectionChanged={handleBlockSelectionChanged}
+                          />
+                        </Profiler>
                       )}
                       {data && (
                         <EdgeBundlingGraph

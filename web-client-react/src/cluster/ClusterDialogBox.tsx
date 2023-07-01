@@ -20,6 +20,23 @@ const StartNode: React.FC = () => {
   );
 };
 
+function areArrayContentsEqual<T>(a: T[], b: T[], transform: (item: T) => string) {
+  const setA = new Set(a.map(transform));
+  const setB = new Set(b.map(transform));
+
+  if (setA.size !== setB.size) {
+    return false;
+  }
+
+  for (const item of setA) {
+    if (!setB.has(item)) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 const BlockNode: React.FC = () => {
   return <div className="input-title">‣ Block node</div>;
 };
@@ -89,9 +106,18 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps<Member>> = ({
     onStartSelectionChanged(dialogState.startNodeSelectionModel.selected);
   }, [dialogState.startNodeSelectionModel.selected]);
 
+  const previousSelectedBlockedNodesRef = useRef(dialogState.blockNodeSelectionModel.selected);
+
   useEffect(() => {
-    onBlockSelectionChanged(dialogState.blockNodeSelectionModel.selected);
-  }, [dialogState.blockNodeSelectionModel.selected]);
+    const selectedMembers = dialogState.blockNodeSelectionModel.selected;
+    const previousSelectedMembers = previousSelectedBlockedNodesRef.current;
+
+    if (!areArrayContentsEqual(selectedMembers, previousSelectedMembers, (member) => member.nodeId)) {
+      onBlockSelectionChanged(dialogState.blockNodeSelectionModel.selected);
+    }
+
+    previousSelectedBlockedNodesRef.current = selectedMembers;
+  }, [dialogState.blockNodeSelectionModel.selected, onBlockSelectionChanged]);
 
   useEffect(() => {
     const parentContainer = dialogBoxRef.current?.parentElement;
@@ -130,6 +156,7 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps<Member>> = ({
         <React.Fragment>
           {dialogState.blockNodeSelectionModel.selected.map((member) => (
             <SelectedMemberComponent
+              key={member.nodeId}
               member={member}
               onRemoveClicked={() => setDialogState(dialogState.deselectBlockNode())}
             />

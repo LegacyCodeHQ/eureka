@@ -6,18 +6,22 @@ describe('Cluster', () => {
   it('should handle an empty link array', () => {
     // given
     const emptyLinks: Link[] = [];
+
+    // when
     const cluster = Cluster.from(emptyLinks, 'void main()');
 
-    // when & then
+    // then
     expect(cluster.links).toEqual(emptyLinks);
   });
 
   it('should identify a network with a single relationship', () => {
     // given
     const singleLink: Link[] = [{ source: 'void main()', target: 'add(Int, Int): Int', value: 1 }];
+
+    // when
     const cluster = Cluster.from(singleLink, 'void main()');
 
-    // when & then
+    // then
     expect(cluster.links).toEqual(singleLink);
   });
 
@@ -27,9 +31,11 @@ describe('Cluster', () => {
       { source: 'void main()', target: 'add(Int, Int): Int', value: 1 },
       { source: 'void main()', target: 'subtract(Int, Int): Int', value: 2 },
     ];
+
+    // when
     const cluster = Cluster.from(multipleLinks, 'void main()');
 
-    // when & then
+    // then
     expect(cluster.links).toEqual(multipleLinks);
   });
 
@@ -40,9 +46,11 @@ describe('Cluster', () => {
       { source: 'void main()', target: 'subtract(Int, Int): Int', value: 1 },
       { source: 'multiply(Int, Int): Int', target: 'round(Double): Int', value: 1 },
     ];
+
+    // when
     const cluster = Cluster.from(multipleLinks, 'void main()');
 
-    // when & then
+    // then
     const expectedResult: Link[] = [
       { source: 'void main()', target: 'add(Int, Int): Int', value: 1 },
       { source: 'void main()', target: 'subtract(Int, Int): Int', value: 1 },
@@ -57,9 +65,11 @@ describe('Cluster', () => {
       { source: 'void main()', target: 'subtract(Int, Int): Int', value: 1 },
       { source: 'multiply(Int, Int): Int', target: 'add(Int, Int): Int', value: 1 },
     ];
+
+    // when
     const cluster = Cluster.from(multipleLinks, 'void main()');
 
-    // when & then
+    // then
     const expectedResult: Link[] = [
       { source: 'void main()', target: 'add(Int, Int): Int', value: 1 },
       { source: 'void main()', target: 'subtract(Int, Int): Int', value: 1 },
@@ -82,9 +92,11 @@ describe('Cluster', () => {
       { source: 'onViewCreated', target: 'setupProgressBar', value: 1 },
       { source: 'createUi', target: 'setupProgressBar', value: 1 },
     ];
+
+    // when
     const cluster = Cluster.from(multipleLinks, 'chrome', ['onViewCreated']);
 
-    // when & then
+    // then
     const expectedResult: Link[] = [
       { source: 'onViewCreated', target: 'chrome', value: 1 },
       { source: 'hideChromeImmediate', target: 'chrome', value: 1 },
@@ -98,9 +110,11 @@ describe('Cluster', () => {
   it('should identify a cluster from a large network', () => {
     // given
     const multipleLinks: Link[] = JSON.parse(graphDataJson).links;
+
+    // when
     const cluster = Cluster.from(multipleLinks, 'List chrome', ['void onViewCreated(View, Bundle)']);
 
-    // when & then
+    // then
     const expectedResult: Link[] = [
       { source: 'void onViewCreated(View, Bundle)', target: 'List chrome', value: 1 },
       { source: 'void hideChromeImmediate()', target: 'List chrome', value: 1 },
@@ -127,9 +141,11 @@ describe('Cluster', () => {
       { source: 'B', target: 'Y', value: 1 },
       { source: 'B', target: 'Z', value: 1 },
     ];
+
+    // when
     const cluster = Cluster.from(multipleLinks, 'X', ['A', 'B']);
 
-    // when & then
+    // then
     const expectedResult: Link[] = [
       { source: 'A', target: 'X', value: 1 },
       { source: 'B', target: 'X', value: 1 },
@@ -146,9 +162,11 @@ describe('Cluster', () => {
       { source: 'X', target: 'F', value: 1 },
       { source: 'X', target: 'G', value: 1 },
     ];
+
+    // when
     const cluster = Cluster.from(multipleLinks, 'A', ['X']);
 
-    // when & then
+    // then
     const expectedResult: Link[] = [{ source: 'A', target: 'X', value: 1 }];
     expect(cluster.links).toEqual(expectedResult);
   });

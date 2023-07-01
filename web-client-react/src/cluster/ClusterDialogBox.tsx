@@ -158,7 +158,7 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps<Member>> = ({
             <SelectedMemberComponent
               key={member.nodeId}
               member={member}
-              onRemoveClicked={() => setDialogState(dialogState.deselectBlockNode())}
+              onRemoveClicked={() => setDialogState(dialogState.deselectBlockNode(member))}
             />
           ))}
         </React.Fragment>

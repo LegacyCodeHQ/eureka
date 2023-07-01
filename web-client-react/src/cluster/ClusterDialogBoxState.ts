@@ -89,11 +89,11 @@ class ClusterDialogBoxState {
     );
   }
 
-  deselectBlockNode(): ClusterDialogBoxState {
+  deselectBlockNode(member: Member): ClusterDialogBoxState {
     return new ClusterDialogBoxState(
       this.members,
       this.startNodeSelectionModel,
-      this.blockNodeSelectionModel.deselect(),
+      this.blockNodeSelectionModel.deselect(member),
     );
   }
 

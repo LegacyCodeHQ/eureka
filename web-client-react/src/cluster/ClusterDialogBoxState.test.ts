@@ -232,7 +232,7 @@ describe('Cluster dialog box state', () => {
       const blockNodeSelectedState = blockNodeSearchResultState.select();
 
       // when
-      const blockNodeDeselectedState = blockNodeSelectedState.deselectBlockNode();
+      const blockNodeDeselectedState = blockNodeSelectedState.deselectBlockNode(new Member('void onPause()'));
 
       // then
       expect(blockNodeDeselectedState.blockNodeSelectionModel.selected).toEqual([]);

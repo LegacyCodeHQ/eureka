@@ -170,4 +170,34 @@ describe('Cluster', () => {
     const expectedResult: Link[] = [{ source: 'A', target: 'X', value: 1 }];
     expect(cluster.links).toEqual(expectedResult);
   });
+
+  it('should support multiple block nodes', () => {
+    // given
+    const multipleLinks: Link[] = [
+      { source: 'init()', target: 'lifecycleDisposable', value: 1 },
+      { source: 'init()', target: 'videoControlsDelegate', value: 1 },
+      { source: 'getSharedViewModel()', target: 'sharedViewModel', value: 1 },
+      { source: 'onMediaReady()', target: 'getSharedViewModel()', value: 1 },
+      { source: 'mediaNotAvailable()', target: 'getSharedViewModel()', value: 1 },
+      { source: 'onReadyToAnimate()', target: 'getSharedViewModel()', value: 1 },
+      { source: 'onViewCreated()', target: 'onReadyToAnimate()', value: 1 },
+      { source: 'init()', target: 'sharedViewModel', value: 1 },
+      { source: 'onViewCreated()', target: 'requireView()', value: 1 },
+      { source: 'onViewCreated()', target: 'requireContext()', value: 1 },
+    ];
+
+    // when
+    const cluster = Cluster.from(multipleLinks, 'getSharedViewModel()', ['onViewCreated()', 'init()']);
+
+    // then
+    const expectedResult: Link[] = [
+      { source: 'getSharedViewModel()', target: 'sharedViewModel', value: 1 },
+      { source: 'onMediaReady()', target: 'getSharedViewModel()', value: 1 },
+      { source: 'mediaNotAvailable()', target: 'getSharedViewModel()', value: 1 },
+      { source: 'onReadyToAnimate()', target: 'getSharedViewModel()', value: 1 },
+      { source: 'onViewCreated()', target: 'onReadyToAnimate()', value: 1 },
+      { source: 'init()', target: 'sharedViewModel', value: 1 },
+    ];
+    expect(cluster.links).toEqual(expectedResult);
+  });
 });

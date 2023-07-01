@@ -4,6 +4,11 @@ import SelectionModel from './SelectionModel';
 export class MultipleSelectionModel extends SelectionModel<Member[]> {
   static DEFAULT = new MultipleSelectionModel('', [], null, []);
 
+  deselect(): MultipleSelectionModel {
+    const searchResult = [...this.selected, ...this.searchResult];
+    return <MultipleSelectionModel>this.copy(undefined, searchResult, undefined, []);
+  }
+
   public override select(): SelectionModel<Member[]> {
     const selectedMembers = this.selected as Member[];
     let selected: Member[];

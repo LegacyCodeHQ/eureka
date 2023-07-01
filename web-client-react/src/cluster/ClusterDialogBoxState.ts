@@ -1,13 +1,12 @@
 import { Member } from './Member';
-import SelectionModel from './SelectionModel';
 import { MultipleSelectionModel } from './MultipleSelectionModel';
 import { SingleSelectionModel } from './SingleSelectionModel';
 
 class ClusterDialogBoxState {
   constructor(
     public readonly members: Member[],
-    public readonly startNodeSelectionModel: SelectionModel<Member | null>,
-    public readonly blockNodeSelectionModel: SelectionModel<Member[]>,
+    public readonly startNodeSelectionModel: SingleSelectionModel,
+    public readonly blockNodeSelectionModel: MultipleSelectionModel,
   ) {
     // empty
   }
@@ -19,13 +18,21 @@ class ClusterDialogBoxState {
   search(searchTerm: string): ClusterDialogBoxState {
     if (this.startNodeSelectionModel.selected === null) {
       const selectionModel = this.startNodeSelectionModel.search(this.members, searchTerm);
-      return new ClusterDialogBoxState(this.members, selectionModel, this.blockNodeSelectionModel);
+      return new ClusterDialogBoxState(
+        this.members,
+        selectionModel as SingleSelectionModel,
+        this.blockNodeSelectionModel,
+      );
     } else {
       const blockSelectionModel = this.blockNodeSelectionModel.search(this.members, searchTerm, [
         this.startNodeSelectionModel.selected,
         ...this.blockNodeSelectionModel.selected,
       ]);
-      return new ClusterDialogBoxState(this.members, this.startNodeSelectionModel, blockSelectionModel);
+      return new ClusterDialogBoxState(
+        this.members,
+        this.startNodeSelectionModel,
+        blockSelectionModel as MultipleSelectionModel,
+      );
     }
   }
 
@@ -39,13 +46,13 @@ class ClusterDialogBoxState {
       return new ClusterDialogBoxState(
         this.members,
         this.startNodeSelectionModel,
-        this.blockNodeSelectionModel.focusNextMember(),
+        this.blockNodeSelectionModel.focusNextMember() as MultipleSelectionModel,
       );
     }
 
     return new ClusterDialogBoxState(
       this.members,
-      this.startNodeSelectionModel.focusNextMember(),
+      this.startNodeSelectionModel.focusNextMember() as SingleSelectionModel,
       this.blockNodeSelectionModel,
     );
   }
@@ -56,13 +63,13 @@ class ClusterDialogBoxState {
       return new ClusterDialogBoxState(
         this.members,
         this.startNodeSelectionModel,
-        this.blockNodeSelectionModel.focusPreviousMember(),
+        this.blockNodeSelectionModel.focusPreviousMember() as MultipleSelectionModel,
       );
     }
 
     return new ClusterDialogBoxState(
       this.members,
-      this.startNodeSelectionModel.focusPreviousMember(),
+      this.startNodeSelectionModel.focusPreviousMember() as SingleSelectionModel,
       this.blockNodeSelectionModel,
     );
   }
@@ -71,11 +78,15 @@ class ClusterDialogBoxState {
     if (!this.startNodeSelectionModel.selected) {
       return new ClusterDialogBoxState(
         this.members,
-        this.startNodeSelectionModel.select(),
+        this.startNodeSelectionModel.select() as SingleSelectionModel,
         this.blockNodeSelectionModel,
       );
     }
-    return new ClusterDialogBoxState(this.members, this.startNodeSelectionModel, this.blockNodeSelectionModel.select());
+    return new ClusterDialogBoxState(
+      this.members,
+      this.startNodeSelectionModel,
+      this.blockNodeSelectionModel.select() as MultipleSelectionModel,
+    );
   }
 
   deselectBlockNode(): ClusterDialogBoxState {

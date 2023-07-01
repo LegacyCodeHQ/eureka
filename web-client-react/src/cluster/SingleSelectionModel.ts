@@ -4,6 +4,10 @@ import SelectionModel from './SelectionModel';
 export class SingleSelectionModel extends SelectionModel<Member | null> {
   static DEFAULT = new SingleSelectionModel('', [], null, null);
 
+  deselect(): SingleSelectionModel {
+    return <SingleSelectionModel>this.copy(undefined, undefined, undefined, null);
+  }
+
   public override select(): SelectionModel<Member | null> {
     return this.copy(undefined, undefined, undefined, this.focused);
   }

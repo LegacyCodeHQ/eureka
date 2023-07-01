@@ -58,14 +58,6 @@ abstract class SelectionModel<T> {
     return this.copy(trimmedSearchTerm, filteredMembers, focusedMember, this.selected as T);
   }
 
-  deselect(): SelectionModel<T> {
-    if (Array.isArray(this.selected)) {
-      const searchResult = [...this.selected, ...this.searchResult];
-      return this.copy(this.searchTerm, searchResult, this.focused, [] as T);
-    }
-    return this.copy(this.searchTerm, this.searchResult, this.focused, null as T);
-  }
-
   abstract select(): SelectionModel<T>;
 
   protected abstract copy(

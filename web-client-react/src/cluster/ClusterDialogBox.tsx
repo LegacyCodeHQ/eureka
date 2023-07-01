@@ -8,7 +8,7 @@ import SelectedMemberComponent from './SelectedMemberComponent';
 interface ClusterDialogBoxProps<T extends Member> {
   members: string[];
   onStartSelectionChanged: (member: T | null) => void;
-  onBlockSelectionChanged: (member: T[] | null) => void;
+  onBlockSelectionChanged: (member: T[]) => void;
 }
 
 const StartNode: React.FC = () => {

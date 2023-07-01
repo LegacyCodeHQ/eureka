@@ -9,7 +9,7 @@ import Cluster from './model/Cluster';
 interface EdgeBundlingGraphProps {
   data: GraphData;
   startNodeId: string | null;
-  blockedNodeIds: string[] | null;
+  blockedNodeIds: string[];
   onNodeHover: (event: NodeHoverEvent | null) => void;
 }
 
@@ -91,10 +91,10 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, startNodeId
         svg: d3.Selection<SVGSVGElement, unknown, null, undefined>,
         data: GraphData,
         startNodeId: string | null,
-        blockedNodeIds: string[] | null,
+        blockedNodeIds: string[],
       ) {
         if (startNodeId) {
-          const selectedNodeIds = Cluster.from(data.links, startNodeId, blockedNodeIds ? blockedNodeIds : [])
+          const selectedNodeIds = Cluster.from(data.links, startNodeId, blockedNodeIds)
             .links.map((link) => [link.source, link.target])
             .flatMap((pair) => pair);
 

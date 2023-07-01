@@ -19,7 +19,7 @@ function App() {
   const [count, setCount] = useState<Count | null>(null);
   const [connectionStatus, setConnectionStatus] = useState(WsConnectionStatus.Disconnected);
   const [startMember, setStartMember] = useState<Member | null>(null);
-  const [blockedMembers, setBlockedMembers] = useState<Member[] | null>(null);
+  const [blockedMembers, setBlockedMembers] = useState<Member[]>([]);
 
   useEffect(() => {
     const hostName = document.getElementById('root')?.dataset.hostName;
@@ -50,7 +50,7 @@ function App() {
     setStartMember(selection);
   };
 
-  const handleBlockSelectionChanged = (selection: Member[] | null) => {
+  const handleBlockSelectionChanged = (selection: Member[]) => {
     setBlockedMembers(selection);
   };
 
@@ -62,7 +62,7 @@ function App() {
             {(data: GraphData | null) => {
               setTitle(makeTitle(data?.meta.classInfo));
               const classInfo = data?.meta.classInfo;
-              const blockedNodeIds = blockedMembers ? blockedMembers?.map((member) => member.nodeId) : null;
+              const blockedNodeIds = blockedMembers.map((member) => member.nodeId);
 
               return (
                 <div>

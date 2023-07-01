@@ -43,10 +43,12 @@ interface BlockNodeProps {
 
 const BlockNode: React.FC<BlockNodeProps> = ({ count }) => {
   let title: string;
-  if (count > 1) {
-    title = 'Block nodes';
-  } else {
+  if (count === 0) {
+    title = 'Select block node';
+  } else if (count === 1) {
     title = 'Block node';
+  } else {
+    title = `Block nodes (${count})`;
   }
   return <div className="input-title">‣ {title}</div>;
 };

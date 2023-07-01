@@ -37,8 +37,18 @@ function areArrayContentsEqual<T>(a: T[], b: T[], transform: (item: T) => string
   return true;
 }
 
-const BlockNode: React.FC = () => {
-  return <div className="input-title">‣ Block node</div>;
+interface BlockNodeProps {
+  count: number;
+}
+
+const BlockNode: React.FC<BlockNodeProps> = ({ count }) => {
+  let title: string;
+  if (count > 1) {
+    title = 'Block nodes';
+  } else {
+    title = 'Block node';
+  }
+  return <div className="input-title">‣ {title}</div>;
 };
 
 const ClusterDialogBox: React.FC<ClusterDialogBoxProps<Member>> = ({
@@ -151,7 +161,9 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps<Member>> = ({
           />
         </React.Fragment>
       )}
-      {dialogState.startNodeSelectionModel.selected && <BlockNode />}
+      {dialogState.startNodeSelectionModel.selected && (
+        <BlockNode count={dialogState.blockNodeSelectionModel.selected.length} />
+      )}
       {dialogState.blockNodeSelectionModel.selected.length > 0 && dialogState.startNodeSelectionModel.selected && (
         <React.Fragment>
           {dialogState.blockNodeSelectionModel.selected.map((member) => (

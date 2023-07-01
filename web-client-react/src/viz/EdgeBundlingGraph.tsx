@@ -101,7 +101,11 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, startNodeId
           svg.selectAll('g').each(function (d: any) {
             if (d && selectedNodeIds.includes(d.data.id)) {
               d3.select(this).select('text').attr('fill', 'magenta');
-              d3.selectAll(d.dependents.map((d: any) => d.path))
+              d3.selectAll(
+                d.dependents
+                  .filter((d: any) => selectedNodeIds.includes(d.path.__data__[0].data.id))
+                  .map((d: any) => d.path),
+              )
                 .attr('stroke-width', overedWidth)
                 .attr('stroke', 'magenta')
                 .raise();

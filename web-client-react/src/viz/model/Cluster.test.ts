@@ -137,4 +137,19 @@ describe('Cluster', () => {
     ];
     expect(cluster.links).toEqual(expectedResult);
   });
+
+  it('should detect a link when there is just a start node and connected stop node', () => {
+    // given
+    const multipleLinks: Link[] = [
+      { source: 'A', target: 'X', value: 1 },
+      { source: 'X', target: 'E', value: 1 },
+      { source: 'X', target: 'F', value: 1 },
+      { source: 'X', target: 'G', value: 1 },
+    ];
+    const cluster = Cluster.from(multipleLinks, 'A', ['X']);
+
+    // when & then
+    const expectedResult: Link[] = [{ source: 'A', target: 'X', value: 1 }];
+    expect(cluster.links).toEqual(expectedResult);
+  });
 });

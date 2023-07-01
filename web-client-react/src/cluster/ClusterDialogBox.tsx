@@ -11,10 +11,21 @@ interface ClusterDialogBoxProps<T extends Member> {
   onBlockSelectionChanged: (member: T[]) => void;
 }
 
-const StartNode: React.FC = () => {
+interface StartNodeProps {
+  selected: boolean;
+}
+
+const StartNode: React.FC<StartNodeProps> = ({ selected }) => {
+  let title;
+  if (selected) {
+    title = 'Start node';
+  } else {
+    title = 'Select start node';
+  }
+
   return (
     <div className="input-title">
-      ‣ Start node
+      ‣ {title}
       <span className="experimental">🌱 experimental</span>
     </div>
   );
@@ -145,7 +156,7 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps<Member>> = ({
     <div className={dialogBoxClassName} ref={dialogBoxRef}>
       {dialogState.startNodeSelectionModel.selected ? (
         <React.Fragment>
-          <StartNode />
+          <StartNode selected={true} />
           <SelectedMemberComponent
             member={dialogState.startNodeSelectionModel.selected!}
             onRemoveClicked={() => setDialogState(dialogState.deselectStartNode())}
@@ -153,7 +164,7 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps<Member>> = ({
         </React.Fragment>
       ) : (
         <React.Fragment>
-          <StartNode />
+          <StartNode selected={false} />
           <input
             id="startNodeInput"
             type="text"

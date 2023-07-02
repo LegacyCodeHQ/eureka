@@ -25,46 +25,8 @@ class Cluster {
       }
     }
 
-    if (blockedNodeIds.length > 0) {
-      const filteredLinks = Array.from(connectedLinks).filter(
-        (link) =>
-          !blockedNodeIds.includes(link.source) ||
-          (blockedNodeIds.includes(link.source) && pathExists(startNodeId, link.target, blockedNodeIds, classLinks)),
-      );
-      return new Cluster(removeDuplicates(filteredLinks));
-    }
-
-    return new Cluster(Array.from(connectedLinks));
+    return new Cluster(removeDuplicates(Array.from(connectedLinks)));
   }
-}
-
-function pathExists(
-  startNodeId: string,
-  destinationNodeId: string,
-  blockedNodeIds: string[],
-  classLinks: Link[],
-): boolean {
-  const visited = new Set<string>();
-  const stack = [startNodeId];
-
-  while (stack.length > 0) {
-    const currentNodeId = stack.pop()!;
-    visited.add(currentNodeId);
-
-    const relatedLinks = classLinks.filter((link) => link.source === currentNodeId || link.target === currentNodeId);
-
-    for (const link of relatedLinks) {
-      const nextNodeId = link.source === currentNodeId ? link.target : link.source;
-      if (nextNodeId === destinationNodeId) {
-        return true;
-      }
-      if (!blockedNodeIds.includes(nextNodeId) && !visited.has(nextNodeId) && !stack.includes(nextNodeId)) {
-        stack.push(nextNodeId);
-      }
-    }
-  }
-
-  return false;
 }
 
 function removeDuplicates(links: Link[]): Link[] {

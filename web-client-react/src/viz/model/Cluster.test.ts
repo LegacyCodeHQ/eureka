@@ -200,4 +200,24 @@ describe('Cluster', () => {
     ];
     expect(cluster.links).toEqual(expectedResult);
   });
+
+  it('should return relationships that are part of immediate block nodes', () => {
+    // given
+    const multipleLinks: Link[] = [
+      { source: 'A', target: 'X', value: 1 },
+      { source: 'B', target: 'X', value: 1 },
+      { source: 'C', target: 'X', value: 1 },
+    ];
+
+    // when
+    const cluster = Cluster.from(multipleLinks, 'X', ['A', 'B', 'C']);
+
+    // then
+    const expectedResult: Link[] = [
+      { source: 'A', target: 'X', value: 1 },
+      { source: 'B', target: 'X', value: 1 },
+      { source: 'C', target: 'X', value: 1 },
+    ];
+    expect(cluster.links).toEqual(expectedResult);
+  });
 });

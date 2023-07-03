@@ -9,6 +9,7 @@ import kotlin.io.path.exists
 import kotlin.io.path.name
 import picocli.CommandLine.Command
 import picocli.CommandLine.Option
+import picocli.CommandLine.Parameters
 
 @Command(
   name = "top",
@@ -17,50 +18,59 @@ import picocli.CommandLine.Option
 class TopCommand : Runnable {
   private val desiredExtensions = listOf("java", "kt")
 
-  @Option(
-    names = ["-c", "--count"],
+  @Parameters(
+    index = "0",
     description = ["number of files to list"],
+    arity = "1",
   )
   var count: Int? = null
 
   @Option(
-    names = ["--csv"],
+    names = ["-r", "--repo"],
+    description = ["path to the git repo"],
+    required = false,
+  )
+  var repoDir: Path? = null
+
+  @Option(
+    names = ["-c", "--csv"],
     description = ["print output in CSV format"],
   )
   var csv: Boolean = false
 
   override fun run() {
-    val pwd = Path.of("").toAbsolutePath()
-    if (!pwd.isGitRepo) {
+    val projectRoot = repoDir ?: Path.of("").toAbsolutePath()
+    if (!projectRoot.isGitRepo) {
       println("Uh oh! not a git repo. Run the command inside a git directory.")
       return
     }
-    val filePaths = ListFilesGitCommand(pwd.toFile()).execute()
-    val sourceFiles = filePaths.map(::File).countLines()
+    val filePaths = ListFilesGitCommand(projectRoot.toFile()).execute()
+    val sourceFiles = filePaths.map { projectRoot.toFile().resolve(it) }.countLines()
 
-    printCommandOutput(sourceFiles)
+    printCommandOutput(projectRoot, sourceFiles)
   }
 
-  private fun printCommandOutput(sourceFiles: List<LineCount>) {
+  private fun printCommandOutput(projectRoot: Path, sourceFiles: List<LineCount>) {
     if (csv) {
-      printCommandOutputCsv(sourceFiles)
+      printCommandOutputCsv(projectRoot, sourceFiles)
     } else {
       if (count != null) {
-        printFileLocTable(sourceFiles.take(count!!), sourceFiles.size)
+        printFileLocTable(projectRoot, sourceFiles.take(count!!), sourceFiles.size)
       } else {
-        printFileLocTable(sourceFiles)
+        printFileLocTable(projectRoot, sourceFiles)
       }
     }
   }
 
-  private fun printCommandOutputCsv(sourceFiles: List<LineCount>) {
+  private fun printCommandOutputCsv(projectRoot: Path, sourceFiles: List<LineCount>) {
     println("File,Lines")
     sourceFiles
       .take(count ?: sourceFiles.size)
-      .forEach { lineCount -> println("${lineCount.file},${lineCount.lines}") }
+      .forEach { lineCount -> println("${relativePathInsideRoot(projectRoot, lineCount.file)},${lineCount.lines}") }
   }
 
   private fun printFileLocTable(
+    projectRoot: Path,
     sourceFiles: List<LineCount>,
     actualCount: Int = sourceFiles.size,
   ) {
@@ -73,13 +83,13 @@ class TopCommand : Runnable {
     }
     val filesTable = table {
       sourceFiles.forEachIndexed { index, (file, lines) ->
-        row("${fileRank(index, sourceFiles.size)}. $file", "  $lines")
+        row("${fileNumber(index, sourceFiles.size)}. ${relativePathInsideRoot(projectRoot, file)}", "  $lines")
       }
     }
     println(filesTable)
   }
 
-  private fun fileRank(index: Int, totalFiles: Int): String {
+  private fun fileNumber(index: Int, totalFiles: Int): String {
     val length = totalFiles.toString().length
     return (index + 1).toString().padStart(length, ' ')
   }
@@ -93,6 +103,10 @@ class TopCommand : Runnable {
 
   private fun isDesiredFile(file: File): Boolean {
     return file.extension.lowercase(Locale.ENGLISH) in desiredExtensions
+  }
+
+  private fun relativePathInsideRoot(projectRoot: Path, file: File): String {
+    return file.toString().substringAfter(projectRoot.toString()).drop(1)
   }
 }
 

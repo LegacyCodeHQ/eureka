@@ -91,7 +91,7 @@ The command will print a Graphviz directed graph DSL.
 #### Usage
 
 ```bash
-eureka top --count 10
+eureka top 10
 ```
 
 #### Output

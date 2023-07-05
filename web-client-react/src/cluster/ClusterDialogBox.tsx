@@ -129,18 +129,10 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps<Member>> = ({
     onStartSelectionChanged(dialogState.startNodeSelectionModel.selected);
   }, [dialogState.startNodeSelectionModel.selected]);
 
-  const previousSelectedBlockedNodesRef = useRef(dialogState.blockNodeSelectionModel.selected);
-
   useEffect(() => {
     const selectedMembers = dialogState.blockNodeSelectionModel.selected;
-    const previousSelectedMembers = previousSelectedBlockedNodesRef.current;
-
-    if (!areArrayContentsEqual(selectedMembers, previousSelectedMembers, (member) => member.nodeId)) {
-      onBlockSelectionChanged(dialogState.blockNodeSelectionModel.selected);
-    }
-
-    previousSelectedBlockedNodesRef.current = selectedMembers;
-  }, [dialogState.blockNodeSelectionModel.selected, onBlockSelectionChanged]);
+    onBlockSelectionChanged(dialogState.blockNodeSelectionModel.selected);
+  }, [dialogState.blockNodeSelectionModel.selected]);
 
   useEffect(() => {
     const parentContainer = dialogBoxRef.current?.parentElement;

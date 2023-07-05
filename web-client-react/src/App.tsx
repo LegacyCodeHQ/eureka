@@ -1,4 +1,4 @@
-import React, { Profiler, useEffect, useState } from 'react';
+import React, { Profiler, useEffect, useMemo, useState } from 'react';
 import './App.css';
 import VocabularyPanel from './vocabulary/VocabularyPanel';
 import EdgeBundlingGraph from './viz/EdgeBundlingGraph';
@@ -62,7 +62,9 @@ function App() {
             {(data: GraphData | null) => {
               setTitle(makeTitle(data?.meta.classInfo));
               const classInfo = data?.meta.classInfo;
-              const blockedNodeIds = blockedMembers.map((member) => member.nodeId);
+              const blockedNodeIds = useMemo(() => {
+                return blockedMembers.map((member) => member.nodeId);
+              }, [blockedMembers]);
 
               return (
                 <div>
@@ -73,20 +75,11 @@ function App() {
                     </div>
                     <div className="viz">
                       {data && (
-                        <Profiler
-                          id="ClusterDialogBoxProfiler"
-                          onRender={(id, phase, actualDuration) => {
-                            console.log(
-                              `Component "${id}" re-rendered in phase "${phase}" with duration "${actualDuration}" ms`,
-                            );
-                          }}
-                        >
-                          <ClusterDialogBox
-                            members={data.members()}
-                            onStartSelectionChanged={handleStartSelectionChanged}
-                            onBlockSelectionChanged={handleBlockSelectionChanged}
-                          />
-                        </Profiler>
+                        <ClusterDialogBox
+                          members={data.members()}
+                          onStartSelectionChanged={handleStartSelectionChanged}
+                          onBlockSelectionChanged={handleBlockSelectionChanged}
+                        />
                       )}
                       {data && (
                         <EdgeBundlingGraph

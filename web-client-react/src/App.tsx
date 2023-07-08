@@ -70,9 +70,11 @@ function App() {
                 <div>
                   {classInfo && <Toolbar classInfo={classInfo} connectionStatus={connectionStatus} />}
                   <div className="main-panel">
-                    <div className="floating-legend">
-                      <Legend count={count} />
-                    </div>
+                    {data && (
+                      <div className="floating-legend">
+                        <Legend count={count} />
+                      </div>
+                    )}
                     <div className="viz">
                       {data && (
                         <ClusterDialogBox

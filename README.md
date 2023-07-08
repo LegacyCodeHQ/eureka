@@ -86,9 +86,9 @@ The command will print a Graphviz directed graph DSL.
 1. Copy the DSL and paste it into the [online Graphviz tool](https://dreampuf.github.io/GraphvizOnline).
 2. The tool selects the **dot** engine by default, for best results use the **circo** engine from the engine dropdown.
 
-### 4. Count lines of code for Kotlin and Java sources (experimental)
+### 4. List files with highest LOC
 
-#### Usage
+#### Usage (default, searches Kotlin and Java sources)
 
 ```bash
 eureka top 10
@@ -111,7 +111,11 @@ Showing 10 of 140
 10. bytecode/scanner/src/main/kotlin/com/legacycode/eureka/MethodDescriptor.kt         96 
 ```
 
-Run the command without the `--count` option to list all Kotlin and Java files.
+#### Usage (specify extensions)
+
+```bash
+eureka top 10 --ext cpp,swift
+```
 
 ## Licenses
 

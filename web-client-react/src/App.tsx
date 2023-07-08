@@ -68,7 +68,13 @@ function App() {
 
               return (
                 <div>
-                  {classInfo && <Toolbar classInfo={classInfo} connectionStatus={connectionStatus} />}
+                  {classInfo && (
+                    <Toolbar
+                      classInfo={classInfo}
+                      classStats={data?.classStats()}
+                      connectionStatus={connectionStatus}
+                    />
+                  )}
                   <div className="main-panel">
                     {data && (
                       <div className="floating-legend">

@@ -16,8 +16,6 @@ import picocli.CommandLine.Parameters
   description = ["lists the largest Kotlin and Java source files"],
 )
 class TopCommand : Runnable {
-  private val desiredExtensions = listOf("java", "kt")
-
   @Parameters(
     index = "0",
     description = ["number of files to list"],
@@ -37,6 +35,13 @@ class TopCommand : Runnable {
     description = ["print output in CSV format"],
   )
   var csv: Boolean = false
+
+  @Option(
+    names = ["-e", "--ext"],
+    description = ["file extensions to include"],
+    split = ",",
+  )
+  var extensions = listOf("java", "kt")
 
   override fun run() {
     val projectRoot = repoDir ?: Path.of("").toAbsolutePath()
@@ -102,7 +107,8 @@ class TopCommand : Runnable {
   }
 
   private fun isDesiredFile(file: File): Boolean {
-    return file.extension.lowercase(Locale.ENGLISH) in desiredExtensions
+    val sanitizedExtensions = extensions.map(String::trim)
+    return file.extension.lowercase(Locale.ENGLISH) in sanitizedExtensions
   }
 
   private fun relativePathInsideRoot(projectRoot: Path, file: File): String {

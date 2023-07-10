@@ -50,9 +50,10 @@ function areArrayContentsEqual<T>(a: T[], b: T[], transform: (item: T) => string
 
 interface BlockNodeProps {
   count: number;
+  onClearClicked: () => void;
 }
 
-const BlockNode: React.FC<BlockNodeProps> = ({ count }) => {
+const BlockNode: React.FC<BlockNodeProps> = ({ count, onClearClicked }) => {
   let title: string;
   if (count === 0) {
     title = 'Select block node';
@@ -61,7 +62,18 @@ const BlockNode: React.FC<BlockNodeProps> = ({ count }) => {
   } else {
     title = `Block nodes (${count})`;
   }
-  return <div className="input-title">‣ {title}</div>;
+  return (
+    <div>
+      <div className="input-title">
+        ‣ {title}
+        {count > 0 && (
+          <span className="clear" onClick={onClearClicked}>
+            Clear
+          </span>
+        )}
+      </div>
+    </div>
+  );
 };
 
 const ClusterDialogBox: React.FC<ClusterDialogBoxProps<Member>> = ({
@@ -109,6 +121,10 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps<Member>> = ({
   const handleInputChange = (event: React.FormEvent<HTMLInputElement>) => {
     const newSearchTerm = event.currentTarget.value;
     setDialogState(dialogState.search(newSearchTerm));
+  };
+
+  const handleClearClicked = () => {
+    setDialogState(dialogState.deselectAll());
   };
 
   useEffect(() => {
@@ -167,7 +183,7 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps<Member>> = ({
         </React.Fragment>
       )}
       {dialogState.startNodeSelectionModel.selected && (
-        <BlockNode count={dialogState.blockNodeSelectionModel.selected.length} />
+        <BlockNode count={dialogState.blockNodeSelectionModel.selected.length} onClearClicked={handleClearClicked} />
       )}
       {dialogState.blockNodeSelectionModel.selected.length > 0 && dialogState.startNodeSelectionModel.selected && (
         <React.Fragment>

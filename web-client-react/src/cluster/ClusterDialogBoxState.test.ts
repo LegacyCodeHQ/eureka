@@ -261,5 +261,17 @@ describe('Cluster dialog box state', () => {
       // then
       expect(multipleBlockNodesSelectedState).toMatchSnapshot();
     });
+
+    it('should allow deselecting all nodes', () => {
+      // given
+      const blockNodeSelectedState = blockNodeSearchResultState.select();
+      const multipleBlockNodesSelectedState = blockNodeSelectedState.select();
+
+      // when
+      const allDeselectedModel = multipleBlockNodesSelectedState.deselectAll();
+
+      // then
+      expect(allDeselectedModel).toMatchSnapshot();
+    });
   });
 });

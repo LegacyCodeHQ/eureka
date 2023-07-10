@@ -31,6 +31,8 @@ input:focus {
 }
 
 .input-title {
+    display: flex;
+    justify-content: space-between;
     user-select: none;
     font-weight: bold;
     font-size: small;
@@ -46,4 +48,9 @@ input:focus {
     border-radius: 16px;
     font-weight: bolder;
     font-size: x-small;
+}
+
+.clear {
+    align-self: flex-end;
+    color: #4380ff;
 }

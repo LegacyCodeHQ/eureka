@@ -104,6 +104,14 @@ class ClusterDialogBoxState {
       this.blockNodeSelectionModel,
     );
   }
+
+  deselectAll() {
+    return new ClusterDialogBoxState(
+      this.members,
+      this.startNodeSelectionModel,
+      this.blockNodeSelectionModel.deselectAll(),
+    );
+  }
 }
 
 export default ClusterDialogBoxState;

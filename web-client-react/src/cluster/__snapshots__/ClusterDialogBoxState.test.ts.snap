@@ -162,6 +162,51 @@ ClusterDialogBoxState {
 }
 `;
 
+exports[`Cluster dialog box state block node selection should allow deselecting all nodes 1`] = `
+ClusterDialogBoxState {
+  "blockNodeSelectionModel": MultipleSelectionModel {
+    "focused": null,
+    "searchResult": Array [],
+    "searchTerm": "void",
+    "selected": Array [],
+  },
+  "members": Array [
+    Member {
+      "nodeId": "List chrome",
+    },
+    Member {
+      "nodeId": "void onCreate()",
+    },
+    Member {
+      "nodeId": "void onPause()",
+    },
+    Member {
+      "nodeId": "void onResume()",
+    },
+  ],
+  "startNodeSelectionModel": SingleSelectionModel {
+    "focused": Member {
+      "nodeId": "void onCreate()",
+    },
+    "searchResult": Array [
+      Member {
+        "nodeId": "void onCreate()",
+      },
+      Member {
+        "nodeId": "void onPause()",
+      },
+      Member {
+        "nodeId": "void onResume()",
+      },
+    ],
+    "searchTerm": "voi",
+    "selected": Member {
+      "nodeId": "void onCreate()",
+    },
+  },
+}
+`;
+
 exports[`Cluster dialog box state block node selection should allow selecting multiple nodes 1`] = `
 ClusterDialogBoxState {
   "blockNodeSelectionModel": MultipleSelectionModel {

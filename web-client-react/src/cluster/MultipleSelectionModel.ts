@@ -30,6 +30,10 @@ export class MultipleSelectionModel extends SelectionModel<Member[]> {
     return this.copy(undefined, searchResult, focused, selected);
   }
 
+  deselectAll(): MultipleSelectionModel {
+    return <MultipleSelectionModel>this.copy(undefined, undefined, null, []);
+  }
+
   protected override copy(
     searchTerm: string = this.searchTerm,
     searchResult: Member[] = this.searchResult,

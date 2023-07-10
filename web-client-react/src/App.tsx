@@ -1,4 +1,4 @@
-import React, { Profiler, useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import './App.css';
 import VocabularyPanel from './vocabulary/VocabularyPanel';
 import EdgeBundlingGraph from './viz/EdgeBundlingGraph';

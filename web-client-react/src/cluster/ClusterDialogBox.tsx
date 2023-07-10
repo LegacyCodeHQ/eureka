@@ -31,23 +31,6 @@ const StartNode: React.FC<StartNodeProps> = ({ selected }) => {
   );
 };
 
-function areArrayContentsEqual<T>(a: T[], b: T[], transform: (item: T) => string) {
-  const setA = new Set(a.map(transform));
-  const setB = new Set(b.map(transform));
-
-  if (setA.size !== setB.size) {
-    return false;
-  }
-
-  for (const item of setA) {
-    if (!setB.has(item)) {
-      return false;
-    }
-  }
-
-  return true;
-}
-
 interface BlockNodeProps {
   count: number;
   onClearClicked: () => void;
@@ -98,9 +81,9 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps<Member>> = ({
 
     if (
       !isClusterBoxVisible ||
-      dialogState.startNodeSelectionModel.searchResult.length === 0 ||
+      dialogState.startNodeSelectionModel.visibleSearchResult().length === 0 ||
       (dialogState.startNodeSelectionModel.selected !== null &&
-        dialogState.blockNodeSelectionModel.searchResult.length === 0)
+        dialogState.blockNodeSelectionModel.visibleSearchResult().length === 0)
     ) {
       return;
     }
@@ -210,13 +193,13 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps<Member>> = ({
       {!dialogState.startNodeSelectionModel.selected && dialogState.startNodeSelectionModel.focused && (
         <MemberList
           focusedMember={dialogState.startNodeSelectionModel.focused}
-          filteredMembers={dialogState.startNodeSelectionModel.searchResult}
+          filteredMembers={dialogState.startNodeSelectionModel.visibleSearchResult()}
         />
       )}
       {dialogState.startNodeSelectionModel.selected && dialogState.blockNodeSelectionModel.focused && (
         <MemberList
           focusedMember={dialogState.blockNodeSelectionModel.focused}
-          filteredMembers={dialogState.blockNodeSelectionModel.searchResult}
+          filteredMembers={dialogState.blockNodeSelectionModel.visibleSearchResult()}
         />
       )}
     </div>

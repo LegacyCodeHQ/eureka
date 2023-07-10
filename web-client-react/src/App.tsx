@@ -19,7 +19,7 @@ function App() {
   const [count, setCount] = useState<Count | null>(null);
   const [connectionStatus, setConnectionStatus] = useState(WsConnectionStatus.Disconnected);
   const [startMember, setStartMember] = useState<Member | null>(null);
-  const [blockedMembers, setBlockedMembers] = useState<Member[]>([]);
+  const [hubMembers, setHubMembers] = useState<Member[]>([]);
 
   useEffect(() => {
     const hostName = document.getElementById('root')?.dataset.hostName;
@@ -50,8 +50,8 @@ function App() {
     setStartMember(selection);
   };
 
-  const handleBlockSelectionChanged = (selection: Member[]) => {
-    setBlockedMembers(selection);
+  const handleHubSelectionChanged = (selection: Member[]) => {
+    setHubMembers(selection);
   };
 
   return (
@@ -62,9 +62,9 @@ function App() {
             {(data: GraphData | null) => {
               setTitle(makeTitle(data?.meta.classInfo));
               const classInfo = data?.meta.classInfo;
-              const blockedNodeIds = useMemo(() => {
-                return blockedMembers.map((member) => member.nodeId);
-              }, [blockedMembers]);
+              const hubNodeIds = useMemo(() => {
+                return hubMembers.map((member) => member.nodeId);
+              }, [hubMembers]);
 
               return (
                 <div>
@@ -86,14 +86,14 @@ function App() {
                         <ClusterDialogBox
                           members={data.members()}
                           onStartSelectionChanged={handleStartSelectionChanged}
-                          onBlockSelectionChanged={handleBlockSelectionChanged}
+                          onHubSelectionChanged={handleHubSelectionChanged}
                         />
                       )}
                       {data && (
                         <EdgeBundlingGraph
                           data={data}
                           startNodeId={startMember?.nodeId ? startMember.nodeId : null}
-                          blockedNodeIds={blockedNodeIds}
+                          hubNodeIds={hubNodeIds}
                           onNodeHover={handleNodeHover}
                         />
                       )}

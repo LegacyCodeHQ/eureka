@@ -9,7 +9,7 @@ import Cluster from './model/Cluster';
 interface EdgeBundlingGraphProps {
   data: GraphData;
   startNodeId: string | null;
-  blockedNodeIds: string[];
+  hubNodeIds: string[];
   onNodeHover: (event: NodeHoverEvent | null) => void;
 }
 
@@ -20,7 +20,7 @@ interface GroupAngles {
   };
 }
 
-const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, startNodeId, blockedNodeIds, onNodeHover }) => {
+const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, startNodeId, hubNodeIds, onNodeHover }) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
   const width = 800;
   const radius = width / 2;
@@ -91,10 +91,10 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, startNodeId
         svg: d3.Selection<SVGSVGElement, unknown, null, undefined>,
         data: GraphData,
         startNodeId: string | null,
-        blockedNodeIds: string[],
+        hubNodeIds: string[],
       ) {
         if (startNodeId) {
-          const selectedNodeIds = Cluster.from(data.links, startNodeId, blockedNodeIds)
+          const selectedNodeIds = Cluster.from(data.links, startNodeId, hubNodeIds)
             .links.map((link) => [link.source, link.target])
             .flatMap((pair) => pair);
 
@@ -153,7 +153,7 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, startNodeId
             dependents: countDependents(d),
           },
         };
-        drawClusterSelection(svg, data, startNodeId, blockedNodeIds);
+        drawClusterSelection(svg, data, startNodeId, hubNodeIds);
 
         onNodeHover(hoverEvent);
       }
@@ -174,7 +174,7 @@ const EdgeBundlingGraph: React.FC<EdgeBundlingGraphProps> = ({ data, startNodeId
         d3.selectAll(d.dependencies.map(([, d]) => d.text))
           .attr('fill', colorDeselected)
           .attr('font-weight', null);
-        drawClusterSelection(svg, data, startNodeId, blockedNodeIds);
+        drawClusterSelection(svg, data, startNodeId, hubNodeIds);
 
         onNodeHover(null);
       }
@@ -279,9 +279,9 @@ Effort* = ${effort(d.dependencies.length, d.dependents.length)}, I = ${
           });
       });
 
-      drawClusterSelection(svg, data, startNodeId, blockedNodeIds);
+      drawClusterSelection(svg, data, startNodeId, hubNodeIds);
     }
-  }, [data, startNodeId, blockedNodeIds]);
+  }, [data, startNodeId, hubNodeIds]);
 
   return <svg ref={svgRef} width="100%" height="100vh" />;
 };

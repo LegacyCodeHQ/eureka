@@ -164,87 +164,87 @@ describe('Cluster dialog box state', () => {
     });
   });
 
-  describe('block node search', () => {
-    it('should list search results for block node', () => {
+  describe('hub node search', () => {
+    it('should list search results for hub node', () => {
       // given
       const initialState = ClusterDialogBoxState.initialState(members);
       const startNodeSearchResultState = initialState.search('voi');
       const startNodeSelectedState = startNodeSearchResultState.select();
 
       // when
-      const blockNodeSearchResultState = startNodeSelectedState.search('void');
+      const hubNodesSearchResultState = startNodeSelectedState.search('void');
 
       // then
-      expect(blockNodeSearchResultState).toMatchSnapshot();
+      expect(hubNodesSearchResultState).toMatchSnapshot();
     });
   });
 
-  describe('block node focus', () => {
-    let blockNodeSearchResultState: ClusterDialogBoxState;
+  describe('hub node focus', () => {
+    let hubNodesSearchResultState: ClusterDialogBoxState;
 
     beforeEach(() => {
       const initialState = ClusterDialogBoxState.initialState(members);
       const startNodeSearchResultState = initialState.search('voi');
       const startNodeSelectedState = startNodeSearchResultState.select();
-      blockNodeSearchResultState = startNodeSelectedState.search('void');
+      hubNodesSearchResultState = startNodeSelectedState.search('void');
     });
 
     it('should focus the next member on the search result after pressing down arrow', () => {
       // when
-      const nextMemberFocusedState = blockNodeSearchResultState.focusNextMember();
+      const nextMemberFocusedState = hubNodesSearchResultState.focusNextMember();
 
       // then
       expect(nextMemberFocusedState).toMatchSnapshot();
-      expect(nextMemberFocusedState.blockNodeSelectionModel.focused).toEqual(new Member('void onResume()'));
+      expect(nextMemberFocusedState.hubNodesSelectionModel.focused).toEqual(new Member('void onResume()'));
     });
 
     it('should focus the previous member on the search result after pressing up arrow', () => {
       // when
-      const previousMemberFocusedState = blockNodeSearchResultState.focusPreviousMember();
+      const previousMemberFocusedState = hubNodesSearchResultState.focusPreviousMember();
 
       // then
       expect(previousMemberFocusedState).toMatchSnapshot();
-      expect(previousMemberFocusedState.blockNodeSelectionModel.focused).toEqual(new Member('void onResume()'));
+      expect(previousMemberFocusedState.hubNodesSelectionModel.focused).toEqual(new Member('void onResume()'));
     });
   });
 
-  describe('block node selection', () => {
-    let blockNodeSearchResultState: ClusterDialogBoxState;
+  describe('hub node selection', () => {
+    let hubNodesSearchResultState: ClusterDialogBoxState;
 
     beforeEach(() => {
       const initialState = ClusterDialogBoxState.initialState(members);
       const startNodeSearchResultState = initialState.search('voi');
       const startNodeSelectedState = startNodeSearchResultState.select();
-      blockNodeSearchResultState = startNodeSelectedState.search('void');
+      hubNodesSearchResultState = startNodeSelectedState.search('void');
     });
 
     it('should select the currently focused node on pressing enter', () => {
       // when
-      const blockNodeSelectedState = blockNodeSearchResultState.select();
+      const hubNodesSelectedState = hubNodesSearchResultState.select();
 
       // then
-      expect(blockNodeSelectedState.blockNodeSelectionModel.selected).toEqual([new Member('void onPause()')]);
-      expect(blockNodeSelectedState).toMatchSnapshot();
+      expect(hubNodesSelectedState.hubNodesSelectionModel.selected).toEqual([new Member('void onPause()')]);
+      expect(hubNodesSelectedState).toMatchSnapshot();
     });
 
     it("should deselect the currently focused node on clicking the 'x' button", () => {
       // given
-      const blockNodeSelectedState = blockNodeSearchResultState.select();
+      const hubNodesSelectedState = hubNodesSearchResultState.select();
 
       // when
-      const blockNodeDeselectedState = blockNodeSelectedState.deselectBlockNode(new Member('void onPause()'));
+      const hubNodesDeselectedState = hubNodesSelectedState.deselectHubNode(new Member('void onPause()'));
 
       // then
-      expect(blockNodeDeselectedState.blockNodeSelectionModel.selected).toEqual([]);
-      expect(blockNodeDeselectedState).toMatchSnapshot();
+      expect(hubNodesDeselectedState.hubNodesSelectionModel.selected).toEqual([]);
+      expect(hubNodesDeselectedState).toMatchSnapshot();
     });
 
     it('should allow to deselect the start node', () => {
       // given
-      const blockNodeSelectedState = blockNodeSearchResultState.select();
+      const hubNodesSelectedState = hubNodesSearchResultState.select();
 
       // when
-      const startNodeDeselectedState = blockNodeSelectedState.deselectStartNode();
+      const startNodeDeselectedState = hubNodesSelectedState.deselectStartNode();
 
       // then
       expect(startNodeDeselectedState.startNodeSelectionModel.selected).toBeNull();
@@ -253,22 +253,22 @@ describe('Cluster dialog box state', () => {
 
     it('should allow selecting multiple nodes', () => {
       // given
-      const blockNodeSelectedState = blockNodeSearchResultState.select();
+      const hubNodesSelectedState = hubNodesSearchResultState.select();
 
       // when
-      const multipleBlockNodesSelectedState = blockNodeSelectedState.select();
+      const multipleHubNodesSelectedState = hubNodesSelectedState.select();
 
       // then
-      expect(multipleBlockNodesSelectedState).toMatchSnapshot();
+      expect(multipleHubNodesSelectedState).toMatchSnapshot();
     });
 
     it('should allow deselecting all nodes', () => {
       // given
-      const blockNodeSelectedState = blockNodeSearchResultState.select();
-      const multipleBlockNodesSelectedState = blockNodeSelectedState.select();
+      const hubNodesSelectedState = hubNodesSearchResultState.select();
+      const multipleHubNodesSelectedState = hubNodesSelectedState.select();
 
       // when
-      const allDeselectedModel = multipleBlockNodesSelectedState.deselectAll();
+      const allDeselectedModel = multipleHubNodesSelectedState.deselectAll();
 
       // then
       expect(allDeselectedModel).toMatchSnapshot();

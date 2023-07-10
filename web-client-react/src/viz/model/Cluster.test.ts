@@ -78,7 +78,7 @@ describe('Cluster', () => {
     expect(cluster.links).toEqual(expectedResult);
   });
 
-  it('should traverse nodes that are part of the start node but that are exclusively part of the blocked node', () => {
+  it('should traverse nodes that are part of the start node but that are exclusively part of the hub node', () => {
     // given
     const multipleLinks: Link[] = [
       { source: 'onViewCreated', target: 'chrome', value: 1 },
@@ -130,7 +130,7 @@ describe('Cluster', () => {
     expect(cluster.links).toEqual(expectedResult);
   });
 
-  it('should use make use of multiple blocked nodes to filter unwanted relationships', () => {
+  it('should use make use of multiple hub nodes to filter unwanted relationships', () => {
     // given
     const multipleLinks: Link[] = [
       { source: 'A', target: 'X', value: 1 },
@@ -171,7 +171,7 @@ describe('Cluster', () => {
     expect(cluster.links).toEqual(expectedResult);
   });
 
-  it('should support multiple block nodes', () => {
+  it('should support multiple hub nodes', () => {
     // given
     const multipleLinks: Link[] = [
       { source: 'init()', target: 'lifecycleDisposable', value: 1 },
@@ -201,7 +201,7 @@ describe('Cluster', () => {
     expect(cluster.links).toEqual(expectedResult);
   });
 
-  it('should return relationships that are part of immediate block nodes', () => {
+  it('should return relationships that are part of immediate hub nodes', () => {
     // given
     const multipleLinks: Link[] = [
       { source: 'A', target: 'X', value: 1 },

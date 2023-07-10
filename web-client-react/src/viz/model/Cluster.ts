@@ -5,7 +5,7 @@ class Cluster {
     // empty
   }
 
-  static from(classLinks: Link[], startNodeId: string, blockedNodeIds: string[] = []): Cluster {
+  static from(classLinks: Link[], startNodeId: string, hubNodeIds: string[] = []): Cluster {
     const visited = new Set<string>();
     const connectedLinks = new Set<Link>();
     const stack: string[] = [startNodeId];
@@ -19,7 +19,7 @@ class Cluster {
 
       for (const link of relatedLinks) {
         const nextNodeId = link.source !== currentNodeId ? link.source : link.target;
-        if (!visited.has(nextNodeId) && !stack.includes(nextNodeId) && !blockedNodeIds.includes(nextNodeId)) {
+        if (!visited.has(nextNodeId) && !stack.includes(nextNodeId) && !hubNodeIds.includes(nextNodeId)) {
           stack.push(nextNodeId);
         }
       }

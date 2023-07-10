@@ -3,7 +3,7 @@ import { Member } from './Member';
 abstract class SelectionModel<T> {
   constructor(
     public readonly searchTerm: string,
-    public readonly searchResult: Member[],
+    protected readonly searchResult: Member[],
     public readonly focused: Member | null,
     public readonly selected: T,
   ) {
@@ -58,7 +58,7 @@ abstract class SelectionModel<T> {
     return this.copy(trimmedSearchTerm, filteredMembers, focusedMember, this.selected as T);
   }
 
-  abstract select(): SelectionModel<T>;
+  public abstract select(): SelectionModel<T>;
 
   protected abstract copy(
     searchTerm: string,
@@ -66,6 +66,8 @@ abstract class SelectionModel<T> {
     focused: Member | null,
     selected: T,
   ): SelectionModel<T>;
+
+  public abstract visibleSearchResult(): Member[];
 }
 
 export default SelectionModel;

@@ -20,4 +20,8 @@ export class SingleSelectionModel extends SelectionModel<Member | null> {
   ): SelectionModel<Member | null> {
     return new SingleSelectionModel(searchTerm, searchResult, focused, selected);
   }
+
+  public override visibleSearchResult(): Member[] {
+    return this.searchResult;
+  }
 }

@@ -166,7 +166,14 @@ exports[`Cluster dialog box state block node selection should allow deselecting 
 ClusterDialogBoxState {
   "blockNodeSelectionModel": MultipleSelectionModel {
     "focused": null,
-    "searchResult": Array [],
+    "searchResult": Array [
+      Member {
+        "nodeId": "void onPause()",
+      },
+      Member {
+        "nodeId": "void onResume()",
+      },
+    ],
     "searchTerm": "void",
     "selected": Array [],
   },
@@ -211,7 +218,14 @@ exports[`Cluster dialog box state block node selection should allow selecting mu
 ClusterDialogBoxState {
   "blockNodeSelectionModel": MultipleSelectionModel {
     "focused": null,
-    "searchResult": Array [],
+    "searchResult": Array [
+      Member {
+        "nodeId": "void onPause()",
+      },
+      Member {
+        "nodeId": "void onResume()",
+      },
+    ],
     "searchTerm": "void",
     "selected": Array [
       Member {
@@ -266,6 +280,9 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
     "searchResult": Array [
+      Member {
+        "nodeId": "void onPause()",
+      },
       Member {
         "nodeId": "void onResume()",
       },
@@ -373,6 +390,9 @@ ClusterDialogBoxState {
       "nodeId": "void onResume()",
     },
     "searchResult": Array [
+      Member {
+        "nodeId": "void onPause()",
+      },
       Member {
         "nodeId": "void onResume()",
       },

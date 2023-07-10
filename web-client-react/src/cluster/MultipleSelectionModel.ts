@@ -5,9 +5,8 @@ export class MultipleSelectionModel extends SelectionModel<Member[]> {
   static DEFAULT = new MultipleSelectionModel('', [], null, []);
 
   deselect(member: Member): MultipleSelectionModel {
-    const searchResult = [...this.selected, ...this.searchResult];
     const selected = this.selected.filter((selectedMember) => selectedMember.nodeId !== member.nodeId);
-    return this.copy(undefined, searchResult, undefined, selected) as MultipleSelectionModel;
+    return this.copy(undefined, undefined, undefined, selected) as MultipleSelectionModel;
   }
 
   public override select(): SelectionModel<Member[]> {
@@ -19,19 +18,22 @@ export class MultipleSelectionModel extends SelectionModel<Member[]> {
       selected = [...selectedMembers];
     }
 
-    const searchResult = this.searchResult.filter((member) => !(selected as Member[]).includes(member));
-    const currentFocusedIndex = searchResult.findIndex((member) => member === this.focused);
+    const currentFocusedIndex = this.searchResult.findIndex((member) => member === this.focused);
     let focused: Member | null;
-    if (searchResult[currentFocusedIndex + 1]) {
-      focused = searchResult[currentFocusedIndex + 1];
+    if (this.searchResult[currentFocusedIndex + 1]) {
+      focused = this.searchResult[currentFocusedIndex + 1];
     } else {
       focused = null;
     }
-    return this.copy(undefined, searchResult, focused, selected);
+    return this.copy(undefined, undefined, focused, selected);
   }
 
   deselectAll(): MultipleSelectionModel {
     return <MultipleSelectionModel>this.copy(undefined, undefined, null, []);
+  }
+
+  public override visibleSearchResult(): Member[] {
+    return this.searchResult.filter((member) => !this.selected.map((member) => member.nodeId).includes(member.nodeId));
   }
 
   protected override copy(

@@ -14,6 +14,16 @@ class InheritanceRegisterTest {
   }
 
   @Test
+  fun `a registry with at least one entry is non-empty`() {
+    // when
+    register.add(Ancestor("Ljava/lang/Object;"), Child("Lcom/legacycode/dex/Child"))
+
+    // then
+    assertThat(register.isEmpty)
+      .isFalse()
+  }
+
+  @Test
   fun `get ancestor`() {
     // when
     register.add(Ancestor("Ljava/lang/Object;"), Child("Lcom/legacycode/dex/Child"))

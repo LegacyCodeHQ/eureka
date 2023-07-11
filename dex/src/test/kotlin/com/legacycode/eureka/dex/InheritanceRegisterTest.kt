@@ -2,6 +2,7 @@ package com.legacycode.eureka.dex
 
 import com.google.common.truth.Truth.assertThat
 import org.approvaltests.Approvals
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
@@ -65,9 +66,8 @@ class InheritanceRegisterTest {
 
   @Nested
   inner class Tree {
-    @Test
-    fun `it can build a tree`() {
-      // when
+    @BeforeEach
+    fun beforeEach() {
       with(register) {
         add(Ancestor("Landroid/app/Activity;"), Child("Landroidx/app/AppCompatActivity;"))
         add(Ancestor("Landroidx/app/AppCompatActivity;"), Child("Lcom/legacycode/app/BaseActivity;"))
@@ -75,9 +75,30 @@ class InheritanceRegisterTest {
         add(Ancestor("Landroidx/app/AppCompatActivity;"), Child("Lcom/legacycode/MetricsActivity;"))
         add(Ancestor("Landroid/app/Fragment;"), Child("Landroidx/app/AppCompatFragment;"))
       }
+    }
+
+    @Test
+    fun `it can build a tree`() {
+      // given
+      val treeBuilder = TestTreeBuilder()
+
+      // when
+      val tree = register.tree(Ancestor("Landroid/app/Activity;"), treeBuilder)
 
       // then
-      Approvals.verify(register.tree(Ancestor("Landroid/app/Activity;"), TestTreeBuilder()))
+      Approvals.verify(tree)
+    }
+
+    @Test
+    fun `it can build a graphviz tree`() {
+      // given
+      val dotTreeBuilder = DotTreeBuilder("Activity")
+
+      // when
+      val graphvizTree = register.tree(Ancestor("Landroid/app/Activity;"), dotTreeBuilder)
+
+      // then
+      Approvals.verify(graphvizTree)
     }
   }
 }

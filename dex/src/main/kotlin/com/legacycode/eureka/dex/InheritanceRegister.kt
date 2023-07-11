@@ -3,8 +3,17 @@ package com.legacycode.eureka.dex
 class InheritanceRegister {
   interface TreeBuilder<T> {
     val out: T
+
+    fun beforeTraversal() {
+      // no-op
+    }
+
     fun visitAncestor(ancestor: Ancestor)
     fun visitChild(child: Child)
+
+    fun afterTraversal() {
+      // no-op
+    }
   }
 
   val isEmpty: Boolean
@@ -31,6 +40,7 @@ class InheritanceRegister {
 
   fun <T> tree(root: Ancestor, treeBuilder: TreeBuilder<T>): T {
     var children = parentChildrenMap[root]
+    treeBuilder.beforeTraversal()
     treeBuilder.visitAncestor(root)
 
     val queue = ArrayDeque<Ancestor>()
@@ -50,6 +60,7 @@ class InheritanceRegister {
         null
       }
     }
+    treeBuilder.afterTraversal()
 
     return treeBuilder.out
   }

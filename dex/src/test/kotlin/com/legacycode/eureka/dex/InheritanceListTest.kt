@@ -32,7 +32,7 @@ class InheritanceListTest {
     }
 
     // then
-    assertThat(inheritanceList.children("Ljava/lang/Object;"))
+    assertThat(inheritanceList.children(Ancestor("Ljava/lang/Object;")))
       .containsExactly(
         "Lcom/legacycode/dex/Child",
         "Lcom/legacycode/dex/Node",
@@ -48,7 +48,7 @@ class InheritanceListTest {
     }
 
     // then
-    assertThat(inheritanceList.children("Landroid/app/Activity;"))
+    assertThat(inheritanceList.children(Ancestor("Landroid/app/Activity;")))
       .isEmpty()
   }
 }

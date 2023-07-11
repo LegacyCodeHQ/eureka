@@ -18,8 +18,8 @@ class InheritanceList {
     return parentChildrenMap.keys.toSet()
   }
 
-  fun children(ancestor: String): Set<String> {
-    return parentChildrenMap[ancestor] ?: emptySet()
+  fun children(ancestor: Ancestor): Set<String> {
+    return parentChildrenMap[ancestor.id] ?: emptySet()
   }
 }
 

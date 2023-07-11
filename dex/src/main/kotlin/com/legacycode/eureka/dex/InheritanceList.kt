@@ -3,23 +3,23 @@ package com.legacycode.eureka.dex
 class InheritanceList {
   val isEmpty: Boolean get() = true
 
-  private val parentChildrenMap: MutableMap<String, MutableSet<String>> = mutableMapOf()
+  private val parentChildrenMap: MutableMap<Ancestor, MutableSet<String>> = mutableMapOf()
 
   fun add(ancestor: Ancestor, child: Child) {
-    var children = parentChildrenMap[ancestor.id]
+    var children = parentChildrenMap[ancestor]
     if (children == null) {
       children = mutableSetOf()
-      parentChildrenMap[ancestor.id] = children
+      parentChildrenMap[ancestor] = children
     }
     children.add(child.id)
   }
 
   fun ancestors(): Set<String> {
-    return parentChildrenMap.keys.toSet()
+    return parentChildrenMap.keys.map { it.id }.toSet()
   }
 
   fun children(ancestor: Ancestor): Set<String> {
-    return parentChildrenMap[ancestor.id] ?: emptySet()
+    return parentChildrenMap[ancestor] ?: emptySet()
   }
 }
 

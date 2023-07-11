@@ -1,6 +1,6 @@
 package com.legacycode.eureka.dex
 
-class InheritanceList {
+class InheritanceRegister {
   val isEmpty: Boolean get() = true
 
   private val parentChildrenMap: MutableMap<Ancestor, MutableSet<Child>> = mutableMapOf()

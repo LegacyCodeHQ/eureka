@@ -3,36 +3,35 @@ package com.legacycode.eureka.dex
 import com.google.common.truth.Truth.assertThat
 import org.junit.jupiter.api.Test
 
-class InheritanceListTest {
-  private val inheritanceList = InheritanceList()
+class InheritanceRegisterTest {
+  private val register = InheritanceRegister()
 
   @Test
-  fun `create an empty inheritance list`() {
-    // when & then
-    assertThat(inheritanceList.isEmpty)
+  fun `create an empty inheritance register`() {
+    assertThat(register.isEmpty)
       .isTrue()
   }
 
   @Test
   fun `get ancestor`() {
     // when
-    inheritanceList.add(Ancestor("Ljava/lang/Object;"), Child("Lcom/legacycode/dex/Child"))
+    register.add(Ancestor("Ljava/lang/Object;"), Child("Lcom/legacycode/dex/Child"))
 
     // then
-    assertThat(inheritanceList.ancestors())
+    assertThat(register.ancestors())
       .containsExactly("Ljava/lang/Object;")
   }
 
   @Test
   fun `get children`() {
     // when
-    with(inheritanceList) {
+    with(register) {
       add(Ancestor("Ljava/lang/Object;"), Child("Lcom/legacycode/dex/Child"))
       add(Ancestor("Ljava/lang/Object;"), Child("Lcom/legacycode/dex/Node"))
     }
 
     // then
-    assertThat(inheritanceList.children(Ancestor("Ljava/lang/Object;")))
+    assertThat(register.children(Ancestor("Ljava/lang/Object;")))
       .containsExactly(
         Child("Lcom/legacycode/dex/Child"),
         Child("Lcom/legacycode/dex/Node"),
@@ -40,15 +39,15 @@ class InheritanceListTest {
   }
 
   @Test
-  fun `return an empty set when parent does not exist`() {
+  fun `return an empty set of children when parent does not exist`() {
     // when
-    with(inheritanceList) {
+    with(register) {
       add(Ancestor("Ljava/lang/Object;"), Child("Lcom/legacycode/dex/Child"))
       add(Ancestor("Ljava/lang/Object;"), Child("Lcom/legacycode/dex/Node"))
     }
 
     // then
-    assertThat(inheritanceList.children(Ancestor("Landroid/app/Activity;")))
+    assertThat(register.children(Ancestor("Landroid/app/Activity;")))
       .isEmpty()
   }
 }

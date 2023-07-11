@@ -34,8 +34,8 @@ class InheritanceListTest {
     // then
     assertThat(inheritanceList.children(Ancestor("Ljava/lang/Object;")))
       .containsExactly(
-        "Lcom/legacycode/dex/Child",
-        "Lcom/legacycode/dex/Node",
+        Child("Lcom/legacycode/dex/Child"),
+        Child("Lcom/legacycode/dex/Node"),
       )
   }
 

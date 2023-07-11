@@ -1,0 +1,4 @@
+Landroidx/app/AppCompatActivity -> Landroid/app/Activity;
+Lcom/legacycode/app/BaseActivity -> Landroidx/app/AppCompatActivity
+Lcom/legacycode/MetricsActivity -> Landroidx/app/AppCompatActivity
+Landroid/app/HomeActivity -> Lcom/legacycode/app/BaseActivity

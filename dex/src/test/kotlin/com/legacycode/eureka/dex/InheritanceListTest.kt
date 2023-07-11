@@ -7,14 +7,14 @@ class InheritanceListTest {
   private val inheritanceList = InheritanceList()
 
   @Test
-  fun `it can create an empty inheritance list`() {
+  fun `create an empty inheritance list`() {
     // when & then
     assertThat(inheritanceList.isEmpty)
       .isTrue()
   }
 
   @Test
-  fun `it can get the ancestor`() {
+  fun `get ancestor`() {
     // when
     inheritanceList.add("Lcom/legacycode/dex/Child", "Ljava/lang/Object;")
 
@@ -24,7 +24,7 @@ class InheritanceListTest {
   }
 
   @Test
-  fun `it can get the children`() {
+  fun `get children`() {
     // when
     with(inheritanceList) {
       add("Lcom/legacycode/dex/Child", "Ljava/lang/Object;")

@@ -12,6 +12,7 @@ include(
   ":viz",
   ":build-systems-gradle",
   ":selenium",
+  ":dex",
 )
 
 project(":bytecode-scanner").projectDir = file("bytecode/scanner")

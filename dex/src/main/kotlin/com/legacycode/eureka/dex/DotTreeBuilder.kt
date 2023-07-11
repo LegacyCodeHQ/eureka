@@ -16,8 +16,13 @@ class DotTreeBuilder(private val title: String) : InheritanceRegister.TreeBuilde
   }
 
   override fun visitChild(child: Child) {
-    stringBuilder.appendLine("  \"${child.id}\" -> \"${ancestor.id}\"")
+    stringBuilder.appendLine("  \"${child.fqn}\" -> \"${ancestor.fqn}\"")
   }
+
+  private val Node.fqn: String
+    get() {
+      return id.replace('/', '.').drop(1).dropLast(1)
+    }
 
   override fun afterTraversal() {
     stringBuilder.appendLine("}")

@@ -1,6 +1,6 @@
 digraph "Activity" {
-  "Landroidx/app/AppCompatActivity;" -> "Landroid/app/Activity;"
-  "Lcom/legacycode/app/BaseActivity;" -> "Landroidx/app/AppCompatActivity;"
-  "Lcom/legacycode/MetricsActivity;" -> "Landroidx/app/AppCompatActivity;"
-  "Landroid/app/HomeActivity;" -> "Lcom/legacycode/app/BaseActivity;"
+  "androidx.app.AppCompatActivity" -> "android.app.Activity"
+  "com.legacycode.app.BaseActivity" -> "androidx.app.AppCompatActivity"
+  "com.legacycode.MetricsActivity" -> "androidx.app.AppCompatActivity"
+  "android.app.HomeActivity" -> "com.legacycode.app.BaseActivity"
 }

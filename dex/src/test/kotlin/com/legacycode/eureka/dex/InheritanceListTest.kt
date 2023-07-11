@@ -38,4 +38,17 @@ class InheritanceListTest {
         "Lcom/legacycode/dex/Node",
       )
   }
+
+  @Test
+  fun `return an empty set when parent does not exist`() {
+    // when
+    with(inheritanceList) {
+      add("Lcom/legacycode/dex/Child", "Ljava/lang/Object;")
+      add("Lcom/legacycode/dex/Node", "Ljava/lang/Object;")
+    }
+
+    // then
+    assertThat(inheritanceList.children("Landroid/app/Activity;"))
+      .isEmpty()
+  }
 }

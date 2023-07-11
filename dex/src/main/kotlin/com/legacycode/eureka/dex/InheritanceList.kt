@@ -19,6 +19,6 @@ class InheritanceList {
   }
 
   fun children(ancestor: String): Set<String> {
-    return parentChildrenMap[ancestor]!!
+    return parentChildrenMap[ancestor] ?: emptySet()
   }
 }

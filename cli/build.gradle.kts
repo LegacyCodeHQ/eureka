@@ -60,6 +60,7 @@ dependencies {
   implementation(projects.android)
   implementation(projects.buildSystemsGradle)
   implementation(projects.vcs)
+  implementation(projects.dex)
 
   implementation(libs.commonsCsv)
   implementation(libs.picocli)

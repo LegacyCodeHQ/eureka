@@ -5,13 +5,13 @@ class InheritanceList {
 
   private val parentChildrenMap: MutableMap<String, MutableSet<String>> = mutableMapOf()
 
-  fun add(child: String, ancestor: String) {
+  fun add(ancestor: String, child: Child) {
     var children = parentChildrenMap[ancestor]
     if (children == null) {
       children = mutableSetOf()
       parentChildrenMap[ancestor] = children
     }
-    children.add(child)
+    children.add(child.id)
   }
 
   fun ancestors(): Set<String> {
@@ -22,3 +22,6 @@ class InheritanceList {
     return parentChildrenMap[ancestor] ?: emptySet()
   }
 }
+
+@JvmInline
+value class Child(val id: String)

@@ -16,7 +16,7 @@ class InheritanceListTest {
   @Test
   fun `get ancestor`() {
     // when
-    inheritanceList.add("Lcom/legacycode/dex/Child", "Ljava/lang/Object;")
+    inheritanceList.add("Ljava/lang/Object;", Child("Lcom/legacycode/dex/Child"))
 
     // then
     assertThat(inheritanceList.ancestors())
@@ -27,8 +27,8 @@ class InheritanceListTest {
   fun `get children`() {
     // when
     with(inheritanceList) {
-      add("Lcom/legacycode/dex/Child", "Ljava/lang/Object;")
-      add("Lcom/legacycode/dex/Node", "Ljava/lang/Object;")
+      add("Ljava/lang/Object;", Child("Lcom/legacycode/dex/Child"))
+      add("Ljava/lang/Object;", Child("Lcom/legacycode/dex/Node"))
     }
 
     // then
@@ -43,8 +43,8 @@ class InheritanceListTest {
   fun `return an empty set when parent does not exist`() {
     // when
     with(inheritanceList) {
-      add("Lcom/legacycode/dex/Child", "Ljava/lang/Object;")
-      add("Lcom/legacycode/dex/Node", "Ljava/lang/Object;")
+      add("Ljava/lang/Object;", Child("Lcom/legacycode/dex/Child"))
+      add("Ljava/lang/Object;", Child("Lcom/legacycode/dex/Node"))
     }
 
     // then

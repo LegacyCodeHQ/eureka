@@ -1,0 +1,21 @@
+{
+  "name": "android.app.Activity",
+  "children": [
+    {
+      "name": "androidx.app.AppCompatActivity",
+      "children": [
+        {
+          "name": "com.legacycode.app.BaseActivity",
+          "children": [
+            {
+              "name": "android.app.HomeActivity"
+            }
+          ]
+        },
+        {
+          "name": "com.legacycode.MetricsActivity"
+        }
+      ]
+    }
+  ]
+}

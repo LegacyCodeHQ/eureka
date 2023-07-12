@@ -2,6 +2,7 @@ package com.legacycode.eureka.dex
 
 import com.google.common.truth.Truth.assertThat
 import org.approvaltests.Approvals
+import org.approvaltests.JsonApprovals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -99,6 +100,18 @@ class InheritanceRegisterTest {
 
       // then
       Approvals.verify(graphvizTree)
+    }
+
+    @Test
+    fun `it can build JSON document for Tree, Cluster`() {
+      // given
+      val treeClusterJsonBuilder = TreeClusterJsonTreeBuilder()
+
+      // when
+      val treeClusterJson = register.tree(Ancestor("Landroid/app/Activity;"), treeClusterJsonBuilder)
+
+      // then
+      JsonApprovals.verifyJson(treeClusterJson)
     }
   }
 }

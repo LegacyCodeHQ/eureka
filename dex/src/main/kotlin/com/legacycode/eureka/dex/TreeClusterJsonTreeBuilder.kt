@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.node.ArrayNode
 import com.fasterxml.jackson.databind.node.ObjectNode
 
-class TreeClusterJsonTreeBuilder : InheritanceRegister.TreeBuilder<String> {
+class TreeClusterJsonTreeBuilder : InheritanceAdjacencyList.TreeBuilder<String> {
   companion object {
     private const val KEY_NAME = "name"
     private const val KEY_CHILDREN = "children"

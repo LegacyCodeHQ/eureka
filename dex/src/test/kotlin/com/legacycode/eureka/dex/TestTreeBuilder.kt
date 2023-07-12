@@ -1,6 +1,6 @@
 package com.legacycode.eureka.dex
 
-class TestTreeBuilder : InheritanceRegister.TreeBuilder<String> {
+class TestTreeBuilder : InheritanceAdjacencyList.TreeBuilder<String> {
   private val builder = StringBuilder()
   private lateinit var ancestor: Ancestor
 

@@ -28,13 +28,13 @@ class HierarchyCommand : Runnable {
   private lateinit var rootClassName: String
 
   override fun run() {
-    val register = ApkParser(apkFile).inheritanceRegister()
+    val adjacencyList = ApkParser(apkFile).inheritanceAdjacencyList()
     val rootClassDescriptor = toClassDescriptor(rootClassName)
     val title = getTitle(apkFile, rootClassName)
     val root = Ancestor(rootClassDescriptor)
 
-    if (register.children(root).isNotEmpty()) {
-      val tree = register.tree(root, DotTreeBuilder(title))
+    if (adjacencyList.children(root).isNotEmpty()) {
+      val tree = adjacencyList.tree(root, DotTreeBuilder(title))
 
       println(tree)
       println("Copy and paste the output at https://dreampuf.github.io/GraphvizOnline")

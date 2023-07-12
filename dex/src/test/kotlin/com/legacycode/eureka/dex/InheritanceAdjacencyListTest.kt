@@ -7,45 +7,45 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
-class InheritanceRegisterTest {
-  private val register = InheritanceRegister()
+class InheritanceAdjacencyListTest {
+  private val adjacencyList = InheritanceAdjacencyList()
 
   @Test
-  fun `create an empty inheritance register`() {
-    assertThat(register.isEmpty)
+  fun `create an empty inheritance adjacency list`() {
+    assertThat(adjacencyList.isEmpty)
       .isTrue()
   }
 
   @Test
   fun `a registry with at least one entry is non-empty`() {
     // when
-    register.add(Ancestor("Ljava/lang/Object;"), Child("Lcom/legacycode/dex/Child;"))
+    adjacencyList.add(Ancestor("Ljava/lang/Object;"), Child("Lcom/legacycode/dex/Child;"))
 
     // then
-    assertThat(register.isEmpty)
+    assertThat(adjacencyList.isEmpty)
       .isFalse()
   }
 
   @Test
   fun `get ancestor`() {
     // when
-    register.add(Ancestor("Ljava/lang/Object;"), Child("Lcom/legacycode/dex/Child;"))
+    adjacencyList.add(Ancestor("Ljava/lang/Object;"), Child("Lcom/legacycode/dex/Child;"))
 
     // then
-    assertThat(register.ancestors())
+    assertThat(adjacencyList.ancestors())
       .containsExactly("Ljava/lang/Object;")
   }
 
   @Test
   fun `get children`() {
     // when
-    with(register) {
+    with(adjacencyList) {
       add(Ancestor("Ljava/lang/Object;"), Child("Lcom/legacycode/dex/Child;"))
       add(Ancestor("Ljava/lang/Object;"), Child("Lcom/legacycode/dex/Node;"))
     }
 
     // then
-    assertThat(register.children(Ancestor("Ljava/lang/Object;")))
+    assertThat(adjacencyList.children(Ancestor("Ljava/lang/Object;")))
       .containsExactly(
         Child("Lcom/legacycode/dex/Child;"),
         Child("Lcom/legacycode/dex/Node;"),
@@ -55,13 +55,13 @@ class InheritanceRegisterTest {
   @Test
   fun `return an empty set of children when parent does not exist`() {
     // when
-    with(register) {
+    with(adjacencyList) {
       add(Ancestor("Ljava/lang/Object;"), Child("Lcom/legacycode/dex/Child;"))
       add(Ancestor("Ljava/lang/Object;"), Child("Lcom/legacycode/dex/Node;"))
     }
 
     // then
-    assertThat(register.children(Ancestor("Landroid/app/Activity;")))
+    assertThat(adjacencyList.children(Ancestor("Landroid/app/Activity;")))
       .isEmpty()
   }
 
@@ -69,7 +69,7 @@ class InheritanceRegisterTest {
   inner class Tree {
     @BeforeEach
     fun beforeEach() {
-      with(register) {
+      with(adjacencyList) {
         add(Ancestor("Landroid/app/Activity;"), Child("Landroidx/app/AppCompatActivity;"))
         add(Ancestor("Landroidx/app/AppCompatActivity;"), Child("Lcom/legacycode/app/BaseActivity;"))
         add(Ancestor("Lcom/legacycode/app/BaseActivity;"), Child("Landroid/app/HomeActivity;"))
@@ -84,7 +84,7 @@ class InheritanceRegisterTest {
       val treeBuilder = TestTreeBuilder()
 
       // when
-      val tree = register.tree(Ancestor("Landroid/app/Activity;"), treeBuilder)
+      val tree = adjacencyList.tree(Ancestor("Landroid/app/Activity;"), treeBuilder)
 
       // then
       Approvals.verify(tree)
@@ -96,7 +96,7 @@ class InheritanceRegisterTest {
       val dotTreeBuilder = DotTreeBuilder("Activity")
 
       // when
-      val graphvizTree = register.tree(Ancestor("Landroid/app/Activity;"), dotTreeBuilder)
+      val graphvizTree = adjacencyList.tree(Ancestor("Landroid/app/Activity;"), dotTreeBuilder)
 
       // then
       Approvals.verify(graphvizTree)
@@ -108,7 +108,7 @@ class InheritanceRegisterTest {
       val treeClusterJsonBuilder = TreeClusterJsonTreeBuilder()
 
       // when
-      val treeClusterJson = register.tree(Ancestor("Landroid/app/Activity;"), treeClusterJsonBuilder)
+      val treeClusterJson = adjacencyList.tree(Ancestor("Landroid/app/Activity;"), treeClusterJsonBuilder)
 
       // then
       JsonApprovals.verifyJson(treeClusterJson)

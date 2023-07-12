@@ -5,14 +5,14 @@ import org.junit.jupiter.api.Test
 
 class ApkParserTest {
   @Test
-  fun `it can build an inheritance register from an APK`() {
+  fun `it can build an inheritance adjacency list from an APK`() {
     // given
     val apkFile = TestApk("wikipedia.apk").file
     val parser = ApkParser(apkFile)
-    val register = parser.inheritanceRegister()
+    val adjacencyList = parser.inheritanceAdjacencyList()
 
     // when
-    val graphvizTree = register.tree(
+    val graphvizTree = adjacencyList.tree(
       Ancestor("Landroid/app/Activity;"),
       DotTreeBuilder("Wikipedia Activities"),
     )

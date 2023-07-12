@@ -12,8 +12,8 @@ class ApkParser(private val apkFile: File) {
     private const val KITKAT = 19
   }
 
-  fun inheritanceRegister(): InheritanceRegister {
-    val register = InheritanceRegister()
+  fun inheritanceAdjacencyList(): InheritanceAdjacencyList {
+    val adjacencyList = InheritanceAdjacencyList()
 
     ZipFile(apkFile).use { zipFile ->
       val dexFileEntries = zipFile.entries().asSequence().filter(::dexFileFilter)
@@ -29,12 +29,12 @@ class ApkParser(private val apkFile: File) {
           val classType = classDef.type
           val superclassType = classDef.superclass
 
-          register.add(Ancestor(superclassType!!), Child(classType))
+          adjacencyList.add(Ancestor(superclassType!!), Child(classType))
         }
       }
     }
 
-    return register
+    return adjacencyList
   }
 
   private fun dexFileFilter(entry: ZipEntry): Boolean {

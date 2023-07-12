@@ -1,6 +1,6 @@
 package com.legacycode.eureka.dex
 
-class InheritanceRegister {
+class InheritanceAdjacencyList {
   interface TreeBuilder<T> {
     val out: T
 

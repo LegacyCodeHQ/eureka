@@ -1,6 +1,6 @@
 package com.legacycode.eureka.dex
 
-class DotTreeBuilder(private val title: String) : InheritanceRegister.TreeBuilder<String> {
+class DotTreeBuilder(private val title: String) : InheritanceAdjacencyList.TreeBuilder<String> {
   private val stringBuilder = StringBuilder()
   private lateinit var ancestor: Ancestor
 

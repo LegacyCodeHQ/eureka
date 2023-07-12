@@ -117,37 +117,17 @@ Showing 10 of 140
 eureka top 10 --ext cpp,swift
 ```
 
-### 5. Class hierarchy visualization (experimental)
+### 5. Class inheritance hierarchy visualization (experimental)
+
+![Class inheritance hierarchy](docs/images/hierarchy.png)
 
 #### Usage
 
 ```bash
-eureka hierarchy wikipedia.apk -n android.app.Service
+eureka hierarchy wikipedia.apk -n androidx.fragment.app.Fragment
 ```
 
-#### Output
-
-```
-digraph "wikipedia.apk (Service)" {
-  "androidx.appcompat.app.AppLocalesMetadataHolderService" -> "android.app.Service"
-  "androidx.core.app.JobIntentService" -> "android.app.Service"
-  "androidx.room.MultiInstanceInvalidationService" -> "android.app.Service"
-  "com.google.android.datatransport.runtime.backends.TransportBackendDiscovery" -> "android.app.Service"
-  "com.google.firebase.components.ComponentDiscoveryService" -> "android.app.Service"
-  "com.google.firebase.messaging.EnhancedIntentService" -> "android.app.Service"
-  "com.google.mlkit.common.internal.MlKitComponentDiscoveryService" -> "android.app.Service"
-  "org.wikipedia.auth.AuthenticatorService" -> "android.app.Service"
-  "androidx.lifecycle.LifecycleService" -> "android.app.Service"
-  "org.wikipedia.readinglist.sync.ReadingListSyncAdapter" -> "androidx.core.app.JobIntentService"
-  "org.wikipedia.savedpages.SavedPageSyncService" -> "androidx.core.app.JobIntentService"
-  "com.google.firebase.messaging.FirebaseMessagingService" -> "com.google.firebase.messaging.EnhancedIntentService"
-  "androidx.work.impl.background.systemalarm.SystemAlarmService" -> "androidx.lifecycle.LifecycleService"
-  "androidx.work.impl.foreground.SystemForegroundService" -> "androidx.lifecycle.LifecycleService"
-  "org.wikipedia.push.WikipediaFirebaseMessagingService" -> "com.google.firebase.messaging.FirebaseMessagingService"
-}
-```
-
-Copy and paste the output into an [online Graphviz tool](https://dreampuf.github.io/GraphvizOnline).
+Visit `localhost:7090` in your browser to see the diagram.
 
 ## Licenses
 

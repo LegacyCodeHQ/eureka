@@ -32,7 +32,6 @@
     r = 3, // radius of nodes
     padding = 1, // horizontal padding for first and last column
     fill = "#999", // fill for nodes
-    fillOpacity, // fill opacity for nodes
     stroke = "#555", // stroke for links
     strokeWidth = 1.5, // stroke width for links
     strokeOpacity = 0.4, // stroke opacity for links
@@ -42,6 +41,12 @@
     haloWidth = 3, // padding around the labels
     curve = d3.curveBumpX, // curve for the link
   } = {}) {
+    const ignoredClassFill = "#008eff";
+    const ignoredPackages = ["android.", "androidx.", "com.google."];
+
+    function isInIgnoredPackage(name) {
+      return ignoredPackages.some(packageName => name.startsWith(packageName));
+    }
 
     // If id and parentId options are specified, or the path option, use d3.stratify
     // to convert tabular data to a hierarchy; otherwise we assume that the data is
@@ -95,7 +100,8 @@
       .join("path")
       .attr("d", d3.link(curve)
         .x(d => d.y)
-        .y(d => d.x));
+        .y(d => d.x))
+      .attr("stroke", d => isInIgnoredPackage(d.source.data.name) && isInIgnoredPackage(d.target.data.name) ? ignoredClassFill : stroke);
 
     const node = svg.append("g")
       .selectAll("a")
@@ -106,7 +112,7 @@
       .attr("transform", d => `translate(${d.y},${d.x})`);
 
     node.append("circle")
-      .attr("fill", d => d.children ? stroke : fill)
+      .attr("fill", d => isInIgnoredPackage(d.data.name) ? ignoredClassFill : (d.children ? stroke : fill))
       .attr("r", r);
 
     if (title != null) node.append("title")
@@ -119,6 +125,7 @@
       .attr("paint-order", "stroke")
       .attr("stroke", halo)
       .attr("stroke-width", haloWidth)
+      .style("fill", d => isInIgnoredPackage(d.data.name) ? ignoredClassFill : "#000000")
       .text((d, i) => L[i]);
 
     return svg.node();

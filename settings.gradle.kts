@@ -39,6 +39,7 @@ dependencyResolutionManagement {
       library("ktor-server-cors", "io.ktor:ktor-server-cors:2.3.2")
 
       library("picnic", "com.jakewharton.picnic:picnic:0.6.0")
+      library("dexlib2", "org.smali:dexlib2:2.5.2")
     }
 
     create("testLibs") {

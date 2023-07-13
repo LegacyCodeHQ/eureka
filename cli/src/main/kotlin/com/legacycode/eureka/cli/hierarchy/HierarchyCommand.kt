@@ -2,6 +2,7 @@ package com.legacycode.eureka.cli.hierarchy
 
 import com.legacycode.eureka.dex.Ancestor
 import com.legacycode.eureka.dex.ApkParser
+import com.legacycode.eureka.dex.ArtifactParser
 import com.legacycode.eureka.hierarchy.HierarchyServer
 import java.io.File
 import picocli.CommandLine.Command
@@ -32,7 +33,7 @@ class HierarchyCommand : Runnable {
   private lateinit var rootClassName: String
 
   override fun run() {
-    val adjacencyList = ApkParser(apkFile).inheritanceAdjacencyList()
+    val adjacencyList = getParser(apkFile).inheritanceAdjacencyList()
     val rootClassDescriptor = toClassDescriptor(rootClassName)
     val root = Ancestor(rootClassDescriptor)
 
@@ -41,6 +42,10 @@ class HierarchyCommand : Runnable {
     } else {
       println("Oops… '$rootClassName' does not have an inheritance hierarchy")
     }
+  }
+
+  private fun getParser(artifactFile: File): ArtifactParser {
+    return ApkParser(artifactFile)
   }
 
   private fun toClassDescriptor(className: String): String {

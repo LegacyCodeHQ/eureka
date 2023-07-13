@@ -6,7 +6,7 @@ import java.util.zip.ZipFile
 import org.jf.dexlib2.DexFileFactory
 import org.jf.dexlib2.Opcodes
 
-class ApkParser(private val apkFile: File) {
+class ApkParser(private val file: File) {
   companion object {
     private const val DEX_FILE_EXTENSION = ".dex"
     private const val KITKAT = 19
@@ -15,11 +15,11 @@ class ApkParser(private val apkFile: File) {
   fun inheritanceAdjacencyList(): InheritanceAdjacencyList {
     val adjacencyList = InheritanceAdjacencyList()
 
-    ZipFile(apkFile).use { zipFile ->
+    ZipFile(file).use { zipFile ->
       val dexFileEntries = zipFile.entries().asSequence().filter(::dexFileFilter)
       for (dexFileEntry in dexFileEntries) {
         val dexEntry = DexFileFactory.loadDexEntry(
-          apkFile,
+          file,
           dexFileEntry.name,
           true,
           Opcodes.forApi(KITKAT),

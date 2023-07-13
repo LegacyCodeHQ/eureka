@@ -6,13 +6,13 @@ import java.util.zip.ZipFile
 import org.jf.dexlib2.DexFileFactory
 import org.jf.dexlib2.Opcodes
 
-class ApkParser(private val file: File) {
+class ApkParser(override val file: File) : ArtifactParser {
   companion object {
     private const val DEX_FILE_EXTENSION = ".dex"
     private const val KITKAT = 19
   }
 
-  fun inheritanceAdjacencyList(): InheritanceAdjacencyList {
+  override fun inheritanceAdjacencyList(): InheritanceAdjacencyList {
     val adjacencyList = InheritanceAdjacencyList()
 
     ZipFile(file).use { zipFile ->

@@ -59,10 +59,16 @@ For more options, run `eureka watch --help`.
 
 ![Class inheritance hierarchy](docs/images/hierarchy.png)
 
-#### Usage
+#### Usage (Android)
 
 ```bash
 eureka hierarchy signal-6.23.3.apk -n androidx.fragment.app.Fragment
+```
+
+#### Usage (JVM artifacts)
+
+```bash
+eureka hierarchy truth-1.1.5.jar -n com.google.common.truth.Subject
 ```
 
 Visit `localhost:7090` in your browser to see the diagram.

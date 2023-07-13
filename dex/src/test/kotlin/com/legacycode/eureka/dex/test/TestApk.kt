@@ -1,4 +1,4 @@
-package com.legacycode.eureka.dex
+package com.legacycode.eureka.dex.test
 
 import java.io.File
 

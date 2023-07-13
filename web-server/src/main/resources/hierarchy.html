@@ -42,7 +42,7 @@
     curve = d3.curveBumpX, // curve for the link
   } = {}) {
     const ignoredClassFill = "#008eff";
-    const ignoredPackages = ["android.", "androidx.", "com.google."];
+    const ignoredPackages = ["android.", "androidx.", "java.", "javax."];
 
     function isInIgnoredPackage(name) {
       return ignoredPackages.some(packageName => name.startsWith(packageName));

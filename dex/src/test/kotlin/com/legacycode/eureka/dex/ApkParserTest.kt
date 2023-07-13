@@ -1,5 +1,6 @@
 package com.legacycode.eureka.dex
 
+import com.legacycode.eureka.dex.test.TestApk
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
 

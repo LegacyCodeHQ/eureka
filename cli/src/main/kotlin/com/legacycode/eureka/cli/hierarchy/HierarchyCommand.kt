@@ -3,8 +3,10 @@ package com.legacycode.eureka.cli.hierarchy
 import com.legacycode.eureka.dex.Ancestor
 import com.legacycode.eureka.dex.ApkParser
 import com.legacycode.eureka.dex.ArtifactParser
+import com.legacycode.eureka.dex.JvmArtifactParser
 import com.legacycode.eureka.hierarchy.HierarchyServer
 import java.io.File
+import java.util.Locale
 import picocli.CommandLine.Command
 import picocli.CommandLine.Option
 import picocli.CommandLine.Parameters
@@ -16,6 +18,7 @@ import picocli.CommandLine.Parameters
 class HierarchyCommand : Runnable {
   companion object {
     private const val DEFAULT_PORT = 7090
+    private const val APK_EXTENSION = "apk"
   }
 
   @Parameters(
@@ -45,7 +48,11 @@ class HierarchyCommand : Runnable {
   }
 
   private fun getParser(artifactFile: File): ArtifactParser {
-    return ApkParser(artifactFile)
+    return if (artifactFile.extension.lowercase(Locale.ENGLISH) == APK_EXTENSION) {
+      ApkParser(artifactFile)
+    } else {
+      JvmArtifactParser(artifactFile)
+    }
   }
 
   private fun toClassDescriptor(className: String): String {

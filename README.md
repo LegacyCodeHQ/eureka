@@ -124,7 +124,7 @@ eureka top 10 --ext cpp,swift
 #### Usage
 
 ```bash
-eureka hierarchy wikipedia.apk -n androidx.fragment.app.Fragment
+eureka hierarchy signal-6.23.3.apk -n androidx.fragment.app.Fragment
 ```
 
 Visit `localhost:7090` in your browser to see the diagram.

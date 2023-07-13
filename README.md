@@ -31,16 +31,20 @@ class.
 
 ### 1. Class visualization
 
-You must first build the project and then run the tool.
+**⚠️ Important:** You must first build the project and then run the `watch` subcommand.
 
 The command will start a web server on port 7070. Go to `localhost:7070` in your browser to see the diagram. The diagram
 updates in real-time as you make changes to the source code and compile the project.
 
-For more options, run `eureka watch --help`.
-
 ![Edge bundling graph](docs/images/watch.png)
 
-#### 1.1 Android support (experimental)
+#### Usage
+
+```bash
+eureka watch StoryViewerPageFragment
+```
+
+#### Usage (Android, experimental and recommended)
 
 ```bash
 eureka watch -x android StoryViewerPageFragment
@@ -49,44 +53,21 @@ eureka watch -x android StoryViewerPageFragment
 Read [this blog post](https://legacycode.com/android-support) to learn how to use this feature when examining Android
 classes.
 
-#### 1.2 Without Android support
+For more options, run `eureka watch --help`.
 
-```bash
-eureka watch StoryViewerPageFragment
-```
+### 2. Class inheritance hierarchy visualization (experimental)
 
-### 2. File ownership (experimental)
-
-![Treemap](docs/images/ownership.png)
+![Class inheritance hierarchy](docs/images/hierarchy.png)
 
 #### Usage
 
 ```bash
-eureka ownership --repo <path-to-git-repo>
+eureka hierarchy signal-6.23.3.apk -n androidx.fragment.app.Fragment
 ```
 
-The command will start a web server on port 7080. Visit the app on `localhost:7080`.
+Visit `localhost:7090` in your browser to see the diagram.
 
-#### Known issues
-
-- Throws exceptions when visiting binary or empty files.
-
-### 3. Module dependency diagram (experimental)
-
-![PlantUML component diagram](docs/images/modules.png)
-
-#### Usage
-
-```bash
-eureka modules ~/GitHubProjects/Signal-Android
-```
-
-The command will print a Graphviz directed graph DSL.
-
-1. Copy the DSL and paste it into the [online Graphviz tool](https://dreampuf.github.io/GraphvizOnline).
-2. The tool selects the **dot** engine by default, for best results use the **circo** engine from the engine dropdown.
-
-### 4. List files with highest LOC
+### 3. List files with highest LOC
 
 #### Usage (default, searches Kotlin and Java sources)
 
@@ -117,17 +98,36 @@ Showing 10 of 140
 eureka top 10 --ext cpp,swift
 ```
 
-### 5. Class inheritance hierarchy visualization (experimental)
+### 4. File ownership (experimental)
 
-![Class inheritance hierarchy](docs/images/hierarchy.png)
+![Treemap](docs/images/ownership.png)
 
 #### Usage
 
 ```bash
-eureka hierarchy signal-6.23.3.apk -n androidx.fragment.app.Fragment
+eureka ownership --repo <path-to-git-repo>
 ```
 
-Visit `localhost:7090` in your browser to see the diagram.
+The command will start a web server on port 7080. Visit the app on `localhost:7080`.
+
+#### Known issues
+
+- Throws exceptions when visiting binary or empty files.
+
+### 5. Module dependency diagram (experimental)
+
+![PlantUML component diagram](docs/images/modules.png)
+
+#### Usage
+
+```bash
+eureka modules ~/GitHubProjects/Signal-Android
+```
+
+The command will print a Graphviz directed graph DSL.
+
+1. Copy the DSL and paste it into the [online Graphviz tool](https://dreampuf.github.io/GraphvizOnline).
+2. The tool selects the **dot** engine by default, for best results use the **circo** engine from the engine dropdown.
 
 ## Licenses
 

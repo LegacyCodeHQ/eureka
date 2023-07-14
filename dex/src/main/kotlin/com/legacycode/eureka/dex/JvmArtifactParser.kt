@@ -19,7 +19,6 @@ class JvmArtifactParser(override val file: File) : ArtifactParser {
         if (!entry.isDirectory && entry.name.endsWith(CLASS_FILE_EXTENSION)) {
           val classBytes = zipInputStream.readBytes()
           val classReader = ClassReader(classBytes)
-          println("${classReader.className} -> ${classReader.superName}")
           adjacencyList.add(Ancestor("L${classReader.superName};"), Child("L${classReader.className};"))
         }
         entry = zipInputStream.nextEntry

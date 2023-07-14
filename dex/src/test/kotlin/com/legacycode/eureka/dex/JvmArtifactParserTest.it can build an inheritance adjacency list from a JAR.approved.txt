@@ -25,7 +25,6 @@ digraph "Truth Subjects" {
   "com.google.common.truth.TruthFailureSubject" -> "com.google.common.truth.ThrowableSubject"
   "com.google.common.truth.BigDecimalSubject" -> "com.google.common.truth.ComparableSubject"
   "com.google.common.truth.IntegerSubject" -> "com.google.common.truth.ComparableSubject"
-  "com.google.common.truth.StandardSubjectBuilder$1" -> "com.google.common.truth.ComparableSubject"
   "com.google.common.truth.DoubleSubject" -> "com.google.common.truth.ComparableSubject"
   "com.google.common.truth.FloatSubject" -> "com.google.common.truth.ComparableSubject"
   "com.google.common.truth.LongSubject" -> "com.google.common.truth.ComparableSubject"

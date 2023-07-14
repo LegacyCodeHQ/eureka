@@ -5,17 +5,34 @@ import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
 
 class JvmArtifactParserTest {
+  private val jarFile = TestArtifact("truth-1.1.5.jar").file
+
   @Test
   fun `it can build an inheritance adjacency list from a JAR`() {
     // given
-    val jarFile = TestArtifact("truth-1.1.5.jar").file
-    val parser = JvmArtifactParser(jarFile)
-    val adjacencyList = parser.inheritanceAdjacencyList()
+    val adjacencyList = JvmArtifactParser(jarFile)
+      .inheritanceAdjacencyList()
 
     // when
     val graphvizTree = adjacencyList.tree(
       Ancestor("Lcom/google/common/truth/Subject;"),
       DotTreeBuilder("Truth Subjects"),
+    )
+
+    // then
+    Approvals.verify(graphvizTree)
+  }
+
+  @Test
+  fun `it should ignore anonymous inner classes`() {
+    // given
+    val adjacencyList = JvmArtifactParser(jarFile)
+      .inheritanceAdjacencyList()
+
+    // when
+    val graphvizTree = adjacencyList.tree(
+      Ancestor("Ljava/lang/Object;"),
+      DotTreeBuilder("Everything, all at once!"),
     )
 
     // then

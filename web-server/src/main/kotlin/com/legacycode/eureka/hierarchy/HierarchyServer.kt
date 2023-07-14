@@ -4,6 +4,7 @@ import com.legacycode.eureka.dex.Ancestor
 import com.legacycode.eureka.dex.InheritanceAdjacencyList
 import com.legacycode.eureka.dex.TreeClusterJsonTreeBuilder
 import com.legacycode.eureka.hierarchy.HierarchyServer.Companion.PARAM_CLASS
+import com.legacycode.eureka.hierarchy.HierarchyServer.Companion.PARAM_PRUNE
 import io.ktor.http.ContentType
 import io.ktor.server.application.Application
 import io.ktor.server.application.call
@@ -24,6 +25,7 @@ class HierarchyServer(
 ) {
   companion object {
     internal const val PARAM_CLASS = "class"
+    internal const val PARAM_PRUNE = "prune"
   }
 
   private lateinit var webServer: ApplicationEngine
@@ -49,7 +51,14 @@ fun Application.setupRoutes(
 
       if (urlHasClassParameter) {
         val root = Ancestor(toClassDescriptor(className!!))
-        val treeClusterJson = adjacencyList.tree(root, TreeClusterJsonTreeBuilder())
+        val pruneKeyword = call.parameters[PARAM_PRUNE]
+        val adjacencyListToUse = if (pruneKeyword != null) {
+          adjacencyList.prune(pruneKeyword)
+        } else {
+          adjacencyList
+        }
+
+        val treeClusterJson = adjacencyListToUse.tree(root, TreeClusterJsonTreeBuilder())
         val html = getHierarchyHtml(getTitle(apkFile, root), getHeading(apkFile, root), treeClusterJson)
         call.respondText(html, ContentType.Text.Html)
       } else {

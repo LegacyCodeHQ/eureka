@@ -10,6 +10,7 @@ import net.bytebuddy.jar.asm.ClassReader
 class JvmArtifactParser(override val file: File) : ArtifactParser {
   companion object {
     private const val CLASS_FILE_EXTENSION = ".class"
+    private const val REGEX_ANONYMOUS_INNER_CLASS_SUFFIX = ".+\\$\\d$"
   }
 
   override fun inheritanceAdjacencyList(): InheritanceAdjacencyList {
@@ -45,6 +46,6 @@ class JvmArtifactParser(override val file: File) : ArtifactParser {
   }
 
   private fun isAnonymousInnerClass(className: String?): Boolean {
-    return Pattern.matches(".*\\$\\d$", className)
+    return Pattern.matches(REGEX_ANONYMOUS_INNER_CLASS_SUFFIX, className)
   }
 }

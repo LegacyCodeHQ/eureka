@@ -10,6 +10,8 @@ import io.ktor.server.application.call
 import io.ktor.server.engine.ApplicationEngine
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
+import io.ktor.server.request.uri
+import io.ktor.server.response.respondRedirect
 import io.ktor.server.response.respondText
 import io.ktor.server.routing.get
 import io.ktor.server.routing.routing
@@ -43,16 +45,19 @@ fun Application.setupRoutes(
   routing {
     get("/") {
       val className = call.parameters[PARAM_CLASS]
-      val root = if (className != null) {
-        Ancestor(toClassDescriptor(className))
-      } else {
-        ancestorFromCommandLine
-      }
+      val urlHasClassParameter = className != null
 
-      val treeClusterJson = adjacencyList.tree(root, TreeClusterJsonTreeBuilder())
-      val title1 = getTitle(apkFile, root)
-      val html = getHierarchyHtml(title1, treeClusterJson, getHeading(apkFile, root))
-      call.respondText(html, ContentType.Text.Html)
+      if (urlHasClassParameter) {
+        val root = Ancestor(toClassDescriptor(className!!))
+        val treeClusterJson = adjacencyList.tree(root, TreeClusterJsonTreeBuilder())
+        val html = getHierarchyHtml(getTitle(apkFile, root), getHeading(apkFile, root), treeClusterJson)
+        call.respondText(html, ContentType.Text.Html)
+      } else {
+        val currentUrl = call.request.uri
+        val redirectUrl = "$currentUrl?class=${ancestorFromCommandLine.fqn}"
+        call.respondRedirect(redirectUrl)
+        return@get
+      }
     }
   }
 }
@@ -61,7 +66,7 @@ private fun toClassDescriptor(className: String): String {
   return "L${className.replace('.', '/')};"
 }
 
-private fun getHierarchyHtml(title: String, json: String, heading: String): String {
+private fun getHierarchyHtml(title: String, heading: String, json: String): String {
   return HierarchyServer::class.java.getResourceAsStream("/hierarchy.html")!!
     .bufferedReader()
     .use { it.readText() }

@@ -48,6 +48,36 @@
       return ignoredPackages.some(packageName => name.startsWith(packageName));
     }
 
+    function handleMouseOver(event, d) {
+      const ancestors = d.ancestors();
+      const descendants = d.descendants();
+      const immediateChildren = d.children || [];
+      svg.selectAll("circle, text, path")
+        .attr("opacity", node => {
+          if (node === d || immediateChildren.includes(node)) {
+            return 1; // Full opacity for current node and immediate children
+          } else if (ancestors.includes(node) || descendants.includes(node)) {
+            return 0.4; // Reduced opacity for ancestors and descendants
+          } else {
+            return 0.2; // Further reduced opacity for other nodes
+          }
+        });
+
+      svg.selectAll("path")
+        .attr("opacity", link => {
+          if (link.target === d.parent || immediateChildren.includes(link.target)) {
+            return 1; // Full opacity for paths to immediate children and parent
+          } else {
+            return 0.4; // Reduced opacity for other paths
+          }
+        });
+    }
+
+    function handleMouseOut(event, d) {
+      svg.selectAll("circle, text, path")
+        .attr("opacity", 1);
+    }
+
     // If id and parentId options are specified, or the path option, use d3.stratify
     // to convert tabular data to a hierarchy; otherwise we assume that the data is
     // specified as an object {children} with nested objects (a.k.a. the “flare.json”
@@ -109,7 +139,9 @@
       .join("a")
       .attr("xlink:href", link == null ? null : d => link(d.data, d))
       .attr("target", link == null ? null : linkTarget)
-      .attr("transform", d => `translate(${d.y},${d.x})`);
+      .attr("transform", d => `translate(${d.y},${d.x})`)
+      .on("mouseover", handleMouseOver)
+      .on("mouseout", handleMouseOut);
 
     node.append("circle")
       .attr("fill", d => isInIgnoredPackage(d.data.name) ? ignoredClassFill : (d.children ? stroke : fill))

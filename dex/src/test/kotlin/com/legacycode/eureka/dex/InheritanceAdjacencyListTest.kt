@@ -1,6 +1,7 @@
 package com.legacycode.eureka.dex
 
 import com.google.common.truth.Truth.assertThat
+import com.legacycode.eureka.dex.test.TestApk
 import org.approvaltests.Approvals
 import org.approvaltests.JsonApprovals
 import org.junit.jupiter.api.BeforeEach
@@ -137,6 +138,21 @@ class InheritanceAdjacencyListTest {
 
       // then
       val treeClusterJson = prunedAdjacencyList.tree(Ancestor("Landroid/app/Activity;"), treeClusterJsonBuilder)
+      JsonApprovals.verifyJson(treeClusterJson)
+    }
+
+    @Test
+    fun `it can prune a tree by specifying a keyword and ignore non-matching siblings`() {
+      // given
+      val apkFile = TestApk("wikipedia.apk").file
+      val signalAdjacencyList = ArtifactParser.from(apkFile).inheritanceAdjacencyList()
+
+      // when
+      val prunedAdjacencyList = signalAdjacencyList.prune("Settings")
+
+      // then
+      val treeClusterJson = prunedAdjacencyList
+        .tree(Ancestor("Landroid/app/Activity;"), TreeClusterJsonTreeBuilder())
       JsonApprovals.verifyJson(treeClusterJson)
     }
   }

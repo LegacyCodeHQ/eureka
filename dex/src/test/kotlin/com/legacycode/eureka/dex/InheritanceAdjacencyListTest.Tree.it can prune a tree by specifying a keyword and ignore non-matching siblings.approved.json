@@ -1,0 +1,44 @@
+{
+  "name": "android.app.Activity",
+  "children": [
+    {
+      "name": "androidx.core.app.ComponentActivity",
+      "children": [
+        {
+          "name": "androidx.activity.ComponentActivity",
+          "children": [
+            {
+              "name": "androidx.fragment.app.FragmentActivity",
+              "children": [
+                {
+                  "name": "androidx.appcompat.app.AppCompatActivity",
+                  "children": [
+                    {
+                      "name": "org.wikipedia.activity.BaseActivity",
+                      "children": [
+                        {
+                          "name": "org.wikipedia.activity.SingleFragmentActivity",
+                          "children": [
+                            {
+                              "name": "org.wikipedia.settings.DeveloperSettingsActivity"
+                            },
+                            {
+                              "name": "org.wikipedia.settings.NotificationSettingsActivity"
+                            },
+                            {
+                              "name": "org.wikipedia.settings.SettingsActivity"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

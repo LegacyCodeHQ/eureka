@@ -64,4 +64,39 @@ class InheritanceAdjacencyList {
 
     return treeBuilder.out
   }
+
+  fun prune(keyword: String): InheritanceAdjacencyList {
+    val adjacencyList = InheritanceAdjacencyList()
+
+    fun dfs(ancestor: Ancestor): Boolean {
+      val children = children(ancestor)
+      var shouldAdd = children.any { child -> child.id.contains(keyword, true) }
+
+      val relevantChildren = mutableListOf<Child>()
+
+      for (child in children) {
+        val childAsAncestor = child.asAncestor()
+        if (dfs(childAsAncestor)) {
+          shouldAdd = true
+          relevantChildren.add(child)
+        }
+      }
+
+      if (shouldAdd) {
+        for (child in relevantChildren) {
+          adjacencyList.add(ancestor, child)
+        }
+      }
+
+      return shouldAdd || ancestor.id.contains(keyword, true)
+    }
+
+    val rootAncestors = ancestors()
+    for (rootAncestorId in rootAncestors) {
+      val rootAncestor = Ancestor(rootAncestorId)
+      dfs(rootAncestor)
+    }
+
+    return adjacencyList
+  }
 }

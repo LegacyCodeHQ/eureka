@@ -113,5 +113,31 @@ class InheritanceAdjacencyListTest {
       // then
       JsonApprovals.verifyJson(treeClusterJson)
     }
+
+    @Test
+    fun `it can prune a tree by specifying a keyword`() {
+      // given
+      val treeClusterJsonBuilder = TreeClusterJsonTreeBuilder()
+
+      // when
+      val prunedAdjacencyList = adjacencyList.prune("Home")
+
+      // then
+      val treeClusterJson = prunedAdjacencyList.tree(Ancestor("Landroid/app/Activity;"), treeClusterJsonBuilder)
+      JsonApprovals.verifyJson(treeClusterJson)
+    }
+
+    @Test
+    fun `it can prune a tree by specifying a keyword (ignore case)`() {
+      // given
+      val treeClusterJsonBuilder = TreeClusterJsonTreeBuilder()
+
+      // when
+      val prunedAdjacencyList = adjacencyList.prune("home")
+
+      // then
+      val treeClusterJson = prunedAdjacencyList.tree(Ancestor("Landroid/app/Activity;"), treeClusterJsonBuilder)
+      JsonApprovals.verifyJson(treeClusterJson)
+    }
   }
 }

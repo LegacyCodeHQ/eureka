@@ -73,6 +73,20 @@ eureka hierarchy truth-1.1.5.jar -n com.google.common.truth.Subject
 
 Visit `localhost:7090` in your browser to see the diagram.
 
+#### Pruning
+
+Visualizing class hierarchies as trees is a useful way to understand complex structures in software. Sometimes, these
+trees can become quite large, making it difficult to find relevant information. To address this, we offer a feature that
+allows you to 'prune' these trees by specifying certain keywords.
+
+Pruning in this context means reducing the size of the tree to only include nodes that match the given keyword, or have
+descendants that match the keyword. This feature can significantly reduce the complexity of the tree, making it easier
+to navigate and understand.
+
+To use this feature, you simply adjust the URL of your tree visualization by providing a prune parameter. For example,
+
+`http://localhost:7090/?class=androidx.fragment.app.Fragment&prune=Payment`
+
 ### 3. List files with highest LOC
 
 #### Usage (default, searches Kotlin and Java sources)

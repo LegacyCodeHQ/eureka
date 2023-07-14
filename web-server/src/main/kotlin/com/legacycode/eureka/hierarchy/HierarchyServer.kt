@@ -59,7 +59,7 @@ fun Application.setupRoutes(
         }
 
         val treeClusterJson = adjacencyListToUse.tree(root, TreeClusterJsonTreeBuilder())
-        val html = getHierarchyHtml(getTitle(apkFile, root), getHeading(apkFile, root), treeClusterJson)
+        val html = getHierarchyHtml(getTitle(apkFile, root), getHeading(apkFile, root, pruneKeyword), treeClusterJson)
         call.respondText(html, ContentType.Text.Html)
       } else {
         val currentUrl = call.request.uri
@@ -89,7 +89,15 @@ private fun getTitle(apkFile: File, ancestor: Ancestor): String {
   return "${apkFile.name} (${className.substring(className.lastIndexOf('.') + 1)})"
 }
 
-private fun getHeading(apkFile: File, ancestor: Ancestor): String {
+private fun getHeading(
+  apkFile: File,
+  ancestor: Ancestor,
+  pruneKeyword: String?,
+): String {
   val className = ancestor.fqn
-  return "${apkFile.name} (${className})"
+  return if (pruneKeyword != null) {
+    "${apkFile.name} (${className} → showing \"$pruneKeyword\")"
+  } else {
+    "${apkFile.name} (${className})"
+  }
 }

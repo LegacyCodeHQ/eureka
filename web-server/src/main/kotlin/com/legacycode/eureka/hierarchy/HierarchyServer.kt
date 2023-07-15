@@ -5,6 +5,8 @@ import com.legacycode.eureka.dex.InheritanceAdjacencyList
 import com.legacycode.eureka.dex.TreeClusterJsonTreeBuilder
 import com.legacycode.eureka.hierarchy.HierarchyServer.Companion.PARAM_CLASS
 import com.legacycode.eureka.hierarchy.HierarchyServer.Companion.PARAM_PRUNE
+import com.legacycode.eureka.web.HtmlTemplate
+import com.legacycode.eureka.web.Placeholder
 import io.ktor.http.ContentType
 import io.ktor.server.application.Application
 import io.ktor.server.application.ApplicationCall
@@ -87,14 +89,17 @@ private fun toClassDescriptor(className: String): String {
   return "L${className.replace('.', '/')};"
 }
 
-private fun getHierarchyHtml(title: String, heading: String, json: String): String {
-  val htmlTemplate = HierarchyServer::class.java.getResourceAsStream("/hierarchy.html")!!
-    .bufferedReader()
-    .use { it.readText() }
-  return htmlTemplate
-    .replace("{{title}}", title)
-    .replace("{{heading}}", heading)
-    .replace("{{data}}", json)
+private fun getHierarchyHtml(
+  title: String,
+  heading: String,
+  data: String,
+): String {
+  return HtmlTemplate
+    .fromResource("/hierarchy.html")
+    .bind(Placeholder("title"), title)
+    .bind(Placeholder("heading"), heading)
+    .bind(Placeholder("data"), data)
+    .content
 }
 
 private fun getTitle(apkFile: File, ancestor: Ancestor): String {

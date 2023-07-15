@@ -5,8 +5,6 @@ import com.legacycode.eureka.dex.InheritanceAdjacencyList
 import com.legacycode.eureka.dex.TreeClusterJsonTreeBuilder
 import com.legacycode.eureka.hierarchy.HierarchyServer.Companion.PARAM_CLASS
 import com.legacycode.eureka.hierarchy.HierarchyServer.Companion.PARAM_PRUNE
-import com.legacycode.eureka.web.HtmlTemplate
-import com.legacycode.eureka.web.Placeholder
 import io.ktor.http.ContentType
 import io.ktor.server.application.Application
 import io.ktor.server.application.ApplicationCall
@@ -76,7 +74,7 @@ private suspend fun handleIndexRoute(
     val treeClusterJson = adjacencyListToUse.tree(root, TreeClusterJsonTreeBuilder())
     val title = Title(artifactFile.name, root.fqn)
     val heading = Heading(artifactFile.name, root.fqn, searchTerm)
-    val html = getHierarchyHtml(title, heading, treeClusterJson)
+    val html = HierarchyHtml(title, heading, treeClusterJson).content
     context.call.respondText(html, ContentType.Text.Html)
   } else {
     val currentUrl = context.call.request.uri
@@ -87,17 +85,4 @@ private suspend fun handleIndexRoute(
 
 private fun toClassDescriptor(className: String): String {
   return "L${className.replace('.', '/')};"
-}
-
-private fun getHierarchyHtml(
-  title: Title,
-  heading: Heading,
-  data: String,
-): String {
-  return HtmlTemplate
-    .fromResource("/hierarchy.html")
-    .bind(Placeholder("title"), title.displayText)
-    .bind(Placeholder("heading"), heading.displayText)
-    .bind(Placeholder("data"), data)
-    .content
 }

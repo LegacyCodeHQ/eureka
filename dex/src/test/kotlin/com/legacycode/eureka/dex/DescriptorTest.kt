@@ -112,6 +112,16 @@ class DescriptorTest {
       assertThat(descriptor.matches("exact:settings"))
         .isTrue()
     }
+
+    @Test
+    fun `it should ignore case in the 'exact' directive`() {
+      // given
+      val descriptor = Descriptor.from("Lorg.thought.crime.secure.HelpSettingsFragment;")
+
+      // when & then
+      assertThat(descriptor.matches("eXaCt:settings"))
+        .isTrue()
+    }
   }
 
   @Nested

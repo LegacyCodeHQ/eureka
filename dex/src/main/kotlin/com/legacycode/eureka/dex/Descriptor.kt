@@ -3,6 +3,8 @@ package com.legacycode.eureka.dex
 @JvmInline
 value class Descriptor private constructor(val name: String) {
   companion object {
+    private const val DIRECTIVE_EXACT = "exact:"
+
     fun from(name: String): Descriptor {
       return Descriptor(name)
     }
@@ -15,11 +17,11 @@ value class Descriptor private constructor(val name: String) {
     get() = name.substring(name.lastIndexOf('/') + 1).dropLast(1)
 
   fun matches(searchTerm: String): Boolean {
-    val makeExactMatch = searchTerm.startsWith("exact:", true)
+    val makeExactMatch = searchTerm.startsWith(DIRECTIVE_EXACT, true)
     if (makeExactMatch) {
       val maybeWordsWithHyphenation = simpleClassName.split("(?<=.)(?=\\p{Lu})".toRegex())
       val words = maybeWordsWithHyphenation.flatMap { it.split("_", "-") }
-      val keyword = searchTerm.substring("exact:".length)
+      val keyword = searchTerm.substring(DIRECTIVE_EXACT.length)
 
       return words.any { word -> word.equals(keyword, true) }
     }

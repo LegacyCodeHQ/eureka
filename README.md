@@ -1,21 +1,14 @@
 # Eureka ![CI](https://github.com/legacycodehq/eureka/actions/workflows/build.yml/badge.svg) ![GitHub release (latest by date)](https://img.shields.io/github/v/release/legacycodehq/eureka)
 
-Understand Kotlin and Java classes with ease 😎
+Breakthrough tooling to work with Kotlin and Java codebases 🚀
 
-## Is this for me?
-
-- You have joined a new team or an organization and want to understand the codebase.
-- You want to contribute to an open-source project to build your portfolio.
-- You want to break down a large class.
-- You want to bring a function under test and want to break dependencies and see them in real-time.
-
-## 🚀 Installation
+## 🏎️ Installation
 
 ```bash
 brew install legacycodehq/tap/eureka
 ```
 
-## 🎊 Updates
+## 🎉 Updates
 
 ```bash
 brew upgrade eureka

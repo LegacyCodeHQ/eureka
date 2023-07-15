@@ -2,7 +2,6 @@ package com.legacycode.eureka.hierarchy
 
 import com.legacycode.eureka.dex.Ancestor
 import com.legacycode.eureka.dex.InheritanceAdjacencyList
-import com.legacycode.eureka.dex.TreeClusterJsonTreeBuilder
 import io.ktor.server.application.Application
 import io.ktor.server.engine.ApplicationEngine
 import io.ktor.server.engine.embeddedServer
@@ -30,51 +29,18 @@ class HierarchyServer(
 fun Application.setupRoutes(
   adjacencyList: InheritanceAdjacencyList,
   ancestorFromCommandLine: Ancestor,
-  apkFile: File,
+  artifactFile: File,
 ) {
+  val hierarchyIndexController = HierarchyIndexController()
+
   routing {
     get("/") {
-      handleIndexRoute(
-        adjacencyList,
-        apkFile,
-        ancestorFromCommandLine,
+      hierarchyIndexController.handleRequest(
         HierarchyIndexPathEffects(this),
+        ancestorFromCommandLine,
+        adjacencyList,
+        artifactFile,
       )
     }
   }
-}
-
-private suspend fun handleIndexRoute(
-  adjacencyList: InheritanceAdjacencyList,
-  artifactFile: File,
-  ancestorFromCommandLine: Ancestor,
-  effects: HierarchyIndexPathEffects,
-) {
-  val className = effects.getClassParameter()
-  val urlHasClassParameter = className != null
-
-  if (!urlHasClassParameter) {
-    val currentUrl = effects.getCurrentUrl()
-    val redirectUrl = "$currentUrl?class=${ancestorFromCommandLine.fqn}"
-    effects.redirectRequestTo(redirectUrl)
-  } else {
-    val root = Ancestor(toClassDescriptor(className!!))
-    val searchTerm = effects.getPruneParameter()
-    val activeAdjacencyList = if (searchTerm != null) {
-      adjacencyList.prune(searchTerm)
-    } else {
-      adjacencyList
-    }
-
-    val html = HierarchyHtml(
-      Title(artifactFile.name, root.fqn),
-      Heading(artifactFile.name, root.fqn, searchTerm),
-      activeAdjacencyList.tree(root, TreeClusterJsonTreeBuilder()),
-    ).content
-    effects.renderHtml(html)
-  }
-}
-
-private fun toClassDescriptor(className: String): String {
-  return "L${className.replace('.', '/')};"
 }

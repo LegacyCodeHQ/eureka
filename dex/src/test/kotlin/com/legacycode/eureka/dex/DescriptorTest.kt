@@ -156,4 +156,37 @@ class DescriptorTest {
         .isFalse()
     }
   }
+
+  @Nested
+  inner class RegexMatch {
+    @Test
+    fun `it should match when type matches regex`() {
+      // given
+      val descriptor = Descriptor.from("Lorg.thought.crime.secure.HelpSettingsFragment;")
+
+      // when & then
+      assertThat(descriptor.matches("regex:S.+s"))
+        .isTrue()
+    }
+
+    @Test
+    fun `it should not match if the type name does not match the regex`() {
+      // given
+      val descriptor = Descriptor.from("Lorg.thought.crime.secure.HelpSettingsFragment;")
+
+      // when & then
+      assertThat(descriptor.matches("regex:A.+"))
+        .isFalse()
+    }
+
+    @Test
+    fun `it should ignore case in the 'regex' directive`() {
+      // given
+      val descriptor = Descriptor.from("Lorg.thought.crime.secure.HelpSettingsFragment;")
+
+      // when & then
+      assertThat(descriptor.matches("rEgeX:S.+s"))
+        .isTrue()
+    }
+  }
 }

@@ -1,9 +1,12 @@
 package com.legacycode.eureka.dex
 
+import java.util.regex.Pattern
+
 @JvmInline
 value class Descriptor private constructor(val name: String) {
   companion object {
     private const val DIRECTIVE_EXACT = "exact:"
+    private const val DIRECTIVE_REGEX = "regex:"
 
     fun from(name: String): Descriptor {
       return Descriptor(name)
@@ -17,6 +20,14 @@ value class Descriptor private constructor(val name: String) {
     get() = name.substring(name.lastIndexOf('/') + 1).dropLast(1)
 
   fun matches(searchTerm: String): Boolean {
+    val regexMatch = searchTerm.startsWith(DIRECTIVE_REGEX, true)
+    if (regexMatch) {
+      val regex = searchTerm.substring(DIRECTIVE_REGEX.length)
+      val pattern = Pattern.compile(regex)
+      val matcher = pattern.matcher(simpleClassName)
+      return matcher.find()
+    }
+
     val makeExactMatch = searchTerm.startsWith(DIRECTIVE_EXACT, true)
     if (makeExactMatch) {
       val maybeWordsWithHyphenation = simpleClassName.split("(?<=.)(?=\\p{Lu})".toRegex())

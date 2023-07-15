@@ -28,8 +28,8 @@ value class Descriptor private constructor(val name: String) {
       return matcher.find()
     }
 
-    val makeExactMatch = searchTerm.startsWith(DIRECTIVE_EXACT, true)
-    if (makeExactMatch) {
+    val exactMatch = searchTerm.startsWith(DIRECTIVE_EXACT, true)
+    if (exactMatch) {
       val maybeWordsWithHyphenation = simpleClassName.split("(?<=.)(?=\\p{Lu})".toRegex())
       val words = maybeWordsWithHyphenation.flatMap { it.split("_", "-") }
       val keyword = searchTerm.substring(DIRECTIVE_EXACT.length)

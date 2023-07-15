@@ -4,13 +4,11 @@ import com.legacycode.eureka.dex.Ancestor
 import com.legacycode.eureka.dex.InheritanceAdjacencyList
 import com.legacycode.eureka.dex.TreeClusterJsonTreeBuilder
 import io.ktor.server.application.Application
-import io.ktor.server.application.ApplicationCall
 import io.ktor.server.engine.ApplicationEngine
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import io.ktor.server.routing.get
 import io.ktor.server.routing.routing
-import io.ktor.util.pipeline.PipelineContext
 import java.io.File
 
 class HierarchyServer(
@@ -36,18 +34,22 @@ fun Application.setupRoutes(
 ) {
   routing {
     get("/") {
-      handleIndexRoute(this, adjacencyList, apkFile, ancestorFromCommandLine)
+      handleIndexRoute(
+        adjacencyList,
+        apkFile,
+        ancestorFromCommandLine,
+        HierarchyIndexPathEffects(this),
+      )
     }
   }
 }
 
 private suspend fun handleIndexRoute(
-  context: PipelineContext<Unit, ApplicationCall>,
   adjacencyList: InheritanceAdjacencyList,
   artifactFile: File,
   ancestorFromCommandLine: Ancestor,
+  effects: HierarchyIndexPathEffects,
 ) {
-  val effects = HierarchyDefaultPathEffects(context)
   val className = effects.getClassParameter()
   val urlHasClassParameter = className != null
 

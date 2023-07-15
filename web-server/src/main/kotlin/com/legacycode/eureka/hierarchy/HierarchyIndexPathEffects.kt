@@ -8,7 +8,7 @@ import io.ktor.server.response.respondRedirect
 import io.ktor.server.response.respondText
 import io.ktor.util.pipeline.PipelineContext
 
-class HierarchyDefaultPathEffects(private val context: PipelineContext<Unit, ApplicationCall>) {
+class HierarchyIndexPathEffects(private val context: PipelineContext<Unit, ApplicationCall>) {
   companion object {
     private const val PARAM_CLASS = "class"
     private const val PARAM_PRUNE = "prune"

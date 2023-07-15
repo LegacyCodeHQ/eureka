@@ -20,11 +20,11 @@ class HtmlTemplate(private val text: String) {
     }
 
     private fun fromInputStream(inputStream: InputStream): HtmlTemplate {
-      val content = inputStream
+      val text = inputStream
         .bufferedReader()
         .use { it.readText() }
 
-      return HtmlTemplate(content)
+      return HtmlTemplate(text)
     }
   }
 

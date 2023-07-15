@@ -48,22 +48,23 @@ fun Application.setupRoutes(
 ) {
   routing {
     get("/") {
-      handleIndexRoute(adjacencyList, apkFile, ancestorFromCommandLine)
+      handleIndexRoute(this, adjacencyList, apkFile, ancestorFromCommandLine)
     }
   }
 }
 
-private suspend fun PipelineContext<Unit, ApplicationCall>.handleIndexRoute(
+private suspend fun handleIndexRoute(
+  context: PipelineContext<Unit, ApplicationCall>,
   adjacencyList: InheritanceAdjacencyList,
   artifactFile: File,
   ancestorFromCommandLine: Ancestor,
 ) {
-  val className = call.parameters[PARAM_CLASS]
+  val className = context.call.parameters[PARAM_CLASS]
   val urlHasClassParameter = className != null
 
   if (urlHasClassParameter) {
     val root = Ancestor(toClassDescriptor(className!!))
-    val searchTerm = call.parameters[PARAM_PRUNE]
+    val searchTerm = context.call.parameters[PARAM_PRUNE]
     val adjacencyListToUse = if (searchTerm != null) {
       adjacencyList.prune(searchTerm)
     } else {
@@ -74,11 +75,11 @@ private suspend fun PipelineContext<Unit, ApplicationCall>.handleIndexRoute(
     val title = getTitle(artifactFile, root)
     val heading = getHeading(artifactFile, root, searchTerm)
     val html = getHierarchyHtml(title, heading, treeClusterJson)
-    call.respondText(html, ContentType.Text.Html)
+    context.call.respondText(html, ContentType.Text.Html)
   } else {
-    val currentUrl = call.request.uri
+    val currentUrl = context.call.request.uri
     val redirectUrl = "$currentUrl?class=${ancestorFromCommandLine.fqn}"
-    call.respondRedirect(redirectUrl)
+    context.call.respondRedirect(redirectUrl)
   }
 }
 

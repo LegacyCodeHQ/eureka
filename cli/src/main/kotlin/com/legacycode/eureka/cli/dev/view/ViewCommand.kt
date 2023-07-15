@@ -32,9 +32,9 @@ class ViewCommand : Runnable {
 
   override fun run() {
     if (!jsonFile.exists() && !jsonFile.isFile) {
-      println("❌ JSON file not found at given path: $jsonFile, please provide a valid file path")
+      println("❌ File not found: '$jsonFile'")
     } else if (!EdgeBundlingGraph.isValidJson(jsonFile.readText())) {
-      println("❌ Provided JSON file is not valid. Please provide a valid JSON file")
+      println("❌ Invalid JSON format")
     } else {
       WatchServer().start(JsonFile(jsonFile), port)
     }

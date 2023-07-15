@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>SwallowedException:EdgeBundlingGraph.kt$EdgeBundlingGraph.Companion$e: JsonProcessingException</ID>
+    <ID>SwallowedException:EdgeBundlingGraph.kt$EdgeBundlingGraph.Companion$e: MismatchedInputException</ID>
+  </CurrentIssues>
+</SmellBaseline>

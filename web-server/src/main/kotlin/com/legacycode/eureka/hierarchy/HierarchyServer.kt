@@ -31,16 +31,11 @@ fun Application.setupRoutes(
   ancestorFromCommandLine: Ancestor,
   artifactFile: File,
 ) {
-  val hierarchyIndexController = HierarchyIndexController()
+  val hierarchyIndexController = HierarchyIndexController(artifactFile, adjacencyList, ancestorFromCommandLine)
 
   routing {
     get("/") {
-      hierarchyIndexController.handleRequest(
-        HierarchyIndexPathEffects(this),
-        ancestorFromCommandLine,
-        adjacencyList,
-        artifactFile,
-      )
+      hierarchyIndexController.handleRequest(HierarchyIndexPathEffects(this))
     }
   }
 }

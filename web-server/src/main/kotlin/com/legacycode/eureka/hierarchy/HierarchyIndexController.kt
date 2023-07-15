@@ -5,19 +5,18 @@ import com.legacycode.eureka.dex.InheritanceAdjacencyList
 import com.legacycode.eureka.dex.TreeClusterJsonTreeBuilder
 import java.io.File
 
-class HierarchyIndexController {
-  suspend fun handleRequest(
-    effects: HierarchyIndexPathEffects,
-    ancestorFromCommandLine: Ancestor,
-    adjacencyList: InheritanceAdjacencyList,
-    artifactFile: File,
-  ) {
+class HierarchyIndexController(
+  private val artifactFile: File,
+  private val adjacencyList: InheritanceAdjacencyList,
+  private val defaultAncestor: Ancestor,
+) {
+  suspend fun handleRequest(effects: HierarchyIndexPathEffects) {
     val className = effects.getClassParameter()
     val urlHasClassParameter = className != null
 
     if (!urlHasClassParameter) {
       val currentUrl = effects.getCurrentUrl()
-      val redirectUrl = "$currentUrl?class=${ancestorFromCommandLine.fqn}"
+      val redirectUrl = "$currentUrl?class=${defaultAncestor.fqn}"
       effects.redirectRequestTo(redirectUrl)
     } else {
       val root = Ancestor(toClassDescriptor(className!!))

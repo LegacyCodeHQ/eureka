@@ -75,7 +75,7 @@ private suspend fun handleIndexRoute(
 
     val treeClusterJson = adjacencyListToUse.tree(root, TreeClusterJsonTreeBuilder())
     val title = Title(artifactFile.name, root.fqn)
-    val heading = getHeading(artifactFile.name, searchTerm, root.fqn)
+    val heading = Heading(artifactFile.name, root.fqn, searchTerm)
     val html = getHierarchyHtml(title, heading, treeClusterJson)
     context.call.respondText(html, ContentType.Text.Html)
   } else {
@@ -91,25 +91,13 @@ private fun toClassDescriptor(className: String): String {
 
 private fun getHierarchyHtml(
   title: Title,
-  heading: String,
+  heading: Heading,
   data: String,
 ): String {
   return HtmlTemplate
     .fromResource("/hierarchy.html")
     .bind(Placeholder("title"), title.displayText)
-    .bind(Placeholder("heading"), heading)
+    .bind(Placeholder("heading"), heading.displayText)
     .bind(Placeholder("data"), data)
     .content
-}
-
-private fun getHeading(
-  filename: String,
-  pruneKeyword: String?,
-  className: String,
-): String {
-  return if (pruneKeyword != null) {
-    "$filename ($className → showing \"$pruneKeyword\")"
-  } else {
-    "$filename ($className)"
-  }
 }

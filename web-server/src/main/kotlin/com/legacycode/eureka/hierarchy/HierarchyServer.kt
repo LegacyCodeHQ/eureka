@@ -65,7 +65,6 @@ fun Application.setupRoutes(
         val currentUrl = call.request.uri
         val redirectUrl = "$currentUrl?class=${ancestorFromCommandLine.fqn}"
         call.respondRedirect(redirectUrl)
-        return@get
       }
     }
   }

@@ -62,7 +62,11 @@ private suspend fun handleIndexRoute(
   val className = context.call.parameters[PARAM_CLASS]
   val urlHasClassParameter = className != null
 
-  if (urlHasClassParameter) {
+  if (!urlHasClassParameter) {
+    val currentUrl = context.call.request.uri
+    val redirectUrl = "$currentUrl?class=${ancestorFromCommandLine.fqn}"
+    context.call.respondRedirect(redirectUrl)
+  } else {
     val root = Ancestor(toClassDescriptor(className!!))
     val searchTerm = context.call.parameters[PARAM_PRUNE]
     val activeAdjacencyList = if (searchTerm != null) {
@@ -77,10 +81,6 @@ private suspend fun handleIndexRoute(
       activeAdjacencyList.tree(root, TreeClusterJsonTreeBuilder()),
     ).content
     context.call.respondText(html, ContentType.Text.Html)
-  } else {
-    val currentUrl = context.call.request.uri
-    val redirectUrl = "$currentUrl?class=${ancestorFromCommandLine.fqn}"
-    context.call.respondRedirect(redirectUrl)
   }
 }
 

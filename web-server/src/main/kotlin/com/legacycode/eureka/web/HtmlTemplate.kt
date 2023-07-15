@@ -37,5 +37,5 @@ class HtmlTemplate(private val text: String) {
 
 @JvmInline
 value class Placeholder(private val key: String) {
-  val handlebar: String get() = "{{${key}}}"
+  val handlebars: String get() = "{{${key}}}"
 }

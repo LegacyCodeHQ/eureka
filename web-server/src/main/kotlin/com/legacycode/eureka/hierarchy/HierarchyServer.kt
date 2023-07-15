@@ -7,6 +7,7 @@ import com.legacycode.eureka.hierarchy.HierarchyServer.Companion.PARAM_CLASS
 import com.legacycode.eureka.hierarchy.HierarchyServer.Companion.PARAM_PRUNE
 import io.ktor.http.ContentType
 import io.ktor.server.application.Application
+import io.ktor.server.application.ApplicationCall
 import io.ktor.server.application.call
 import io.ktor.server.engine.ApplicationEngine
 import io.ktor.server.engine.embeddedServer
@@ -16,6 +17,7 @@ import io.ktor.server.response.respondRedirect
 import io.ktor.server.response.respondText
 import io.ktor.server.routing.get
 import io.ktor.server.routing.routing
+import io.ktor.util.pipeline.PipelineContext
 import java.io.File
 
 class HierarchyServer(
@@ -46,27 +48,35 @@ fun Application.setupRoutes(
 ) {
   routing {
     get("/") {
-      val className = call.parameters[PARAM_CLASS]
-      val urlHasClassParameter = className != null
-
-      if (urlHasClassParameter) {
-        val root = Ancestor(toClassDescriptor(className!!))
-        val searchTerm = call.parameters[PARAM_PRUNE]
-        val adjacencyListToUse = if (searchTerm != null) {
-          adjacencyList.prune(searchTerm)
-        } else {
-          adjacencyList
-        }
-
-        val treeClusterJson = adjacencyListToUse.tree(root, TreeClusterJsonTreeBuilder())
-        val html = getHierarchyHtml(getTitle(apkFile, root), getHeading(apkFile, root, searchTerm), treeClusterJson)
-        call.respondText(html, ContentType.Text.Html)
-      } else {
-        val currentUrl = call.request.uri
-        val redirectUrl = "$currentUrl?class=${ancestorFromCommandLine.fqn}"
-        call.respondRedirect(redirectUrl)
-      }
+      handleIndexRoute(adjacencyList, apkFile, ancestorFromCommandLine)
     }
+  }
+}
+
+private suspend fun PipelineContext<Unit, ApplicationCall>.handleIndexRoute(
+  adjacencyList: InheritanceAdjacencyList,
+  apkFile: File,
+  ancestorFromCommandLine: Ancestor,
+) {
+  val className = call.parameters[PARAM_CLASS]
+  val urlHasClassParameter = className != null
+
+  if (urlHasClassParameter) {
+    val root = Ancestor(toClassDescriptor(className!!))
+    val searchTerm = call.parameters[PARAM_PRUNE]
+    val adjacencyListToUse = if (searchTerm != null) {
+      adjacencyList.prune(searchTerm)
+    } else {
+      adjacencyList
+    }
+
+    val treeClusterJson = adjacencyListToUse.tree(root, TreeClusterJsonTreeBuilder())
+    val html = getHierarchyHtml(getTitle(apkFile, root), getHeading(apkFile, root, searchTerm), treeClusterJson)
+    call.respondText(html, ContentType.Text.Html)
+  } else {
+    val currentUrl = call.request.uri
+    val redirectUrl = "$currentUrl?class=${ancestorFromCommandLine.fqn}"
+    call.respondRedirect(redirectUrl)
   }
 }
 

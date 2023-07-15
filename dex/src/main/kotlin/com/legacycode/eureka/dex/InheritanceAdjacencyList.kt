@@ -67,11 +67,14 @@ class InheritanceAdjacencyList {
 
   fun prune(keyword: String): InheritanceAdjacencyList {
     val adjacencyList = InheritanceAdjacencyList()
-    val searchTerm = SearchTerm.from(keyword)
+    val searchPolicy = SearchPolicy.from(keyword)
 
     fun dfs(ancestor: Ancestor): Boolean {
       val children = children(ancestor)
-      var shouldAdd = children.any { child -> Descriptor.from(child.id).matches(searchTerm) }
+      var shouldAdd = children.any { child ->
+        val descriptor = Descriptor.from(child.id)
+        searchPolicy.matches(descriptor.simpleClassName)
+      }
 
       val relevantChildren = mutableListOf<Child>()
 
@@ -89,7 +92,7 @@ class InheritanceAdjacencyList {
         }
       }
 
-      return shouldAdd || Descriptor.from(ancestor.id).matches(searchTerm)
+      return shouldAdd || searchPolicy.matches(Descriptor.from(ancestor.id).simpleClassName)
     }
 
     val rootAncestors = ancestors()

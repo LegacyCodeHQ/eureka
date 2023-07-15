@@ -8,10 +8,6 @@ value class Descriptor private constructor(val name: String) {
     }
   }
 
-  private val simpleClassName: String
+  val simpleClassName: String
     get() = name.substring(name.lastIndexOf('/') + 1).dropLast(1)
-
-  fun matches(searchTerm: SearchTerm): Boolean {
-    return searchTerm.matches(simpleClassName)
-  }
 }

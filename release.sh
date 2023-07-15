@@ -7,7 +7,7 @@ check_status() {
   fi
 }
 
-# Set version to a non-snapshot build
+# Set version to a non-snapshot build and bundle latest Web UI (if available)
 ./gradlew prepareRelease
 check_status "./gradlew prepareRelease"
 # Push updated version commit to remote

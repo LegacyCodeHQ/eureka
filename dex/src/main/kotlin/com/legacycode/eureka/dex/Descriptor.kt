@@ -9,7 +9,13 @@ value class Descriptor private constructor(val name: String) {
   }
 
   fun matches(keyword: String): Boolean {
-    return name.substring(name.lastIndexOf('/') + 1)
-      .contains(keyword, true)
+    val simpleClassName = name.substring(name.lastIndexOf('/') + 1).dropLast(1)
+    val isInnerClass = simpleClassName.contains('$')
+    if (isInnerClass) {
+      val nestedSimpleClassName = simpleClassName.substring(simpleClassName.lastIndexOf('$') + 1)
+      return nestedSimpleClassName.contains(keyword, true)
+    }
+
+    return simpleClassName.contains(keyword, true)
   }
 }

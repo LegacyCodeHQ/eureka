@@ -74,8 +74,8 @@ private suspend fun handleIndexRoute(
     }
 
     val treeClusterJson = adjacencyListToUse.tree(root, TreeClusterJsonTreeBuilder())
-    val title = getTitle(artifactFile, root)
-    val heading = getHeading(artifactFile, root, searchTerm)
+    val title = getTitle(artifactFile.name, root)
+    val heading = getHeading(artifactFile.name, root, searchTerm)
     val html = getHierarchyHtml(title, heading, treeClusterJson)
     context.call.respondText(html, ContentType.Text.Html)
   } else {
@@ -102,20 +102,20 @@ private fun getHierarchyHtml(
     .content
 }
 
-private fun getTitle(apkFile: File, ancestor: Ancestor): String {
+private fun getTitle(filename: String, ancestor: Ancestor): String {
   val className = ancestor.fqn
-  return "${apkFile.name} (${className.substring(className.lastIndexOf('.') + 1)})"
+  return "$filename (${className.substring(className.lastIndexOf('.') + 1)})"
 }
 
 private fun getHeading(
-  apkFile: File,
+  filename: String,
   ancestor: Ancestor,
   pruneKeyword: String?,
 ): String {
   val className = ancestor.fqn
   return if (pruneKeyword != null) {
-    "${apkFile.name} (${className} → showing \"$pruneKeyword\")"
+    "$filename (${className} → showing \"$pruneKeyword\")"
   } else {
-    "${apkFile.name} (${className})"
+    "$filename (${className})"
   }
 }

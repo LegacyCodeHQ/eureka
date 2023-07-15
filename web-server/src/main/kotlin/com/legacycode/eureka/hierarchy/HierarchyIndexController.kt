@@ -3,12 +3,11 @@ package com.legacycode.eureka.hierarchy
 import com.legacycode.eureka.dex.Ancestor
 import com.legacycode.eureka.dex.InheritanceAdjacencyList
 import com.legacycode.eureka.dex.TreeClusterJsonTreeBuilder
-import java.io.File
 
 class HierarchyIndexController(
-  private val artifactFile: File,
+  private val artifactFilename: String,
   private val adjacencyList: InheritanceAdjacencyList,
-  private val defaultAncestor: Ancestor,
+  private val defaultRootFqn: String,
 ) {
   suspend fun handleRequest(effects: HierarchyIndexPathEffects) {
     val className = effects.getClassParameter()
@@ -16,7 +15,7 @@ class HierarchyIndexController(
 
     if (!urlHasClassParameter) {
       val currentUrl = effects.getCurrentUrl()
-      val redirectUrl = "$currentUrl?class=${defaultAncestor.fqn}"
+      val redirectUrl = "$currentUrl?class=$defaultRootFqn"
       effects.redirectRequestTo(redirectUrl)
     } else {
       val root = Ancestor(toClassDescriptor(className!!))
@@ -28,8 +27,8 @@ class HierarchyIndexController(
       }
 
       val html = HierarchyHtml(
-        Title(artifactFile.name, root.fqn),
-        Heading(artifactFile.name, root.fqn, searchTerm),
+        Title(artifactFilename, root.fqn),
+        Heading(artifactFilename, root.fqn, searchTerm),
         activeAdjacencyList.tree(root, TreeClusterJsonTreeBuilder()),
       ).content
       effects.renderHtml(html)

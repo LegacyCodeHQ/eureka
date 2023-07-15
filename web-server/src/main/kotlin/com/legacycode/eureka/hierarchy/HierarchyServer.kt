@@ -65,16 +65,17 @@ private suspend fun handleIndexRoute(
   if (urlHasClassParameter) {
     val root = Ancestor(toClassDescriptor(className!!))
     val searchTerm = context.call.parameters[PARAM_PRUNE]
-    val adjacencyListToUse = if (searchTerm != null) {
+    val activeAdjacencyList = if (searchTerm != null) {
       adjacencyList.prune(searchTerm)
     } else {
       adjacencyList
     }
 
-    val treeClusterJson = adjacencyListToUse.tree(root, TreeClusterJsonTreeBuilder())
-    val title = Title(artifactFile.name, root.fqn)
-    val heading = Heading(artifactFile.name, root.fqn, searchTerm)
-    val html = HierarchyHtml(title, heading, treeClusterJson).content
+    val html = HierarchyHtml(
+      Title(artifactFile.name, root.fqn),
+      Heading(artifactFile.name, root.fqn, searchTerm),
+      activeAdjacencyList.tree(root, TreeClusterJsonTreeBuilder()),
+    ).content
     context.call.respondText(html, ContentType.Text.Html)
   } else {
     val currentUrl = context.call.request.uri

@@ -104,7 +104,7 @@ class InheritanceAdjacencyListTest {
     }
 
     @Test
-    fun `it can build JSON document for Tree, Cluster`() {
+    fun `it can build JSON document for Tree Cluster`() {
       // given
       val treeClusterJsonBuilder = TreeClusterJsonTreeBuilder()
 

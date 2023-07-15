@@ -51,15 +51,15 @@ fun Application.setupRoutes(
 
       if (urlHasClassParameter) {
         val root = Ancestor(toClassDescriptor(className!!))
-        val pruneKeyword = call.parameters[PARAM_PRUNE]
-        val adjacencyListToUse = if (pruneKeyword != null) {
-          adjacencyList.prune(pruneKeyword)
+        val searchTerm = call.parameters[PARAM_PRUNE]
+        val adjacencyListToUse = if (searchTerm != null) {
+          adjacencyList.prune(searchTerm)
         } else {
           adjacencyList
         }
 
         val treeClusterJson = adjacencyListToUse.tree(root, TreeClusterJsonTreeBuilder())
-        val html = getHierarchyHtml(getTitle(apkFile, root), getHeading(apkFile, root, pruneKeyword), treeClusterJson)
+        val html = getHierarchyHtml(getTitle(apkFile, root), getHeading(apkFile, root, searchTerm), treeClusterJson)
         call.respondText(html, ContentType.Text.Html)
       } else {
         val currentUrl = call.request.uri

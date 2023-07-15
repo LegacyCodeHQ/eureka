@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>ReturnCount:Descriptor.kt$Descriptor$fun matches(searchTerm: String): Boolean</ID>
+  </CurrentIssues>
+</SmellBaseline>

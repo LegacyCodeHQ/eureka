@@ -13,7 +13,7 @@ class DescriptorTest {
       val descriptor = Descriptor.from("Lorg.thought.crime.secure.HelpSettingsFragmentL;")
 
       // when & then
-      assertThat(descriptor.matches("Celebrate"))
+      assertThat(descriptor.matches(SearchTerm.from("Celebrate")))
         .isFalse()
     }
 
@@ -23,7 +23,7 @@ class DescriptorTest {
       val descriptor = Descriptor.from("Lorg.thought.crime.secure.HelpSettingsFragmentL;")
 
       // when & then
-      assertThat(descriptor.matches("Help"))
+      assertThat(descriptor.matches(SearchTerm.from("Help")))
         .isTrue()
     }
 
@@ -33,7 +33,7 @@ class DescriptorTest {
       val descriptor = Descriptor.from("Lorg.thought.crime.secure.HelpSettingsFragmentL;")
 
       // when & then
-      assertThat(descriptor.matches("help"))
+      assertThat(descriptor.matches(SearchTerm.from("help")))
         .isTrue()
     }
 
@@ -43,7 +43,7 @@ class DescriptorTest {
       val descriptor = Descriptor.from("Lorg/wikipedia/settings/languages/WikipediaLanguagesActivity;")
 
       // when & then
-      assertThat(descriptor.matches("settings"))
+      assertThat(descriptor.matches(SearchTerm.from("settings")))
         .isFalse()
     }
   }
@@ -56,7 +56,7 @@ class DescriptorTest {
       val descriptor = Descriptor.from("Lorg.thought.crime.secure.HelpSettingsFragment${'$'}NodeProviderHelper;")
 
       // when & then
-      assertThat(descriptor.matches("Help"))
+      assertThat(descriptor.matches(SearchTerm.from("Help")))
         .isTrue()
     }
 
@@ -66,7 +66,7 @@ class DescriptorTest {
       val descriptor = Descriptor.from("Lorg.thought.crime.secure.HelpSettingsFragment${'$'}NodeProviderHelper;")
 
       // when & then
-      assertThat(descriptor.matches("help"))
+      assertThat(descriptor.matches(SearchTerm.from("help")))
         .isTrue()
     }
 
@@ -76,7 +76,7 @@ class DescriptorTest {
       val descriptor = Descriptor.from("Lorg.thought.crime.secure.HelpSettingsFragment${'$'}NodeProviderRepository;")
 
       // when & then
-      assertThat(descriptor.matches("help"))
+      assertThat(descriptor.matches(SearchTerm.from("help")))
         .isFalse()
     }
   }
@@ -89,7 +89,7 @@ class DescriptorTest {
       val descriptor = Descriptor.from("Lorg.thought.crime.secure.HelpSettingsFragment;")
 
       // when & then
-      assertThat(descriptor.matches("exact:help"))
+      assertThat(descriptor.matches(SearchTerm.from("exact:help")))
         .isTrue()
     }
 
@@ -99,7 +99,7 @@ class DescriptorTest {
       val descriptor = Descriptor.from("Lorg.thought.crime.secure.HelpSettingsFragment;")
 
       // when & then
-      assertThat(descriptor.matches("exact:set"))
+      assertThat(descriptor.matches(SearchTerm.from("exact:set")))
         .isFalse()
     }
 
@@ -109,7 +109,7 @@ class DescriptorTest {
       val descriptor = Descriptor.from("Lorg.thought.crime.secure.HelpSettingsFragment;")
 
       // when & then
-      assertThat(descriptor.matches("exact:settings"))
+      assertThat(descriptor.matches(SearchTerm.from("exact:settings")))
         .isTrue()
     }
 
@@ -119,7 +119,7 @@ class DescriptorTest {
       val descriptor = Descriptor.from("Lorg.thought.crime.secure.HelpSettingsFragment;")
 
       // when & then
-      assertThat(descriptor.matches("eXaCt:settings"))
+      assertThat(descriptor.matches(SearchTerm.from("eXaCt:settings")))
         .isTrue()
     }
   }
@@ -132,7 +132,7 @@ class DescriptorTest {
       val descriptor = Descriptor.from("Lorg.thought.crime.secure.HelpSettingsFragment${'$'}NodeProviderHelper;")
 
       // when & then
-      assertThat(descriptor.matches("exact:Provider"))
+      assertThat(descriptor.matches(SearchTerm.from("exact:Provider")))
         .isTrue()
     }
 
@@ -142,7 +142,7 @@ class DescriptorTest {
       val descriptor = Descriptor.from("Lorg.thought.crime.secure.HelpSettingsFragment${'$'}NodeProviderHelper;")
 
       // when & then
-      assertThat(descriptor.matches("exact:provider"))
+      assertThat(descriptor.matches(SearchTerm.from("exact:provider")))
         .isTrue()
     }
 
@@ -152,7 +152,7 @@ class DescriptorTest {
       val descriptor = Descriptor.from("Lorg.thought.crime.secure.HelpSettingsFragment${'$'}NodeProviderRepository;")
 
       // when & then
-      assertThat(descriptor.matches("exact:provide"))
+      assertThat(descriptor.matches(SearchTerm.from("exact:provide")))
         .isFalse()
     }
   }
@@ -165,7 +165,7 @@ class DescriptorTest {
       val descriptor = Descriptor.from("Lorg.thought.crime.secure.HelpSettingsFragment;")
 
       // when & then
-      assertThat(descriptor.matches("regex:S.+s"))
+      assertThat(descriptor.matches(SearchTerm.from("regex:S.+s")))
         .isTrue()
     }
 
@@ -175,7 +175,7 @@ class DescriptorTest {
       val descriptor = Descriptor.from("Lorg.thought.crime.secure.HelpSettingsFragment;")
 
       // when & then
-      assertThat(descriptor.matches("regex:A.+"))
+      assertThat(descriptor.matches(SearchTerm.from("regex:A.+")))
         .isFalse()
     }
 
@@ -185,7 +185,7 @@ class DescriptorTest {
       val descriptor = Descriptor.from("Lorg.thought.crime.secure.HelpSettingsFragment;")
 
       // when & then
-      assertThat(descriptor.matches("rEgeX:S.+s"))
+      assertThat(descriptor.matches(SearchTerm.from("rEgeX:S.+s")))
         .isTrue()
     }
   }

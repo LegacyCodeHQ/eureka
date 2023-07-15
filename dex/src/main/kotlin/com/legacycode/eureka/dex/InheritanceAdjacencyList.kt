@@ -65,8 +65,9 @@ class InheritanceAdjacencyList {
     return treeBuilder.out
   }
 
-  fun prune(searchTerm: String): InheritanceAdjacencyList {
+  fun prune(keyword: String): InheritanceAdjacencyList {
     val adjacencyList = InheritanceAdjacencyList()
+    val searchTerm = SearchTerm.from(keyword)
 
     fun dfs(ancestor: Ancestor): Boolean {
       val children = children(ancestor)

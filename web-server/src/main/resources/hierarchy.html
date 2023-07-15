@@ -166,7 +166,7 @@
   let data = `{{data}}`;
 
   let chart = Tree(JSON.parse(data), {
-    label: d => d.name.split('\.').pop(),
+    label: d => d.name.split('\.').pop().replaceAll("$", " • "),
     title: (d, n) => `${n.ancestors().reverse().map(d => d.data.name).join("\n↑\n")}`,
     sort: (a, b) => d3.descending(a.height, b.height),
     tree: d3.cluster,

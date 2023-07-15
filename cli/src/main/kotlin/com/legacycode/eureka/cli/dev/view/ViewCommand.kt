@@ -36,7 +36,7 @@ class ViewCommand : Runnable {
     } else if (!EdgeBundlingGraph.isValidJson(jsonFile.readText())) {
       println("❌ Invalid JSON format")
     } else {
-      WatchServer().start(JsonFile(jsonFile), port)
+      WatchServer().start(JsonFile(jsonFile.absoluteFile), port)
     }
   }
 }

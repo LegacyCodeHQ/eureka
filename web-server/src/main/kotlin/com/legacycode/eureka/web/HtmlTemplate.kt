@@ -1,6 +1,5 @@
 package com.legacycode.eureka.web
 
-import com.legacycode.eureka.hierarchy.HierarchyServer
 import java.io.InputStream
 
 class HtmlTemplate(private val text: String) {
@@ -10,14 +9,14 @@ class HtmlTemplate(private val text: String) {
     get() {
       var result: String = text
       for ((placeholder, value) in placeholderValueMap) {
-        result = result.replace(placeholder.handlebar, value)
+        result = result.replace(placeholder.handlebars, value)
       }
       return result
     }
 
   companion object {
     fun fromResource(path: String): HtmlTemplate {
-      return fromInputStream(HierarchyServer::class.java.getResourceAsStream(path)!!)
+      return fromInputStream(HtmlTemplate::class.java.getResourceAsStream(path)!!)
     }
 
     private fun fromInputStream(inputStream: InputStream): HtmlTemplate {

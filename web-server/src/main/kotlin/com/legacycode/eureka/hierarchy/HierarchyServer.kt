@@ -23,7 +23,7 @@ import java.io.File
 class HierarchyServer(
   private val adjacencyList: InheritanceAdjacencyList,
   private val ancestorFromCommandLine: Ancestor,
-  private val apkFile: File,
+  private val artifactFile: File,
 ) {
   companion object {
     internal const val PARAM_CLASS = "class"
@@ -36,7 +36,7 @@ class HierarchyServer(
     webServer = embeddedServer(
       Netty,
       port = port,
-      module = { setupRoutes(adjacencyList, ancestorFromCommandLine, apkFile) }
+      module = { setupRoutes(adjacencyList, ancestorFromCommandLine, artifactFile) }
     ).start(wait = true)
   }
 }
@@ -55,7 +55,7 @@ fun Application.setupRoutes(
 
 private suspend fun PipelineContext<Unit, ApplicationCall>.handleIndexRoute(
   adjacencyList: InheritanceAdjacencyList,
-  apkFile: File,
+  artifactFile: File,
   ancestorFromCommandLine: Ancestor,
 ) {
   val className = call.parameters[PARAM_CLASS]
@@ -71,7 +71,9 @@ private suspend fun PipelineContext<Unit, ApplicationCall>.handleIndexRoute(
     }
 
     val treeClusterJson = adjacencyListToUse.tree(root, TreeClusterJsonTreeBuilder())
-    val html = getHierarchyHtml(getTitle(apkFile, root), getHeading(apkFile, root, searchTerm), treeClusterJson)
+    val title = getTitle(artifactFile, root)
+    val heading = getHeading(artifactFile, root, searchTerm)
+    val html = getHierarchyHtml(title, heading, treeClusterJson)
     call.respondText(html, ContentType.Text.Html)
   } else {
     val currentUrl = call.request.uri

@@ -88,9 +88,10 @@ private fun toClassDescriptor(className: String): String {
 }
 
 private fun getHierarchyHtml(title: String, heading: String, json: String): String {
-  return HierarchyServer::class.java.getResourceAsStream("/hierarchy.html")!!
+  val htmlTemplate = HierarchyServer::class.java.getResourceAsStream("/hierarchy.html")!!
     .bufferedReader()
     .use { it.readText() }
+  return htmlTemplate
     .replace("{{title}}", title)
     .replace("{{heading}}", heading)
     .replace("{{data}}", json)

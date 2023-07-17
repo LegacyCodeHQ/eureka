@@ -217,5 +217,17 @@ class SearchPolicyTest {
       assertThat(searchPolicy.matches(descriptor.simpleClassName))
         .isTrue()
     }
+
+    @Test
+    fun `it should not match when the nested type does not contain the keyword and is in level 3 of the hierarchy`() {
+      // given
+      val descriptor = Descriptor
+        .from("Lorg.thought.secure.DraftRepository${'$'}ShareOrDraftData${'$'}SendKeyboardImage;")
+      val searchPolicy = SearchPolicy.from("regex:Or")
+
+      // when & then
+      assertThat(searchPolicy.matches(descriptor.simpleClassName))
+        .isFalse()
+    }
   }
 }

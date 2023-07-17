@@ -49,8 +49,14 @@ sealed class SearchPolicy(open val text: String) {
 
   class RegexSearchPolicy(override val text: String) : SearchPolicy(text) {
     override fun matches(simpleClassName: String): Boolean {
+      val isInnerClass = simpleClassName.contains('$')
+      val classNameToUse = if (isInnerClass) {
+        simpleClassName.substring(simpleClassName.lastIndexOf('$') + 1)
+      } else {
+        simpleClassName
+      }
       val pattern = Pattern.compile(text)
-      val matcher = pattern.matcher(simpleClassName)
+      val matcher = pattern.matcher(classNameToUse)
       return matcher.find()
     }
   }

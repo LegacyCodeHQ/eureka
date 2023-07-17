@@ -27,7 +27,8 @@ class HierarchyCommand : Runnable {
   @Option(
     names = ["-n", "--name"],
     description = ["fully qualified class name of the root class"],
-    required = true,
+    required = false,
+    defaultValue = "java.lang.Object"
   )
   private lateinit var rootClassName: String
 

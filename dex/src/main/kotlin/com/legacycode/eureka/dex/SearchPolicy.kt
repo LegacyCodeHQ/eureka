@@ -23,9 +23,10 @@ sealed class SearchPolicy(open val text: String) {
 
   class DefaultSearchPolicy(override val text: String) : SearchPolicy(text) {
     override fun matches(simpleClassName: String): Boolean {
-      if (simpleClassName.contains('$')) {
-        val nestedSimpleClassName = simpleClassName.substring(simpleClassName.lastIndexOf('$') + 1)
-        return nestedSimpleClassName.contains(text, true)
+      val isInnerClass = simpleClassName.contains('$')
+      if (isInnerClass) {
+        val innerClassName = simpleClassName.substring(simpleClassName.lastIndexOf('$') + 1)
+        return innerClassName.contains(text, true)
       }
 
       return simpleClassName.contains(text, true)
@@ -34,7 +35,13 @@ sealed class SearchPolicy(open val text: String) {
 
   class ExactSearchPolicy(override val text: String) : SearchPolicy(text) {
     override fun matches(simpleClassName: String): Boolean {
-      val maybeWordsWithHyphenation = simpleClassName.split("(?<=.)(?=\\p{Lu})".toRegex())
+      val isInnerClass = simpleClassName.contains('$')
+      val classNameToUse = if (isInnerClass) {
+        simpleClassName.substring(simpleClassName.lastIndexOf('$') + 1)
+      } else {
+        simpleClassName
+      }
+      val maybeWordsWithHyphenation = classNameToUse.split("(?<=.)(?=\\p{Lu})".toRegex())
       val words = maybeWordsWithHyphenation.flatMap { it.split("_", "-") }
       return words.any { word -> word.equals(text, true) }
     }

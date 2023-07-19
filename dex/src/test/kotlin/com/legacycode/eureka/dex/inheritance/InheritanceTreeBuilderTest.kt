@@ -5,6 +5,7 @@ import com.legacycode.eureka.dex.Ancestor
 import com.legacycode.eureka.dex.Child
 import com.legacycode.eureka.dex.test.TestApk
 import com.legacycode.eureka.dex.test.TestTreeBuilder
+import kotlin.math.sign
 import org.approvaltests.Approvals
 import org.approvaltests.JsonApprovals
 import org.junit.jupiter.api.BeforeEach
@@ -90,14 +91,29 @@ class InheritanceTreeBuilderTest {
   fun `it can prune a tree by specifying a keyword and ignore non-matching siblings`() {
     // given
     val apkFile = TestApk("wikipedia.apk").file
-    val signalAdjacencyList = InheritanceArtifactParser.from(apkFile).buildInheritanceTree()
+    val wikipediaAdjacencyList = InheritanceArtifactParser.from(apkFile).buildInheritanceTree()
 
     // when
-    val prunedAdjacencyList = signalAdjacencyList.prune("Settings")
+    val prunedAdjacencyList = wikipediaAdjacencyList.prune("Settings")
 
     // then
     val treeClusterJson = prunedAdjacencyList
       .tree(Ancestor("Landroid/app/Activity;"), TreeClusterJsonTreeBuilder())
     JsonApprovals.verifyJson(treeClusterJson)
+  }
+
+  @Test
+  fun `it can prune a tree by node id`() {
+    // given
+    val apkFile = TestApk("wikipedia.apk").file
+    val wikipediaAdjacencyList = InheritanceArtifactParser.from(apkFile).buildInheritanceTree()
+    val node = Ancestor("Landroidx/fragment/app/Fragment;")
+
+    // when
+    val prunedAdjacencyList = wikipediaAdjacencyList.prune(node)
+
+    // then
+    val treeClusterJson = prunedAdjacencyList.tree(node, TreeClusterJsonTreeBuilder())
+    Approvals.verify(treeClusterJson)
   }
 }

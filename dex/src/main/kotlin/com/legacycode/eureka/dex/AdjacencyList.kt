@@ -18,6 +18,21 @@ class AdjacencyList {
     }
   }
 
+  interface GraphBuilder<T> {
+    val out: T
+
+    fun beforeTraversal() {
+      // no-op
+    }
+
+    fun visitAncestor(ancestor: Ancestor)
+    fun visitChild(child: Child)
+
+    fun afterTraversal() {
+      // no-op
+    }
+  }
+
   val isEmpty: Boolean
     get() = parentChildrenMap.isEmpty()
 
@@ -32,8 +47,8 @@ class AdjacencyList {
     children.add(child)
   }
 
-  fun ancestors(): Set<String> {
-    return parentChildrenMap.keys.map { it.id }.toSet()
+  fun ancestors(): Set<Ancestor> {
+    return parentChildrenMap.keys.toSet()
   }
 
   fun children(ancestor: Ancestor): Set<Child> {
@@ -98,8 +113,7 @@ class AdjacencyList {
     }
 
     val rootAncestors = ancestors()
-    for (rootAncestorId in rootAncestors) {
-      val rootAncestor = Ancestor(rootAncestorId)
+    for (rootAncestor in rootAncestors) {
       dfs(rootAncestor)
     }
 
@@ -112,5 +126,64 @@ class AdjacencyList {
       .any { (ancestor, children) ->
         ancestor.id == id || children.any { it.id == id }
       }
+  }
+
+  fun prune(node: Node): AdjacencyList {
+    val adjacencyList = AdjacencyList()
+    val queue = ArrayDeque<Ancestor>()
+    val startNode = Ancestor(node.id)
+
+    if (parentChildrenMap.containsKey(startNode)) {
+      queue.add(startNode)
+    }
+
+    while (queue.isNotEmpty()) {
+      val current = queue.removeFirst()
+      val children = parentChildrenMap[current]
+
+      if (children != null) {
+        for (child in children) {
+          adjacencyList.add(current, child)
+          val childAsAncestor = child.asAncestor()
+          if (parentChildrenMap.containsKey(childAsAncestor)) {
+            queue.add(childAsAncestor)
+          }
+        }
+      }
+    }
+
+    return adjacencyList
+  }
+
+  fun <T> graph(graphBuilder: GraphBuilder<T>): T {
+    graphBuilder.beforeTraversal()
+
+    val visited = mutableSetOf<Ancestor>()
+    val queue = ArrayDeque<Ancestor>(ancestors())
+
+    while (queue.isNotEmpty()) {
+      val currentAncestor = queue.removeFirst()
+
+      if (currentAncestor in visited) continue
+      visited.add(currentAncestor)
+
+      graphBuilder.visitAncestor(currentAncestor)
+
+      val children = parentChildrenMap[currentAncestor]
+
+      if (children != null) {
+        for (child in children) {
+          graphBuilder.visitChild(child)
+          val childAsAncestor = child.asAncestor()
+          if (childAsAncestor !in visited) {
+            queue.add(childAsAncestor)
+          }
+        }
+      }
+    }
+
+    graphBuilder.afterTraversal()
+
+    return graphBuilder.out
   }
 }

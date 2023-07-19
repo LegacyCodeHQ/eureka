@@ -1,0 +1,167 @@
+{
+  "name" : "androidx.fragment.app.Fragment",
+  "children" : [ {
+    "name" : "androidx.fragment.app.DialogFragment",
+    "children" : [ {
+      "name" : "androidx.appcompat.app.AppCompatDialogFragment",
+      "children" : [ {
+        "name" : "com.google.android.material.bottomsheet.BottomSheetDialogFragment",
+        "children" : [ {
+          "name" : "org.wikipedia.page.ExtendedBottomSheetDialogFragment",
+          "children" : [ {
+            "name" : "org.wikipedia.categories.CategoryDialog"
+          }, {
+            "name" : "org.wikipedia.edit.insertmedia.InsertMediaImagePositionDialog"
+          }, {
+            "name" : "org.wikipedia.edit.insertmedia.InsertMediaImageSizeDialog"
+          }, {
+            "name" : "org.wikipedia.edit.insertmedia.InsertMediaImageTypeDialog"
+          }, {
+            "name" : "org.wikipedia.navtab.MenuNavTabDialog"
+          }, {
+            "name" : "org.wikipedia.page.linkpreview.LinkPreviewDialog"
+          }, {
+            "name" : "org.wikipedia.page.references.ReferenceDialog"
+          }, {
+            "name" : "org.wikipedia.readinglist.AddToReadingListDialog",
+            "children" : [ {
+              "name" : "org.wikipedia.readinglist.MoveToReadingListDialog"
+            } ]
+          }, {
+            "name" : "org.wikipedia.readinglist.ReadingListItemActionsDialog"
+          }, {
+            "name" : "org.wikipedia.readinglist.SortReadingListsDialog"
+          }, {
+            "name" : "org.wikipedia.theme.ThemeChooserDialog"
+          }, {
+            "name" : "org.wikipedia.views.ImagePreviewDialog"
+          }, {
+            "name" : "org.wikipedia.watchlist.WatchlistExpiryDialog"
+          }, {
+            "name" : "org.wikipedia.wiktionary.WiktionaryDialog"
+          } ]
+        } ]
+      } ]
+    }, {
+      "name" : "androidx.preference.PreferenceDialogFragmentCompat",
+      "children" : [ {
+        "name" : "androidx.preference.EditTextPreferenceDialogFragmentCompat"
+      }, {
+        "name" : "androidx.preference.ListPreferenceDialogFragmentCompat"
+      }, {
+        "name" : "androidx.preference.MultiSelectListPreferenceDialogFragmentCompat"
+      } ]
+    }, {
+      "name" : "com.google.android.gms.common.SupportErrorDialogFragment"
+    }, {
+      "name" : "com.google.android.material.datepicker.MaterialDatePicker"
+    }, {
+      "name" : "org.wikipedia.suggestededits.SuggestedEditsImageTagDialog"
+    }, {
+      "name" : "org.wikipedia.views.CustomDatePicker"
+    } ]
+  }, {
+    "name" : "androidx.preference.PreferenceFragmentCompat",
+    "children" : [ {
+      "name" : "org.wikipedia.settings.PreferenceLoaderFragment",
+      "children" : [ {
+        "name" : "org.wikipedia.settings.DeveloperSettingsFragment"
+      }, {
+        "name" : "org.wikipedia.settings.NotificationSettingsFragment"
+      }, {
+        "name" : "org.wikipedia.settings.SettingsFragment"
+      } ]
+    } ]
+  }, {
+    "name" : "com.bumptech.glide.manager.SupportRequestManagerFragment"
+  }, {
+    "name" : "com.google.android.gms.common.api.internal.zzd"
+  }, {
+    "name" : "com.google.android.material.datepicker.PickerFragment",
+    "children" : [ {
+      "name" : "com.google.android.material.datepicker.MaterialCalendar"
+    }, {
+      "name" : "com.google.android.material.datepicker.MaterialTextInputPicker"
+    } ]
+  }, {
+    "name" : "org.wikipedia.commons.FilePageFragment"
+  }, {
+    "name" : "org.wikipedia.descriptions.DescriptionEditFragment"
+  }, {
+    "name" : "org.wikipedia.descriptions.DescriptionEditSuccessFragment"
+  }, {
+    "name" : "org.wikipedia.descriptions.DescriptionEditTutorialFragment$ItemFragment"
+  }, {
+    "name" : "org.wikipedia.diff.ArticleEditDetailsFragment"
+  }, {
+    "name" : "org.wikipedia.edit.insertmedia.InsertMediaAdvancedSettingsFragment"
+  }, {
+    "name" : "org.wikipedia.edit.insertmedia.InsertMediaSettingsFragment"
+  }, {
+    "name" : "org.wikipedia.edit.preview.EditPreviewFragment"
+  }, {
+    "name" : "org.wikipedia.edit.summaries.EditSummaryFragment"
+  }, {
+    "name" : "org.wikipedia.feed.FeedFragment"
+  }, {
+    "name" : "org.wikipedia.feed.configure.ConfigureFragment"
+  }, {
+    "name" : "org.wikipedia.feed.news.NewsFragment"
+  }, {
+    "name" : "org.wikipedia.feed.onthisday.OnThisDayFragment"
+  }, {
+    "name" : "org.wikipedia.feed.suggestededits.SuggestedEditsCardItemFragment"
+  }, {
+    "name" : "org.wikipedia.feed.topread.TopReadFragment"
+  }, {
+    "name" : "org.wikipedia.gallery.GalleryItemFragment"
+  }, {
+    "name" : "org.wikipedia.history.HistoryFragment"
+  }, {
+    "name" : "org.wikipedia.main.MainFragment"
+  }, {
+    "name" : "org.wikipedia.onboarding.InitialOnboardingFragment$ItemFragment"
+  }, {
+    "name" : "org.wikipedia.onboarding.OnboardingFragment",
+    "children" : [ {
+      "name" : "org.wikipedia.descriptions.DescriptionEditTutorialFragment"
+    }, {
+      "name" : "org.wikipedia.onboarding.InitialOnboardingFragment"
+    } ]
+  }, {
+    "name" : "org.wikipedia.page.PageFragment"
+  }, {
+    "name" : "org.wikipedia.page.customize.CustomizeToolbarFragment"
+  }, {
+    "name" : "org.wikipedia.random.RandomFragment"
+  }, {
+    "name" : "org.wikipedia.random.RandomItemFragment"
+  }, {
+    "name" : "org.wikipedia.readinglist.ReadingListFragment"
+  }, {
+    "name" : "org.wikipedia.readinglist.ReadingListsFragment"
+  }, {
+    "name" : "org.wikipedia.search.RecentSearchesFragment"
+  }, {
+    "name" : "org.wikipedia.search.SearchFragment"
+  }, {
+    "name" : "org.wikipedia.search.SearchResultsFragment"
+  }, {
+    "name" : "org.wikipedia.settings.languages.WikipediaLanguagesFragment"
+  }, {
+    "name" : "org.wikipedia.suggestededits.SuggestedEditsCardsFragment"
+  }, {
+    "name" : "org.wikipedia.suggestededits.SuggestedEditsItemFragment",
+    "children" : [ {
+      "name" : "org.wikipedia.suggestededits.SuggestedEditsCardsItemFragment"
+    }, {
+      "name" : "org.wikipedia.suggestededits.SuggestedEditsImageTagsFragment"
+    } ]
+  }, {
+    "name" : "org.wikipedia.suggestededits.SuggestedEditsTasksFragment"
+  }, {
+    "name" : "org.wikipedia.theme.ThemeFittingRoomFragment"
+  }, {
+    "name" : "org.wikipedia.watchlist.WatchlistFragment"
+  } ]
+}

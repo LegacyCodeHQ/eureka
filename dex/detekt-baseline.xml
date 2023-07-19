@@ -2,6 +2,10 @@
 <SmellBaseline>
   <ManuallySuppressedIssues></ManuallySuppressedIssues>
   <CurrentIssues>
-    <ID>ReturnCount:Descriptor.kt$Descriptor$fun matches(searchTerm: String): Boolean</ID>
+    <ID>NestedBlockDepth:AdjacencyList.kt$AdjacencyList$fun &lt;T&gt; graph(graphBuilder: GraphBuilder&lt;T&gt;): T</ID>
+    <ID>NestedBlockDepth:AdjacencyList.kt$AdjacencyList$fun prune(node: Node): AdjacencyList</ID>
+    <ID>NestedBlockDepth:DependencyApkParser.kt$DependencyApkParser$private fun DexBackedMethod.addTypesFromInstructions( outDependencies: MutableSet&lt;String&gt;, )</ID>
+    <ID>NestedBlockDepth:DependencyApkParser.kt$DependencyApkParser$private fun buildDependencyGraph( zipFile: ZipFile, inheritanceTree: AdjacencyList, ): AdjacencyList</ID>
+    <ID>TooManyFunctions:DependencyApkParser.kt$DependencyApkParser</ID>
   </CurrentIssues>
 </SmellBaseline>

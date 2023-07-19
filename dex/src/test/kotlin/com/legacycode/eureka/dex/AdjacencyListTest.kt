@@ -29,7 +29,7 @@ class AdjacencyListTest {
 
     // then
     assertThat(adjacencyList.ancestors())
-      .containsExactly("Ljava/lang/Object;")
+      .containsExactly(Ancestor("Ljava/lang/Object;"))
   }
 
   @Test

@@ -12,11 +12,16 @@ interface ArtifactParser {
 
   companion object {
     fun from(file: File): ArtifactParser {
-      return if (file.extension.lowercase(Locale.ENGLISH) == APK_EXTENSION) {
+      return if (file.isApk) {
         ClassInheritanceApkParser(file)
       } else {
         ClassInheritanceJarParser(file)
       }
     }
+
+    private val File.isApk: Boolean
+      get() {
+        return extension.lowercase(Locale.ENGLISH) == APK_EXTENSION
+      }
   }
 }

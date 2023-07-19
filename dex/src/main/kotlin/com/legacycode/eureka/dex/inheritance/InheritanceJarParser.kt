@@ -1,5 +1,8 @@
-package com.legacycode.eureka.dex
+package com.legacycode.eureka.dex.inheritance
 
+import com.legacycode.eureka.dex.AdjacencyList
+import com.legacycode.eureka.dex.Ancestor
+import com.legacycode.eureka.dex.Child
 import java.io.File
 import java.io.FileInputStream
 import java.util.regex.Pattern
@@ -7,14 +10,14 @@ import java.util.zip.ZipEntry
 import java.util.zip.ZipInputStream
 import net.bytebuddy.jar.asm.ClassReader
 
-class ClassInheritanceJarParser(override val file: File) : ArtifactParser {
+class InheritanceJarParser(override val file: File) : InheritanceArtifactParser {
   companion object {
     private const val CLASS_FILE_EXTENSION = ".class"
     private const val REGEX_ANONYMOUS_INNER_CLASS_SUFFIX = ".+\\$\\d$"
   }
 
-  override fun buildAdjacencyList(): InheritanceAdjacencyList {
-    val adjacencyList = InheritanceAdjacencyList()
+  override fun buildAdjacencyList(): AdjacencyList {
+    val adjacencyList = AdjacencyList()
 
     file.inputStream().use { inputStream ->
       parseClassFiles(inputStream, adjacencyList)
@@ -25,7 +28,7 @@ class ClassInheritanceJarParser(override val file: File) : ArtifactParser {
 
   private fun parseClassFiles(
     inputStream: FileInputStream,
-    outAdjacencyList: InheritanceAdjacencyList,
+    outAdjacencyList: AdjacencyList,
   ) {
     val zipInputStream = ZipInputStream(inputStream)
     var entry = zipInputStream.nextEntry

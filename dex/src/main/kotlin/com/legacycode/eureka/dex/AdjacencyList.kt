@@ -1,6 +1,8 @@
 package com.legacycode.eureka.dex
 
-class InheritanceAdjacencyList {
+import com.legacycode.eureka.dex.inheritance.SearchPolicy
+
+class AdjacencyList {
   interface TreeBuilder<T> {
     val out: T
 
@@ -65,8 +67,8 @@ class InheritanceAdjacencyList {
     return treeBuilder.out
   }
 
-  fun prune(keyword: String): InheritanceAdjacencyList {
-    val adjacencyList = InheritanceAdjacencyList()
+  fun prune(keyword: String): AdjacencyList {
+    val adjacencyList = AdjacencyList()
     val searchPolicy = SearchPolicy.from(keyword)
 
     fun dfs(ancestor: Ancestor): Boolean {

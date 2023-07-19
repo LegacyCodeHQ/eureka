@@ -1,12 +1,12 @@
 package com.legacycode.eureka.hierarchy
 
 import com.legacycode.eureka.dex.Ancestor
-import com.legacycode.eureka.dex.InheritanceAdjacencyList
-import com.legacycode.eureka.dex.TreeClusterJsonTreeBuilder
+import com.legacycode.eureka.dex.AdjacencyList
+import com.legacycode.eureka.dex.inheritance.TreeClusterJsonTreeBuilder
 
 class HierarchyIndexController(
   private val artifactFilename: String,
-  private val adjacencyList: InheritanceAdjacencyList,
+  private val adjacencyList: AdjacencyList,
   private val defaultRootFqn: String,
 ) {
   suspend fun handleRequest(effects: HierarchyIndexPathEffects) {

@@ -1,21 +1,22 @@
-package com.legacycode.eureka.dex
+package com.legacycode.eureka.dex.inheritance
 
+import com.legacycode.eureka.dex.AdjacencyList
 import java.io.File
 import java.util.Locale
 
 private const val APK_EXTENSION = "apk"
 
-interface ArtifactParser {
+interface InheritanceArtifactParser {
   val file: File
 
-  fun buildAdjacencyList(): InheritanceAdjacencyList
+  fun buildAdjacencyList(): AdjacencyList
 
   companion object {
-    fun from(file: File): ArtifactParser {
+    fun from(file: File): InheritanceArtifactParser {
       return if (file.isApk) {
-        ClassInheritanceApkParser(file)
+        InheritanceApkParser(file)
       } else {
-        ClassInheritanceJarParser(file)
+        InheritanceJarParser(file)
       }
     }
 

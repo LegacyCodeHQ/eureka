@@ -1,6 +1,7 @@
-package com.legacycode.eureka.dex
+package com.legacycode.eureka.dex.inheritance
 
 import com.google.common.truth.Truth.assertThat
+import com.legacycode.eureka.dex.Descriptor
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
@@ -173,8 +174,8 @@ class SearchPolicyTest {
     @Test
     fun `it should not match when the nested type does not contain the keyword and is in level 3 of the hierarchy`() {
       // given
-      val descriptor = Descriptor
-        .from("Lorg.thought.secure.DraftRepository${'$'}ShareOrDraftData${'$'}SendKeyboardImage;")
+      val descriptor =
+        Descriptor.from("Lorg.thought.secure.DraftRepository${'$'}ShareOrDraftData${'$'}SendKeyboardImage;")
       val searchPolicy = SearchPolicy.from("exact:Share")
 
       // when & then
@@ -221,8 +222,8 @@ class SearchPolicyTest {
     @Test
     fun `it should not match when the nested type does not contain the keyword and is in level 3 of the hierarchy`() {
       // given
-      val descriptor = Descriptor
-        .from("Lorg.thought.secure.DraftRepository${'$'}ShareOrDraftData${'$'}SendKeyboardImage;")
+      val descriptor =
+        Descriptor.from("Lorg.thought.secure.DraftRepository${'$'}ShareOrDraftData${'$'}SendKeyboardImage;")
       val searchPolicy = SearchPolicy.from("regex:Or")
 
       // when & then

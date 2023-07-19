@@ -1,7 +1,11 @@
-package com.legacycode.eureka.dex
+package com.legacycode.eureka.dex.inheritance
 
 import com.google.common.truth.Truth.assertThat
+import com.legacycode.eureka.dex.AdjacencyList
+import com.legacycode.eureka.dex.Ancestor
+import com.legacycode.eureka.dex.Child
 import com.legacycode.eureka.dex.test.TestApk
+import com.legacycode.eureka.dex.test.TestTreeBuilder
 import org.approvaltests.Approvals
 import org.approvaltests.JsonApprovals
 import org.junit.jupiter.api.BeforeEach
@@ -9,7 +13,7 @@ import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
 class InheritanceAdjacencyListTest {
-  private val adjacencyList = InheritanceAdjacencyList()
+  private val adjacencyList = AdjacencyList()
 
   @Test
   fun `create an empty inheritance adjacency list`() {
@@ -145,7 +149,7 @@ class InheritanceAdjacencyListTest {
     fun `it can prune a tree by specifying a keyword and ignore non-matching siblings`() {
       // given
       val apkFile = TestApk("wikipedia.apk").file
-      val signalAdjacencyList = ArtifactParser.from(apkFile).buildAdjacencyList()
+      val signalAdjacencyList = InheritanceArtifactParser.from(apkFile).buildAdjacencyList()
 
       // when
       val prunedAdjacencyList = signalAdjacencyList.prune("Settings")

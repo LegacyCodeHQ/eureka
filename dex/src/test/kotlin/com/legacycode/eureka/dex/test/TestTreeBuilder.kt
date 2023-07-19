@@ -1,6 +1,10 @@
-package com.legacycode.eureka.dex
+package com.legacycode.eureka.dex.test
 
-class TestTreeBuilder : InheritanceAdjacencyList.TreeBuilder<String> {
+import com.legacycode.eureka.dex.AdjacencyList
+import com.legacycode.eureka.dex.Ancestor
+import com.legacycode.eureka.dex.Child
+
+class TestTreeBuilder : AdjacencyList.TreeBuilder<String> {
   private val builder = StringBuilder()
   private lateinit var ancestor: Ancestor
 

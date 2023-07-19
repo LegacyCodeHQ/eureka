@@ -1,4 +1,4 @@
-package com.legacycode.eureka.dex
+package com.legacycode.eureka.dex.inheritance
 
 import java.util.regex.Pattern
 
@@ -8,15 +8,21 @@ sealed class SearchPolicy(open val text: String) {
     private const val DIRECTIVE_REGEX = "regex:"
 
     fun from(text: String): SearchPolicy {
-      return if (text.startsWith(DIRECTIVE_REGEX, true)) {
+      return if (hasRegexDirective(text)) {
         RegexSearchPolicy(text.substring(DIRECTIVE_REGEX.length))
-      } else if (text.startsWith(DIRECTIVE_EXACT, true)) {
+      } else if (hasExactDirective(text)) {
         val keyword = text.substring(DIRECTIVE_EXACT.length)
         ExactSearchPolicy(keyword)
       } else {
         DefaultSearchPolicy(text)
       }
     }
+
+    private fun hasExactDirective(text: String): Boolean =
+      text.startsWith(DIRECTIVE_EXACT, true)
+
+    private fun hasRegexDirective(text: String): Boolean =
+      text.startsWith(DIRECTIVE_REGEX, true)
   }
 
   abstract fun matches(simpleClassName: String): Boolean

@@ -1,5 +1,8 @@
-package com.legacycode.eureka.dex
+package com.legacycode.eureka.dex.inheritance
 
+import com.legacycode.eureka.dex.AdjacencyList
+import com.legacycode.eureka.dex.Ancestor
+import com.legacycode.eureka.dex.Child
 import java.io.File
 import java.util.regex.Pattern
 import java.util.zip.ZipEntry
@@ -9,7 +12,7 @@ import org.jf.dexlib2.DexFileFactory
 import org.jf.dexlib2.Opcodes
 import org.jf.dexlib2.dexbacked.DexBackedClassDef
 
-class ClassInheritanceApkParser(override val file: File) : ArtifactParser {
+class InheritanceApkParser(override val file: File) : InheritanceArtifactParser {
   companion object {
     private const val DEX_FILE_EXTENSION = ".dex"
     private const val KITKAT = 19
@@ -17,13 +20,13 @@ class ClassInheritanceApkParser(override val file: File) : ArtifactParser {
     private const val REGEX_ANONYMOUS_INNER_CLASS_SUFFIX = ".+\\$\\d+;$"
   }
 
-  override fun buildAdjacencyList(): InheritanceAdjacencyList {
+  override fun buildAdjacencyList(): AdjacencyList {
     return ZipFile(file).use(::buildInheritanceAdjacencyList)
   }
 
-  private fun buildInheritanceAdjacencyList(zipFile: ZipFile): InheritanceAdjacencyList {
+  private fun buildInheritanceAdjacencyList(zipFile: ZipFile): AdjacencyList {
     val dexFileEntries = zipFile.entries().asSequence().filter(::isDexFile)
-    val adjacencyList = InheritanceAdjacencyList()
+    val adjacencyList = AdjacencyList()
 
     for (dexFileEntry in dexFileEntries) {
       for (classDef in dexFileEntry.dexClasses) {

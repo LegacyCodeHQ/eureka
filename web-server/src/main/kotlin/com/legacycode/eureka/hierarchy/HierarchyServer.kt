@@ -1,7 +1,7 @@
 package com.legacycode.eureka.hierarchy
 
 import com.legacycode.eureka.dex.Ancestor
-import com.legacycode.eureka.dex.InheritanceAdjacencyList
+import com.legacycode.eureka.dex.AdjacencyList
 import io.ktor.server.application.Application
 import io.ktor.server.engine.ApplicationEngine
 import io.ktor.server.engine.embeddedServer
@@ -11,7 +11,7 @@ import io.ktor.server.routing.routing
 import java.io.File
 
 class HierarchyServer(
-  private val adjacencyList: InheritanceAdjacencyList,
+  private val adjacencyList: AdjacencyList,
   private val ancestorFromCommandLine: Ancestor,
   private val artifactFile: File,
 ) {
@@ -27,7 +27,7 @@ class HierarchyServer(
 }
 
 fun Application.setupRoutes(
-  adjacencyList: InheritanceAdjacencyList,
+  adjacencyList: AdjacencyList,
   ancestorFromCommandLine: Ancestor,
   artifactFile: File,
 ) {

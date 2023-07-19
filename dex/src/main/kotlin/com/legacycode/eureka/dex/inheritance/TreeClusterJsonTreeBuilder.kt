@@ -1,10 +1,13 @@
-package com.legacycode.eureka.dex
+package com.legacycode.eureka.dex.inheritance
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.node.ArrayNode
 import com.fasterxml.jackson.databind.node.ObjectNode
+import com.legacycode.eureka.dex.AdjacencyList
+import com.legacycode.eureka.dex.Ancestor
+import com.legacycode.eureka.dex.Child
 
-class TreeClusterJsonTreeBuilder : InheritanceAdjacencyList.TreeBuilder<String> {
+class TreeClusterJsonTreeBuilder : AdjacencyList.TreeBuilder<String> {
   companion object {
     private const val KEY_NAME = "name"
     private const val KEY_CHILDREN = "children"

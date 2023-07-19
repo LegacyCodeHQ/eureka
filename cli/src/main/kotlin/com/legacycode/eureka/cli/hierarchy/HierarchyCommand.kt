@@ -1,7 +1,7 @@
 package com.legacycode.eureka.cli.hierarchy
 
 import com.legacycode.eureka.dex.Ancestor
-import com.legacycode.eureka.dex.ArtifactParser
+import com.legacycode.eureka.dex.inheritance.InheritanceArtifactParser
 import com.legacycode.eureka.hierarchy.HierarchyServer
 import java.io.File
 import picocli.CommandLine.Command
@@ -33,7 +33,7 @@ class HierarchyCommand : Runnable {
   private lateinit var rootClassName: String
 
   override fun run() {
-    val adjacencyList = ArtifactParser.from(artifactFile).buildAdjacencyList()
+    val adjacencyList = InheritanceArtifactParser.from(artifactFile).buildAdjacencyList()
     val rootClassDescriptor = toClassDescriptor(rootClassName)
     val root = Ancestor(rootClassDescriptor)
 

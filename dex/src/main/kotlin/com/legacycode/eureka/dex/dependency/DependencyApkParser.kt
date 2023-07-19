@@ -24,20 +24,30 @@ class DependencyApkParser(private val file: File) {
     private const val KITKAT = 19
 
     private const val REGEX_ANONYMOUS_INNER_CLASS_SUFFIX = ".+\\$\\d+;$"
+
+    private const val FRAGMENT = "Landroidx/fragment/app/Fragment;"
+    private const val LEGACY_FRAGMENT = "Landroid/app/Fragment;"
+    private const val ACTIVITY = "Landroid/app/Activity;"
   }
 
   fun buildDependencyGraph(): AdjacencyList {
     val inheritanceTree = InheritanceApkParser(file).buildInheritanceTree()
-    val classInheritanceTree = inheritanceTree.prune(Ancestor("Landroidx/fragment/app/Fragment;"))
+    val inheritanceTrees = inheritanceTrees(inheritanceTree)
 
     return ZipFile(file).use {
-      buildDependencyGraph(it, classInheritanceTree)
+      buildDependencyGraph(it, inheritanceTrees)
     }
+  }
+
+  private fun inheritanceTrees(inheritanceTree: AdjacencyList): List<AdjacencyList> {
+    return listOf(FRAGMENT, LEGACY_FRAGMENT, ACTIVITY)
+      .map(::Ancestor)
+      .map(inheritanceTree::prune)
   }
 
   private fun buildDependencyGraph(
     zipFile: ZipFile,
-    inheritanceTree: AdjacencyList,
+    inheritanceTrees: List<AdjacencyList>,
   ): AdjacencyList {
     val dexFileEntries = zipFile.entries().asSequence().filter(::isDexFile)
     val adjacencyList = AdjacencyList()
@@ -45,13 +55,16 @@ class DependencyApkParser(private val file: File) {
     for (dexFileEntry in dexFileEntries) {
       for (classDef in dexFileEntry.dexClasses) {
         val classType = classDef.type
-        val isClassInInheritanceTree = isNamedClass(classDef) && inheritanceTree.contains(classType)
+
+        val isClassInInheritanceTree =
+          isNamedClass(classDef) && inInheritanceTrees(classType, inheritanceTrees)
         if (isClassInInheritanceTree) {
           val allDependencies = classDef.findDependencies()
-          val dependenciesInInheritanceTree = allDependencies.filter(inheritanceTree::contains)
+          val dependenciesInInheritanceTree = allDependencies
+            .filter { inInheritanceTrees(it, inheritanceTrees) }
 
           for (dependencyType in dependenciesInInheritanceTree) {
-            if (dependencyType !in inheritanceTree.ancestors().map(Ancestor::id)) {
+            if (dependencyType !in ancestors(inheritanceTrees)) {
               adjacencyList.add(Ancestor(dependencyType), Child(classType))
             }
           }
@@ -61,6 +74,16 @@ class DependencyApkParser(private val file: File) {
 
     return adjacencyList
   }
+
+  private fun inInheritanceTrees(
+    classType: String,
+    inheritanceTrees: List<AdjacencyList>,
+  ): Boolean {
+    return inheritanceTrees.any { it.contains(classType) }
+  }
+
+  private fun ancestors(inheritanceTrees: List<AdjacencyList>): List<String> =
+    inheritanceTrees.flatMap(AdjacencyList::ancestors).map(Ancestor::id)
 
   private fun isDexFile(entry: ZipEntry): Boolean =
     entry.name.endsWith(DEX_FILE_EXTENSION)

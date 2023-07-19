@@ -7,6 +7,7 @@ import com.legacycode.eureka.cli.dev.diff.DiffCommand
 import com.legacycode.eureka.cli.dev.json.JsonCommand
 import com.legacycode.eureka.cli.dev.methods.MethodsCommand
 import com.legacycode.eureka.cli.dev.view.ViewCommand
+import com.legacycode.eureka.cli.flows.FlowsCommand
 import com.legacycode.eureka.cli.hierarchy.HierarchyCommand
 import com.legacycode.eureka.cli.modules.ModulesCommand
 import com.legacycode.eureka.cli.ownership.OwnershipCommand
@@ -30,6 +31,7 @@ const val DEFAULT_PORT = 7070
     ModulesCommand::class,
     TopCommand::class,
     HierarchyCommand::class,
+    FlowsCommand::class,
 
     /* dev commands */
     JsonCommand::class,

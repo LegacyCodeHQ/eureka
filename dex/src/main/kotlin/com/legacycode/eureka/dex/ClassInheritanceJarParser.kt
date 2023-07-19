@@ -13,7 +13,7 @@ class ClassInheritanceJarParser(override val file: File) : ArtifactParser {
     private const val REGEX_ANONYMOUS_INNER_CLASS_SUFFIX = ".+\\$\\d$"
   }
 
-  override fun inheritanceAdjacencyList(): InheritanceAdjacencyList {
+  override fun buildAdjacencyList(): InheritanceAdjacencyList {
     val adjacencyList = InheritanceAdjacencyList()
 
     file.inputStream().use { inputStream ->

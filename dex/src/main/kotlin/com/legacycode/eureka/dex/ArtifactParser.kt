@@ -8,7 +8,7 @@ private const val APK_EXTENSION = "apk"
 interface ArtifactParser {
   val file: File
 
-  fun inheritanceAdjacencyList(): InheritanceAdjacencyList
+  fun buildAdjacencyList(): InheritanceAdjacencyList
 
   companion object {
     fun from(file: File): ArtifactParser {

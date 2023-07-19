@@ -11,7 +11,7 @@ class JvmArtifactParserTest {
   fun `it can build an inheritance adjacency list from a JAR`() {
     // given
     val adjacencyList = ArtifactParser.from(jarFile)
-      .inheritanceAdjacencyList()
+      .buildAdjacencyList()
 
     // when
     val graphvizTree = adjacencyList.tree(
@@ -27,7 +27,7 @@ class JvmArtifactParserTest {
   fun `it should ignore anonymous inner classes`() {
     // given
     val adjacencyList = ArtifactParser.from(jarFile)
-      .inheritanceAdjacencyList()
+      .buildAdjacencyList()
 
     // when
     val graphvizTree = adjacencyList.tree(

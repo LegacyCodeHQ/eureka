@@ -10,7 +10,7 @@ import picocli.CommandLine.Parameters
 
 @Command(
   name = "hierarchy",
-  description = ["prints the inheritance hierarchy of the specified class"],
+  description = ["displays an interactive tree for exploring class inheritance hierarchies"],
 )
 class HierarchyCommand : Runnable {
   companion object {

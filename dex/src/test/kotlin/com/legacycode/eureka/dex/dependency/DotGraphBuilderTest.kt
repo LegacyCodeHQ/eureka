@@ -15,7 +15,7 @@ class DotGraphBuilderTest {
     val adjacencyList = parser.buildDependencyGraph()
 
     // then
-    val dependencyGraph = adjacencyList.graph(DotGraphBuilder("wikipedia.apk (Fragments)"))
+    val dependencyGraph = adjacencyList.graph(DotGraphBuilder("wikipedia.apk (Flows)"))
     Approvals.verify(dependencyGraph)
   }
 }

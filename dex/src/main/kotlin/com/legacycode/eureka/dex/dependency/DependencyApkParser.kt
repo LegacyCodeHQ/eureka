@@ -34,9 +34,7 @@ class DependencyApkParser(private val file: File) {
     val inheritanceTree = InheritanceApkParser(file).buildInheritanceTree()
     val inheritanceTrees = inheritanceTrees(inheritanceTree)
 
-    return ZipFile(file).use {
-      buildDependencyGraph(it, inheritanceTrees)
-    }
+    return ZipFile(file).use { buildDependencyGraph(it, inheritanceTrees) }
   }
 
   private fun inheritanceTrees(inheritanceTree: AdjacencyList): List<AdjacencyList> {

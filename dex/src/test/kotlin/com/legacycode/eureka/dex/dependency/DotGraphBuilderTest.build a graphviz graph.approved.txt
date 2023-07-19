@@ -1,4 +1,4 @@
-digraph "wikipedia.apk (Fragments)" {
+digraph "wikipedia.apk (Flows)" {
   "androidx.core.app.ComponentActivity" -> "androidx.lifecycle.ReportFragment"
   "androidx.activity.ComponentActivity" -> "androidx.lifecycle.ReportFragment"
   "androidx.preference.PreferenceFragmentCompat" -> "androidx.preference.EditTextPreferenceDialogFragmentCompat"

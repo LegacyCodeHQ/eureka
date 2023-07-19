@@ -90,7 +90,7 @@ class InheritanceTreeBuilderTest {
   fun `it can prune a tree by specifying a keyword and ignore non-matching siblings`() {
     // given
     val apkFile = TestApk("wikipedia.apk").file
-    val signalAdjacencyList = InheritanceArtifactParser.from(apkFile).buildAdjacencyList()
+    val signalAdjacencyList = InheritanceArtifactParser.from(apkFile).buildInheritanceTree()
 
     // when
     val prunedAdjacencyList = signalAdjacencyList.prune("Settings")

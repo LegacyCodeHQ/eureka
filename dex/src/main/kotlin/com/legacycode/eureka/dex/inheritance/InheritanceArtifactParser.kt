@@ -9,7 +9,7 @@ private const val APK_EXTENSION = "apk"
 interface InheritanceArtifactParser {
   val file: File
 
-  fun buildAdjacencyList(): AdjacencyList
+  fun buildInheritanceTree(): AdjacencyList
 
   companion object {
     fun from(file: File): InheritanceArtifactParser {

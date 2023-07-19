@@ -12,7 +12,7 @@ class InheritanceApkParserTest {
   fun `it can build an inheritance adjacency list from an APK`() {
     // given
     val parser = InheritanceArtifactParser.from(apkFile)
-    val adjacencyList = parser.buildAdjacencyList()
+    val adjacencyList = parser.buildInheritanceTree()
 
     // when
     val graphvizTree = adjacencyList.tree(
@@ -28,7 +28,7 @@ class InheritanceApkParserTest {
   fun `it should ignore anonymous inner classes`() {
     // given
     val adjacencyList = InheritanceArtifactParser.from(apkFile)
-      .buildAdjacencyList()
+      .buildInheritanceTree()
 
     // when
     val graphvizTree = adjacencyList.tree(

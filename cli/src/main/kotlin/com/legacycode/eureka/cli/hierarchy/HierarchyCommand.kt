@@ -33,7 +33,7 @@ class HierarchyCommand : Runnable {
   private lateinit var rootClassName: String
 
   override fun run() {
-    val adjacencyList = InheritanceArtifactParser.from(artifactFile).buildAdjacencyList()
+    val adjacencyList = InheritanceArtifactParser.from(artifactFile).buildInheritanceTree()
     val rootClassDescriptor = toClassDescriptor(rootClassName)
     val root = Ancestor(rootClassDescriptor)
 

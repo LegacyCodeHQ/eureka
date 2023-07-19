@@ -20,7 +20,7 @@ class InheritanceApkParser(override val file: File) : InheritanceArtifactParser 
     private const val REGEX_ANONYMOUS_INNER_CLASS_SUFFIX = ".+\\$\\d+;$"
   }
 
-  override fun buildAdjacencyList(): AdjacencyList {
+  override fun buildInheritanceTree(): AdjacencyList {
     return ZipFile(file).use(::buildInheritanceAdjacencyList)
   }
 

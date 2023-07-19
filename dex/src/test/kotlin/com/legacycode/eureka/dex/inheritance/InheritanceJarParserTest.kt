@@ -12,7 +12,7 @@ class InheritanceJarParserTest {
   fun `it can build an inheritance adjacency list from a JAR`() {
     // given
     val adjacencyList = InheritanceArtifactParser.from(jarFile)
-      .buildAdjacencyList()
+      .buildInheritanceTree()
 
     // when
     val graphvizTree = adjacencyList.tree(
@@ -28,7 +28,7 @@ class InheritanceJarParserTest {
   fun `it should ignore anonymous inner classes`() {
     // given
     val adjacencyList = InheritanceArtifactParser.from(jarFile)
-      .buildAdjacencyList()
+      .buildInheritanceTree()
 
     // when
     val graphvizTree = adjacencyList.tree(

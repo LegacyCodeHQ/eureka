@@ -22,14 +22,11 @@ class ApkParser(override val file: File) : ArtifactParser {
   }
 
   private fun buildInheritanceAdjacencyList(zipFile: ZipFile): InheritanceAdjacencyList {
-    val adjacencyList = InheritanceAdjacencyList()
     val dexFileEntries = zipFile.entries().asSequence().filter(::isDexFile)
+    val adjacencyList = InheritanceAdjacencyList()
 
     for (dexFileEntry in dexFileEntries) {
-      val dexEntry = DexFileFactory
-        .loadDexEntry(file, dexFileEntry.name, true, Opcodes.forApi(KITKAT))
-
-      for (classDef in dexEntry.dexFile.classes) {
+      for (classDef in dexFileEntry.dexClasses) {
         if (isNamedClass(classDef)) {
           val classType = classDef.type
           val superclassType = classDef.superclass
@@ -40,6 +37,14 @@ class ApkParser(override val file: File) : ArtifactParser {
 
     return adjacencyList
   }
+
+  private val ZipEntry.dexClasses: MutableSet<out DexBackedClassDef>
+    get() {
+      return DexFileFactory
+        .loadDexEntry(file, name, true, Opcodes.forApi(KITKAT))
+        .dexFile
+        .classes
+    }
 
   private fun isDexFile(entry: ZipEntry): Boolean =
     entry.name.endsWith(DEX_FILE_EXTENSION)

@@ -18,48 +18,38 @@ class ApkParser(override val file: File) : ArtifactParser {
   }
 
   override fun inheritanceAdjacencyList(): InheritanceAdjacencyList {
-    val adjacencyList = InheritanceAdjacencyList()
+    return ZipFile(file).use(::buildInheritanceAdjacencyList)
+  }
 
-    ZipFile(file).use { zipFile ->
-      parseDexClassFiles(zipFile, adjacencyList)
+  private fun buildInheritanceAdjacencyList(zipFile: ZipFile): InheritanceAdjacencyList {
+    val adjacencyList = InheritanceAdjacencyList()
+    val dexFileEntries = zipFile.entries().asSequence().filter(::isDexFile)
+
+    for (dexFileEntry in dexFileEntries) {
+      val dexEntry = DexFileFactory
+        .loadDexEntry(file, dexFileEntry.name, true, Opcodes.forApi(KITKAT))
+
+      for (classDef in dexEntry.dexFile.classes) {
+        if (isNamedClass(classDef)) {
+          val classType = classDef.type
+          val superclassType = classDef.superclass
+          adjacencyList.add(Ancestor(superclassType!!), Child(classType))
+        }
+      }
     }
 
     return adjacencyList
   }
 
-  private fun parseDexClassFiles(
-    zipFile: ZipFile,
-    outAdjacencyList: InheritanceAdjacencyList,
-  ) {
-    val dexFileEntries = zipFile.entries().asSequence().filter(::dexFileFilter)
-    for (dexFileEntry in dexFileEntries) {
-      val dexEntry = DexFileFactory.loadDexEntry(
-        file,
-        dexFileEntry.name,
-        true,
-        Opcodes.forApi(KITKAT),
-      )
+  private fun isDexFile(entry: ZipEntry): Boolean =
+    entry.name.endsWith(DEX_FILE_EXTENSION)
 
-      for (classDef in dexEntry.dexFile.classes) {
-        val classType = classDef.type
-        val superclassType = classDef.superclass
+  private fun isNamedClass(classDef: DexBackedClassDef): Boolean =
+    !isAnonymousInnerClass(classDef.type) && !isSyntheticClass(classDef)
 
-        if (!isAnonymousInnerClass(classType) && !isSyntheticClass(classDef)) {
-          outAdjacencyList.add(Ancestor(superclassType!!), Child(classType))
-        }
-      }
-    }
-  }
+  private fun isAnonymousInnerClass(classType: String): Boolean =
+    Pattern.matches(REGEX_ANONYMOUS_INNER_CLASS_SUFFIX, classType)
 
-  private fun isAnonymousInnerClass(classType: String): Boolean {
-    return Pattern.matches(REGEX_ANONYMOUS_INNER_CLASS_SUFFIX, classType)
-  }
-
-  private fun isSyntheticClass(classDef: DexBackedClassDef): Boolean {
-    return classDef.accessFlags and AccessFlags.SYNTHETIC.value != 0
-  }
-
-  private fun dexFileFilter(entry: ZipEntry): Boolean {
-    return entry.name.endsWith(DEX_FILE_EXTENSION)
-  }
+  private fun isSyntheticClass(classDef: DexBackedClassDef): Boolean =
+    classDef.accessFlags and AccessFlags.SYNTHETIC.value != 0
 }

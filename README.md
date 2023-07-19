@@ -80,7 +80,18 @@ To use this feature, you simply adjust the URL of your tree visualization by pro
 
 `http://localhost:7090/?class=androidx.fragment.app.Fragment&prune=Payment`
 
-### 3. List files with highest LOC
+### 3. Navigation flows between screens
+
+#### Usage
+
+```bash
+eureka flows wikipedia.apk
+```
+
+The command will print a Graphviz directed graph DSL, Copy the DSL and paste it into
+the [online Graphviz tool](https://dreampuf.github.io/GraphvizOnline).
+
+### 4. List files with highest LOC
 
 #### Usage (default, searches Kotlin and Java sources)
 
@@ -111,7 +122,7 @@ Showing 10 of 140
 eureka top 10 --ext cpp,swift
 ```
 
-### 4. File ownership (experimental)
+### 5. File ownership (experimental)
 
 ![Treemap](docs/images/ownership.png)
 
@@ -127,7 +138,7 @@ The command will start a web server on port 7080. Visit the app on `localhost:70
 
 - Throws exceptions when visiting binary or empty files.
 
-### 5. Module dependency diagram (experimental)
+### 6. Module dependency diagram (experimental)
 
 ![PlantUML component diagram](docs/images/modules.png)
 

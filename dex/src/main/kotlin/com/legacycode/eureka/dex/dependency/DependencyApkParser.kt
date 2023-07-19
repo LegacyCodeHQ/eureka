@@ -50,9 +50,10 @@ class DependencyApkParser(private val file: File) {
           val allDependencies = classDef.findDependencies()
           val dependenciesInInheritanceTree = allDependencies.filter(inheritanceTree::contains)
 
-          val ancestor = Ancestor(classType)
           for (dependencyType in dependenciesInInheritanceTree) {
-            adjacencyList.add(ancestor, Child(dependencyType))
+            if (dependencyType !in inheritanceTree.ancestors().map(Ancestor::id)) {
+              adjacencyList.add(Ancestor(dependencyType), Child(classType))
+            }
           }
         }
       }
@@ -88,6 +89,7 @@ class DependencyApkParser(private val file: File) {
     addTypesFromMethods(dependencies)
 
     dependencies.remove(this.type)
+    dependencies.remove(this.superclass)
 
     return dependencies.toSet()
   }
@@ -129,8 +131,8 @@ class DependencyApkParser(private val file: File) {
           is MethodReference -> {
             outDependencies.add(reference.definingClass)
             outDependencies.add(reference.returnType)
-            reference.parameterTypes.forEach {
-              outDependencies.add(it.toString())
+            reference.parameterTypes.forEach { parameterType ->
+              outDependencies.add(parameterType.toString())
             }
           }
         }

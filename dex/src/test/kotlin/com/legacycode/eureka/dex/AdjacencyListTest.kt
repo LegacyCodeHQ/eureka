@@ -60,4 +60,52 @@ class AdjacencyListTest {
     assertThat(adjacencyList.children(Ancestor("Landroid/app/Activity;")))
       .isEmpty()
   }
+
+  @Test
+  fun `returns true if a node is present (ancestor)`() {
+    // given
+    with(adjacencyList) {
+      add(Ancestor("Ljava/lang/Object;"), Child("Lcom/legacycode/dex/Child;"))
+      add(Ancestor("Ljava/lang/Object;"), Child("Lcom/legacycode/dex/Node;"))
+    }
+
+    // when
+    val containsNode = adjacencyList.contains("Ljava/lang/Object;")
+
+    // then
+    assertThat(containsNode)
+      .isTrue()
+  }
+
+  @Test
+  fun `returns true if a node is present (child)`() {
+    // given
+    with(adjacencyList) {
+      add(Ancestor("Ljava/lang/Object;"), Child("Lcom/legacycode/dex/Child;"))
+      add(Ancestor("Ljava/lang/Object;"), Child("Lcom/legacycode/dex/Node;"))
+    }
+
+    // when
+    val containsNode = adjacencyList.contains("Lcom/legacycode/dex/Node;")
+
+    // then
+    assertThat(containsNode)
+      .isTrue()
+  }
+
+  @Test
+  fun `returns false if a node is absent`() {
+    // given
+    with(adjacencyList) {
+      add(Ancestor("Ljava/lang/Object;"), Child("Lcom/legacycode/dex/Child;"))
+      add(Ancestor("Ljava/lang/Object;"), Child("Lcom/legacycode/dex/Node;"))
+    }
+
+    // when
+    val containsNode = adjacencyList.contains("Lcom/legacycode/dex/Node;")
+
+    // then
+    assertThat(containsNode)
+      .isTrue()
+  }
 }

@@ -105,4 +105,12 @@ class AdjacencyList {
 
     return adjacencyList
   }
+
+  fun contains(id: String): Boolean {
+    return parentChildrenMap
+      .entries
+      .any { (ancestor, children) ->
+        ancestor.id == id || children.any { it.id == id }
+      }
+  }
 }

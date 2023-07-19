@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 
 class DependencyApkParserTest {
   @Test
-  fun name() {
+  fun `it can build a dependency graph`() {
     // given
     val testApk = TestApk("wikipedia.apk")
     val parser = DependencyApkParser(testApk.file)

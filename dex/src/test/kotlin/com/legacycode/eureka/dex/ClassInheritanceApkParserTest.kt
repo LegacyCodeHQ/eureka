@@ -4,7 +4,7 @@ import com.legacycode.eureka.dex.test.TestApk
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
 
-class ApkParserTest {
+class ClassInheritanceApkParserTest {
   private val apkFile = TestApk("wikipedia.apk").file
 
   @Test

@@ -9,7 +9,7 @@ import org.jf.dexlib2.DexFileFactory
 import org.jf.dexlib2.Opcodes
 import org.jf.dexlib2.dexbacked.DexBackedClassDef
 
-class ApkParser(override val file: File) : ArtifactParser {
+class ClassInheritanceApkParser(override val file: File) : ArtifactParser {
   companion object {
     private const val DEX_FILE_EXTENSION = ".dex"
     private const val KITKAT = 19

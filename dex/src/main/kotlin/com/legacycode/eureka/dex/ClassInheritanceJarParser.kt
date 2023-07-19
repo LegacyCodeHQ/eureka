@@ -7,7 +7,7 @@ import java.util.zip.ZipEntry
 import java.util.zip.ZipInputStream
 import net.bytebuddy.jar.asm.ClassReader
 
-class JvmArtifactParser(override val file: File) : ArtifactParser {
+class ClassInheritanceJarParser(override val file: File) : ArtifactParser {
   companion object {
     private const val CLASS_FILE_EXTENSION = ".class"
     private const val REGEX_ANONYMOUS_INNER_CLASS_SUFFIX = ".+\\$\\d$"

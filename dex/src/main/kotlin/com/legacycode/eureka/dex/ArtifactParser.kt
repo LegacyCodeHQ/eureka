@@ -13,9 +13,9 @@ interface ArtifactParser {
   companion object {
     fun from(file: File): ArtifactParser {
       return if (file.extension.lowercase(Locale.ENGLISH) == APK_EXTENSION) {
-        ApkParser(file)
+        ClassInheritanceApkParser(file)
       } else {
-        JvmArtifactParser(file)
+        ClassInheritanceJarParser(file)
       }
     }
   }

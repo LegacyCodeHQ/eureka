@@ -1,0 +1,18 @@
+Package: com.legacycode.eureka.samples
+Class: UseJavaRecord
+Extends: java.lang.Object
+Fields:
+  - com.legacycode.eureka.samples.Video video
+Methods:
+  - void <init>()
+  - void printVideoTitle()
+  - void printVideoDuration()
+  - void printVideoInformation()
+Reads:
+  - void printVideoTitle() -> com.legacycode.eureka.samples.Video video
+  - void printVideoDuration() -> com.legacycode.eureka.samples.Video video
+Writes:
+  - void <init>() -> com.legacycode.eureka.samples.Video video
+Calls:
+  - void printVideoInformation() -> void printVideoTitle()
+  - void printVideoInformation() -> void printVideoDuration()

@@ -1,7 +1,5 @@
 package com.legacycode.eureka.samples;
 
-import kotlin.time.Duration;
-
-public record Video(String title, Duration duration) {
+public record Video(String title, long duration) {
   // empty-class
 }

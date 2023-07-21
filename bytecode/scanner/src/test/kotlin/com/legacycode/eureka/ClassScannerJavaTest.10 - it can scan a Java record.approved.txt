@@ -3,23 +3,23 @@ Class: Video
 Extends: java.lang.Record
 Fields:
   - java.lang.String title
-  - kotlin.time.Duration duration
+  - long duration
 Methods:
-  - void <init>(java.lang.String, kotlin.time.Duration)
+  - void <init>(java.lang.String, long)
   - java.lang.String toString()
   - int hashCode()
   - boolean equals(java.lang.Object)
   - java.lang.String title()
-  - kotlin.time.Duration duration()
+  - long duration()
 Reads:
   - java.lang.String toString() -> java.lang.String title
-  - java.lang.String toString() -> kotlin.time.Duration duration
+  - java.lang.String toString() -> long duration
   - int hashCode() -> java.lang.String title
-  - int hashCode() -> kotlin.time.Duration duration
+  - int hashCode() -> long duration
   - boolean equals(java.lang.Object) -> java.lang.String title
-  - boolean equals(java.lang.Object) -> kotlin.time.Duration duration
+  - boolean equals(java.lang.Object) -> long duration
   - java.lang.String title() -> java.lang.String title
-  - kotlin.time.Duration duration() -> kotlin.time.Duration duration
+  - long duration() -> long duration
 Writes:
-  - void <init>(java.lang.String, kotlin.time.Duration) -> java.lang.String title
-  - void <init>(java.lang.String, kotlin.time.Duration) -> kotlin.time.Duration duration
+  - void <init>(java.lang.String, long) -> java.lang.String title
+  - void <init>(java.lang.String, long) -> long duration

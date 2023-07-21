@@ -1,4 +1,5 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import java.io.ByteArrayOutputStream
 import java.util.Properties
 import org.jreleaser.model.Active
 
@@ -135,6 +136,25 @@ tasks.register<DefaultTask>("promoteSnapshotVersion") {
   }
 }
 
+tasks.register<Exec>("setBugFixVersion") {
+  description = "Sets the bug fix version for production."
+
+  commandLine("git", "describe", "--tags")
+  standardOutput = ByteArrayOutputStream()
+
+  doLast {
+    val lastReleaseVersion = standardOutput.toString().trim()
+
+    val currentVersion = lastReleaseVersion.split("-")[1]
+    val (major, minor, patch) = currentVersion.split(".").map(String::toInt)
+    val bugFixVersion = arrayOf(major, minor, patch + 1).joinToString(".")
+
+    updateVersion(CLI_VERSION, bugFixVersion)
+
+    println("Set version: $CLI_VERSION -> $bugFixVersion")
+  }
+}
+
 val publicReleaseTaskGroup = "Public release"
 
 tasks.register<DefaultTask>("prepareRelease") {
@@ -142,6 +162,23 @@ tasks.register<DefaultTask>("prepareRelease") {
   description = "Promotes snapshot version, builds latest web client, and prepares tool for release."
 
   dependsOn(":web-client-react:copyWebClientToServer", "promoteSnapshotVersion")
+
+  doLast {
+    exec {
+      commandLine("git", "add", "-A")
+    }
+
+    exec {
+      commandLine("git", "commit", "-am", "build: prepare release")
+    }
+  }
+}
+
+tasks.register<DefaultTask>("prepareBugFixRelease") {
+  group = publicReleaseTaskGroup
+  description = "Updates patch number of the latest release and prepares tool for bug fix release."
+
+  dependsOn("setBugFixVersion")
 
   doLast {
     exec {

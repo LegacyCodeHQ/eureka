@@ -9,6 +9,7 @@ import com.legacycode.eureka.samples.MethodReadingField
 import com.legacycode.eureka.samples.MethodWritingField
 import com.legacycode.eureka.samples.StaticBlock
 import com.legacycode.eureka.samples.StringConcatenation
+import com.legacycode.eureka.samples.Video
 import com.legacycode.eureka.testing.SampleClass
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
@@ -119,6 +120,18 @@ class ClassScannerJavaTest {
 
     // when
     val classStructure = scanner.scan(staticBlock.file)
+
+    // then
+    Approvals.verify(classStructure.printable)
+  }
+
+  @Test
+  fun `09 - it can scan a Java record`() {
+    // given
+    val javaRecord = SampleClass.Java(Video::class)
+
+    // when
+    val classStructure = scanner.scan(javaRecord.file)
 
     // then
     Approvals.verify(classStructure.printable)

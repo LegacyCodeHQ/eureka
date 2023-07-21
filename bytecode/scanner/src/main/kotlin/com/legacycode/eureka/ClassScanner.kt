@@ -176,14 +176,26 @@ class ClassScanner {
               bootstrapMethodArguments.contentToString()
             )
 
-            if (bootstrapMethodArguments.size > 1) {
-              val methodHandle = bootstrapMethodArguments[1] as Handle
-              val callee = Method(methodHandle.name, MethodDescriptor(methodHandle.desc), topLevelType)
-              outRelationships.add(Relationship(method, callee, Relationship.Type.Calls))
+            val handles = bootstrapMethodArguments.filterIsInstance<Handle>()
+            if (handles.isNotEmpty()) {
+              addRelationships(handles)
             } else {
               logger.debug("Ignoring dynamic instruction: {}{}", name, descriptor)
             }
             super.visitInvokeDynamicInsn(name, descriptor, bootstrapMethodHandle, *bootstrapMethodArguments)
+          }
+
+          private fun addRelationships(handles: List<Handle>) {
+            for (handle in handles) {
+              val isMethodHandle = handle.desc.contains('(')
+              if (isMethodHandle) {
+                val callee = Method(handle.name, MethodDescriptor(handle.desc), topLevelType)
+                outRelationships.add(Relationship(method, callee, Relationship.Type.Calls))
+              } else {
+                val field = Field(handle.name, FieldDescriptor.from(handle.desc), topLevelType)
+                outRelationships.add(Relationship(method, field, Relationship.Type.Reads))
+              }
+            }
           }
 
           override fun visitLdcInsn(value: Any?) {

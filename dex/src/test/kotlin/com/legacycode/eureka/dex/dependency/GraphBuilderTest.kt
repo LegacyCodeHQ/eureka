@@ -25,12 +25,12 @@ class GraphBuilderTest {
   }
 
   @Test
-  fun `build a ontology graph`() {
+  fun `build d3 hierarchical graph data`() {
     // when
     val adjacencyList = parser.buildDependencyGraph()
 
     // then
-    val dependencyGraph = adjacencyList.graph(OntologyGraphBuilder())
+    val dependencyGraph = adjacencyList.graph(D3GraphBuilder())
     Approvals.verify(dependencyGraph)
   }
 }

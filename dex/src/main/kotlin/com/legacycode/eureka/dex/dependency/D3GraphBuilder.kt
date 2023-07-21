@@ -7,7 +7,7 @@ import com.legacycode.eureka.dex.Ancestor
 import com.legacycode.eureka.dex.Child
 import com.legacycode.eureka.dex.Node
 
-class OntologyGraphBuilder : AdjacencyList.GraphBuilder<String> {
+class D3GraphBuilder : AdjacencyList.GraphBuilder<String> {
   private val objectMapper = ObjectMapper()
   private val rootNode = objectMapper.createObjectNode()
   private val linksArray = objectMapper.createArrayNode()

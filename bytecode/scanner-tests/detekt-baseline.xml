@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues></ManuallySuppressedIssues>
+  <CurrentIssues>
+    <ID>MaxLineLength:PrecompiledClass.kt$PrecompiledClass$val path = "../samples-$language/src/main/resources/precompiled/$language/$sampleDirectoryName/$simpleClassName.class"</ID>
+  </CurrentIssues>
+</SmellBaseline>

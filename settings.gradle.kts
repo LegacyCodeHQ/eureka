@@ -2,7 +2,7 @@ rootProject.name = "eureka"
 include(
   ":cli",
   ":bytecode-scanner",
-  ":bytecode-samples",
+  ":bytecode-samples-java",
   ":web-server",
   ":filesystem",
   ":vcs",
@@ -13,13 +13,18 @@ include(
   ":build-systems-gradle",
   ":selenium",
   ":dex",
+  ":bytecode-scanner-tests",
+  ":bytecode-samples-kotlin",
 )
 
 project(":bytecode-scanner").projectDir = file("bytecode/scanner")
-project(":bytecode-samples").projectDir = file("bytecode/samples")
+project(":bytecode-samples-java").projectDir = file("bytecode/samples-java")
 project(":bytecode-testing").projectDir = file("bytecode/testing")
 
 project(":build-systems-gradle").projectDir = file("build-systems/gradle")
+
+project(":bytecode-scanner-tests").projectDir = file("bytecode/scanner-tests")
+project(":bytecode-samples-kotlin").projectDir = file("bytecode/samples-kotlin")
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 

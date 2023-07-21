@@ -19,7 +19,7 @@ sealed class SampleClass(
   val file: File
     get() {
       val bytecodeDirectoryPath = findBytecodeDirectoryPath().absolutePath
-      val compiledClassesDirectory = "$bytecodeDirectoryPath/samples/build/classes/$sourceLanguage/main"
+      val compiledClassesDirectory = "$bytecodeDirectoryPath/samples-$sourceLanguage/build/classes/$sourceLanguage/main"
       return File(compiledClassesDirectory, kClass.filePath)
     }
 

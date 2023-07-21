@@ -1,8 +1,10 @@
 package com.legacycode.eureka.samples
 
+import com.legacycode.eureka.samples.listener.ActionConsumer
+
 class AnonymousFunctionDifferentPackage {
   fun main() {
-    com.legacycode.eureka.samples.listener.ActionConsumer().waitForAction {
+    ActionConsumer().waitForAction {
       celebrate()
     }
   }

@@ -9,7 +9,7 @@ data class PrecompiledClass(
 ) {
   val file: File
     get() {
-      val path = "../samples/src/main/resources/precompiled/$language/$sampleDirectoryName/$simpleClassName.class"
+      val path = "../samples-$language/src/main/resources/precompiled/$language/$sampleDirectoryName/$simpleClassName.class"
       return File(path)
     }
 }

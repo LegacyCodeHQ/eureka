@@ -3,6 +3,6 @@ dependencies {
 
   implementation(libs.jackson.kotlin)
 
-  testImplementation(projects.bytecodeSamples)
+  testImplementation(projects.bytecodeSamplesKotlin)
   testImplementation(projects.bytecodeTesting)
 }

@@ -1,6 +1,5 @@
 package com.legacycode.eureka
 
-import java.io.File
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
 

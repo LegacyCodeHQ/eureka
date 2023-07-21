@@ -1,3 +1,4 @@
 dependencies {
-  testImplementation(projects.bytecodeSamples)
+  testImplementation(projects.bytecodeSamplesKotlin)
+  testImplementation(projects.bytecodeSamplesJava)
 }

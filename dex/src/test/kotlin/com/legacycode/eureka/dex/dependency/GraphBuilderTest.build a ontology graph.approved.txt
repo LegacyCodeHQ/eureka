@@ -1,222 +1,123 @@
 [ {
-  "source" : "androidx.lifecycle.ReportFragment",
-  "target" : "androidx.core.app.ComponentActivity"
+  "source" : "androidx.core.app.ComponentActivity",
+  "target" : "androidx.lifecycle.ReportFragment"
 }, {
-  "source" : "androidx.lifecycle.ReportFragment",
-  "target" : "androidx.activity.ComponentActivity"
+  "source" : "androidx.activity.ComponentActivity",
+  "target" : "androidx.lifecycle.ReportFragment"
 }, {
-  "source" : "androidx.preference.EditTextPreferenceDialogFragmentCompat",
-  "target" : "androidx.preference.PreferenceFragmentCompat"
+  "source" : "androidx.preference.PreferenceFragmentCompat",
+  "target" : "androidx.preference.EditTextPreferenceDialogFragmentCompat"
 }, {
-  "source" : "androidx.preference.ListPreferenceDialogFragmentCompat",
-  "target" : "androidx.preference.PreferenceFragmentCompat"
+  "source" : "androidx.preference.PreferenceFragmentCompat",
+  "target" : "androidx.preference.ListPreferenceDialogFragmentCompat"
 }, {
-  "source" : "androidx.preference.MultiSelectListPreferenceDialogFragmentCompat",
-  "target" : "androidx.preference.PreferenceFragmentCompat"
+  "source" : "androidx.preference.PreferenceFragmentCompat",
+  "target" : "androidx.preference.MultiSelectListPreferenceDialogFragmentCompat"
 }, {
-  "source" : "org.wikipedia.descriptions.DescriptionEditActivity",
-  "target" : "org.wikipedia.commons.FilePageFragment"
+  "source" : "org.wikipedia.commons.FilePageFragment",
+  "target" : "org.wikipedia.descriptions.DescriptionEditActivity"
 }, {
-  "source" : "org.wikipedia.descriptions.DescriptionEditActivity",
-  "target" : "org.wikipedia.feed.suggestededits.SuggestedEditsCardItemFragment"
+  "source" : "org.wikipedia.commons.FilePageFragment",
+  "target" : "org.wikipedia.suggestededits.SuggestedEditsImageTagEditActivity"
 }, {
-  "source" : "org.wikipedia.descriptions.DescriptionEditActivity",
-  "target" : "org.wikipedia.suggestededits.SuggestedEditsCardsFragment"
+  "source" : "org.wikipedia.descriptions.DescriptionEditFragment",
+  "target" : "org.wikipedia.login.LoginActivity"
 }, {
-  "source" : "org.wikipedia.descriptions.DescriptionEditActivity",
-  "target" : "org.wikipedia.gallery.GalleryActivity"
+  "source" : "org.wikipedia.descriptions.DescriptionEditFragment",
+  "target" : "org.wikipedia.descriptions.DescriptionEditSuccessActivity"
 }, {
-  "source" : "org.wikipedia.descriptions.DescriptionEditActivity",
+  "source" : "org.wikipedia.descriptions.DescriptionEditTutorialFragment$ItemFragment",
+  "target" : "org.wikipedia.descriptions.DescriptionEditTutorialFragment"
+}, {
+  "source" : "org.wikipedia.diff.ArticleEditDetailsFragment",
+  "target" : "org.wikipedia.commons.FilePageActivity"
+}, {
+  "source" : "org.wikipedia.diff.ArticleEditDetailsFragment",
+  "target" : "org.wikipedia.page.linkpreview.LinkPreviewDialog"
+}, {
+  "source" : "org.wikipedia.diff.ArticleEditDetailsFragment",
+  "target" : "org.wikipedia.talk.TalkTopicsActivity"
+}, {
+  "source" : "org.wikipedia.diff.ArticleEditDetailsFragment",
+  "target" : "org.wikipedia.watchlist.WatchlistExpiryDialog"
+}, {
+  "source" : "org.wikipedia.diff.ArticleEditDetailsFragment",
   "target" : "org.wikipedia.page.PageActivity"
 }, {
-  "source" : "org.wikipedia.suggestededits.SuggestedEditsImageTagEditActivity",
-  "target" : "org.wikipedia.commons.FilePageFragment"
-}, {
-  "source" : "org.wikipedia.suggestededits.SuggestedEditsImageTagEditActivity",
-  "target" : "org.wikipedia.feed.suggestededits.SuggestedEditsCardItemFragment"
-}, {
-  "source" : "org.wikipedia.suggestededits.SuggestedEditsImageTagEditActivity",
-  "target" : "org.wikipedia.gallery.GalleryActivity"
-}, {
-  "source" : "org.wikipedia.suggestededits.SuggestedEditsImageTagEditActivity",
-  "target" : "org.wikipedia.page.PageActivity"
-}, {
-  "source" : "org.wikipedia.login.LoginActivity",
-  "target" : "org.wikipedia.descriptions.DescriptionEditFragment"
-}, {
-  "source" : "org.wikipedia.login.LoginActivity",
-  "target" : "org.wikipedia.activity.BaseActivity"
-}, {
-  "source" : "org.wikipedia.login.LoginActivity",
-  "target" : "org.wikipedia.edit.EditSectionActivity"
-}, {
-  "source" : "org.wikipedia.login.LoginActivity",
-  "target" : "org.wikipedia.main.MainFragment"
-}, {
-  "source" : "org.wikipedia.login.LoginActivity",
-  "target" : "org.wikipedia.page.PageFragment"
-}, {
-  "source" : "org.wikipedia.login.LoginActivity",
-  "target" : "org.wikipedia.onboarding.InitialOnboardingFragment"
-}, {
-  "source" : "org.wikipedia.login.LoginActivity",
-  "target" : "org.wikipedia.talk.TalkReplyActivity"
-}, {
-  "source" : "org.wikipedia.descriptions.DescriptionEditSuccessActivity",
-  "target" : "org.wikipedia.descriptions.DescriptionEditFragment"
-}, {
-  "source" : "org.wikipedia.descriptions.DescriptionEditTutorialFragment",
-  "target" : "org.wikipedia.descriptions.DescriptionEditTutorialFragment$ItemFragment"
-}, {
-  "source" : "org.wikipedia.descriptions.DescriptionEditTutorialFragment",
-  "target" : "org.wikipedia.descriptions.DescriptionEditTutorialActivity"
-}, {
-  "source" : "org.wikipedia.commons.FilePageActivity",
-  "target" : "org.wikipedia.diff.ArticleEditDetailsFragment"
-}, {
-  "source" : "org.wikipedia.commons.FilePageActivity",
-  "target" : "org.wikipedia.feed.suggestededits.SuggestedEditsCardItemFragment"
-}, {
-  "source" : "org.wikipedia.commons.FilePageActivity",
+  "source" : "org.wikipedia.edit.insertmedia.InsertMediaAdvancedSettingsFragment",
   "target" : "org.wikipedia.edit.insertmedia.InsertMediaActivity"
 }, {
-  "source" : "org.wikipedia.commons.FilePageActivity",
-  "target" : "org.wikipedia.gallery.GalleryItemFragment"
-}, {
-  "source" : "org.wikipedia.commons.FilePageActivity",
-  "target" : "org.wikipedia.main.MainFragment"
-}, {
-  "source" : "org.wikipedia.commons.FilePageActivity",
-  "target" : "org.wikipedia.suggestededits.SuggestedEditsImageTagsFragment"
-}, {
-  "source" : "org.wikipedia.commons.FilePageActivity",
-  "target" : "org.wikipedia.gallery.GalleryActivity"
-}, {
-  "source" : "org.wikipedia.commons.FilePageActivity",
-  "target" : "org.wikipedia.page.PageActivity"
-}, {
-  "source" : "org.wikipedia.page.linkpreview.LinkPreviewDialog",
-  "target" : "org.wikipedia.diff.ArticleEditDetailsFragment"
-}, {
-  "source" : "org.wikipedia.page.linkpreview.LinkPreviewDialog",
-  "target" : "org.wikipedia.categories.CategoryActivity"
-}, {
-  "source" : "org.wikipedia.page.linkpreview.LinkPreviewDialog",
-  "target" : "org.wikipedia.descriptions.DescriptionEditActivity"
-}, {
-  "source" : "org.wikipedia.page.linkpreview.LinkPreviewDialog",
-  "target" : "org.wikipedia.gallery.GalleryActivity"
-}, {
-  "source" : "org.wikipedia.page.linkpreview.LinkPreviewDialog",
-  "target" : "org.wikipedia.page.PageActivity"
-}, {
-  "source" : "org.wikipedia.talk.TalkTopicsActivity",
-  "target" : "org.wikipedia.diff.ArticleEditDetailsFragment"
-}, {
-  "source" : "org.wikipedia.talk.TalkTopicsActivity",
-  "target" : "org.wikipedia.main.MainFragment"
-}, {
-  "source" : "org.wikipedia.talk.TalkTopicsActivity",
-  "target" : "org.wikipedia.page.PageFragment"
-}, {
-  "source" : "org.wikipedia.talk.TalkTopicsActivity",
-  "target" : "org.wikipedia.page.PageActivity"
-}, {
-  "source" : "org.wikipedia.talk.TalkTopicsActivity",
-  "target" : "org.wikipedia.talk.ArchivedTalkPagesActivity"
-}, {
-  "source" : "org.wikipedia.talk.TalkTopicsActivity",
-  "target" : "org.wikipedia.talk.TalkReplyActivity"
-}, {
-  "source" : "org.wikipedia.watchlist.WatchlistExpiryDialog",
-  "target" : "org.wikipedia.diff.ArticleEditDetailsFragment"
-}, {
-  "source" : "org.wikipedia.watchlist.WatchlistExpiryDialog",
-  "target" : "org.wikipedia.page.PageFragment"
-}, {
-  "source" : "org.wikipedia.watchlist.WatchlistExpiryDialog",
-  "target" : "org.wikipedia.talk.TalkTopicsActivity"
-}, {
-  "source" : "org.wikipedia.page.PageActivity",
-  "target" : "org.wikipedia.diff.ArticleEditDetailsFragment"
-}, {
-  "source" : "org.wikipedia.page.PageActivity",
-  "target" : "org.wikipedia.feed.suggestededits.SuggestedEditsCardItemFragment"
-}, {
-  "source" : "org.wikipedia.page.PageActivity",
-  "target" : "org.wikipedia.categories.CategoryActivity"
-}, {
-  "source" : "org.wikipedia.page.PageActivity",
-  "target" : "org.wikipedia.descriptions.DescriptionEditActivity"
-}, {
-  "source" : "org.wikipedia.page.PageActivity",
-  "target" : "org.wikipedia.main.MainFragment"
-}, {
-  "source" : "org.wikipedia.page.PageActivity",
-  "target" : "org.wikipedia.page.PageFragment"
-}, {
-  "source" : "org.wikipedia.page.PageActivity",
-  "target" : "org.wikipedia.random.RandomFragment"
-}, {
-  "source" : "org.wikipedia.page.PageActivity",
-  "target" : "org.wikipedia.search.SearchFragment"
-}, {
-  "source" : "org.wikipedia.page.PageActivity",
-  "target" : "org.wikipedia.gallery.GalleryActivity"
-}, {
-  "source" : "org.wikipedia.page.PageActivity",
-  "target" : "org.wikipedia.page.tabs.TabActivity"
-}, {
-  "source" : "org.wikipedia.page.PageActivity",
-  "target" : "org.wikipedia.talk.ArchivedTalkPagesActivity"
-}, {
-  "source" : "org.wikipedia.page.PageActivity",
-  "target" : "org.wikipedia.talk.TalkReplyActivity"
-}, {
-  "source" : "org.wikipedia.page.PageActivity",
-  "target" : "org.wikipedia.talk.TalkTopicActivity"
-}, {
-  "source" : "org.wikipedia.page.PageActivity",
-  "target" : "org.wikipedia.talk.TalkTopicsActivity"
-}, {
-  "source" : "org.wikipedia.page.PageActivity",
-  "target" : "org.wikipedia.main.MainActivity"
-}, {
-  "source" : "org.wikipedia.edit.insertmedia.InsertMediaActivity",
-  "target" : "org.wikipedia.edit.insertmedia.InsertMediaAdvancedSettingsFragment"
-}, {
-  "source" : "org.wikipedia.edit.insertmedia.InsertMediaActivity",
-  "target" : "org.wikipedia.edit.insertmedia.InsertMediaSettingsFragment"
-}, {
-  "source" : "org.wikipedia.edit.insertmedia.InsertMediaActivity",
+  "source" : "org.wikipedia.edit.insertmedia.InsertMediaAdvancedSettingsFragment",
   "target" : "org.wikipedia.edit.insertmedia.InsertMediaImagePositionDialog"
 }, {
-  "source" : "org.wikipedia.edit.insertmedia.InsertMediaActivity",
-  "target" : "org.wikipedia.edit.insertmedia.InsertMediaImageSizeDialog"
-}, {
-  "source" : "org.wikipedia.edit.insertmedia.InsertMediaActivity",
+  "source" : "org.wikipedia.edit.insertmedia.InsertMediaAdvancedSettingsFragment",
   "target" : "org.wikipedia.edit.insertmedia.InsertMediaImageTypeDialog"
 }, {
-  "source" : "org.wikipedia.edit.insertmedia.InsertMediaImagePositionDialog",
-  "target" : "org.wikipedia.edit.insertmedia.InsertMediaAdvancedSettingsFragment"
+  "source" : "org.wikipedia.edit.insertmedia.InsertMediaAdvancedSettingsFragment",
+  "target" : "org.wikipedia.edit.insertmedia.InsertMediaImageSizeDialog"
 }, {
-  "source" : "org.wikipedia.edit.insertmedia.InsertMediaImageTypeDialog",
-  "target" : "org.wikipedia.edit.insertmedia.InsertMediaAdvancedSettingsFragment"
+  "source" : "org.wikipedia.edit.insertmedia.InsertMediaSettingsFragment",
+  "target" : "org.wikipedia.edit.insertmedia.InsertMediaActivity"
 }, {
-  "source" : "org.wikipedia.edit.insertmedia.InsertMediaImageSizeDialog",
-  "target" : "org.wikipedia.edit.insertmedia.InsertMediaAdvancedSettingsFragment"
+  "source" : "org.wikipedia.edit.insertmedia.InsertMediaSettingsFragment",
+  "target" : "org.wikipedia.views.ImagePreviewDialog"
 }, {
-  "source" : "org.wikipedia.views.ImagePreviewDialog",
-  "target" : "org.wikipedia.edit.insertmedia.InsertMediaSettingsFragment"
+  "source" : "org.wikipedia.edit.preview.EditPreviewFragment",
+  "target" : "org.wikipedia.page.references.ReferenceDialog"
 }, {
-  "source" : "org.wikipedia.views.ImagePreviewDialog",
+  "source" : "org.wikipedia.edit.preview.EditPreviewFragment",
+  "target" : "org.wikipedia.edit.EditSectionActivity"
+}, {
+  "source" : "org.wikipedia.edit.summaries.EditSummaryFragment",
+  "target" : "org.wikipedia.edit.EditSectionActivity"
+}, {
+  "source" : "org.wikipedia.feed.FeedFragment",
+  "target" : "org.wikipedia.feed.configure.ConfigureActivity"
+}, {
+  "source" : "org.wikipedia.feed.FeedFragment",
+  "target" : "org.wikipedia.settings.languages.WikipediaLanguagesActivity"
+}, {
+  "source" : "org.wikipedia.feed.news.NewsFragment",
+  "target" : "org.wikipedia.feed.news.NewsActivity"
+}, {
+  "source" : "org.wikipedia.feed.onthisday.OnThisDayFragment",
+  "target" : "org.wikipedia.views.CustomDatePicker"
+}, {
+  "source" : "org.wikipedia.feed.suggestededits.SuggestedEditsCardItemFragment",
+  "target" : "org.wikipedia.commons.FilePageActivity"
+}, {
+  "source" : "org.wikipedia.feed.suggestededits.SuggestedEditsCardItemFragment",
+  "target" : "org.wikipedia.page.PageActivity"
+}, {
+  "source" : "org.wikipedia.feed.suggestededits.SuggestedEditsCardItemFragment",
+  "target" : "org.wikipedia.gallery.GalleryActivity"
+}, {
+  "source" : "org.wikipedia.feed.suggestededits.SuggestedEditsCardItemFragment",
+  "target" : "org.wikipedia.suggestededits.SuggestedEditsImageTagEditActivity"
+}, {
+  "source" : "org.wikipedia.feed.suggestededits.SuggestedEditsCardItemFragment",
   "target" : "org.wikipedia.descriptions.DescriptionEditActivity"
 }, {
-  "source" : "org.wikipedia.page.references.ReferenceDialog",
-  "target" : "org.wikipedia.edit.preview.EditPreviewFragment"
+  "source" : "com.google.android.material.datepicker.MaterialCalendar",
+  "target" : "com.google.android.material.datepicker.MaterialDatePicker"
 }, {
-  "source" : "org.wikipedia.page.references.ReferenceDialog",
-  "target" : "org.wikipedia.page.PageFragment"
+  "source" : "com.google.android.material.datepicker.MaterialDatePicker",
+  "target" : "com.google.android.material.datepicker.MaterialCalendar"
+}, {
+  "source" : "com.google.android.material.datepicker.MaterialDatePicker",
+  "target" : "com.google.android.material.datepicker.MaterialTextInputPicker"
+}, {
+  "source" : "org.wikipedia.activity.BaseActivity",
+  "target" : "org.wikipedia.login.LoginActivity"
+}, {
+  "source" : "org.wikipedia.categories.CategoryActivity",
+  "target" : "org.wikipedia.page.linkpreview.LinkPreviewDialog"
+}, {
+  "source" : "org.wikipedia.categories.CategoryActivity",
+  "target" : "org.wikipedia.page.PageActivity"
+}, {
+  "source" : "org.wikipedia.categories.CategoryActivity",
+  "target" : "org.wikipedia.categories.CategoryDialog"
 }, {
   "source" : "org.wikipedia.edit.EditSectionActivity",
   "target" : "org.wikipedia.edit.preview.EditPreviewFragment"
@@ -225,344 +126,443 @@
   "target" : "org.wikipedia.edit.summaries.EditSummaryFragment"
 }, {
   "source" : "org.wikipedia.edit.EditSectionActivity",
-  "target" : "org.wikipedia.page.PageActivity"
+  "target" : "org.wikipedia.login.LoginActivity"
 }, {
   "source" : "org.wikipedia.edit.EditSectionActivity",
-  "target" : "org.wikipedia.talk.TalkTopicActivity"
+  "target" : "org.wikipedia.theme.ThemeChooserDialog"
+}, {
+  "source" : "org.wikipedia.edit.insertmedia.InsertMediaActivity",
+  "target" : "org.wikipedia.edit.insertmedia.InsertMediaAdvancedSettingsFragment"
+}, {
+  "source" : "org.wikipedia.edit.insertmedia.InsertMediaActivity",
+  "target" : "org.wikipedia.edit.insertmedia.InsertMediaSettingsFragment"
+}, {
+  "source" : "org.wikipedia.edit.insertmedia.InsertMediaActivity",
+  "target" : "org.wikipedia.commons.FilePageActivity"
+}, {
+  "source" : "org.wikipedia.commons.FilePageActivity",
+  "target" : "org.wikipedia.commons.FilePageFragment"
+}, {
+  "source" : "org.wikipedia.descriptions.DescriptionEditActivity",
+  "target" : "org.wikipedia.descriptions.DescriptionEditFragment"
+}, {
+  "source" : "org.wikipedia.descriptions.DescriptionEditActivity",
+  "target" : "org.wikipedia.page.linkpreview.LinkPreviewDialog"
+}, {
+  "source" : "org.wikipedia.descriptions.DescriptionEditActivity",
+  "target" : "org.wikipedia.views.ImagePreviewDialog"
+}, {
+  "source" : "org.wikipedia.descriptions.DescriptionEditActivity",
+  "target" : "org.wikipedia.descriptions.DescriptionEditTutorialActivity"
+}, {
+  "source" : "org.wikipedia.descriptions.DescriptionEditActivity",
+  "target" : "org.wikipedia.page.PageActivity"
+}, {
+  "source" : "org.wikipedia.descriptions.DescriptionEditTutorialActivity",
+  "target" : "org.wikipedia.descriptions.DescriptionEditTutorialFragment"
+}, {
+  "source" : "org.wikipedia.diff.ArticleEditDetailsActivity",
+  "target" : "org.wikipedia.diff.ArticleEditDetailsFragment"
+}, {
+  "source" : "org.wikipedia.edit.insertmedia.InsertMediaImagePositionDialog",
+  "target" : "org.wikipedia.edit.insertmedia.InsertMediaActivity"
+}, {
+  "source" : "org.wikipedia.edit.insertmedia.InsertMediaImageSizeDialog",
+  "target" : "org.wikipedia.edit.insertmedia.InsertMediaActivity"
+}, {
+  "source" : "org.wikipedia.edit.insertmedia.InsertMediaImageTypeDialog",
+  "target" : "org.wikipedia.edit.insertmedia.InsertMediaActivity"
 }, {
   "source" : "org.wikipedia.feed.configure.ConfigureActivity",
-  "target" : "org.wikipedia.feed.FeedFragment"
-}, {
-  "source" : "org.wikipedia.settings.languages.WikipediaLanguagesActivity",
-  "target" : "org.wikipedia.feed.FeedFragment"
-}, {
-  "source" : "org.wikipedia.settings.languages.WikipediaLanguagesActivity",
-  "target" : "org.wikipedia.search.SearchFragment"
-}, {
-  "source" : "org.wikipedia.settings.languages.WikipediaLanguagesActivity",
-  "target" : "org.wikipedia.onboarding.InitialOnboardingFragment"
-}, {
-  "source" : "org.wikipedia.settings.languages.WikipediaLanguagesActivity",
-  "target" : "org.wikipedia.talk.TalkTopicsActivity"
+  "target" : "org.wikipedia.feed.configure.ConfigureFragment"
 }, {
   "source" : "org.wikipedia.feed.news.NewsActivity",
   "target" : "org.wikipedia.feed.news.NewsFragment"
 }, {
-  "source" : "org.wikipedia.feed.news.NewsActivity",
-  "target" : "org.wikipedia.main.MainFragment"
-}, {
-  "source" : "org.wikipedia.views.CustomDatePicker",
+  "source" : "org.wikipedia.feed.onthisday.OnThisDayActivity",
   "target" : "org.wikipedia.feed.onthisday.OnThisDayFragment"
 }, {
-  "source" : "org.wikipedia.gallery.GalleryActivity",
-  "target" : "org.wikipedia.feed.suggestededits.SuggestedEditsCardItemFragment"
+  "source" : "org.wikipedia.feed.topread.TopReadArticlesActivity",
+  "target" : "org.wikipedia.feed.topread.TopReadFragment"
 }, {
-  "source" : "org.wikipedia.gallery.GalleryActivity",
-  "target" : "org.wikipedia.gallery.GalleryItemFragment"
+  "source" : "org.wikipedia.descriptions.DescriptionEditSuccessActivity",
+  "target" : "org.wikipedia.descriptions.DescriptionEditSuccessFragment"
 }, {
-  "source" : "org.wikipedia.gallery.GalleryActivity",
-  "target" : "org.wikipedia.page.PageFragment"
+  "source" : "org.wikipedia.gallery.GalleryItemFragment",
+  "target" : "org.wikipedia.gallery.GalleryActivity"
 }, {
-  "source" : "org.wikipedia.gallery.GalleryActivity",
-  "target" : "org.wikipedia.page.PageActivity"
-}, {
-  "source" : "org.wikipedia.gallery.GalleryActivity",
-  "target" : "org.wikipedia.page.linkpreview.LinkPreviewDialog"
-}, {
-  "source" : "com.google.android.material.datepicker.MaterialDatePicker",
-  "target" : "com.google.android.material.datepicker.MaterialCalendar"
-}, {
-  "source" : "com.google.android.material.datepicker.MaterialCalendar",
-  "target" : "com.google.android.material.datepicker.MaterialDatePicker"
-}, {
-  "source" : "com.google.android.material.datepicker.MaterialTextInputPicker",
-  "target" : "com.google.android.material.datepicker.MaterialDatePicker"
-}, {
-  "source" : "org.wikipedia.categories.CategoryDialog",
-  "target" : "org.wikipedia.categories.CategoryActivity"
-}, {
-  "source" : "org.wikipedia.edit.preview.EditPreviewFragment",
-  "target" : "org.wikipedia.edit.EditSectionActivity"
-}, {
-  "source" : "org.wikipedia.edit.summaries.EditSummaryFragment",
-  "target" : "org.wikipedia.edit.EditSectionActivity"
-}, {
-  "source" : "org.wikipedia.theme.ThemeChooserDialog",
-  "target" : "org.wikipedia.edit.EditSectionActivity"
-}, {
-  "source" : "org.wikipedia.theme.ThemeChooserDialog",
-  "target" : "org.wikipedia.page.PageFragment"
-}, {
-  "source" : "org.wikipedia.theme.ThemeChooserDialog",
-  "target" : "org.wikipedia.theme.ThemeFittingRoomActivity"
-}, {
-  "source" : "org.wikipedia.edit.insertmedia.InsertMediaAdvancedSettingsFragment",
-  "target" : "org.wikipedia.edit.insertmedia.InsertMediaActivity"
-}, {
-  "source" : "org.wikipedia.edit.insertmedia.InsertMediaSettingsFragment",
-  "target" : "org.wikipedia.edit.insertmedia.InsertMediaActivity"
-}, {
-  "source" : "org.wikipedia.commons.FilePageFragment",
+  "source" : "org.wikipedia.gallery.GalleryItemFragment",
   "target" : "org.wikipedia.commons.FilePageActivity"
 }, {
-  "source" : "org.wikipedia.descriptions.DescriptionEditFragment",
-  "target" : "org.wikipedia.descriptions.DescriptionEditActivity"
+  "source" : "org.wikipedia.main.MainFragment",
+  "target" : "org.wikipedia.suggestededits.SuggestedEditsTasksFragment"
 }, {
-  "source" : "org.wikipedia.descriptions.DescriptionEditTutorialActivity",
-  "target" : "org.wikipedia.descriptions.DescriptionEditActivity"
+  "source" : "org.wikipedia.main.MainFragment",
+  "target" : "org.wikipedia.navtab.MenuNavTabDialog"
 }, {
-  "source" : "org.wikipedia.diff.ArticleEditDetailsFragment",
-  "target" : "org.wikipedia.diff.ArticleEditDetailsActivity"
+  "source" : "org.wikipedia.main.MainFragment",
+  "target" : "org.wikipedia.feed.FeedFragment"
 }, {
-  "source" : "org.wikipedia.feed.configure.ConfigureFragment",
-  "target" : "org.wikipedia.feed.configure.ConfigureActivity"
+  "source" : "org.wikipedia.main.MainFragment",
+  "target" : "org.wikipedia.history.HistoryFragment"
 }, {
-  "source" : "org.wikipedia.feed.news.NewsFragment",
+  "source" : "org.wikipedia.main.MainFragment",
+  "target" : "org.wikipedia.page.PageActivity"
+}, {
+  "source" : "org.wikipedia.main.MainFragment",
+  "target" : "org.wikipedia.page.tabs.TabActivity"
+}, {
+  "source" : "org.wikipedia.main.MainFragment",
+  "target" : "org.wikipedia.notifications.NotificationActivity"
+}, {
+  "source" : "org.wikipedia.main.MainFragment",
+  "target" : "org.wikipedia.readinglist.ReadingListsFragment"
+}, {
+  "source" : "org.wikipedia.main.MainFragment",
+  "target" : "org.wikipedia.usercontrib.UserContribListActivity"
+}, {
+  "source" : "org.wikipedia.main.MainFragment",
+  "target" : "org.wikipedia.random.RandomActivity"
+}, {
+  "source" : "org.wikipedia.main.MainFragment",
+  "target" : "org.wikipedia.commons.FilePageActivity"
+}, {
+  "source" : "org.wikipedia.main.MainFragment",
+  "target" : "org.wikipedia.readinglist.MoveToReadingListDialog"
+}, {
+  "source" : "org.wikipedia.main.MainFragment",
   "target" : "org.wikipedia.feed.news.NewsActivity"
 }, {
-  "source" : "org.wikipedia.feed.onthisday.OnThisDayFragment",
-  "target" : "org.wikipedia.feed.onthisday.OnThisDayActivity"
+  "source" : "org.wikipedia.main.MainFragment",
+  "target" : "org.wikipedia.login.LoginActivity"
 }, {
-  "source" : "org.wikipedia.feed.topread.TopReadFragment",
-  "target" : "org.wikipedia.feed.topread.TopReadArticlesActivity"
+  "source" : "org.wikipedia.main.MainFragment",
+  "target" : "org.wikipedia.search.SearchActivity"
 }, {
-  "source" : "org.wikipedia.descriptions.DescriptionEditSuccessFragment",
-  "target" : "org.wikipedia.descriptions.DescriptionEditSuccessActivity"
+  "source" : "org.wikipedia.main.MainFragment",
+  "target" : "org.wikipedia.settings.SettingsActivity"
 }, {
-  "source" : "org.wikipedia.suggestededits.SuggestedEditsTasksFragment",
-  "target" : "org.wikipedia.main.MainFragment"
-}, {
-  "source" : "org.wikipedia.navtab.MenuNavTabDialog",
-  "target" : "org.wikipedia.main.MainFragment"
-}, {
-  "source" : "org.wikipedia.feed.FeedFragment",
-  "target" : "org.wikipedia.main.MainFragment"
-}, {
-  "source" : "org.wikipedia.history.HistoryFragment",
-  "target" : "org.wikipedia.main.MainFragment"
-}, {
-  "source" : "org.wikipedia.page.tabs.TabActivity",
-  "target" : "org.wikipedia.main.MainFragment"
-}, {
-  "source" : "org.wikipedia.page.tabs.TabActivity",
-  "target" : "org.wikipedia.page.PageActivity"
-}, {
-  "source" : "org.wikipedia.notifications.NotificationActivity",
-  "target" : "org.wikipedia.main.MainFragment"
-}, {
-  "source" : "org.wikipedia.notifications.NotificationActivity",
-  "target" : "org.wikipedia.watchlist.WatchlistFragment"
-}, {
-  "source" : "org.wikipedia.notifications.NotificationActivity",
-  "target" : "org.wikipedia.page.PageActivity"
-}, {
-  "source" : "org.wikipedia.notifications.NotificationActivity",
-  "target" : "org.wikipedia.page.tabs.TabActivity"
-}, {
-  "source" : "org.wikipedia.notifications.NotificationActivity",
+  "source" : "org.wikipedia.main.MainFragment",
   "target" : "org.wikipedia.talk.TalkTopicsActivity"
 }, {
-  "source" : "org.wikipedia.readinglist.ReadingListsFragment",
-  "target" : "org.wikipedia.main.MainFragment"
+  "source" : "org.wikipedia.main.MainFragment",
+  "target" : "org.wikipedia.watchlist.WatchlistActivity"
 }, {
-  "source" : "org.wikipedia.readinglist.ReadingListsFragment",
-  "target" : "org.wikipedia.readinglist.ReadingListFragment"
-}, {
-  "source" : "org.wikipedia.usercontrib.UserContribListActivity",
-  "target" : "org.wikipedia.main.MainFragment"
-}, {
-  "source" : "org.wikipedia.usercontrib.UserContribListActivity",
-  "target" : "org.wikipedia.suggestededits.SuggestedEditsTasksFragment"
-}, {
-  "source" : "org.wikipedia.usercontrib.UserContribListActivity",
+  "source" : "org.wikipedia.page.PageFragment",
   "target" : "org.wikipedia.page.PageActivity"
 }, {
-  "source" : "org.wikipedia.random.RandomActivity",
-  "target" : "org.wikipedia.main.MainFragment"
+  "source" : "org.wikipedia.page.PageFragment",
+  "target" : "org.wikipedia.categories.CategoryActivity"
 }, {
-  "source" : "org.wikipedia.readinglist.MoveToReadingListDialog",
-  "target" : "org.wikipedia.main.MainFragment"
+  "source" : "org.wikipedia.page.PageFragment",
+  "target" : "org.wikipedia.page.references.ReferenceDialog"
 }, {
-  "source" : "org.wikipedia.readinglist.MoveToReadingListDialog",
-  "target" : "org.wikipedia.random.RandomFragment"
+  "source" : "org.wikipedia.page.PageFragment",
+  "target" : "org.wikipedia.page.edithistory.EditHistoryListActivity"
 }, {
-  "source" : "org.wikipedia.readinglist.MoveToReadingListDialog",
-  "target" : "org.wikipedia.readinglist.ReadingListFragment"
+  "source" : "org.wikipedia.page.PageFragment",
+  "target" : "org.wikipedia.watchlist.WatchlistExpiryDialog"
 }, {
-  "source" : "org.wikipedia.readinglist.MoveToReadingListDialog",
-  "target" : "org.wikipedia.readinglist.ReadingListsFragment"
+  "source" : "org.wikipedia.page.PageFragment",
+  "target" : "org.wikipedia.gallery.GalleryActivity"
 }, {
-  "source" : "org.wikipedia.readinglist.MoveToReadingListDialog",
-  "target" : "org.wikipedia.search.SearchFragment"
-}, {
-  "source" : "org.wikipedia.search.SearchActivity",
-  "target" : "org.wikipedia.main.MainFragment"
-}, {
-  "source" : "org.wikipedia.search.SearchActivity",
-  "target" : "org.wikipedia.page.PageActivity"
-}, {
-  "source" : "org.wikipedia.settings.SettingsActivity",
-  "target" : "org.wikipedia.main.MainFragment"
-}, {
-  "source" : "org.wikipedia.watchlist.WatchlistActivity",
-  "target" : "org.wikipedia.main.MainFragment"
-}, {
-  "source" : "org.wikipedia.categories.CategoryActivity",
-  "target" : "org.wikipedia.page.PageFragment"
-}, {
-  "source" : "org.wikipedia.page.edithistory.EditHistoryListActivity",
-  "target" : "org.wikipedia.page.PageFragment"
-}, {
-  "source" : "org.wikipedia.page.edithistory.EditHistoryListActivity",
+  "source" : "org.wikipedia.page.PageFragment",
   "target" : "org.wikipedia.talk.TalkTopicsActivity"
 }, {
-  "source" : "org.wikipedia.main.MainActivity",
-  "target" : "org.wikipedia.page.PageFragment"
+  "source" : "org.wikipedia.page.PageFragment",
+  "target" : "org.wikipedia.login.LoginActivity"
 }, {
-  "source" : "org.wikipedia.main.MainActivity",
-  "target" : "org.wikipedia.readinglist.ReadingListFragment"
+  "source" : "org.wikipedia.page.PageFragment",
+  "target" : "org.wikipedia.main.MainActivity"
 }, {
-  "source" : "org.wikipedia.main.MainActivity",
-  "target" : "org.wikipedia.readinglist.ReadingListsFragment"
-}, {
-  "source" : "org.wikipedia.main.MainActivity",
-  "target" : "org.wikipedia.suggestededits.SuggestedEditsTasksFragment"
-}, {
-  "source" : "org.wikipedia.main.MainActivity",
-  "target" : "org.wikipedia.page.tabs.TabActivity"
-}, {
-  "source" : "org.wikipedia.random.RandomItemFragment",
-  "target" : "org.wikipedia.random.RandomFragment"
+  "source" : "org.wikipedia.page.PageFragment",
+  "target" : "org.wikipedia.theme.ThemeChooserDialog"
 }, {
   "source" : "org.wikipedia.random.RandomFragment",
   "target" : "org.wikipedia.random.RandomItemFragment"
 }, {
   "source" : "org.wikipedia.random.RandomFragment",
-  "target" : "org.wikipedia.random.RandomActivity"
+  "target" : "org.wikipedia.readinglist.MoveToReadingListDialog"
 }, {
-  "source" : "org.wikipedia.readinglist.ReadingListActivity",
-  "target" : "org.wikipedia.readinglist.ReadingListsFragment"
-}, {
-  "source" : "org.wikipedia.readinglist.ReadingListActivity",
+  "source" : "org.wikipedia.random.RandomFragment",
   "target" : "org.wikipedia.page.PageActivity"
 }, {
-  "source" : "org.wikipedia.readinglist.ReadingListActivity",
-  "target" : "org.wikipedia.readinglist.AddToReadingListDialog"
+  "source" : "org.wikipedia.random.RandomItemFragment",
+  "target" : "org.wikipedia.random.RandomFragment"
 }, {
-  "source" : "org.wikipedia.search.RecentSearchesFragment",
-  "target" : "org.wikipedia.search.SearchFragment"
+  "source" : "org.wikipedia.readinglist.ReadingListFragment",
+  "target" : "org.wikipedia.main.MainActivity"
 }, {
-  "source" : "org.wikipedia.search.SearchResultsFragment",
-  "target" : "org.wikipedia.search.SearchFragment"
+  "source" : "org.wikipedia.readinglist.ReadingListFragment",
+  "target" : "org.wikipedia.readinglist.MoveToReadingListDialog"
+}, {
+  "source" : "org.wikipedia.readinglist.ReadingListFragment",
+  "target" : "org.wikipedia.readinglist.ReadingListsFragment"
+}, {
+  "source" : "org.wikipedia.readinglist.ReadingListsFragment",
+  "target" : "org.wikipedia.readinglist.ReadingListActivity"
+}, {
+  "source" : "org.wikipedia.readinglist.ReadingListsFragment",
+  "target" : "org.wikipedia.readinglist.MoveToReadingListDialog"
+}, {
+  "source" : "org.wikipedia.readinglist.ReadingListsFragment",
+  "target" : "org.wikipedia.main.MainActivity"
+}, {
+  "source" : "org.wikipedia.search.SearchFragment",
+  "target" : "org.wikipedia.search.RecentSearchesFragment"
 }, {
   "source" : "org.wikipedia.search.SearchFragment",
   "target" : "org.wikipedia.search.SearchResultsFragment"
 }, {
   "source" : "org.wikipedia.search.SearchFragment",
-  "target" : "org.wikipedia.search.SearchActivity"
+  "target" : "org.wikipedia.settings.languages.WikipediaLanguagesActivity"
 }, {
-  "source" : "org.wikipedia.suggestededits.SuggestedEditsCardsItemFragment",
-  "target" : "org.wikipedia.suggestededits.SuggestedEditsCardsFragment"
+  "source" : "org.wikipedia.search.SearchFragment",
+  "target" : "org.wikipedia.page.PageActivity"
 }, {
-  "source" : "org.wikipedia.suggestededits.SuggestedEditsImageTagsOnboardingActivity",
-  "target" : "org.wikipedia.suggestededits.SuggestedEditsCardsFragment"
+  "source" : "org.wikipedia.search.SearchFragment",
+  "target" : "org.wikipedia.readinglist.MoveToReadingListDialog"
 }, {
-  "source" : "org.wikipedia.suggestededits.SuggestedEditsImageTagsOnboardingActivity",
-  "target" : "org.wikipedia.suggestededits.SuggestedEditsImageTagEditActivity"
-}, {
-  "source" : "org.wikipedia.suggestededits.SuggestedEditsCardsFragment",
-  "target" : "org.wikipedia.suggestededits.SuggestedEditsItemFragment"
+  "source" : "org.wikipedia.search.SearchResultsFragment",
+  "target" : "org.wikipedia.search.SearchFragment"
 }, {
   "source" : "org.wikipedia.suggestededits.SuggestedEditsCardsFragment",
   "target" : "org.wikipedia.suggestededits.SuggestedEditsCardsItemFragment"
 }, {
   "source" : "org.wikipedia.suggestededits.SuggestedEditsCardsFragment",
+  "target" : "org.wikipedia.suggestededits.SuggestedEditsImageTagsOnboardingActivity"
+}, {
+  "source" : "org.wikipedia.suggestededits.SuggestedEditsCardsFragment",
+  "target" : "org.wikipedia.descriptions.DescriptionEditActivity"
+}, {
+  "source" : "org.wikipedia.suggestededits.SuggestedEditsItemFragment",
+  "target" : "org.wikipedia.suggestededits.SuggestedEditsCardsFragment"
+}, {
+  "source" : "org.wikipedia.suggestededits.SuggestedEditsTasksFragment",
+  "target" : "org.wikipedia.usercontrib.UserContribListActivity"
+}, {
+  "source" : "org.wikipedia.suggestededits.SuggestedEditsTasksFragment",
+  "target" : "org.wikipedia.main.MainActivity"
+}, {
+  "source" : "org.wikipedia.suggestededits.SuggestedEditsTasksFragment",
   "target" : "org.wikipedia.suggestededits.SuggestionsActivity"
 }, {
-  "source" : "org.wikipedia.suggestededits.SuggestionsActivity",
-  "target" : "org.wikipedia.suggestededits.SuggestedEditsTasksFragment"
+  "source" : "org.wikipedia.watchlist.WatchlistFragment",
+  "target" : "org.wikipedia.notifications.NotificationActivity"
 }, {
-  "source" : "org.wikipedia.watchlist.WatchlistFilterActivity",
-  "target" : "org.wikipedia.watchlist.WatchlistFragment"
+  "source" : "org.wikipedia.watchlist.WatchlistFragment",
+  "target" : "org.wikipedia.watchlist.WatchlistFilterActivity"
 }, {
-  "source" : "org.wikipedia.diff.ArticleEditDetailsActivity",
-  "target" : "org.wikipedia.watchlist.WatchlistFragment"
+  "source" : "org.wikipedia.watchlist.WatchlistFragment",
+  "target" : "org.wikipedia.diff.ArticleEditDetailsActivity"
 }, {
-  "source" : "org.wikipedia.diff.ArticleEditDetailsActivity",
-  "target" : "org.wikipedia.page.edithistory.EditHistoryListActivity"
-}, {
-  "source" : "org.wikipedia.suggestededits.SuggestedEditsImageTagDialog",
-  "target" : "org.wikipedia.suggestededits.SuggestedEditsImageTagsFragment"
-}, {
-  "source" : "org.wikipedia.settings.DeveloperSettingsActivity",
-  "target" : "org.wikipedia.settings.SettingsFragment"
-}, {
-  "source" : "org.wikipedia.gallery.GalleryItemFragment",
-  "target" : "org.wikipedia.gallery.GalleryActivity"
-}, {
-  "source" : "org.wikipedia.createaccount.CreateAccountActivity",
+  "source" : "org.wikipedia.onboarding.InitialOnboardingFragment",
   "target" : "org.wikipedia.login.LoginActivity"
 }, {
-  "source" : "org.wikipedia.createaccount.CreateAccountActivity",
-  "target" : "org.wikipedia.login.ResetPasswordActivity"
+  "source" : "org.wikipedia.onboarding.InitialOnboardingFragment",
+  "target" : "org.wikipedia.settings.languages.WikipediaLanguagesActivity"
 }, {
-  "source" : "org.wikipedia.notifications.NotificationFilterActivity",
-  "target" : "org.wikipedia.notifications.NotificationActivity"
-}, {
-  "source" : "org.wikipedia.settings.NotificationSettingsActivity",
-  "target" : "org.wikipedia.notifications.NotificationActivity"
-}, {
-  "source" : "org.wikipedia.page.PageFragment",
-  "target" : "org.wikipedia.page.PageActivity"
-}, {
-  "source" : "org.wikipedia.language.LangLinksActivity",
-  "target" : "org.wikipedia.page.PageActivity"
+  "source" : "org.wikipedia.suggestededits.SuggestedEditsCardsItemFragment",
+  "target" : "org.wikipedia.suggestededits.SuggestedEditsCardsFragment"
 }, {
   "source" : "org.wikipedia.suggestededits.SuggestedEditsImageTagsFragment",
+  "target" : "org.wikipedia.commons.FilePageActivity"
+}, {
+  "source" : "org.wikipedia.suggestededits.SuggestedEditsImageTagsFragment",
+  "target" : "org.wikipedia.suggestededits.SuggestedEditsImageTagDialog"
+}, {
+  "source" : "org.wikipedia.settings.SettingsFragment",
+  "target" : "org.wikipedia.settings.DeveloperSettingsActivity"
+}, {
+  "source" : "org.wikipedia.gallery.GalleryActivity",
+  "target" : "org.wikipedia.gallery.GalleryItemFragment"
+}, {
+  "source" : "org.wikipedia.gallery.GalleryActivity",
+  "target" : "org.wikipedia.page.PageActivity"
+}, {
+  "source" : "org.wikipedia.gallery.GalleryActivity",
+  "target" : "org.wikipedia.commons.FilePageActivity"
+}, {
+  "source" : "org.wikipedia.gallery.GalleryActivity",
+  "target" : "org.wikipedia.page.linkpreview.LinkPreviewDialog"
+}, {
+  "source" : "org.wikipedia.gallery.GalleryActivity",
+  "target" : "org.wikipedia.descriptions.DescriptionEditActivity"
+}, {
+  "source" : "org.wikipedia.gallery.GalleryActivity",
   "target" : "org.wikipedia.suggestededits.SuggestedEditsImageTagEditActivity"
 }, {
-  "source" : "org.wikipedia.talk.TalkReplyActivity",
-  "target" : "org.wikipedia.talk.TalkTopicActivity"
+  "source" : "org.wikipedia.login.LoginActivity",
+  "target" : "org.wikipedia.createaccount.CreateAccountActivity"
 }, {
-  "source" : "org.wikipedia.talk.TalkReplyActivity",
+  "source" : "org.wikipedia.login.ResetPasswordActivity",
+  "target" : "org.wikipedia.createaccount.CreateAccountActivity"
+}, {
+  "source" : "org.wikipedia.notifications.NotificationActivity",
+  "target" : "org.wikipedia.notifications.NotificationFilterActivity"
+}, {
+  "source" : "org.wikipedia.notifications.NotificationActivity",
+  "target" : "org.wikipedia.settings.NotificationSettingsActivity"
+}, {
+  "source" : "org.wikipedia.page.PageActivity",
+  "target" : "org.wikipedia.page.PageFragment"
+}, {
+  "source" : "org.wikipedia.page.PageActivity",
+  "target" : "org.wikipedia.readinglist.ReadingListActivity"
+}, {
+  "source" : "org.wikipedia.page.PageActivity",
+  "target" : "org.wikipedia.commons.FilePageActivity"
+}, {
+  "source" : "org.wikipedia.page.PageActivity",
+  "target" : "org.wikipedia.usercontrib.UserContribListActivity"
+}, {
+  "source" : "org.wikipedia.page.PageActivity",
   "target" : "org.wikipedia.talk.TalkTopicsActivity"
 }, {
-  "source" : "org.wikipedia.talk.TalkTopicActivity",
-  "target" : "org.wikipedia.talk.TalkTopicsActivity"
+  "source" : "org.wikipedia.page.PageActivity",
+  "target" : "org.wikipedia.search.SearchActivity"
+}, {
+  "source" : "org.wikipedia.page.PageActivity",
+  "target" : "org.wikipedia.page.tabs.TabActivity"
+}, {
+  "source" : "org.wikipedia.page.PageActivity",
+  "target" : "org.wikipedia.notifications.NotificationActivity"
+}, {
+  "source" : "org.wikipedia.page.PageActivity",
+  "target" : "org.wikipedia.gallery.GalleryActivity"
+}, {
+  "source" : "org.wikipedia.page.PageActivity",
+  "target" : "org.wikipedia.suggestededits.SuggestedEditsImageTagEditActivity"
+}, {
+  "source" : "org.wikipedia.page.PageActivity",
+  "target" : "org.wikipedia.descriptions.DescriptionEditActivity"
+}, {
+  "source" : "org.wikipedia.page.PageActivity",
+  "target" : "org.wikipedia.edit.EditSectionActivity"
+}, {
+  "source" : "org.wikipedia.page.PageActivity",
+  "target" : "org.wikipedia.language.LangLinksActivity"
+}, {
+  "source" : "org.wikipedia.page.PageActivity",
+  "target" : "org.wikipedia.page.linkpreview.LinkPreviewDialog"
+}, {
+  "source" : "org.wikipedia.page.edithistory.EditHistoryListActivity",
+  "target" : "org.wikipedia.diff.ArticleEditDetailsActivity"
+}, {
+  "source" : "org.wikipedia.page.tabs.TabActivity",
+  "target" : "org.wikipedia.main.MainActivity"
+}, {
+  "source" : "org.wikipedia.page.tabs.TabActivity",
+  "target" : "org.wikipedia.notifications.NotificationActivity"
+}, {
+  "source" : "org.wikipedia.page.tabs.TabActivity",
+  "target" : "org.wikipedia.page.PageActivity"
+}, {
+  "source" : "org.wikipedia.suggestededits.SuggestedEditsImageTagEditActivity",
+  "target" : "org.wikipedia.suggestededits.SuggestedEditsImageTagsFragment"
+}, {
+  "source" : "org.wikipedia.suggestededits.SuggestedEditsImageTagEditActivity",
+  "target" : "org.wikipedia.suggestededits.SuggestedEditsImageTagsOnboardingActivity"
 }, {
   "source" : "org.wikipedia.talk.ArchivedTalkPagesActivity",
   "target" : "org.wikipedia.talk.TalkTopicsActivity"
 }, {
-  "source" : "org.wikipedia.main.MainFragment",
-  "target" : "org.wikipedia.main.MainActivity"
+  "source" : "org.wikipedia.talk.ArchivedTalkPagesActivity",
+  "target" : "org.wikipedia.page.PageActivity"
 }, {
-  "source" : "org.wikipedia.onboarding.InitialOnboardingActivity",
-  "target" : "org.wikipedia.main.MainActivity"
+  "source" : "org.wikipedia.talk.TalkReplyActivity",
+  "target" : "org.wikipedia.talk.TalkTopicsActivity"
 }, {
-  "source" : "org.wikipedia.onboarding.InitialOnboardingFragment",
-  "target" : "org.wikipedia.onboarding.InitialOnboardingActivity"
+  "source" : "org.wikipedia.talk.TalkReplyActivity",
+  "target" : "org.wikipedia.page.PageActivity"
 }, {
-  "source" : "org.wikipedia.page.customize.CustomizeToolbarFragment",
-  "target" : "org.wikipedia.page.customize.CustomizeToolbarActivity"
+  "source" : "org.wikipedia.talk.TalkReplyActivity",
+  "target" : "org.wikipedia.login.LoginActivity"
 }, {
-  "source" : "org.wikipedia.readinglist.ReadingListFragment",
-  "target" : "org.wikipedia.readinglist.ReadingListActivity"
+  "source" : "org.wikipedia.talk.TalkTopicActivity",
+  "target" : "org.wikipedia.talk.TalkReplyActivity"
 }, {
-  "source" : "org.wikipedia.settings.DeveloperSettingsFragment",
-  "target" : "org.wikipedia.settings.DeveloperSettingsActivity"
+  "source" : "org.wikipedia.talk.TalkTopicActivity",
+  "target" : "org.wikipedia.page.PageActivity"
 }, {
-  "source" : "org.wikipedia.settings.NotificationSettingsFragment",
-  "target" : "org.wikipedia.settings.NotificationSettingsActivity"
+  "source" : "org.wikipedia.talk.TalkTopicActivity",
+  "target" : "org.wikipedia.edit.EditSectionActivity"
 }, {
-  "source" : "org.wikipedia.settings.SettingsFragment",
-  "target" : "org.wikipedia.settings.SettingsActivity"
+  "source" : "org.wikipedia.talk.TalkTopicsActivity",
+  "target" : "org.wikipedia.page.PageActivity"
 }, {
-  "source" : "org.wikipedia.settings.languages.WikipediaLanguagesFragment",
+  "source" : "org.wikipedia.talk.TalkTopicsActivity",
+  "target" : "org.wikipedia.talk.TalkReplyActivity"
+}, {
+  "source" : "org.wikipedia.talk.TalkTopicsActivity",
+  "target" : "org.wikipedia.notifications.NotificationActivity"
+}, {
+  "source" : "org.wikipedia.talk.TalkTopicsActivity",
+  "target" : "org.wikipedia.watchlist.WatchlistExpiryDialog"
+}, {
+  "source" : "org.wikipedia.talk.TalkTopicsActivity",
+  "target" : "org.wikipedia.talk.TalkTopicActivity"
+}, {
+  "source" : "org.wikipedia.talk.TalkTopicsActivity",
   "target" : "org.wikipedia.settings.languages.WikipediaLanguagesActivity"
 }, {
-  "source" : "org.wikipedia.theme.ThemeFittingRoomFragment",
-  "target" : "org.wikipedia.theme.ThemeFittingRoomActivity"
+  "source" : "org.wikipedia.talk.TalkTopicsActivity",
+  "target" : "org.wikipedia.page.edithistory.EditHistoryListActivity"
 }, {
-  "source" : "org.wikipedia.watchlist.WatchlistFragment",
-  "target" : "org.wikipedia.watchlist.WatchlistActivity"
+  "source" : "org.wikipedia.talk.TalkTopicsActivity",
+  "target" : "org.wikipedia.talk.ArchivedTalkPagesActivity"
+}, {
+  "source" : "org.wikipedia.main.MainActivity",
+  "target" : "org.wikipedia.page.PageActivity"
+}, {
+  "source" : "org.wikipedia.main.MainActivity",
+  "target" : "org.wikipedia.main.MainFragment"
+}, {
+  "source" : "org.wikipedia.main.MainActivity",
+  "target" : "org.wikipedia.onboarding.InitialOnboardingActivity"
+}, {
+  "source" : "org.wikipedia.onboarding.InitialOnboardingActivity",
+  "target" : "org.wikipedia.onboarding.InitialOnboardingFragment"
+}, {
+  "source" : "org.wikipedia.page.customize.CustomizeToolbarActivity",
+  "target" : "org.wikipedia.page.customize.CustomizeToolbarFragment"
+}, {
+  "source" : "org.wikipedia.page.linkpreview.LinkPreviewDialog",
+  "target" : "org.wikipedia.gallery.GalleryActivity"
+}, {
+  "source" : "org.wikipedia.random.RandomActivity",
+  "target" : "org.wikipedia.random.RandomFragment"
+}, {
+  "source" : "org.wikipedia.readinglist.AddToReadingListDialog",
+  "target" : "org.wikipedia.readinglist.ReadingListActivity"
+}, {
+  "source" : "org.wikipedia.readinglist.ReadingListActivity",
+  "target" : "org.wikipedia.readinglist.ReadingListFragment"
+}, {
+  "source" : "org.wikipedia.search.SearchActivity",
+  "target" : "org.wikipedia.search.SearchFragment"
+}, {
+  "source" : "org.wikipedia.settings.DeveloperSettingsActivity",
+  "target" : "org.wikipedia.settings.DeveloperSettingsFragment"
+}, {
+  "source" : "org.wikipedia.settings.NotificationSettingsActivity",
+  "target" : "org.wikipedia.settings.NotificationSettingsFragment"
+}, {
+  "source" : "org.wikipedia.settings.SettingsActivity",
+  "target" : "org.wikipedia.settings.SettingsFragment"
+}, {
+  "source" : "org.wikipedia.settings.languages.WikipediaLanguagesActivity",
+  "target" : "org.wikipedia.settings.languages.WikipediaLanguagesFragment"
+}, {
+  "source" : "org.wikipedia.suggestededits.SuggestionsActivity",
+  "target" : "org.wikipedia.suggestededits.SuggestedEditsCardsFragment"
+}, {
+  "source" : "org.wikipedia.theme.ThemeFittingRoomActivity",
+  "target" : "org.wikipedia.theme.ThemeChooserDialog"
+}, {
+  "source" : "org.wikipedia.theme.ThemeFittingRoomActivity",
+  "target" : "org.wikipedia.theme.ThemeFittingRoomFragment"
+}, {
+  "source" : "org.wikipedia.watchlist.WatchlistActivity",
+  "target" : "org.wikipedia.watchlist.WatchlistFragment"
 } ]

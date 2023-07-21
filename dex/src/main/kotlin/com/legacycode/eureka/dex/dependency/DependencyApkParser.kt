@@ -63,7 +63,7 @@ class DependencyApkParser(private val file: File) {
 
           for (dependencyType in dependenciesInInheritanceTree) {
             if (dependencyType !in ancestors(inheritanceTrees)) {
-              adjacencyList.add(Ancestor(dependencyType), Child(classType))
+              adjacencyList.add(Ancestor(classType), Child(dependencyType))
             }
           }
         }

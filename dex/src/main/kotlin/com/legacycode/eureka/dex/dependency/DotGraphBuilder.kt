@@ -20,7 +20,7 @@ class DotGraphBuilder(private val title: String) : AdjacencyList.GraphBuilder<St
   }
 
   override fun visitChild(child: Child) {
-    stringBuilder.appendLine("  \"${child.fqn}\" -> \"${ancestor.fqn}\"")
+    stringBuilder.appendLine("  \"${ancestor.fqn}\" -> \"${child.fqn}\"")
   }
 
   override fun afterTraversal() {

@@ -126,7 +126,7 @@ class ClassScannerJavaTest {
   }
 
   @Test
-  fun `09 - it can scan a Java record`() {
+  fun `10 - it can scan a Java record`() {
     // given
     val javaRecord = SampleClass.Java(Video::class)
 

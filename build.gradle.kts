@@ -55,7 +55,7 @@ subprojects {
   }
 
   tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "11"
+    kotlinOptions.jvmTarget = "16"
   }
 
   tasks.withType<Test> {

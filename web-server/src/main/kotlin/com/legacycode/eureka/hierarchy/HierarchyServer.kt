@@ -1,10 +1,11 @@
 package com.legacycode.eureka.hierarchy
 
-import com.legacycode.eureka.dex.Ancestor
 import com.legacycode.eureka.dex.AdjacencyList
+import com.legacycode.eureka.dex.Ancestor
 import io.ktor.server.application.Application
 import io.ktor.server.engine.ApplicationEngine
 import io.ktor.server.engine.embeddedServer
+import io.ktor.server.http.content.staticResources
 import io.ktor.server.netty.Netty
 import io.ktor.server.routing.get
 import io.ktor.server.routing.routing
@@ -38,6 +39,7 @@ fun Application.setupRoutes(
   )
 
   routing {
+    staticResources("", null)
     get("/") {
       hierarchyIndexController.handleRequest(HierarchyIndexPathEffects(this))
     }

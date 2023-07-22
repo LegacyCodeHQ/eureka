@@ -1,7 +1,6 @@
-package com.legacycode.eureka.hierarchy
+package com.legacycode.eureka.web.hierarchy
 
 import com.google.common.truth.Truth.assertThat
-import com.legacycode.eureka.web.hierarchy.Title
 import org.junit.jupiter.api.Test
 
 class TitleTest {

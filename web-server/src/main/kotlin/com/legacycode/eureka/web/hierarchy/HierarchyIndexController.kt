@@ -1,7 +1,7 @@
 package com.legacycode.eureka.web.hierarchy
 
-import com.legacycode.eureka.dex.Ancestor
 import com.legacycode.eureka.dex.AdjacencyList
+import com.legacycode.eureka.dex.Ancestor
 import com.legacycode.eureka.dex.inheritance.TreeClusterJsonTreeBuilder
 
 class HierarchyIndexController(

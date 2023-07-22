@@ -1,13 +1,13 @@
 package com.legacycode.eureka.cli.watch
 
-import com.legacycode.eureka.Experiment
-import com.legacycode.eureka.Experiment.android
+import com.legacycode.eureka.web.watch.Experiment
+import com.legacycode.eureka.web.watch.Experiment.android
 import com.legacycode.eureka.android.AndroidMemberClassifier
 import com.legacycode.eureka.cli.DEFAULT_PORT
 import com.legacycode.eureka.filesystem.CompiledClassFileFinder
 import com.legacycode.eureka.viz.edgebundling.BasicMemberClassifier
 import com.legacycode.eureka.viz.edgebundling.CompiledClassFile
-import com.legacycode.eureka.web.WatchServer
+import com.legacycode.eureka.web.watch.WatchServer
 import java.io.File
 import picocli.CommandLine.Command
 import picocli.CommandLine.Option

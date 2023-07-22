@@ -1,6 +1,5 @@
-package com.legacycode.eureka.web
+package com.legacycode.eureka.web.watch
 
-import com.legacycode.eureka.Experiment
 import io.ktor.http.ContentType
 
 class IndexPage private constructor(

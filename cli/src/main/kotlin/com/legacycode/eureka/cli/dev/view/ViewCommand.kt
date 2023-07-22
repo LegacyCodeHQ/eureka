@@ -3,7 +3,7 @@ package com.legacycode.eureka.cli.dev.view
 import com.legacycode.eureka.cli.DEFAULT_PORT
 import com.legacycode.eureka.viz.edgebundling.EdgeBundlingGraph
 import com.legacycode.eureka.viz.edgebundling.JsonFile
-import com.legacycode.eureka.web.WatchServer
+import com.legacycode.eureka.web.watch.WatchServer
 import java.io.File
 import picocli.CommandLine.Command
 import picocli.CommandLine.Option

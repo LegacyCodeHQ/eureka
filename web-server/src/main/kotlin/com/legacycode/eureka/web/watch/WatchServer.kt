@@ -1,6 +1,5 @@
-package com.legacycode.eureka.web
+package com.legacycode.eureka.web.watch
 
-import com.legacycode.eureka.Experiment
 import com.legacycode.eureka.filesystem.FileWatcher
 import com.legacycode.eureka.version.EurekaProperties
 import com.legacycode.eureka.viz.edgebundling.GraphDataSource

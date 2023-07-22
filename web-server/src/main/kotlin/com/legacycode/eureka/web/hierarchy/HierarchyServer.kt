@@ -1,4 +1,4 @@
-package com.legacycode.eureka.hierarchy
+package com.legacycode.eureka.web.hierarchy
 
 import com.legacycode.eureka.dex.AdjacencyList
 import com.legacycode.eureka.dex.Ancestor

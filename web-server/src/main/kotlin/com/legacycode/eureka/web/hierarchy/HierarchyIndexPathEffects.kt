@@ -1,4 +1,4 @@
-package com.legacycode.eureka.hierarchy
+package com.legacycode.eureka.web.hierarchy
 
 import io.ktor.http.ContentType
 import io.ktor.server.application.ApplicationCall

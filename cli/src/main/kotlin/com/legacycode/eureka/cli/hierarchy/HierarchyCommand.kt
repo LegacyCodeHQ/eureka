@@ -2,7 +2,7 @@ package com.legacycode.eureka.cli.hierarchy
 
 import com.legacycode.eureka.dex.Ancestor
 import com.legacycode.eureka.dex.inheritance.InheritanceArtifactParser
-import com.legacycode.eureka.hierarchy.HierarchyServer
+import com.legacycode.eureka.web.hierarchy.HierarchyServer
 import java.io.File
 import picocli.CommandLine.Command
 import picocli.CommandLine.Option

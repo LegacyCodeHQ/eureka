@@ -1,4 +1,4 @@
-package com.legacycode.eureka.hierarchy
+package com.legacycode.eureka.web.hierarchy
 
 class Heading(
   private val filename: String,

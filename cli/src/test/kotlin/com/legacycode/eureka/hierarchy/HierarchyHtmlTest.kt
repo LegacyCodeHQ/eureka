@@ -1,5 +1,8 @@
 package com.legacycode.eureka.hierarchy
 
+import com.legacycode.eureka.web.hierarchy.Heading
+import com.legacycode.eureka.web.hierarchy.HierarchyHtml
+import com.legacycode.eureka.web.hierarchy.Title
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test
 

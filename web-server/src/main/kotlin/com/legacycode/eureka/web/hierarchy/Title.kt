@@ -1,4 +1,4 @@
-package com.legacycode.eureka.hierarchy
+package com.legacycode.eureka.web.hierarchy
 
 class Title(private val filename: String, private val className: String) {
   val displayText: String

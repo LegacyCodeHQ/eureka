@@ -5,7 +5,6 @@ import com.legacycode.eureka.dex.Ancestor
 import com.legacycode.eureka.dex.Child
 import com.legacycode.eureka.dex.test.TestApk
 import com.legacycode.eureka.dex.test.TestTreeBuilder
-import kotlin.math.sign
 import org.approvaltests.Approvals
 import org.approvaltests.JsonApprovals
 import org.junit.jupiter.api.BeforeEach

@@ -11,6 +11,7 @@ import io.ktor.server.application.Application
 import io.ktor.server.application.call
 import io.ktor.server.engine.ApplicationEngine
 import io.ktor.server.engine.embeddedServer
+import io.ktor.server.http.content.staticResources
 import io.ktor.server.netty.Netty
 import io.ktor.server.response.respondText
 import io.ktor.server.routing.get
@@ -39,6 +40,7 @@ class OwnershipServer {
 
 fun Application.setupRoutes(repo: Repo, port: Int) {
   routing {
+    staticResources("", null)
     get("/") {
       val filePath = call.parameters[PARAM_FILE]
 

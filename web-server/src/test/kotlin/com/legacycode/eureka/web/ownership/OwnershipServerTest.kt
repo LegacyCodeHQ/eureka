@@ -8,7 +8,7 @@ class OwnershipServerTest {
   fun `it uses the bundled d3 library`() {
     // given
     val ownershipHtml = OwnershipServerTest::class.java.classLoader
-      .getResource("treemap.html")!!.readText()
+      .getResource("ownership.html")!!.readText()
 
     // when & then
     assertThat(ownershipHtml)

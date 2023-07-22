@@ -112,7 +112,7 @@ private fun ownershipTreemapJson(
 }
 
 private fun getTreemapHtml(json: String): String {
-  return OwnershipServer::class.java.getResourceAsStream("/treemap.html")!!
+  return OwnershipServer::class.java.getResourceAsStream("/ownership.html")!!
     .bufferedReader()
     .use { it.readText() }
     .replace("{{treemap-data}}", json)

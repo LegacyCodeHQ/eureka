@@ -1,7 +1,5 @@
-java {
-  toolchain {
-    languageVersion.set(JavaLanguageVersion.of("16"))
-  }
+kotlin {
+  jvmToolchain(16)
 }
 
 dependencies {

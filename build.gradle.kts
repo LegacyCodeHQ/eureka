@@ -30,8 +30,7 @@ subprojects {
   apply(plugin = "org.jetbrains.kotlin.jvm")
   apply(plugin = "org.jetbrains.kotlinx.kover")
 
-  val sampleProject = this.name.startsWith("bytecode-samples-", true)
-  if (!sampleProject) {
+  if (!isBytecodeSample()) {
     apply(plugin = "io.gitlab.arturbosch.detekt")
   }
 
@@ -82,4 +81,8 @@ fun isNonStable(version: String): Boolean {
 
 tasks.withType<DependencyUpdatesTask> {
   rejectVersionIf { isNonStable(candidate.version) }
+}
+
+fun Project.isBytecodeSample(): Boolean {
+  return this.name.startsWith("bytecode-samples-", true)
 }

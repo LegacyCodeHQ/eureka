@@ -1,9 +1,11 @@
 package com.legacycode.eureka.cli.ownership
 
 import com.legacycode.eureka.web.ownership.OwnershipServer
-import java.io.File
-import picocli.CommandLine
+import java.nio.file.Path
+import kotlin.io.path.Path
+import kotlin.io.path.pathString
 import picocli.CommandLine.Command
+import picocli.CommandLine.Option
 
 @Command(
   name = "ownership",
@@ -14,14 +16,14 @@ class OwnershipCommand : Runnable {
     private const val DEFAULT_PORT = 7080
   }
 
-  @CommandLine.Option(
+  @Option(
     names = ["-r", "--repo"],
     description = ["path to the git repo"],
-    required = true,
+    required = false,
   )
-  lateinit var repoDir: File
+  var repoDir: Path = Path("")
 
   override fun run() {
-    OwnershipServer().start(repoDir.path, DEFAULT_PORT)
+    OwnershipServer().start(repoDir.pathString, DEFAULT_PORT)
   }
 }

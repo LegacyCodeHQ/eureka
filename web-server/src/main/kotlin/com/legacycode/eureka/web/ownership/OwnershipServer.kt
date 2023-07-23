@@ -17,6 +17,7 @@ import io.ktor.server.response.respondText
 import io.ktor.server.routing.get
 import io.ktor.server.routing.routing
 import java.io.File
+import java.nio.file.Files
 import org.slf4j.LoggerFactory
 
 class OwnershipServer {
@@ -58,9 +59,10 @@ fun Application.setupRoutes(repo: Repo, port: Int) {
 
 private fun showFilesHtml(repo: Repo, port: Int): String {
   val repoDirectory = File(repo.path)
-  val filePaths = ListFilesGitCommand(repoDirectory).execute()
 
-  val filePathLinks = filePaths
+  val textFilePaths = repoDirectory.textFilePaths()
+
+  val filePathLinks = textFilePaths
     .joinToString("\n") { path ->
       """  <div><a href="${ownershipFilePathUrl(path, port)}" target="_blank">$path</a></div>"""
     }
@@ -79,7 +81,7 @@ private fun showFilesHtml(repo: Repo, port: Int): String {
       </style>
     </head>
     <body>
-      <h1>$repoDirectoryName (${filePaths.size})</h1>
+      <h1>$repoDirectoryName (${textFilePaths.size})</h1>
     $filePathLinks
     </body>
     </html>
@@ -117,3 +119,24 @@ private fun getTreemapHtml(json: String): String {
     .use { it.readText() }
     .replace("{{treemap-data}}", json)
 }
+
+private fun File.textFilePaths(): List<String> {
+  return ListFilesGitCommand(this)
+    .execute()
+    .map(this::resolve)
+    .filterNot(File::isBinary)
+    .map(File::toString)
+}
+
+val File.isBinary: Boolean
+  get() {
+    val textMimeTypes = arrayOf("xml", "x-sh", "x-httpd-php", "json", "ld+json", "x-yaml", "x-shar")
+      .map { "application/$it" }
+    val contentType = Files.probeContentType(this.toPath())
+
+    val isTextContent = (contentType == null
+      || contentType.startsWith("text/", true)
+      || contentType.equals("image/svg+xml", true)
+      || textMimeTypes.any { it.equals(contentType, true) })
+    return !isTextContent
+  }

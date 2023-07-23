@@ -30,7 +30,8 @@ subprojects {
   apply(plugin = "org.jetbrains.kotlin.jvm")
   apply(plugin = "org.jetbrains.kotlinx.kover")
 
-  if (this.name != "bytecode-samples") {
+  val sampleProject = this.name.startsWith("bytecode-samples-", true)
+  if (!sampleProject) {
     apply(plugin = "io.gitlab.arturbosch.detekt")
   }
 

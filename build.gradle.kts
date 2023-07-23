@@ -54,8 +54,11 @@ subprojects {
     testImplementation(rootProject.testLibs.gson) /* Used by Approvals for pretty-printing JSON */
   }
 
-  tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "11"
+  val projectTargetsJava16 = this.name == "bytecode-scanner-tests"
+  if (!projectTargetsJava16) {
+    tasks.withType<KotlinCompile> {
+      kotlinOptions.jvmTarget = "11"
+    }
   }
 
   tasks.withType<Test> {

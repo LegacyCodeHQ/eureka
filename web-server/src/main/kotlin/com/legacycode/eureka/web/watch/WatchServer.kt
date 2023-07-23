@@ -12,6 +12,7 @@ import io.ktor.server.engine.embeddedServer
 import io.ktor.server.http.content.resources
 import io.ktor.server.http.content.static
 import io.ktor.server.http.content.staticBasePackage
+import io.ktor.server.http.content.staticResources
 import io.ktor.server.netty.Netty
 import io.ktor.server.plugins.cors.routing.CORS
 import io.ktor.server.response.respond
@@ -85,10 +86,7 @@ class WatchServer(private val activeExperiment: Experiment? = null) {
       webSocket("/structure-updates") {
         openWsConnectionForStructureUpdates(structureUpdatesQueue, source)
       }
-      static("/static") {
-        staticBasePackage = "static"
-        resources("")
-      }
+      staticResources("", null)
     }
   }
 

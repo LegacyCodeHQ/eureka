@@ -72,7 +72,7 @@ const ClusterDialogBox: React.FC<ClusterDialogBoxProps<Member>> = ({
   const dialogBoxRef = useRef<HTMLDivElement>(null);
 
   const handleKeyDown = (event: KeyboardEvent) => {
-    if (event.key === 'k' && event.metaKey) {
+    if (event.key === 'k' && (event.metaKey || event.ctrlKey)) {
       setIsClusterBoxVisible(!isClusterBoxVisible);
     }
     if (event.key === 'Escape') {

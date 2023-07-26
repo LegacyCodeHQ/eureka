@@ -130,7 +130,7 @@ eureka top 10 --ext cpp,swift
 #### Usage
 
 ```bash
-eureka ownership --repo <path-to-git-repo>
+eureka ownership
 ```
 
 The command will start a web server on port 7080. Visit the app on `localhost:7080`.

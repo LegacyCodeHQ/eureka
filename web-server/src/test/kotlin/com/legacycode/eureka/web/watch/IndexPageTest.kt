@@ -1,8 +1,6 @@
 package com.legacycode.eureka.web.watch
 
 import com.google.common.truth.Truth.assertThat
-import com.legacycode.eureka.web.watch.Experiment
-import com.legacycode.eureka.web.watch.IndexPage
 import kotlin.random.Random.Default.nextInt
 import org.junit.jupiter.api.Test
 

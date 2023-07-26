@@ -82,14 +82,15 @@ To use this feature, you simply adjust the URL of your tree visualization by pro
 
 ### 3. Navigation flows between screens
 
+![Navigation flows between screens](docs/images/flows.png)
+
 #### Usage
 
 ```bash
 eureka flows wikipedia.apk
 ```
 
-The command will print a Graphviz directed graph DSL, Copy the DSL and paste it into
-the [online Graphviz tool](https://dreampuf.github.io/GraphvizOnline).
+Visit `localhost:7090` in your browser to see the diagram.
 
 ### 4. List files with highest LOC
 

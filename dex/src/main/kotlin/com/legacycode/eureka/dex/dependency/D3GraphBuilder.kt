@@ -8,6 +8,10 @@ import com.legacycode.eureka.dex.Child
 import com.legacycode.eureka.dex.Node
 
 class D3GraphBuilder : AdjacencyList.GraphBuilder<String> {
+  companion object {
+    private const val DEFAULT_PACKAGE_NAME = ""
+  }
+
   private val objectMapper = ObjectMapper()
   private val rootNode = objectMapper.createObjectNode()
   private val linksArray = objectMapper.createArrayNode()
@@ -37,15 +41,25 @@ class D3GraphBuilder : AdjacencyList.GraphBuilder<String> {
 
   override fun afterTraversal() {
     val nodesArray = objectMapper.createArrayNode()
-    allNodes.onEach {
-      val node = objectMapper.createObjectNode().apply {
-        put("id", it)
-        put("group", it.substring(0, it.lastIndexOf('.')))
+    allNodes.onEach { fqn ->
+      val objectNode = objectMapper.createObjectNode().apply {
+        put("id", fqn)
+        put("group", getPackageName(fqn))
       }
-      nodesArray.add(node)
+      nodesArray.add(objectNode)
     }
 
     rootNode.set<ArrayNode>("nodes", nodesArray)
     rootNode.set<ArrayNode>("links", linksArray)
+  }
+
+  private fun getPackageName(fqn: String): String {
+    val isInDefaultPackage = !fqn.contains(".")
+    val packageName = if (isInDefaultPackage) {
+      DEFAULT_PACKAGE_NAME
+    } else {
+      fqn.substring(0, fqn.lastIndexOf('.'))
+    }
+    return packageName
   }
 }

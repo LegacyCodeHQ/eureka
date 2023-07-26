@@ -28,6 +28,7 @@ class DependencyApkParser(private val file: File) {
     private const val FRAGMENT = "Landroidx/fragment/app/Fragment;"
     private const val LEGACY_FRAGMENT = "Landroid/app/Fragment;"
     private const val ACTIVITY = "Landroid/app/Activity;"
+    private const val LEGACY_DIALOG_FRAGMENT = "Landroid/app/DialogFragment;"
   }
 
   fun buildDependencyGraph(): AdjacencyList {
@@ -38,7 +39,7 @@ class DependencyApkParser(private val file: File) {
   }
 
   private fun inheritanceTrees(inheritanceTree: AdjacencyList): List<AdjacencyList> {
-    return listOf(FRAGMENT, LEGACY_FRAGMENT, ACTIVITY)
+    return listOf(FRAGMENT, LEGACY_FRAGMENT, ACTIVITY, LEGACY_DIALOG_FRAGMENT)
       .map(::Ancestor)
       .map(inheritanceTree::prune)
   }

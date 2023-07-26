@@ -19,4 +19,18 @@ class DependencyApkParserTest {
     val dependencyGraph = adjacencyList.graph(TestGraphBuilder())
     Approvals.verify(dependencyGraph)
   }
+
+  @Test
+  fun `it can build a dependency graph with subclasses of DialogFragment`() {
+    // given
+    val testApk = TestApk("mastodon.apk")
+    val parser = DependencyApkParser(testApk.file)
+
+    // when
+    val adjacencyList = parser.buildDependencyGraph()
+
+    // then
+    val dependencyGraph = adjacencyList.graph(TestGraphBuilder())
+    Approvals.verify(dependencyGraph)
+  }
 }

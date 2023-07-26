@@ -1,0 +1,147 @@
+<html>
+<head>
+  <title>{{title}}</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+  </style>
+  <script src="/static/js/d3.v7.min.js"></script>
+</head>
+<body>
+<h1>{{heading}}</h1>
+<hr/>
+</body>
+<script>
+  const data = JSON.parse(`{{data}}`);
+
+  const chart = function () {
+    const nodeRadius = 10;
+    const width = window.innerWidth;
+    const height = 1200;
+
+    const svg = d3.create("svg")
+      .attr("width", width)
+      .attr("height", height)
+      .attr("viewBox", [0, 0, width, height])
+      .style("overflow", "hidden");
+
+    const colorScale = function (currentValue, minValue, maxValue) {
+      const scale = d3.scaleLinear()
+        .domain([minValue, maxValue])
+        .range(["#FFB6C1", "#DC143C"]);
+
+      return scale(currentValue);
+    }
+
+    function countDegrees(links) {
+      let countMap = new Map();
+
+      links.forEach(link => {
+        if (countMap.has(link.source.id)) {
+          countMap.set(link.source.id, countMap.get(link.source.id) + 1);
+        } else {
+          countMap.set(link.source.id, 1);
+        }
+
+        if (countMap.has(link.target.id)) {
+          countMap.set(link.target.id, countMap.get(link.target.id) + 1);
+        } else {
+          countMap.set(link.target.id, 1);
+        }
+      });
+
+      return countMap;
+    }
+
+    const g = svg.append("g").attr("class", "chart");
+
+    // Define the arrowhead marker
+    svg.append("defs")
+      .selectAll("marker")
+      .data(["end"])
+      .join("marker")
+      .attr("id", String)
+      .attr("viewBox", "0 -5 10 10")
+      .attr("refX", 26.5)
+      .attr("refY", 0)
+      .attr("markerWidth", 6)
+      .attr("markerHeight", 6)
+      .attr("orient", "auto")
+      .append("path")
+      .attr("d", "M0,-5L10,0L0,5");
+
+    const nodeData = data.nodes;
+
+    const linkForce = d3.forceLink(data.links)
+      .id(d => d.id)
+      .distance(10);
+
+    const simulation = d3.forceSimulation(nodeData)
+      .force('link', linkForce)
+      .force('charge', d3.forceManyBody().strength(-1500))
+      .force('center', d3.forceCenter(width / 2, height / 2));
+
+    // draw the edges
+    const link = g.selectAll("line")
+      .data(data.links)
+      .join("line")
+      .attr("stroke", "gray")
+      .attr("marker-end", "url(#end)");
+
+    const inOutDegreesMap = countDegrees(data.links);
+    const allValues = [...inOutDegreesMap.values()];
+    const minDegree = Math.min(...allValues);
+    const maxDegree = Math.max(...allValues);
+
+    const node = g.selectAll("circle")
+      .data(nodeData)
+      .join("circle")
+      .attr("r", nodeRadius)
+      .style("fill", d => {
+        return colorScale(inOutDegreesMap.get(d.id), minDegree, maxDegree);
+      });
+
+    node.append("title")
+      .text(d => d.id);
+
+    g.selectAll("text")
+      .data(nodeData)
+      .join("text")
+      .attr("text-anchor", "middle")
+      .attr("dominant-baseline", "central")
+      .text(d => d.id.split(".").pop())
+      .attr("font-size", 10)
+      .attr("font-family", "sans-serif")
+      .style("user-select", "none");
+
+    simulation.on("tick", () => {
+      link
+        .attr("x1", d => d.source.x)
+        .attr("y1", d => d.source.y)
+        .attr("x2", d => d.target.x)
+        .attr("y2", d => d.target.y);
+
+      node
+        .attr("cx", d => d.x)
+        .attr("cy", d => d.y);
+
+      g.selectAll("text")
+        .attr("x", d => d.x)
+        .attr("y", d => d.y - nodeRadius * 2);
+    });
+
+    // Add zoom behavior to the svg
+    const zoomHandler = d3.zoom()
+      .on("zoom", (event) => {
+        g.attr("transform", event.transform);
+      });
+
+    zoomHandler(svg);
+
+    return svg.node();
+  };
+
+  document.body.appendChild(chart());
+</script>
+</html>

@@ -2,7 +2,7 @@ package com.legacycode.eureka.web
 
 import java.io.InputStream
 
-class HtmlTemplate(private val text: String) {
+class HtmlTemplate private constructor(private val text: String) {
   private val placeholderValueMap = mutableMapOf<Placeholder, String>()
 
   val content: String

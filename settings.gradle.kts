@@ -32,7 +32,7 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 dependencyResolutionManagement {
   versionCatalogs {
     create("libs") {
-      library("picocli", "info.picocli:picocli:4.7.3")
+      library("picocli", "info.picocli:picocli:4.7.4")
       library("logback", "ch.qos.logback:logback-classic:1.4.8")
       library("commonsCsv", "org.apache.commons:commons-csv:1.10.0")
       library("jproc", "org.buildobjects:jproc:2.8.2")

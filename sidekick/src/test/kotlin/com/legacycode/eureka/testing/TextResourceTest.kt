@@ -28,4 +28,14 @@ class TextResourceTest {
     assertThat(exception.message)
       .isEqualTo("Unable to find file: '404-file.txt'")
   }
+
+  @Test
+  fun `it can locate the file even if the path does not start with a slash`() {
+    // given
+    val resource = TextResource("hello-world.txt")
+
+    // when & then
+    assertThat(resource.content)
+      .isEqualTo("Hello, testing world!\n")
+  }
 }

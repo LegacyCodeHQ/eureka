@@ -43,8 +43,14 @@ eureka watch StoryViewerPageFragment
 eureka watch -x android StoryViewerPageFragment
 ```
 
-Read [this blog post](https://legacycode.com/android-support) to learn how to use this feature when examining Android
-classes.
+Read [this blog post](https://legacycode.com/android-support) to learn how to use the experimental feature when
+examining Android classes.
+
+#### Identifying Clusters
+
+Press `Cmd + K` on Mac or `Ctrl + K` on Linux and Windows to open the identify cluster dialog.
+This [blog article](https://legacycode.com/large-class-responsibilities/) has
+instructions on how to use cluster identification.
 
 For more options, run `eureka watch --help`.
 

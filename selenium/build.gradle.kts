@@ -1,3 +1,3 @@
 dependencies {
-  implementation("org.seleniumhq.selenium:selenium-java:4.9.1")
+  implementation("org.seleniumhq.selenium:selenium-java:4.10.0")
 }

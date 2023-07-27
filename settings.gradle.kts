@@ -12,7 +12,7 @@ include(
   ":viz",
   ":build-systems-gradle",
   ":selenium",
-  ":dex",
+  ":android-dex",
   ":bytecode-scanner-tests",
   ":bytecode-samples-kotlin",
   ":sidekick",
@@ -28,6 +28,7 @@ project(":bytecode-scanner-tests").projectDir = file("bytecode/scanner-tests")
 project(":bytecode-samples-kotlin").projectDir = file("bytecode/samples-kotlin")
 
 project(":android-classifier").projectDir = file("android/classifier")
+project(":android-dex").projectDir = file("android/dex")
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 

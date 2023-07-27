@@ -15,6 +15,7 @@ include(
   ":dex",
   ":bytecode-scanner-tests",
   ":bytecode-samples-kotlin",
+  ":sidekick",
 )
 
 project(":bytecode-scanner").projectDir = file("bytecode/scanner")

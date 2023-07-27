@@ -50,9 +50,10 @@ dependencyResolutionManagement {
 
     create("testLibs") {
       // JUnit
-      library("junit-api", "org.junit.jupiter:junit-jupiter-api:5.9.1")
-      library("junit-params", "org.junit.jupiter:junit-jupiter-params:5.9.1")
-      library("junit-engine", "org.junit.jupiter:junit-jupiter-engine:5.9.1")
+      val junitVersion = "5.10.0"
+      library("junit-api", "org.junit.jupiter:junit-jupiter-api:$junitVersion")
+      library("junit-params", "org.junit.jupiter:junit-jupiter-params:$junitVersion")
+      library("junit-engine", "org.junit.jupiter:junit-jupiter-engine:$junitVersion")
       bundle("junit", listOf("junit-api", "junit-params", "junit-engine"))
 
       // assertion libraries

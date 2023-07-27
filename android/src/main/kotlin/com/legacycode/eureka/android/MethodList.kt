@@ -1,14 +1,13 @@
 package com.legacycode.eureka.android
 
+import com.legacycode.eureka.testing.TextResource
+
 class MethodList(private val content: String) {
   companion object {
     fun fromResource(className: String): MethodList {
       val methodListResourceFilePath = "/method-lists/android-33/$className.methods"
-      val content = MethodList::class.java
-        .getResourceAsStream(methodListResourceFilePath)!!
-        .bufferedReader()
-        .readText()
-      return MethodList(content)
+      val methodListContent = TextResource(methodListResourceFilePath).content
+      return MethodList(methodListContent)
     }
   }
 

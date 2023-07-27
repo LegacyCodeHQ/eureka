@@ -5,6 +5,7 @@ dependencies {
   implementation(projects.android)
   implementation(projects.viz)
   implementation(projects.dex)
+  implementation(projects.sidekick)
 
   implementation(libs.ktor.server.netty)
   implementation(libs.ktor.server.websockets)

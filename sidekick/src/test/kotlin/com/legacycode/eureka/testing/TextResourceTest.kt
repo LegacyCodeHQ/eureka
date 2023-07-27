@@ -9,7 +9,7 @@ class TextResourceTest {
   @Test
   fun `it can read contents of a text resource file`() {
     // given
-    val resource = TextResource("hello-world.txt")
+    val resource = TextResource("/hello-world.txt")
 
     // when & then
     assertThat(resource.content)

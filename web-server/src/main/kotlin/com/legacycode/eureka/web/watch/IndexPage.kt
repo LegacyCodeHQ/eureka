@@ -1,5 +1,6 @@
 package com.legacycode.eureka.web.watch
 
+import com.legacycode.eureka.testing.TextResource
 import io.ktor.http.ContentType
 
 class IndexPage private constructor(
@@ -7,7 +8,7 @@ class IndexPage private constructor(
   private val activeExperiment: Experiment?,
 ) {
   companion object {
-    private const val INDEX_FILENAME = "index.html"
+    private const val INDEX_FILENAME = "/index.html"
     private const val MIME_TYPE_HTML = "text/html"
 
     private const val HOST = "localhost"
@@ -22,10 +23,7 @@ class IndexPage private constructor(
   }
 
   val content: String by lazy {
-    val indexPageContent = IndexPage::class.java.classLoader
-      .getResourceAsStream(INDEX_FILENAME)!!
-      .bufferedReader()
-      .readText()
+    val indexPageContent = TextResource(INDEX_FILENAME).content
 
     val modifiedContent = indexPageContent
       .replace(HOST_PORT_IN_HTML, "$HOST:$port")

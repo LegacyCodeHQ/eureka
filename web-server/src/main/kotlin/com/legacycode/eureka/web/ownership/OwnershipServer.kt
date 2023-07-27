@@ -1,5 +1,6 @@
 package com.legacycode.eureka.web.ownership
 
+import com.legacycode.eureka.testing.TextResource
 import com.legacycode.eureka.vcs.ListFilesGitCommand
 import com.legacycode.eureka.vcs.Repo
 import com.legacycode.eureka.vcs.RepoFile
@@ -114,9 +115,8 @@ private fun ownershipTreemapJson(
 }
 
 private fun getTreemapHtml(json: String): String {
-  return OwnershipServer::class.java.getResourceAsStream("/ownership.html")!!
-    .bufferedReader()
-    .use { it.readText() }
+  return TextResource("ownership.html")
+    .content
     .replace("{{treemap-data}}", json)
 }
 

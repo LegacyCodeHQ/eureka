@@ -1,6 +1,7 @@
 package com.legacycode.eureka.cli.dev.diff
 
 import com.legacycode.eureka.cli.dev.convert.from
+import com.legacycode.eureka.testing.TextResource
 import com.legacycode.eureka.viz.edgebundling.EdgeBundlingGraph
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.api.extension.ParameterContext
@@ -29,8 +30,7 @@ class EdgeBundlingGraphExtension : ParameterResolver {
       .let { it as Graph }.csvFilename
     val resourcePath = listOf("", "diff", filename)
       .joinToString(System.getProperty("file.separator"))
-    val csv = EdgeBundlingGraphExtension::class.java.getResource(resourcePath)!!
-      .readText()
+    val csv = TextResource(resourcePath).content
 
     return EdgeBundlingGraph.from(csv)
   }

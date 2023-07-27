@@ -1,6 +1,6 @@
 package com.legacycode.eureka.web
 
-import java.io.InputStream
+import com.legacycode.eureka.testing.TextResource
 
 class HtmlTemplate private constructor(private val text: String) {
   private val placeholderValueMap = mutableMapOf<Placeholder, String>()
@@ -16,15 +16,7 @@ class HtmlTemplate private constructor(private val text: String) {
 
   companion object {
     fun fromResource(path: String): HtmlTemplate {
-      return fromInputStream(HtmlTemplate::class.java.getResourceAsStream(path)!!)
-    }
-
-    private fun fromInputStream(inputStream: InputStream): HtmlTemplate {
-      val text = inputStream
-        .bufferedReader()
-        .use { it.readText() }
-
-      return HtmlTemplate(text)
+      return HtmlTemplate(TextResource(path).content)
     }
   }
 

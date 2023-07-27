@@ -1,5 +1,6 @@
 package com.legacycode.eureka.version
 
+import com.legacycode.eureka.testing.TextResource
 import java.util.Properties
 
 class EurekaProperties private constructor(private val properties: Properties) {
@@ -8,8 +9,10 @@ class EurekaProperties private constructor(private val properties: Properties) {
     private const val KEY_VERSION = "version"
 
     fun get(): EurekaProperties {
-      val properties = EurekaProperties::class.java.classLoader
-        .getResourceAsStream(PROPERTIES_FILENAME).use { Properties().apply { load(it) } }
+      val propertiesContent = TextResource(PROPERTIES_FILENAME).content
+      val properties = Properties().apply {
+        load(propertiesContent.reader())
+      }
       return EurekaProperties(properties)
     }
   }

@@ -1,6 +1,7 @@
 package com.legacycode.eureka.gradle.testing
 
 import com.legacycode.eureka.gradle.CommandOutput
+import com.legacycode.eureka.testing.TextResource
 
 class TaskOutputResource private constructor(
   private val taskName: String,
@@ -19,10 +20,7 @@ class TaskOutputResource private constructor(
   val output: CommandOutput
     get() {
       val resourcePath = "$taskName-outputs/$filename"
-      val content = TaskOutputResource::class.java
-        .classLoader
-        .getResource(resourcePath)
-        ?.readText()
-      return CommandOutput(content!!)
+      val content = TextResource(resourcePath).content
+      return CommandOutput(content)
     }
 }

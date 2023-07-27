@@ -62,6 +62,7 @@ dependencies {
   implementation(projects.buildSystemsGradle)
   implementation(projects.vcs)
   implementation(projects.dex)
+  implementation(projects.sidekick)
 
   implementation(libs.commonsCsv)
   implementation(libs.picocli)

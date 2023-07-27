@@ -88,7 +88,7 @@ To use this feature, you simply adjust the URL of your tree visualization by pro
 
 ### 3. Routes between screens in an Android app (experimental)
 
-![routes between Frament and Activity classes](docs/images/flows.png)
+![routes between Fragment and Activity classes](docs/images/flows.png)
 
 #### Usage
 
@@ -96,7 +96,7 @@ To use this feature, you simply adjust the URL of your tree visualization by pro
 eureka flows wikipedia.apk
 ```
 
-Visit `localhost:7090` in your browser to see the diagram.
+Visit `localhost:7060` in your browser to see the diagram.
 
 ### 4. List files with highest LOC
 

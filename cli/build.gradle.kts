@@ -61,7 +61,7 @@ dependencies {
   implementation(projects.androidClassifier)
   implementation(projects.buildSystemsGradle)
   implementation(projects.vcs)
-  implementation(projects.androidDex)
+  implementation(projects.androidArtifact)
   implementation(projects.sidekick)
 
   implementation(libs.commonsCsv)

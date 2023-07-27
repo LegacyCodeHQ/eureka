@@ -57,7 +57,7 @@ dependencyResolutionManagement {
       bundle("junit", listOf("junit-api", "junit-params", "junit-engine"))
 
       // assertion libraries
-      library("truth", "com.google.truth:truth:1.1.4")
+      library("truth", "com.google.truth:truth:1.1.5")
 
       library("approvalTests", "com.approvaltests:approvaltests:18.7.1")
       library("gson", "com.google.code.gson:gson:2.10.1")

@@ -58,7 +58,7 @@ dependencies {
   implementation(projects.filesystem)
   implementation(projects.bytecodeScanner) /* only for the `json` debug command */
   implementation(projects.viz)
-  implementation(projects.android)
+  implementation(projects.androidClassifier)
   implementation(projects.buildSystemsGradle)
   implementation(projects.vcs)
   implementation(projects.dex)

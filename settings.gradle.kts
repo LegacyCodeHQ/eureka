@@ -8,7 +8,7 @@ include(
   ":vcs",
   ":bytecode-testing",
   ":web-client-react",
-  ":android",
+  ":android-classifier",
   ":viz",
   ":build-systems-gradle",
   ":selenium",
@@ -26,6 +26,8 @@ project(":build-systems-gradle").projectDir = file("build-systems/gradle")
 
 project(":bytecode-scanner-tests").projectDir = file("bytecode/scanner-tests")
 project(":bytecode-samples-kotlin").projectDir = file("bytecode/samples-kotlin")
+
+project(":android-classifier").projectDir = file("android/classifier")
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 

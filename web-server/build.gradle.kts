@@ -2,7 +2,7 @@ dependencies {
   implementation(projects.bytecodeScanner)
   implementation(projects.filesystem)
   implementation(projects.vcs)
-  implementation(projects.android)
+  implementation(projects.androidClassifier)
   implementation(projects.viz)
   implementation(projects.dex)
   implementation(projects.sidekick)

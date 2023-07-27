@@ -80,9 +80,9 @@ To use this feature, you simply adjust the URL of your tree visualization by pro
 
 `http://localhost:7090/?class=androidx.fragment.app.Fragment&prune=Payment`
 
-### 3. Navigation flows between screens
+### 3. Routes between screens in an Android app (experimental)
 
-![Navigation flows between screens](docs/images/flows.png)
+![routes between Frament and Activity classes](docs/images/flows.png)
 
 #### Usage
 

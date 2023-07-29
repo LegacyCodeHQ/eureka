@@ -4,6 +4,23 @@
   <style>
     body {
       font-family: Arial, sans-serif;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    h1 {
+      margin: 0;
+      padding: 1rem;
+    }
+
+    hr {
+      margin: 0;
+    }
+
+    #graph-container {
+      width: 100%;
+      height: 100%;
     }
   </style>
   <script src="/static/js/d3.v7.min.js"></script>
@@ -11,14 +28,17 @@
 <body>
 <h1>{{heading}}</h1>
 <hr/>
+<div id="graph-container"></div>
 </body>
 <script>
+  const graphContainerDiv = document.getElementById("graph-container");
+
   const data = JSON.parse(`{{data}}`);
 
   const chart = function () {
     const nodeRadius = 10;
-    const width = window.innerWidth;
-    const height = 1200;
+    const width = graphContainerDiv.offsetWidth;
+    const height = graphContainerDiv.clientHeight;
 
     const svg = d3.create("svg")
       .attr("width", width)
@@ -142,6 +162,6 @@
     return svg.node();
   };
 
-  document.body.appendChild(chart());
+  graphContainerDiv.appendChild(chart());
 </script>
 </html>

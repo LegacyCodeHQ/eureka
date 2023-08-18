@@ -43,19 +43,19 @@ class FileWatcherTest {
   }
 
   @Test
-  fun `it should only send notifications for the file that is being watched`(@TempDir tempDirectory: Path) {
+  fun `it should send notifications for any changes within the directory`(@TempDir tempDirectory: Path) {
     // given
     val fileToWatch = tempDirectory.createFile("file-a.txt", "Hello, A!")
-    val fileNotToWatch = tempDirectory.createFile("file-b.txt", "Hello, B!")
+    val fileInsideTheSameDirectory = tempDirectory.createFile("file-b.txt", "Hello, B!")
 
     fileWatcher.startWatching(fileToWatch, fileModifiedCallback)
 
     // when
-    fileNotToWatch.writeText("Sssshhh…")
+    fileInsideTheSameDirectory.writeText("Sssshhh…")
 
     // then
     assertThat(fileModifiedEventQueue.poll(3, TimeUnit.SECONDS))
-      .isNull()
+      .isTrue()
   }
 
   private fun Path.createFile(

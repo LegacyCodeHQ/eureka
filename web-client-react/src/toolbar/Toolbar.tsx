@@ -18,10 +18,10 @@ const Toolbar: React.FC<ToolbarProps> = ({ classInfo, classStats, connectionStat
   function summary(classStats: ClassStats): string {
     return (
       '\u00A0• ' +
-      classStats.fieldCount +
-      ' fields, ' +
       classStats.methodCount +
       ' methods, and ' +
+      classStats.fieldCount +
+      ' fields, ' +
       classStats.relationshipsCount +
       ' relationships'
     );

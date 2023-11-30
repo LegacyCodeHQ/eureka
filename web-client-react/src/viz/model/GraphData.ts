@@ -12,7 +12,7 @@ export class GraphData {
   }
 
   classStats(): ClassStats {
-    return new ClassStats(this.methods().length, this.fields().length, this.links.length);
+    return new ClassStats(this.fields().length, this.methods().length, this.links.length);
   }
 
   private methods(): Node[] {

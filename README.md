@@ -160,6 +160,32 @@ The command will print a Graphviz directed graph DSL.
 1. Copy the DSL and paste it into the [online Graphviz tool](https://dreampuf.github.io/GraphvizOnline).
 2. The tool selects the **dot** engine by default, for best results use the **circo** engine from the engine dropdown.
 
+## Release a new build
+
+### Credentials (initial setup)
+
+1. Create a `~/.jreleaser/config.properties` file.
+2. Add the following properties to the file.
+
+```text
+JRELEASER_GITHUB_TOKEN=<token>
+JRELEASER_HOMEBREW_GITLAB_TOKEN=<token>
+```
+
+Where `token` is a GitHub personal access token with `delete:packages`, `repo`, and `write:packages` scopes.
+
+### Releasing
+
+1. If you have multiple JDKs installed, switch to JDK 11.
+
+2. Release,
+    - For minor releases, run `./release.sh`
+    - For bug fix releases, run `./bug_fix_release.sh`
+
+3. Update changelog
+    - Go to the GitHub [releases](https://github.com/LegacyCodeHQ/eureka/releases) page and edit the release notes for
+      the latest release.
+
 ## Licenses
 
 ```

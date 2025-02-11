@@ -6,7 +6,7 @@ import java.io.FileReader
 import java.io.IOException
 import org.slf4j.LoggerFactory
 
-data class LineCount private constructor(val file: File, val lines: Int) {
+data class LineCount(val file: File, val lines: Int) {
   companion object {
     private val logger = LoggerFactory.getLogger(LineCount::class.java)
 

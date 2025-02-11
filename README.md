@@ -176,7 +176,7 @@ Where `token` is a GitHub personal access token with `delete:packages`, `repo`, 
 
 ### Releasing
 
-1. If you have multiple JDKs installed, switch to JDK 11.
+1. If you have multiple JDKs installed, switch to JDK 17.
 
 2. Release,
     - For minor releases, run `./release_minor.sh`

@@ -174,6 +174,9 @@ JRELEASER_HOMEBREW_GITLAB_TOKEN=<token>
 
 Where `token` is a GitHub personal access token with `delete:packages`, `repo`, and `write:packages` scopes.
 
+**Note:** The token should have access to both [eureka](https://github.com/LegacyCodeHQ/eureka)
+and [homebrew-tap](https://github.com/LegacyCodeHQ/homebrew-tap) repositories.
+
 ### Releasing
 
 1. If you have multiple JDKs installed, switch to JDK 17.

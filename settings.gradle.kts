@@ -37,7 +37,7 @@ dependencyResolutionManagement {
     create("libs") {
       library("picocli", "info.picocli:picocli:4.7.6")
       library("logback", "ch.qos.logback:logback-classic:1.5.16")
-      library("commonsCsv", "org.apache.commons:commons-csv:1.10.0")
+      library("commonsCsv", "org.apache.commons:commons-csv:1.13.0")
       library("jproc", "org.buildobjects:jproc:2.8.2")
       library("jackson-kotlin", "com.fasterxml.jackson.module:jackson-module-kotlin:2.18.2")
       library("arrow-core", "io.arrow-kt:arrow-core:1.2.0")

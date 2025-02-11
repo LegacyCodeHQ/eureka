@@ -49,7 +49,7 @@ dependencyResolutionManagement {
 
       library("picnic", "com.jakewharton.picnic:picnic:0.7.0")
       library("dexlib2", "org.smali:dexlib2:2.5.2")
-      library("selenium", "org.seleniumhq.selenium:selenium-java:4.10.0")
+      library("selenium", "org.seleniumhq.selenium:selenium-java:4.28.1")
     }
 
     create("testLibs") {

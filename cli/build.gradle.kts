@@ -14,7 +14,7 @@ plugins {
 
 application {
   applicationName = "eureka"
-  mainClassName = "com.legacycode.eureka.cli.MainKt"
+  mainClass.set("com.legacycode.eureka.cli.MainKt")
 }
 
 tasks.withType<Jar> {

@@ -165,6 +165,10 @@ tasks.register<DefaultTask>("prepareRelease") {
 
   dependsOn(":web-client-react:copyWebClientToServer", "promoteSnapshotVersion")
 
+  doFirst {
+    mkdir("${project.buildDir}/jreleaser")
+  }
+
   doLast {
     exec {
       commandLine("git", "add", "-A")
@@ -181,6 +185,10 @@ tasks.register<DefaultTask>("prepareBugFixRelease") {
   description = "Updates patch number of the latest release and prepares tool for bug fix release."
 
   dependsOn("setBugFixVersion")
+
+  doFirst {
+    mkdir("${project.buildDir}/jreleaser")
+  }
 
   doLast {
     exec {

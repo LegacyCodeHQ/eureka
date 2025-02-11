@@ -95,8 +95,6 @@ jreleaser {
       tagName.set("eureka-$CLI_VERSION")
       releaseName.set("Eureka $CLI_VERSION")
       overwrite.set(true)
-
-      token.set(System.getenv("GITHUB_TOKEN"))
     }
   }
 

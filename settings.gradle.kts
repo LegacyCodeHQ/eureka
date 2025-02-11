@@ -47,7 +47,7 @@ dependencyResolutionManagement {
       library("ktor-server-websockets", "io.ktor:ktor-server-websockets:2.3.2")
       library("ktor-server-cors", "io.ktor:ktor-server-cors:2.3.2")
 
-      library("picnic", "com.jakewharton.picnic:picnic:0.6.0")
+      library("picnic", "com.jakewharton.picnic:picnic:0.7.0")
       library("dexlib2", "org.smali:dexlib2:2.5.2")
       library("selenium", "org.seleniumhq.selenium:selenium-java:4.10.0")
     }

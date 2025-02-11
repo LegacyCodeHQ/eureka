@@ -179,8 +179,8 @@ Where `token` is a GitHub personal access token with `delete:packages`, `repo`, 
 1. If you have multiple JDKs installed, switch to JDK 11.
 
 2. Release,
-    - For minor releases, run `./release.sh`
-    - For bug fix releases, run `./bug_fix_release.sh`
+    - For minor releases, run `./release_minor.sh`
+    - For bug fix releases, run `./release_bug_fix.sh`
 
 3. Update changelog
     - Go to the GitHub [releases](https://github.com/LegacyCodeHQ/eureka/releases) page and edit the release notes for

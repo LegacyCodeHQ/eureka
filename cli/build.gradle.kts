@@ -79,6 +79,7 @@ jreleaser {
   project {
     name.set("Eureka")
     description.set("Understand and break down large classes without breaking a sweat.")
+    authors.set(listOf("Legacy Code HQ + Contributors"))
     website.set("https://github.com/LegacyCodeHQ/eureka")
     license.set("Apache-2.0")
     copyright.set("2022-Present Ragunath Jawahar")

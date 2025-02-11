@@ -54,9 +54,9 @@ subprojects {
     testImplementation(rootProject.testLibs.gson) /* Used by Approvals for pretty-printing JSON */
   }
 
-  val projectUsesJava16Toolchain = this.name == "bytecode-scanner-tests"
+  val projectUsesDifferentJavaToolchain = this.name == "bytecode-scanner-tests"
     || this.name == "bytecode-samples-java"
-  if (!projectUsesJava16Toolchain) {
+  if (!projectUsesDifferentJavaToolchain) {
     tasks.withType<KotlinCompile> {
       kotlinOptions.jvmTarget = "11"
     }

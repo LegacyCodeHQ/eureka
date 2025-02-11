@@ -64,7 +64,7 @@ dependencyResolutionManagement {
       library("truth", "com.google.truth:truth:1.1.5")
 
       library("approvalTests", "com.approvaltests:approvaltests:24.16.0")
-      library("gson", "com.google.code.gson:gson:2.10.1")
+      library("gson", "com.google.code.gson:gson:2.12.1")
     }
   }
 }

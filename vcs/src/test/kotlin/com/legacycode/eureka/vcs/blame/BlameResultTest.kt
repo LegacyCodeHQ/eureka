@@ -18,7 +18,7 @@ class BlameResultTest {
   @Test
   fun `group result by commits`() {
     // given
-    val blameResult = blameCommand.execute().orNull()!!
+    val blameResult = blameCommand.execute().getOrNull()!!
 
     // when
     val statsByCommitHash = blameResult.byCommitHash()
@@ -30,7 +30,7 @@ class BlameResultTest {
   @Test
   fun `group result by email`() {
     // given
-    val blameResult = blameCommand.execute().orNull()!!
+    val blameResult = blameCommand.execute().getOrNull()!!
 
     // when
     val statsByEmail = blameResult.byEmail()

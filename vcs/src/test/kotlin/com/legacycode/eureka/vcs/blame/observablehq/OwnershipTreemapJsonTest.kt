@@ -16,7 +16,7 @@ class OwnershipTreemapJsonTest {
       Repo(simpleAndroidRepo.path),
       RepoFile("app/src/main/java/org/simple/clinic/home/patients/PatientsEffectHandler.kt"),
     )
-    val blameResult = blameCommand.execute().orNull()!!
+    val blameResult = blameCommand.execute().getOrNull()!!
 
     // when
     val ownershipTreemap = OwnershipTreemapJson.from(blameResult)

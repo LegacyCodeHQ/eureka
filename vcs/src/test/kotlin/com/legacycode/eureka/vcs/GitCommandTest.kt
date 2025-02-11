@@ -21,7 +21,7 @@ class GitCommandTest {
     val result = command.execute()
 
     // then
-    assertThat(result.orNull())
+    assertThat(result.getOrNull())
       .isEqualTo(CommandResult(0, "5eb413173"))
   }
 
@@ -37,6 +37,6 @@ class GitCommandTest {
     val result = blameCommand.execute()
 
     // then
-    Approvals.verify(result.orNull()!!.printable)
+    Approvals.verify(result.getOrNull()!!.printable)
   }
 }

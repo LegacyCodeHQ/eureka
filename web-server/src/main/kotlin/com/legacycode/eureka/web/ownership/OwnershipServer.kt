@@ -110,7 +110,7 @@ private fun ownershipTreemapJson(
   filePath: String,
 ): OwnershipTreemapJson {
   val blameCommand = BlameCommand(repo, RepoFile(filePath))
-  val blameResult = blameCommand.execute().orNull()!!
+  val blameResult = blameCommand.execute().getOrNull()!!
   return OwnershipTreemapJson.from(blameResult)
 }
 

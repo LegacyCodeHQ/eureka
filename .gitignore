@@ -43,3 +43,4 @@ Thumbs.db
 
 ### Approval Tests ###
 *.received.*
+**/.approval_tests_temp

@@ -1,3 +1,3 @@
 kotlin {
-  jvmToolchain(16)
+  jvmToolchain(17)
 }

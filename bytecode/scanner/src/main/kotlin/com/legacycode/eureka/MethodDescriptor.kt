@@ -59,7 +59,7 @@ value class MethodDescriptor(private val descriptor: String) {
           isArray = true
           index++
         } else {
-          throw IllegalArgumentException("Unknown type: $tokenChar")
+          require(false) { "Unknown type: $tokenChar" }
         }
       }
 

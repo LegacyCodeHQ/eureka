@@ -2,7 +2,7 @@
 
 package com.legacycode.eureka.cli.dev.diff
 
-import com.legacycode.eureka.cli.dev.diff.EdgeBundlingGraphExtension.*
+import com.legacycode.eureka.cli.dev.diff.EdgeBundlingGraphExtension.Graph
 import com.legacycode.eureka.viz.edgebundling.EdgeBundlingGraph
 import org.approvaltests.Approvals
 import org.junit.jupiter.api.Test

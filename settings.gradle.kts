@@ -54,7 +54,7 @@ dependencyResolutionManagement {
 
     create("testLibs") {
       // JUnit
-      val junitVersion = "5.10.0"
+      val junitVersion = "5.11.4"
       library("junit-api", "org.junit.jupiter:junit-jupiter-api:$junitVersion")
       library("junit-params", "org.junit.jupiter:junit-jupiter-params:$junitVersion")
       library("junit-engine", "org.junit.jupiter:junit-jupiter-engine:$junitVersion")

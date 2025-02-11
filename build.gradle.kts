@@ -1,5 +1,4 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
   apply(from = ".buildscripts/git-hooks.gradle")
@@ -54,17 +53,9 @@ subprojects {
     testImplementation(rootProject.testLibs.gson) /* Used by Approvals for pretty-printing JSON */
   }
 
-  val projectUsesDifferentJavaToolchain = this.name == "bytecode-scanner-tests"
-    || this.name == "bytecode-samples-java"
-  if (!projectUsesDifferentJavaToolchain) {
-    tasks.withType<KotlinCompile> {
-      kotlinOptions.jvmTarget = "11"
-    }
-
-    tasks.withType<JavaCompile> {
-      sourceCompatibility = JavaVersion.VERSION_11.toString()
-      targetCompatibility = JavaVersion.VERSION_11.toString()
-    }
+  tasks.withType<JavaCompile> {
+    sourceCompatibility = JavaVersion.VERSION_17.toString()
+    targetCompatibility = JavaVersion.VERSION_17.toString()
   }
 
   tasks.withType<Test> {

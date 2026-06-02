@@ -5,44 +5,40 @@ dependencies {
   implementation(libs.jackson.kotlin)
 }
 
-task<Exec>("cloneTestRepo") {
-  fun cloneGitRepo(repoDestination: File, repoUrl: String) {
-    val process = Runtime.getRuntime().exec(
-      arrayOf(
-        "git",
-        "clone",
-        repoUrl,
-        repoDestination.canonicalPath,
-      )
-    )
-    process.waitFor()
-  }
+val cloneTestRepo by tasks.registering {
+  val testDataDirectory = File(System.getProperty("user.home")).resolve(".eureka-test-data")
+  val testRepoDirectory = testDataDirectory.resolve("simple-android")
+  val commitHash = "5eb413173505ceb287a7b0bfb27b698ed556c829"
 
-  fun checkoutCommit(repoDestination: File, commitHash: String) {
-    val process = Runtime.getRuntime().exec(
-      arrayOf(
+  outputs.dir(testRepoDirectory)
+
+  doLast {
+    testDataDirectory.mkdirs()
+
+    if (!testRepoDirectory.resolve(".git").exists()) {
+      delete(testRepoDirectory)
+      exec {
+        commandLine(
+          "git",
+          "clone",
+          "https://github.com/ragunathjawahar/simple-android.git",
+          testRepoDirectory.canonicalPath,
+        )
+      }
+    }
+
+    exec {
+      commandLine(
         "git",
         "-C",
-        repoDestination.canonicalPath,
+        testRepoDirectory.canonicalPath,
         "checkout",
         commitHash,
       )
-    )
-    process.waitFor()
+    }
   }
+}
 
-  val testDataDirectory = File(System.getProperty("user.home")).resolve(".eureka-test-data")
-  if (!testDataDirectory.exists()) {
-    println("Test data directory does not exist, creating...")
-    testDataDirectory.mkdir()
-  }
-
-  val testRepoDirectory = testDataDirectory.resolve("simple-android")
-  if (!testRepoDirectory.exists()) {
-    testRepoDirectory.mkdir()
-    println("Cloning test repository...")
-
-    cloneGitRepo(testRepoDirectory, "https://github.com/ragunathjawahar/simple-android.git")
-    checkoutCommit(testRepoDirectory, "5eb413173505ceb287a7b0bfb27b698ed556c829")
-  }
+tasks.named<Test>("test") {
+  dependsOn(cloneTestRepo)
 }

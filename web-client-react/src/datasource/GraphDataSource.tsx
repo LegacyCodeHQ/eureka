@@ -11,7 +11,7 @@ interface GraphDataSourceProps {
 }
 
 const GraphDataSource: React.FC<GraphDataSourceProps> = (props) => {
-  if (process.env.NODE_ENV === 'development') {
+  if (import.meta.env.DEV) {
     return <GraphDataSourceDev {...props} />;
   }
   return <GraphDataSourceProd {...props} />;

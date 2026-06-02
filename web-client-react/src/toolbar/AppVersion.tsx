@@ -3,7 +3,7 @@ import './AppVersion.css';
 import { useHost } from '../HostContext';
 
 const AppVersion: React.FC = () => {
-  if (process.env.NODE_ENV === 'development') {
+  if (import.meta.env.DEV) {
     return <AppVersionDev />;
   }
   return <AppVersionProd />;

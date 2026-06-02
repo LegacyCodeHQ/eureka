@@ -1,11 +1,11 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`A multiple selection model should retain search results when an item is selected 1`] = `
+exports[`A multiple selection model > should retain search results when an item is selected 1`] = `
 MultipleSelectionModel {
   "focused": Member {
     "nodeId": "void onCreate()",
   },
-  "searchResult": Array [
+  "searchResult": [
     Member {
       "nodeId": "void onCreate()",
     },
@@ -17,7 +17,7 @@ MultipleSelectionModel {
     },
   ],
   "searchTerm": "void",
-  "selected": Array [
+  "selected": [
     Member {
       "nodeId": "void onCreate()",
     },

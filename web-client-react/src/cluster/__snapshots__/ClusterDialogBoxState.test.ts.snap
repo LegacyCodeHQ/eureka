@@ -1,14 +1,14 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Cluster dialog box state focused member functionality should select the first matching member and mark it as focused from the search result 1`] = `
+exports[`Cluster dialog box state > focused member functionality > should select the first matching member and mark it as focused from the search result 1`] = `
 ClusterDialogBoxState {
   "hubNodesSelectionModel": MultipleSelectionModel {
     "focused": null,
-    "searchResult": Array [],
+    "searchResult": [],
     "searchTerm": "",
-    "selected": Array [],
+    "selected": [],
   },
-  "members": Array [
+  "members": [
     Member {
       "nodeId": "List chrome",
     },
@@ -26,7 +26,7 @@ ClusterDialogBoxState {
     "focused": Member {
       "nodeId": "void onCreate()",
     },
-    "searchResult": Array [
+    "searchResult": [
       Member {
         "nodeId": "void onCreate()",
       },
@@ -43,15 +43,15 @@ ClusterDialogBoxState {
 }
 `;
 
-exports[`Cluster dialog box state focused member functionality should select the first member from the search result when pressing down arrow on the last item 1`] = `
+exports[`Cluster dialog box state > focused member functionality > should select the first member from the search result when pressing down arrow on the last item 1`] = `
 ClusterDialogBoxState {
   "hubNodesSelectionModel": MultipleSelectionModel {
     "focused": null,
-    "searchResult": Array [],
+    "searchResult": [],
     "searchTerm": "",
-    "selected": Array [],
+    "selected": [],
   },
-  "members": Array [
+  "members": [
     Member {
       "nodeId": "List chrome",
     },
@@ -69,7 +69,7 @@ ClusterDialogBoxState {
     "focused": Member {
       "nodeId": "void onCreate()",
     },
-    "searchResult": Array [
+    "searchResult": [
       Member {
         "nodeId": "void onCreate()",
       },
@@ -86,15 +86,15 @@ ClusterDialogBoxState {
 }
 `;
 
-exports[`Cluster dialog box state focused member functionality should select the last member from the search result when pressing the up arrow on the first item 1`] = `
+exports[`Cluster dialog box state > focused member functionality > should select the last member from the search result when pressing the up arrow on the first item 1`] = `
 ClusterDialogBoxState {
   "hubNodesSelectionModel": MultipleSelectionModel {
     "focused": null,
-    "searchResult": Array [],
+    "searchResult": [],
     "searchTerm": "",
-    "selected": Array [],
+    "selected": [],
   },
-  "members": Array [
+  "members": [
     Member {
       "nodeId": "List chrome",
     },
@@ -112,7 +112,7 @@ ClusterDialogBoxState {
     "focused": Member {
       "nodeId": "void onResume()",
     },
-    "searchResult": Array [
+    "searchResult": [
       Member {
         "nodeId": "void onCreate()",
       },
@@ -129,15 +129,15 @@ ClusterDialogBoxState {
 }
 `;
 
-exports[`Cluster dialog box state focused member functionality should select the next member when pressing the down arrow 1`] = `
+exports[`Cluster dialog box state > focused member functionality > should select the next member when pressing the down arrow 1`] = `
 ClusterDialogBoxState {
   "hubNodesSelectionModel": MultipleSelectionModel {
     "focused": null,
-    "searchResult": Array [],
+    "searchResult": [],
     "searchTerm": "",
-    "selected": Array [],
+    "selected": [],
   },
-  "members": Array [
+  "members": [
     Member {
       "nodeId": "List chrome",
     },
@@ -155,7 +155,7 @@ ClusterDialogBoxState {
     "focused": Member {
       "nodeId": "void onPause()",
     },
-    "searchResult": Array [
+    "searchResult": [
       Member {
         "nodeId": "void onCreate()",
       },
@@ -172,15 +172,15 @@ ClusterDialogBoxState {
 }
 `;
 
-exports[`Cluster dialog box state focused member functionality should select the previous member when pressing the up arrow 1`] = `
+exports[`Cluster dialog box state > focused member functionality > should select the previous member when pressing the up arrow 1`] = `
 ClusterDialogBoxState {
   "hubNodesSelectionModel": MultipleSelectionModel {
     "focused": null,
-    "searchResult": Array [],
+    "searchResult": [],
     "searchTerm": "",
-    "selected": Array [],
+    "selected": [],
   },
-  "members": Array [
+  "members": [
     Member {
       "nodeId": "List chrome",
     },
@@ -198,7 +198,7 @@ ClusterDialogBoxState {
     "focused": Member {
       "nodeId": "void onCreate()",
     },
-    "searchResult": Array [
+    "searchResult": [
       Member {
         "nodeId": "void onCreate()",
       },
@@ -215,13 +215,13 @@ ClusterDialogBoxState {
 }
 `;
 
-exports[`Cluster dialog box state hub node focus should focus the next member on the search result after pressing down arrow 1`] = `
+exports[`Cluster dialog box state > hub node focus > should focus the next member on the search result after pressing down arrow 1`] = `
 ClusterDialogBoxState {
   "hubNodesSelectionModel": MultipleSelectionModel {
     "focused": Member {
       "nodeId": "void onResume()",
     },
-    "searchResult": Array [
+    "searchResult": [
       Member {
         "nodeId": "void onPause()",
       },
@@ -230,9 +230,9 @@ ClusterDialogBoxState {
       },
     ],
     "searchTerm": "void",
-    "selected": Array [],
+    "selected": [],
   },
-  "members": Array [
+  "members": [
     Member {
       "nodeId": "List chrome",
     },
@@ -250,7 +250,7 @@ ClusterDialogBoxState {
     "focused": Member {
       "nodeId": "void onCreate()",
     },
-    "searchResult": Array [
+    "searchResult": [
       Member {
         "nodeId": "void onCreate()",
       },
@@ -269,13 +269,13 @@ ClusterDialogBoxState {
 }
 `;
 
-exports[`Cluster dialog box state hub node focus should focus the previous member on the search result after pressing up arrow 1`] = `
+exports[`Cluster dialog box state > hub node focus > should focus the previous member on the search result after pressing up arrow 1`] = `
 ClusterDialogBoxState {
   "hubNodesSelectionModel": MultipleSelectionModel {
     "focused": Member {
       "nodeId": "void onResume()",
     },
-    "searchResult": Array [
+    "searchResult": [
       Member {
         "nodeId": "void onPause()",
       },
@@ -284,9 +284,9 @@ ClusterDialogBoxState {
       },
     ],
     "searchTerm": "void",
-    "selected": Array [],
+    "selected": [],
   },
-  "members": Array [
+  "members": [
     Member {
       "nodeId": "List chrome",
     },
@@ -304,7 +304,7 @@ ClusterDialogBoxState {
     "focused": Member {
       "nodeId": "void onCreate()",
     },
-    "searchResult": Array [
+    "searchResult": [
       Member {
         "nodeId": "void onCreate()",
       },
@@ -323,13 +323,13 @@ ClusterDialogBoxState {
 }
 `;
 
-exports[`Cluster dialog box state hub node search should list search results for hub node 1`] = `
+exports[`Cluster dialog box state > hub node search > should list search results for hub node 1`] = `
 ClusterDialogBoxState {
   "hubNodesSelectionModel": MultipleSelectionModel {
     "focused": Member {
       "nodeId": "void onPause()",
     },
-    "searchResult": Array [
+    "searchResult": [
       Member {
         "nodeId": "void onPause()",
       },
@@ -338,9 +338,9 @@ ClusterDialogBoxState {
       },
     ],
     "searchTerm": "void",
-    "selected": Array [],
+    "selected": [],
   },
-  "members": Array [
+  "members": [
     Member {
       "nodeId": "List chrome",
     },
@@ -358,7 +358,7 @@ ClusterDialogBoxState {
     "focused": Member {
       "nodeId": "void onCreate()",
     },
-    "searchResult": Array [
+    "searchResult": [
       Member {
         "nodeId": "void onCreate()",
       },
@@ -377,11 +377,11 @@ ClusterDialogBoxState {
 }
 `;
 
-exports[`Cluster dialog box state hub node selection should allow deselecting all nodes 1`] = `
+exports[`Cluster dialog box state > hub node selection > should allow deselecting all nodes 1`] = `
 ClusterDialogBoxState {
   "hubNodesSelectionModel": MultipleSelectionModel {
     "focused": null,
-    "searchResult": Array [
+    "searchResult": [
       Member {
         "nodeId": "void onPause()",
       },
@@ -390,9 +390,9 @@ ClusterDialogBoxState {
       },
     ],
     "searchTerm": "void",
-    "selected": Array [],
+    "selected": [],
   },
-  "members": Array [
+  "members": [
     Member {
       "nodeId": "List chrome",
     },
@@ -410,7 +410,7 @@ ClusterDialogBoxState {
     "focused": Member {
       "nodeId": "void onCreate()",
     },
-    "searchResult": Array [
+    "searchResult": [
       Member {
         "nodeId": "void onCreate()",
       },
@@ -429,11 +429,11 @@ ClusterDialogBoxState {
 }
 `;
 
-exports[`Cluster dialog box state hub node selection should allow selecting multiple nodes 1`] = `
+exports[`Cluster dialog box state > hub node selection > should allow selecting multiple nodes 1`] = `
 ClusterDialogBoxState {
   "hubNodesSelectionModel": MultipleSelectionModel {
     "focused": null,
-    "searchResult": Array [
+    "searchResult": [
       Member {
         "nodeId": "void onPause()",
       },
@@ -442,7 +442,7 @@ ClusterDialogBoxState {
       },
     ],
     "searchTerm": "void",
-    "selected": Array [
+    "selected": [
       Member {
         "nodeId": "void onPause()",
       },
@@ -451,7 +451,7 @@ ClusterDialogBoxState {
       },
     ],
   },
-  "members": Array [
+  "members": [
     Member {
       "nodeId": "List chrome",
     },
@@ -469,7 +469,7 @@ ClusterDialogBoxState {
     "focused": Member {
       "nodeId": "void onCreate()",
     },
-    "searchResult": Array [
+    "searchResult": [
       Member {
         "nodeId": "void onCreate()",
       },
@@ -488,13 +488,13 @@ ClusterDialogBoxState {
 }
 `;
 
-exports[`Cluster dialog box state hub node selection should allow to deselect the start node 1`] = `
+exports[`Cluster dialog box state > hub node selection > should allow to deselect the start node 1`] = `
 ClusterDialogBoxState {
   "hubNodesSelectionModel": MultipleSelectionModel {
     "focused": Member {
       "nodeId": "void onResume()",
     },
-    "searchResult": Array [
+    "searchResult": [
       Member {
         "nodeId": "void onPause()",
       },
@@ -503,13 +503,13 @@ ClusterDialogBoxState {
       },
     ],
     "searchTerm": "void",
-    "selected": Array [
+    "selected": [
       Member {
         "nodeId": "void onPause()",
       },
     ],
   },
-  "members": Array [
+  "members": [
     Member {
       "nodeId": "List chrome",
     },
@@ -527,7 +527,7 @@ ClusterDialogBoxState {
     "focused": Member {
       "nodeId": "void onCreate()",
     },
-    "searchResult": Array [
+    "searchResult": [
       Member {
         "nodeId": "void onCreate()",
       },
@@ -544,13 +544,13 @@ ClusterDialogBoxState {
 }
 `;
 
-exports[`Cluster dialog box state hub node selection should deselect the currently focused node on clicking the 'x' button 1`] = `
+exports[`Cluster dialog box state > hub node selection > should deselect the currently focused node on clicking the 'x' button 1`] = `
 ClusterDialogBoxState {
   "hubNodesSelectionModel": MultipleSelectionModel {
     "focused": Member {
       "nodeId": "void onResume()",
     },
-    "searchResult": Array [
+    "searchResult": [
       Member {
         "nodeId": "void onPause()",
       },
@@ -559,9 +559,9 @@ ClusterDialogBoxState {
       },
     ],
     "searchTerm": "void",
-    "selected": Array [],
+    "selected": [],
   },
-  "members": Array [
+  "members": [
     Member {
       "nodeId": "List chrome",
     },
@@ -579,7 +579,7 @@ ClusterDialogBoxState {
     "focused": Member {
       "nodeId": "void onCreate()",
     },
-    "searchResult": Array [
+    "searchResult": [
       Member {
         "nodeId": "void onCreate()",
       },
@@ -598,13 +598,13 @@ ClusterDialogBoxState {
 }
 `;
 
-exports[`Cluster dialog box state hub node selection should select the currently focused node on pressing enter 1`] = `
+exports[`Cluster dialog box state > hub node selection > should select the currently focused node on pressing enter 1`] = `
 ClusterDialogBoxState {
   "hubNodesSelectionModel": MultipleSelectionModel {
     "focused": Member {
       "nodeId": "void onResume()",
     },
-    "searchResult": Array [
+    "searchResult": [
       Member {
         "nodeId": "void onPause()",
       },
@@ -613,13 +613,13 @@ ClusterDialogBoxState {
       },
     ],
     "searchTerm": "void",
-    "selected": Array [
+    "selected": [
       Member {
         "nodeId": "void onPause()",
       },
     ],
   },
-  "members": Array [
+  "members": [
     Member {
       "nodeId": "List chrome",
     },
@@ -637,7 +637,7 @@ ClusterDialogBoxState {
     "focused": Member {
       "nodeId": "void onCreate()",
     },
-    "searchResult": Array [
+    "searchResult": [
       Member {
         "nodeId": "void onCreate()",
       },
@@ -656,15 +656,15 @@ ClusterDialogBoxState {
 }
 `;
 
-exports[`Cluster dialog box state search start node functionality should do a case insensitive search 1`] = `
+exports[`Cluster dialog box state > search start node functionality > should do a case insensitive search 1`] = `
 ClusterDialogBoxState {
   "hubNodesSelectionModel": MultipleSelectionModel {
     "focused": null,
-    "searchResult": Array [],
+    "searchResult": [],
     "searchTerm": "",
-    "selected": Array [],
+    "selected": [],
   },
-  "members": Array [
+  "members": [
     Member {
       "nodeId": "List chrome",
     },
@@ -682,7 +682,7 @@ ClusterDialogBoxState {
     "focused": Member {
       "nodeId": "void onResume()",
     },
-    "searchResult": Array [
+    "searchResult": [
       Member {
         "nodeId": "void onResume()",
       },
@@ -693,15 +693,15 @@ ClusterDialogBoxState {
 }
 `;
 
-exports[`Cluster dialog box state search start node functionality should filter members based on the search term 1`] = `
+exports[`Cluster dialog box state > search start node functionality > should filter members based on the search term 1`] = `
 ClusterDialogBoxState {
   "hubNodesSelectionModel": MultipleSelectionModel {
     "focused": null,
-    "searchResult": Array [],
+    "searchResult": [],
     "searchTerm": "",
-    "selected": Array [],
+    "selected": [],
   },
-  "members": Array [
+  "members": [
     Member {
       "nodeId": "List chrome",
     },
@@ -719,7 +719,7 @@ ClusterDialogBoxState {
     "focused": Member {
       "nodeId": "List chrome",
     },
-    "searchResult": Array [
+    "searchResult": [
       Member {
         "nodeId": "List chrome",
       },
@@ -730,15 +730,15 @@ ClusterDialogBoxState {
 }
 `;
 
-exports[`Cluster dialog box state search start node functionality should filter members based on the search term but ignore whitespaces 1`] = `
+exports[`Cluster dialog box state > search start node functionality > should filter members based on the search term but ignore whitespaces 1`] = `
 ClusterDialogBoxState {
   "hubNodesSelectionModel": MultipleSelectionModel {
     "focused": null,
-    "searchResult": Array [],
+    "searchResult": [],
     "searchTerm": "",
-    "selected": Array [],
+    "selected": [],
   },
-  "members": Array [
+  "members": [
     Member {
       "nodeId": "List chrome",
     },
@@ -756,7 +756,7 @@ ClusterDialogBoxState {
     "focused": Member {
       "nodeId": "List chrome",
     },
-    "searchResult": Array [
+    "searchResult": [
       Member {
         "nodeId": "List chrome",
       },
@@ -767,15 +767,15 @@ ClusterDialogBoxState {
 }
 `;
 
-exports[`Cluster dialog box state search start node functionality should not filter members when the search term has < 2 characters 1`] = `
+exports[`Cluster dialog box state > search start node functionality > should not filter members when the search term has < 2 characters 1`] = `
 ClusterDialogBoxState {
   "hubNodesSelectionModel": MultipleSelectionModel {
     "focused": null,
-    "searchResult": Array [],
+    "searchResult": [],
     "searchTerm": "",
-    "selected": Array [],
+    "selected": [],
   },
-  "members": Array [
+  "members": [
     Member {
       "nodeId": "List chrome",
     },
@@ -791,22 +791,22 @@ ClusterDialogBoxState {
   ],
   "startNodeSelectionModel": SingleSelectionModel {
     "focused": null,
-    "searchResult": Array [],
+    "searchResult": [],
     "searchTerm": "c",
     "selected": null,
   },
 }
 `;
 
-exports[`Cluster dialog box state search start node functionality should not filter members when the search term is empty 1`] = `
+exports[`Cluster dialog box state > search start node functionality > should not filter members when the search term is empty 1`] = `
 ClusterDialogBoxState {
   "hubNodesSelectionModel": MultipleSelectionModel {
     "focused": null,
-    "searchResult": Array [],
+    "searchResult": [],
     "searchTerm": "",
-    "selected": Array [],
+    "selected": [],
   },
-  "members": Array [
+  "members": [
     Member {
       "nodeId": "List chrome",
     },
@@ -822,22 +822,22 @@ ClusterDialogBoxState {
   ],
   "startNodeSelectionModel": SingleSelectionModel {
     "focused": null,
-    "searchResult": Array [],
+    "searchResult": [],
     "searchTerm": "",
     "selected": null,
   },
 }
 `;
 
-exports[`Cluster dialog box state search start node functionality should not filter members when the search term only contains spaces 1`] = `
+exports[`Cluster dialog box state > search start node functionality > should not filter members when the search term only contains spaces 1`] = `
 ClusterDialogBoxState {
   "hubNodesSelectionModel": MultipleSelectionModel {
     "focused": null,
-    "searchResult": Array [],
+    "searchResult": [],
     "searchTerm": "",
-    "selected": Array [],
+    "selected": [],
   },
-  "members": Array [
+  "members": [
     Member {
       "nodeId": "List chrome",
     },
@@ -853,22 +853,22 @@ ClusterDialogBoxState {
   ],
   "startNodeSelectionModel": SingleSelectionModel {
     "focused": null,
-    "searchResult": Array [],
+    "searchResult": [],
     "searchTerm": "",
     "selected": null,
   },
 }
 `;
 
-exports[`Cluster dialog box state search start node functionality should not have filtered results for a non-matching search term 1`] = `
+exports[`Cluster dialog box state > search start node functionality > should not have filtered results for a non-matching search term 1`] = `
 ClusterDialogBoxState {
   "hubNodesSelectionModel": MultipleSelectionModel {
     "focused": null,
-    "searchResult": Array [],
+    "searchResult": [],
     "searchTerm": "",
-    "selected": Array [],
+    "selected": [],
   },
-  "members": Array [
+  "members": [
     Member {
       "nodeId": "List chrome",
     },
@@ -884,22 +884,22 @@ ClusterDialogBoxState {
   ],
   "startNodeSelectionModel": SingleSelectionModel {
     "focused": null,
-    "searchResult": Array [],
+    "searchResult": [],
     "searchTerm": "hello",
     "selected": null,
   },
 }
 `;
 
-exports[`Cluster dialog box state should have an initial state 1`] = `
+exports[`Cluster dialog box state > should have an initial state 1`] = `
 ClusterDialogBoxState {
   "hubNodesSelectionModel": MultipleSelectionModel {
     "focused": null,
-    "searchResult": Array [],
+    "searchResult": [],
     "searchTerm": "",
-    "selected": Array [],
+    "selected": [],
   },
-  "members": Array [
+  "members": [
     Member {
       "nodeId": "List chrome",
     },
@@ -915,22 +915,22 @@ ClusterDialogBoxState {
   ],
   "startNodeSelectionModel": SingleSelectionModel {
     "focused": null,
-    "searchResult": Array [],
+    "searchResult": [],
     "searchTerm": "",
     "selected": null,
   },
 }
 `;
 
-exports[`Cluster dialog box state start node selection should deselect the start node 1`] = `
+exports[`Cluster dialog box state > start node selection > should deselect the start node 1`] = `
 ClusterDialogBoxState {
   "hubNodesSelectionModel": MultipleSelectionModel {
     "focused": null,
-    "searchResult": Array [],
+    "searchResult": [],
     "searchTerm": "",
-    "selected": Array [],
+    "selected": [],
   },
-  "members": Array [
+  "members": [
     Member {
       "nodeId": "List chrome",
     },
@@ -948,7 +948,7 @@ ClusterDialogBoxState {
     "focused": Member {
       "nodeId": "void onCreate()",
     },
-    "searchResult": Array [
+    "searchResult": [
       Member {
         "nodeId": "void onCreate()",
       },
@@ -965,15 +965,15 @@ ClusterDialogBoxState {
 }
 `;
 
-exports[`Cluster dialog box state start node selection should select the currently focused element as the start node 1`] = `
+exports[`Cluster dialog box state > start node selection > should select the currently focused element as the start node 1`] = `
 ClusterDialogBoxState {
   "hubNodesSelectionModel": MultipleSelectionModel {
     "focused": null,
-    "searchResult": Array [],
+    "searchResult": [],
     "searchTerm": "",
-    "selected": Array [],
+    "selected": [],
   },
-  "members": Array [
+  "members": [
     Member {
       "nodeId": "List chrome",
     },
@@ -991,7 +991,7 @@ ClusterDialogBoxState {
     "focused": Member {
       "nodeId": "void onCreate()",
     },
-    "searchResult": Array [
+    "searchResult": [
       Member {
         "nodeId": "void onCreate()",
       },

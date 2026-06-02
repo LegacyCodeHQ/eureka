@@ -8,7 +8,7 @@ dependencies {
 val cloneTestRepo by tasks.registering {
   val testDataDirectory = File(System.getProperty("user.home")).resolve(".eureka-test-data")
   val testRepoDirectory = testDataDirectory.resolve("simple-android")
-  val commitHash = "5eb413173505ceb287a7b0bfb27b698ed556c829"
+  val commitHash = "39ca3a21a826ecb85c916d878f5a662a4e4e3ec4"
 
   outputs.dir(testRepoDirectory)
 

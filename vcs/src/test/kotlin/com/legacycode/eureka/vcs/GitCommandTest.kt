@@ -22,7 +22,7 @@ class GitCommandTest {
 
     // then
     assertThat(result.getOrNull())
-      .isEqualTo(CommandResult(0, "5eb413173"))
+      .isEqualTo(CommandResult(0, "39ca3a21a"))
   }
 
   @Test
